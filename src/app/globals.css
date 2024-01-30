@@ -1,0 +1,305 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 0, 0, 0;
+    --background-end-rgb: 0, 0, 0;
+  }
+}
+
+.body{
+  font-family: Poppins;
+  background: rgb(223, 223, 223);
+  
+  text-align: center;
+  padding: 20px;
+  height: 100vh;
+}
+
+/* Navigations */
+
+.nav{
+  border-bottom: solid 1px #c4c4c4;
+}
+
+ul, li{
+  font-size: 15px;
+}
+
+ul li{
+  cursor: pointer;
+  
+  width: 100%;
+}
+
+.linav{
+  text-align: left;
+}
+
+input{
+  padding: 5px;
+  border: solid 1px #c4c4c4;
+}
+
+.selections{
+  border: solid 1px #5a5a5a;
+  width: 200px;
+}
+
+.submenu li{
+  padding: 5px;
+  
+}
+
+.active{
+  animation: active 0.5s ease-in-out;
+  color: #F0AB00;
+  font-weight: bold;
+}
+
+.submenu{
+  border-left: solid 2px #F0AB00;
+  transition: all 0.5s ease-in-out;
+  animation: submenu 0.7s ease-in-out;
+}
+
+.submenu li{
+  padding-left: 10px;
+  animation: listall 0.5s ease-in-out;
+}
+
+.submenu li:hover{
+  color: #F0AB00;
+}
+
+@keyframes listall {
+  
+}
+
+@keyframes submenu {
+  0%{
+    opacity: 0%;
+    color: black;
+  }50%{
+    opacity: 0%;
+    color: black;
+  }100%{
+    opacity: 100%;
+  }
+}
+
+@keyframes active {
+  0%{
+    padding-left: 0px;
+  }50%{
+    color: #000000;
+    padding-left: 3px;
+  }100%{
+    color: #F0AB00;
+    padding-left: 0px;
+  }
+}
+
+/* Navigations */
+
+
+/* Sales Qoutation */
+
+.salesQoutation{
+  text-align: left;
+  background-color: #E5E5E5;
+  border-top: ;
+}
+
+.salesbody{
+  text-align: left;
+  background-color: #ffffff;
+}
+
+.salesbody {
+  /* Add styles for the container to enable overflow */
+  overflow-x: auto;
+}
+
+.salesbody::-webkit-scrollbar {
+  width: 12px; /* Set the width of the scrollbar */
+  height: 8px;
+  opacity: 50%;
+}
+
+.salesbody::-webkit-scrollbar:hover {
+  width: 12px; /* Set the width of the scrollbar */
+  height: 10px;
+}
+
+.salesbody::-webkit-scrollbar-thumb {
+  background-color: #88888849; /* Set the color of the thumb */
+  border-radius: 6px; /* Set the border radius of the thumb */
+  transition: all 0.5s ease-in-out;
+  opacity: 50%;
+}
+
+.salesbody::-webkit-scrollbar-track {
+  background-color: #f2f2f2; /* Set the color of the track */
+}
+
+/* Optional: Hide scrollbar when not scrolling */
+.salesbody::-webkit-scrollbar-thumb:hover {
+  background-color: #F0AB00;
+  opacity: 50%;
+  
+}
+
+.fields::-webkit-scrollbar {
+  width: 12px; /* Set the width of the scrollbar */
+  height: 8px;
+  opacity: 50%;
+}
+
+.fields::-webkit-scrollbar:hover {
+  width: 12px; /* Set the width of the scrollbar */
+  height: 10px;
+}
+
+.fields::-webkit-scrollbar-thumb {
+  background-color: #88888849; /* Set the color of the thumb */
+  border-radius: 6px; /* Set the border radius of the thumb */
+  transition: all 0.5s ease-in-out;
+  opacity: 50%;
+}
+
+.fields::-webkit-scrollbar-track {
+  background-color: #f2f2f2; /* Set the color of the track */
+}
+
+/* Optional: Hide scrollbar when not scrolling */
+.fields::-webkit-scrollbar-thumb:hover {
+  background-color: #F0AB00;
+  opacity: 50%;
+}
+
+.salesbody input{
+  height: 20px;
+  width: 200px;
+}
+
+table{
+  border-collapse: collapse;
+  font-size: 12px;
+  width: 100%;
+}
+
+th{
+  background-color: #E5E5E5;
+}
+
+th, tr, td{
+  border: solid 1px rgb(197, 197, 197);
+  padding: 4px;
+}
+
+
+.tables th, td{
+  white-space: nowrap;
+  font-weight: 400;
+}
+
+.tables th, td{
+  white-space: nowrap;
+}
+
+/* Modal */
+
+.modal {
+  display: block;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+  background-color: #fff;
+  margin: 20% auto;
+  padding: 20px;
+  width: 60%;
+}
+
+.close {
+  float: right;
+  font-size: 24px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.col1 div{
+  margin-bottom: 2px;
+}
+
+/* Drag */
+
+.SalesOrderDiv{
+  border: solid 1px #8d8d8d;
+  font-size: 13px;
+  padding: 5px;
+  box-shadow: 2px 2px 2px 2px rgba(141, 141, 141, 0.5);
+}
+
+.SalesOrderDivBody{
+  border-top: solid 1px #8d8d8d;
+  padding: 10px;
+}
+
+.salesForms{
+  font-size: 13px;
+}
+
+.salesForms div{
+  margin-bottom: 2px;
+}
+
+.salesForms input{
+  height: 23px;
+  border: solid 1px rgb(129, 129, 129);
+}
+
+input, textarea{
+  height: 20px;
+  width: 200px;
+  border: solid 1px rgb(129, 129, 129);
+}
+
+textarea{
+  height: 50px;
+  width: 200px;
+  border: solid 1px rgb(129, 129, 129);
+}
+
+/* Global CSS */
+
+.windowheader{
+  background-color: #CBD5E1;
+}
+
+
+/* Customer Data */
+
+.tdcus:hover{
+  background-color: #F0AB00;
+  cursor: pointer;
+}
+
+.trcus:hover{
+  background-color: #e0e0e0;
+}

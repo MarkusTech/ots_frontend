@@ -1,0 +1,20 @@
+{
+    "itemCode": "",
+    "itemName": "",
+    "quantity": "",
+    "uom": "",
+    "uomConversion": "",
+    "location": "",
+    "inventoryStatus": "",
+    "sellingPriceBeforeDiscount": "",
+    "discountRate": "",
+    "sellingPriceAfterDiscount": "",
+    "lowerBound": "",
+    "taxCode": "",
+    "taxCodePercentage": "",
+    "taxAmount": "",
+    "modeOfReleasing": "",
+    "scPwdDiscount": "",
+    "grossTotal": "",
+    "selected": false
+  }
