@@ -6,6 +6,7 @@ import { useState } from "react";
 import SalesQoutation from "./Transaction/SalesQoutation/SalesQoutation";
 import Draggable from "react-draggable";
 import SalesOrder from "./Transaction/SalesOrder/SalesOrder";
+import Image from "next/image";
 
 export default function Home() {
 
@@ -60,10 +61,10 @@ export default function Home() {
     } 
   }
 
-  const handleDrag = (e, ui) => {
-    // You can add custom logic here if needed
-    console.log('Dragging...', ui);
-  };
+  // const handleDrag = (e, ui) => {
+  //   // You can add custom logic here if needed
+  //   console.log('Dragging...', ui);
+  // };
 
 
   // End Of Declaration
@@ -165,7 +166,8 @@ export default function Home() {
       <div className='p-2 nav w-60'>
           <div className=''>
             <div className='flex items-center justify-center'>
-              <img src="https://us.123rf.com/450wm/mamun25g/mamun25g2207/mamun25g220709665/188967190-ots-letter-logo-design-with-polygon-shape-ots-polygon-and-cube-shape-logo-design-ots-hexagon-vector.jpg?ver=6" alt="logo" className='w-[70px] h-[70px]' />
+              {/* LOGO */}
+            <Image src="/image/ots.jpg" alt="logo" width={70} height={70} />
             </div>
             <div className='flex items-center justify-center'>
               <div className='p-2'>
@@ -239,7 +241,8 @@ export default function Home() {
         <div className="body w-[100%] bg-red-50 h-screen overflow-auto">
         
         {showSalesOrder  && (
-            <Draggable handle=".header" onDrag={handleDrag} >
+            // onDrag={handleDrag}
+            <Draggable handle=".header" > 
             <div className="container bg-white" style={{ 
                 border: '1px solid #ccc', 
                 position: 'absolute', 
@@ -267,7 +270,8 @@ export default function Home() {
         )}
 
       {showSalesQoutation && (
-         <Draggable handle=".header" onDrag={handleDrag} >
+          // onDrag={handleDrag}
+         <Draggable handle=".header" >
 
             <div className="container bg-white" style={{ 
                 border: '1px solid #ccc', 
