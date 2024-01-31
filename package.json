@@ -9,6 +9,8 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@types/axios": "^0.14.0",
+    "axios": "^1.6.7",
     "cors": "^2.8.5",
     "next": "14.0.2",
     "react": "^18",

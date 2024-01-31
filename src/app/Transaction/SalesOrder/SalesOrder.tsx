@@ -1,7 +1,7 @@
 "use client";
 
 import React, { use, useEffect, useState } from "react";
-import Data from "../../Data/Data.json"
+import Data from "../../Data/Data.json" //dummy data
 import SalesQoutation from "../SalesQoutation/SalesQoutation";
 import { height } from "@fortawesome/free-brands-svg-icons/fa42Group";
 import Draggable from "react-draggable";
@@ -41,7 +41,8 @@ export default function SalesOrder() {
 
   const now = new Date();
   
-  const manilaDate = now.toLocaleDateString('en-US', { maximumFractionDigits: 4, timeZone: 'Asia/Manila' });
+  // const manilaDate = now.toLocaleDateString('en-US', { timeZone: 'Asia/Manila' });
+  const manilaDate = now.toLocaleDateString('en-US', { timeZone: 'Asia/Manila' });
 
   const [itemcodetextalign, setitemcodetextalign] = useState('');
 
@@ -282,16 +283,26 @@ export default function SalesOrder() {
     setSearchTerm(event.target.value);
   };
 
+  // const filteredData = currentCustomerData
+  // .filter((rowData) => {
+  //   return (
+  //     Object.values(rowData).some((value) =>
+  //       value !== null &&
+  //       value.toString().toLowerCase().includes(searchTerm.toLowerCase())
+  //     )
+  //   );
+  // })
+  // .slice(0, 20);
+
   const filteredData = currentCustomerData
   .filter((rowData) => {
-    return (
-      Object.values(rowData).some((value) =>
-        value !== null &&
-        value.toString().toLowerCase().includes(searchTerm.toLowerCase())
-      )
+    // Check if any property value in rowData contains the searchTerm
+    return Object.values(rowData).some((value) =>
+      value !== null &&
+      value.toString().toLowerCase().includes(searchTerm.toLowerCase())
     );
   })
-  .slice(0, 20);
+  .slice(0, 20);  // Get the first 20 results after filtering
 
 
   const addCustomerData = (id:any, name:any, fname:any, address:any, tin:any) => {
@@ -2062,7 +2073,8 @@ export default function SalesOrder() {
             <div className="grid grid-cols-2">
               <label htmlFor="entrynumber">Customer Code</label>
               <div>
-                <input type="text" value={customerData.map((e)=>e.customerCode)} className="bg-slate-200" readOnly/> <button className="w-[20px]  bg-slate-200" onClick={handleShowCustomer}>=</button>
+                <input type="text" value={customerData.map((e)=>e.customerCode)} className="bg-slate-200" readOnly/> 
+                <button className="w-[20px]  bg-slate-200" onClick={handleShowCustomer}>=</button>
                   {
                     showCustomer && (
                       <Draggable>
@@ -2377,6 +2389,7 @@ export default function SalesOrder() {
                 <td className={
                   rowData.quantity == 0 ? 'bg-white' : rowData.inventoryStatus === "Available" ? "bg-green-200" : rowData.inventoryStatus === "Out of Stocks" ? "bg-red-200" : ""
                 }>
+                  {/* inventory status */}
                   {
                     rowData.quantity == 0 ? '' : rowData.inventoryStatus + " "+ rowData.cash + " " + rowData.creditcard + " " + rowData.debit + " " + rowData.pdc + " " + rowData.po + " " + rowData.datedCheck + " " + rowData.onlineTransfer + " " + rowData.onAccount + " " + rowData.cashOnDel
                   }

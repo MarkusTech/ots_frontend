@@ -273,13 +273,13 @@ export default function Home() {
                 border: '1px solid #ccc', 
                 position: 'absolute', 
                 zIndex: 2,
-                top: '50%',
-                left: '10%',
+                top: '5%',
+                left: '15%',
                 transform: 'translate(-50%, -50%)' 
               }}  >
               <div className="header grid grid-cols-2 p-2 text-left windowheader" style={{ cursor: 'move' }}>
                 <div>
-                  Sales Order Header
+                  Sales Qoutation
                 </div>
                 <div>
                   
