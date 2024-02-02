@@ -78,6 +78,9 @@ export default function SalesOrder() {
 
   const [searchTerm, setSearchTerm] = useState('');
 
+
+
+  // All data table
   const [tableData, setTableData] = useState([
     {
       itemCode: '',
@@ -117,6 +120,9 @@ export default function SalesOrder() {
     }
   ]);
 
+
+
+  //for PWD
   useEffect(() => {
     if (cardCodedata == "C000112") {
       setShowSCPWD(true);
@@ -127,6 +133,10 @@ export default function SalesOrder() {
     }
   })
 
+
+
+
+  //table for header
   const [finalTotalList, setfinalTotalList] = useState([
     {
       documentNum: "",
@@ -151,22 +161,29 @@ export default function SalesOrder() {
     }
   ]);
 
+
+  //retrieval customer data
   const onAddHeader = async () => {
     const customers = await axios.get(`${process.env.NEXT_PUBLIC_IP}/customer`);
     setCustomerDataList(customers.data);
   };
 
+
+  //retrieval items
   const onAddheaderItems = async () => {
     const item = await axios.get(`${process.env.NEXT_PUBLIC_IP}/item/${priceListNum}/${warehouseCode}/C000174`);
     setItemDataList(item.data);
   };
 
+
+  //retrieval UOM item
   const onAddHeaderUOM = async (itemcode: any, rowIndex: any) => {
     const uom = await axios.get(`${process.env.NEXT_PUBLIC_IP}/uom/${itemcode}`);
     setUOMList(uom.data);
     setUOMListIndex(rowIndex);
   };
 
+  //retrieval location warehouse
   const onAddHeaderWareHouse = async (itemcode: any, name: any, uom: any) => {
     try {
       const warehouse = await axios.get(`${process.env.NEXT_PUBLIC_IP}/warehouse-soh/${itemcode}/${name}/${brandID}`)
@@ -176,17 +193,20 @@ export default function SalesOrder() {
     }
   }
 
+  //retrieval taxcode
   const onAddHeaderTaxCode = async (cardCodex: any, whseCodex: any) => {
     const taxcode = await axios.get(`${process.env.NEXT_PUBLIC_IP}/tax-code/${cardCodex}/${whseCodex}`);
     console.log("Tax Code", taxcode.data);
     settaxCodeData(taxcode.data);
   }
 
+  //retrieval taxrate
   const onAddHeaderRateCode = async (taxcode: any) => {
     const taxrate = await axios.get(`${process.env.NEXT_PUBLIC_IP}/tax-rate/${taxcode}`);
     settaxRateData(taxrate.data);
   }
 
+  //retrieval lowerbound
   const onAddLowerBound = async (bid: any, taxcodex: any, itemcodex: any, whscodex: any, indexNum: any, uomLoweBound: any) => {
     const lowerbound = await axios.get(`${process.env.NEXT_PUBLIC_IP}/lowerbound/${bid}/${taxcodex}/${itemcodex}/${whscodex}/${uomLoweBound}`);
 
@@ -201,12 +221,16 @@ export default function SalesOrder() {
     onAddheaderItems();
   }, []);
 
+
+  //input change
   const handleInputChange = (rowIndex: any, fieldName: any, value: any) => {
     const newData: any = [...tableData];
     newData[rowIndex][fieldName] = value;
     console.log(value)
   };
 
+
+  //button to add row
   const handleAddRow = (rowIndex: any, fieldName: any) => {
 
     setTableData(prevData => [
@@ -265,9 +289,7 @@ export default function SalesOrder() {
 
   };
 
-
-
-
+  //trial function/data
   const [customerData, setCustomerData] = useState([
     {
       customerCode: '00000',
@@ -279,6 +301,9 @@ export default function SalesOrder() {
     }
   ]);
 
+
+
+  //function search for customer
   const handleSearch = (event: any) => {
     setSearchTerm(event.target.value);
   };
@@ -294,6 +319,7 @@ export default function SalesOrder() {
   // })
   // .slice(0, 20);
 
+  //function to display the searched text
   const filteredData = currentCustomerData
     .filter((rowData) => {
       // Check if any property value in rowData contains the searchTerm
@@ -304,7 +330,8 @@ export default function SalesOrder() {
     })
     .slice(0, 20);  // Get the first 20 results after filtering
 
-
+   
+  //function to insert customer data
   const addCustomerData = (id: any, name: any, fname: any, address: any, tin: any) => {
 
     onAddHeaderTaxCode(id, 'GSCNAPGS');
@@ -348,7 +375,7 @@ export default function SalesOrder() {
   }
 
 
-
+  //handle remove row
   const handleRemoveRow = (rowIndex: any, Itemcodex: any) => {
 
     countAllItem = countAllItem - 1;
@@ -404,11 +431,12 @@ export default function SalesOrder() {
 
   };
 
-
+  //show hide panel
   const handleShowDoc = () => {
     setShowDoc(!showDoc);
   }
 
+  //hide/show customer panel
   const handleShowCustomer = () => {
     setShowCustomer(!showCustomer);
     onAddHeader();
@@ -435,7 +463,7 @@ export default function SalesOrder() {
   }
 
 
-
+  //function to calculate 
   useEffect(() => {
 
     let tempSum = 0;
@@ -471,7 +499,7 @@ export default function SalesOrder() {
 
   });
 
-
+  //function summation
   function sum() {
 
     let tempSum = 0;
@@ -489,6 +517,7 @@ export default function SalesOrder() {
 
   const [itemCodeForUOM, setItemCodeForUOM] = useState('');
 
+  //function to open item panel
   const openItemTable = (rowIndex: any) => {
     setOpenItemTablePanel(!openItemTablePanel);
     setSelectedRowIndex(rowIndex);
@@ -515,6 +544,7 @@ export default function SalesOrder() {
 
   }
 
+  //open/hide UOM panel
   const openOUMTable = (rowIndex: any, itemCode: any) => {
     setOpenOUMPanel(!openOUMPanel);
     setSelectedRowIndex(rowIndex);
@@ -522,6 +552,7 @@ export default function SalesOrder() {
     onAddHeaderUOM(itemCode, rowIndex);
   }
 
+  //open/hide branch/location panel
   const openLocationTable = (rowIndex: any, itemcode: any, name: any, uom: any, itemname: any) => {
     setOpenLocationPanel(!openLocationPanel);
     setSelectedRowIndex(rowIndex);
@@ -532,6 +563,7 @@ export default function SalesOrder() {
     setitemuomws(name);
   }
 
+  //open/hide Mode of Releasing panel
   const openModRelTable = (rowIndex: any) => {
     setOpenModRelTablePanel(!openModRelTablePanel);
     setSelectedRowIndex(rowIndex);
@@ -546,6 +578,8 @@ export default function SalesOrder() {
 
   let countAllItem = 0;
 
+
+  //function when you click an item
   const handleItemClick = async (item: any) => {
 
     countAllItem = countAllItem + 1;
@@ -633,6 +667,7 @@ export default function SalesOrder() {
     }
   };
 
+  //function when you change the quantity value
   const changeTextBoxValue = (rowIndex: any) => {
 
     let sellingAfDis = document.getElementById('sellingAfDis');
@@ -651,6 +686,7 @@ export default function SalesOrder() {
 
   }
 
+  //function when you change the quantity value
   const handleKeyPressSel = (event: { key: string; }, rowIndex: any, value: any) => {
 
     const updatedTableData = [...tableData];
@@ -697,6 +733,7 @@ export default function SalesOrder() {
     }
   }
 
+  //function when you change the quantity value
   const handleSelectAll = () => {
     if (inputRef.current) {
       inputRef.current.select();
@@ -704,7 +741,7 @@ export default function SalesOrder() {
   };
 
 
-
+  //function when you change the quantity value
   const handleQuantityChange = async (rowIndex: any, quantity: any) => {
 
     const updatedTableData = [...tableData];
@@ -778,7 +815,7 @@ export default function SalesOrder() {
     }
   };
 
-
+  //function for Exclude BO
   const handleChangeExcludeBO = async (value: any, rowIndex: any) => {
 
     const updatedTableData = [...tableData];
@@ -797,6 +834,7 @@ export default function SalesOrder() {
 
   }
 
+  //function for Discount Rate Change
   const handleDiscountRateChange = (rowIndex: any, discountRates: any) => {
     const updatedTableData = [...tableData];
     const item = updatedTableData[rowIndex];
@@ -814,6 +852,7 @@ export default function SalesOrder() {
     setTableData(updatedTableData);
   };
 
+  //function for currency
   let localCurrency = new Intl.NumberFormat('en-PH', {
     style: 'currency',
     currency: 'PHP' // Philippines currency code for Philippine Peso
@@ -833,6 +872,8 @@ export default function SalesOrder() {
     );
   }).slice(0, 50);
 
+
+ //function handle UOM 
   const handleUOM = async (rowindex: any, BaseQty: any, UomCode: any) => {
 
     const updatedTableData = [...tableData];
@@ -910,6 +951,7 @@ export default function SalesOrder() {
 
   }
 
+  //change manual mode of releasing
   const changeManualModRel = (moderel: any) => {
     const updatedTableData = [...tableData];
 
@@ -1726,6 +1768,7 @@ export default function SalesOrder() {
 
   })
 
+  // ------------------------------- IMPORTANT! --------------------------------------------------
   const handleSaveDraft = () => {
 
     const finalTotalListArr = [...finalTotalList];
@@ -2099,8 +2142,7 @@ export default function SalesOrder() {
                                 type="text"
                                 className="mb-1"
                                 value={searchTerm}
-                                onChange={handleSearch}
-                                className="mb-1" />
+                                onChange={handleSearch}/>
                             </div>
                             <table>
                               <thead className="tables">
