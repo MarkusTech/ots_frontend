@@ -311,7 +311,7 @@ export default function SalesOrder() {
     .filter((rowData) => {
       // Check if any property value in rowData contains the searchTerm
       return Object.values(rowData).some(
-        (value) =>
+        (value: any) =>
           value !== null &&
           value.toString().toLowerCase().includes(searchTerm.toLowerCase())
       );
@@ -440,7 +440,7 @@ export default function SalesOrder() {
 
     const listArryLen = updatedTableData.length;
 
-    taxRateData.map((e) => {
+    taxRateData.map((e: any) => {
       for (let i = 0; i < listArryLen; i++) {
         const item = updatedTableData[i];
         updatedTableData[i] = {
@@ -517,14 +517,14 @@ export default function SalesOrder() {
     setOpenItemTablePanel(!openItemTablePanel);
     setSelectedRowIndex(rowIndex);
 
-    taxCodeData.map((e) => {
+    taxCodeData.map((e: any) => {
       onAddHeaderRateCode(e.TaxCode);
 
       const updatedTableData = [...tableData];
 
       const listArryLen = updatedTableData.length;
 
-      taxRateData.map((e) => {
+      taxRateData.map((e: any) => {
         for (let i = 0; i < listArryLen; i++) {
           const item = updatedTableData[i];
           updatedTableData[i] = {
@@ -600,11 +600,11 @@ export default function SalesOrder() {
       let taxCodeDataNow = "";
       let lowerBoundNow = 0;
 
-      taxRateData.map((e) => {
+      taxRateData.map((e: any) => {
         taxRateDataNow = e.Rate;
       });
 
-      taxCodeData.map((e) => {
+      taxCodeData.map((e: any) => {
         taxCodeDataNow = e.TaxCode;
       });
 
@@ -2203,7 +2203,7 @@ export default function SalesOrder() {
                 </label>
                 <div>
                   <input
-                    onInput={(e) => {
+                    onInput={(e: any) => {
                       SCPWDinput(e.target.value);
                     }}
                     type="text"
@@ -2505,7 +2505,7 @@ export default function SalesOrder() {
                             type="number"
                             id={rowData.itemCode}
                             onClick={(e) => changeTextBoxValue(rowIndex)}
-                            onKeyPress={(e) =>
+                            onKeyPress={(e: any) =>
                               handleKeyPressSel(e, rowIndex, e.target.value)
                             }
                           />
