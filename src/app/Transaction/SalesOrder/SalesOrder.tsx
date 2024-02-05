@@ -2107,6 +2107,7 @@ export default function SalesOrder() {
                 >
                   =
                 </button>
+                {/* ------------ To show addCustomerDataPage ---------------- */}
                 {showCustomer && <AddCustomerDataPage />}
               </div>
             </div>
