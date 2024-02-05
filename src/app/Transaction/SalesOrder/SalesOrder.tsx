@@ -4,7 +4,6 @@ import React, { use, useEffect, useState } from "react";
 import Draggable from "react-draggable";
 import axios from "axios";
 import { useRef } from "react";
-import AddCustomerDataPage from "./ui/addCustomerData/addCustomerData";
 
 export default function SalesOrder() {
   const inputRef = useRef(null);
@@ -14,7 +13,7 @@ export default function SalesOrder() {
   const [UOMList, setUOMList] = useState([]);
   const [UOMListIndex, setUOMListIndex] = useState([]);
   const [WareHouseList, setWareHouseList] = useState([]);
-  const [selectedRowIndex, setSelectedRowIndex] = useState(-1);
+  const [selectedRowIndex, setSelectedRowIndex] = useState(null);
 
   const [cardCodedata, setcardCodedata] = useState("");
   const [taxCodeData, settaxCodeData] = useState([]);
@@ -33,6 +32,13 @@ export default function SalesOrder() {
   const brandID = 4;
   const priceListNum = 14;
   const user = "Administrator";
+
+  const now = new Date();
+
+  // Date Now()
+  const manilaDate = now.toLocaleDateString("en-US", {
+    timeZone: "Asia/Manila",
+  });
 
   const [itemcodetextalign, setitemcodetextalign] = useState("");
 
@@ -65,8 +71,8 @@ export default function SalesOrder() {
   ]);
 
   const [searchTerm, setSearchTerm] = useState("");
+  const fetchAPI = process.env.NEXT_PUBLIC_IP;
 
-  // All data table
   const [tableData, setTableData] = useState([
     {
       itemCode: "",
@@ -106,7 +112,6 @@ export default function SalesOrder() {
     },
   ]);
 
-  //for PWD
   useEffect(() => {
     if (cardCodedata == "C000112") {
       setShowSCPWD(true);
@@ -117,7 +122,6 @@ export default function SalesOrder() {
     }
   });
 
-  //table for header
   const [finalTotalList, setfinalTotalList] = useState([
     {
       documentNum: "",
@@ -142,57 +146,46 @@ export default function SalesOrder() {
     },
   ]);
 
-  //retrieval customer data
   const onAddHeader = async () => {
-    const customers = await axios.get(`${process.env.NEXT_PUBLIC_IP}/customer`);
+    const customers = await axios.get(`${fetchAPI}/customer`);
     setCustomerDataList(customers.data);
   };
 
-  //retrieval items
   const onAddheaderItems = async () => {
     const item = await axios.get(
-      `${process.env.NEXT_PUBLIC_IP}/item/${priceListNum}/${warehouseCode}/C000174`
+      `${fetchAPI}/item/${priceListNum}/${warehouseCode}/C000174`
     );
     setItemDataList(item.data);
   };
 
-  //retrieval UOM item
   const onAddHeaderUOM = async (itemcode: any, rowIndex: any) => {
-    const uom = await axios.get(
-      `${process.env.NEXT_PUBLIC_IP}/uom/${itemcode}`
-    );
+    const uom = await axios.get(`${fetchAPI}/uom/${itemcode}`);
     setUOMList(uom.data);
     setUOMListIndex(rowIndex);
   };
 
-  //retrieval location warehouse
   const onAddHeaderWareHouse = async (itemcode: any, name: any, uom: any) => {
     try {
       const warehouse = await axios.get(
-        `${process.env.NEXT_PUBLIC_IP}/warehouse-soh/${itemcode}/${name}/${brandID}`
+        `${fetchAPI}/warehouse-soh/${itemcode}/${name}/${brandID}`
       );
       setWareHouseList(warehouse.data);
     } catch (e) {}
   };
 
-  //retrieval taxcode
   const onAddHeaderTaxCode = async (cardCodex: any, whseCodex: any) => {
     const taxcode = await axios.get(
-      `${process.env.NEXT_PUBLIC_IP}/tax-code/${cardCodex}/${whseCodex}`
+      `${fetchAPI}/tax-code/${cardCodex}/${whseCodex}`
     );
     console.log("Tax Code", taxcode.data);
     settaxCodeData(taxcode.data);
   };
 
-  //retrieval taxrate
   const onAddHeaderRateCode = async (taxcode: any) => {
-    const taxrate = await axios.get(
-      `${process.env.NEXT_PUBLIC_IP}/tax-rate/${taxcode}`
-    );
+    const taxrate = await axios.get(`${fetchAPI}/tax-rate/${taxcode}`);
     settaxRateData(taxrate.data);
   };
 
-  //retrieval lowerbound
   const onAddLowerBound = async (
     bid: any,
     taxcodex: any,
@@ -202,7 +195,7 @@ export default function SalesOrder() {
     uomLoweBound: any
   ) => {
     const lowerbound = await axios.get(
-      `${process.env.NEXT_PUBLIC_IP}/lowerbound/${bid}/${taxcodex}/${itemcodex}/${whscodex}/${uomLoweBound}`
+      `${fetchAPI}/lowerbound/${bid}/${taxcodex}/${itemcodex}/${whscodex}/${uomLoweBound}`
     );
 
     let lowerBoundArr = lowerbound.data;
@@ -215,14 +208,12 @@ export default function SalesOrder() {
     onAddheaderItems();
   }, []);
 
-  //input change
   const handleInputChange = (rowIndex: any, fieldName: any, value: any) => {
     const newData: any = [...tableData];
     newData[rowIndex][fieldName] = value;
     console.log(value);
   };
 
-  //button to add row
   const handleAddRow = (rowIndex: any, fieldName: any) => {
     setTableData((prevData) => [
       ...prevData,
@@ -278,7 +269,6 @@ export default function SalesOrder() {
     onAddheaderItems();
   };
 
-  //trial function/data
   const [customerData, setCustomerData] = useState([
     {
       customerCode: "00000",
@@ -289,7 +279,6 @@ export default function SalesOrder() {
     },
   ]);
 
-  //function search for customer
   const handleSearch = (event: any) => {
     setSearchTerm(event.target.value);
   };
@@ -305,9 +294,50 @@ export default function SalesOrder() {
     })
     .slice(0, 20); // Get the first 20 results after filtering
 
-  // -----------------------------------------------------------------------------------
+  const addCustomerData = (
+    id: any,
+    name: any,
+    fname: any,
+    address: any,
+    tin: any
+  ) => {
+    onAddHeaderTaxCode(id, "GSCNAPGS");
 
-  //handle remove row
+    const updatedTableData = [...tableData];
+
+    const listArryLen = updatedTableData.length;
+
+    taxRateData.map((e: any) => {
+      for (let i = 0; i < listArryLen; i++) {
+        const item = updatedTableData[i];
+        updatedTableData[i] = {
+          ...item,
+          taxCodePercentage: e.Rate,
+        };
+        setTableData(updatedTableData);
+      }
+    });
+
+    let newArray = {
+      customerCode: id,
+      customerName: name,
+      customerCardFName: fname,
+      cusShipAddress: address,
+      cusLicTradNum: tin,
+    };
+
+    setcardCodedata(id);
+
+    setCustomerData([newArray]);
+
+    console.log(customerData2);
+    setShowCustomer(!showCustomer);
+  };
+
+  const toggleShowWindow = () => {
+    setShowWindow(!showWindow);
+  };
+
   const handleRemoveRow = (rowIndex: any, Itemcodex: any) => {
     countAllItem = countAllItem - 1;
 
@@ -349,10 +379,6 @@ export default function SalesOrder() {
     };
 
     const newData: any = [...tableData];
-    const newData2: any = newData[rowIndex];
-    const newData3: any = (newData[rowIndex] = emptyData);
-
-    const latestTableDataArr = tableData;
 
     setTableData((prevData) =>
       prevData.filter((_, index) => index !== rowIndex)
@@ -364,7 +390,10 @@ export default function SalesOrder() {
     console.log("new mode afterdelete", modeOfrelisingArr);
   };
 
-  //hide/show customer panel
+  const handleShowDoc = () => {
+    setShowDoc(!showDoc);
+  };
+
   const handleShowCustomer = () => {
     setShowCustomer(!showCustomer);
     onAddHeader();
@@ -385,11 +414,6 @@ export default function SalesOrder() {
     });
   };
 
-  const openConsole = () => {
-    console.log("open sample");
-  };
-
-  //function to calculate
   useEffect(() => {
     let tempSum = 0;
     let tempSum2 = 0;
@@ -428,7 +452,6 @@ export default function SalesOrder() {
     );
   });
 
-  //function summation
   function sum() {
     let tempSum = 0;
 
@@ -445,7 +468,6 @@ export default function SalesOrder() {
 
   const [itemCodeForUOM, setItemCodeForUOM] = useState("");
 
-  //function to open item panel
   const openItemTable = (rowIndex: any) => {
     setOpenItemTablePanel(!openItemTablePanel);
     setSelectedRowIndex(rowIndex);
@@ -470,7 +492,6 @@ export default function SalesOrder() {
     });
   };
 
-  //open/hide UOM panel
   const openOUMTable = (rowIndex: any, itemCode: any) => {
     setOpenOUMPanel(!openOUMPanel);
     setSelectedRowIndex(rowIndex);
@@ -478,7 +499,6 @@ export default function SalesOrder() {
     onAddHeaderUOM(itemCode, rowIndex);
   };
 
-  //open/hide branch/location panel
   const openLocationTable = (
     rowIndex: any,
     itemcode: any,
@@ -495,7 +515,6 @@ export default function SalesOrder() {
     setitemuomws(name);
   };
 
-  //open/hide Mode of Releasing panel
   const openModRelTable = (rowIndex: any) => {
     setOpenModRelTablePanel(!openModRelTablePanel);
     setSelectedRowIndex(rowIndex);
@@ -510,7 +529,6 @@ export default function SalesOrder() {
 
   let countAllItem = 0;
 
-  //function when you click an item
   const handleItemClick = async (item: any) => {
     countAllItem = countAllItem + 1;
 
@@ -542,7 +560,7 @@ export default function SalesOrder() {
       });
 
       const lowerbound = await axios.get(
-        `${process.env.NEXT_PUBLIC_IP}/lowerbound/${priceListNum}/${taxCodeDataNow}/${item.ItemCode}/${warehouseCode}/1`
+        `${fetchAPI}/lowerbound/${priceListNum}/${taxCodeDataNow}/${item.ItemCode}/${warehouseCode}/1`
       );
       const lowerboundArr = lowerbound.data;
       const lowerBoundFinalItem = lowerboundArr[0]["LowerBound"];
@@ -552,7 +570,7 @@ export default function SalesOrder() {
       let SCDiscount = "";
 
       const scdiscount = await axios.get(
-        `${process.env.NEXT_PUBLIC_IP}/sc-discount/${cardCodedata}/${item.ItemCode}`
+        `${fetchAPI}/sc-discount/${cardCodedata}/${item.ItemCode}`
       );
       SCDiscount = scdiscount.data[0]["SCDiscount"];
       console.log("Damns", scdiscount.data[0]["SCDiscount"]);
@@ -596,7 +614,6 @@ export default function SalesOrder() {
     }
   };
 
-  //function when you change the quantity value
   const changeTextBoxValue = (rowIndex: any) => {
     let sellingAfDis = document.getElementById("sellingAfDis");
 
@@ -612,7 +629,6 @@ export default function SalesOrder() {
     idUOM?.setAttribute("value", sellingAfterDis);
   };
 
-  //function when you change the quantity value
   const handleKeyPressSel = (
     event: { key: string },
     rowIndex: any,
@@ -659,14 +675,12 @@ export default function SalesOrder() {
     }
   };
 
-  //function when you change the quantity value
   const handleSelectAll = () => {
     if (inputRef.current) {
       inputRef.current.select();
     }
   };
 
-  //function when you change the quantity value
   const handleQuantityChange = async (rowIndex: any, quantity: any) => {
     const updatedTableData = [...tableData];
     const item = updatedTableData[rowIndex];
@@ -748,7 +762,6 @@ export default function SalesOrder() {
     } catch (e) {}
   };
 
-  //function for Exclude BO
   const handleChangeExcludeBO = async (value: any, rowIndex: any) => {
     const updatedTableData = [...tableData];
     const item = updatedTableData[rowIndex];
@@ -771,7 +784,6 @@ export default function SalesOrder() {
     );
   };
 
-  //function for Discount Rate Change
   const handleDiscountRateChange = (rowIndex: any, discountRates: any) => {
     const updatedTableData = [...tableData];
     const item = updatedTableData[rowIndex];
@@ -789,7 +801,6 @@ export default function SalesOrder() {
     setTableData(updatedTableData);
   };
 
-  //function for currency
   let localCurrency = new Intl.NumberFormat("en-PH", {
     style: "currency",
     currency: "PHP", // Philippines currency code for Philippine Peso
@@ -809,7 +820,6 @@ export default function SalesOrder() {
     })
     .slice(0, 50);
 
-  //function handle UOM
   const handleUOM = async (rowindex: any, BaseQty: any, UomCode: any) => {
     const updatedTableData = [...tableData];
     const item = updatedTableData[UOMListIndex];
@@ -889,35 +899,23 @@ export default function SalesOrder() {
     }
   };
 
-  //change manual mode of releasing
   const changeManualModRel = (moderel: any) => {
-    // Ensure that selectedRowIndex is within valid bounds
-    if (selectedRowIndex < 0 || selectedRowIndex >= tableData.length) {
-      console.error("Invalid selectedRowIndex");
-      return;
-    }
-
-    // Create a copy of the tableData array to avoid mutating the original state directly
     const updatedTableData = [...tableData];
 
-    // Update the specified item with the new modeOfReleasing value
-    const updatedItem = {
-      ...updatedTableData[selectedRowIndex],
+    console.log(moderel);
+
+    const item = updatedTableData[selectedRowIndex];
+
+    updatedTableData[selectedRowIndex] = {
+      ...item,
       modeOfReleasing: moderel,
     };
 
-    // Update the tableData array with the modified item
-    updatedTableData[selectedRowIndex] = updatedItem;
+    console.log(item);
 
-    // Set the updatedTableData to the state
     setTableData(updatedTableData);
-
-    // Toggle the state of openModRelTablePanel
-    setOpenModRelTablePanel(
-      (prevOpenModRelTablePanel) => !prevOpenModRelTablePanel
-    );
+    setOpenModRelTablePanel(!openModRelTablePanel);
   };
-  // END of change manual mode of releasing
 
   const handleWarehoueChange = async (rowIndex: any, itemdata: any) => {
     const updatedTableData = [...tableData];
@@ -1243,7 +1241,7 @@ export default function SalesOrder() {
 
         axios
           .get(
-            `${process.env.NEXT_PUBLIC_IP}/discount-price/${brandID}/${item.sellingPriceBeforeDiscount}/${cardCodedata}/${item.itemCode}/${item.quantity}/${item.uom}/${item.lowerBound}/${item2.creditcard}/${item2.debit}/${item2.pdc}/${item2.po}/${item.taxCode}`
+            `${fetchAPI}/discount-price/${brandID}/${item.sellingPriceBeforeDiscount}/${cardCodedata}/${item.itemCode}/${item.quantity}/${item.uom}/${item.lowerBound}/${item2.creditcard}/${item2.debit}/${item2.pdc}/${item2.po}/${item.taxCode}`
           )
           .then((response) => {
             const disPriceArr = response.data;
@@ -1703,7 +1701,6 @@ export default function SalesOrder() {
     }
   });
 
-  // ------------------------------- IMPORTANT! --------------------------------------------------
   const handleSaveDraft = () => {
     const finalTotalListArr = [...finalTotalList];
     const arrList = finalTotalListArr[0];
@@ -2022,8 +2019,336 @@ export default function SalesOrder() {
 
   return (
     <>
-      <AddCustomerDataPage />
-      {/* -------------------------------------- table ----------------------------------- */}
+      <div className="salesbody p-2 text-sm rounded-md flex gap-40  container overflow-x-auto shadow-lg">
+        <div className="w-[] flex flex-wrap gap-5 col1 mr-3">
+          <div>
+            <div className="grid grid-cols-2">
+              <label htmlFor="entrynumber">Customer Code</label>
+              <div>
+                <input
+                  type="text"
+                  value={customerData.map((e) => e.customerCode)}
+                  className="bg-slate-200"
+                  readOnly
+                />
+                <button
+                  className="w-[20px]  bg-slate-200"
+                  onClick={handleShowCustomer}
+                >
+                  =
+                </button>
+                {showCustomer && (
+                  <Draggable>
+                    <div
+                      className="bg-white shadow-lg"
+                      style={{
+                        border: "1px solid #ccc",
+                        position: "absolute",
+                        top: "12%",
+                        left: "15%",
+                      }}
+                    >
+                      <div
+                        className="grid grid-cols-2 p-2 text-left windowheader"
+                        style={{ cursor: "move" }}
+                      >
+                        <div>Customer</div>
+                        <div className="text-right">
+                          <span
+                            onClick={handleShowCustomer}
+                            className="cursor-pointer"
+                          >
+                            ❌
+                          </span>
+                        </div>
+                      </div>
+                      <div className="content">
+                        <div className="p-2">
+                          <div>
+                            Search:{" "}
+                            <input
+                              type="text"
+                              className="mb-1"
+                              value={searchTerm}
+                              onChange={handleSearch}
+                            />
+                          </div>
+                          <table>
+                            <thead className="tables">
+                              <tr>
+                                <th>Customer Code</th>
+                                <th>Name</th>
+                                <th>Foreign Name</th>
+                                <th>Shipping Address</th>
+                                <th>LicTradNum</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              {filteredData.map((rowData: any, rowIndex) => (
+                                <tr className="trcus" key={rowIndex}>
+                                  <td
+                                    className="tdcus"
+                                    onClick={() =>
+                                      addCustomerData(
+                                        rowData.CardCode,
+                                        rowData.CardName,
+                                        rowData.CardFName,
+                                        rowData.Address,
+                                        rowData.LicTradNum
+                                      )
+                                    }
+                                  >
+                                    {rowData.CardCode}
+                                  </td>
+                                  <td
+                                    className="tdcus"
+                                    onClick={() =>
+                                      addCustomerData(
+                                        rowData.CardCode,
+                                        rowData.CardName,
+                                        rowData.CardFName,
+                                        rowData.Address,
+                                        rowData.LicTradNum
+                                      )
+                                    }
+                                  >
+                                    {rowData.CardName}
+                                  </td>
+                                  <td
+                                    className="tdcus"
+                                    onClick={() =>
+                                      addCustomerData(
+                                        rowData.CardCode,
+                                        rowData.CardName,
+                                        rowData.CardFName,
+                                        rowData.Address,
+                                        rowData.LicTradNum
+                                      )
+                                    }
+                                  >
+                                    {rowData.CardFName}
+                                  </td>
+                                  <td
+                                    className="tdcus"
+                                    onClick={() =>
+                                      addCustomerData(
+                                        rowData.CardCode,
+                                        rowData.CardName,
+                                        rowData.CardFName,
+                                        rowData.Address,
+                                        rowData.LicTradNum
+                                      )
+                                    }
+                                  >
+                                    {rowData.Address}
+                                  </td>
+                                  <td
+                                    className="tdcus"
+                                    onClick={() =>
+                                      addCustomerData(
+                                        rowData.CardCode,
+                                        rowData.CardName,
+                                        rowData.CardFName,
+                                        rowData.Address,
+                                        rowData.LicTradNum
+                                      )
+                                    }
+                                  >
+                                    {rowData.LicTradNum}
+                                  </td>
+                                  {/* {Object.values(rowData).map((value, colIndex) => (
+                                        <td className="tdcus" key={colIndex} onClick={()=>addCustomerData(rowData.customerCode, rowData.customerName, rowData.cusShipAddress, rowData.cusTIN)} >{value}</td>
+                                      ))} */}
+                                </tr>
+                              ))}
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                    </div>
+                  </Draggable>
+                )}
+              </div>
+            </div>
+            <div className="grid grid-cols-2">
+              <label htmlFor="entrynumber">Customer Name</label>
+              <div>
+                <input
+                  type="text"
+                  value={customerData.map((e) => e.customerName)}
+                  className="bg-slate-200"
+                  readOnly
+                />
+              </div>
+            </div>
+            <div className="grid grid-cols-2">
+              <label className="" htmlFor="entrynumber">
+                Foreign Name
+              </label>
+              <div>
+                <input
+                  type="text"
+                  value={customerData.map((e) => e.customerCardFName)}
+                  readOnly
+                />
+              </div>
+            </div>
+            <div className="grid grid-cols-2">
+              <label htmlFor="entrynumber">Walk-in Customer Name</label>
+              <div>
+                <input type="text" />
+              </div>
+            </div>
+            <div className="grid grid-cols-2">
+              <label className="" htmlFor="entrynumber">
+                Customer Shipping Address
+              </label>
+              <div>
+                <input
+                  type="text"
+                  value={customerData.map((e) => e.cusShipAddress)}
+                />
+              </div>
+            </div>
+            <div className="grid grid-cols-2">
+              <label className="" htmlFor="entrynumber">
+                Customer TIN
+              </label>
+              <div>
+                <input
+                  type="text"
+                  value={customerData.map((e) => e.cusLicTradNum)}
+                />
+              </div>
+            </div>
+          </div>
+          <div>
+            <div className="grid grid-cols-2">
+              <label className="" htmlFor="entrynumber">
+                Customer Reference
+              </label>
+              <div>
+                <input type="text" />
+              </div>
+            </div>
+            <div className="grid grid-cols-2">
+              <label className="" htmlFor="entrynumber">
+                Branch
+              </label>
+              <div>
+                <input type="text" readOnly />
+              </div>
+            </div>
+            <div className="grid grid-cols-2">
+              <label className="" htmlFor="entrynumber">
+                Document Status
+              </label>
+              <div>
+                <input type="text" readOnly />
+              </div>
+            </div>
+            <div className="grid grid-cols-2">
+              <label className="" htmlFor="entrynumber">
+                Base Document
+              </label>
+              <div>
+                <input type="text" readOnly />
+              </div>
+            </div>
+            {showSCPDW && (
+              <div className="grid grid-cols-2">
+                <label className="" htmlFor="entrynumber">
+                  SC/PWD ID
+                </label>
+                <div>
+                  <input
+                    onInput={(e: any) => {
+                      SCPWDinput(e.target.value);
+                    }}
+                    type="text"
+                  />
+                </div>
+              </div>
+            )}
+          </div>
+        </div>
+        <div className="w-[] col1">
+          <div className="grid grid-cols-2">
+            <label htmlFor="documentnumber">Document Number</label>
+            <div>
+              <input value={0} type="text" />
+            </div>
+
+            {/* Document Number */}
+            {showDoc && (
+              <Draggable>
+                <div
+                  className="w-[400px] h-[100px] bg-white shadow-lg"
+                  style={{
+                    border: "1px solid #ccc",
+                    position: "absolute",
+                    top: "12%",
+                    left: "68.3%",
+                  }}
+                >
+                  <div
+                    className="grid grid-cols-2 p-2 text-left windowheader"
+                    style={{ cursor: "move" }}
+                  >
+                    <div>Document Number</div>
+                    <div className="text-right">
+                      <span onClick={handleShowDoc} className="cursor-pointer">
+                        ❌
+                      </span>
+                    </div>
+                  </div>
+                  <div className="content"></div>
+                </div>
+              </Draggable>
+            )}
+          </div>
+          <div className="grid grid-cols-2">
+            <label htmlFor="documentnumber">Draft Number</label>
+            <div>
+              <input type="text" readOnly />
+            </div>
+          </div>
+          <div className="grid grid-cols-2">
+            <label htmlFor="entrynumber">Entry Number</label>
+            <div>
+              <input type="text" readOnly />
+            </div>
+          </div>
+          <div className="grid grid-cols-2">
+            <label htmlFor="entrynumber">Document Date</label>
+            <div>
+              <input
+                type="text"
+                value={manilaDate}
+                className="bg-slate-200"
+                readOnly
+              />
+            </div>
+          </div>
+          <div className="grid grid-cols-2">
+            <label htmlFor="entrynumber">Posting Date</label>
+            <div>
+              <input
+                type="text"
+                value={manilaDate}
+                className="bg-slate-200"
+                readOnly
+              />
+            </div>
+          </div>
+          <div className="grid grid-cols-2">
+            <label htmlFor="entrynumber">Delivery Date</label>
+            <div>
+              <input type="date" />
+            </div>
+          </div>
+        </div>
+      </div>
       <div className="fields mt-2 rounded-md text-left container bg-white overflow-x-auto shadow-xl p-2 max-h-[200px]">
         <div className="">
           <table>
@@ -2349,7 +2674,6 @@ export default function SalesOrder() {
                       className="mb-1"
                       value={searchTerm}
                       onChange={handleSearchItem}
-                      className="mb-1"
                     />
                   </div>
                   <table>
