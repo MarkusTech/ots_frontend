@@ -2106,9 +2106,9 @@ export default function SalesOrder() {
                   onClick={handleShowCustomer}
                 >
                   =
+                  {/* ------------ To show addCustomerDataPage ---------------- */}
+                  {showCustomer && <AddCustomerDataPage />}
                 </button>
-                {/* ------------ To show addCustomerDataPage ---------------- */}
-                {showCustomer && <AddCustomerDataPage />}
               </div>
             </div>
             <div className="grid grid-cols-2">
