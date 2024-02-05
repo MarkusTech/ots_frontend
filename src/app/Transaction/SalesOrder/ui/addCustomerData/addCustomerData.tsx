@@ -81,14 +81,6 @@ const AddCustomerDataPage = () => {
     setTaxCodeData(taxcode.data);
   };
 
-  //retrieval taxrate
-  const onAddHeaderRateCode = async (taxcode: any) => {
-    const taxrate = await axios.get(
-      `${process.env.NEXT_PUBLIC_IP}/tax-rate/${taxcode}`
-    );
-    setTaxRateData(taxrate.data);
-  };
-
   useEffect(() => {
     onAddHeader();
     // onAddheaderItems();
