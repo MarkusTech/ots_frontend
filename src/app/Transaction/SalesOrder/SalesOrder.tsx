@@ -2370,7 +2370,7 @@ export default function SalesOrder() {
               </tr>
             </thead>
             <tbody>
-              {tableData.map((rowData: any, rowIndex) => (
+              {tableData.map((rowData, rowIndex) => (
                 <tr className="trcus" key={rowIndex}>
                   <td>
                     <button
@@ -2472,7 +2472,7 @@ export default function SalesOrder() {
                       }
                       id="quantityInput"
                       onClick={handleSelectAll}
-                      value={rowData.quantity}
+                      // value={rowData.quantity}
                     />
                   </td>
                   <td
@@ -2507,13 +2507,6 @@ export default function SalesOrder() {
                       rowData.discountRate <= 0 ? "bg-red-200 " : "bg-green-200"
                     }
                   >
-                    {/* <input
-                    className="border-transparent"
-                    type=""
-                    value={rowData.discountRate}
-                    onChange={(e) => handleDiscountRateChange(rowIndex, e.target.value)}
-                  /> */}
-
                     {rowData.quantity <= 0
                       ? ""
                       : parseFloat(Math.max(rowData.discountRate).toFixed(2)) <=
@@ -2553,11 +2546,6 @@ export default function SalesOrder() {
                       ? ""
                       : localCurrency.format(rowData.taxAmount)}
                   </td>
-                  {/* <td>
-                  {
-                    rowData.quantity == 0 ? '' : rowData.sellingPriceAfterDiscount
-                  }
-                </td> */}
                   <td
                     className={
                       rowData.belVolDisPrice == "Y"
