@@ -1,14 +1,9 @@
 "use client";
 
 import React, { use, useEffect, useState } from "react";
-import Data from "../../Data/Data.json"; //dummy data
-// import SalesQoutation from "../SalesQoutation/SalesQoutation";
-// import { height } from "@fortawesome/free-brands-svg-icons/fa42Group";
 import Draggable from "react-draggable";
-import { v4 as uuidv4 } from "uuid";
 import axios from "axios";
 import { useRef } from "react";
-import { table } from "console";
 import AddCustomerDataPage from "./ui/addCustomerData/addCustomerData";
 
 export default function SalesOrder() {
@@ -19,7 +14,6 @@ export default function SalesOrder() {
   const [UOMList, setUOMList] = useState([]);
   const [UOMListIndex, setUOMListIndex] = useState([]);
   const [WareHouseList, setWareHouseList] = useState([]);
-  // const [selectedRowIndex, setSelectedRowIndex] = useState(null);
   const [selectedRowIndex, setSelectedRowIndex] = useState(-1);
 
   const [cardCodedata, setcardCodedata] = useState("");
@@ -39,13 +33,6 @@ export default function SalesOrder() {
   const brandID = 4;
   const priceListNum = 14;
   const user = "Administrator";
-
-  const now = new Date();
-
-  // const manilaDate = now.toLocaleDateString('en-US', { timeZone: 'Asia/Manila' });
-  const manilaDate = now.toLocaleDateString("en-US", {
-    timeZone: "Asia/Manila",
-  });
 
   const [itemcodetextalign, setitemcodetextalign] = useState("");
 
@@ -375,11 +362,6 @@ export default function SalesOrder() {
     );
 
     console.log("new mode afterdelete", modeOfrelisingArr);
-  };
-
-  //show hide panel
-  const handleShowDoc = () => {
-    setShowDoc(!showDoc);
   };
 
   //hide/show customer panel
