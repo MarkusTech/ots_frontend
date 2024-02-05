@@ -21,3 +21,17 @@
 
 
 //   ---------------------------------------------------------------------------------------
+
+// 313
+const filteredData = currentCustomerData
+  .filter((rowData) => {
+    return (
+      Object.values(rowData).some((value) =>
+        value !== null &&
+        value.toString().toLowerCase().includes(searchTerm.toLowerCase())
+      )
+    );
+  })
+  .slice(0, 20);
+
+  function to display the searched text
