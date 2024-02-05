@@ -6,14 +6,11 @@ const AddCustomerDataPage = () => {
   const [showCustomer, setShowCustomer] = useState(false);
   const [taxCodeData, setTaxCodeData] = useState([]);
   const [cardCodedata, setCardCodedata] = useState("");
-  //   const [taxRateData, setTaxRateData] = useState([]);
   const [taxRateData, setTaxRateData] = useState<TaxRate[]>([]);
   const [showWindow, setShowWindow] = useState(false);
   const [isClosed, setIsClosed] = useState(false); // open close customer page
   const [customerList, setCustomerDataList] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
-  const [lowerBoundData, setLowerBoundData] = useState("");
-  const [UOMList, setUOMList] = useState([]);
   const [UOMListIndex, setUOMListIndex] = useState([]);
   const [scpdwdID, setscpdwdID] = useState("");
   const [showSCPDW, setShowSCPWD] = useState(false);
@@ -57,8 +54,7 @@ const AddCustomerDataPage = () => {
     },
   ]);
 
-  // const manilaDate = now.toLocaleDateString('en-US', { timeZone: 'Asia/Manila' });
-
+  // Datetime
   const now = new Date();
   const manilaDate = now.toLocaleDateString("en-US", {
     timeZone: "Asia/Manila",
@@ -71,30 +67,11 @@ const AddCustomerDataPage = () => {
 
   let customerData2 = [{}];
   let currentCustomerData = customerList;
-  //   const arrayCustomer = [customerList];
-  //retrieval customer data
 
   //retrieval customer data
   const onAddHeader = async () => {
     const customers = await axios.get(`${process.env.NEXT_PUBLIC_IP}/customer`);
     setCustomerDataList(customers.data);
-  };
-
-  //retrieval items
-  //   const onAddheaderItems = async () => {
-  //     const item = await axios.get(
-  //       `${process.env.NEXT_PUBLIC_IP}/item/${priceListNum}/${warehouseCode}/C000174`
-  //     );
-  //     setItemDataList(item.data);
-  //   };
-
-  //retrieval UOM item
-  const onAddHeaderUOM = async (itemcode: any, rowIndex: any) => {
-    const uom = await axios.get(
-      `${process.env.NEXT_PUBLIC_IP}/uom/${itemcode}`
-    );
-    setUOMList(uom.data);
-    setUOMListIndex(rowIndex);
   };
 
   //retrieval taxcode
