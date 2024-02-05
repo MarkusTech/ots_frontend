@@ -7,11 +7,9 @@ const AddCustomerDataPage = () => {
   const [taxCodeData, setTaxCodeData] = useState([]);
   const [cardCodedata, setCardCodedata] = useState("");
   const [taxRateData, setTaxRateData] = useState<TaxRate[]>([]);
-  const [showWindow, setShowWindow] = useState(false);
   const [isClosed, setIsClosed] = useState(false); // open close customer page
   const [customerList, setCustomerDataList] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
-  const [UOMListIndex, setUOMListIndex] = useState([]);
   const [scpdwdID, setscpdwdID] = useState("");
   const [showSCPDW, setShowSCPWD] = useState(false);
   const [showDoc, setShowDoc] = useState(false);
