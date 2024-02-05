@@ -3,7 +3,7 @@ import Draggable from "react-draggable";
 import axios from "axios";
 
 const AddCustomerDataPage = () => {
-  const [showCustomer, setShowCustomer] = useState(true);
+  const [showCustomer, setShowCustomer] = useState(false);
   const [taxCodeData, setTaxCodeData] = useState([]);
   const [cardCodedata, setCardCodedata] = useState("");
   //   const [taxRateData, setTaxRateData] = useState([]);
@@ -15,6 +15,9 @@ const AddCustomerDataPage = () => {
   const [lowerBoundData, setLowerBoundData] = useState("");
   const [UOMList, setUOMList] = useState([]);
   const [UOMListIndex, setUOMListIndex] = useState([]);
+  const [scpdwdID, setscpdwdID] = useState("");
+  const [showSCPDW, setShowSCPWD] = useState(false);
+  const [showDoc, setShowDoc] = useState(false);
   const [tableData, setTableData] = useState([
     {
       itemCode: "",
@@ -53,6 +56,18 @@ const AddCustomerDataPage = () => {
       cashOnDel: "N",
     },
   ]);
+
+  // const manilaDate = now.toLocaleDateString('en-US', { timeZone: 'Asia/Manila' });
+
+  const now = new Date();
+  const manilaDate = now.toLocaleDateString("en-US", {
+    timeZone: "Asia/Manila",
+  });
+
+  //show hide panel
+  const handleShowDoc = () => {
+    setShowDoc(!showDoc);
+  };
 
   let customerData2 = [{}];
   let currentCustomerData = customerList;
@@ -221,6 +236,11 @@ const AddCustomerDataPage = () => {
     });
   };
 
+  const SCPWDinput = (id: any) => {
+    console.log("SC", id);
+    setscpdwdID(id);
+  };
+
   const filteredData = currentCustomerData
     .filter((rowData) => {
       // Check if any property value in rowData contains the searchTerm
@@ -264,129 +284,336 @@ const AddCustomerDataPage = () => {
   }
 
   return (
-    <Draggable>
-      <div
-        className="bg-white shadow-lg"
-        style={{
-          border: "1px solid #ccc",
-          position: "absolute",
-          top: "12%",
-          left: "15%",
-        }}
-      >
-        <div
-          className="grid grid-cols-2 p-2 text-left windowheader"
-          style={{ cursor: "move" }}
-        >
-          <div>Customer</div>
-          <div className="text-right">
-            <button className="cursor-pointer" onClick={handleCloseCustomer}>
-              ❌
-            </button>
-          </div>
-        </div>
-        <div className="content">
-          <div className="p-2">
+    <div className="salesbody p-2 text-sm rounded-md flex gap-40  container overflow-x-auto shadow-lg">
+      <div className="w-[] flex flex-wrap gap-5 col1 mr-3">
+        <div>
+          <div className="grid grid-cols-2">
+            <label htmlFor="entrynumber">Customer Code</label>
             <div>
-              Search:{" "}
               <input
                 type="text"
-                className="mb-1"
-                value={searchTerm}
-                onChange={handleSearch}
+                value={customerData.map((e) => e.customerCode)}
+                className="bg-slate-200"
+                readOnly
+              />
+              <button
+                className="w-[20px]  bg-slate-200"
+                onClick={handleShowCustomer}
+              >
+                =
+                {/* ------------ To show addCustomerDataPage ---------------- */}
+                {showCustomer && (
+                  <Draggable>
+                    <div
+                      className="bg-white shadow-lg"
+                      style={{
+                        border: "1px solid #ccc",
+                        position: "absolute",
+                        top: "12%",
+                        left: "15%",
+                      }}
+                    >
+                      <div
+                        className="grid grid-cols-2 p-2 text-left windowheader"
+                        style={{ cursor: "move" }}
+                      >
+                        <div>Customer</div>
+                        <div className="text-right">
+                          <button
+                            className="cursor-pointer"
+                            onClick={handleCloseCustomer}
+                          >
+                            ❌
+                          </button>
+                        </div>
+                      </div>
+                      <div className="content">
+                        <div className="p-2">
+                          <div>
+                            Search:{" "}
+                            <input
+                              type="text"
+                              className="mb-1"
+                              value={searchTerm}
+                              onChange={handleSearch}
+                            />
+                          </div>
+                          <table>
+                            <thead className="tables">
+                              <tr>
+                                <th>Customer Code</th>
+                                <th>Name</th>
+                                <th>Foreign Name</th>
+                                <th>Shipping Address</th>
+                                <th>LicTradNum</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              {filteredData.map(
+                                (rowData: any, rowIndex: any) => (
+                                  <tr className="trcus" key={rowIndex}>
+                                    <td
+                                      className="tdcus"
+                                      onClick={() =>
+                                        addCustomerData(
+                                          rowData.CardCode,
+                                          rowData.CardName,
+                                          rowData.CardFName,
+                                          rowData.Address,
+                                          rowData.LicTradNum
+                                        )
+                                      }
+                                    >
+                                      {rowData.CardCode}
+                                    </td>
+                                    <td
+                                      className="tdcus"
+                                      onClick={() =>
+                                        addCustomerData(
+                                          rowData.CardCode,
+                                          rowData.CardName,
+                                          rowData.CardFName,
+                                          rowData.Address,
+                                          rowData.LicTradNum
+                                        )
+                                      }
+                                    >
+                                      {rowData.CardName}
+                                    </td>
+                                    <td
+                                      className="tdcus"
+                                      onClick={() =>
+                                        addCustomerData(
+                                          rowData.CardCode,
+                                          rowData.CardName,
+                                          rowData.CardFName,
+                                          rowData.Address,
+                                          rowData.LicTradNum
+                                        )
+                                      }
+                                    >
+                                      {rowData.CardFName}
+                                    </td>
+                                    <td
+                                      className="tdcus"
+                                      onClick={() =>
+                                        addCustomerData(
+                                          rowData.CardCode,
+                                          rowData.CardName,
+                                          rowData.CardFName,
+                                          rowData.Address,
+                                          rowData.LicTradNum
+                                        )
+                                      }
+                                    >
+                                      {rowData.Address}
+                                    </td>
+                                    <td
+                                      className="tdcus"
+                                      onClick={() =>
+                                        addCustomerData(
+                                          rowData.CardCode,
+                                          rowData.CardName,
+                                          rowData.CardFName,
+                                          rowData.Address,
+                                          rowData.LicTradNum
+                                        )
+                                      }
+                                    >
+                                      {rowData.LicTradNum}
+                                    </td>
+                                  </tr>
+                                )
+                              )}
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                    </div>
+                  </Draggable>
+                )}
+              </button>
+            </div>
+          </div>
+          <div className="grid grid-cols-2">
+            <label htmlFor="entrynumber">Customer Name</label>
+            <div>
+              <input
+                type="text"
+                value={customerData.map((e) => e.customerName)}
+                className="bg-slate-200"
+                readOnly
               />
             </div>
-            <table>
-              <thead className="tables">
-                <tr>
-                  <th>Customer Code</th>
-                  <th>Name</th>
-                  <th>Foreign Name</th>
-                  <th>Shipping Address</th>
-                  <th>LicTradNum</th>
-                </tr>
-              </thead>
-              <tbody>
-                {filteredData.map((rowData: any, rowIndex: any) => (
-                  <tr className="trcus" key={rowIndex}>
-                    <td
-                      className="tdcus"
-                      onClick={() =>
-                        addCustomerData(
-                          rowData.CardCode,
-                          rowData.CardName,
-                          rowData.CardFName,
-                          rowData.Address,
-                          rowData.LicTradNum
-                        )
-                      }
-                    >
-                      {rowData.CardCode}
-                    </td>
-                    <td
-                      className="tdcus"
-                      onClick={() =>
-                        addCustomerData(
-                          rowData.CardCode,
-                          rowData.CardName,
-                          rowData.CardFName,
-                          rowData.Address,
-                          rowData.LicTradNum
-                        )
-                      }
-                    >
-                      {rowData.CardName}
-                    </td>
-                    <td
-                      className="tdcus"
-                      onClick={() =>
-                        addCustomerData(
-                          rowData.CardCode,
-                          rowData.CardName,
-                          rowData.CardFName,
-                          rowData.Address,
-                          rowData.LicTradNum
-                        )
-                      }
-                    >
-                      {rowData.CardFName}
-                    </td>
-                    <td
-                      className="tdcus"
-                      onClick={() =>
-                        addCustomerData(
-                          rowData.CardCode,
-                          rowData.CardName,
-                          rowData.CardFName,
-                          rowData.Address,
-                          rowData.LicTradNum
-                        )
-                      }
-                    >
-                      {rowData.Address}
-                    </td>
-                    <td
-                      className="tdcus"
-                      onClick={() =>
-                        addCustomerData(
-                          rowData.CardCode,
-                          rowData.CardName,
-                          rowData.CardFName,
-                          rowData.Address,
-                          rowData.LicTradNum
-                        )
-                      }
-                    >
-                      {rowData.LicTradNum}
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+          </div>
+          <div className="grid grid-cols-2">
+            <label className="" htmlFor="entrynumber">
+              Foreign Name
+            </label>
+            <div>
+              <input
+                type="text"
+                value={customerData.map((e) => e.customerCardFName)}
+                readOnly
+              />
+            </div>
+          </div>
+          <div className="grid grid-cols-2">
+            <label htmlFor="entrynumber">Walk-in Customer Name</label>
+            <div>
+              <input type="text" />
+            </div>
+          </div>
+          <div className="grid grid-cols-2">
+            <label className="" htmlFor="entrynumber">
+              Customer Shipping Address
+            </label>
+            <div>
+              <input
+                type="text"
+                value={customerData.map((e) => e.cusShipAddress)}
+              />
+            </div>
+          </div>
+          <div className="grid grid-cols-2">
+            <label className="" htmlFor="entrynumber">
+              Customer TIN
+            </label>
+            <div>
+              <input
+                type="text"
+                value={customerData.map((e) => e.cusLicTradNum)}
+              />
+            </div>
+          </div>
+        </div>
+        <div>
+          <div className="grid grid-cols-2">
+            <label className="" htmlFor="entrynumber">
+              Customer Reference
+            </label>
+            <div>
+              <input type="text" />
+            </div>
+          </div>
+          <div className="grid grid-cols-2">
+            <label className="" htmlFor="entrynumber">
+              Branch
+            </label>
+            <div>
+              <input type="text" readOnly />
+            </div>
+          </div>
+          <div className="grid grid-cols-2">
+            <label className="" htmlFor="entrynumber">
+              Document Status
+            </label>
+            <div>
+              <input type="text" readOnly />
+            </div>
+          </div>
+          <div className="grid grid-cols-2">
+            <label className="" htmlFor="entrynumber">
+              Base Document
+            </label>
+            <div>
+              <input type="text" readOnly />
+            </div>
+          </div>
+          {showSCPDW && (
+            <div className="grid grid-cols-2">
+              <label className="" htmlFor="entrynumber">
+                SC/PWD ID
+              </label>
+              <div>
+                <input
+                  onInput={(e: any) => {
+                    SCPWDinput(e.target.value);
+                  }}
+                  type="text"
+                />
+              </div>
+            </div>
+          )}
+        </div>
+      </div>
+      <div className="w-[] col1">
+        <div className="grid grid-cols-2">
+          <label htmlFor="documentnumber">Document Number</label>
+          <div>
+            <input value={0} type="text" />
+          </div>
+
+          {/* Document Number */}
+          {showDoc && (
+            <Draggable>
+              <div
+                className="w-[400px] h-[100px] bg-white shadow-lg"
+                style={{
+                  border: "1px solid #ccc",
+                  position: "absolute",
+                  top: "12%",
+                  left: "68.3%",
+                }}
+              >
+                <div
+                  className="grid grid-cols-2 p-2 text-left windowheader"
+                  style={{ cursor: "move" }}
+                >
+                  <div>Document Number</div>
+                  <div className="text-right">
+                    <span onClick={handleShowDoc} className="cursor-pointer">
+                      ❌
+                    </span>
+                  </div>
+                </div>
+                <div className="content"></div>
+              </div>
+            </Draggable>
+          )}
+        </div>
+        <div className="grid grid-cols-2">
+          <label htmlFor="documentnumber">Draft Number</label>
+          <div>
+            <input type="text" readOnly />
+          </div>
+        </div>
+        <div className="grid grid-cols-2">
+          <label htmlFor="entrynumber">Entry Number</label>
+          <div>
+            <input type="text" readOnly />
+          </div>
+        </div>
+        <div className="grid grid-cols-2">
+          <label htmlFor="entrynumber">Document Date</label>
+          <div>
+            <input
+              type="text"
+              value={manilaDate}
+              className="bg-slate-200"
+              readOnly
+            />
+          </div>
+        </div>
+        <div className="grid grid-cols-2">
+          <label htmlFor="entrynumber">Posting Date</label>
+          <div>
+            <input
+              type="text"
+              value={manilaDate}
+              className="bg-slate-200"
+              readOnly
+            />
+          </div>
+        </div>
+        <div className="grid grid-cols-2">
+          <label htmlFor="entrynumber">Delivery Date</label>
+          <div>
+            <input type="date" />
           </div>
         </div>
       </div>
-    </Draggable>
+    </div>
   );
 };
 
