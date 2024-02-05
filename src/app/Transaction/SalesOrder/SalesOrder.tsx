@@ -19,7 +19,8 @@ export default function SalesOrder() {
   const [UOMList, setUOMList] = useState([]);
   const [UOMListIndex, setUOMListIndex] = useState([]);
   const [WareHouseList, setWareHouseList] = useState([]);
-  const [selectedRowIndex, setSelectedRowIndex] = useState(null);
+  // const [selectedRowIndex, setSelectedRowIndex] = useState(null);
+  const [selectedRowIndex, setSelectedRowIndex] = useState(-1);
 
   const [cardCodedata, setcardCodedata] = useState("");
   const [taxCodeData, settaxCodeData] = useState([]);
@@ -953,22 +954,31 @@ export default function SalesOrder() {
 
   //change manual mode of releasing
   const changeManualModRel = (moderel: any) => {
+    // Ensure that selectedRowIndex is within valid bounds
+    if (selectedRowIndex < 0 || selectedRowIndex >= tableData.length) {
+      console.error("Invalid selectedRowIndex");
+      return;
+    }
+  
+    // Create a copy of the tableData array to avoid mutating the original state directly
     const updatedTableData = [...tableData];
-
-    console.log(moderel);
-
-    const item = updatedTableData[selectedRowIndex];
-
-    updatedTableData[selectedRowIndex] = {
-      ...item,
-      modeOfReleasing: moderel
+  
+    // Update the specified item with the new modeOfReleasing value
+    const updatedItem = {
+      ...updatedTableData[selectedRowIndex],
+      modeOfReleasing: moderel,
     };
-
-    console.log(item)
-
+  
+    // Update the tableData array with the modified item
+    updatedTableData[selectedRowIndex] = updatedItem;
+  
+    // Set the updatedTableData to the state
     setTableData(updatedTableData);
-    setOpenModRelTablePanel(!openModRelTablePanel);
-  }
+  
+    // Toggle the state of openModRelTablePanel
+    setOpenModRelTablePanel((prevOpenModRelTablePanel) => !prevOpenModRelTablePanel);
+  };
+  // END of change manual mode of releasing
 
   const handleWarehoueChange = async (rowIndex: any, itemdata: any) => {
 
