@@ -3,12 +3,13 @@ import Draggable from "react-draggable";
 import axios from "axios";
 
 const AddCustomerDataPage = () => {
+  const [showCustomer, setShowCustomer] = useState(true);
   const [taxCodeData, setTaxCodeData] = useState([]);
   const [cardCodedata, setCardCodedata] = useState("");
   //   const [taxRateData, setTaxRateData] = useState([]);
   const [taxRateData, setTaxRateData] = useState<TaxRate[]>([]);
   const [showWindow, setShowWindow] = useState(false);
-  const [showCustomer, setShowCustomer] = useState(false);
+  const [isClosed, setIsClosed] = useState(false); // open close customer page
   const [customerList, setCustomerDataList] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [lowerBoundData, setLowerBoundData] = useState("");
@@ -254,6 +255,13 @@ const AddCustomerDataPage = () => {
   //       });
   //     });
   //   };
+  const handleCloseCustomer = () => {
+    setIsClosed(true);
+  };
+
+  if (isClosed) {
+    return null; // Don't render the component if it's closed
+  }
 
   return (
     <Draggable>
@@ -272,9 +280,9 @@ const AddCustomerDataPage = () => {
         >
           <div>Customer</div>
           <div className="text-right">
-            <span onClick={handleShowCustomer} className="cursor-pointer">
+            <button className="cursor-pointer" onClick={handleCloseCustomer}>
               ❌
-            </span>
+            </button>
           </div>
         </div>
         <div className="content">
