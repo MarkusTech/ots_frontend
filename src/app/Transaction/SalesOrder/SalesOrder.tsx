@@ -1959,10 +1959,6 @@ export default function SalesOrder() {
       DateUpdated: "",
     };
 
-    // const response = await axios.post(`${process.env.NEXT_PUBLIC_IP_DB}/so-header`, headerFinal);
-
-    // console.log(2)
-
     const baseURL = "http://172.16.10.217:3002/so-header";
 
     axios
@@ -2491,27 +2487,7 @@ export default function SalesOrder() {
                     }
                   >
                     {/* inventory status */}
-                    {rowData.quantity == 0
-                      ? ""
-                      : rowData.inventoryStatus +
-                        " " +
-                        rowData.cash +
-                        " " +
-                        rowData.creditcard +
-                        " " +
-                        rowData.debit +
-                        " " +
-                        rowData.pdc +
-                        " " +
-                        rowData.po +
-                        " " +
-                        rowData.datedCheck +
-                        " " +
-                        rowData.onlineTransfer +
-                        " " +
-                        rowData.onAccount +
-                        " " +
-                        rowData.cashOnDel}
+                    {rowData.quantity == 0 ? "" : rowData.inventoryStatus}
                   </td>
                   {/* + " " + rowData.creditcard + " " + rowData.debit + " " + rowData.pdc + " " + rowData.po */}
                   <td>
