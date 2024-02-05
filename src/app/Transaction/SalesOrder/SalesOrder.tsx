@@ -564,8 +564,8 @@ export default function SalesOrder() {
       );
       const lowerboundArr = lowerbound.data;
       const lowerBoundFinalItem = lowerboundArr[0]["LowerBound"];
-      const disPriceBefDis =
-        updatedTableData[selectedRowIndex]["sellingPriceBeforeDiscount"];
+      // const disPriceBefDis =
+      //   updatedTableData[selectedRowIndex]["sellingPriceBeforeDiscount"];
 
       let SCDiscount = "";
 
@@ -873,9 +873,6 @@ export default function SalesOrder() {
     };
     setTableData(updatedTableData);
     setOpenOUMPanel(!openOUMPanel);
-
-    // let quantityInp = document.getElementById('quantityInput');
-    // quantityInp?.setAttribute('values', "0")
 
     var quantityChange = document.getElementById("quantityInput");
     quantityChange?.setAttribute("placeholder", 33);
