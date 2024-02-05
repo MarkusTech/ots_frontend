@@ -813,7 +813,7 @@ export default function SalesOrder() {
   const filteredDataItem = itemList
     .filter((rowData) => {
       return Object.values(rowData).some(
-        (value) =>
+        (value: any) =>
           value !== null &&
           value.toString().toLowerCase().includes(searchTerm.toLowerCase())
       );
@@ -1139,10 +1139,6 @@ export default function SalesOrder() {
         };
 
         setfinalTotalList(finalArr);
-
-        // console.log(disPriceArr, "disarr")
-
-        // console.log(item['creditcard'], item['debit'], item['pdc'], item['po'], "Mode")
       }
     }
   };
@@ -2776,7 +2772,7 @@ export default function SalesOrder() {
                         </tr>
                       </thead>
                       <tbody>
-                        {UOMList.map((e, rowIndex) => (
+                        {UOMList.map((e: any, rowIndex: any) => (
                           // eslint-disable-next-line react/jsx-key
                           <tr className="trcus cursor-pointer">
                             <td
