@@ -472,14 +472,14 @@ export default function SalesOrder() {
     setOpenItemTablePanel(!openItemTablePanel);
     setSelectedRowIndex(rowIndex);
 
-    taxCodeData.map((e) => {
+    taxCodeData.map((e: any) => {
       onAddHeaderRateCode(e.TaxCode);
 
       const updatedTableData = [...tableData];
 
       const listArryLen = updatedTableData.length;
 
-      taxRateData.map((e) => {
+      taxRateData.map((e: any) => {
         for (let i = 0; i < listArryLen; i++) {
           const item = updatedTableData[i];
           updatedTableData[i] = {
@@ -551,11 +551,11 @@ export default function SalesOrder() {
       let taxCodeDataNow = "";
       let lowerBoundNow = 0;
 
-      taxRateData.map((e) => {
+      taxRateData.map((e: any) => {
         taxRateDataNow = e.Rate;
       });
 
-      taxCodeData.map((e) => {
+      taxCodeData.map((e: any) => {
         taxCodeDataNow = e.TaxCode;
       });
 
