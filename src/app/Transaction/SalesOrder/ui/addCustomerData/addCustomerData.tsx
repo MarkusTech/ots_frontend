@@ -97,16 +97,6 @@ const AddCustomerDataPage = () => {
     setUOMListIndex(rowIndex);
   };
 
-  //retrieval location warehouse
-  //   const onAddHeaderWareHouse = async (itemcode: any, name: any, uom: any) => {
-  //     try {
-  //       const warehouse = await axios.get(
-  //         `${process.env.NEXT_PUBLIC_IP}/warehouse-soh/${itemcode}/${name}/${brandID}`
-  //       );
-  //       setWareHouseList(warehouse.data);
-  //     } catch (e) {}
-  //   };
-
   //retrieval taxcode
   const onAddHeaderTaxCode = async (cardCodex: any, whseCodex: any) => {
     const taxcode = await axios.get(
@@ -124,24 +114,6 @@ const AddCustomerDataPage = () => {
     setTaxRateData(taxrate.data);
   };
 
-  //retrieval lowerbound
-  const onAddLowerBound = async (
-    bid: any,
-    taxcodex: any,
-    itemcodex: any,
-    whscodex: any,
-    indexNum: any,
-    uomLoweBound: any
-  ) => {
-    const lowerbound = await axios.get(
-      `${process.env.NEXT_PUBLIC_IP}/lowerbound/${bid}/${taxcodex}/${itemcodex}/${whscodex}/${uomLoweBound}`
-    );
-
-    let lowerBoundArr = lowerbound.data;
-
-    setLowerBoundData(lowerBoundArr[indexNum]);
-  };
-
   useEffect(() => {
     onAddHeader();
     // onAddheaderItems();
@@ -157,15 +129,6 @@ const AddCustomerDataPage = () => {
       cusLicTradNum: "N/A",
     },
   ]);
-
-  //retrieval taxcode
-  //   const onAddHeaderTaxCode = async (cardCodex: any, whseCodex: any) => {
-  //     const taxcode = await axios.get(
-  //       `${process.env.NEXT_PUBLIC_IP}/tax-code/${cardCodex}/${whseCodex}`
-  //     );
-  //     console.log("Tax Code", taxcode.data);
-  //     setTaxCodeData(taxcode.data);
-  //   };
 
   type TaxRate = {
     Rate: number; // Assuming 'Rate' is a number, adjust accordingly

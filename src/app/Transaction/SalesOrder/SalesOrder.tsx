@@ -320,55 +320,6 @@ export default function SalesOrder() {
 
   // -----------------------------------------------------------------------------------
 
-  //function to insert customer data
-  type TaxRate = {
-    Rate: number; // Assuming 'Rate' is a number, adjust accordingly
-    // Other properties if present
-  };
-
-  const addCustomerData = (
-    id: any,
-    name: any,
-    fname: any,
-    address: any,
-    tin: any
-  ) => {
-    onAddHeaderTaxCode(id, "GSCNAPGS");
-
-    const updatedTableData = [...tableData];
-
-    const listArryLen = updatedTableData.length;
-
-    taxRateData.forEach((e: TaxRate) => {
-      for (let i = 0; i < listArryLen; i++) {
-        const item = updatedTableData[i];
-        updatedTableData[i] = {
-          ...item,
-          taxCodePercentage: e.Rate,
-        };
-      }
-    });
-
-    let newArray = {
-      customerCode: id,
-      customerName: name,
-      customerCardFName: fname,
-      cusShipAddress: address,
-      cusLicTradNum: tin,
-    };
-
-    setcardCodedata(id);
-
-    setCustomerData([newArray]);
-
-    console.log(customerData2);
-    setShowCustomer(!showCustomer);
-  };
-
-  const toggleShowWindow = () => {
-    setShowWindow(!showWindow);
-  };
-
   //handle remove row
   const handleRemoveRow = (rowIndex: any, Itemcodex: any) => {
     countAllItem = countAllItem - 1;
