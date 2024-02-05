@@ -190,29 +190,6 @@ const AddCustomerDataPage = () => {
     })
     .slice(0, 20); // Get the first 20 results after filtering
 
-  //   const openItemTable = (rowIndex: any) => {
-  //     setOpenItemTablePanel(!openItemTablePanel);
-  //     setSelectedRowIndex(rowIndex);
-
-  //     taxCodeData.map((e) => {
-  //       onAddHeaderRateCode(e.TaxCode);
-
-  //       const updatedTableData = [...tableData];
-
-  //       const listArryLen = updatedTableData.length;
-
-  //       taxRateData.map((e) => {
-  //         for (let i = 0; i < listArryLen; i++) {
-  //           const item = updatedTableData[i];
-  //           updatedTableData[i] = {
-  //             ...item,
-  //             taxCodePercentage: e.Rate,
-  //           };
-  //           setTableData(updatedTableData);
-  //         }
-  //       });
-  //     });
-  //   };
   const handleCloseCustomer = () => {
     setIsClosed(true);
   };
