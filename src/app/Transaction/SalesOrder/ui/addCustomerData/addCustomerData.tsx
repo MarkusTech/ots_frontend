@@ -511,7 +511,6 @@ const AddCustomerDataPage = () => {
               className="bg-slate-200"
               readOnly
             />
-            {/* 2475 */}
           </div>
         </div>
         <div className="grid grid-cols-2">
