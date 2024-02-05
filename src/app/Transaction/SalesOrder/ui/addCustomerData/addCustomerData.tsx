@@ -53,6 +53,80 @@ const AddCustomerDataPage = () => {
   let customerData2 = [{}];
   let currentCustomerData = customerList;
   //   const arrayCustomer = [customerList];
+  //retrieval customer data
+
+  //retrieval customer data
+  const onAddHeader = async () => {
+    const customers = await axios.get(`${process.env.NEXT_PUBLIC_IP}/customer`);
+    setCustomerDataList(customers.data);
+  };
+
+  //retrieval items
+  const onAddheaderItems = async () => {
+    const item = await axios.get(
+      `${process.env.NEXT_PUBLIC_IP}/item/${priceListNum}/${warehouseCode}/C000174`
+    );
+    setItemDataList(item.data);
+  };
+
+  //retrieval UOM item
+  const onAddHeaderUOM = async (itemcode: any, rowIndex: any) => {
+    const uom = await axios.get(
+      `${process.env.NEXT_PUBLIC_IP}/uom/${itemcode}`
+    );
+    setUOMList(uom.data);
+    setUOMListIndex(rowIndex);
+  };
+
+  //retrieval location warehouse
+  const onAddHeaderWareHouse = async (itemcode: any, name: any, uom: any) => {
+    try {
+      const warehouse = await axios.get(
+        `${process.env.NEXT_PUBLIC_IP}/warehouse-soh/${itemcode}/${name}/${brandID}`
+      );
+      setWareHouseList(warehouse.data);
+    } catch (e) {}
+  };
+
+  //retrieval taxcode
+  const onAddHeaderTaxCode = async (cardCodex: any, whseCodex: any) => {
+    const taxcode = await axios.get(
+      `${process.env.NEXT_PUBLIC_IP}/tax-code/${cardCodex}/${whseCodex}`
+    );
+    console.log("Tax Code", taxcode.data);
+    settaxCodeData(taxcode.data);
+  };
+
+  //retrieval taxrate
+  const onAddHeaderRateCode = async (taxcode: any) => {
+    const taxrate = await axios.get(
+      `${process.env.NEXT_PUBLIC_IP}/tax-rate/${taxcode}`
+    );
+    settaxRateData(taxrate.data);
+  };
+
+  //retrieval lowerbound
+  const onAddLowerBound = async (
+    bid: any,
+    taxcodex: any,
+    itemcodex: any,
+    whscodex: any,
+    indexNum: any,
+    uomLoweBound: any
+  ) => {
+    const lowerbound = await axios.get(
+      `${process.env.NEXT_PUBLIC_IP}/lowerbound/${bid}/${taxcodex}/${itemcodex}/${whscodex}/${uomLoweBound}`
+    );
+
+    let lowerBoundArr = lowerbound.data;
+
+    setLowerBoundData(lowerBoundArr[indexNum]);
+  };
+
+  useEffect(() => {
+    onAddHeader();
+    onAddheaderItems();
+  }, []);
 
   //trial function/data
   const [customerData, setCustomerData] = useState([
@@ -66,13 +140,13 @@ const AddCustomerDataPage = () => {
   ]);
 
   //retrieval taxcode
-  const onAddHeaderTaxCode = async (cardCodex: any, whseCodex: any) => {
-    const taxcode = await axios.get(
-      `${process.env.NEXT_PUBLIC_IP}/tax-code/${cardCodex}/${whseCodex}`
-    );
-    console.log("Tax Code", taxcode.data);
-    setTaxCodeData(taxcode.data);
-  };
+  //   const onAddHeaderTaxCode = async (cardCodex: any, whseCodex: any) => {
+  //     const taxcode = await axios.get(
+  //       `${process.env.NEXT_PUBLIC_IP}/tax-code/${cardCodex}/${whseCodex}`
+  //     );
+  //     console.log("Tax Code", taxcode.data);
+  //     setTaxCodeData(taxcode.data);
+  //   };
 
   type TaxRate = {
     Rate: number; // Assuming 'Rate' is a number, adjust accordingly
@@ -117,11 +191,6 @@ const AddCustomerDataPage = () => {
     console.log(customerData2);
     setShowCustomer(!showCustomer);
   };
-  //retrieval customer data
-  const onAddHeader = async () => {
-    const customers = await axios.get(`${process.env.NEXT_PUBLIC_IP}/customer`);
-    setCustomerDataList(customers.data);
-  };
 
   const handleSearch = (event: any) => {
     setSearchTerm(event.target.value);
@@ -158,6 +227,30 @@ const AddCustomerDataPage = () => {
       );
     })
     .slice(0, 20); // Get the first 20 results after filtering
+
+  //   const openItemTable = (rowIndex: any) => {
+  //     setOpenItemTablePanel(!openItemTablePanel);
+  //     setSelectedRowIndex(rowIndex);
+
+  //     taxCodeData.map((e) => {
+  //       onAddHeaderRateCode(e.TaxCode);
+
+  //       const updatedTableData = [...tableData];
+
+  //       const listArryLen = updatedTableData.length;
+
+  //       taxRateData.map((e) => {
+  //         for (let i = 0; i < listArryLen; i++) {
+  //           const item = updatedTableData[i];
+  //           updatedTableData[i] = {
+  //             ...item,
+  //             taxCodePercentage: e.Rate,
+  //           };
+  //           setTableData(updatedTableData);
+  //         }
+  //       });
+  //     });
+  //   };
 
   return (
     <Draggable>
