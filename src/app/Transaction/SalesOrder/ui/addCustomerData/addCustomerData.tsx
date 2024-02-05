@@ -11,6 +11,9 @@ const AddCustomerDataPage = () => {
   const [showCustomer, setShowCustomer] = useState(false);
   const [customerList, setCustomerDataList] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
+  const [lowerBoundData, setLowerBoundData] = useState("");
+  const [UOMList, setUOMList] = useState([]);
+  const [UOMListIndex, setUOMListIndex] = useState([]);
   const [tableData, setTableData] = useState([
     {
       itemCode: "",
@@ -62,12 +65,12 @@ const AddCustomerDataPage = () => {
   };
 
   //retrieval items
-  const onAddheaderItems = async () => {
-    const item = await axios.get(
-      `${process.env.NEXT_PUBLIC_IP}/item/${priceListNum}/${warehouseCode}/C000174`
-    );
-    setItemDataList(item.data);
-  };
+  //   const onAddheaderItems = async () => {
+  //     const item = await axios.get(
+  //       `${process.env.NEXT_PUBLIC_IP}/item/${priceListNum}/${warehouseCode}/C000174`
+  //     );
+  //     setItemDataList(item.data);
+  //   };
 
   //retrieval UOM item
   const onAddHeaderUOM = async (itemcode: any, rowIndex: any) => {
@@ -79,14 +82,14 @@ const AddCustomerDataPage = () => {
   };
 
   //retrieval location warehouse
-  const onAddHeaderWareHouse = async (itemcode: any, name: any, uom: any) => {
-    try {
-      const warehouse = await axios.get(
-        `${process.env.NEXT_PUBLIC_IP}/warehouse-soh/${itemcode}/${name}/${brandID}`
-      );
-      setWareHouseList(warehouse.data);
-    } catch (e) {}
-  };
+  //   const onAddHeaderWareHouse = async (itemcode: any, name: any, uom: any) => {
+  //     try {
+  //       const warehouse = await axios.get(
+  //         `${process.env.NEXT_PUBLIC_IP}/warehouse-soh/${itemcode}/${name}/${brandID}`
+  //       );
+  //       setWareHouseList(warehouse.data);
+  //     } catch (e) {}
+  //   };
 
   //retrieval taxcode
   const onAddHeaderTaxCode = async (cardCodex: any, whseCodex: any) => {
@@ -94,7 +97,7 @@ const AddCustomerDataPage = () => {
       `${process.env.NEXT_PUBLIC_IP}/tax-code/${cardCodex}/${whseCodex}`
     );
     console.log("Tax Code", taxcode.data);
-    settaxCodeData(taxcode.data);
+    setTaxCodeData(taxcode.data);
   };
 
   //retrieval taxrate
@@ -102,7 +105,7 @@ const AddCustomerDataPage = () => {
     const taxrate = await axios.get(
       `${process.env.NEXT_PUBLIC_IP}/tax-rate/${taxcode}`
     );
-    settaxRateData(taxrate.data);
+    setTaxRateData(taxrate.data);
   };
 
   //retrieval lowerbound
@@ -125,7 +128,7 @@ const AddCustomerDataPage = () => {
 
   useEffect(() => {
     onAddHeader();
-    onAddheaderItems();
+    // onAddheaderItems();
   }, []);
 
   //trial function/data
