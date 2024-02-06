@@ -448,6 +448,7 @@ export default function SalesOrder() {
       localCurrency.format((tempSum2 - taxAmountSum) * varSCPWDdisc)
     ); //SC/PWD Discount Total
     settotalAmoutDueData(
+      // localCurrency.format(`${tempSum} - (${tempSum2} - ${taxAmountSum}) * ${varSCPWDdisc}`)
       localCurrency.format(tempSum2 - (tempSum2 - taxAmountSum) * varSCPWDdisc)
     );
   });
