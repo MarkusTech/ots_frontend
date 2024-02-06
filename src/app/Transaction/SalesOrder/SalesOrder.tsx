@@ -2984,6 +2984,8 @@ export default function SalesOrder() {
           </Draggable>
         )}
       </div>
+      {/* ----------------------------------------------------- End of Table ----------------------------------------------- */}
+
       <div className="text-left ml-2">
         {cardCodedata != "" && (
           <button
@@ -2994,6 +2996,8 @@ export default function SalesOrder() {
           </button>
         )}
       </div>
+
+      {/* --------------------------------------------------- Bottom Form-------------------------------------------------------- */}
       <div className="text-left p-2 grid grid-cols-2 col1 text-[14px] mt-5">
         <div className="w-[300px] ">
           <div className="grid grid-cols-2">
