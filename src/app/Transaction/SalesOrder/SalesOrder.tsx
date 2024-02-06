@@ -6,7 +6,8 @@ import axios from "axios";
 import { useRef } from "react";
 
 export default function SalesOrder() {
-  const inputRef = useRef(null);
+  // const inputRef = useRef(null);
+  const inputRef = useRef<HTMLInputElement | null>(null);
 
   const [isClosed, setIsClosed] = useState(false);
 
