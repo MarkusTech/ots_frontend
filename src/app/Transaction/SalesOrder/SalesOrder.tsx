@@ -2491,7 +2491,6 @@ export default function SalesOrder() {
                     {/* inventory status */}
                     {rowData.quantity == 0 ? "" : rowData.inventoryStatus}
                   </td>
-                  {/* + " " + rowData.creditcard + " " + rowData.debit + " " + rowData.pdc + " " + rowData.po */}
                   <td>
                     {rowData.quantity == 0
                       ? ""
