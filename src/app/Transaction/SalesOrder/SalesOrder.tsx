@@ -630,7 +630,9 @@ export default function SalesOrder() {
 
     let idUOM = document.getElementById(itemCodeID);
 
-    idUOM?.setAttribute("value", sellingAfterDis);
+    // wmr change
+    // idUOM?.setAttribute("value", sellingAfterDis);
+    idUOM?.setAttribute("value", sellingAfterDis.toString());
   };
 
   const handleKeyPressSel = (
