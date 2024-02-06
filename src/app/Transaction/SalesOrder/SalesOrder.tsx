@@ -2338,6 +2338,8 @@ export default function SalesOrder() {
           </div>
         </div>
       </div>
+
+      {/* ----------------------- TABLE --------------------------------------- */}
       <div className="fields mt-2 rounded-md text-left container bg-white overflow-x-auto shadow-xl p-2 max-h-[200px]">
         <div className="">
           <table>
