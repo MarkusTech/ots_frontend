@@ -1853,8 +1853,11 @@ export default function SalesOrder() {
     for (let i = 0; i < arrayLen; i++) {
       tempSum =
         tempSum +
+        // wmr change
+        // updatedTableData[i]["sellingPriceBeforeDiscount"] *
+        //   parseInt(updatedTableData[i]["quantity"]);
         updatedTableData[i]["sellingPriceBeforeDiscount"] *
-          parseInt(updatedTableData[i]["quantity"]);
+          Number(updatedTableData[i]["quantity"]);
       tempSum2 = tempSum2 + updatedTableData[i]["grossTotal"];
       taxAmountSum = taxAmountSum + updatedTableData[i]["taxAmount"];
     }
