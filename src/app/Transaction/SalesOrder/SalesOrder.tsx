@@ -646,7 +646,9 @@ export default function SalesOrder() {
     if (event.key === "Enter") {
       let belCost = "";
 
-      if (parseFloat(sellingAfterDis) < item.cost) {
+      //wmr change
+      // if (parseFloat(sellingAfterDis) < item.cost) {
+      if (parseFloat(sellingAfterDis.toString()) < item.cost) {
         belCost = "Y";
       } else {
         belCost = "N";
@@ -654,7 +656,9 @@ export default function SalesOrder() {
 
       console.log("enter", sellingAfterDis, item.cost, value);
 
-      if (parseFloat(value) < parseFloat(sellingAfterDisTemp)) {
+      // wmr change
+      // if (parseFloat(value) < parseFloat(sellingAfterDisTemp)) {
+      if (parseFloat(value) < parseFloat(sellingAfterDisTemp.toString())) {
         console.log("Y");
         updatedTableData[rowIndex] = {
           ...item,
@@ -2529,6 +2533,7 @@ export default function SalesOrder() {
                       ? 0
                       : Math.max(rowData.discountRate).toFixed(2)}
                   </td>
+                  {/* Selling Price After Discount wmr code */}
                   <td>
                     {rowData.quantity == 0 ? (
                       ""
@@ -2549,6 +2554,7 @@ export default function SalesOrder() {
                       </div>
                     )}
                   </td>
+
                   <td>
                     {rowData.quantity == 0
                       ? ""
