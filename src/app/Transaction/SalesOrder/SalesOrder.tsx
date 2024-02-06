@@ -8,6 +8,8 @@ import { useRef } from "react";
 export default function SalesOrder() {
   const inputRef = useRef(null);
 
+  const [isClosed, setIsClosed] = useState(false);
+
   const [customerList, setCustomerDataList] = useState([]);
   const [itemList, setItemDataList] = useState([]);
   const [UOMList, setUOMList] = useState([]);
@@ -876,7 +878,8 @@ export default function SalesOrder() {
     setOpenOUMPanel(!openOUMPanel);
 
     var quantityChange = document.getElementById("quantityInput");
-    quantityChange?.setAttribute("placeholder", 33);
+    // quantityChange?.setAttribute("placeholder", 33); // it must be a 33 not a string
+    quantityChange?.setAttribute("placeholder", "0"); // wmr change
 
     console.log(quantityChange);
   };
@@ -2005,6 +2008,16 @@ export default function SalesOrder() {
     console.log("SC", id);
     setscpdwdID(id);
   };
+
+  const handleCloseCustomer = () => {
+    setIsClosed(true);
+  };
+
+  // 2721
+
+  if (isClosed) {
+    return null; // Don't render the component if it's closed
+  }
 
   return (
     <>
