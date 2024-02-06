@@ -2892,7 +2892,7 @@ export default function SalesOrder() {
                         </tr>
                       </thead>
                       <tbody>
-                        {WareHouseList.map((item, index) => (
+                        {WareHouseList.map((item: any, index) => (
                           // eslint-disable-next-line react/jsx-key
                           <tr>
                             <td
