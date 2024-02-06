@@ -2025,8 +2025,6 @@ export default function SalesOrder() {
     setIsClosed(true);
   };
 
-  // 2721
-
   if (isClosed) {
     return null; // Don't render the component if it's closed
   }
