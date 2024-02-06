@@ -2876,7 +2876,7 @@ export default function SalesOrder() {
               style={{
                 border: "1px solid #ccc",
                 position: "absolute",
-                top: "20%",
+                top: "40%",
                 left: "20%",
                 height: "300px",
               }}
