@@ -4,7 +4,6 @@ import React, { use, useEffect, useState } from "react";
 import Draggable from "react-draggable";
 import axios from "axios";
 import { useRef } from "react";
-import { stringify } from "querystring";
 
 export default function SalesOrder() {
   // const inputRef = useRef(null);
@@ -43,6 +42,10 @@ export default function SalesOrder() {
   const manilaDate = now.toLocaleDateString("en-US", {
     timeZone: "Asia/Manila",
   });
+
+  // -------------------------------------- Insertion --------------------------------------
+
+  // -------------------------------------- End of insertion --------------------------------------
 
   const [itemcodetextalign, setitemcodetextalign] = useState("");
 
@@ -750,7 +753,7 @@ export default function SalesOrder() {
 
       setTotalVat(taxAmountx);
 
-      console.log(taxAmountx, "hehe");
+      // console.log(taxAmountx, "hehe");
 
       console.log(
         "selPrice:",
@@ -2032,6 +2035,7 @@ export default function SalesOrder() {
     return null; // Don't render the component if it's closed
   }
 
+  // -------------------------------------------------------------------------------
   return (
     <>
       <div className="salesbody p-2 text-sm rounded-md flex gap-40  container overflow-x-auto shadow-lg">
