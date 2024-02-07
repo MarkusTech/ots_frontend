@@ -395,46 +395,6 @@ export default function SalesOrder() {
   const handleRemoveRow = (rowIndex: any, Itemcodex: any) => {
     countAllItem = countAllItem - 1;
 
-    // wmr comment
-    // let emptyData = {
-    //   itemCode: "",
-    //   itemName: "",
-    //   quantity: 0,
-    //   uom: "",
-    //   uomConversion: "",
-    //   excludeBO: "N",
-    //   location: "",
-    //   price: 0,
-    //   inventoryStatus: "",
-    //   sellingPriceBeforeDiscount: "",
-    //   discountRate: "",
-    //   sellingPriceAfterDiscount: "",
-    //   sellingPriceAfterDiscountTemp: 0,
-    //   lowerBound: 0,
-    //   taxCode: "",
-    //   taxCodePercentage: 0,
-    //   taxAmount: "",
-    //   volDisPrice: 0,
-    //   belVolDisPrice: "N",
-    //   cost: 0,
-    //   belCost: 0,
-    //   modeOfReleasing: "",
-    //   scPwdDiscount: "N",
-    //   grossTotal: "",
-    //   selected: false,
-    //   cash: "N",
-    //   creditcard: "N",
-    //   debit: "N",
-    //   pdc: "N",
-    //   po: "N",
-    //   datedCheck: "N",
-    //   onlineTransfer: "N",
-    //   onAccount: "N",
-    //   cashOnDel: "N",
-    // };
-
-    // const newData: any = [...tableData];
-
     setTableData((prevData) =>
       prevData.filter((_, index) => index !== rowIndex)
     );
