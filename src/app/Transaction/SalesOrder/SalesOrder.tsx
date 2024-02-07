@@ -45,6 +45,53 @@ export default function SalesOrder() {
 
   // -------------------------------------- Insertion --------------------------------------
 
+  const [formData, setFormData] = useState({
+    EntryNum: "4",
+    DocNum: "0",
+    PostingDate: "",
+    DocDate: "",
+    CustomerCode: "",
+    CustomerName: "",
+    WalkInName: "",
+    ShippingAdd: "",
+    TIN: "",
+    Reference: "",
+    SCPWDIdNo: "",
+    Branch: "",
+    DocStat: "",
+    BaseDoc: 0,
+    Cash: "",
+    CreditCard: "",
+    DebitCard: "",
+    ODC: "",
+    PDC: "",
+    OnlineTransfer: "",
+    OnAccount: "",
+    COD: "",
+    TotalAmtBefTax: 0,
+    TotalTax: 0,
+    TotalAmtAftTax: 0,
+    SCPWDDiscTotal: 0,
+    TotalAmtDue: 0,
+    Remarks: "",
+    CreatedBy: 0,
+    DateCreated: "",
+    UpdatedBy: 0,
+    DateUpdated: "",
+  });
+
+  const sendDataToAPI = () => {
+    const apiUrl = "http://localhost:5000/api/v1/ots";
+    axios
+      .post(apiUrl, formData)
+      .then((response) => {
+        console.log("Data sent successfully:", response.data);
+      })
+      .catch((error) => {
+        console.error("Error sending data:", error);
+      });
+  };
+
   // -------------------------------------- End of insertion --------------------------------------
 
   const [itemcodetextalign, setitemcodetextalign] = useState("");
@@ -3199,7 +3246,8 @@ export default function SalesOrder() {
         <div className="p-2 flex justify-start">
           <button
             className="p-2 mt-2 mb-1 mr-2 text-[12px] bg-[#F4D674]"
-            onClick={handleSaveDraft}
+            // onClick={handleSaveDraft}
+            onClick={sendDataToAPI}
           >
             Save as draft
           </button>
