@@ -11,7 +11,7 @@ const YourComponent = () => {
     // Add other fields as needed
   });
 
-  const handleInputChange = (field, value) => {
+  const handleInputChange = (field: any, value: any) => {
     setFormData({
       ...formData,
       [field]: value,
