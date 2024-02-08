@@ -123,7 +123,7 @@ export default function SalesOrder() {
     DocStat: "",
     BaseDoc: "",
     DocNum: "",
-    DraftNum: 8,
+    DraftNum: 11,
     EntryNum: "", // i need to generate this automatically
     DocDate: manilaDate,
     PostingDate: manilaDate,
@@ -136,11 +136,11 @@ export default function SalesOrder() {
     OnlineTransfer: "",
     OnAccount: "",
     COD: "",
-    TotalAmtBefTax: "",
-    TotalTax: "",
-    TotalAmtAftTax: "",
-    SCPWDDiscTotal: "",
-    TotalAmtDue: "",
+    TotalAmtBefTax: totalAfterVat,
+    TotalTax: totalVat,
+    TotalAmtAftTax: totalBeforeVat,
+    SCPWDDiscTotal: SCPWDdata,
+    TotalAmtDue: totalAmoutDueData,
     Remarks: "",
     CreatedBy: "",
     DateCreated: "",
@@ -3058,6 +3058,7 @@ export default function SalesOrder() {
       <div className="text-left p-2 grid grid-cols-2 col1 text-[14px] mt-5">
         <div className="w-[300px] ">
           <div className="grid grid-cols-2">
+            {/* ------------------------ Mode of Payment! ------------------------- */}
             <label htmlFor="documentnumber">Mode of Payment:</label>
             <div className="">
               <div className="flex justify-start gap-2 w-[100px]">
@@ -3152,6 +3153,8 @@ export default function SalesOrder() {
               </div>
             </div>
           </div>
+          {/* End of mode of payment */}
+
           <div className="grid grid-cols-2">
             <label htmlFor="documentnumber">Mode of Releasing</label>
             <div>
@@ -3207,10 +3210,16 @@ export default function SalesOrder() {
           <div className="grid grid-cols-2">
             <label htmlFor="documentnumber">Remarks</label>
             <div>
-              <textarea name="" id=""></textarea>
+              <textarea
+                name="remarks"
+                id="remarks"
+                onChange={(e) => handleInputChange("Remarks", e.target.value)}
+              ></textarea>
             </div>
           </div>
         </div>
+
+        {/* ----------------------------- Calculation ------------------------- */}
         <div className="text-right w-full grid justify-end">
           <div className="w-[440px] ">
             <div className="grid grid-cols-2 text-right">
@@ -3247,6 +3256,7 @@ export default function SalesOrder() {
             </div>
           </div>
         </div>
+        {/* ----------------------------- End Calculation ------------------------- */}
       </div>
       <div className="grid grid-cols-2">
         <div className="p-2 flex justify-start">
