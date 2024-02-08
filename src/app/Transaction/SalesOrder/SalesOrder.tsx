@@ -31,6 +31,44 @@ export default function SalesOrder() {
   const [showDoc, setShowDoc] = useState(false);
   const [showCustomer, setShowCustomer] = useState(false);
 
+  const [itemcodetextalign, setitemcodetextalign] = useState("");
+
+  const [openItemTablePanel, setOpenItemTablePanel] = useState(false);
+  const [openOUMPanel, setOpenOUMPanel] = useState(false);
+  const [openModRelTablePanel, setOpenModRelTablePanel] = useState(false);
+  const [openLocationPanel, setOpenLocationPanel] = useState(false);
+  const [showItems, setShowItems] = useState(false);
+  const [totalAfterVat, settotalAfterVat] = useState("");
+  const [totalBeforeVat, setTotalBeforeVat] = useState("");
+  const [totalVat, setTotalVat] = useState("");
+  const [sellingPriceAfterDiscountData, setSellingPriceAfterDis] = useState(0);
+
+  const [showSCPDW, setShowSCPWD] = useState(false);
+  const [varSCPWDdisc, setVarSCPWDdisc] = useState(0);
+  const [SCPWDdata, setSCPWDdata] = useState(0);
+  const [totalAmoutDueData, settotalAmoutDueData] = useState(0);
+
+  const [scpdwdID, setscpdwdID] = useState("");
+
+  // Payment useState
+  const [isCheckedCash, setIsCheckedCash] = useState(false);
+  const [isCheckedCreditCard, setIsCheckedCreditCard] = useState(false);
+  const [isCheckedDebit, setIsCheckedDebit] = useState(false);
+  const [isCheckedPDC, setIsCheckedPDC] = useState(false);
+  const [isCheckedPO, setIsCheckedPO] = useState(false);
+  const [isCheckedDatedCheck, setIsCheckedDatedCheck] = useState(false);
+  const [isCheckedOnlineTransfer, setIsCheckedOnlineTransfer] = useState(false);
+  const [isCheckedOnAccount, setIsCheckedOnAccount] = useState(false);
+  const [isCheckedCashOnDel, setIsCheckedCashOnDel] = useState(false);
+
+  const [creditcardstatus, setcreditcardstatus] = useState("N");
+  const [debitstatus, setdebitstatus] = useState("N");
+  const [pdcstatus, setpdcstatus] = useState("N");
+  const [postatus, setpostatus] = useState("N");
+
+  const [ccstatus, setccstatus] = useState(false);
+  // End of Payment useState
+
   const warehouseCode = "GSCNAPGS";
   const brandID = 4;
   const priceListNum = 14;
@@ -94,25 +132,6 @@ export default function SalesOrder() {
   };
 
   // -------------------------------------- End of insertion --------------------------------------
-
-  const [itemcodetextalign, setitemcodetextalign] = useState("");
-
-  const [openItemTablePanel, setOpenItemTablePanel] = useState(false);
-  const [openOUMPanel, setOpenOUMPanel] = useState(false);
-  const [openModRelTablePanel, setOpenModRelTablePanel] = useState(false);
-  const [openLocationPanel, setOpenLocationPanel] = useState(false);
-  const [showItems, setShowItems] = useState(false);
-  const [totalAfterVat, settotalAfterVat] = useState("");
-  const [totalBeforeVat, setTotalBeforeVat] = useState("");
-  const [totalVat, setTotalVat] = useState("");
-  const [sellingPriceAfterDiscountData, setSellingPriceAfterDis] = useState(0);
-
-  const [showSCPDW, setShowSCPWD] = useState(false);
-  const [varSCPWDdisc, setVarSCPWDdisc] = useState(0);
-  const [SCPWDdata, setSCPWDdata] = useState(0);
-  const [totalAmoutDueData, settotalAmoutDueData] = useState(0);
-
-  const [scpdwdID, setscpdwdID] = useState("");
 
   let customerData2 = [{}];
   let currentCustomerData = customerList;
@@ -962,22 +981,7 @@ export default function SalesOrder() {
     setTableData(updatedTableData);
   };
 
-  const [isCheckedCash, setIsCheckedCash] = useState(false);
-  const [isCheckedCreditCard, setIsCheckedCreditCard] = useState(false);
-  const [isCheckedDebit, setIsCheckedDebit] = useState(false);
-  const [isCheckedPDC, setIsCheckedPDC] = useState(false);
-  const [isCheckedPO, setIsCheckedPO] = useState(false);
-  const [isCheckedDatedCheck, setIsCheckedDatedCheck] = useState(false);
-  const [isCheckedOnlineTransfer, setIsCheckedOnlineTransfer] = useState(false);
-  const [isCheckedOnAccount, setIsCheckedOnAccount] = useState(false);
-  const [isCheckedCashOnDel, setIsCheckedCashOnDel] = useState(false);
-
-  const [creditcardstatus, setcreditcardstatus] = useState("N");
-  const [debitstatus, setdebitstatus] = useState("N");
-  const [pdcstatus, setpdcstatus] = useState("N");
-  const [postatus, setpostatus] = useState("N");
-
-  const [ccstatus, setccstatus] = useState(false);
+  // Payment section
 
   const handCash = async (event: any) => {
     setIsCheckedCash(event.target.checked);
@@ -1678,6 +1682,8 @@ export default function SalesOrder() {
       }
     }
   };
+
+  // END of Payment function
 
   const [showMessage, setshowMessage] = useState(false);
   const [showMessage2, setshowMessage2] = useState(false);
