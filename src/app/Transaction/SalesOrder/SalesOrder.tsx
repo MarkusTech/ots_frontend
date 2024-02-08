@@ -69,6 +69,24 @@ export default function SalesOrder() {
   const [ccstatus, setccstatus] = useState(false);
   // End of Payment useState
 
+  // Error message useState()
+  const [showMessage, setshowMessage] = useState(false);
+  const [showMessage2, setshowMessage2] = useState(false);
+  const [showMessage3, setshowMessage3] = useState(false);
+  const [showMessage4, setshowMessage4] = useState(false);
+  const [showMessage5, setshowMessage5] = useState(false);
+  const [showMessage6, setshowMessage6] = useState(false);
+  const [showMessage7, setshowMessage7] = useState(false);
+
+  const [errMessage, seterrMessage] = useState("");
+  const [errMessage2, seterrMessage2] = useState("");
+  const [errMessage3, seterrMessage3] = useState("");
+  const [errMessage4, seterrMessage4] = useState("");
+  const [errMessage5, seterrMessage5] = useState("");
+  const [errMessage6, seterrMessage6] = useState("");
+  const [errMessage7, seterrMessage7] = useState("");
+  // End of Error Message useState()
+
   const warehouseCode = "GSCNAPGS";
   const brandID = 4;
   const priceListNum = 14;
@@ -1684,22 +1702,6 @@ export default function SalesOrder() {
   };
 
   // END of Payment function
-
-  const [showMessage, setshowMessage] = useState(false);
-  const [showMessage2, setshowMessage2] = useState(false);
-  const [showMessage3, setshowMessage3] = useState(false);
-  const [showMessage4, setshowMessage4] = useState(false);
-  const [showMessage5, setshowMessage5] = useState(false);
-  const [showMessage6, setshowMessage6] = useState(false);
-  const [showMessage7, setshowMessage7] = useState(false);
-
-  const [errMessage, seterrMessage] = useState("");
-  const [errMessage2, seterrMessage2] = useState("");
-  const [errMessage3, seterrMessage3] = useState("");
-  const [errMessage4, seterrMessage4] = useState("");
-  const [errMessage5, seterrMessage5] = useState("");
-  const [errMessage6, seterrMessage6] = useState("");
-  const [errMessage7, seterrMessage7] = useState("");
 
   const [displayModeDrop, setDisplayModeDrop] = useState(false);
 
