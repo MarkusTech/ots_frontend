@@ -373,3 +373,45 @@ const YourComponent: React.FC = () => {
 
 export default YourComponent;
 
+
+
+const [formData, setFormData] = useState({
+  CustomerCode: "",
+  CustomerName: "",
+  ForeignName: "",
+  WalkInName: "",
+  ShippingAdd: "",
+  TIN: "",
+  Reference: "",
+
+
+  
+  Branch: "",
+  DocStat: "",
+  BaseDoc: "",
+  DocNum: "",
+  DraftNum: 6,
+  EntryNum: "",
+  DocDate: "",
+  PostingDate: "",
+  SCPWDIdNo: "",
+  Cash: "",
+  CreditCard: "",
+  DebitCard: "",
+  ODC: "",
+  PDC: "",
+  OnlineTransfer: "",
+  OnAccount: "",
+  COD: "",
+  TotalAmtBefTax: "",
+  TotalTax: "",
+  TotalAmtAftTax: "",
+  SCPWDDiscTotal: "",
+  TotalAmtDue: "",
+  Remarks: "",
+  CreatedBy: "",
+  DateCreated: "",
+  UpdatedBy: "",
+  DateUpdated: "",
+});
+

@@ -101,7 +101,6 @@ export default function SalesOrder() {
 
   // -------------------------------------- Insertion --------------------------------------
 
-  // this is in the line 372
   const [customerData, setCustomerData] = useState([
     {
       customerCode: "00000",
@@ -124,10 +123,10 @@ export default function SalesOrder() {
     DocStat: "",
     BaseDoc: "",
     DocNum: "",
-    DraftNum: 6,
-    EntryNum: "",
-    DocDate: "",
-    PostingDate: "",
+    DraftNum: 8,
+    EntryNum: "", // i need to generate this automatically
+    DocDate: manilaDate,
+    PostingDate: manilaDate,
     SCPWDIdNo: "",
     Cash: "",
     CreditCard: "",
@@ -2288,13 +2287,19 @@ export default function SalesOrder() {
           </div>
           <div>
             <div className="grid grid-cols-2">
-              <label className="" htmlFor="entrynumber">
+              <label className="" htmlFor="Reference">
                 Customer Reference
               </label>
               <div>
-                <input type="text" />
+                <input
+                  type="text"
+                  onChange={(e) =>
+                    handleInputChange("Reference", e.target.value)
+                  }
+                />
               </div>
             </div>
+
             <div className="grid grid-cols-2">
               <label className="" htmlFor="entrynumber">
                 Branch
@@ -2303,6 +2308,7 @@ export default function SalesOrder() {
                 <input type="text" readOnly />
               </div>
             </div>
+
             <div className="grid grid-cols-2">
               <label className="" htmlFor="entrynumber">
                 Document Status
@@ -2311,6 +2317,7 @@ export default function SalesOrder() {
                 <input type="text" readOnly />
               </div>
             </div>
+
             <div className="grid grid-cols-2">
               <label className="" htmlFor="entrynumber">
                 Base Document
@@ -2319,6 +2326,7 @@ export default function SalesOrder() {
                 <input type="text" readOnly />
               </div>
             </div>
+
             {showSCPDW && (
               <div className="grid grid-cols-2">
                 <label className="" htmlFor="entrynumber">
