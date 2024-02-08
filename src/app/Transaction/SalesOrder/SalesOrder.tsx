@@ -104,7 +104,7 @@ export default function SalesOrder() {
   const [formData, setFormData] = useState({
     EntryNum: "",
     DocNum: "",
-    DraftNum: 2,
+    DraftNum: 3,
     PostingDate: "",
     DocDate: "",
     CustomerCode: "",
