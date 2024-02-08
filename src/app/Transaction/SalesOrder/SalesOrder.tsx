@@ -101,22 +101,34 @@ export default function SalesOrder() {
 
   // -------------------------------------- Insertion --------------------------------------
 
+  // this is in the line 372
+  const [customerData, setCustomerData] = useState([
+    {
+      customerCode: "00000",
+      customerName: "N/A",
+      customerCardFName: "",
+      cusShipAddress: "N/A",
+      cusLicTradNum: "N/A",
+    },
+  ]);
+
   const [formData, setFormData] = useState({
-    EntryNum: "",
-    DocNum: "",
-    DraftNum: 3,
-    PostingDate: "",
-    DocDate: "",
     CustomerCode: "",
     CustomerName: "",
+    ForeignName: "",
     WalkInName: "",
     ShippingAdd: "",
     TIN: "",
     Reference: "",
-    SCPWDIdNo: "",
     Branch: "",
     DocStat: "",
     BaseDoc: "",
+    DocNum: "",
+    DraftNum: 6,
+    EntryNum: "",
+    DocDate: "",
+    PostingDate: "",
+    SCPWDIdNo: "",
     Cash: "",
     CreditCard: "",
     DebitCard: "",
@@ -369,16 +381,6 @@ export default function SalesOrder() {
     onAddheaderItems();
   };
 
-  const [customerData, setCustomerData] = useState([
-    {
-      customerCode: "00000",
-      customerName: "N/A",
-      customerCardFName: "",
-      cusShipAddress: "N/A",
-      cusLicTradNum: "N/A",
-    },
-  ]);
-
   const handleSearch = (event: any) => {
     setSearchTerm(event.target.value);
   };
@@ -431,7 +433,15 @@ export default function SalesOrder() {
     setcardCodedata(id);
 
     setCustomerData([newArray]);
-    // setFormData([newArray]);
+
+    setFormData({
+      ...formData,
+      CustomerCode: id,
+      CustomerName: name,
+      ForeignName: fname,
+      ShippingAdd: address,
+      TIN: tin,
+    });
 
     console.log(customerData2);
     setShowCustomer(!showCustomer);
@@ -2075,9 +2085,6 @@ export default function SalesOrder() {
                 <input
                   type="text"
                   value={customerData.map((e) => e.customerCode)}
-                  onChange={(e) =>
-                    handleInputChange("CustomerCode", e.target.value)
-                  }
                   className="bg-slate-200"
                   readOnly
                 />
@@ -2223,9 +2230,6 @@ export default function SalesOrder() {
                 <input
                   type="text"
                   value={customerData.map((e) => e.customerName)}
-                  onChange={(e) =>
-                    handleInputChange("CustomerName", e.target.value)
-                  }
                   className="bg-slate-200"
                   readOnly
                 />
@@ -2241,9 +2245,6 @@ export default function SalesOrder() {
                 <input
                   type="text"
                   value={customerData.map((e) => e.customerCardFName)}
-                  onChange={(e) =>
-                    handleInputChange("CustomerName", e.target.value)
-                  }
                   readOnly
                 />
               </div>
@@ -2269,9 +2270,6 @@ export default function SalesOrder() {
                 <input
                   type="text"
                   value={customerData.map((e) => e.cusShipAddress)}
-                  onChange={(e) =>
-                    handleInputChange("ShippingAdd", e.target.value)
-                  }
                 />
               </div>
             </div>
@@ -2284,7 +2282,6 @@ export default function SalesOrder() {
                 <input
                   type="text"
                   value={customerData.map((e) => e.cusLicTradNum)}
-                  onChange={(e) => handleInputChange("TIN", e.target.value)}
                 />
               </div>
             </div>
