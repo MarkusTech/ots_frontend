@@ -1988,11 +1988,11 @@ export default function SalesOrder() {
       DateUpdated: "",
     };
 
-    // const baseURL = "http://172.16.10.217:3002/so-header";
-    const baseUrl = "http://localhost:5000/api/v1/ots";
+    const baseURL = "http://172.16.10.217:3002/so-header";
+    // const baseUrl = "http://localhost:5000/api/v1/ots";
 
     axios
-      .post(baseUrl, {
+      .post(baseURL, {
         EntryNum: "0",
         DocNum: 0,
         PostingDate: "",
