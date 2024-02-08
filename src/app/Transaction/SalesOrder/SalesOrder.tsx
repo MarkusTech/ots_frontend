@@ -61,11 +61,6 @@ export default function SalesOrder() {
   const [isCheckedOnAccount, setIsCheckedOnAccount] = useState(false);
   const [isCheckedCashOnDel, setIsCheckedCashOnDel] = useState(false);
 
-  const [creditcardstatus, setcreditcardstatus] = useState("N");
-  const [debitstatus, setdebitstatus] = useState("N");
-  const [pdcstatus, setpdcstatus] = useState("N");
-  const [postatus, setpostatus] = useState("N");
-
   const [ccstatus, setccstatus] = useState(false);
   // End of Payment useState
 
