@@ -1,378 +1,211 @@
-import React, { useState } from "react";
-import axios from "axios";
+import React, { useState } from 'react';
 
-const YourComponent = () => {
+const YourComponent: React.FC = () => {
+  const [customerData, setCustomerData] = useState([
+    // Your customer data
+  ]);
+
   const [formData, setFormData] = useState({
-    customerCode: "",
-    customerName: "",
-    customerCardFName: "",
-    cusShipAddress: "",
-    cusLicTradNum: "",
-    // Add other fields as needed
+    // Your existing formData state
   });
 
-  const handleInputChange = (field: any, value: any) => {
-    setFormData({
-      ...formData,
-      [field]: value,
-    });
+  const handleInputChange = (fieldName: string, value: string) => {
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      [fieldName]: value,
+    }));
   };
 
-  const sendDataToAPI = () => {
-    // Replace 'http://example.com/api/saveData' with your actual API endpoint
-    const apiUrl = "http://example.com/api/saveData";
+  const handleGetFieldValues = () => {
+    // Get values from the fields and save them to your data or perform other actions
+    const customerCode = document.getElementById('CustomerCode')?.getAttribute('value');
+    const customerName = document.getElementById('CustomerName')?.getAttribute('value');
+    const foreignName = document.getElementById('ForeignName')?.getAttribute('value');
+    const walkInName = document.getElementById('WalkInName')?.getAttribute('value');
+    const shippingAddress = document.getElementById('ShippingAdd')?.getAttribute('value');
+    const customerTIN = document.getElementById('TIN')?.getAttribute('value');
 
-    axios
-      .post(apiUrl, formData)
-      .then((response) => {
-        console.log("Data sent successfully:", response.data);
-        // Optionally, handle any additional logic after successful submission
-      })
-      .catch((error) => {
-        console.error("Error sending data:", error);
-        // Optionally, handle errors or display an error message
-      });
+    // Use the retrieved values as needed
+    console.log('Customer Code:', customerCode);
+    console.log('Customer Name:', customerName);
+    console.log('Foreign Name:', foreignName);
+    console.log('Walk-in Customer Name:', walkInName);
+    console.log('Customer Shipping Address:', shippingAddress);
+    console.log('Customer TIN:', customerTIN);
+
+    // Save values to your data or perform other actions
+    setCustomerData([
+      // ... Update your customer data based on the retrieved values
+    ]);
   };
+
+  // Your existing code...
 
   return (
     <div className="salesbody p-2 text-sm rounded-md flex gap-40 container overflow-x-auto shadow-lg">
-      {/* ... (your existing JSX code for form inputs) ... */}
+      {/* ... (other code) */}
+      
+      {/* Updated Foreign Name input */}
+      <div className="grid grid-cols-2">
+        <label className="" htmlFor="ForeignName">
+          Foreign Name
+        </label>
+        <div>
+          <input
+            type="text"
+            value={customerData.map((e) => e.customerCardFName)}
+            onChange={(e) => handleInputChange('CustomerName', e.target.value)}
+            readOnly
+          />
+        </div>
+      </div>
 
-      {/* Button to send data to API */}
-      <button onClick={sendDataToAPI}>Send Data to API</button>
+      {/* ... (other fields) */}
+
+      {/* Button to trigger getting field values */}
+      <button onClick={handleGetFieldValues}>Get Field Values</button>
     </div>
   );
 };
 
 export default YourComponent;
 
+// -----------------------------------------------------------------------
 
+import React, { useState } from 'react';
 
+const YourComponent: React.FC = () => {
+  const [customerData, setCustomerData] = useState([
+    // Your customer data
+  ]);
 
-<div className="salesbody p-2 text-sm rounded-md flex gap-40  container overflow-x-auto shadow-lg">
-        <div className="w-[] flex flex-wrap gap-5 col1 mr-3">
-          <div>
-            <div className="grid grid-cols-2">
-              <label htmlFor="entrynumber">Customer Code</label>
-              <div>
-                <input
-                  type="text"
-                  value={customerData.map((e) => e.customerCode)}
-                  className="bg-slate-200"
-                  readOnly
-                />
-                <button
-                  className="w-[20px]  bg-slate-200"
-                  onClick={handleShowCustomer}
-                >
-                  =
-                </button>
-                {showCustomer && (
-                  <Draggable>
-                    <div
-                      className="bg-white shadow-lg"
-                      style={{
-                        border: "1px solid #ccc",
-                        position: "absolute",
-                        top: "12%",
-                        left: "15%",
-                      }}
-                    >
-                      <div
-                        className="grid grid-cols-2 p-2 text-left windowheader"
-                        style={{ cursor: "move" }}
-                      >
-                        <div>Customer</div>
-                        <div className="text-right">
-                          <span
-                            onClick={handleShowCustomer}
-                            className="cursor-pointer"
-                          >
-                            ❌
-                          </span>
-                        </div>
-                      </div>
-                      <div className="content">
-                        <div className="p-2">
-                          <div>
-                            Search:{" "}
-                            <input
-                              type="text"
-                              className="mb-1"
-                              value={searchTerm}
-                              onChange={handleSearch}
-                            />
-                          </div>
-                          <table>
-                            <thead className="tables">
-                              <tr>
-                                <th>Customer Code</th>
-                                <th>Name</th>
-                                <th>Foreign Name</th>
-                                <th>Shipping Address</th>
-                                <th>LicTradNum</th>
-                              </tr>
-                            </thead>
-                            <tbody>
-                              {filteredData.map((rowData: any, rowIndex) => (
-                                <tr className="trcus" key={rowIndex}>
-                                  <td
-                                    className="tdcus"
-                                    onClick={() =>
-                                      addCustomerData(
-                                        rowData.CardCode,
-                                        rowData.CardName,
-                                        rowData.CardFName,
-                                        rowData.Address,
-                                        rowData.LicTradNum
-                                      )
-                                    }
-                                  >
-                                    {rowData.CardCode}
-                                  </td>
-                                  <td
-                                    className="tdcus"
-                                    onClick={() =>
-                                      addCustomerData(
-                                        rowData.CardCode,
-                                        rowData.CardName,
-                                        rowData.CardFName,
-                                        rowData.Address,
-                                        rowData.LicTradNum
-                                      )
-                                    }
-                                  >
-                                    {rowData.CardName}
-                                  </td>
-                                  <td
-                                    className="tdcus"
-                                    onClick={() =>
-                                      addCustomerData(
-                                        rowData.CardCode,
-                                        rowData.CardName,
-                                        rowData.CardFName,
-                                        rowData.Address,
-                                        rowData.LicTradNum
-                                      )
-                                    }
-                                  >
-                                    {rowData.CardFName}
-                                  </td>
-                                  <td
-                                    className="tdcus"
-                                    onClick={() =>
-                                      addCustomerData(
-                                        rowData.CardCode,
-                                        rowData.CardName,
-                                        rowData.CardFName,
-                                        rowData.Address,
-                                        rowData.LicTradNum
-                                      )
-                                    }
-                                  >
-                                    {rowData.Address}
-                                  </td>
-                                  <td
-                                    className="tdcus"
-                                    onClick={() =>
-                                      addCustomerData(
-                                        rowData.CardCode,
-                                        rowData.CardName,
-                                        rowData.CardFName,
-                                        rowData.Address,
-                                        rowData.LicTradNum
-                                      )
-                                    }
-                                  >
-                                    {rowData.LicTradNum}
-                                  </td>
-                                </tr>
-                              ))}
-                            </tbody>
-                          </table>
-                        </div>
-                      </div>
-                    </div>
-                  </Draggable>
-                )}
-              </div>
-            </div>
-            <div className="grid grid-cols-2">
-              <label htmlFor="entrynumber">Customer Name</label>
-              <div>
-                <input
-                  type="text"
-                  value={customerData.map((e) => e.customerName)}
-                  className="bg-slate-200"
-                  readOnly
-                />
-              </div>
-            </div>
-            <div className="grid grid-cols-2">
-              <label className="" htmlFor="entrynumber">
-                Foreign Name
-              </label>
-              <div>
-                <input
-                  type="text"
-                  value={customerData.map((e) => e.customerCardFName)}
-                  readOnly
-                />
-              </div>
-            </div>
-            <div className="grid grid-cols-2">
-              <label htmlFor="entrynumber">Walk-in Customer Name</label>
-              <div>
-                <input type="text" />
-              </div>
-            </div>
-            <div className="grid grid-cols-2">
-              <label className="" htmlFor="entrynumber">
-                Customer Shipping Address
-              </label>
-              <div>
-                <input
-                  type="text"
-                  value={customerData.map((e) => e.cusShipAddress)}
-                />
-              </div>
-            </div>
-            <div className="grid grid-cols-2">
-              <label className="" htmlFor="entrynumber">
-                Customer TIN
-              </label>
-              <div>
-                <input
-                  type="text"
-                  value={customerData.map((e) => e.cusLicTradNum)}
-                />
-              </div>
-            </div>
-          </div>
-          <div>
-            <div className="grid grid-cols-2">
-              <label className="" htmlFor="entrynumber">
-                Customer Reference
-              </label>
-              <div>
-                <input type="text" />
-              </div>
-            </div>
-            <div className="grid grid-cols-2">
-              <label className="" htmlFor="entrynumber">
-                Branch
-              </label>
-              <div>
-                <input type="text" readOnly />
-              </div>
-            </div>
-            <div className="grid grid-cols-2">
-              <label className="" htmlFor="entrynumber">
-                Document Status
-              </label>
-              <div>
-                <input type="text" readOnly />
-              </div>
-            </div>
-            <div className="grid grid-cols-2">
-              <label className="" htmlFor="entrynumber">
-                Base Document
-              </label>
-              <div>
-                <input type="text" readOnly />
-              </div>
-            </div>
-            {showSCPDW && (
-              <div className="grid grid-cols-2">
-                <label className="" htmlFor="entrynumber">
-                  SC/PWD ID
-                </label>
-                <div>
-                  <input
-                    onInput={(e: any) => {
-                      SCPWDinput(e.target.value);
-                    }}
-                    type="text"
-                  />
-                </div>
-              </div>
-            )}
-          </div>
-        </div>
-        <div className="w-[] col1">
-          <div className="grid grid-cols-2">
-            <label htmlFor="documentnumber">Document Number</label>
-            <div>
-              <input value={0} type="text" />
-            </div>
+  const [formData, setFormData] = useState({
+    CustomerCode: '',
+    CustomerName: '',
+    ForeignName: '',
+    WalkInName: '',
+    ShippingAdd: '',
+    TIN: '',
+    // ... other form fields
+  });
 
-            {/* Document Number */}
-            {showDoc && (
-              <Draggable>
-                <div
-                  className="w-[400px] h-[100px] bg-white shadow-lg"
-                  style={{
-                    border: "1px solid #ccc",
-                    position: "absolute",
-                    top: "12%",
-                    left: "68.3%",
-                  }}
-                >
-                  <div
-                    className="grid grid-cols-2 p-2 text-left windowheader"
-                    style={{ cursor: "move" }}
-                  >
-                    <div>Document Number</div>
-                    <div className="text-right">
-                      <span onClick={handleShowDoc} className="cursor-pointer">
-                        ❌
-                      </span>
-                    </div>
-                  </div>
-                  <div className="content"></div>
-                </div>
-              </Draggable>
-            )}
-          </div>
+  const handleInputChange = (fieldName: string, value: string) => {
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      [fieldName]: value,
+    }));
+  };
+
+  const handleGetFieldValues = () => {
+    const customerCode = document.getElementById('CustomerCode')?.getAttribute('value');
+    const customerName = document.getElementById('CustomerName')?.getAttribute('value');
+    const foreignName = document.getElementById('ForeignName')?.getAttribute('value');
+    const walkInName = document.getElementById('WalkInName')?.getAttribute('value');
+    const shippingAddress = document.getElementById('ShippingAdd')?.getAttribute('value');
+    const customerTIN = document.getElementById('TIN')?.getAttribute('value');
+
+    console.log('Customer Code:', customerCode);
+    console.log('Customer Name:', customerName);
+    console.log('Foreign Name:', foreignName);
+    console.log('Walk-in Customer Name:', walkInName);
+    console.log('Customer Shipping Address:', shippingAddress);
+    console.log('Customer TIN:', customerTIN);
+
+    setCustomerData([
+      // ... Update your customer data based on the retrieved values
+    ]);
+  };
+
+  // Your existing code...
+
+  return (
+    <div className="salesbody p-2 text-sm rounded-md flex gap-40 container overflow-x-auto shadow-lg">
+      <div className="w-[] flex flex-wrap gap-5 col1 mr-3">
+        <div>
           <div className="grid grid-cols-2">
-            <label htmlFor="documentnumber">Draft Number</label>
-            <div>
-              <input type="text" readOnly />
-            </div>
-          </div>
-          <div className="grid grid-cols-2">
-            <label htmlFor="entrynumber">Entry Number</label>
-            <div>
-              <input type="text" readOnly />
-            </div>
-          </div>
-          <div className="grid grid-cols-2">
-            <label htmlFor="entrynumber">Document Date</label>
+            <label htmlFor="CustomerCode">Customer Code</label>
             <div>
               <input
                 type="text"
-                value={manilaDate}
+                value={customerData.map((e) => e.customerCode)}
+                onChange={(e) => handleInputChange('CustomerCode', e.target.value)}
+                className="bg-slate-200"
+                readOnly
+              />
+              <button
+                className="w-[20px]  bg-slate-200"
+                onClick={handleShowCustomer}
+              >
+                =
+              </button>
+              {showCustomer && (
+                // ... (your existing Draggable code)
+              )}
+            </div>
+          </div>
+          <div className="grid grid-cols-2">
+            <label htmlFor="CustomerName">Customer Name</label>
+            <div>
+              <input
+                type="text"
+                value={customerData.map((e) => e.customerName)}
+                onChange={(e) => handleInputChange('CustomerName', e.target.value)}
                 className="bg-slate-200"
                 readOnly
               />
             </div>
           </div>
           <div className="grid grid-cols-2">
-            <label htmlFor="entrynumber">Posting Date</label>
+            <label className="" htmlFor="ForeignName">
+              Foreign Name
+            </label>
             <div>
               <input
                 type="text"
-                value={manilaDate}
-                className="bg-slate-200"
+                value={customerData.map((e) => e.customerCardFName)}
+                onChange={(e) => handleInputChange('ForeignName', e.target.value)}
                 readOnly
               />
             </div>
           </div>
           <div className="grid grid-cols-2">
-            <label htmlFor="entrynumber">Delivery Date</label>
+            <label htmlFor="WalkInName">Walk-in Customer Name</label>
             <div>
-              <input type="date" />
+              <input
+                type="text"
+                onChange={(e) => handleInputChange('WalkInName', e.target.value)}
+              />
+            </div>
+          </div>
+          <div className="grid grid-cols-2">
+            <label className="" htmlFor="ShippingAdd">
+              Customer Shipping Address
+            </label>
+            <div>
+              <input
+                type="text"
+                value={customerData.map((e) => e.cusShipAddress)}
+                onChange={(e) => handleInputChange('ShippingAdd', e.target.value)}
+              />
+            </div>
+          </div>
+          <div className="grid grid-cols-2">
+            <label className="" htmlFor="TIN">
+              Customer TIN
+            </label>
+            <div>
+              <input
+                type="text"
+                value={customerData.map((e) => e.cusLicTradNum)}
+                onChange={(e) => handleInputChange('TIN', e.target.value)}
+              />
             </div>
           </div>
         </div>
+        {/* ... (rest of your code) */}
       </div>
+    </div>
+  );
+};
+
+export default YourComponent;
