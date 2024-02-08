@@ -102,21 +102,21 @@ export default function SalesOrder() {
   // -------------------------------------- Insertion --------------------------------------
 
   const [formData, setFormData] = useState({
-    EntryNum: "4",
-    DocNum: "0",
+    EntryNum: "",
+    DocNum: "",
     DraftNum: 2,
     PostingDate: "",
     DocDate: "",
-    CustomerCode: "123123",
-    CustomerName: "Wenn Mark",
+    CustomerCode: "",
+    CustomerName: "",
     WalkInName: "",
-    ShippingAdd: "General Santos City",
-    TIN: "123",
+    ShippingAdd: "",
+    TIN: "",
     Reference: "",
     SCPWDIdNo: "",
     Branch: "",
     DocStat: "",
-    BaseDoc: 0,
+    BaseDoc: "",
     Cash: "",
     CreditCard: "",
     DebitCard: "",
@@ -125,15 +125,15 @@ export default function SalesOrder() {
     OnlineTransfer: "",
     OnAccount: "",
     COD: "",
-    TotalAmtBefTax: 0,
-    TotalTax: 0,
-    TotalAmtAftTax: 0,
-    SCPWDDiscTotal: 0,
-    TotalAmtDue: 0,
+    TotalAmtBefTax: "",
+    TotalTax: "",
+    TotalAmtAftTax: "",
+    SCPWDDiscTotal: "",
+    TotalAmtDue: "",
     Remarks: "",
-    CreatedBy: 0,
+    CreatedBy: "",
     DateCreated: "",
-    UpdatedBy: 0,
+    UpdatedBy: "",
     DateUpdated: "",
   });
 
@@ -147,6 +147,14 @@ export default function SalesOrder() {
       .catch((error) => {
         console.error("Error sending data:", error);
       });
+  };
+
+  // 303 handle Input Change look at that if this will having an error
+  const handleInputChange = (fieldName: string, value: string) => {
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      [fieldName]: value,
+    }));
   };
 
   // -------------------------------------- End of insertion --------------------------------------
@@ -300,11 +308,11 @@ export default function SalesOrder() {
     onAddheaderItems();
   }, []);
 
-  const handleInputChange = (rowIndex: any, fieldName: any, value: any) => {
-    const newData: any = [...tableData];
-    newData[rowIndex][fieldName] = value;
-    console.log(value);
-  };
+  // const handleInputChange = (rowIndex: any, fieldName: any, value: any) => {
+  //   const newData: any = [...tableData];
+  //   newData[rowIndex][fieldName] = value;
+  //   console.log(value);
+  // };
 
   const handleAddRow = (rowIndex: any, fieldName: any) => {
     setTableData((prevData) => [
@@ -386,6 +394,8 @@ export default function SalesOrder() {
     })
     .slice(0, 20); // Get the first 20 results after filtering
 
+  // ---------------------------------------- IMPORTANT! --------------------------
+  // add customer data in fields
   const addCustomerData = (
     id: any,
     name: any,
@@ -421,6 +431,7 @@ export default function SalesOrder() {
     setcardCodedata(id);
 
     setCustomerData([newArray]);
+    // setFormData([newArray]);
 
     console.log(customerData2);
     setShowCustomer(!showCustomer);
@@ -2059,11 +2070,14 @@ export default function SalesOrder() {
         <div className="w-[] flex flex-wrap gap-5 col1 mr-3">
           <div>
             <div className="grid grid-cols-2">
-              <label htmlFor="entrynumber">Customer Code</label>
+              <label htmlFor="CustomerCode">Customer Code</label>
               <div>
                 <input
                   type="text"
                   value={customerData.map((e) => e.customerCode)}
+                  onChange={(e) =>
+                    handleInputChange("CustomerCode", e.target.value)
+                  }
                   className="bg-slate-200"
                   readOnly
                 />
@@ -2204,16 +2218,21 @@ export default function SalesOrder() {
               </div>
             </div>
             <div className="grid grid-cols-2">
-              <label htmlFor="entrynumber">Customer Name</label>
+              <label htmlFor="CustomerName">Customer Name</label>
               <div>
                 <input
                   type="text"
                   value={customerData.map((e) => e.customerName)}
+                  onChange={(e) =>
+                    handleInputChange("CustomerName", e.target.value)
+                  }
                   className="bg-slate-200"
                   readOnly
                 />
               </div>
             </div>
+
+            {/* need to edit */}
             <div className="grid grid-cols-2">
               <label className="" htmlFor="entrynumber">
                 Foreign Name
@@ -2222,35 +2241,50 @@ export default function SalesOrder() {
                 <input
                   type="text"
                   value={customerData.map((e) => e.customerCardFName)}
+                  onChange={(e) =>
+                    handleInputChange("CustomerName", e.target.value)
+                  }
                   readOnly
                 />
               </div>
             </div>
+
             <div className="grid grid-cols-2">
-              <label htmlFor="entrynumber">Walk-in Customer Name</label>
+              <label htmlFor="WalkInName">Walk-in Customer Name</label>
               <div>
-                <input type="text" />
+                <input
+                  type="text"
+                  onChange={(e) =>
+                    handleInputChange("WalkInName", e.target.value)
+                  }
+                />
               </div>
             </div>
+
             <div className="grid grid-cols-2">
-              <label className="" htmlFor="entrynumber">
+              <label className="" htmlFor="ShippingAdd">
                 Customer Shipping Address
               </label>
               <div>
                 <input
                   type="text"
                   value={customerData.map((e) => e.cusShipAddress)}
+                  onChange={(e) =>
+                    handleInputChange("ShippingAdd", e.target.value)
+                  }
                 />
               </div>
             </div>
+
             <div className="grid grid-cols-2">
-              <label className="" htmlFor="entrynumber">
+              <label className="" htmlFor="TIN">
                 Customer TIN
               </label>
               <div>
                 <input
                   type="text"
                   value={customerData.map((e) => e.cusLicTradNum)}
+                  onChange={(e) => handleInputChange("TIN", e.target.value)}
                 />
               </div>
             </div>
@@ -3263,14 +3297,6 @@ export default function SalesOrder() {
           )}
         </div>
       </div>
-      {
-        <div className="text-left">
-          {/* <pre>{JSON.stringify(tableData, null, 2)}</pre> */}
-          {/* {
-            <pre>{JSON.stringify(finalTotalList, null, 2)}</pre>
-          } */}
-        </div>
-      }
     </>
   );
 }
