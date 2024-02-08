@@ -2183,9 +2183,6 @@ export default function SalesOrder() {
                                   >
                                     {rowData.LicTradNum}
                                   </td>
-                                  {/* {Object.values(rowData).map((value, colIndex) => (
-                                        <td className="tdcus" key={colIndex} onClick={()=>addCustomerData(rowData.customerCode, rowData.customerName, rowData.cusShipAddress, rowData.cusTIN)} >{value}</td>
-                                      ))} */}
                                 </tr>
                               ))}
                             </tbody>
