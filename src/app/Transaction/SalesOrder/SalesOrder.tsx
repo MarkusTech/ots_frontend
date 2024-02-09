@@ -94,7 +94,7 @@ export default function SalesOrder() {
   });
 
   // -------------------------------------- Insertion --------------------------------------
-
+  const [walkInCustomer, setWalkingCustomer] = useState("");
   const [customerData, setCustomerData] = useState([
     {
       customerCode: "00000",
@@ -117,7 +117,7 @@ export default function SalesOrder() {
     DocStat: "",
     BaseDoc: "",
     DocNum: "",
-    DraftNum: 204,
+    DraftNum: 206,
     EntryNum: "", // i need to generate this automatically
     DocDate: manilaDate,
     PostingDate: manilaDate,
@@ -153,6 +153,7 @@ export default function SalesOrder() {
       TotalAmtAftTax: totalBeforeVat,
       SCPWDDiscTotal: SCPWDdata,
       TotalAmtDue: totalAmoutDueData,
+      WalkInName: walkInCustomer,
     });
   });
 
@@ -174,6 +175,10 @@ export default function SalesOrder() {
       ...prevFormData,
       [fieldName]: value,
     }));
+  };
+
+  const handleWalkinCustomerChange = (event: any) => {
+    setWalkingCustomer(event.target.value);
   };
 
   // -------------------------------------- End of insertion --------------------------------------
@@ -2264,9 +2269,10 @@ export default function SalesOrder() {
               <div>
                 <input
                   type="text"
-                  onChange={(e) =>
-                    handleInputChange("WalkInName", e.target.value)
-                  }
+                  // onChange={(e) =>
+                  //   handleInputChange("WalkInName", e.target.value)
+                  // }
+                  onChange={handleWalkinCustomerChange}
                 />
               </div>
             </div>
