@@ -117,7 +117,7 @@ export default function SalesOrder() {
     DocStat: "",
     BaseDoc: "",
     DocNum: "",
-    DraftNum: 201,
+    DraftNum: 204,
     EntryNum: "", // i need to generate this automatically
     DocDate: manilaDate,
     PostingDate: manilaDate,
