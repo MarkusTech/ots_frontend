@@ -480,6 +480,8 @@ export default function SalesOrder() {
     });
   };
 
+
+  // UseEffect start
   useEffect(() => {
     let tempSum = 0;
     let tempSum2 = 0;
@@ -521,6 +523,8 @@ export default function SalesOrder() {
       localCurrency.format(tempSum2 - (tempSum2 - taxAmountSum) * varSCPWDdisc)
     );
   });
+
+  // End UseEffect start
 
   function sum() {
     let tempSum = 0;
