@@ -44,8 +44,8 @@ export default function SalesOrder() {
   const [totalVat, setTotalVat] = useState("");
   const [showSCPDW, setShowSCPWD] = useState(false);
   const [varSCPWDdisc, setVarSCPWDdisc] = useState(0);
-  const [SCPWDdata, setSCPWDdata] = useState(0);
-  const [totalAmoutDueData, settotalAmoutDueData] = useState(0);
+  const [SCPWDdata, setSCPWDdata] = useState("0");
+  const [totalAmoutDueData, settotalAmoutDueData] = useState("0");
 
   const [scpdwdID, setscpdwdID] = useState("");
 
@@ -117,7 +117,7 @@ export default function SalesOrder() {
     DocStat: "",
     BaseDoc: "",
     DocNum: "",
-    DraftNum: 15,
+    DraftNum: 201,
     EntryNum: "", // i need to generate this automatically
     DocDate: manilaDate,
     PostingDate: manilaDate,
@@ -130,6 +130,7 @@ export default function SalesOrder() {
     OnlineTransfer: "N",
     OnAccount: "N",
     COD: "N",
+    // taxees
     TotalAmtBefTax: "",
     TotalTax: "",
     TotalAmtAftTax: "",
@@ -141,6 +142,18 @@ export default function SalesOrder() {
     UpdatedBy: "",
     DateUpdated: "",
   });
+
+  // useEffect(() => {
+  //   setFormData({
+  //     ...formData,
+  //     // taxees
+  //     TotalAmtBefTax: totalAfterVat,
+  //     TotalTax: totalVat,
+  //     TotalAmtAftTax: totalBeforeVat,
+  //     SCPWDDiscTotal: SCPWDdata,
+  //     TotalAmtDue: totalAmoutDueData,
+  //   });
+  // });
 
   const sendDataToAPI = () => {
     const apiUrl = "http://localhost:5000/api/v1/ots";
