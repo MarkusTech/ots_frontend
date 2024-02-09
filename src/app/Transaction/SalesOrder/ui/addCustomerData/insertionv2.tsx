@@ -66,3 +66,19 @@ const YourComponent = () => {
 };
 
 export default YourComponent;
+
+// line 521
+setTotalBeforeVat(localCurrency.format(tempSum2)); //total after vat
+    settotalAfterVat(localCurrency.format(tempSum2 - taxAmountSum)); //Total Amount Before VAT
+    setTotalVat(localCurrency.format(taxAmountSum)); //Total VAT
+    setSCPWDdata(
+      parseFloat(localCurrency.format((tempSum2 - taxAmountSum) * varSCPWDdisc))
+    ); //SC/PWD Discount Total
+    settotalAmoutDueData(
+      // localCurrency.format(`${tempSum} - (${tempSum2} - ${taxAmountSum}) * ${varSCPWDdisc}`)
+      parseFloat(
+        localCurrency.format(
+          tempSum2 - (tempSum2 - taxAmountSum) * varSCPWDdisc
+        )
+      )
+    );

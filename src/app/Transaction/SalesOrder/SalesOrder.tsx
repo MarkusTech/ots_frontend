@@ -31,8 +31,6 @@ export default function SalesOrder() {
   const [showDoc, setShowDoc] = useState(false);
   const [showCustomer, setShowCustomer] = useState(false);
 
-  const [itemcodetextalign, setitemcodetextalign] = useState("");
-
   const [openItemTablePanel, setOpenItemTablePanel] = useState(false);
   const [openOUMPanel, setOpenOUMPanel] = useState(false);
   const [openModRelTablePanel, setOpenModRelTablePanel] = useState(false);
@@ -119,7 +117,7 @@ export default function SalesOrder() {
     DocStat: "",
     BaseDoc: "",
     DocNum: "",
-    DraftNum: 13,
+    DraftNum: 15,
     EntryNum: "", // i need to generate this automatically
     DocDate: manilaDate,
     PostingDate: manilaDate,
@@ -508,20 +506,21 @@ export default function SalesOrder() {
       setmodeOfrelisingArr(setmodeOfrelisingArrx);
     }
 
-    setTotalBeforeVat(localCurrency.format(tempSum2)); //total after vat
-    settotalAfterVat(localCurrency.format(tempSum2 - taxAmountSum)); //Total Amount Before VAT
-    setTotalVat(localCurrency.format(taxAmountSum)); //Total VAT
-    setSCPWDdata(
-      parseFloat(localCurrency.format((tempSum2 - taxAmountSum) * varSCPWDdisc))
-    ); //SC/PWD Discount Total
-    settotalAmoutDueData(
-      // localCurrency.format(`${tempSum} - (${tempSum2} - ${taxAmountSum}) * ${varSCPWDdisc}`)
-      parseFloat(
-        localCurrency.format(
-          tempSum2 - (tempSum2 - taxAmountSum) * varSCPWDdisc
-        )
-      )
+    const calculationAfterVat = localCurrency.format(tempSum2);
+    const calculationBeforeVat = localCurrency.format(tempSum2 - taxAmountSum);
+    const calculationTotalVat = localCurrency.format(taxAmountSum);
+    const calculationForScORPwd = localCurrency.format(
+      (tempSum2 - taxAmountSum) * varSCPWDdisc
     );
+    const calculationTotalAmoutDue = localCurrency.format(
+      tempSum2 - (tempSum2 - taxAmountSum) * varSCPWDdisc
+    );
+
+    setTotalBeforeVat(calculationAfterVat); //total after vat
+    settotalAfterVat(calculationBeforeVat); //Total Amount Before VAT
+    setTotalVat(calculationTotalVat); //Total VAT
+    setSCPWDdata(calculationForScORPwd); //SC/PWD Discount Total
+    settotalAmoutDueData(calculationTotalAmoutDue);
   });
 
   // End UseEffect start
