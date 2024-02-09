@@ -97,6 +97,7 @@ export default function SalesOrder() {
   const [walkInCustomer, setWalkingCustomer] = useState("");
   const [customerReference, setCustomerReference] = useState("");
   const [remarksField, setRemarksField] = useState("");
+  const [scOrPwdField, setScOrPwdField] = useState("");
   const [customerData, setCustomerData] = useState([
     {
       customerCode: "00000",
@@ -119,7 +120,7 @@ export default function SalesOrder() {
     DocStat: "",
     BaseDoc: "",
     DocNum: "",
-    DraftNum: 207,
+    DraftNum: 210,
     EntryNum: "", // i need to generate this automatically
     DocDate: manilaDate,
     PostingDate: manilaDate,
@@ -140,8 +141,8 @@ export default function SalesOrder() {
     SCPWDDiscTotal: "",
     TotalAmtDue: "",
     Remarks: "",
-    CreatedBy: "",
-    DateCreated: "",
+    CreatedBy: "Administrator",
+    DateCreated: manilaDate,
     UpdatedBy: "",
     DateUpdated: "",
   });
@@ -158,6 +159,7 @@ export default function SalesOrder() {
       WalkInName: walkInCustomer,
       Reference: customerReference,
       Remarks: remarksField,
+      SCPWDIdNo: scOrPwdField,
     });
   });
 
@@ -191,6 +193,10 @@ export default function SalesOrder() {
 
   const handleRemarksChange = (event: any) => {
     setRemarksField(event.target.value);
+  };
+
+  const handleScOrPwd = (event: any) => {
+    setScOrPwdField(event.target.value);
   };
 
   // -------------------------------------- End of insertion --------------------------------------
@@ -2363,9 +2369,10 @@ export default function SalesOrder() {
                 </label>
                 <div>
                   <input
-                    onInput={(e: any) => {
-                      SCPWDinput(e.target.value);
-                    }}
+                    // onInput={(e: any) => {
+                    //   SCPWDinput(e.target.value);
+                    // }}
+                    onChange={handleScOrPwd}
                     type="text"
                   />
                 </div>
