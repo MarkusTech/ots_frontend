@@ -105,58 +105,56 @@ export default function SalesOrder() {
     },
   ]);
 
-  const [formData, setFormData] = useState([
-    {
-      CustomerCode: "",
-      CustomerName: "",
-      ForeignName: "",
-      WalkInName: "",
-      ShippingAdd: "",
-      TIN: "",
-      Reference: "",
-      Branch: "",
-      DocStat: "",
-      BaseDoc: "",
-      DocNum: "",
-      DraftNum: 202,
-      EntryNum: "", // i need to generate this automatically
-      DocDate: manilaDate,
-      PostingDate: manilaDate,
-      SCPWDIdNo: "",
-      // Payment Method
-      Cash: "N",
-      CreditCard: "N",
-      DebitCard: "N",
-      ODC: "N",
-      PDC: "N",
-      OnlineTransfer: "N",
-      OnAccount: "N",
-      COD: "N",
-      // taxees
-      TotalAmtBefTax: "",
-      TotalTax: "",
-      TotalAmtAftTax: "",
-      SCPWDDiscTotal: "",
-      TotalAmtDue: "",
-      Remarks: "",
-      CreatedBy: "",
-      DateCreated: "",
-      UpdatedBy: "",
-      DateUpdated: "",
-    },
-  ]);
+  const [formData, setFormData] = useState({
+    CustomerCode: "",
+    CustomerName: "",
+    ForeignName: "",
+    WalkInName: "",
+    ShippingAdd: "",
+    TIN: "",
+    Reference: "",
+    Branch: "",
+    DocStat: "",
+    BaseDoc: "",
+    DocNum: "",
+    DraftNum: 201,
+    EntryNum: "", // i need to generate this automatically
+    DocDate: manilaDate,
+    PostingDate: manilaDate,
+    SCPWDIdNo: "",
+    // Payment Method
+    Cash: "N",
+    CreditCard: "N",
+    DebitCard: "N",
+    ODC: "N",
+    PDC: "N",
+    OnlineTransfer: "N",
+    OnAccount: "N",
+    COD: "N",
+    // taxees
+    TotalAmtBefTax: "",
+    TotalTax: "",
+    TotalAmtAftTax: "",
+    SCPWDDiscTotal: "",
+    TotalAmtDue: "",
+    Remarks: "",
+    CreatedBy: "",
+    DateCreated: "",
+    UpdatedBy: "",
+    DateUpdated: "",
+  });
 
-  // useEffect(() => {
-  //   setFormData({
-  //     ...formData,
-  //     // taxees
-  //     TotalAmtBefTax: totalAfterVat,
-  //     TotalTax: totalVat,
-  //     TotalAmtAftTax: totalBeforeVat,
-  //     SCPWDDiscTotal: SCPWDdata,
-  //     TotalAmtDue: totalAmoutDueData,
-  //   });
-  // });
+  useEffect(() => {
+    setFormData({
+      ...formData,
+      // taxees
+      TotalAmtBefTax: totalAfterVat,
+      TotalTax: totalVat,
+      TotalAmtAftTax: totalBeforeVat,
+      SCPWDDiscTotal: SCPWDdata,
+      TotalAmtDue: totalAmoutDueData,
+    });
+  });
 
   const sendDataToAPI = () => {
     const apiUrl = "http://localhost:5000/api/v1/ots";
