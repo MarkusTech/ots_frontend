@@ -105,43 +105,46 @@ export default function SalesOrder() {
     },
   ]);
 
-  const [formData, setFormData] = useState({
-    CustomerCode: "",
-    CustomerName: "",
-    ForeignName: "",
-    WalkInName: "",
-    ShippingAdd: "",
-    TIN: "",
-    Reference: "",
-    Branch: "",
-    DocStat: "",
-    BaseDoc: "",
-    DocNum: "",
-    DraftNum: 201,
-    EntryNum: "", // i need to generate this automatically
-    DocDate: manilaDate,
-    PostingDate: manilaDate,
-    SCPWDIdNo: "",
-    Cash: "N",
-    CreditCard: "N",
-    DebitCard: "N",
-    ODC: "N",
-    PDC: "N",
-    OnlineTransfer: "N",
-    OnAccount: "N",
-    COD: "N",
-    // taxees
-    TotalAmtBefTax: "",
-    TotalTax: "",
-    TotalAmtAftTax: "",
-    SCPWDDiscTotal: "",
-    TotalAmtDue: "",
-    Remarks: "",
-    CreatedBy: "",
-    DateCreated: "",
-    UpdatedBy: "",
-    DateUpdated: "",
-  });
+  const [formData, setFormData] = useState([
+    {
+      CustomerCode: "",
+      CustomerName: "",
+      ForeignName: "",
+      WalkInName: "",
+      ShippingAdd: "",
+      TIN: "",
+      Reference: "",
+      Branch: "",
+      DocStat: "",
+      BaseDoc: "",
+      DocNum: "",
+      DraftNum: 202,
+      EntryNum: "", // i need to generate this automatically
+      DocDate: manilaDate,
+      PostingDate: manilaDate,
+      SCPWDIdNo: "",
+      // Payment Method
+      Cash: "N",
+      CreditCard: "N",
+      DebitCard: "N",
+      ODC: "N",
+      PDC: "N",
+      OnlineTransfer: "N",
+      OnAccount: "N",
+      COD: "N",
+      // taxees
+      TotalAmtBefTax: "",
+      TotalTax: "",
+      TotalAmtAftTax: "",
+      SCPWDDiscTotal: "",
+      TotalAmtDue: "",
+      Remarks: "",
+      CreatedBy: "",
+      DateCreated: "",
+      UpdatedBy: "",
+      DateUpdated: "",
+    },
+  ]);
 
   // useEffect(() => {
   //   setFormData({
