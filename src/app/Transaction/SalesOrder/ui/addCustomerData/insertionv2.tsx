@@ -1,417 +1,68 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
-const YourComponent: React.FC = () => {
-  const [customerData, setCustomerData] = useState([
-    // Your customer data
-  ]);
+const YourComponent = () => {
+  const [totalAfterVat, settotalAfterVat] = useState("");
+  const [totalBeforeVat, setTotalBeforeVat] = useState("");
+  const [totalVat, setTotalVat] = useState("");
+  const [showSCPDW, setShowSCPWD] = useState(false);
+  const [varSCPWDdisc, setVarSCPWDdisc] = useState(0);
+  const [SCPWDdata, setSCPWDdata] = useState(0);
+  const [totalAmoutDueData, settotalAmoutDueData] = useState(0);
 
-  const [formData, setFormData] = useState({
-    // Your existing formData state
-  });
+  // Example: Use useEffect to recalculate whenever dependencies change
+  useEffect(() => {
+    // Hypothetical calculations, replace with your logic
+    const calculatedTotalBeforeVat = // Your calculation logic here;
+    const calculatedTotalVat = // Your calculation logic here;
+    const calculatedTotalAfterVat = // Your calculation logic here;
+    const calculatedSCPWDdata = // Your calculation logic here;
+    const calculatedTotalAmountDue = // Your calculation logic here;
 
-  const handleInputChange = (fieldName: string, value: string) => {
-    setFormData((prevFormData) => ({
-      ...prevFormData,
-      [fieldName]: value,
-    }));
-  };
-
-  const handleGetFieldValues = () => {
-    // Get values from the fields and save them to your data or perform other actions
-    const customerCode = document.getElementById('CustomerCode')?.getAttribute('value');
-    const customerName = document.getElementById('CustomerName')?.getAttribute('value');
-    const foreignName = document.getElementById('ForeignName')?.getAttribute('value');
-    const walkInName = document.getElementById('WalkInName')?.getAttribute('value');
-    const shippingAddress = document.getElementById('ShippingAdd')?.getAttribute('value');
-    const customerTIN = document.getElementById('TIN')?.getAttribute('value');
-
-    // Use the retrieved values as needed
-    console.log('Customer Code:', customerCode);
-    console.log('Customer Name:', customerName);
-    console.log('Foreign Name:', foreignName);
-    console.log('Walk-in Customer Name:', walkInName);
-    console.log('Customer Shipping Address:', shippingAddress);
-    console.log('Customer TIN:', customerTIN);
-
-    // Save values to your data or perform other actions
-    setCustomerData([
-      // ... Update your customer data based on the retrieved values
-    ]);
-  };
-
-  // Your existing code...
+    // Update state with calculated values
+    setTotalBeforeVat(calculatedTotalBeforeVat);
+    setTotalVat(calculatedTotalVat);
+    settotalAfterVat(calculatedTotalAfterVat);
+    setSCPWDdata(calculatedSCPWDdata);
+    settotalAmoutDueData(calculatedTotalAmountDue);
+  }, [/* dependencies that trigger recalculation */]);
 
   return (
-    <div className="salesbody p-2 text-sm rounded-md flex gap-40 container overflow-x-auto shadow-lg">
-      {/* ... (other code) */}
-      
-      {/* Updated Foreign Name input */}
-      <div className="grid grid-cols-2">
-        <label className="" htmlFor="ForeignName">
-          Foreign Name
-        </label>
-        <div>
-          <input
-            type="text"
-            value={customerData.map((e) => e.customerCardFName)}
-            onChange={(e) => handleInputChange('CustomerName', e.target.value)}
-            readOnly
-          />
-        </div>
-      </div>
-
-      {/* ... (other fields) */}
-
-      {/* Button to trigger getting field values */}
-      <button onClick={handleGetFieldValues}>Get Field Values</button>
-    </div>
-  );
-};
-
-export default YourComponent;
-
-// -----------------------------------------------------------------------
-
-import React, { useState } from 'react';
-
-const YourComponent: React.FC = () => {
-  const [customerData, setCustomerData] = useState([
-    // Your customer data
-  ]);
-
-  const [formData, setFormData] = useState({
-    CustomerCode: '',
-    CustomerName: '',
-    ForeignName: '',
-    WalkInName: '',
-    ShippingAdd: '',
-    TIN: '',
-    // ... other form fields
-  });
-
-  const handleInputChange = (fieldName: string, value: string) => {
-    setFormData((prevFormData) => ({
-      ...prevFormData,
-      [fieldName]: value,
-    }));
-  };
-
-  const handleGetFieldValues = () => {
-    const customerCode = document.getElementById('CustomerCode')?.getAttribute('value');
-    const customerName = document.getElementById('CustomerName')?.getAttribute('value');
-    const foreignName = document.getElementById('ForeignName')?.getAttribute('value');
-    const walkInName = document.getElementById('WalkInName')?.getAttribute('value');
-    const shippingAddress = document.getElementById('ShippingAdd')?.getAttribute('value');
-    const customerTIN = document.getElementById('TIN')?.getAttribute('value');
-
-    console.log('Customer Code:', customerCode);
-    console.log('Customer Name:', customerName);
-    console.log('Foreign Name:', foreignName);
-    console.log('Walk-in Customer Name:', walkInName);
-    console.log('Customer Shipping Address:', shippingAddress);
-    console.log('Customer TIN:', customerTIN);
-
-    setCustomerData([
-      // ... Update your customer data based on the retrieved values
-    ]);
-  };
-
-  // Your existing code...
-
-  return (
-    <div className="salesbody p-2 text-sm rounded-md flex gap-40 container overflow-x-auto shadow-lg">
-      <div className="w-[] flex flex-wrap gap-5 col1 mr-3">
-        <div>
-          <div className="grid grid-cols-2">
-            <label htmlFor="CustomerCode">Customer Code</label>
-            <div>
-              <input
-                type="text"
-                value={customerData.map((e) => e.customerCode)}
-                onChange={(e) => handleInputChange('CustomerCode', e.target.value)}
-                className="bg-slate-200"
-                readOnly
-              />
-              <button
-                className="w-[20px]  bg-slate-200"
-                onClick={handleShowCustomer}
-              >
-                =
-              </button>
-              {showCustomer && (
-                // ... (your existing Draggable code)
-              )}
-            </div>
-          </div>
-          <div className="grid grid-cols-2">
-            <label htmlFor="CustomerName">Customer Name</label>
-            <div>
-              <input
-                type="text"
-                value={customerData.map((e) => e.customerName)}
-                onChange={(e) => handleInputChange('CustomerName', e.target.value)}
-                className="bg-slate-200"
-                readOnly
-              />
-            </div>
-          </div>
-          <div className="grid grid-cols-2">
-            <label className="" htmlFor="ForeignName">
-              Foreign Name
-            </label>
-            <div>
-              <input
-                type="text"
-                value={customerData.map((e) => e.customerCardFName)}
-                onChange={(e) => handleInputChange('ForeignName', e.target.value)}
-                readOnly
-              />
-            </div>
-          </div>
-          <div className="grid grid-cols-2">
-            <label htmlFor="WalkInName">Walk-in Customer Name</label>
-            <div>
-              <input
-                type="text"
-                onChange={(e) => handleInputChange('WalkInName', e.target.value)}
-              />
-            </div>
-          </div>
-          <div className="grid grid-cols-2">
-            <label className="" htmlFor="ShippingAdd">
-              Customer Shipping Address
-            </label>
-            <div>
-              <input
-                type="text"
-                value={customerData.map((e) => e.cusShipAddress)}
-                onChange={(e) => handleInputChange('ShippingAdd', e.target.value)}
-              />
-            </div>
-          </div>
-          <div className="grid grid-cols-2">
-            <label className="" htmlFor="TIN">
-              Customer TIN
-            </label>
-            <div>
-              <input
-                type="text"
-                value={customerData.map((e) => e.cusLicTradNum)}
-                onChange={(e) => handleInputChange('TIN', e.target.value)}
-              />
-            </div>
+    <div className="text-right w-full grid justify-end">
+      <div className="w-[440px]">
+        {/* ... other JSX code ... */}
+        <div className="grid grid-cols-2 text-right">
+          <label htmlFor="documentnumber">Total Amount Before VAT</label>
+          <div>
+            <input value={totalBeforeVat} type="text" readOnly />
           </div>
         </div>
-        {/* ... (rest of your code) */}
+        <div className="grid grid-cols-2">
+          <label htmlFor="documentnumber">Total VAT</label>
+          <div>
+            <input value={totalVat} type="text" readOnly />
+          </div>
+        </div>
+        <div className="grid grid-cols-2">
+          <label htmlFor="documentnumber">Total After VAT</label>
+          <div>
+            <input value={totalAfterVat} type="text" readOnly />
+          </div>
+        </div>
+        <div className="grid grid-cols-2">
+          <label htmlFor="documentnumber">SC/PWD Discount Total</label>
+          <div>
+            <input value={SCPWDdata} type="text" readOnly />
+          </div>
+        </div>
+        <div className="grid grid-cols-2">
+          <label htmlFor="documentnumber">Total Amount Due</label>
+          <div>
+            <input value={totalAmoutDueData} type="text" readOnly />
+          </div>
+        </div>
       </div>
     </div>
   );
 };
 
 export default YourComponent;
-
-
-// another 1-------------------------------------------------------]
-import React, { useState } from 'react';
-
-const YourComponent: React.FC = () => {
-  const [customerData, setCustomerData] = useState([
-    {
-      customerCode: 'C001',
-      customerName: 'John Doe',
-      customerCardFName: 'Foreign John',
-      cusShipAddress: '123 Main Street',
-      cusLicTradNum: '123456789',
-      // Add other properties as needed
-    },
-    {
-      customerCode: 'C002',
-      customerName: 'Jane Doe',
-      customerCardFName: 'Foreign Jane',
-      cusShipAddress: '456 Oak Avenue',
-      cusLicTradNum: '987654321',
-      // Add other properties as needed
-    },
-    // Add more customer objects as needed
-  ]);
-
-  const [formData, setFormData] = useState({
-    CustomerCode: '',
-    CustomerName: '',
-    ForeignName: '',
-    WalkInName: '',
-    ShippingAdd: '',
-    TIN: '',
-    // ... other form fields
-  });
-
-  const handleInputChange = (fieldName: string, value: string) => {
-    setFormData((prevFormData) => ({
-      ...prevFormData,
-      [fieldName]: value,
-    }));
-  };
-
-  const handleGetFieldValues = () => {
-    const customerCode = document.getElementById('CustomerCode')?.getAttribute('value');
-    const customerName = document.getElementById('CustomerName')?.getAttribute('value');
-    const foreignName = document.getElementById('ForeignName')?.getAttribute('value');
-    const walkInName = document.getElementById('WalkInName')?.getAttribute('value');
-    const shippingAddress = document.getElementById('ShippingAdd')?.getAttribute('value');
-    const customerTIN = document.getElementById('TIN')?.getAttribute('value');
-
-    console.log('Customer Code:', customerCode);
-    console.log('Customer Name:', customerName);
-    console.log('Foreign Name:', foreignName);
-    console.log('Walk-in Customer Name:', walkInName);
-    console.log('Customer Shipping Address:', shippingAddress);
-    console.log('Customer TIN:', customerTIN);
-
-    // Update customerData with the retrieved values
-    setCustomerData([
-      {
-        customerCode: customerCode || '',
-        customerName: customerName || '',
-        customerCardFName: foreignName || '',
-        // ... other customer data fields
-      },
-      // ... other existing customer data
-    ]);
-  };
-
-  // Your existing code...
-
-  return (
-    <div className="salesbody p-2 text-sm rounded-md flex gap-40 container overflow-x-auto shadow-lg">
-      <div className="w-[] flex flex-wrap gap-5 col1 mr-3">
-        <div>
-          <div className="grid grid-cols-2">
-            <label htmlFor="CustomerCode">Customer Code</label>
-            <div>
-              <input
-                type="text"
-                value={customerData.map((e) => e.customerCode)}
-                onChange={(e) => handleInputChange('CustomerCode', e.target.value)}
-                className="bg-slate-200"
-                readOnly
-              />
-              <button
-                className="w-[20px]  bg-slate-200"
-                onClick={handleShowCustomer}
-              >
-                =
-              </button>
-              {showCustomer && (
-                // ... (your existing Draggable code)
-              )}
-            </div>
-          </div>
-          <div className="grid grid-cols-2">
-            <label htmlFor="CustomerName">Customer Name</label>
-            <div>
-              <input
-                type="text"
-                value={customerData.map((e) => e.customerName)}
-                onChange={(e) => handleInputChange('CustomerName', e.target.value)}
-                className="bg-slate-200"
-                readOnly
-              />
-            </div>
-          </div>
-          <div className="grid grid-cols-2">
-            <label className="" htmlFor="ForeignName">
-              Foreign Name
-            </label>
-            <div>
-              <input
-                type="text"
-                value={customerData.map((e) => e.customerCardFName)}
-                onChange={(e) => handleInputChange('ForeignName', e.target.value)}
-                readOnly
-              />
-            </div>
-          </div>
-          <div className="grid grid-cols-2">
-            <label htmlFor="WalkInName">Walk-in Customer Name</label>
-            <div>
-              <input
-                type="text"
-                onChange={(e) => handleInputChange('WalkInName', e.target.value)}
-              />
-            </div>
-          </div>
-          <div className="grid grid-cols-2">
-            <label className="" htmlFor="ShippingAdd">
-              Customer Shipping Address
-            </label>
-            <div>
-              <input
-                type="text"
-                value={customerData.map((e) => e.cusShipAddress)}
-                onChange={(e) => handleInputChange('ShippingAdd', e.target.value)}
-              />
-            </div>
-          </div>
-          <div className="grid grid-cols-2">
-            <label className="" htmlFor="TIN">
-              Customer TIN
-            </label>
-            <div>
-              <input
-                type="text"
-                value={customerData.map((e) => e.cusLicTradNum)}
-                onChange={(e) => handleInputChange('TIN', e.target.value)}
-              />
-            </div>
-          </div>
-        </div>
-        {/* ... (rest of your code) */}
-      </div>
-    </div>
-  );
-};
-
-export default YourComponent;
-
-
-
-const [formData, setFormData] = useState({
-  CustomerCode: "",
-  CustomerName: "",
-  ForeignName: "",
-  WalkInName: "",
-  ShippingAdd: "",
-  TIN: "",
-  Reference: "",
-
-
-  
-  Branch: "",
-  DocStat: "",
-  BaseDoc: "",
-  DocNum: "",
-  DraftNum: 6,
-  EntryNum: "",
-  DocDate: "",
-  PostingDate: "",
-  SCPWDIdNo: "",
-  Cash: "",
-  CreditCard: "",
-  DebitCard: "",
-  ODC: "",
-  PDC: "",
-  OnlineTransfer: "",
-  OnAccount: "",
-  COD: "",
-  TotalAmtBefTax: "",
-  TotalTax: "",
-  TotalAmtAftTax: "",
-  SCPWDDiscTotal: "",
-  TotalAmtDue: "",
-  Remarks: "",
-  CreatedBy: "",
-  DateCreated: "",
-  UpdatedBy: "",
-  DateUpdated: "",
-});
-

@@ -38,11 +38,12 @@ export default function SalesOrder() {
   const [openModRelTablePanel, setOpenModRelTablePanel] = useState(false);
   const [openLocationPanel, setOpenLocationPanel] = useState(false);
   const [showItems, setShowItems] = useState(false);
+
+  const [sellingPriceAfterDiscountData, setSellingPriceAfterDis] = useState(0);
+
   const [totalAfterVat, settotalAfterVat] = useState("");
   const [totalBeforeVat, setTotalBeforeVat] = useState("");
   const [totalVat, setTotalVat] = useState("");
-  const [sellingPriceAfterDiscountData, setSellingPriceAfterDis] = useState(0);
-
   const [showSCPDW, setShowSCPWD] = useState(false);
   const [varSCPWDdisc, setVarSCPWDdisc] = useState(0);
   const [SCPWDdata, setSCPWDdata] = useState(0);
@@ -123,14 +124,14 @@ export default function SalesOrder() {
     DocDate: manilaDate,
     PostingDate: manilaDate,
     SCPWDIdNo: "",
-    Cash: "",
-    CreditCard: "",
-    DebitCard: "",
-    ODC: "",
-    PDC: "",
-    OnlineTransfer: "",
-    OnAccount: "",
-    COD: "",
+    Cash: "N",
+    CreditCard: "N",
+    DebitCard: "N",
+    ODC: "N",
+    PDC: "N",
+    OnlineTransfer: "N",
+    OnAccount: "N",
+    COD: "N",
     TotalAmtBefTax: "",
     TotalTax: "",
     TotalAmtAftTax: "",
