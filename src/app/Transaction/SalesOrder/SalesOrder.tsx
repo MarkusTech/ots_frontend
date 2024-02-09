@@ -118,7 +118,7 @@ export default function SalesOrder() {
     DocStat: "",
     BaseDoc: "",
     DocNum: "",
-    DraftNum: 11,
+    DraftNum: 13,
     EntryNum: "", // i need to generate this automatically
     DocDate: manilaDate,
     PostingDate: manilaDate,
@@ -131,11 +131,11 @@ export default function SalesOrder() {
     OnlineTransfer: "",
     OnAccount: "",
     COD: "",
-    TotalAmtBefTax: totalAfterVat,
-    TotalTax: totalVat,
-    TotalAmtAftTax: totalBeforeVat,
-    SCPWDDiscTotal: SCPWDdata,
-    TotalAmtDue: totalAmoutDueData,
+    TotalAmtBefTax: "",
+    TotalTax: "",
+    TotalAmtAftTax: "",
+    SCPWDDiscTotal: "",
+    TotalAmtDue: "",
     Remarks: "",
     CreatedBy: "",
     DateCreated: "",
@@ -480,7 +480,6 @@ export default function SalesOrder() {
     });
   };
 
-
   // UseEffect start
   useEffect(() => {
     let tempSum = 0;
@@ -516,11 +515,15 @@ export default function SalesOrder() {
     settotalAfterVat(localCurrency.format(tempSum2 - taxAmountSum)); //Total Amount Before VAT
     setTotalVat(localCurrency.format(taxAmountSum)); //Total VAT
     setSCPWDdata(
-      localCurrency.format((tempSum2 - taxAmountSum) * varSCPWDdisc)
+      parseFloat(localCurrency.format((tempSum2 - taxAmountSum) * varSCPWDdisc))
     ); //SC/PWD Discount Total
     settotalAmoutDueData(
       // localCurrency.format(`${tempSum} - (${tempSum2} - ${taxAmountSum}) * ${varSCPWDdisc}`)
-      localCurrency.format(tempSum2 - (tempSum2 - taxAmountSum) * varSCPWDdisc)
+      parseFloat(
+        localCurrency.format(
+          tempSum2 - (tempSum2 - taxAmountSum) * varSCPWDdisc
+        )
+      )
     );
   });
 
