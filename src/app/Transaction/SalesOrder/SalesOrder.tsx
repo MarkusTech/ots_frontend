@@ -143,10 +143,6 @@ export default function SalesOrder() {
     DateUpdated: "",
   });
 
-  const getTotalValues = () => {
-    // TODO: just refresh ta values in totals so adn fetch this function to the sendDataToAPI
-  };
-
   const sendDataToAPI = () => {
     const apiUrl = "http://localhost:5000/api/v1/ots";
     axios
