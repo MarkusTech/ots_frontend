@@ -95,6 +95,8 @@ export default function SalesOrder() {
 
   // -------------------------------------- Insertion --------------------------------------
   const [walkInCustomer, setWalkingCustomer] = useState("");
+  const [customerReference, setCustomerReference] = useState("");
+  const [remarksField, setRemarksField] = useState("");
   const [customerData, setCustomerData] = useState([
     {
       customerCode: "00000",
@@ -117,7 +119,7 @@ export default function SalesOrder() {
     DocStat: "",
     BaseDoc: "",
     DocNum: "",
-    DraftNum: 206,
+    DraftNum: 207,
     EntryNum: "", // i need to generate this automatically
     DocDate: manilaDate,
     PostingDate: manilaDate,
@@ -154,6 +156,8 @@ export default function SalesOrder() {
       SCPWDDiscTotal: SCPWDdata,
       TotalAmtDue: totalAmoutDueData,
       WalkInName: walkInCustomer,
+      Reference: customerReference,
+      Remarks: remarksField,
     });
   });
 
@@ -170,15 +174,23 @@ export default function SalesOrder() {
   };
 
   // 303 handle Input Change look at that if this will having an error
-  const handleInputChange = (fieldName: string, value: string) => {
-    setFormData((prevFormData) => ({
-      ...prevFormData,
-      [fieldName]: value,
-    }));
-  };
+  // const handleInputChange = (fieldName: string, value: string) => {
+  //   setFormData((prevFormData) => ({
+  //     ...prevFormData,
+  //     [fieldName]: value,
+  //   }));
+  // };
 
   const handleWalkinCustomerChange = (event: any) => {
     setWalkingCustomer(event.target.value);
+  };
+
+  const handleCustomerChange = (event: any) => {
+    setCustomerReference(event.target.value);
+  };
+
+  const handleRemarksChange = (event: any) => {
+    setRemarksField(event.target.value);
   };
 
   // -------------------------------------- End of insertion --------------------------------------
@@ -2309,9 +2321,10 @@ export default function SalesOrder() {
               <div>
                 <input
                   type="text"
-                  onChange={(e) =>
-                    handleInputChange("Reference", e.target.value)
-                  }
+                  // onChange={(e) =>
+                  //   handleInputChange("Reference", e.target.value)
+                  // }
+                  onChange={handleCustomerChange}
                 />
               </div>
             </div>
@@ -3229,7 +3242,8 @@ export default function SalesOrder() {
               <textarea
                 name="remarks"
                 id="remarks"
-                onChange={(e) => handleInputChange("Remarks", e.target.value)}
+                // onChange={(e) => handleInputChange("Remarks", e.target.value)}
+                onChange={handleRemarksChange}
               ></textarea>
             </div>
           </div>
