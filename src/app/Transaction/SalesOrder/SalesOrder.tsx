@@ -196,17 +196,6 @@ export default function SalesOrder() {
     });
   };
 
-  // const showAlert = () => {
-  //   Swal.fire({
-  //     text: "Successfully saved to draft",
-  //     icon: "success",
-  //   }).then(() => {
-  //     // Set the URL and reload the window after the user clicks "OK"
-  //     window.location.href = "/Transaction/SalesQuotation";
-  //     window.location.reload();
-  //   });
-  // };
-
   const sendDataToAPI = () => {
     const apiUrl = "http://localhost:5000/api/v1/ots";
     axios
@@ -1800,67 +1789,68 @@ export default function SalesOrder() {
   });
 
   // handle to Save to Draft
-  const handleSaveDraft = () => {
-    const finalTotalListArr = [...finalTotalList];
-    const arrList = finalTotalListArr[0];
 
-    const allItemsArr = [...tableData];
-    const allItemsArrLen = allItemsArr.length;
+  // const handleSaveDraft = () => {
+  //   const finalTotalListArr = [...finalTotalList];
+  //   const arrList = finalTotalListArr[0];
 
-    let countAllreleasing = 0;
+  //   const allItemsArr = [...tableData];
+  //   const allItemsArrLen = allItemsArr.length;
 
-    console.log("mode of rel", finalTotalList);
+  //   let countAllreleasing = 0;
 
-    for (let i = 0; i < allItemsArrLen; i++) {
-      console.log(allItemsArr[i]["modeOfReleasing"]);
-      if (allItemsArr[i]["modeOfReleasing"] == "") {
-      } else {
-        countAllreleasing++;
-      }
-    }
+  //   console.log("mode of rel", finalTotalList);
 
-    if (countAllreleasing == allItemsArrLen) {
-      setshowMessage2(false);
-    } else {
-      setshowMessage2(true);
-      seterrMessage2("Please make sure all products have mode of releasing");
-      setTimeout(() => {
-        setshowMessage2(false);
-      }, 10000);
-    }
+  //   for (let i = 0; i < allItemsArrLen; i++) {
+  //     console.log(allItemsArr[i]["modeOfReleasing"]);
+  //     if (allItemsArr[i]["modeOfReleasing"] == "") {
+  //     } else {
+  //       countAllreleasing++;
+  //     }
+  //   }
 
-    if (arrList.totalVal == 0) {
-      setshowMessage(true);
-      seterrMessage("Please add atleast 1 product");
-      setTimeout(() => {
-        setshowMessage(false);
-      }, 10000);
-    }
+  //   if (countAllreleasing == allItemsArrLen) {
+  //     setshowMessage2(false);
+  //   } else {
+  //     setshowMessage2(true);
+  //     seterrMessage2("Please make sure all products have mode of releasing");
+  //     setTimeout(() => {
+  //       setshowMessage2(false);
+  //     }, 10000);
+  //   }
 
-    let countStatusInventory = 0;
+  //   if (arrList.totalVal == 0) {
+  //     setshowMessage(true);
+  //     seterrMessage("Please add atleast 1 product");
+  //     setTimeout(() => {
+  //       setshowMessage(false);
+  //     }, 10000);
+  //   }
 
-    for (let ii = 0; ii < allItemsArrLen; ii++) {
-      if (allItemsArr[ii]["inventoryStatus"] == "Out of Stocks") {
-        countStatusInventory++;
-      }
-    }
+  //   let countStatusInventory = 0;
 
-    if (countStatusInventory <= 0) {
-      setshowMessage3(false);
-    } else {
-      setshowMessage3(true);
-      seterrMessage3("Please make sure all products are available");
-      setTimeout(() => {
-        setshowMessage3(false);
-      }, 10000);
-    }
+  //   for (let ii = 0; ii < allItemsArrLen; ii++) {
+  //     if (allItemsArr[ii]["inventoryStatus"] == "Out of Stocks") {
+  //       countStatusInventory++;
+  //     }
+  //   }
 
-    handleModeOfPayment();
-    handleTotal();
-    handleSalesCrew();
-    handleSCPWD();
-    handleSCPWDStatus();
-  };
+  //   if (countStatusInventory <= 0) {
+  //     setshowMessage3(false);
+  //   } else {
+  //     setshowMessage3(true);
+  //     seterrMessage3("Please make sure all products are available");
+  //     setTimeout(() => {
+  //       setshowMessage3(false);
+  //     }, 10000);
+  //   }
+
+  //   handleModeOfPayment();
+  //   handleTotal();
+  //   handleSalesCrew();
+  //   handleSCPWD();
+  //   handleSCPWDStatus();
+  // };
 
   //end  handle to Save to Draft
 
@@ -2306,13 +2296,7 @@ export default function SalesOrder() {
             <div className="grid grid-cols-2">
               <label htmlFor="WalkInName">Walk-in Customer Name</label>
               <div>
-                <input
-                  type="text"
-                  // onChange={(e) =>
-                  //   handleInputChange("WalkInName", e.target.value)
-                  // }
-                  onChange={handleWalkinCustomerChange}
-                />
+                <input type="text" onChange={handleWalkinCustomerChange} />
               </div>
             </div>
 
