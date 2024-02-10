@@ -2346,13 +2346,7 @@ export default function SalesOrder() {
                 Customer Reference
               </label>
               <div>
-                <input
-                  type="text"
-                  // onChange={(e) =>
-                  //   handleInputChange("Reference", e.target.value)
-                  // }
-                  onChange={handleCustomerChange}
-                />
+                <input type="text" onChange={handleCustomerChange} />
               </div>
             </div>
 
@@ -2389,13 +2383,7 @@ export default function SalesOrder() {
                   SC/PWD ID
                 </label>
                 <div>
-                  <input
-                    // onInput={(e: any) => {
-                    //   SCPWDinput(e.target.value);
-                    // }}
-                    onChange={handleScOrPwd}
-                    type="text"
-                  />
+                  <input onChange={handleScOrPwd} type="text" />
                 </div>
               </div>
             )}
