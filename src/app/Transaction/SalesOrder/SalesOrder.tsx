@@ -112,7 +112,7 @@ export default function SalesOrder() {
   ]);
 
   const [formData, setFormData] = useState({
-    DraftNum: 222, // no value on backend
+    DraftNum: 302, // no value on backend
     EntryNum: "",
     DocNum: "",
     // Cutomer
@@ -195,13 +195,15 @@ export default function SalesOrder() {
   //     window.location.reload();
   //   });
   // };
+
   const showAlert = () => {
     Swal.fire({
       text: "Successfully saved to draft",
       icon: "success",
     }).then(() => {
-      // Navigate to the desired path after the user clicks "OK"
-      router.push("/Transaction/SalesQuotation");
+      // Set the URL and reload the window after the user clicks "OK"
+      window.location.href = "/Transaction/SalesQuotation";
+      window.location.reload();
     });
   };
 
