@@ -937,22 +937,22 @@ export default function SalesOrder() {
     );
   };
 
-  const handleDiscountRateChange = (rowIndex: any, discountRates: any) => {
-    const updatedTableData = [...tableData];
-    const item = updatedTableData[rowIndex];
+  // const handleDiscountRateChange = (rowIndex: any, discountRates: any) => {
+  //   const updatedTableData = [...tableData];
+  //   const item = updatedTableData[rowIndex];
 
-    const amount = (discountRates / 100) * item.sellingPriceBeforeDiscount;
+  //   const amount = (discountRates / 100) * item.sellingPriceBeforeDiscount;
 
-    const finalAmount = item.sellingPriceBeforeDiscount - amount;
+  //   const finalAmount = item.sellingPriceBeforeDiscount - amount;
 
-    updatedTableData[rowIndex] = {
-      ...item,
-      discountRate: discountRates,
-      sellingPriceAfterDiscount: finalAmount,
-      grossTotal: finalAmount * item.quantity,
-    };
-    setTableData(updatedTableData);
-  };
+  //   updatedTableData[rowIndex] = {
+  //     ...item,
+  //     discountRate: discountRates,
+  //     sellingPriceAfterDiscount: finalAmount,
+  //     grossTotal: finalAmount * item.quantity,
+  //   };
+  //   setTableData(updatedTableData);
+  // };
 
   let localCurrency = new Intl.NumberFormat("en-PH", {
     style: "currency",
@@ -1206,10 +1206,6 @@ export default function SalesOrder() {
 
         setfinalTotalList(finalArr);
         setIsPaymentCreditCard("Y");
-
-        // console.log(disPriceArr, "disarr")
-
-        // console.log(item['creditcard'], item['debit'], item['pdc'], item['po'], "Mode")
       }
     } else {
       const updatedTableData = [...tableData];
@@ -1418,10 +1414,6 @@ export default function SalesOrder() {
         };
 
         setfinalTotalList(finalArr);
-
-        // console.log(disPriceArr, "disarr")
-
-        // console.log(item['creditcard'], item['debit'], item['pdc'], item['po'], "Mode")
       }
     }
   };
@@ -1456,10 +1448,6 @@ export default function SalesOrder() {
 
         setccstatus(false);
         setIsPaymentPDC("Y");
-
-        // console.log(disPriceArr, "disarr")
-
-        // console.log(item['creditcard'], item['debit'], item['pdc'], item['po'], "Mode")
       }
     } else {
       const updatedTableData = [...tableData];
@@ -1487,10 +1475,6 @@ export default function SalesOrder() {
         setfinalTotalList(finalArr);
 
         setccstatus(false);
-
-        // console.log(disPriceArr, "disarr")
-
-        // console.log(item['creditcard'], item['debit'], item['pdc'], item['po'], "Mode")
       }
     }
   };
@@ -1519,10 +1503,6 @@ export default function SalesOrder() {
         const item2 = updatedTableData[i];
 
         setccstatus(false);
-
-        // console.log(disPriceArr, "disarr")
-
-        // console.log(item['creditcard'], item['debit'], item['pdc'], item['po'], "Mode")
       }
     } else {
       const updatedTableData = [...tableData];
@@ -1543,10 +1523,6 @@ export default function SalesOrder() {
         const item2 = updatedTableData[i];
 
         setccstatus(false);
-
-        // console.log(disPriceArr, "disarr")
-
-        // console.log(item['creditcard'], item['debit'], item['pdc'], item['po'], "Mode")
       }
     }
   };
