@@ -1555,6 +1555,7 @@ export default function SalesOrder() {
         };
 
         setfinalTotalList(finalArr);
+        setIsPaymentODC("Y");
       }
 
       setccstatus(false);
