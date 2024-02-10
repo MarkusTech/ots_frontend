@@ -109,7 +109,7 @@ export default function SalesOrder() {
   ]);
 
   const [formData, setFormData] = useState({
-    DraftNum: 215, // no value on backend
+    DraftNum: 216, // no value on backend
     EntryNum: "",
     DocNum: "",
     // Cutomer
@@ -1324,6 +1324,7 @@ export default function SalesOrder() {
           debit: "Y",
         };
 
+        setIsPaymentDebitCard("Y");
         setfinalTotalList(finalArr);
       }
     } else {
@@ -1429,6 +1430,7 @@ export default function SalesOrder() {
         setfinalTotalList(finalArr);
 
         setccstatus(false);
+        setIsPaymentPDC("Y");
 
         // console.log(disPriceArr, "disarr")
 
@@ -1613,6 +1615,7 @@ export default function SalesOrder() {
         };
 
         setfinalTotalList(finalArr);
+        setIsPaymentOnlineTransfer("Y");
       }
 
       setccstatus(false);
@@ -1673,6 +1676,7 @@ export default function SalesOrder() {
         };
 
         setfinalTotalList(finalArr);
+        setIsPaymentOnAccount("Y");
       }
 
       setccstatus(false);
@@ -1735,6 +1739,7 @@ export default function SalesOrder() {
         };
 
         setfinalTotalList(finalArr);
+        setIsPaymentCOD("Y");
       }
 
       setccstatus(false);
