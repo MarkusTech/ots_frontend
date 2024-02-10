@@ -109,10 +109,13 @@ export default function SalesOrder() {
   ]);
 
   const [formData, setFormData] = useState({
+    DraftNum: 212, // no value on backend
+    EntryNum: "",
+    DocNum: "",
     // Cutomer
     CustomerCode: "",
     CustomerName: "",
-    ForeignName: "",
+    ForeignName: "", // no value on backend
     WalkInName: "",
     ShippingAdd: "",
     TIN: "",
@@ -121,9 +124,7 @@ export default function SalesOrder() {
     Branch: "",
     DocStat: "",
     BaseDoc: "",
-    DocNum: "",
-    DraftNum: 212,
-    EntryNum: "", // i need to generate this automatically
+    // i need to generate this automatically
     DocDate: manilaDate,
     PostingDate: manilaDate,
     SCPWDIdNo: "",
