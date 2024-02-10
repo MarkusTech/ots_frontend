@@ -4,6 +4,7 @@ import React, { use, useEffect, useState } from "react";
 import Draggable from "react-draggable";
 import axios from "axios";
 import { useRef } from "react";
+import Swal from "sweetalert2";
 
 export default function SalesOrder() {
   // const inputRef = useRef(null);
@@ -109,7 +110,7 @@ export default function SalesOrder() {
   ]);
 
   const [formData, setFormData] = useState({
-    DraftNum: 219, // no value on backend
+    DraftNum: 220, // no value on backend
     EntryNum: "",
     DocNum: "",
     // Cutomer
@@ -183,17 +184,9 @@ export default function SalesOrder() {
     });
   });
 
-  // const sendDataToAPI = () => {
-  //   const apiUrl = "http://localhost:5000/api/v1/ots";
-  //   axios
-  //     .post(apiUrl, formData)
-  //     .then((response) => {
-  //       console.log("Data sent successfully:", response.data);
-  //     })
-  //     .catch((error) => {
-  //       console.error("Error sending data:", error);
-  //     });
-  // };
+  const showAlert = () => {
+    Swal.fire("SweetAlert2 is working!");
+  };
 
   const sendDataToAPI = () => {
     const apiUrl = "http://localhost:5000/api/v1/ots";
@@ -201,6 +194,7 @@ export default function SalesOrder() {
       .post(apiUrl, formData)
       .then((response) => {
         console.log("Data sent successfully:", response.data);
+        showAlert();
       })
       .catch((error) => {
         console.error("Error sending data:", error);
