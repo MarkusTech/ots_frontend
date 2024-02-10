@@ -739,8 +739,6 @@ export default function SalesOrder() {
       setOpenItemTablePanel(!openItemTablePanel);
       setSellingPriceAfterDis(item.Price);
 
-      // const disPrice = await axios.get(`${process.env.NEXT_PUBLIC_IP}/discount-price/${brandID}/${disPriceBefDis}/${disCardCode}/${disItemCode}/${quantity}/${disUOM}/${disLowerBound}/N/N/N/N/${disTaxCode}`);
-
       const disCardCode = cardCodedata;
       const disItemCode = item.ItemCode;
       const disQuantity = updatedTableData[selectedRowIndex]["quantity"];
