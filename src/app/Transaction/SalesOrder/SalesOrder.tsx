@@ -109,7 +109,7 @@ export default function SalesOrder() {
   ]);
 
   const [formData, setFormData] = useState({
-    DraftNum: 213, // no value on backend
+    DraftNum: 215, // no value on backend
     EntryNum: "",
     DocNum: "",
     // Cutomer
@@ -150,14 +150,14 @@ export default function SalesOrder() {
   });
 
   // wmr code
-  const [isPaymentCash, setIsPaymentCash] = useState("");
-  const [isPaymentCreditCard, setIsPaymentCreditCard] = useState("");
-  const [isPaymentDebitCard, setIsPaymentDebitCard] = useState("");
-  const [isPaymentODC, setIsPaymentODC] = useState("");
-  const [isPaymentPDC, setIsPaymentPDC] = useState("");
-  const [isPaymentOnlineTransfer, setIsPaymentOnlineTransfer] = useState("");
-  const [setOnAccount, setIsPaymentOnAccount] = useState("");
-  const [isPaymentCOD, setIsPaymentCOD] = useState("");
+  const [isPaymentCash, setIsPaymentCash] = useState("N");
+  const [isPaymentCreditCard, setIsPaymentCreditCard] = useState("N");
+  const [isPaymentDebitCard, setIsPaymentDebitCard] = useState("N");
+  const [isPaymentODC, setIsPaymentODC] = useState("N");
+  const [isPaymentPDC, setIsPaymentPDC] = useState("N");
+  const [isPaymentOnlineTransfer, setIsPaymentOnlineTransfer] = useState("N");
+  const [setOnAccount, setIsPaymentOnAccount] = useState("N");
+  const [isPaymentCOD, setIsPaymentCOD] = useState("N");
 
   useEffect(() => {
     setFormData({
@@ -194,14 +194,6 @@ export default function SalesOrder() {
         console.error("Error sending data:", error);
       });
   };
-
-  // 303 handle Input Change look at that if this will having an error
-  // const handleInputChange = (fieldName: string, value: string) => {
-  //   setFormData((prevFormData) => ({
-  //     ...prevFormData,
-  //     [fieldName]: value,
-  //   }));
-  // };
 
   const handleWalkinCustomerChange = (event: any) => {
     setWalkingCustomer(event.target.value);
