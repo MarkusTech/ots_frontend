@@ -2,12 +2,14 @@
 
 import React, { use, useEffect, useState } from "react";
 import Draggable from "react-draggable";
+import { useRouter } from "next/navigation";
 import axios from "axios";
 import { useRef } from "react";
 import Swal from "sweetalert2";
 
 export default function SalesOrder() {
   // const inputRef = useRef(null);
+  const router = useRouter();
   const inputRef = useRef<HTMLInputElement | null>(null);
 
   const [isClosed, setIsClosed] = useState(false);
@@ -110,7 +112,7 @@ export default function SalesOrder() {
   ]);
 
   const [formData, setFormData] = useState({
-    DraftNum: 221, // no value on backend
+    DraftNum: 222, // no value on backend
     EntryNum: "",
     DocNum: "",
     // Cutomer
@@ -185,16 +187,21 @@ export default function SalesOrder() {
   });
 
   // const showAlert = () => {
-  //   Swal.fire("Successfully Save to Draft");
+  //   Swal.fire({
+  //     text: "Successfully saved to draft",
+  //     icon: "success",
+  //   }).then(() => {
+  //     // Reload the window after the user clicks "OK"
+  //     window.location.reload();
+  //   });
   // };
-
   const showAlert = () => {
     Swal.fire({
       text: "Successfully saved to draft",
       icon: "success",
     }).then(() => {
-      // Reload the window after the user clicks "OK"
-      window.location.reload();
+      // Navigate to the desired path after the user clicks "OK"
+      router.push("/Transaction/SalesQuotation");
     });
   };
 
