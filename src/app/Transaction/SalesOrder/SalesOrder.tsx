@@ -109,6 +109,7 @@ export default function SalesOrder() {
   ]);
 
   const [formData, setFormData] = useState({
+    // Cutomer
     CustomerCode: "",
     CustomerName: "",
     ForeignName: "",
@@ -116,11 +117,12 @@ export default function SalesOrder() {
     ShippingAdd: "",
     TIN: "",
     Reference: "",
+    // ReadOnly
     Branch: "",
     DocStat: "",
     BaseDoc: "",
     DocNum: "",
-    DraftNum: 211,
+    DraftNum: 212,
     EntryNum: "", // i need to generate this automatically
     DocDate: manilaDate,
     PostingDate: manilaDate,
