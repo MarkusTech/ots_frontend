@@ -4,7 +4,6 @@ import React, { use, useEffect, useState } from "react";
 import Draggable from "react-draggable";
 import axios from "axios";
 import { useRef } from "react";
-import { toast } from "react-hot-toast";
 
 export default function SalesOrder() {
   // const inputRef = useRef(null);
@@ -202,11 +201,9 @@ export default function SalesOrder() {
       .post(apiUrl, formData)
       .then((response) => {
         console.log("Data sent successfully:", response.data);
-        toast.success("Successfully saved to draft");
       })
       .catch((error) => {
         console.error("Error sending data:", error);
-        toast.error("Failed to save to draft");
       });
   };
 
