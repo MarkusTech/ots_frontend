@@ -4,6 +4,7 @@ import React, { use, useEffect, useState } from "react";
 import Draggable from "react-draggable";
 import axios from "axios";
 import { useRef } from "react";
+import { toast } from "react-hot-toast";
 
 export default function SalesOrder() {
   // const inputRef = useRef(null);
@@ -183,15 +184,29 @@ export default function SalesOrder() {
     });
   });
 
+  // const sendDataToAPI = () => {
+  //   const apiUrl = "http://localhost:5000/api/v1/ots";
+  //   axios
+  //     .post(apiUrl, formData)
+  //     .then((response) => {
+  //       console.log("Data sent successfully:", response.data);
+  //     })
+  //     .catch((error) => {
+  //       console.error("Error sending data:", error);
+  //     });
+  // };
+
   const sendDataToAPI = () => {
     const apiUrl = "http://localhost:5000/api/v1/ots";
     axios
       .post(apiUrl, formData)
       .then((response) => {
         console.log("Data sent successfully:", response.data);
+        toast.success("Successfully saved to draft");
       })
       .catch((error) => {
         console.error("Error sending data:", error);
+        toast.error("Failed to save to draft");
       });
   };
 
