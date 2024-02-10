@@ -112,7 +112,7 @@ export default function SalesOrder() {
   ]);
 
   const [formData, setFormData] = useState({
-    DraftNum: 302, // no value on backend
+    DraftNum: 303, // no value on backend
     EntryNum: "",
     DocNum: "",
     // Cutomer
@@ -186,26 +186,26 @@ export default function SalesOrder() {
     });
   });
 
-  // const showAlert = () => {
-  //   Swal.fire({
-  //     text: "Successfully saved to draft",
-  //     icon: "success",
-  //   }).then(() => {
-  //     // Reload the window after the user clicks "OK"
-  //     window.location.reload();
-  //   });
-  // };
-
   const showAlert = () => {
     Swal.fire({
       text: "Successfully saved to draft",
       icon: "success",
     }).then(() => {
-      // Set the URL and reload the window after the user clicks "OK"
-      window.location.href = "/Transaction/SalesQuotation";
+      // Reload the window after the user clicks "OK"
       window.location.reload();
     });
   };
+
+  // const showAlert = () => {
+  //   Swal.fire({
+  //     text: "Successfully saved to draft",
+  //     icon: "success",
+  //   }).then(() => {
+  //     // Set the URL and reload the window after the user clicks "OK"
+  //     window.location.href = "/Transaction/SalesQuotation";
+  //     window.location.reload();
+  //   });
+  // };
 
   const sendDataToAPI = () => {
     const apiUrl = "http://localhost:5000/api/v1/ots";
