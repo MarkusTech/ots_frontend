@@ -110,7 +110,7 @@ export default function SalesOrder() {
   ]);
 
   const [formData, setFormData] = useState({
-    DraftNum: 220, // no value on backend
+    DraftNum: 221, // no value on backend
     EntryNum: "",
     DocNum: "",
     // Cutomer
@@ -184,8 +184,18 @@ export default function SalesOrder() {
     });
   });
 
+  // const showAlert = () => {
+  //   Swal.fire("Successfully Save to Draft");
+  // };
+
   const showAlert = () => {
-    Swal.fire("SweetAlert2 is working!");
+    Swal.fire({
+      text: "Successfully saved to draft",
+      icon: "success",
+    }).then(() => {
+      // Reload the window after the user clicks "OK"
+      window.location.reload();
+    });
   };
 
   const sendDataToAPI = () => {
