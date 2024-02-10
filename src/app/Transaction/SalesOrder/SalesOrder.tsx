@@ -162,6 +162,14 @@ export default function SalesOrder() {
       Reference: customerReference,
       Remarks: remarksField,
       SCPWDIdNo: scOrPwdField,
+      Cash: "",
+      CreditCard: "",
+      DebitCard: "",
+      ODC: "",
+      PDC: "",
+      OnlineTransfer: "",
+      OnAccount: "",
+      COD: "",
     });
   });
 
