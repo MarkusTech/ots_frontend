@@ -124,7 +124,6 @@ export default function SalesOrder() {
     Branch: "",
     DocStat: "",
     BaseDoc: "",
-    // i need to generate this automatically
     DocDate: manilaDate,
     PostingDate: manilaDate,
     SCPWDIdNo: "",
