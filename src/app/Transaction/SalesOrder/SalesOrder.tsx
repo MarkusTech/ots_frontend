@@ -149,6 +149,16 @@ export default function SalesOrder() {
     DateUpdated: "",
   });
 
+  // wmr code
+  const [isPaymentCash, setIsPaymentCash] = useState("");
+  const [isPaymentCreditCard, setIsPaymentCreditCard] = useState("");
+  const [isPaymentDebitCard, setIsPaymentDebitCard] = useState("");
+  const [isPaymentODC, setIsPaymentODC] = useState("");
+  const [isPaymentPDC, setIsPaymentPDC] = useState("");
+  const [isPaymentOnlineTransfer, setIsPaymentOnlineTransfer] = useState("");
+  const [setOnAccount, setIsPaymentOnAccount] = useState("");
+  const [isPaymentCOD, setIsPaymentCOD] = useState("");
+
   useEffect(() => {
     setFormData({
       ...formData,
@@ -162,14 +172,14 @@ export default function SalesOrder() {
       Reference: customerReference,
       Remarks: remarksField,
       SCPWDIdNo: scOrPwdField,
-      Cash: "",
-      CreditCard: "",
-      DebitCard: "",
-      ODC: "",
-      PDC: "",
-      OnlineTransfer: "",
-      OnAccount: "",
-      COD: "",
+      Cash: isPaymentCash,
+      CreditCard: isPaymentCreditCard,
+      DebitCard: isPaymentDebitCard,
+      ODC: isPaymentODC,
+      PDC: isPaymentPDC,
+      OnlineTransfer: isPaymentOnlineTransfer,
+      OnAccount: setOnAccount,
+      COD: isPaymentCOD,
     });
   });
 
@@ -1084,6 +1094,7 @@ export default function SalesOrder() {
         };
 
         setTableData(updatedTableData);
+        setIsPaymentCash("Y"); //WMR code
       }
 
       setccstatus(false);
@@ -1177,6 +1188,7 @@ export default function SalesOrder() {
         };
 
         setfinalTotalList(finalArr);
+        setIsPaymentCreditCard("Y");
 
         // console.log(disPriceArr, "disarr")
 
