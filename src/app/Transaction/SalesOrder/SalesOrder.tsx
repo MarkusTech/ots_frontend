@@ -1009,14 +1009,14 @@ export default function SalesOrder() {
 
     console.log(moderel);
 
-    const item = updatedTableData[selectedRowIndex];
+    // const item = updatedTableData[selectedRowIndex];
 
-    updatedTableData[selectedRowIndex] = {
-      ...item,
-      modeOfReleasing: moderel,
-    };
+    // updatedTableData[selectedRowIndex] = {
+    //   ...item,
+    //   modeOfReleasing: moderel,
+    // };
 
-    console.log(item);
+    // console.log(item);
 
     setTableData(updatedTableData);
     setOpenModRelTablePanel(!openModRelTablePanel);
