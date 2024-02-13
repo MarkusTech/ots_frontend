@@ -162,26 +162,6 @@ export default function SalesOrder() {
   const [setOnAccount, setIsPaymentOnAccount] = useState("N");
   const [isPaymentCOD, setIsPaymentCOD] = useState("N");
 
-  // if (isCheckedCash) {
-  //   setIsPaymentCash("Y");
-  // } else if (isCheckedCreditCard) {
-  //   setIsPaymentCreditCard("Y");
-  // } else if (isCheckedDebit) {
-  //   setIsPaymentDebitCard("Y");
-  // } else if (isCheckedPDC) {
-  //   setIsPaymentPDC("Y");
-  // } else if (isCheckedPO) {
-  //   setIsPaymentPO("Y");
-  // } else if (isCheckedDatedCheck) {
-  //   setIsPaymentODC("Y");
-  // } else if (isCheckedOnlineTransfer) {
-  //   setIsPaymentOnlineTransfer("Y");
-  // } else if (isCheckedOnAccount) {
-  //   setIsPaymentOnAccount("Y");
-  // } else if (isCheckedCashOnDel) {
-  //   setIsPaymentCOD("Y");
-  // }
-
   useEffect(() => {
     setFormData({
       ...formData,
