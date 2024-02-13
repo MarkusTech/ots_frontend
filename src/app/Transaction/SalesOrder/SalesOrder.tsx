@@ -765,13 +765,6 @@ export default function SalesOrder() {
       setSelectedRowIndex(null);
       setOpenItemTablePanel(!openItemTablePanel);
       setSellingPriceAfterDis(item.Price);
-
-      const disCardCode = cardCodedata;
-      const disItemCode = item.ItemCode;
-      const disQuantity = updatedTableData[selectedRowIndex]["quantity"];
-      const disUOM = updatedTableData[selectedRowIndex]["uom"];
-      const disLowerBound = lowerBoundFinalItem;
-      const disTaxCode = taxCodeDataNow;
     }
   };
 
