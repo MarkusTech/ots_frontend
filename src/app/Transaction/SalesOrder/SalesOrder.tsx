@@ -1145,7 +1145,7 @@ export default function SalesOrder() {
         };
 
         setTableData(updatedTableData);
-        // setIsPaymentCash("Y"); //WMR code
+        setIsPaymentCash("Y"); //WMR code
       }
 
       setccstatus(false);
@@ -1239,7 +1239,7 @@ export default function SalesOrder() {
         };
 
         setfinalTotalList(finalArr);
-        // setIsPaymentCreditCard("Y");
+        setIsPaymentCreditCard("Y");
       }
     } else {
       const updatedTableData = [...tableData];
@@ -1379,7 +1379,7 @@ export default function SalesOrder() {
           debit: "Y",
         };
 
-        // setIsPaymentDebitCard("Y");
+        setIsPaymentDebitCard("Y");
         setfinalTotalList(finalArr);
       }
     } else {
@@ -1481,7 +1481,7 @@ export default function SalesOrder() {
         setfinalTotalList(finalArr);
 
         setccstatus(false);
-        // setIsPaymentPDC("Y");
+        setIsPaymentPDC("Y");
       }
     } else {
       const updatedTableData = [...tableData];
@@ -1538,7 +1538,7 @@ export default function SalesOrder() {
 
         setccstatus(false);
       }
-      // setIsPaymentPO("Y")
+      setIsPaymentPO("Y");
     } else {
       const updatedTableData = [...tableData];
       const tableDatalen = tableData.length;
@@ -1591,7 +1591,7 @@ export default function SalesOrder() {
         };
 
         setfinalTotalList(finalArr);
-        // setIsPaymentODC("Y");
+        setIsPaymentODC("Y");
       }
 
       setccstatus(false);
@@ -1652,7 +1652,7 @@ export default function SalesOrder() {
         };
 
         setfinalTotalList(finalArr);
-        // setIsPaymentOnlineTransfer("Y");
+        setIsPaymentOnlineTransfer("Y");
       }
 
       setccstatus(false);
@@ -1713,7 +1713,7 @@ export default function SalesOrder() {
         };
 
         setfinalTotalList(finalArr);
-        // setIsPaymentOnAccount("Y");
+        setIsPaymentOnAccount("Y");
       }
 
       setccstatus(false);
@@ -1776,7 +1776,7 @@ export default function SalesOrder() {
         };
 
         setfinalTotalList(finalArr);
-        // setIsPaymentCOD("Y");
+        setIsPaymentCOD("Y");
       }
 
       setccstatus(false);
