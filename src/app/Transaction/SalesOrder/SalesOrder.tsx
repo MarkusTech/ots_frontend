@@ -1773,8 +1773,6 @@ export default function SalesOrder() {
     }
   });
 
-  // handle to Save to Draft
-
   // const handleSaveDraft = () => {
   //   const finalTotalListArr = [...finalTotalList];
   //   const arrList = finalTotalListArr[0];
