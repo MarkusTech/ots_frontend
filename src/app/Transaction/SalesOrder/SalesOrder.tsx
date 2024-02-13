@@ -354,22 +354,22 @@ export default function SalesOrder() {
     settaxRateData(taxrate.data);
   };
 
-  const onAddLowerBound = async (
-    bid: any,
-    taxcodex: any,
-    itemcodex: any,
-    whscodex: any,
-    indexNum: any,
-    uomLoweBound: any
-  ) => {
-    const lowerbound = await axios.get(
-      `${fetchAPI}/lowerbound/${bid}/${taxcodex}/${itemcodex}/${whscodex}/${uomLoweBound}`
-    );
+  // const onAddLowerBound = async (
+  //   bid: any,
+  //   taxcodex: any,
+  //   itemcodex: any,
+  //   whscodex: any,
+  //   indexNum: any,
+  //   uomLoweBound: any
+  // ) => {
+  //   const lowerbound = await axios.get(
+  //     `${fetchAPI}/lowerbound/${bid}/${taxcodex}/${itemcodex}/${whscodex}/${uomLoweBound}`
+  //   );
 
-    let lowerBoundArr = lowerbound.data;
+  //   let lowerBoundArr = lowerbound.data;
 
-    setLowerBoundData(lowerBoundArr[indexNum]);
-  };
+  //   setLowerBoundData(lowerBoundArr[indexNum]);
+  // };
 
   useEffect(() => {
     onAddHeader();
