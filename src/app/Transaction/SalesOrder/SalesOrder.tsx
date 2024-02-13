@@ -225,6 +225,16 @@ export default function SalesOrder() {
     setScOrPwdField(event.target.value);
   };
 
+  useEffect(() => {
+    axios
+      .get("http://localhost:5000/api/v1/draftNumber")
+      .then((res) => {
+        setDraftData(res.data.DraftNum);
+        console.log(draftData);
+      })
+      .catch((err) => console.log(err));
+  });
+
   // -------------------------------------- End of insertion --------------------------------------
 
   let customerData2 = [{}];
@@ -313,10 +323,6 @@ export default function SalesOrder() {
       totalamoutdue: 0,
     },
   ]);
-
-  const onAddDraftNum = async () => {
-    const draft = await axios.get("http://localhost:5000/api/v1/draftNumber");
-  };
 
   const onAddHeader = async () => {
     const customers = await axios.get(`${fetchAPI}/customer`);
@@ -2406,7 +2412,7 @@ export default function SalesOrder() {
           <div className="grid grid-cols-2">
             <label htmlFor="documentnumber">Draft Number</label>
             <div>
-              <input type="text" readOnly value={draftNum} />
+              <input type="text" readOnly />
             </div>
           </div>
 
