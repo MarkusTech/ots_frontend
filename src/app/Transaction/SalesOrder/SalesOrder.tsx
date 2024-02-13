@@ -157,9 +157,30 @@ export default function SalesOrder() {
   const [isPaymentDebitCard, setIsPaymentDebitCard] = useState("N");
   const [isPaymentODC, setIsPaymentODC] = useState("N");
   const [isPaymentPDC, setIsPaymentPDC] = useState("N");
+  const [isPaymentPO, setIsPaymentPO] = useState("N");
   const [isPaymentOnlineTransfer, setIsPaymentOnlineTransfer] = useState("N");
   const [setOnAccount, setIsPaymentOnAccount] = useState("N");
   const [isPaymentCOD, setIsPaymentCOD] = useState("N");
+
+  // if (isCheckedCash) {
+  //   setIsPaymentCash("Y");
+  // } else if (isCheckedCreditCard) {
+  //   setIsPaymentCreditCard("Y");
+  // } else if (isCheckedDebit) {
+  //   setIsPaymentDebitCard("Y");
+  // } else if (isCheckedPDC) {
+  //   setIsPaymentPDC("Y");
+  // } else if (isCheckedPO) {
+  //   setIsPaymentPO("Y");
+  // } else if (isCheckedDatedCheck) {
+  //   setIsPaymentODC("Y");
+  // } else if (isCheckedOnlineTransfer) {
+  //   setIsPaymentOnlineTransfer("Y");
+  // } else if (isCheckedOnAccount) {
+  //   setIsPaymentOnAccount("Y");
+  // } else if (isCheckedCashOnDel) {
+  //   setIsPaymentCOD("Y");
+  // }
 
   useEffect(() => {
     setFormData({
@@ -1124,7 +1145,7 @@ export default function SalesOrder() {
         };
 
         setTableData(updatedTableData);
-        setIsPaymentCash("Y"); //WMR code
+        // setIsPaymentCash("Y"); //WMR code
       }
 
       setccstatus(false);
@@ -1218,7 +1239,7 @@ export default function SalesOrder() {
         };
 
         setfinalTotalList(finalArr);
-        setIsPaymentCreditCard("Y");
+        // setIsPaymentCreditCard("Y");
       }
     } else {
       const updatedTableData = [...tableData];
@@ -1358,7 +1379,7 @@ export default function SalesOrder() {
           debit: "Y",
         };
 
-        setIsPaymentDebitCard("Y");
+        // setIsPaymentDebitCard("Y");
         setfinalTotalList(finalArr);
       }
     } else {
@@ -1460,7 +1481,7 @@ export default function SalesOrder() {
         setfinalTotalList(finalArr);
 
         setccstatus(false);
-        setIsPaymentPDC("Y");
+        // setIsPaymentPDC("Y");
       }
     } else {
       const updatedTableData = [...tableData];
@@ -1517,6 +1538,7 @@ export default function SalesOrder() {
 
         setccstatus(false);
       }
+      // setIsPaymentPO("Y")
     } else {
       const updatedTableData = [...tableData];
       const tableDatalen = tableData.length;
@@ -1569,7 +1591,7 @@ export default function SalesOrder() {
         };
 
         setfinalTotalList(finalArr);
-        setIsPaymentODC("Y");
+        // setIsPaymentODC("Y");
       }
 
       setccstatus(false);
@@ -1630,7 +1652,7 @@ export default function SalesOrder() {
         };
 
         setfinalTotalList(finalArr);
-        setIsPaymentOnlineTransfer("Y");
+        // setIsPaymentOnlineTransfer("Y");
       }
 
       setccstatus(false);
@@ -1691,7 +1713,7 @@ export default function SalesOrder() {
         };
 
         setfinalTotalList(finalArr);
-        setIsPaymentOnAccount("Y");
+        // setIsPaymentOnAccount("Y");
       }
 
       setccstatus(false);
@@ -1754,7 +1776,7 @@ export default function SalesOrder() {
         };
 
         setfinalTotalList(finalArr);
-        setIsPaymentCOD("Y");
+        // setIsPaymentCOD("Y");
       }
 
       setccstatus(false);
