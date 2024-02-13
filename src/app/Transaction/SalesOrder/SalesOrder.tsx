@@ -858,9 +858,8 @@ export default function SalesOrder() {
       let unitprice = item.sellingPriceAfterDiscountTemp / (1 + 0.12);
       let taxAmountx = item.sellingPriceAfterDiscountTemp - unitprice;
 
-      setTotalVat(taxAmountx);
-
-      // console.log(taxAmountx, "hehe");
+      setTotalVat(taxAmountx.toString());
+      // setTotalVat(taxAmountx); // wmr change
 
       console.log(
         "selPrice:",
