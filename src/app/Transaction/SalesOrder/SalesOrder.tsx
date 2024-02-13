@@ -12,8 +12,6 @@ export default function SalesOrder() {
   const router = useRouter();
   const inputRef = useRef<HTMLInputElement | null>(null);
 
-  const [isClosed, setIsClosed] = useState(false);
-
   const [customerList, setCustomerDataList] = useState([]);
   const [itemList, setItemDataList] = useState([]);
   const [UOMList, setUOMList] = useState([]);
@@ -2105,14 +2103,6 @@ export default function SalesOrder() {
     console.log("SC", id);
     setscpdwdID(id);
   };
-
-  const handleCloseCustomer = () => {
-    setIsClosed(true);
-  };
-
-  if (isClosed) {
-    return null; // Don't render the component if it's closed
-  }
 
   // -------------------------------------------------------------------------------
   return (
