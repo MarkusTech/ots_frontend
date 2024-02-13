@@ -1773,31 +1773,6 @@ export default function SalesOrder() {
     }
   });
 
-  // const handleSCPWDStatus = () => {
-  //   const allItemsArr = [...tableData];
-  //   const allItemsArrLen = allItemsArr.length;
-
-  //   let statuscount = 0;
-
-  //   for (let i = 0; i < allItemsArrLen; i++) {
-  //     if (allItemsArr[i]["scPwdDiscount"] == "N") {
-  //       statuscount = statuscount + 1;
-  //     }
-  //   }
-
-  //   if (cardCodedata == "C000112") {
-  //     if (statuscount > 0) {
-  //       setshowMessage7(true);
-  //       seterrMessage7("Some items are not applicable for discounting.");
-  //       setTimeout(() => {
-  //         setshowMessage7(false);
-  //       }, 10000);
-  //     } else {
-  //       setshowMessage7(false);
-  //     }
-  //   }
-  // };
-
   // const handleSCPWD = () => {
   //   if (cardCodedata == "C000112") {
   //     if (scpdwdID == "") {
