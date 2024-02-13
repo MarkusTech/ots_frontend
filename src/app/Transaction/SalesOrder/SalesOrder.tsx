@@ -99,6 +99,7 @@ export default function SalesOrder() {
   const [customerReference, setCustomerReference] = useState("");
   const [remarksField, setRemarksField] = useState("");
   const [scOrPwdField, setScOrPwdField] = useState("");
+  const [draftNumber, setDraftNumber] = useState(null);
   const [customerData, setCustomerData] = useState([
     {
       customerCode: "00000",
@@ -110,7 +111,7 @@ export default function SalesOrder() {
   ]);
 
   const [formData, setFormData] = useState({
-    DraftNum: 307, // no value on backend
+    DraftNum: draftNumber, // no value on backend
     EntryNum: "",
     DocNum: "",
     // Cutomer
@@ -224,8 +225,6 @@ export default function SalesOrder() {
   };
 
   // Draft Number
-  const [draftNumber, setDraftNumber] = useState(null);
-
   useEffect(() => {
     // Fetch draft number from the API
     const fetchDraftNumber = async () => {
@@ -233,7 +232,10 @@ export default function SalesOrder() {
         const response = await axios.get(
           "http://localhost:5000/api/v1/draftNumber"
         );
-        setDraftNumber(response.data.draftNumber);
+        // setDraftNumber(response.data.draftNumber);
+        const DraftNumberFinal = response.data.draftNumber;
+        setDraftNumber(DraftNumberFinal);
+        console.log("DraftNumber: ", DraftNumberFinal);
       } catch (error) {
         console.error("Error fetching draft number:", error);
       }
