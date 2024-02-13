@@ -2287,7 +2287,8 @@ export default function SalesOrder() {
                   <td>{rowData.itemName}</td>
 
                   <td>
-                    {rowData.itemCode == 0 ? (
+                    {/* {rowData.itemCode == 0 ? ( "WMR change"*/}
+                    {rowData.itemCode == "0" ? (
                       ""
                     ) : (
                       <div className="grid grid-cols-2">
