@@ -1773,21 +1773,6 @@ export default function SalesOrder() {
     }
   });
 
-  // const handleSCPWD = () => {
-  //   if (cardCodedata == "C000112") {
-  //     if (scpdwdID == "") {
-  //       setshowMessage6(true);
-  //       seterrMessage6("SC/PWD ID is empty");
-  //       setTimeout(() => {
-  //         setshowMessage6(false);
-  //       }, 10000);
-  //     } else {
-  //       setshowMessage6(false);
-  //       // seterrMessage6("SC/PWD ID is empty.")
-  //     }
-  //   }
-  // };
-
   const addSalesCrew = (salescrewx: any) => {
     const arrForsales = [...finalTotalList];
 
