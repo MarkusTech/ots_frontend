@@ -1918,11 +1918,6 @@ export default function SalesOrder() {
       });
   };
 
-  const SCPWDinput = (id: any) => {
-    console.log("SC", id);
-    setscpdwdID(id);
-  };
-
   // -------------------------------------------------------------------------------
   return (
     <>
