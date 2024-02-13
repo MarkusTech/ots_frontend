@@ -64,24 +64,6 @@ export default function SalesOrder() {
   const [ccstatus, setccstatus] = useState(false);
   // End of Payment useState
 
-  // Error message useState()
-  const [showMessage, setshowMessage] = useState(false);
-  const [showMessage2, setshowMessage2] = useState(false);
-  const [showMessage3, setshowMessage3] = useState(false);
-  const [showMessage4, setshowMessage4] = useState(false);
-  const [showMessage5, setshowMessage5] = useState(false);
-  const [showMessage6, setshowMessage6] = useState(false);
-  const [showMessage7, setshowMessage7] = useState(false);
-
-  const [errMessage, seterrMessage] = useState("");
-  const [errMessage2, seterrMessage2] = useState("");
-  const [errMessage3, seterrMessage3] = useState("");
-  const [errMessage4, seterrMessage4] = useState("");
-  const [errMessage5, seterrMessage5] = useState("");
-  const [errMessage6, seterrMessage6] = useState("");
-  const [errMessage7, seterrMessage7] = useState("");
-  // End of Error Message useState()
-
   const warehouseCode = "GSCNAPGS";
   const brandID = 4;
   const priceListNum = 14;
@@ -1784,22 +1766,6 @@ export default function SalesOrder() {
     setfinalTotalList(arrForsales);
   };
 
-  const handleSalesCrew = () => {
-    const arrForsales = [...finalTotalList];
-
-    if (arrForsales[0]["salescrew"] == "") {
-      setshowMessage5(true);
-      seterrMessage5("Please select salescrew");
-      setTimeout(() => {
-        setshowMessage5(false);
-      }, 10000);
-    } else {
-      setshowMessage5(false);
-    }
-
-    console.log(arrForsales[0]["salescrew"], "sales");
-  };
-
   type headerDetails = {
     DraftNum: number;
     EntryNum: string;
@@ -3112,43 +3078,7 @@ export default function SalesOrder() {
             Commit
           </button>
         </div>
-        <div className="p-2 flex justify-end">
-          {showMessage && (
-            <div className="p-2 mt-2 mb-1 mr-2 text-[12px] bg-red-200 shadow-md">
-              {errMessage}
-            </div>
-          )}
-          {showMessage2 && (
-            <div className="p-2 mt-2 mb-1 mr-2 text-[12px] bg-red-200 shadow-md">
-              {errMessage2}
-            </div>
-          )}
-          {showMessage3 && (
-            <div className="p-2 mt-2 mb-1 mr-2 text-[12px] bg-red-200 shadow-md">
-              {errMessage3}
-            </div>
-          )}
-          {showMessage4 && (
-            <div className="p-2 mt-2 mb-1 mr-2 text-[12px] bg-red-200 shadow-md">
-              {errMessage4}
-            </div>
-          )}
-          {showMessage5 && (
-            <div className="p-2 mt-2 mb-1 mr-2 text-[12px] bg-red-200 shadow-md">
-              {errMessage5}
-            </div>
-          )}
-          {showMessage6 && (
-            <div className="p-2 mt-2 mb-1 mr-2 text-[12px] bg-red-200 shadow-md">
-              {errMessage6}
-            </div>
-          )}
-          {showMessage7 && (
-            <div className="p-2 mt-2 mb-1 mr-2 text-[12px] bg-red-200 shadow-md">
-              {errMessage7}
-            </div>
-          )}
-        </div>
+        <div className="p-2 flex justify-end"></div>
       </div>
     </>
   );
