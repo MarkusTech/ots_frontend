@@ -1877,20 +1877,20 @@ export default function SalesOrder() {
     }
   };
 
-  const handleSCPWD = () => {
-    if (cardCodedata == "C000112") {
-      if (scpdwdID == "") {
-        setshowMessage6(true);
-        seterrMessage6("SC/PWD ID is empty");
-        setTimeout(() => {
-          setshowMessage6(false);
-        }, 10000);
-      } else {
-        setshowMessage6(false);
-        // seterrMessage6("SC/PWD ID is empty.")
-      }
-    }
-  };
+  // const handleSCPWD = () => {
+  //   if (cardCodedata == "C000112") {
+  //     if (scpdwdID == "") {
+  //       setshowMessage6(true);
+  //       seterrMessage6("SC/PWD ID is empty");
+  //       setTimeout(() => {
+  //         setshowMessage6(false);
+  //       }, 10000);
+  //     } else {
+  //       setshowMessage6(false);
+  //       // seterrMessage6("SC/PWD ID is empty.")
+  //     }
+  //   }
+  // };
 
   const addSalesCrew = (salescrewx: any) => {
     const arrForsales = [...finalTotalList];
@@ -1919,69 +1919,69 @@ export default function SalesOrder() {
     console.log(arrForsales[0]["salescrew"], "sales");
   };
 
-  const handleTotal = () => {
-    let tempSum = 0;
-    let tempSum2 = 0;
-    let taxAmountSum = 0;
-    let salescrewfinal = "";
+  // const handleTotal = () => {
+  //   let tempSum = 0;
+  //   let tempSum2 = 0;
+  //   let taxAmountSum = 0;
+  //   let salescrewfinal = "";
 
-    const updatedTableData = [...tableData];
+  //   const updatedTableData = [...tableData];
 
-    let arrayLen = updatedTableData.length;
+  //   let arrayLen = updatedTableData.length;
 
-    const setmodeOfrelisingArrx = [...modeOfrelisingArr];
+  //   const setmodeOfrelisingArrx = [...modeOfrelisingArr];
 
-    for (let i = 0; i < arrayLen; i++) {
-      tempSum =
-        tempSum +
-        // wmr change
-        // updatedTableData[i]["sellingPriceBeforeDiscount"] *
-        //   parseInt(updatedTableData[i]["quantity"]);
-        updatedTableData[i]["sellingPriceBeforeDiscount"] *
-          Number(updatedTableData[i]["quantity"]);
-      tempSum2 = tempSum2 + updatedTableData[i]["grossTotal"];
-      taxAmountSum = taxAmountSum + updatedTableData[i]["taxAmount"];
-    }
+  //   for (let i = 0; i < arrayLen; i++) {
+  //     tempSum =
+  //       tempSum +
+  //       // wmr change
+  //       // updatedTableData[i]["sellingPriceBeforeDiscount"] *
+  //       //   parseInt(updatedTableData[i]["quantity"]);
+  //       updatedTableData[i]["sellingPriceBeforeDiscount"] *
+  //         Number(updatedTableData[i]["quantity"]);
+  //     tempSum2 = tempSum2 + updatedTableData[i]["grossTotal"];
+  //     taxAmountSum = taxAmountSum + updatedTableData[i]["taxAmount"];
+  //   }
 
-    const updatefinalTotalList = [...finalTotalList];
+  //   const updatefinalTotalList = [...finalTotalList];
 
-    updatefinalTotalList[0] = {
-      ...updatefinalTotalList[0],
-      totalVal: taxAmountSum,
-      totalBeforeVat: tempSum - taxAmountSum,
-      totalAfterVat: tempSum2,
-      modeReleasingIndividual: modeOfrelisingArr,
-    };
+  //   updatefinalTotalList[0] = {
+  //     ...updatefinalTotalList[0],
+  //     totalVal: taxAmountSum,
+  //     totalBeforeVat: tempSum - taxAmountSum,
+  //     totalAfterVat: tempSum2,
+  //     modeReleasingIndividual: modeOfrelisingArr,
+  //   };
 
-    setfinalTotalList(updatefinalTotalList);
-  };
+  //   setfinalTotalList(updatefinalTotalList);
+  // };
 
-  const handleModeOfPayment = () => {
-    const tabledataformodeofpayment = [...tableData];
-    const finalArr = [...finalTotalList];
+  // const handleModeOfPayment = () => {
+  //   const tabledataformodeofpayment = [...tableData];
+  //   const finalArr = [...finalTotalList];
 
-    console.log("tabledataformode", tabledataformodeofpayment[0]["cash"]);
+  //   console.log("tabledataformode", tabledataformodeofpayment[0]["cash"]);
 
-    if (
-      tabledataformodeofpayment[0]["cash"] == "N" &&
-      tabledataformodeofpayment[0]["creditcard"] == "N" &&
-      tabledataformodeofpayment[0]["debit"] == "N" &&
-      tabledataformodeofpayment[0]["pdc"] == "N" &&
-      tabledataformodeofpayment[0]["po"] == "N" &&
-      tabledataformodeofpayment[0]["datedCheck"] == "N" &&
-      tabledataformodeofpayment[0]["onlineTransfer"] == "N" &&
-      tabledataformodeofpayment[0]["onAccount"] == "N" &&
-      tabledataformodeofpayment[0]["cashOnDel"] == "N"
-    ) {
-      setshowMessage4(true);
-      seterrMessage4("Please select atleast 1 mode of payment");
-      setTimeout(() => {
-        setshowMessage4(false);
-      }, 10000);
-    } else {
-      setshowMessage3(false);
-    }
-  };
+  //   if (
+  //     tabledataformodeofpayment[0]["cash"] == "N" &&
+  //     tabledataformodeofpayment[0]["creditcard"] == "N" &&
+  //     tabledataformodeofpayment[0]["debit"] == "N" &&
+  //     tabledataformodeofpayment[0]["pdc"] == "N" &&
+  //     tabledataformodeofpayment[0]["po"] == "N" &&
+  //     tabledataformodeofpayment[0]["datedCheck"] == "N" &&
+  //     tabledataformodeofpayment[0]["onlineTransfer"] == "N" &&
+  //     tabledataformodeofpayment[0]["onAccount"] == "N" &&
+  //     tabledataformodeofpayment[0]["cashOnDel"] == "N"
+  //   ) {
+  //     setshowMessage4(true);
+  //     seterrMessage4("Please select atleast 1 mode of payment");
+  //     setTimeout(() => {
+  //       setshowMessage4(false);
+  //     }, 10000);
+  //   } else {
+  //     setshowMessage3(false);
+  //   }
+  // };
 
   type headerDetails = {
     DraftNum: number;
