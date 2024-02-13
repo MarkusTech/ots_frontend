@@ -111,7 +111,7 @@ export default function SalesOrder() {
   ]);
 
   const [formData, setFormData] = useState({
-    DraftNum: draftNumber, // no value on backend
+    DraftNum: "", // no value on backend
     EntryNum: "",
     DocNum: "",
     // Cutomer
@@ -195,6 +195,11 @@ export default function SalesOrder() {
     });
   };
 
+  const draftNumIncrementAPI = () => {
+    const apiUrl = "http://localhost:5000/api/v1/draftNumber";
+    axios.post(apiUrl);
+  };
+
   const sendDataToAPI = () => {
     const apiUrl = "http://localhost:5000/api/v1/ots";
     axios
@@ -202,6 +207,7 @@ export default function SalesOrder() {
       .then((response) => {
         console.log("Data sent successfully:", response.data);
         showAlert();
+        draftNumIncrementAPI();
       })
       .catch((error) => {
         console.error("Error sending data:", error);
@@ -224,25 +230,23 @@ export default function SalesOrder() {
     setScOrPwdField(event.target.value);
   };
 
-  // Draft Number
+  // Fetched DraftNumber
   useEffect(() => {
-    // Fetch draft number from the API
-    const fetchDraftNumber = async () => {
-      try {
-        const response = await axios.get(
-          "http://localhost:5000/api/v1/draftNumber"
-        );
-        // setDraftNumber(response.data.draftNumber);
-        const DraftNumberFinal = response.data.draftNumber;
-        setDraftNumber(DraftNumberFinal);
-        console.log("DraftNumber: ", DraftNumberFinal);
-      } catch (error) {
-        console.error("Error fetching draft number:", error);
-      }
-    };
+    axios
+      .get("http://localhost:5000/api/v1/draftNumber")
+      .then((res) => {
+        const draftNumber = res.data.draftNumber;
 
-    // Call the fetchDraftNumber function
-    fetchDraftNumber();
+        // Update DraftNum in the formData state
+        setFormData((prevFormData) => ({
+          ...prevFormData,
+          DraftNum: draftNumber.toString(),
+        }));
+
+        // Update DraftNumber in a separate state
+        setDraftNumber(draftNumber);
+      })
+      .catch((err) => console.log(err));
   }, []);
 
   // -------------------------------------- End of insertion --------------------------------------
