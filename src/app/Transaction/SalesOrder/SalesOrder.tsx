@@ -223,16 +223,25 @@ export default function SalesOrder() {
     setScOrPwdField(event.target.value);
   };
 
-  const [draftData, setDraftData] = useState([]);
+  // Draft Number
+  const [draftNumber, setDraftNumber] = useState(null);
+
   useEffect(() => {
-    axios
-      .get("http://localhost:5000/api/v1/draftNumber")
-      .then((res) => {
-        setDraftData(res.data.data);
-        console.log(draftData);
-      })
-      .catch((err) => console.log(err));
-  });
+    // Fetch draft number from the API
+    const fetchDraftNumber = async () => {
+      try {
+        const response = await axios.get(
+          "http://localhost:5000/api/v1/draftNumber"
+        );
+        setDraftNumber(response.data.draftNumber);
+      } catch (error) {
+        console.error("Error fetching draft number:", error);
+      }
+    };
+
+    // Call the fetchDraftNumber function
+    fetchDraftNumber();
+  }, []);
 
   // -------------------------------------- End of insertion --------------------------------------
 
@@ -2411,7 +2420,11 @@ export default function SalesOrder() {
           <div className="grid grid-cols-2">
             <label htmlFor="documentnumber">Draft Number</label>
             <div>
-              <input type="text" readOnly />
+              <input
+                type="text"
+                readOnly
+                value={draftNumber !== null ? draftNumber : ""}
+              />
             </div>
           </div>
 
