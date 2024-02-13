@@ -150,8 +150,6 @@ export default function SalesOrder() {
     DateUpdated: "",
   });
 
-  const [draftData, setDraftData] = useState([]);
-
   // wmr code
   const [isPaymentCash, setIsPaymentCash] = useState("N");
   const [isPaymentCreditCard, setIsPaymentCreditCard] = useState("N");
@@ -225,11 +223,12 @@ export default function SalesOrder() {
     setScOrPwdField(event.target.value);
   };
 
+  const [draftData, setDraftData] = useState([]);
   useEffect(() => {
     axios
       .get("http://localhost:5000/api/v1/draftNumber")
       .then((res) => {
-        setDraftData(res.data.DraftNum);
+        setDraftData(res.data.data);
         console.log(draftData);
       })
       .catch((err) => console.log(err));
