@@ -110,7 +110,7 @@ export default function SalesOrder() {
   ]);
 
   const [formData, setFormData] = useState({
-    DraftNum: 306, // no value on backend
+    DraftNum: 307, // no value on backend
     EntryNum: "",
     DocNum: "",
     // Cutomer
@@ -149,6 +149,8 @@ export default function SalesOrder() {
     UpdatedBy: "",
     DateUpdated: "",
   });
+
+  const [draftData, setDraftData] = useState([]);
 
   // wmr code
   const [isPaymentCash, setIsPaymentCash] = useState("N");
@@ -311,6 +313,10 @@ export default function SalesOrder() {
       totalamoutdue: 0,
     },
   ]);
+
+  const onAddDraftNum = async () => {
+    const draft = await axios.get("http://localhost:5000/api/v1/draftNumber");
+  };
 
   const onAddHeader = async () => {
     const customers = await axios.get(`${fetchAPI}/customer`);
@@ -2396,12 +2402,14 @@ export default function SalesOrder() {
               </Draggable>
             )}
           </div>
+
           <div className="grid grid-cols-2">
             <label htmlFor="documentnumber">Draft Number</label>
             <div>
-              <input type="text" readOnly />
+              <input type="text" readOnly value={draftNum} />
             </div>
           </div>
+
           <div className="grid grid-cols-2">
             <label htmlFor="entrynumber">Entry Number</label>
             <div>
