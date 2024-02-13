@@ -174,6 +174,7 @@ export default function SalesOrder() {
       Reference: customerReference,
       Remarks: remarksField,
       SCPWDIdNo: scOrPwdField,
+      // Payment Method
       Cash: isPaymentCash,
       CreditCard: isPaymentCreditCard,
       DebitCard: isPaymentDebitCard,
