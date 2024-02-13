@@ -927,23 +927,6 @@ export default function SalesOrder() {
     );
   };
 
-  // const handleDiscountRateChange = (rowIndex: any, discountRates: any) => {
-  //   const updatedTableData = [...tableData];
-  //   const item = updatedTableData[rowIndex];
-
-  //   const amount = (discountRates / 100) * item.sellingPriceBeforeDiscount;
-
-  //   const finalAmount = item.sellingPriceBeforeDiscount - amount;
-
-  //   updatedTableData[rowIndex] = {
-  //     ...item,
-  //     discountRate: discountRates,
-  //     sellingPriceAfterDiscount: finalAmount,
-  //     grossTotal: finalAmount * item.quantity,
-  //   };
-  //   setTableData(updatedTableData);
-  // };
-
   let localCurrency = new Intl.NumberFormat("en-PH", {
     style: "currency",
     currency: "PHP", // Philippines currency code for Philippine Peso
