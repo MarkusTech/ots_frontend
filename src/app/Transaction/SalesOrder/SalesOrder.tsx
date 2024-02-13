@@ -195,11 +195,6 @@ export default function SalesOrder() {
     });
   };
 
-  const draftNumIncrementAPI = () => {
-    const apiUrl = "http://localhost:5000/api/v1/draftNumber";
-    axios.post(apiUrl);
-  };
-
   const sendDataToAPI = () => {
     const apiUrl = "http://localhost:5000/api/v1/ots";
     axios
@@ -248,6 +243,12 @@ export default function SalesOrder() {
       })
       .catch((err) => console.log(err));
   }, []);
+
+  // Post Increment Draft Number
+  const draftNumIncrementAPI = () => {
+    const apiUrl = "http://localhost:5000/api/v1/draftNumber";
+    axios.post(apiUrl);
+  };
 
   // -------------------------------------- End of insertion --------------------------------------
 
