@@ -204,7 +204,7 @@ export default function SalesOrder() {
       });
   };
 
-  // Handle Draft Submit
+  // Handle Draft Submit && Handle Payment Validation
   const handleSubmit = () => {
     if (
       isPaymentCash == "N" &&
