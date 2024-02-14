@@ -75,7 +75,7 @@ export default function SalesOrder() {
     timeZone: "Asia/Manila",
   });
 
-  // -------------------------------------- Insertion --------------------------------------
+  // -------------------------------------- WMR CODE Insertion --------------------------------------
   const [walkInCustomer, setWalkingCustomer] = useState("");
   const [customerReference, setCustomerReference] = useState("");
   const [remarksField, setRemarksField] = useState("");
@@ -166,7 +166,7 @@ export default function SalesOrder() {
       OnAccount: setOnAccount,
       COD: isPaymentCOD,
     });
-  });
+  }, []);
 
   // Sweet alert
   const showAlert = () => {
@@ -250,7 +250,7 @@ export default function SalesOrder() {
     axios.post(apiUrl);
   };
 
-  // -------------------------------------- End of insertion --------------------------------------
+  // -------------------------------------- End of WMR CODE insertion --------------------------------------
 
   let customerData2 = [{}];
   let currentCustomerData = customerList;
