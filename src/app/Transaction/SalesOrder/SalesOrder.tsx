@@ -206,7 +206,21 @@ export default function SalesOrder() {
 
   // Handle Draft Submit
   const handleSubmit = () => {
-    showAlert();
+    if (
+      isPaymentCash == "N" &&
+      isPaymentCreditCard == "N" &&
+      isPaymentDebitCard == "N" &&
+      isPaymentODC == "N" &&
+      isPaymentPDC == "N" &&
+      isPaymentPO == "N" &&
+      isPaymentOnlineTransfer == "N" &&
+      setOnAccount == "N" &&
+      isPaymentCOD == "N"
+    ) {
+      alert("Need to Select Payment method");
+    } else {
+      showAlert();
+    }
   };
 
   const handleWalkinCustomerChange = (event: any) => {
