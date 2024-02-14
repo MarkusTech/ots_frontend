@@ -64,6 +64,24 @@ export default function SalesOrder() {
   const [ccstatus, setccstatus] = useState(false);
   // End of Payment useState
 
+  // Error message useState()
+  const [showMessage, setshowMessage] = useState(false);
+  const [showMessage2, setshowMessage2] = useState(false);
+  const [showMessage3, setshowMessage3] = useState(false);
+  const [showMessage4, setshowMessage4] = useState(false);
+  const [showMessage5, setshowMessage5] = useState(false);
+  const [showMessage6, setshowMessage6] = useState(false);
+  const [showMessage7, setshowMessage7] = useState(false);
+
+  const [errMessage, seterrMessage] = useState("");
+  const [errMessage2, seterrMessage2] = useState("");
+  const [errMessage3, seterrMessage3] = useState("");
+  const [errMessage4, seterrMessage4] = useState("");
+  const [errMessage5, seterrMessage5] = useState("");
+  const [errMessage6, seterrMessage6] = useState("");
+  const [errMessage7, seterrMessage7] = useState("");
+  // End of Error Message useState()
+
   const warehouseCode = "GSCNAPGS";
   const brandID = 4;
   const priceListNum = 14;
@@ -363,15 +381,27 @@ export default function SalesOrder() {
     settaxRateData(taxrate.data);
   };
 
-  // useEffect(() => {
-  //   onAddHeader();
-  //   onAddheaderItems();
-  // }, []);
+  // const onAddLowerBound = async (
+  //   bid: any,
+  //   taxcodex: any,
+  //   itemcodex: any,
+  //   whscodex: any,
+  //   indexNum: any,
+  //   uomLoweBound: any
+  // ) => {
+  //   const lowerbound = await axios.get(
+  //     `${fetchAPI}/lowerbound/${bid}/${taxcodex}/${itemcodex}/${whscodex}/${uomLoweBound}`
+  //   );
+
+  //   let lowerBoundArr = lowerbound.data;
+
+  //   setLowerBoundData(lowerBoundArr[indexNum]);
+  // };
 
   useEffect(() => {
     onAddHeader();
     onAddheaderItems();
-  });
+  }, []);
 
   const handleAddRow = (rowIndex: any, fieldName: any) => {
     setTableData((prevData) => [
@@ -863,8 +893,9 @@ export default function SalesOrder() {
       let unitprice = item.sellingPriceAfterDiscountTemp / (1 + 0.12);
       let taxAmountx = item.sellingPriceAfterDiscountTemp - unitprice;
 
-      setTotalVat(taxAmountx.toString());
-      // setTotalVat(taxAmountx); // wmr change
+      setTotalVat(taxAmountx);
+
+      // console.log(taxAmountx, "hehe");
 
       console.log(
         "selPrice:",
@@ -912,6 +943,23 @@ export default function SalesOrder() {
       stocksAvailabilityArr[0]["StockAvailable"]
     );
   };
+
+  // const handleDiscountRateChange = (rowIndex: any, discountRates: any) => {
+  //   const updatedTableData = [...tableData];
+  //   const item = updatedTableData[rowIndex];
+
+  //   const amount = (discountRates / 100) * item.sellingPriceBeforeDiscount;
+
+  //   const finalAmount = item.sellingPriceBeforeDiscount - amount;
+
+  //   updatedTableData[rowIndex] = {
+  //     ...item,
+  //     discountRate: discountRates,
+  //     sellingPriceAfterDiscount: finalAmount,
+  //     grossTotal: finalAmount * item.quantity,
+  //   };
+  //   setTableData(updatedTableData);
+  // };
 
   let localCurrency = new Intl.NumberFormat("en-PH", {
     style: "currency",
@@ -1012,16 +1060,16 @@ export default function SalesOrder() {
   const changeManualModRel = (moderel: any) => {
     const updatedTableData = [...tableData];
 
-    // console.log(moderel);
+    console.log(moderel);
 
-    // const item = updatedTableData[selectedRowIndex];
+    const item = updatedTableData[selectedRowIndex];
 
-    // updatedTableData[selectedRowIndex] = {
-    //   ...item,
-    //   modeOfReleasing: moderel,
-    // };
+    updatedTableData[selectedRowIndex] = {
+      ...item,
+      modeOfReleasing: moderel,
+    };
 
-    // console.log(item);
+    console.log(item);
 
     setTableData(updatedTableData);
     setOpenModRelTablePanel(!openModRelTablePanel);
@@ -1759,6 +1807,112 @@ export default function SalesOrder() {
     }
   });
 
+  // handle to Save to Draft
+
+  // const handleSaveDraft = () => {
+  //   const finalTotalListArr = [...finalTotalList];
+  //   const arrList = finalTotalListArr[0];
+
+  //   const allItemsArr = [...tableData];
+  //   const allItemsArrLen = allItemsArr.length;
+
+  //   let countAllreleasing = 0;
+
+  //   console.log("mode of rel", finalTotalList);
+
+  //   for (let i = 0; i < allItemsArrLen; i++) {
+  //     console.log(allItemsArr[i]["modeOfReleasing"]);
+  //     if (allItemsArr[i]["modeOfReleasing"] == "") {
+  //     } else {
+  //       countAllreleasing++;
+  //     }
+  //   }
+
+  //   if (countAllreleasing == allItemsArrLen) {
+  //     setshowMessage2(false);
+  //   } else {
+  //     setshowMessage2(true);
+  //     seterrMessage2("Please make sure all products have mode of releasing");
+  //     setTimeout(() => {
+  //       setshowMessage2(false);
+  //     }, 10000);
+  //   }
+
+  //   if (arrList.totalVal == 0) {
+  //     setshowMessage(true);
+  //     seterrMessage("Please add atleast 1 product");
+  //     setTimeout(() => {
+  //       setshowMessage(false);
+  //     }, 10000);
+  //   }
+
+  //   let countStatusInventory = 0;
+
+  //   for (let ii = 0; ii < allItemsArrLen; ii++) {
+  //     if (allItemsArr[ii]["inventoryStatus"] == "Out of Stocks") {
+  //       countStatusInventory++;
+  //     }
+  //   }
+
+  //   if (countStatusInventory <= 0) {
+  //     setshowMessage3(false);
+  //   } else {
+  //     setshowMessage3(true);
+  //     seterrMessage3("Please make sure all products are available");
+  //     setTimeout(() => {
+  //       setshowMessage3(false);
+  //     }, 10000);
+  //   }
+
+  //   handleModeOfPayment();
+  //   handleTotal();
+  //   handleSalesCrew();
+  //   handleSCPWD();
+  //   handleSCPWDStatus();
+  // };
+
+  //end  handle to Save to Draft
+
+  // const handleSCPWDStatus = () => {
+  //   const allItemsArr = [...tableData];
+  //   const allItemsArrLen = allItemsArr.length;
+
+  //   let statuscount = 0;
+
+  //   for (let i = 0; i < allItemsArrLen; i++) {
+  //     if (allItemsArr[i]["scPwdDiscount"] == "N") {
+  //       statuscount = statuscount + 1;
+  //     }
+  //   }
+
+  //   if (cardCodedata == "C000112") {
+  //     if (statuscount > 0) {
+  //       setshowMessage7(true);
+  //       seterrMessage7("Some items are not applicable for discounting.");
+  //       setTimeout(() => {
+  //         setshowMessage7(false);
+  //       }, 10000);
+  //     } else {
+  //       setshowMessage7(false);
+  //     }
+  //   }
+  // };
+
+  // const handleSCPWD = () => {
+  //   if (cardCodedata == "C000112") {
+  //     if (scpdwdID == "") {
+  //       setshowMessage6(true);
+  //       seterrMessage6("SC/PWD ID is empty");
+  //       setTimeout(() => {
+  //         setshowMessage6(false);
+  //       }, 10000);
+  //     } else {
+  //       setshowMessage6(false);
+  //       // seterrMessage6("SC/PWD ID is empty.")
+  //     }
+  //   }
+  // };
+
   const addSalesCrew = (salescrewx: any) => {
     const arrForsales = [...finalTotalList];
 
@@ -1769,6 +1923,86 @@ export default function SalesOrder() {
 
     setfinalTotalList(arrForsales);
   };
+
+  const handleSalesCrew = () => {
+    const arrForsales = [...finalTotalList];
+
+    if (arrForsales[0]["salescrew"] == "") {
+      setshowMessage5(true);
+      seterrMessage5("Please select salescrew");
+      setTimeout(() => {
+        setshowMessage5(false);
+      }, 10000);
+    } else {
+      setshowMessage5(false);
+    }
+
+    console.log(arrForsales[0]["salescrew"], "sales");
+  };
+
+  // const handleTotal = () => {
+  //   let tempSum = 0;
+  //   let tempSum2 = 0;
+  //   let taxAmountSum = 0;
+  //   let salescrewfinal = "";
+
+  //   const updatedTableData = [...tableData];
+
+  //   let arrayLen = updatedTableData.length;
+
+  //   const setmodeOfrelisingArrx = [...modeOfrelisingArr];
+
+  //   for (let i = 0; i < arrayLen; i++) {
+  //     tempSum =
+  //       tempSum +
+  //       // wmr change
+  //       // updatedTableData[i]["sellingPriceBeforeDiscount"] *
+  //       //   parseInt(updatedTableData[i]["quantity"]);
+  //       updatedTableData[i]["sellingPriceBeforeDiscount"] *
+  //         Number(updatedTableData[i]["quantity"]);
+  //     tempSum2 = tempSum2 + updatedTableData[i]["grossTotal"];
+  //     taxAmountSum = taxAmountSum + updatedTableData[i]["taxAmount"];
+  //   }
+
+  //   const updatefinalTotalList = [...finalTotalList];
+
+  //   updatefinalTotalList[0] = {
+  //     ...updatefinalTotalList[0],
+  //     totalVal: taxAmountSum,
+  //     totalBeforeVat: tempSum - taxAmountSum,
+  //     totalAfterVat: tempSum2,
+  //     modeReleasingIndividual: modeOfrelisingArr,
+  //   };
+
+  //   setfinalTotalList(updatefinalTotalList);
+  // };
+
+  // const handleModeOfPayment = () => {
+  //   const tabledataformodeofpayment = [...tableData];
+  //   const finalArr = [...finalTotalList];
+
+  //   console.log("tabledataformode", tabledataformodeofpayment[0]["cash"]);
+
+  //   if (
+  //     tabledataformodeofpayment[0]["cash"] == "N" &&
+  //     tabledataformodeofpayment[0]["creditcard"] == "N" &&
+  //     tabledataformodeofpayment[0]["debit"] == "N" &&
+  //     tabledataformodeofpayment[0]["pdc"] == "N" &&
+  //     tabledataformodeofpayment[0]["po"] == "N" &&
+  //     tabledataformodeofpayment[0]["datedCheck"] == "N" &&
+  //     tabledataformodeofpayment[0]["onlineTransfer"] == "N" &&
+  //     tabledataformodeofpayment[0]["onAccount"] == "N" &&
+  //     tabledataformodeofpayment[0]["cashOnDel"] == "N"
+  //   ) {
+  //     setshowMessage4(true);
+  //     seterrMessage4("Please select atleast 1 mode of payment");
+  //     setTimeout(() => {
+  //       setshowMessage4(false);
+  //     }, 10000);
+  //   } else {
+  //     setshowMessage3(false);
+  //   }
+  // };
 
   type headerDetails = {
     DraftNum: number;
@@ -1886,6 +2120,11 @@ export default function SalesOrder() {
       .then((response) => {
         console.log(response.data);
       });
+  };
+
+  const SCPWDinput = (id: any) => {
+    console.log("SC", id);
+    setscpdwdID(id);
   };
 
   // -------------------------------------------------------------------------------
@@ -2291,8 +2530,7 @@ export default function SalesOrder() {
                   <td>{rowData.itemName}</td>
 
                   <td>
-                    {/* {rowData.itemCode == 0 ? ( "WMR change"*/}
-                    {rowData.itemCode == "0" ? (
+                    {rowData.itemCode == 0 ? (
                       ""
                     ) : (
                       <div className="grid grid-cols-2">
@@ -3083,7 +3321,43 @@ export default function SalesOrder() {
             Commit
           </button>
         </div>
-        <div className="p-2 flex justify-end"></div>
+        <div className="p-2 flex justify-end">
+          {showMessage && (
+            <div className="p-2 mt-2 mb-1 mr-2 text-[12px] bg-red-200 shadow-md">
+              {errMessage}
+            </div>
+          )}
+          {showMessage2 && (
+            <div className="p-2 mt-2 mb-1 mr-2 text-[12px] bg-red-200 shadow-md">
+              {errMessage2}
+            </div>
+          )}
+          {showMessage3 && (
+            <div className="p-2 mt-2 mb-1 mr-2 text-[12px] bg-red-200 shadow-md">
+              {errMessage3}
+            </div>
+          )}
+          {showMessage4 && (
+            <div className="p-2 mt-2 mb-1 mr-2 text-[12px] bg-red-200 shadow-md">
+              {errMessage4}
+            </div>
+          )}
+          {showMessage5 && (
+            <div className="p-2 mt-2 mb-1 mr-2 text-[12px] bg-red-200 shadow-md">
+              {errMessage5}
+            </div>
+          )}
+          {showMessage6 && (
+            <div className="p-2 mt-2 mb-1 mr-2 text-[12px] bg-red-200 shadow-md">
+              {errMessage6}
+            </div>
+          )}
+          {showMessage7 && (
+            <div className="p-2 mt-2 mb-1 mr-2 text-[12px] bg-red-200 shadow-md">
+              {errMessage7}
+            </div>
+          )}
+        </div>
       </div>
     </>
   );
