@@ -189,10 +189,10 @@ export default function SalesOrder() {
     });
   };
 
-  const expressjsAPI = "http://localhost:5000/api/v1/ots";
+  const wmrAPI = "http://localhost:5000/api/v1/ots";
   const productionAPI = "172.16.10.217:3002/so-header/";
   const sendDataToAPI = () => {
-    const apiUrl = productionAPI;
+    const apiUrl = wmrAPI;
     axios
       .post(apiUrl, formData)
       .then((response) => {
