@@ -1007,7 +1007,7 @@ export default function SalesOrder() {
   const changeManualModRel = (moderel: any) => {
     const updatedTableData = [...tableData];
 
-    console.log(moderel);
+    // console.log(moderel);
 
     // const item = updatedTableData[selectedRowIndex];
 
