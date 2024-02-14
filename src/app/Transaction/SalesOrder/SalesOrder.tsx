@@ -168,13 +168,28 @@ export default function SalesOrder() {
     });
   });
 
+  // Handle Draft Submit
+  const handleSubmit = () => {
+    showAlert();
+  };
+
+  // Sweet alert
   const showAlert = () => {
     Swal.fire({
-      text: "Successfully saved to draft",
-      icon: "success",
-    }).then(() => {
-      // Reload the window after the user clicks "OK"
-      window.location.reload();
+      title: "Do you want to save the changes?",
+      showDenyButton: true,
+      showCancelButton: true,
+      confirmButtonText: "Save",
+      denyButtonText: `Don't save`,
+    }).then((result) => {
+      /* Read more about isConfirmed, isDenied below */
+      if (result.isConfirmed) {
+        Swal.fire("Saved!", "", "success");
+        sendDataToAPI();
+        window.location.reload();
+      } else if (result.isDenied) {
+        Swal.fire("Changes are not saved", "", "info");
+      }
     });
   };
 
@@ -184,7 +199,6 @@ export default function SalesOrder() {
       .post(apiUrl, formData)
       .then((response) => {
         console.log("Data sent successfully:", response.data);
-        showAlert();
         draftNumIncrementAPI();
       })
       .catch((error) => {
@@ -3071,7 +3085,7 @@ export default function SalesOrder() {
           <button
             className="p-2 mt-2 mb-1 mr-2 text-[12px] bg-[#F4D674]"
             // onClick={handleSaveDraft}
-            onClick={sendDataToAPI}
+            onClick={handleSubmit}
           >
             Save as draft
           </button>
