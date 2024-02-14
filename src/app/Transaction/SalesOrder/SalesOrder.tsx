@@ -2335,8 +2335,10 @@ export default function SalesOrder() {
                     )}
                   </td>
 
+                  {/* UOM Conversion */}
                   <td>{rowData.uom == "" ? "" : rowData.uomConversion}</td>
 
+                  {/* Handle Exlude BO */}
                   <td>
                     <select
                       name=""
