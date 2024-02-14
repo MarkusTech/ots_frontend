@@ -2281,6 +2281,7 @@ export default function SalesOrder() {
             <tbody>
               {tableData.map((rowData, rowIndex) => (
                 <tr className="trcus" key={rowIndex}>
+                  {/* Handle Remove Row */}
                   <td>
                     <button
                       onClick={() =>
@@ -2290,6 +2291,8 @@ export default function SalesOrder() {
                       <span className="text-md text-red-600">❌</span>
                     </button>
                   </td>
+
+                  {/* Item Code */}
                   <td>
                     <div className="flex gap-3 justify-end">
                       <div>{rowData.itemCode}</div>
@@ -2305,8 +2308,11 @@ export default function SalesOrder() {
                       </div>
                     </div>
                   </td>
+
+                  {/* Item Name */}
                   <td>{rowData.itemName}</td>
 
+                  {/* Unit of Measurement */}
                   <td>
                     {rowData.itemCode == 0 ? (
                       ""
@@ -2328,7 +2334,9 @@ export default function SalesOrder() {
                       </div>
                     )}
                   </td>
+
                   <td>{rowData.uom == "" ? "" : rowData.uomConversion}</td>
+
                   <td>
                     <select
                       name=""
@@ -2343,6 +2351,7 @@ export default function SalesOrder() {
                       <option value="Y">Y</option>
                     </select>
                   </td>
+
                   <td>
                     {rowData.uom == "" ? (
                       ""
