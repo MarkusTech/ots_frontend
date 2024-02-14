@@ -643,6 +643,7 @@ export default function SalesOrder() {
     onAddHeaderUOM(itemCode, rowIndex);
   };
 
+  // handle Warehouse
   const openLocationTable = (
     rowIndex: any,
     itemcode: any,
@@ -2354,6 +2355,7 @@ export default function SalesOrder() {
                     </select>
                   </td>
 
+                  {/* Warehouse */}
                   <td>
                     {rowData.uom == "" ? (
                       ""
