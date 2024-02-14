@@ -176,19 +176,18 @@ export default function SalesOrder() {
   // Sweet alert
   const showAlert = () => {
     Swal.fire({
-      title: "Do you want to save the changes?",
+      title: "Do you want to save this Draft?",
       showDenyButton: true,
       showCancelButton: true,
       confirmButtonText: "Save",
       denyButtonText: `Don't save`,
     }).then((result) => {
-      /* Read more about isConfirmed, isDenied below */
       if (result.isConfirmed) {
         Swal.fire("Saved!", "", "success");
         sendDataToAPI();
         window.location.reload();
       } else if (result.isDenied) {
-        Swal.fire("Changes are not saved", "", "info");
+        Swal.fire("Draft is not saved", "", "info");
       }
     });
   };
