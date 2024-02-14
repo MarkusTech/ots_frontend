@@ -168,11 +168,6 @@ export default function SalesOrder() {
     });
   });
 
-  // Handle Draft Submit
-  const handleSubmit = () => {
-    showAlert();
-  };
-
   // Sweet alert
   const showAlert = () => {
     Swal.fire({
@@ -187,7 +182,7 @@ export default function SalesOrder() {
         sendDataToAPI();
         setTimeout(() => {
           window.location.reload();
-        }, 1000); // 1000 milliseconds = 1 second
+        }, 3000); // 1000 milliseconds = 1 second
       } else if (result.isDenied) {
         Swal.fire("Draft is not saved", "", "info");
       }
@@ -207,6 +202,11 @@ export default function SalesOrder() {
       .catch((error) => {
         console.error("Error sending data:", error);
       });
+  };
+
+  // Handle Draft Submit
+  const handleSubmit = () => {
+    showAlert();
   };
 
   const handleWalkinCustomerChange = (event: any) => {
