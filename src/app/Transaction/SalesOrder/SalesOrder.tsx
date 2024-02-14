@@ -185,15 +185,19 @@ export default function SalesOrder() {
       if (result.isConfirmed) {
         Swal.fire("Saved!", "", "success");
         sendDataToAPI();
-        window.location.reload();
+        setTimeout(() => {
+          window.location.reload();
+        }, 1000); // 1000 milliseconds = 1 second
       } else if (result.isDenied) {
         Swal.fire("Draft is not saved", "", "info");
       }
     });
   };
 
+  const expressjsAPI = "http://localhost:5000/api/v1/ots";
+  const productionAPI = "172.16.10.217:3002/so-header/";
   const sendDataToAPI = () => {
-    const apiUrl = "http://localhost:5000/api/v1/ots";
+    const apiUrl = expressjsAPI;
     axios
       .post(apiUrl, formData)
       .then((response) => {
