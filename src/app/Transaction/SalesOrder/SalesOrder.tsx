@@ -217,7 +217,11 @@ export default function SalesOrder() {
       setOnAccount == "N" &&
       isPaymentCOD == "N"
     ) {
-      alert("Need to Select Payment method");
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Need to Select Payment Method!",
+      });
     } else {
       showAlert();
     }
