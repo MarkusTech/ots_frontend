@@ -363,10 +363,15 @@ export default function SalesOrder() {
     settaxRateData(taxrate.data);
   };
 
+  // useEffect(() => {
+  //   onAddHeader();
+  //   onAddheaderItems();
+  // }, []);
+
   useEffect(() => {
     onAddHeader();
     onAddheaderItems();
-  }, []);
+  });
 
   const handleAddRow = (rowIndex: any, fieldName: any) => {
     setTableData((prevData) => [
