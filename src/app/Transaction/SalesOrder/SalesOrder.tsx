@@ -182,7 +182,7 @@ export default function SalesOrder() {
         sendDataToAPI();
         setTimeout(() => {
           window.location.reload();
-        }, 3000); // 1000 milliseconds = 1 second
+        }, 2000); // 1000 milliseconds = 1 second
       } else if (result.isDenied) {
         Swal.fire("Draft is not saved", "", "info");
       }
