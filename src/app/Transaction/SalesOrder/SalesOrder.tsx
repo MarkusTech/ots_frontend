@@ -1844,7 +1844,6 @@ export default function SalesOrder() {
   };
 
   // comit
-
   const commit = async () => {
     const headerFinal: headerDetails = {
       DraftNum: 0,
