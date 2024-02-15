@@ -181,7 +181,7 @@ export default function SalesOrder() {
         Swal.fire("Saved!", "", "success");
         sendDataToAPI();
         setTimeout(() => {
-          window.location.reload();
+          // window.location.reload();
         }, 2000); // 1000 milliseconds = 1 second
       } else if (result.isDenied) {
         Swal.fire("Draft is not saved", "", "info");
@@ -211,12 +211,6 @@ export default function SalesOrder() {
         icon: "error",
         title: "Oops...",
         text: "Need to Select Customer First!",
-      });
-    } else if (formData.TotalAmtDue == "") {
-      Swal.fire({
-        icon: "error",
-        title: "Oops...",
-        text: "No Product Selected!",
       });
     } else if (
       isPaymentCash == "N" &&
