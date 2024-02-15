@@ -206,7 +206,13 @@ export default function SalesOrder() {
 
   // Handle Draft Submit && Handle Payment Validation
   const handleSubmit = () => {
-    if (
+    if (formData.CustomerCode == "") {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Need to Select Customer First!",
+      });
+    } else if (
       isPaymentCash == "N" &&
       isPaymentCreditCard == "N" &&
       isPaymentDebitCard == "N" &&
