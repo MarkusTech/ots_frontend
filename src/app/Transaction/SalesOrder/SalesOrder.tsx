@@ -181,7 +181,15 @@ export default function SalesOrder() {
         Swal.fire("Saved!", "", "success");
         sendDataToAPI();
         setTimeout(() => {
-          // window.location.reload();
+          // to be deleted
+          Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: "Wenn Works!",
+          });
+          setTimeout(() => {
+            window.location.reload();
+          }, 2000);
         }, 2000); // 1000 milliseconds = 1 second
       } else if (result.isDenied) {
         Swal.fire("Draft is not saved", "", "info");
