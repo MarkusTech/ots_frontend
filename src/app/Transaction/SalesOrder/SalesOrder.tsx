@@ -189,7 +189,7 @@ export default function SalesOrder() {
     });
   };
 
-  const wmrAPI = "http://localhost:5000/api/v1/ots";
+  const wmrAPI = "http://172.16.10.169:5000/api/v1/ots"; // wmr IP
   const productionAPI = "172.16.10.217:3002/so-header/";
   const sendDataToAPI = () => {
     const apiUrl = wmrAPI;
@@ -258,7 +258,7 @@ export default function SalesOrder() {
   // Fetched DraftNumber
   useEffect(() => {
     axios
-      .get("http://localhost:5000/api/v1/draftNumber")
+      .get("http://172.16.10.169:5000/api/v1/draftNumber")
       .then((res) => {
         const draftNumber = res.data.draftNumber;
 
@@ -276,7 +276,7 @@ export default function SalesOrder() {
 
   // Post Increment Draft Number
   const draftNumIncrementAPI = () => {
-    const apiUrl = "http://localhost:5000/api/v1/draftNumber";
+    const apiUrl = "http://172.16.10.169:5000/api/v1/draftNumber";
     axios.post(apiUrl);
   };
 
