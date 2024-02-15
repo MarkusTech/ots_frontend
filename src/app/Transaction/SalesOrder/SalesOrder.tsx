@@ -166,7 +166,7 @@ export default function SalesOrder() {
       OnAccount: setOnAccount,
       COD: isPaymentCOD,
     });
-  }, []);
+  });
 
   // Sweet alert
   const showAlert = () => {
