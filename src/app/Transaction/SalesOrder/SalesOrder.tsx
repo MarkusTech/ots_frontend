@@ -44,8 +44,8 @@ export default function SalesOrder() {
   const [totalVat, setTotalVat] = useState("");
   const [showSCPDW, setShowSCPWD] = useState(false);
   const [varSCPWDdisc, setVarSCPWDdisc] = useState(0);
-  const [SCPWDdata, setSCPWDdata] = useState("0");
-  const [totalAmoutDueData, settotalAmoutDueData] = useState("0");
+  const [SCPWDdata, setSCPWDdata] = useState("");
+  const [totalAmoutDueData, settotalAmoutDueData] = useState("");
 
   const [scpdwdID, setscpdwdID] = useState("");
 
@@ -211,6 +211,12 @@ export default function SalesOrder() {
         icon: "error",
         title: "Oops...",
         text: "Need to Select Customer First!",
+      });
+    } else if (formData.TotalAmtDue == "") {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "No Product Selected!",
       });
     } else if (
       isPaymentCash == "N" &&
