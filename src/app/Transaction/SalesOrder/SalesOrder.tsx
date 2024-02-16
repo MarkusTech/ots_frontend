@@ -303,39 +303,39 @@ export default function SalesOrder() {
 
   // Handle Draft Submit && Handle Payment Validation
   const handleSubmit = () => {
-    if (true) {
+    // if (true) {
+    //   Swal.fire({
+    //     icon: "error",
+    //     title: "Oops...",
+    //     text: "Please add atleast 1 product",
+    //   });
+    // }
+
+    if (formData.CustomerCode == "") {
       Swal.fire({
         icon: "error",
         title: "Oops...",
-        text: "Please add atleast 1 product",
+        text: "Need to Select Customer First!",
       });
+    } else if (
+      isPaymentCash == "N" &&
+      isPaymentCreditCard == "N" &&
+      isPaymentDebitCard == "N" &&
+      isPaymentODC == "N" &&
+      isPaymentPDC == "N" &&
+      isPaymentPO == "N" &&
+      isPaymentOnlineTransfer == "N" &&
+      setOnAccount == "N" &&
+      isPaymentCOD == "N"
+    ) {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Need to Select Payment Method!",
+      });
+    } else {
+      showAlert();
     }
-
-    // if (formData.CustomerCode == "") {
-    //   Swal.fire({
-    //     icon: "error",
-    //     title: "Oops...",
-    //     text: "Need to Select Customer First!",
-    //   });
-    // } else if (
-    //   isPaymentCash == "N" &&
-    //   isPaymentCreditCard == "N" &&
-    //   isPaymentDebitCard == "N" &&
-    //   isPaymentODC == "N" &&
-    //   isPaymentPDC == "N" &&
-    //   isPaymentPO == "N" &&
-    //   isPaymentOnlineTransfer == "N" &&
-    //   setOnAccount == "N" &&
-    //   isPaymentCOD == "N"
-    // ) {
-    //   Swal.fire({
-    //     icon: "error",
-    //     title: "Oops...",
-    //     text: "Need to Select Payment Method!",
-    //   });
-    // } else {
-    //   showAlert();
-    // }
   };
   // --------------------------------------- End of Product Details insertion ---------------------------------------
   let customerData2 = [{}];
