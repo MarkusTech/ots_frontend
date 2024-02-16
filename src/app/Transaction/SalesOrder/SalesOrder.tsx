@@ -75,7 +75,7 @@ export default function SalesOrder() {
     timeZone: "Asia/Manila",
   });
 
-  // -------------------------------------- WMR CODE Insertion --------------------------------------
+  // -------------------------------------- <WMR CODE> Header Insertion --------------------------------------
   const [walkInCustomer, setWalkingCustomer] = useState("");
   const [customerReference, setCustomerReference] = useState("");
   const [remarksField, setRemarksField] = useState("");
@@ -282,7 +282,7 @@ export default function SalesOrder() {
     axios.post(apiUrl);
   };
 
-  // -------------------------------------- End of WMR CODE insertion --------------------------------------
+  // -------------------------------------- End of <WMR CODE> header insertion --------------------------------------
 
   let customerData2 = [{}];
   let currentCustomerData = customerList;
