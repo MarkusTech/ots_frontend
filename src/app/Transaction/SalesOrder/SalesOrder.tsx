@@ -215,6 +215,24 @@ export default function SalesOrder() {
 
   // Handle Draft Submit && Handle Payment Validation
   const handleSubmit = () => {
+    const finalTotalListArr = [...finalTotalList];
+    const arrList = finalTotalListArr[0];
+
+    const allItemsArr = [...tableData];
+    const allItemsArrLen = allItemsArr.length;
+
+    let countAllreleasing = 0;
+
+    console.log("mode of rel", finalTotalList);
+
+    for (let i = 0; i < allItemsArrLen; i++) {
+      console.log(allItemsArr[i]["modeOfReleasing"]);
+      if (allItemsArr[i]["modeOfReleasing"] == "") {
+      } else {
+        countAllreleasing++;
+      }
+    }
+
     if (formData.CustomerCode == "") {
       Swal.fire({
         icon: "error",
