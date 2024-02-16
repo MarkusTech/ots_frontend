@@ -5,7 +5,7 @@ import {
 } from "../controllers/entryNumberController.js";
 const router = express.Router();
 
-router.post("/entrynumber", entryNumber);
-router.get("/entrynumber", getEntryNumber);
+router.post("/entrynum", entryNumber);
+router.get("/entrynum", getEntryNumber);
 
 export default router;
