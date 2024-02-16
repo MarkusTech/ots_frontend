@@ -8,6 +8,10 @@ const entryNumber = async (req, res) => {
     } else {
       entryNumber.number += 1;
     }
+    await entryNumber.save();
+    res.status(200).json({
+      entryNumber: entryNumber.number,
+    });
   } catch (error) {
     console.log(error);
     res.status(500).json({ error: "Internal Server Error" });
