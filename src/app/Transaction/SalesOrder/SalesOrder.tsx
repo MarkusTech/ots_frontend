@@ -282,6 +282,11 @@ export default function SalesOrder() {
     axios.post(apiUrl);
   };
 
+  const entryNumberPOSTAPI = () => {
+    const apiUrl = "http://172.16.10.169:5000/api/v1/entrynum";
+    axios.post(apiUrl);
+  };
+
   // -------------------------------------- End of <WMR CODE> header insertion --------------------------------------
 
   // ------------------------------------------ Product Details insertion -------------------------------------------
