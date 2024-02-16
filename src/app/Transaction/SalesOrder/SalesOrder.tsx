@@ -349,12 +349,6 @@ export default function SalesOrder() {
         title: "Oops...",
         text: "Please make sure all products are available",
       });
-    } else if (countAllreleasing > allItemsArrLen) {
-      Swal.fire({
-        icon: "error",
-        title: "Oops...",
-        text: "Please make sure all products have mode of releasing",
-      });
     } else if (
       isPaymentCash == "N" &&
       isPaymentCreditCard == "N" &&
