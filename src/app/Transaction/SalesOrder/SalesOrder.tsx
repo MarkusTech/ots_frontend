@@ -206,6 +206,7 @@ export default function SalesOrder() {
       .then((response) => {
         console.log("Data sent successfully:", response.data);
         draftNumIncrementAPI();
+        entryNumberPOSTAPI();
       })
       .catch((error) => {
         console.error("Error sending data:", error);
