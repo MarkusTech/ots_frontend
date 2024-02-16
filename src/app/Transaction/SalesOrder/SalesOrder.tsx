@@ -309,12 +309,6 @@ export default function SalesOrder() {
         title: "Oops...",
         text: "Need to Select Customer First!",
       });
-    } else if (formData.TotalAmtDue == "") {
-      Swal.fire({
-        icon: "error",
-        title: "Oops...",
-        text: "Please add atleast 1 product",
-      });
     } else if (
       isPaymentCash == "N" &&
       isPaymentCreditCard == "N" &&
