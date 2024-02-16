@@ -305,6 +305,32 @@ export default function SalesOrder() {
   const handleSubmit = () => {
     const validateTable = [...tableData];
 
+    const finalTotalListArr = [...finalTotalList];
+    const arrList = finalTotalListArr[0];
+
+    const allItemsArr = [...tableData];
+    const allItemsArrLen = allItemsArr.length;
+
+    let countAllreleasing = 0;
+
+    // mode of realeasing
+    for (let i = 0; i < allItemsArrLen; i++) {
+      console.log(allItemsArr[i]["modeOfReleasing"]);
+      if (allItemsArr[i]["modeOfReleasing"] == "") {
+      } else {
+        countAllreleasing++;
+      }
+    }
+
+    // Inventory Status
+    let countStatusInventory = 0;
+
+    for (let ii = 0; ii < allItemsArrLen; ii++) {
+      if (allItemsArr[ii]["inventoryStatus"] == "Out of Stocks") {
+        countStatusInventory++;
+      }
+    }
+
     if (formData.CustomerCode == "") {
       Swal.fire({
         icon: "error",
@@ -316,6 +342,18 @@ export default function SalesOrder() {
         icon: "error",
         title: "Oops...",
         text: "Need to Select Atleast 1 Product!",
+      });
+    } else if (countStatusInventory > 0) {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Please make sure all products are available",
+      });
+    } else if (countAllreleasing > allItemsArrLen) {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Please make sure all products have mode of releasing",
       });
     } else if (
       isPaymentCash == "N" &&
@@ -335,51 +373,6 @@ export default function SalesOrder() {
       });
     } else {
       showAlert();
-    }
-  };
-
-  const handleSubmitsss = () => {
-    const finalTotalListArr = [...finalTotalList];
-    const arrList = finalTotalListArr[0];
-
-    const allItemsArr = [...tableData];
-    const allItemsArrLen = allItemsArr.length;
-
-    let countAllreleasing = 0;
-
-    // mode of realeasing
-    for (let i = 0; i < allItemsArrLen; i++) {
-      console.log(allItemsArr[i]["modeOfReleasing"]);
-      if (allItemsArr[i]["modeOfReleasing"] == "") {
-      } else {
-        countAllreleasing++;
-      }
-    }
-
-    if (countAllreleasing == allItemsArrLen) {
-      let countStatusInventory = 0;
-
-      for (let ii = 0; ii < allItemsArrLen; ii++) {
-        if (allItemsArr[ii]["inventoryStatus"] == "Out of Stocks") {
-          countStatusInventory++;
-        }
-      }
-
-      if (countStatusInventory <= 0) {
-        console.log("rmrmrmrmr");
-      } else {
-        Swal.fire({
-          icon: "error",
-          title: "Oops...",
-          text: "Please make sure all products are available",
-        });
-      }
-    } else {
-      Swal.fire({
-        icon: "error",
-        title: "Oops...",
-        text: "Please make sure all products have mode of releasing",
-      });
     }
   };
 
