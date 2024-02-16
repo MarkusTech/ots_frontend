@@ -7,3 +7,5 @@ const productDetailsSave = async (req, res) => {
 const getProductDetails = async (req, res) => {
   res.send("Get Product Details in an Array");
 };
+
+export { productDetailsSave, getProductDetails };
