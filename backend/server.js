@@ -13,6 +13,7 @@ import connectDB from "./config/db.js";
 import productRoutes from "./routes/productRoutes.js";
 import otsRoutes from "./routes/otsRoutes.js";
 import draftNumberRoutes from "./routes/draftNumberRoutes.js";
+import entryNumberRoutes from "./routes/entryNumberRoutes.js";
 
 // dotenv config
 dotenv.config();
@@ -37,6 +38,7 @@ app.get("/", (req, res) => {
 app.use("/api/v1", productRoutes);
 app.use("/api/v1", otsRoutes);
 app.use("/api/v1", draftNumberRoutes);
+app.use("/api/v1,", entryNumberRoutes);
 
 // event listener
 app.listen(port, () => {
