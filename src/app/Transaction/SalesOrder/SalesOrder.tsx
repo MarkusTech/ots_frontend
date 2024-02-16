@@ -263,6 +263,7 @@ export default function SalesOrder() {
   // ------------------------------------------ Product Details insertion -------------------------------------------
   const [tableData, setTableData] = useState([
     {
+      entryNumber: "", // sample
       itemCode: "",
       itemName: "",
       quantity: 0,
@@ -484,6 +485,7 @@ export default function SalesOrder() {
     setTableData((prevData) => [
       ...prevData,
       {
+        entryNumber: "", //sample
         itemCode: "",
         itemName: "",
         quantity: 0,
@@ -819,6 +821,7 @@ export default function SalesOrder() {
 
       updatedTableData[selectedRowIndex] = {
         ...updatedTableData[selectedRowIndex],
+        entryNumber: formData.DraftNum, //sample
         itemCode: item.ItemCode,
         itemName: item.ItemName,
         quantity: 1,
@@ -1153,6 +1156,7 @@ export default function SalesOrder() {
       inventoryStatus: stocksAvailabilityArr[0]["StockAvailable"],
     };
     setTableData(updatedTableData);
+    setOpenLocationPanel(!openLocationPanel);
   };
 
   // Payment section
