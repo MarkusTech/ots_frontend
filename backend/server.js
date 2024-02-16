@@ -38,7 +38,7 @@ app.get("/", (req, res) => {
 app.use("/api/v1", productRoutes);
 app.use("/api/v1", otsRoutes);
 app.use("/api/v1", draftNumberRoutes);
-app.use("/api/v1,", entryNumberRoutes);
+app.use("/api/v1", entryNumberRoutes);
 
 // event listener
 app.listen(port, () => {
