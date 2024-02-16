@@ -349,6 +349,12 @@ export default function SalesOrder() {
         title: "Oops...",
         text: "Please make sure all products are available",
       });
+    } else if (validateTable[0]["inventoryStatus"] == "") {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Please Input a valid Quantity",
+      });
     } else if (
       isPaymentCash == "N" &&
       isPaymentCreditCard == "N" &&
@@ -365,8 +371,15 @@ export default function SalesOrder() {
         title: "Oops...",
         text: "Need to Select Payment Method!",
       });
-    } else {
+    } else if (countAllreleasing == allItemsArrLen) {
+      //  if the whole validation is done it will show an alert to save or cancel
       showAlert();
+    } else {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Please make sure all products have mode of releasing",
+      });
     }
   };
 
