@@ -121,7 +121,7 @@ export default function SalesOrder() {
     COD: "",
     // taxees
     TotalAmtBefTax: "",
-    TotalTax: 0,
+    TotalTax: 0, //the use state is change from "" to 0
     TotalAmtAftTax: "",
     SCPWDDiscTotal: "",
     TotalAmtDue: "",
