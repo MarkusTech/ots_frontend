@@ -303,19 +303,17 @@ export default function SalesOrder() {
 
   // Handle Draft Submit && Handle Payment Validation
   const handleSubmit = () => {
-    // if (true) {
-    //   Swal.fire({
-    //     icon: "error",
-    //     title: "Oops...",
-    //     text: "Please add atleast 1 product",
-    //   });
-    // }
-
     if (formData.CustomerCode == "") {
       Swal.fire({
         icon: "error",
         title: "Oops...",
         text: "Need to Select Customer First!",
+      });
+    } else if (formData.TotalAmtDue == "") {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Please add atleast 1 product",
       });
     } else if (
       isPaymentCash == "N" &&
@@ -2432,7 +2430,7 @@ export default function SalesOrder() {
                     <input
                       className=" border-l-white border-t-white border-r-white"
                       type="text"
-                      placeholder="1"
+                      placeholder="0"
                       // ref={inputRef}
                       onChange={(e) =>
                         handleQuantityChange(rowIndex, e.target.value)
