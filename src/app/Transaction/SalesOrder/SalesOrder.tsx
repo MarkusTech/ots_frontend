@@ -213,53 +213,6 @@ export default function SalesOrder() {
       });
   };
 
-  // Handle Draft Submit && Handle Payment Validation
-  const handleSubmit = () => {
-    const finalTotalListArr = [...finalTotalList];
-    const arrList = finalTotalListArr[0];
-
-    const allItemsArr = [...tableData];
-    const allItemsArrLen = allItemsArr.length;
-
-    let countAllreleasing = 0;
-
-    console.log("mode of rel", finalTotalList);
-
-    for (let i = 0; i < allItemsArrLen; i++) {
-      console.log(allItemsArr[i]["modeOfReleasing"]);
-      if (allItemsArr[i]["modeOfReleasing"] == "") {
-      } else {
-        countAllreleasing++;
-      }
-    }
-
-    if (formData.CustomerCode == "") {
-      Swal.fire({
-        icon: "error",
-        title: "Oops...",
-        text: "Need to Select Customer First!",
-      });
-    } else if (
-      isPaymentCash == "N" &&
-      isPaymentCreditCard == "N" &&
-      isPaymentDebitCard == "N" &&
-      isPaymentODC == "N" &&
-      isPaymentPDC == "N" &&
-      isPaymentPO == "N" &&
-      isPaymentOnlineTransfer == "N" &&
-      setOnAccount == "N" &&
-      isPaymentCOD == "N"
-    ) {
-      Swal.fire({
-        icon: "error",
-        title: "Oops...",
-        text: "Need to Select Payment Method!",
-      });
-    } else {
-      showAlert();
-    }
-  };
-
   const handleWalkinCustomerChange = (event: any) => {
     setWalkingCustomer(event.target.value);
   };
@@ -309,21 +262,6 @@ export default function SalesOrder() {
   // -------------------------------------- End of <WMR CODE> header insertion --------------------------------------
 
   // ------------------------------------------ Product Details insertion -------------------------------------------
-  // --------------------------------------- End of Product Details insertion ---------------------------------------
-  let customerData2 = [{}];
-  let currentCustomerData = customerList;
-  const arrayCustomer = [customerList];
-
-  const [modeOfrelisingArr, setmodeOfrelisingArr] = useState([
-    {
-      itemCode: "",
-      modeReleasing: "",
-    },
-  ]);
-
-  const [searchTerm, setSearchTerm] = useState("");
-  const fetchAPI = process.env.NEXT_PUBLIC_IP;
-
   const [tableData, setTableData] = useState([
     {
       itemCode: "",
@@ -362,6 +300,49 @@ export default function SalesOrder() {
       cashOnDel: "N",
     },
   ]);
+
+  // Handle Draft Submit && Handle Payment Validation
+  const handleSubmit = () => {
+    if (formData.CustomerCode == "") {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Need to Select Customer First!",
+      });
+    } else if (
+      isPaymentCash == "N" &&
+      isPaymentCreditCard == "N" &&
+      isPaymentDebitCard == "N" &&
+      isPaymentODC == "N" &&
+      isPaymentPDC == "N" &&
+      isPaymentPO == "N" &&
+      isPaymentOnlineTransfer == "N" &&
+      setOnAccount == "N" &&
+      isPaymentCOD == "N"
+    ) {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Need to Select Payment Method!",
+      });
+    } else {
+      showAlert();
+    }
+  };
+  // --------------------------------------- End of Product Details insertion ---------------------------------------
+  let customerData2 = [{}];
+  let currentCustomerData = customerList;
+  const arrayCustomer = [customerList];
+
+  const [modeOfrelisingArr, setmodeOfrelisingArr] = useState([
+    {
+      itemCode: "",
+      modeReleasing: "",
+    },
+  ]);
+
+  const [searchTerm, setSearchTerm] = useState("");
+  const fetchAPI = process.env.NEXT_PUBLIC_IP;
 
   useEffect(() => {
     if (cardCodedata == "C000112") {
@@ -2443,7 +2424,7 @@ export default function SalesOrder() {
                     <input
                       className=" border-l-white border-t-white border-r-white"
                       type="text"
-                      placeholder="0"
+                      placeholder="1"
                       // ref={inputRef}
                       onChange={(e) =>
                         handleQuantityChange(rowIndex, e.target.value)
