@@ -970,8 +970,6 @@ export default function SalesOrder() {
 
       setTotalVat(taxAmountx);
 
-      // console.log(taxAmountx, "hehe");
-
       console.log(
         "selPrice:",
         item.sellingPriceAfterDiscountTemp,
