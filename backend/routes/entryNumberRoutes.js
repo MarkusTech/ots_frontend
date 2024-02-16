@@ -6,6 +6,6 @@ import {
 const router = express.Router();
 
 router.post("/entrynumber", entryNumber);
-router.get(";/entrynumber", getEntryNumber);
+router.get("/entrynumber", getEntryNumber);
 
 export default router;
