@@ -300,6 +300,10 @@ export default function SalesOrder() {
     },
   ]);
 
+  const SaveDetailsToAPI = () => {
+    console.log(tableData);
+  };
+
   // Handle Draft Submit && Handle Payment Validation
   const handleSubmit = () => {
     const validateTable = [...tableData];
@@ -3195,7 +3199,8 @@ export default function SalesOrder() {
           </button>
           <button
             className="p-2 mt-2 mb-1 mr-2 text-[12px] bg-[#F4D674]"
-            onClick={commit}
+            // onClick={commit}
+            onClick={SaveDetailsToAPI}
           >
             Commit
           </button>
