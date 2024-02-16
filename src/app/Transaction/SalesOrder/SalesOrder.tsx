@@ -41,7 +41,7 @@ export default function SalesOrder() {
 
   const [totalAfterVat, settotalAfterVat] = useState("");
   const [totalBeforeVat, setTotalBeforeVat] = useState("");
-  const [totalVat, setTotalVat] = useState("");
+  const [totalVat, setTotalVat] = useState(0);
   const [showSCPDW, setShowSCPWD] = useState(false);
   const [varSCPWDdisc, setVarSCPWDdisc] = useState(0);
   const [SCPWDdata, setSCPWDdata] = useState("");
@@ -121,7 +121,7 @@ export default function SalesOrder() {
     COD: "",
     // taxees
     TotalAmtBefTax: "",
-    TotalTax: "",
+    TotalTax: 0,
     TotalAmtAftTax: "",
     SCPWDDiscTotal: "",
     TotalAmtDue: "",
