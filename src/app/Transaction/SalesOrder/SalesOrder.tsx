@@ -302,61 +302,42 @@ export default function SalesOrder() {
   ]);
 
   // Handle Draft Submit && Handle Payment Validation
-  // const handleSubmit = () => {
-  //   if (formData.CustomerCode == "") {
-  //     Swal.fire({
-  //       icon: "error",
-  //       title: "Oops...",
-  //       text: "Need to Select Customer First!",
-  //     });
-  //   } else if (
-  //     isPaymentCash == "N" &&
-  //     isPaymentCreditCard == "N" &&
-  //     isPaymentDebitCard == "N" &&
-  //     isPaymentODC == "N" &&
-  //     isPaymentPDC == "N" &&
-  //     isPaymentPO == "N" &&
-  //     isPaymentOnlineTransfer == "N" &&
-  //     setOnAccount == "N" &&
-  //     isPaymentCOD == "N"
-  //   ) {
-  //     Swal.fire({
-  //       icon: "error",
-  //       title: "Oops...",
-  //       text: "Need to Select Payment Method!",
-  //     });
-  //   } else {
-  //     showAlert();
-  //   }
-  // };
-
   const handleSubmit = () => {
-    const finalTotalListArr = [...finalTotalList];
-    const arrList = finalTotalListArr[0];
+    const validateTable = [...tableData];
 
-    const allItemsArr = [...tableData];
-    const allItemsArrLen = allItemsArr.length;
-
-    let countAllreleasing = 0;
-
-    console.log("mode of rel", finalTotalList);
-
-    for (let i = 0; i < allItemsArrLen; i++) {
-      console.log(allItemsArr[i]["modeOfReleasing"]);
-      if (allItemsArr[i]["modeOfReleasing"] == "") {
-      } else {
-        countAllreleasing++;
-      }
-    }
-
-    if (arrList.totalVal == 0) {
+    if (formData.CustomerCode == "") {
       Swal.fire({
         icon: "error",
         title: "Oops...",
-        text: "Please add atleast 1 product",
+        text: "Need to Select Customer First!",
       });
+    } else if (validateTable[0]["itemCode"] == "") {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Need to Select Atleast 1 Product!",
+      });
+    } else if (
+      isPaymentCash == "N" &&
+      isPaymentCreditCard == "N" &&
+      isPaymentDebitCard == "N" &&
+      isPaymentODC == "N" &&
+      isPaymentPDC == "N" &&
+      isPaymentPO == "N" &&
+      isPaymentOnlineTransfer == "N" &&
+      setOnAccount == "N" &&
+      isPaymentCOD == "N"
+    ) {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Need to Select Payment Method!",
+      });
+    } else {
+      showAlert();
     }
   };
+
   // --------------------------------------- End of Product Details insertion ---------------------------------------
   let customerData2 = [{}];
   let currentCustomerData = customerList;
