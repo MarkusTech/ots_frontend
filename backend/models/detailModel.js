@@ -1,4 +1,7 @@
-LineID bigint
+import mongoose from "mongoose";
+
+const productDetailsSchema = new mongoose.Schema({
+    LineID bigint
 EntryNum bigint
 ItemCode varchar(20)
 ItemName varchar(100)
@@ -20,3 +23,6 @@ BelCost float
 ModeReleasing varchar(50)
 SCPWDdisc char(1)
 GrossTotal float
+})
+
+export default mongoose.model("ProductDetails", productDetailsSchema)
