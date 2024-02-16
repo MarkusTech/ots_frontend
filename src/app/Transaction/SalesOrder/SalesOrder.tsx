@@ -284,6 +284,8 @@ export default function SalesOrder() {
 
   // -------------------------------------- End of <WMR CODE> header insertion --------------------------------------
 
+  // ------------------------------------------ Product Details insertion -------------------------------------------
+  // --------------------------------------- End of Product Details insertion ---------------------------------------
   let customerData2 = [{}];
   let currentCustomerData = customerList;
   const arrayCustomer = [customerList];
