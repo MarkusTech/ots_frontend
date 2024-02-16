@@ -14,6 +14,7 @@ import productRoutes from "./routes/productRoutes.js";
 import otsRoutes from "./routes/otsRoutes.js";
 import draftNumberRoutes from "./routes/draftNumberRoutes.js";
 import entryNumberRoutes from "./routes/entryNumberRoutes.js";
+import productDetailRoutes from "./routes/productDetailsRoutes.js";
 
 // dotenv config
 dotenv.config();
@@ -39,6 +40,7 @@ app.use("/api/v1", productRoutes);
 app.use("/api/v1", otsRoutes);
 app.use("/api/v1", draftNumberRoutes);
 app.use("/api/v1", entryNumberRoutes);
+app.use("/api/v1", productDetailRoutes);
 
 // event listener
 app.listen(port, () => {
