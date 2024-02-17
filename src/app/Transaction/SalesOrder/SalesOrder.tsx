@@ -303,7 +303,7 @@ export default function SalesOrder() {
 
   const [tableData, setTableData] = useState([
     {
-      entryNumber: 0, // sample
+      entryNumber: "", // sample
       itemCode: "",
       itemName: "",
       quantity: 0,
@@ -565,12 +565,12 @@ export default function SalesOrder() {
     setTableData((prevData) => [
       ...prevData,
       {
-        entryNumber: "", //sample
+        entryNumber: "", // sample
         itemCode: "",
         itemName: "",
         quantity: 0,
         uom: "",
-        uomConversion: "",
+        uomConversion: 0,
         excludeBO: "N",
         location: "",
         price: 0,
@@ -584,7 +584,7 @@ export default function SalesOrder() {
         taxCodePercentage: 0,
         taxAmount: 0,
         volDisPrice: 0,
-        belVolDisPrice: "N",
+        belVolDisPrice: 0,
         cost: 0,
         belCost: "",
         modeOfReleasing: "",
