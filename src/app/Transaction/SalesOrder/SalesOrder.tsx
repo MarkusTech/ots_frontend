@@ -301,45 +301,6 @@ export default function SalesOrder() {
     },
   ]);
 
-  // const dataTable = [...tableData];
-  // const saveDetails = {
-  //   LineID: 0,
-  //   EntryNum: formData.DraftNum,
-  //   ItemCode: dataTable[0]["itemCode"],
-  //   ItemName: dataTable[0]["itemName"],
-  //   Quantity: dataTable[0]["quantity"],
-  //   Uom: dataTable[0]["uom"],
-  //   UoMConv: dataTable[0]["uomConversion"],
-  //   Whse: dataTable[0]["location"],
-  //   InvStat: dataTable[0]["inventoryStatus"],
-  //   SellPriceBeDisc: dataTable[0]["sellingPriceBeforeDiscount"],
-  //   DiscRate: dataTable[0]["discountRate"],
-  //   SellPriceAftDisc: dataTable[0]["sellingPriceAfterDiscount"],
-  //   LowerBound: dataTable[0]["lowerBound"],
-  //   TaxCode: dataTable[0]["taxCode"],
-  //   TaxCodePerc: dataTable[0]["taxCodePercentage"],
-  //   TaxAmt: dataTable[0]["taxAmount"],
-  //   BelPriceDisc: dataTable[0]["belVolDisPrice"],
-  //   Cost: dataTable[0]["cost"],
-  //   BelCost: dataTable[0]["belCost"],
-  //   ModeReleasing: dataTable[0]["modeOfReleasing"],
-  //   SCPWDdisc: dataTable[0]["scPwdDiscount"],
-  //   GrossTotal: dataTable[0]["grossTotal"],
-  // };
-
-  // const detailsPostAPI = "http://localhost:5000/api/v1/product-detail";
-  // const detailsOnSaveToAPI = () => {
-  //   const apiUrl = detailsPostAPI;
-  //   axios
-  //     .post(apiUrl, saveDetails)
-  //     .then((response) => {
-  //       console.log("Data sent successfully:", response.data);
-  //     })
-  //     .catch((error) => {
-  //       console.error("Error sending data:", error);
-  //     });
-  // };
-
   const dataTable = [...tableData];
   const detailsPostAPI = "http://localhost:5000/api/v1/product-detail";
 
