@@ -1,4 +1,4 @@
-// import detailModel from "../models/detailModel.js";
+import detailModel from "../models/detailModel.js";
 
 const productDetailsSave = async (req, res) => {
   req.send("Save Product Details Successfully");
