@@ -25,7 +25,19 @@ const productDetailsSave = async (req, res) => {
     SCPWDdisc,
     GrossTotal,
   } = req.body;
-  req.send("Save Product Details Successfully");
+  try {
+    const data = await detailModel.create(req.body);
+    res.status(200).json({
+      success: true,
+      message: "Product Detail Save Successfully",
+      data,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({
+      error: "Internal Server Error!",
+    });
+  }
 };
 
 const getProductDetails = async (req, res) => {
