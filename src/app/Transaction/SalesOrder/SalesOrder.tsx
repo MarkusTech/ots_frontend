@@ -181,14 +181,14 @@ export default function SalesOrder() {
         Swal.fire("Saved!", "", "success");
         sendDataToAPI();
         setTimeout(() => {
-          // to be deleted
-          Swal.fire({
-            icon: "success",
-            text: "Successfully Save to Draft",
-          });
-          // setTimeout(() => {
-          //   window.location.reload();
-          // }, 2000);
+          // save details to backend API
+          detailsOnSaveToAPI();
+          setTimeout(() => {
+            Swal.fire({
+              icon: "success",
+              text: "Successfully Save to Draft",
+            });
+          }, 2000);
         }, 2000);
       } else if (result.isDenied) {
         Swal.fire("Draft is not saved", "", "info");
@@ -348,7 +348,6 @@ export default function SalesOrder() {
 
   const SaveDetailsToAPI = () => {
     console.log(tableData);
-    detailsOnSaveToAPI();
   };
 
   // Handle Draft Submit && Handle Payment Validation
