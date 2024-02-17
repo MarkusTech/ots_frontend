@@ -261,46 +261,6 @@ export default function SalesOrder() {
   // -------------------------------------- End of <WMR CODE> header insertion --------------------------------------
 
   // ------------------------------------------ Product Details insertion -------------------------------------------
-  // const [tableData, setTableData] = useState([
-  //   {
-  //     entryNumber: "", // sample
-  //     itemCode: "",
-  //     itemName: "",
-  //     quantity: 0,
-  //     uom: "",
-  //     uomConversion: "",
-  //     excludeBO: "N",
-  //     location: "",
-  //     price: 0,
-  //     inventoryStatus: "",
-  //     sellingPriceBeforeDiscount: 0,
-  //     discountRate: 0,
-  //     sellingPriceAfterDiscount: 0,
-  //     sellingPriceAfterDiscountTemp: 0,
-  //     lowerBound: 0,
-  //     taxCode: "",
-  //     taxCodePercentage: 0,
-  //     taxAmount: 0,
-  //     volDisPrice: 0,
-  //     belVolDisPrice: "N",
-  //     cost: 0,
-  //     belCost: "",
-  //     modeOfReleasing: "",
-  //     scPwdDiscount: "N",
-  //     grossTotal: 0,
-  //     selected: false,
-  //     cash: "N",
-  //     creditcard: "N",
-  //     debit: "N",
-  //     pdc: "N",
-  //     po: "N",
-  //     datedCheck: "N",
-  //     onlineTransfer: "N",
-  //     onAccount: "N",
-  //     cashOnDel: "N",
-  //   },
-  // ]);
-
   const [tableData, setTableData] = useState([
     {
       entryNumber: "", // sample
