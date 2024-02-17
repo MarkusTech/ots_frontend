@@ -301,43 +301,88 @@ export default function SalesOrder() {
     },
   ]);
 
-  const dataTable = [...tableData];
-  const saveDetails = {
-    LineID: 0,
-    EntryNum: formData.DraftNum,
-    ItemCode: dataTable[0]["itemCode"],
-    ItemName: dataTable[0]["itemName"],
-    Quantity: dataTable[0]["quantity"],
-    Uom: dataTable[0]["uom"],
-    UoMConv: dataTable[0]["uomConversion"],
-    Whse: dataTable[0]["location"],
-    InvStat: dataTable[0]["inventoryStatus"],
-    SellPriceBeDisc: dataTable[0]["sellingPriceBeforeDiscount"],
-    DiscRate: dataTable[0]["discountRate"],
-    SellPriceAftDisc: dataTable[0]["sellingPriceAfterDiscount"],
-    LowerBound: dataTable[0]["lowerBound"],
-    TaxCode: dataTable[0]["taxCode"],
-    TaxCodePerc: dataTable[0]["taxCodePercentage"],
-    TaxAmt: dataTable[0]["taxAmount"],
-    BelPriceDisc: dataTable[0]["belVolDisPrice"],
-    Cost: dataTable[0]["cost"],
-    BelCost: dataTable[0]["belCost"],
-    ModeReleasing: dataTable[0]["modeOfReleasing"],
-    SCPWDdisc: dataTable[0]["scPwdDiscount"],
-    GrossTotal: dataTable[0]["grossTotal"],
-  };
+  // const dataTable = [...tableData];
+  // const saveDetails = {
+  //   LineID: 0,
+  //   EntryNum: formData.DraftNum,
+  //   ItemCode: dataTable[0]["itemCode"],
+  //   ItemName: dataTable[0]["itemName"],
+  //   Quantity: dataTable[0]["quantity"],
+  //   Uom: dataTable[0]["uom"],
+  //   UoMConv: dataTable[0]["uomConversion"],
+  //   Whse: dataTable[0]["location"],
+  //   InvStat: dataTable[0]["inventoryStatus"],
+  //   SellPriceBeDisc: dataTable[0]["sellingPriceBeforeDiscount"],
+  //   DiscRate: dataTable[0]["discountRate"],
+  //   SellPriceAftDisc: dataTable[0]["sellingPriceAfterDiscount"],
+  //   LowerBound: dataTable[0]["lowerBound"],
+  //   TaxCode: dataTable[0]["taxCode"],
+  //   TaxCodePerc: dataTable[0]["taxCodePercentage"],
+  //   TaxAmt: dataTable[0]["taxAmount"],
+  //   BelPriceDisc: dataTable[0]["belVolDisPrice"],
+  //   Cost: dataTable[0]["cost"],
+  //   BelCost: dataTable[0]["belCost"],
+  //   ModeReleasing: dataTable[0]["modeOfReleasing"],
+  //   SCPWDdisc: dataTable[0]["scPwdDiscount"],
+  //   GrossTotal: dataTable[0]["grossTotal"],
+  // };
 
+  // const detailsPostAPI = "http://localhost:5000/api/v1/product-detail";
+  // const detailsOnSaveToAPI = () => {
+  //   const apiUrl = detailsPostAPI;
+  //   axios
+  //     .post(apiUrl, saveDetails)
+  //     .then((response) => {
+  //       console.log("Data sent successfully:", response.data);
+  //     })
+  //     .catch((error) => {
+  //       console.error("Error sending data:", error);
+  //     });
+  // };
+
+  const dataTable = [...tableData];
   const detailsPostAPI = "http://localhost:5000/api/v1/product-detail";
+
   const detailsOnSaveToAPI = () => {
     const apiUrl = detailsPostAPI;
-    axios
-      .post(apiUrl, saveDetails)
-      .then((response) => {
-        console.log("Data sent successfully:", response.data);
-      })
-      .catch((error) => {
-        console.error("Error sending data:", error);
-      });
+
+    // Map through each item in the dataTable array
+    dataTable.forEach((rowData) => {
+      const saveDetails = {
+        LineID: 0,
+        EntryNum: formData.DraftNum,
+        ItemCode: rowData["itemCode"],
+        ItemName: rowData["itemName"],
+        Quantity: rowData["quantity"],
+        Uom: rowData["uom"],
+        UoMConv: rowData["uomConversion"],
+        Whse: rowData["location"],
+        InvStat: rowData["inventoryStatus"],
+        SellPriceBeDisc: rowData["sellingPriceBeforeDiscount"],
+        DiscRate: rowData["discountRate"],
+        SellPriceAftDisc: rowData["sellingPriceAfterDiscount"],
+        LowerBound: rowData["lowerBound"],
+        TaxCode: rowData["taxCode"],
+        TaxCodePerc: rowData["taxCodePercentage"],
+        TaxAmt: rowData["taxAmount"],
+        BelPriceDisc: rowData["belVolDisPrice"],
+        Cost: rowData["cost"],
+        BelCost: rowData["belCost"],
+        ModeReleasing: rowData["modeOfReleasing"],
+        SCPWDdisc: rowData["scPwdDiscount"],
+        GrossTotal: rowData["grossTotal"],
+      };
+
+      // Send each item to the API
+      axios
+        .post(apiUrl, saveDetails)
+        .then((response) => {
+          console.log("Data sent successfully:", response.data);
+        })
+        .catch((error) => {
+          console.error("Error sending data:", error);
+        });
+    });
   };
 
   const SaveDetailsToAPI = () => {
