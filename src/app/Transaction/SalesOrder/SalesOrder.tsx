@@ -261,14 +261,54 @@ export default function SalesOrder() {
   // -------------------------------------- End of <WMR CODE> header insertion --------------------------------------
 
   // ------------------------------------------ Product Details insertion -------------------------------------------
+  // const [tableData, setTableData] = useState([
+  //   {
+  //     entryNumber: "", // sample
+  //     itemCode: "",
+  //     itemName: "",
+  //     quantity: 0,
+  //     uom: "",
+  //     uomConversion: "",
+  //     excludeBO: "N",
+  //     location: "",
+  //     price: 0,
+  //     inventoryStatus: "",
+  //     sellingPriceBeforeDiscount: 0,
+  //     discountRate: 0,
+  //     sellingPriceAfterDiscount: 0,
+  //     sellingPriceAfterDiscountTemp: 0,
+  //     lowerBound: 0,
+  //     taxCode: "",
+  //     taxCodePercentage: 0,
+  //     taxAmount: 0,
+  //     volDisPrice: 0,
+  //     belVolDisPrice: "N",
+  //     cost: 0,
+  //     belCost: "",
+  //     modeOfReleasing: "",
+  //     scPwdDiscount: "N",
+  //     grossTotal: 0,
+  //     selected: false,
+  //     cash: "N",
+  //     creditcard: "N",
+  //     debit: "N",
+  //     pdc: "N",
+  //     po: "N",
+  //     datedCheck: "N",
+  //     onlineTransfer: "N",
+  //     onAccount: "N",
+  //     cashOnDel: "N",
+  //   },
+  // ]);
+
   const [tableData, setTableData] = useState([
     {
-      entryNumber: "", // sample
+      entryNumber: 0, // sample
       itemCode: "",
       itemName: "",
       quantity: 0,
       uom: "",
-      uomConversion: "",
+      uomConversion: 0,
       excludeBO: "N",
       location: "",
       price: 0,
@@ -282,7 +322,7 @@ export default function SalesOrder() {
       taxCodePercentage: 0,
       taxAmount: 0,
       volDisPrice: 0,
-      belVolDisPrice: "N",
+      belVolDisPrice: 0,
       cost: 0,
       belCost: "",
       modeOfReleasing: "",
@@ -301,8 +341,48 @@ export default function SalesOrder() {
     },
   ]);
 
+  const dataTable = [...tableData];
+  const saveDetails = {
+    LineID: 0,
+    EntryNum: formData.DraftNum,
+    ItemCode: dataTable[0]["itemCode"],
+    ItemName: dataTable[0]["itemName"],
+    Quantity: dataTable[0]["quantity"],
+    Uom: dataTable[0]["uom"],
+    UoMConv: dataTable[0]["uomConversion"],
+    Whse: dataTable[0]["location"],
+    InvStat: dataTable[0]["inventoryStatus"],
+    SellPriceBeDisc: dataTable[0]["sellingPriceBeforeDiscount"],
+    DiscRate: dataTable[0]["discountRate"],
+    SellPriceAftDisc: dataTable[0]["sellingPriceAfterDiscount"],
+    LowerBound: dataTable[0]["lowerBound"],
+    TaxCode: dataTable[0]["taxCode"],
+    TaxCodePerc: dataTable[0]["taxCodePercentage"],
+    TaxAmt: dataTable[0]["taxAmount"],
+    BelPriceDisc: dataTable[0]["belVolDisPrice"],
+    Cost: dataTable[0]["cost"],
+    BelCost: dataTable[0]["belCost"],
+    ModeReleasing: dataTable[0]["modeOfReleasing"],
+    SCPWDdisc: dataTable[0]["scPwdDiscount"],
+    GrossTotal: dataTable[0]["grossTotal"],
+  };
+
+  const detailsPostAPI = "http://localhost:5000/api/v1/product-detail";
+  const detailsOnSaveToAPI = () => {
+    const apiUrl = detailsPostAPI;
+    axios
+      .post(apiUrl, saveDetails)
+      .then((response) => {
+        console.log("Data sent successfully:", response.data);
+      })
+      .catch((error) => {
+        console.error("Error sending data:", error);
+      });
+  };
+
   const SaveDetailsToAPI = () => {
     console.log(tableData);
+    detailsOnSaveToAPI();
   };
 
   // Handle Draft Submit && Handle Payment Validation

@@ -41,7 +41,7 @@ const productDetailsSchema = new mongoose.Schema({
     type: Number,
   },
   TaxCode: {
-    type: Number,
+    type: String,
   },
   TaxCodePerc: {
     type: Number,
@@ -56,7 +56,7 @@ const productDetailsSchema = new mongoose.Schema({
     type: Number,
   },
   BelCost: {
-    type: Number,
+    type: String,
   },
   ModeReleasing: {
     type: String,
