@@ -49,7 +49,7 @@ const otsSchema = new mongoose.Schema(
       type: String,
     },
     BaseDoc: {
-      type: String,
+      type: Number,
     },
     Cash: {
       type: String,
