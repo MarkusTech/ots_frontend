@@ -76,20 +76,20 @@ const otsSchema = new mongoose.Schema(
       type: String,
     },
     TotalAmtBefTax: {
-      type: Number,
+      type: String,
     },
     TotalTax: {
-      type: Number,
+      type: String,
     },
     TotalAmtAftTax: {
-      type: Number,
+      type: String,
     },
 
     SCPWDDiscTotal: {
-      type: Number,
+      type: String,
     },
     TotalAmtDue: {
-      type: Number,
+      type: String,
     },
     Remarks: {
       type: String,
