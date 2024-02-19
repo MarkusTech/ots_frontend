@@ -165,6 +165,8 @@ export default function SalesOrder() {
       OnlineTransfer: isPaymentOnlineTransfer,
       OnAccount: setOnAccount,
       COD: isPaymentCOD,
+      // entry number
+      EntryNum: formData.DraftNum,
     });
   });
 
