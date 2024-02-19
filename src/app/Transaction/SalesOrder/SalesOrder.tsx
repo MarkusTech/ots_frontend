@@ -106,7 +106,7 @@ export default function SalesOrder() {
     // ReadOnly
     Branch: "",
     DocStat: "",
-    BaseDoc: "",
+    BaseDoc: 0,
     DocDate: manilaDate,
     PostingDate: manilaDate,
     SCPWDIdNo: "",
