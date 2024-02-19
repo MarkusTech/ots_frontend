@@ -201,7 +201,7 @@ export default function SalesOrder() {
   const wmrAPI = "http://172.16.10.169:5000/api/v1/ots"; // wmr IP
   const productionAPI = "172.16.10.217:3002/so-header/";
   const sendDataToAPI = () => {
-    const apiUrl = wmrAPI;
+    const apiUrl = productionAPI;
     axios
       .post(apiUrl, formData)
       .then((response) => {
