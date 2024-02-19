@@ -3,7 +3,7 @@ import mongoose from "mongoose";
 const otsSchema = new mongoose.Schema(
   {
     EntryNum: {
-      type: Number,
+      type: String,
     },
     DocNum: {
       type: String,
