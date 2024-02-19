@@ -6,7 +6,7 @@ const otsSchema = new mongoose.Schema(
       type: String,
     },
     DocNum: {
-      type: String,
+      type: Number,
     },
     DraftNum: {
       type: Number,
