@@ -190,8 +190,8 @@ export default function SalesOrder() {
               icon: "success",
               text: "Successfully Save to Draft",
             });
-          }, 2000);
-        }, 2000);
+          }, 1000);
+        }, 1000);
       } else if (result.isDenied) {
         Swal.fire("Draft is not saved", "", "info");
       }
