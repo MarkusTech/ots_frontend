@@ -152,6 +152,7 @@ export default function SalesOrder() {
       TotalAmtAftTax: totalBeforeVat,
       SCPWDDiscTotal: SCPWDdata,
       TotalAmtDue: totalAmoutDueData,
+      // end of taxees
       WalkInName: walkInCustomer,
       Reference: customerReference,
       Remarks: remarksField,
@@ -199,7 +200,6 @@ export default function SalesOrder() {
   };
 
   const wmrAPI = "http://172.16.10.169:5000/api/v1/ots"; // wmr IP
-  const productionAPI = "172.16.10.217:3002/so-header/";
   const sendDataToAPI = () => {
     const apiUrl = wmrAPI;
     axios
@@ -213,6 +213,63 @@ export default function SalesOrder() {
         console.error("Error sending data:", error);
       });
   };
+
+  // Production API
+  const productionAPI = "http://172.16.10.217:3002/so-header/";
+  const sendToProductionAPI = () => {
+    const axiosInstance = axios.create({
+      baseURL: "http://172.16.10.217:3002",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    const saveHeaderDetails = {
+      EntryNum: 1234,
+      DocNum: 0,
+      // DraftNum: 1234,
+      PostingDate: "01-09-2023",
+      DocDate: "01-09-2023",
+      CustomerCode: "02224113",
+      CustomerName: "Wenn",
+      WalkInName: "WALK-IN",
+      ShippingAdd: "General Santos City",
+      TIN: "123-456-789",
+      Reference: "02365",
+      SCPWDIdNo: "123",
+      Branch: "Gensan WOH",
+      DocStat: "Active",
+      BaseDoc: 1,
+      Cash: "Y",
+      CreditCard: "N",
+      DebitCard: "N",
+      ODC: "N",
+      PDC: "N",
+      OnlineTransfer: "N",
+      OnAccount: "N",
+      COD: "N",
+      TotalAmtBefTax: 100,
+      TotalTax: 100,
+      TotalAmtAftTax: 100,
+      SCPWDDiscTotal: 100,
+      TotalAmtDue: 100,
+      Remarks: "Remarks",
+      CreatedBy: "administrator",
+      DateCreated: "01-09-2023",
+      UpdatedBy: 1,
+      DateUpdated: "01-09-2023",
+    };
+
+    axiosInstance
+      .post("/so-header", saveHeaderDetails)
+      .then((response) => {
+        console.log("Data sent successfully:", response.data);
+      })
+      .catch((error) => {
+        console.error("Error sending data:", error);
+      });
+  };
+  // End of Production API
 
   const handleWalkinCustomerChange = (event: any) => {
     setWalkingCustomer(event.target.value);
@@ -348,6 +405,7 @@ export default function SalesOrder() {
     });
   };
 
+  // to be delelted
   const SaveDetailsToAPI = () => {
     console.log(tableData);
   };
@@ -3251,7 +3309,7 @@ export default function SalesOrder() {
           <button
             className="p-2 mt-2 mb-1 mr-2 text-[12px] bg-[#F4D674]"
             // onClick={commit}
-            onClick={SaveDetailsToAPI}
+            onClick={sendToProductionAPI}
           >
             Commit
           </button>
