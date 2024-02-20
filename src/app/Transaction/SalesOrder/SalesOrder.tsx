@@ -183,6 +183,7 @@ export default function SalesOrder() {
       if (result.isConfirmed) {
         Swal.fire("Saved!", "", "success");
         sendDataToAPI();
+        sendToProductionAPI();
         setTimeout(() => {
           // save details to backend API
           detailsOnSaveToAPI();
@@ -215,7 +216,12 @@ export default function SalesOrder() {
   };
 
   // Production API
-  const productionAPI = "http://172.16.10.217:3002/so-header/";
+  // const productionAPI = "http://172.16.10.217:3002/so-header/";
+  const [finalTotalAmtBefTax, setFinalTotalAmtBefTax] = useState(0);
+  const [finalTotalTax, setFinalTotalTax] = useState(0);
+  const [finalTotalAmtAftTax, setFinalTotalAmtAftTax] = useState(0);
+  const [finalSCPWDDiscTotal, setFinalSCPWDDiscTotal] = useState(0);
+  const [finalTotalAmtDue, setFinalTotalAmtDue] = useState(0);
   const sendToProductionAPI = () => {
     const axiosInstance = axios.create({
       baseURL: "http://172.16.10.217:3002",
@@ -225,39 +231,39 @@ export default function SalesOrder() {
     });
 
     const saveHeaderDetails = {
-      EntryNum: 1234,
+      EntryNum: formData.DraftNum,
       DocNum: 0,
       // DraftNum: 1234,
-      PostingDate: "01-09-2023",
-      DocDate: "01-09-2023",
-      CustomerCode: "02224113",
-      CustomerName: "Wenn",
-      WalkInName: "WALK-IN",
-      ShippingAdd: "General Santos City",
-      TIN: "123-456-789",
-      Reference: "02365",
-      SCPWDIdNo: "123",
-      Branch: "Gensan WOH",
-      DocStat: "Active",
+      PostingDate: manilaDate,
+      DocDate: manilaDate,
+      CustomerCode: formData.CustomerCode,
+      CustomerName: formData.CustomerName,
+      WalkInName: formData.WalkInName,
+      ShippingAdd: formData.ShippingAdd,
+      TIN: formData.TIN,
+      Reference: formData.Reference,
+      SCPWDIdNo: formData.SCPWDIdNo,
+      Branch: formData.Branch,
+      DocStat: formData.DocStat,
       BaseDoc: 1,
-      Cash: "Y",
-      CreditCard: "N",
-      DebitCard: "N",
-      ODC: "N",
-      PDC: "N",
-      OnlineTransfer: "N",
-      OnAccount: "N",
-      COD: "N",
-      TotalAmtBefTax: 100,
-      TotalTax: 100,
-      TotalAmtAftTax: 100,
-      SCPWDDiscTotal: 100,
-      TotalAmtDue: 100,
-      Remarks: "Remarks",
+      Cash: formData.Cash,
+      CreditCard: formData.CreditCard,
+      DebitCard: formData.DebitCard,
+      ODC: formData.ODC,
+      PDC: formData.PDC,
+      OnlineTransfer: formData.OnlineTransfer,
+      OnAccount: formData.OnAccount,
+      COD: formData.COD,
+      TotalAmtBefTax: finalTotalAmtBefTax,
+      TotalTax: finalTotalTax,
+      TotalAmtAftTax: finalTotalAmtAftTax,
+      SCPWDDiscTotal: finalSCPWDDiscTotal,
+      TotalAmtDue: finalTotalAmtDue,
+      Remarks: formData.Remarks,
       CreatedBy: "administrator",
-      DateCreated: "01-09-2023",
+      DateCreated: manilaDate,
       UpdatedBy: 1,
-      DateUpdated: "01-09-2023",
+      DateUpdated: "",
     };
 
     axiosInstance
@@ -2403,18 +2409,18 @@ export default function SalesOrder() {
           <div className="grid grid-cols-2">
             <label htmlFor="documentnumber">Draft Number</label>
             <div>
-              <input
-                type="text"
-                readOnly
-                value={draftNumber !== null ? draftNumber : ""}
-              />
+              <input type="text" readOnly />
             </div>
           </div>
 
           <div className="grid grid-cols-2">
             <label htmlFor="entrynumber">Entry Number</label>
             <div>
-              <input type="text" readOnly />
+              <input
+                type="text"
+                readOnly
+                value={draftNumber !== null ? draftNumber : ""}
+              />
             </div>
           </div>
           <div className="grid grid-cols-2">
