@@ -801,6 +801,20 @@ export default function SalesOrder() {
     setTotalVat(calculationTotalVat); //Total VAT
     setSCPWDdata(calculationForScORPwd); //SC/PWD Discount Total
     settotalAmoutDueData(calculationTotalAmoutDue);
+
+    // WMR Code
+    const calcAfterVat = tempSum2;
+    const calcBeforeVat = tempSum2 - taxAmountSum;
+    const calcTotalVat = taxAmountSum;
+    const calcForScORPwd = (tempSum2 - taxAmountSum) * varSCPWDdisc;
+    const calcTotalAmoutDue =
+      tempSum2 - (tempSum2 - taxAmountSum) * varSCPWDdisc;
+
+    setFinalTotalAmtBefTax(calcBeforeVat);
+    setFinalTotalTax(calcTotalVat);
+    setFinalTotalAmtAftTax(calcAfterVat);
+    setFinalSCPWDDiscTotal(calcForScORPwd);
+    setFinalTotalAmtDue(calcTotalAmoutDue);
   });
 
   // End UseEffect start
