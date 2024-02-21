@@ -814,12 +814,6 @@ export default function SalesOrder() {
     const roundedForScORPwd = Number(calcForScORPwd.toFixed(2));
     const roundedTotalAmoutDue = Number(calcTotalAmoutDue.toFixed(2));
 
-    // setFinalTotalAmtBefTax(calcBeforeVat);
-    // setFinalTotalTax(calcTotalVat);
-    // setFinalTotalAmtAftTax(calcAfterVat);
-    // setFinalSCPWDDiscTotal(calcForScORPwd);
-    // setFinalTotalAmtDue(calcTotalAmoutDue);
-
     setFinalTotalAmtBefTax(roundedBeforeVat);
     setFinalTotalTax(roundedTotalVat);
     setFinalTotalAmtAftTax(roundedAfterVat);
