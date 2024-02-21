@@ -46,7 +46,7 @@ app.use("/api/v1", entryNumberRoutes);
 app.use("/api/v1", productDetailRoutes);
 
 // uuid API
-app.get("/api/generateUniqueId", (req, res) => {
+app.get("/api/v1/generateUniqueId", (req, res) => {
   const uniqueId = uuidv4();
   res.json({ uniqueId });
 });
