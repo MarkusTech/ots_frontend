@@ -369,6 +369,11 @@ export default function SalesOrder() {
     },
   ]);
 
+  const detailsTable = () => {
+    const dataTable = [...tableData];
+    console.log(dataTable);
+  };
+
   // ------------------------ POST Product Details -----------------------------------
   const dataTable = [...tableData];
   const detailsPostAPI = "http://172.16.10.169:5000/api/v1/product-detail";
@@ -383,11 +388,11 @@ export default function SalesOrder() {
         ItemCode: rowData["itemCode"],
         ItemName: rowData["itemName"],
         Quantity: rowData["quantity"],
-        Uom: rowData["uom"],
+        UoM: rowData["uom"],
         UoMConv: rowData["uomConversion"],
         Whse: rowData["location"],
         InvStat: rowData["inventoryStatus"],
-        SellPriceBeDisc: rowData["sellingPriceBeforeDiscount"],
+        SellPriceBefDisc: rowData["sellingPriceBeforeDiscount"],
         DiscRate: rowData["discountRate"],
         SellPriceAftDisc: rowData["sellingPriceAfterDiscount"],
         LowerBound: rowData["lowerBound"],
@@ -3346,7 +3351,7 @@ export default function SalesOrder() {
           <button
             className="p-2 mt-2 mb-1 mr-2 text-[12px] bg-[#F4D674]"
             // onClick={commit}
-            onClick={sendToProductionAPI}
+            onClick={detailsTable}
           >
             Commit
           </button>
