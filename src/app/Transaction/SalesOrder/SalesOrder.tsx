@@ -285,6 +285,7 @@ export default function SalesOrder() {
     setScOrPwdField(event.target.value);
   };
 
+  // UUID
   useEffect(() => {
     const fetchEntryNumber = async () => {
       try {
@@ -311,17 +312,11 @@ export default function SalesOrder() {
       .get("http://172.16.10.169:5000/api/v1/draftNumber")
       .then((res) => {
         const draftNumber = res.data.draftNumber;
-
-        // Update DraftNum in the formData state
         setFormData((prevFormData) => ({
           ...prevFormData,
           DraftNum: draftNumber.toString(),
-          // EntryNum: draftNumber.toString(),
         }));
-
-        // Update DraftNumber in a separate state
         setDraftNumber(draftNumber);
-        // setEntryNumbers(draftNumber);
       })
       .catch((err) => console.log(err));
   }, []);
