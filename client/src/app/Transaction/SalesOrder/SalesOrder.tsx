@@ -184,8 +184,7 @@ export default function SalesOrder() {
       });
   };
 
-  // Production API
-  // const productionAPI = "http://172.16.10.217:3002/so-header/";
+  // ----------------------------- Header POST API --------------------------------
   const [finalTotalAmtBefTax, setFinalTotalAmtBefTax] = useState(0);
   const [finalTotalTax, setFinalTotalTax] = useState(0);
   const [finalTotalAmtAftTax, setFinalTotalAmtAftTax] = useState(0);
@@ -266,7 +265,7 @@ export default function SalesOrder() {
       }
     });
   };
-  // End of Production API
+  // ----------------------------- Header POST API --------------------------------
 
   const handleWalkinCustomerChange = (event: any) => {
     setWalkingCustomer(event.target.value);
