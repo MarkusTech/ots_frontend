@@ -211,7 +211,6 @@ export default function SalesOrder() {
         });
 
         const saveHeaderDetails = {
-          // EntryNum: formData.DraftNum,
           EntryNum: formData.EntryNum,
           DocNum: 0,
           // DraftNum: 1234,
