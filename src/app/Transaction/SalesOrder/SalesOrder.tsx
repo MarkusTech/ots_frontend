@@ -411,7 +411,6 @@ export default function SalesOrder() {
     });
   };
 
-  // to be delelted
   // Handle Draft Submit && Handle Payment Validation
   const handleSubmit = () => {
     const validateTable = [...tableData];
