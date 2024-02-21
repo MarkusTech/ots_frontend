@@ -80,7 +80,8 @@ export default function SalesOrder() {
   const [customerReference, setCustomerReference] = useState("");
   const [remarksField, setRemarksField] = useState("");
   const [scOrPwdField, setScOrPwdField] = useState("");
-  const [draftNumber, setDraftNumber] = useState(null);
+  const [draftNumber, setDraftNumber] = useState(null); // no value
+  const [entryNumbers, setEntryNumbers] = useState(null);
   const [customerData, setCustomerData] = useState([
     {
       customerCode: "00000",
@@ -167,7 +168,7 @@ export default function SalesOrder() {
       OnAccount: setOnAccount,
       COD: isPaymentCOD,
       // entry number
-      EntryNum: formData.DraftNum,
+      // EntryNum: formData.DraftNum,
     });
   });
 
@@ -303,10 +304,12 @@ export default function SalesOrder() {
         setFormData((prevFormData) => ({
           ...prevFormData,
           DraftNum: draftNumber.toString(),
+          EntryNum: draftNumber.toString(),
         }));
 
         // Update DraftNumber in a separate state
         setDraftNumber(draftNumber);
+        setEntryNumbers(draftNumber);
       })
       .catch((err) => console.log(err));
   }, []);
@@ -2422,7 +2425,7 @@ export default function SalesOrder() {
               <input
                 type="text"
                 readOnly
-                value={draftNumber !== null ? draftNumber : ""}
+                value={entryNumbers !== null ? entryNumbers : ""}
               />
             </div>
           </div>
