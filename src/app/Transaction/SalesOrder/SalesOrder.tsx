@@ -170,35 +170,6 @@ export default function SalesOrder() {
     });
   });
 
-  // Sweet alert
-  // const showAlert = () => {
-  //   Swal.fire({
-  //     title: "Do you want to save this Draft?",
-  //     showDenyButton: true,
-  //     showCancelButton: true,
-  //     confirmButtonText: "Save",
-  //     denyButtonText: `Don't save`,
-  //   }).then((result) => {
-  //     if (result.isConfirmed) {
-  //       Swal.fire("Saved!", "", "success");
-  //       sendDataToAPI();
-  //       sendToProductionAPI();
-  //       setTimeout(() => {
-  //         // save details to backend API
-  //         detailsOnSaveToAPI();
-  //         setTimeout(() => {
-  //           Swal.fire({
-  //             icon: "success",
-  //             text: "Successfully Save to Draft",
-  //           });
-  //         }, 1000);
-  //       }, 1000);
-  //     } else if (result.isDenied) {
-  //       Swal.fire("Draft is not saved", "", "info");
-  //     }
-  //   });
-  // };
-
   const wmrAPI = "http://172.16.10.169:5000/api/v1/ots"; // wmr IP
   const sendDataToAPI = () => {
     const apiUrl = wmrAPI;
