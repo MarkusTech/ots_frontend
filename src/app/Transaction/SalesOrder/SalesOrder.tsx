@@ -412,10 +412,6 @@ export default function SalesOrder() {
   };
 
   // to be delelted
-  const SaveDetailsToAPI = () => {
-    console.log(tableData);
-  };
-
   // Handle Draft Submit && Handle Payment Validation
   const handleSubmit = () => {
     const validateTable = [...tableData];
