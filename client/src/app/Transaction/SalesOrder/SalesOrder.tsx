@@ -808,11 +808,23 @@ export default function SalesOrder() {
     const calcTotalAmoutDue =
       tempSum2 - (tempSum2 - taxAmountSum) * varSCPWDdisc;
 
-    setFinalTotalAmtBefTax(calcBeforeVat);
-    setFinalTotalTax(calcTotalVat);
-    setFinalTotalAmtAftTax(calcAfterVat);
-    setFinalSCPWDDiscTotal(calcForScORPwd);
-    setFinalTotalAmtDue(calcTotalAmoutDue);
+    const roundedAfterVat = Number(calcAfterVat.toFixed(2));
+    const roundedBeforeVat = Number(calcBeforeVat.toFixed(2));
+    const roundedTotalVat = Number(calcTotalVat.toFixed(2));
+    const roundedForScORPwd = Number(calcForScORPwd.toFixed(2));
+    const roundedTotalAmoutDue = Number(calcTotalAmoutDue.toFixed(2));
+
+    // setFinalTotalAmtBefTax(calcBeforeVat);
+    // setFinalTotalTax(calcTotalVat);
+    // setFinalTotalAmtAftTax(calcAfterVat);
+    // setFinalSCPWDDiscTotal(calcForScORPwd);
+    // setFinalTotalAmtDue(calcTotalAmoutDue);
+
+    setFinalTotalAmtBefTax(roundedBeforeVat);
+    setFinalTotalTax(roundedTotalVat);
+    setFinalTotalAmtAftTax(roundedAfterVat);
+    setFinalSCPWDDiscTotal(roundedForScORPwd);
+    setFinalTotalAmtDue(roundedTotalAmoutDue);
   });
 
   // End UseEffect start
