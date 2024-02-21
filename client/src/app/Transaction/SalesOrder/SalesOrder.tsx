@@ -368,7 +368,7 @@ export default function SalesOrder() {
     },
   ]);
 
-  // ------------------------ Product Details -----------------------------------
+  // ------------------------ POST Product Details -----------------------------------
   const dataTable = [...tableData];
   const detailsPostAPI = "http://172.16.10.169:5000/api/v1/product-detail";
   const detailsOnSaveToAPI = () => {
@@ -412,7 +412,7 @@ export default function SalesOrder() {
         });
     });
   };
-  // ------------------------ Product Details End -----------------------------------
+  // ------------------------ POST Product Details End -----------------------------------
 
   // Handle Draft Submit && Handle Payment Validation
   const handleSubmit = () => {
