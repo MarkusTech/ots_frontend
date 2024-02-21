@@ -293,6 +293,26 @@ export default function SalesOrder() {
     setScOrPwdField(event.target.value);
   };
 
+  useEffect(() => {
+    const fetchEntryNumber = async () => {
+      try {
+        const response = await axios.get(
+          "http://localhost:5000/api/v1/generateUniqueId"
+        );
+        const entryNumber = response.data.uniqueId;
+
+        setFormData((prevFormData) => ({
+          ...prevFormData,
+          EntryNum: entryNumber.toString(),
+        }));
+        setEntryNumbers(entryNumber);
+      } catch (error) {
+        console.error("Error fetching draft number:", error);
+      }
+    };
+    fetchEntryNumber();
+  }, []);
+
   // Fetched DraftNumber
   useEffect(() => {
     axios
@@ -304,12 +324,12 @@ export default function SalesOrder() {
         setFormData((prevFormData) => ({
           ...prevFormData,
           DraftNum: draftNumber.toString(),
-          EntryNum: draftNumber.toString(),
+          // EntryNum: draftNumber.toString(),
         }));
 
         // Update DraftNumber in a separate state
         setDraftNumber(draftNumber);
-        setEntryNumbers(draftNumber);
+        // setEntryNumbers(draftNumber);
       })
       .catch((err) => console.log(err));
   }, []);
@@ -2411,14 +2431,16 @@ export default function SalesOrder() {
               </Draggable>
             )}
           </div>
-
           <div className="grid grid-cols-2">
             <label htmlFor="documentnumber">Draft Number</label>
             <div>
-              <input type="text" readOnly />
+              <input
+                type="text"
+                readOnly
+                value={draftNumber !== null ? draftNumber : ""}
+              />
             </div>
           </div>
-
           <div className="grid grid-cols-2">
             <label htmlFor="entrynumber">Entry Number</label>
             <div>
