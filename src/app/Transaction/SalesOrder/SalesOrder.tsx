@@ -231,7 +231,8 @@ export default function SalesOrder() {
     });
 
     const saveHeaderDetails = {
-      EntryNum: formData.DraftNum,
+      // EntryNum: formData.DraftNum,
+      EntryNum: formData.EntryNum,
       DocNum: 0,
       // DraftNum: 1234,
       PostingDate: manilaDate,
@@ -392,7 +393,6 @@ export default function SalesOrder() {
     // Map through each item in the dataTable array
     dataTable.forEach((rowData) => {
       const saveDetails = {
-        LineID: 0,
         EntryNum: formData.DraftNum,
         ItemCode: rowData["itemCode"],
         ItemName: rowData["itemName"],
