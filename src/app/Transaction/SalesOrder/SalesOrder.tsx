@@ -208,7 +208,6 @@ export default function SalesOrder() {
       .then((response) => {
         console.log("Data sent successfully:", response.data);
         draftNumIncrementAPI();
-        entryNumberPOSTAPI();
       })
       .catch((error) => {
         console.error("Error sending data:", error);
@@ -318,10 +317,10 @@ export default function SalesOrder() {
     axios.post(apiUrl);
   };
 
-  const entryNumberPOSTAPI = () => {
-    const apiUrl = "http://172.16.10.169:5000/api/v1/entrynum";
-    axios.post(apiUrl);
-  };
+  // const entryNumberPOSTAPI = () => {
+  //   const apiUrl = "http://172.16.10.169:5000/api/v1/entrynum";
+  //   axios.post(apiUrl);
+  // };
 
   // -------------------------------------- End of <WMR CODE> header insertion --------------------------------------
 
