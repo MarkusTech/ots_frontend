@@ -167,39 +167,37 @@ export default function SalesOrder() {
       OnlineTransfer: isPaymentOnlineTransfer,
       OnAccount: setOnAccount,
       COD: isPaymentCOD,
-      // entry number
-      // EntryNum: formData.DraftNum,
     });
   });
 
   // Sweet alert
-  const showAlert = () => {
-    Swal.fire({
-      title: "Do you want to save this Draft?",
-      showDenyButton: true,
-      showCancelButton: true,
-      confirmButtonText: "Save",
-      denyButtonText: `Don't save`,
-    }).then((result) => {
-      if (result.isConfirmed) {
-        Swal.fire("Saved!", "", "success");
-        sendDataToAPI();
-        sendToProductionAPI();
-        setTimeout(() => {
-          // save details to backend API
-          detailsOnSaveToAPI();
-          setTimeout(() => {
-            Swal.fire({
-              icon: "success",
-              text: "Successfully Save to Draft",
-            });
-          }, 1000);
-        }, 1000);
-      } else if (result.isDenied) {
-        Swal.fire("Draft is not saved", "", "info");
-      }
-    });
-  };
+  // const showAlert = () => {
+  //   Swal.fire({
+  //     title: "Do you want to save this Draft?",
+  //     showDenyButton: true,
+  //     showCancelButton: true,
+  //     confirmButtonText: "Save",
+  //     denyButtonText: `Don't save`,
+  //   }).then((result) => {
+  //     if (result.isConfirmed) {
+  //       Swal.fire("Saved!", "", "success");
+  //       sendDataToAPI();
+  //       sendToProductionAPI();
+  //       setTimeout(() => {
+  //         // save details to backend API
+  //         detailsOnSaveToAPI();
+  //         setTimeout(() => {
+  //           Swal.fire({
+  //             icon: "success",
+  //             text: "Successfully Save to Draft",
+  //           });
+  //         }, 1000);
+  //       }, 1000);
+  //     } else if (result.isDenied) {
+  //       Swal.fire("Draft is not saved", "", "info");
+  //     }
+  //   });
+  // };
 
   const wmrAPI = "http://172.16.10.169:5000/api/v1/ots"; // wmr IP
   const sendDataToAPI = () => {
@@ -223,58 +221,80 @@ export default function SalesOrder() {
   const [finalSCPWDDiscTotal, setFinalSCPWDDiscTotal] = useState(0);
   const [finalTotalAmtDue, setFinalTotalAmtDue] = useState(0);
   const sendToProductionAPI = () => {
-    const axiosInstance = axios.create({
-      baseURL: "http://172.16.10.217:3002",
-      headers: {
-        "Content-Type": "application/json",
-      },
+    Swal.fire({
+      title: "Do you want to save this Draft?",
+      showDenyButton: true,
+      showCancelButton: true,
+      confirmButtonText: "Save",
+      denyButtonText: `Don't save`,
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire("Saved!", "", "success");
+        sendDataToAPI();
+
+        const axiosInstance = axios.create({
+          baseURL: "http://172.16.10.217:3002",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
+
+        const saveHeaderDetails = {
+          // EntryNum: formData.DraftNum,
+          EntryNum: formData.EntryNum,
+          DocNum: 0,
+          // DraftNum: 1234,
+          PostingDate: manilaDate,
+          DocDate: manilaDate,
+          CustomerCode: formData.CustomerCode,
+          CustomerName: formData.CustomerName,
+          WalkInName: formData.WalkInName,
+          ShippingAdd: formData.ShippingAdd,
+          TIN: formData.TIN,
+          Reference: formData.Reference,
+          SCPWDIdNo: formData.SCPWDIdNo,
+          Branch: formData.Branch,
+          DocStat: formData.DocStat,
+          BaseDoc: 1,
+          Cash: formData.Cash,
+          CreditCard: formData.CreditCard,
+          DebitCard: formData.DebitCard,
+          ODC: formData.ODC,
+          PDC: formData.PDC,
+          OnlineTransfer: formData.OnlineTransfer,
+          OnAccount: formData.OnAccount,
+          COD: formData.COD,
+          TotalAmtBefTax: finalTotalAmtBefTax,
+          TotalTax: finalTotalTax,
+          TotalAmtAftTax: finalTotalAmtAftTax,
+          SCPWDDiscTotal: finalSCPWDDiscTotal,
+          TotalAmtDue: finalTotalAmtDue,
+          Remarks: formData.Remarks,
+          CreatedBy: "administrator",
+          DateCreated: manilaDate,
+          UpdatedBy: 1,
+          DateUpdated: "",
+        };
+
+        axiosInstance
+          .post("/so-header", saveHeaderDetails)
+          .then((response) => {
+            console.log("Data sent successfully:", response.data);
+            detailsOnSaveToAPI();
+            setTimeout(() => {
+              Swal.fire({
+                icon: "success",
+                text: "Successfully Save to Draft",
+              });
+            }, 2000);
+          })
+          .catch((error) => {
+            console.error("Error sending data:", error);
+          });
+      } else if (result.isDenied) {
+        Swal.fire("Draft is not saved", "", "info");
+      }
     });
-
-    const saveHeaderDetails = {
-      // EntryNum: formData.DraftNum,
-      EntryNum: formData.EntryNum,
-      DocNum: 0,
-      // DraftNum: 1234,
-      PostingDate: manilaDate,
-      DocDate: manilaDate,
-      CustomerCode: formData.CustomerCode,
-      CustomerName: formData.CustomerName,
-      WalkInName: formData.WalkInName,
-      ShippingAdd: formData.ShippingAdd,
-      TIN: formData.TIN,
-      Reference: formData.Reference,
-      SCPWDIdNo: formData.SCPWDIdNo,
-      Branch: formData.Branch,
-      DocStat: formData.DocStat,
-      BaseDoc: 1,
-      Cash: formData.Cash,
-      CreditCard: formData.CreditCard,
-      DebitCard: formData.DebitCard,
-      ODC: formData.ODC,
-      PDC: formData.PDC,
-      OnlineTransfer: formData.OnlineTransfer,
-      OnAccount: formData.OnAccount,
-      COD: formData.COD,
-      TotalAmtBefTax: finalTotalAmtBefTax,
-      TotalTax: finalTotalTax,
-      TotalAmtAftTax: finalTotalAmtAftTax,
-      SCPWDDiscTotal: finalSCPWDDiscTotal,
-      TotalAmtDue: finalTotalAmtDue,
-      Remarks: formData.Remarks,
-      CreatedBy: "administrator",
-      DateCreated: manilaDate,
-      UpdatedBy: 1,
-      DateUpdated: "",
-    };
-
-    axiosInstance
-      .post("/so-header", saveHeaderDetails)
-      .then((response) => {
-        console.log("Data sent successfully:", response.data);
-      })
-      .catch((error) => {
-        console.error("Error sending data:", error);
-      });
   };
   // End of Production API
 
@@ -501,7 +521,7 @@ export default function SalesOrder() {
       });
     } else if (countAllreleasing == allItemsArrLen) {
       //  if the whole validation is done it will show an alert to save or cancel
-      showAlert();
+      sendToProductionAPI();
     } else {
       Swal.fire({
         icon: "error",
