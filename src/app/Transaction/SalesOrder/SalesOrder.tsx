@@ -289,7 +289,7 @@ export default function SalesOrder() {
     const fetchEntryNumber = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:5000/api/v1/generateUniqueId"
+          "http://172.16.10.169:5000/api/v1/generateUniqueId"
         );
         const entryNumber = response.data.uniqueId;
 
@@ -376,7 +376,7 @@ export default function SalesOrder() {
   ]);
 
   const dataTable = [...tableData];
-  const detailsPostAPI = "http://localhost:5000/api/v1/product-detail";
+  const detailsPostAPI = "http://172.16.10.169:5000/api/v1/product-detail";
 
   const detailsOnSaveToAPI = () => {
     const apiUrl = detailsPostAPI;
