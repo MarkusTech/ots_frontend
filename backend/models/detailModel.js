@@ -5,7 +5,7 @@ const productDetailsSchema = new mongoose.Schema({
     type: Number,
   },
   EntryNum: {
-    type: Number,
+    type: String,
   },
   ItemCode: {
     type: String,

@@ -393,7 +393,8 @@ export default function SalesOrder() {
     // Map through each item in the dataTable array
     dataTable.forEach((rowData) => {
       const saveDetails = {
-        EntryNum: formData.DraftNum,
+        // EntryNum: formData.DraftNum,
+        EntryNum: formData.EntryNum,
         ItemCode: rowData["itemCode"],
         ItemName: rowData["itemName"],
         Quantity: rowData["quantity"],
