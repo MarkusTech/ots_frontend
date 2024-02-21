@@ -9,6 +9,9 @@ import colors from "colors";
 // Dabatase
 import connectDB from "./config/db.js";
 
+// UUID
+import { v4 as uuidv4 } from "uuid";
+
 // Routes
 import productRoutes from "./routes/productRoutes.js";
 import otsRoutes from "./routes/otsRoutes.js";
@@ -41,6 +44,12 @@ app.use("/api/v1", otsRoutes);
 app.use("/api/v1", draftNumberRoutes);
 app.use("/api/v1", entryNumberRoutes);
 app.use("/api/v1", productDetailRoutes);
+
+// uuid API
+app.get("/api/generateUniqueId", (req, res) => {
+  const uniqueId = uuidv4();
+  res.json({ uniqueId });
+});
 
 // event listener
 app.listen(port, () => {
