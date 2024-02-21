@@ -325,8 +325,6 @@ export default function SalesOrder() {
     axios.post(apiUrl);
   };
 
-  // -------------------------------------- End of <WMR CODE> header insertion --------------------------------------
-
   // ------------------------------------------ Product Details insertion -------------------------------------------
   const [tableData, setTableData] = useState([
     {
@@ -497,6 +495,8 @@ export default function SalesOrder() {
   };
 
   // --------------------------------------- End of Product Details insertion ---------------------------------------
+
+  // -------------------------------------- End of <WMR CODE> header insertion --------------------------------------
   let customerData2 = [{}];
   let currentCustomerData = customerList;
   const arrayCustomer = [customerList];
