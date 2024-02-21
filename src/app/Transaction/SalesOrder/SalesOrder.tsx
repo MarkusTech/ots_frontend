@@ -377,7 +377,6 @@ export default function SalesOrder() {
 
   const dataTable = [...tableData];
   const detailsPostAPI = "http://172.16.10.169:5000/api/v1/product-detail";
-
   const detailsOnSaveToAPI = () => {
     const apiUrl = detailsPostAPI;
 
