@@ -3328,12 +3328,19 @@ export default function SalesOrder() {
       </div>
       <div className="grid grid-cols-2">
         <div className="p-2 flex justify-start">
-          {!isSaved && (
+          {!isSaved ? (
             <button
               className="p-2 mt-2 mb-1 mr-2 text-[12px] bg-[#F4D674]"
               onClick={handleSubmit}
             >
               Save as draft
+            </button>
+          ) : (
+            <button
+              className="p-2 mt-2 mb-1 mr-2 text-[12px] bg-[#F4D674]"
+              // onClick={handlePrint}
+            >
+              Print
             </button>
           )}
           <button
