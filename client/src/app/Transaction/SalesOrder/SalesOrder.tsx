@@ -179,7 +179,6 @@ export default function SalesOrder() {
       .post(apiUrl, formData)
       .then((response) => {
         console.log("Data sent successfully:", response.data);
-        // draftNumIncrementAPI();
       })
       .catch((error) => {
         console.error("Error sending data:", error);
