@@ -493,7 +493,7 @@ export default function SalesOrder() {
     ) {
       Swal.fire({
         icon: "error",
-        title: "Oops...",
+        // title: "Oops...",
         text: "Need to Select Payment Method!",
       });
     } else if (countAllreleasing == allItemsArrLen) {
