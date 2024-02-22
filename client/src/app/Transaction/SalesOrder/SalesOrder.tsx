@@ -465,7 +465,7 @@ export default function SalesOrder() {
     } else if (validateTable[0]["itemCode"] == "") {
       Swal.fire({
         icon: "error",
-        title: "Oops...",
+        // title: "Oops...",
         text: "Need to Select Atleast 1 Product!",
       });
     } else if (countStatusInventory > 0) {
