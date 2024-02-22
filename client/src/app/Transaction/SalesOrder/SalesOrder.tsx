@@ -497,7 +497,6 @@ export default function SalesOrder() {
     } else {
       Swal.fire({
         icon: "error",
-        // title: "Oops...",
         text: "Please make sure all products have mode of releasing",
       });
     }
