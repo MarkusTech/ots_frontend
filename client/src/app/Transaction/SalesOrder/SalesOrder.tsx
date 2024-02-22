@@ -179,7 +179,7 @@ export default function SalesOrder() {
       .post(apiUrl, formData)
       .then((response) => {
         console.log("Data sent successfully:", response.data);
-        draftNumIncrementAPI();
+        // draftNumIncrementAPI();
       })
       .catch((error) => {
         console.error("Error sending data:", error);
@@ -251,6 +251,19 @@ export default function SalesOrder() {
           .post("/so-header", saveHeaderDetails)
           .then((response) => {
             console.log("Data sent successfully:", response.data);
+
+            // Getting Response Value
+            const responseData = response.data;
+            const headerValue = responseData.header[0][""];
+            setFormData((prevFormData) => ({
+              ...prevFormData,
+              DraftNum: headerValue.toString(),
+            }));
+            setDraftNumber(headerValue);
+
+            console.log(headerValue);
+
+            // wmr backend API
             detailsOnSaveToAPI();
             setTimeout(() => {
               setIsSaved(true);
@@ -312,26 +325,26 @@ export default function SalesOrder() {
     fetchEntryNumber();
   }, []);
 
-  // Fetched DraftNumber
-  useEffect(() => {
-    axios
-      .get("http://172.16.10.169:5000/api/v1/draftNumber")
-      .then((res) => {
-        const draftNumber = res.data.draftNumber;
-        setFormData((prevFormData) => ({
-          ...prevFormData,
-          DraftNum: draftNumber.toString(),
-        }));
-        setDraftNumber(draftNumber);
-      })
-      .catch((err) => console.log(err));
-  }, []);
+  // // Fetched DraftNumber
+  // useEffect(() => {
+  //   axios
+  //     .get("http://172.16.10.169:5000/api/v1/draftNumber")
+  //     .then((res) => {
+  //       const draftNumber = res.data.draftNumber;
+  //       setFormData((prevFormData) => ({
+  //         ...prevFormData,
+  //         DraftNum: draftNumber.toString(),
+  //       }));
+  //       setDraftNumber(draftNumber);
+  //     })
+  //     .catch((err) => console.log(err));
+  // }, []);
 
-  // Post Increment Draft Number
-  const draftNumIncrementAPI = () => {
-    const apiUrl = "http://172.16.10.169:5000/api/v1/draftNumber";
-    axios.post(apiUrl);
-  };
+  // // Post Increment Draft Number
+  // const draftNumIncrementAPI = () => {
+  //   const apiUrl = "http://172.16.10.169:5000/api/v1/draftNumber";
+  //   axios.post(apiUrl);
+  // };
 
   // ------------------------------------------ Product Details insertion -------------------------------------------
   const [tableData, setTableData] = useState([
