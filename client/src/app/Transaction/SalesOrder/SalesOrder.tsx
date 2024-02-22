@@ -502,7 +502,7 @@ export default function SalesOrder() {
     } else {
       Swal.fire({
         icon: "error",
-        title: "Oops...",
+        // title: "Oops...",
         text: "Please make sure all products have mode of releasing",
       });
     }
