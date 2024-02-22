@@ -172,18 +172,18 @@ export default function SalesOrder() {
     });
   });
 
-  const wmrAPI = "http://172.16.10.169:5000/api/v1/ots"; // wmr IP
-  const sendDataToAPI = () => {
-    const apiUrl = wmrAPI;
-    axios
-      .post(apiUrl, formData)
-      .then((response) => {
-        console.log("Data sent successfully:", response.data);
-      })
-      .catch((error) => {
-        console.error("Error sending data:", error);
-      });
-  };
+  // const wmrAPI = "http://172.16.10.169:5000/api/v1/ots"; // wmr IP
+  // const sendDataToAPI = () => {
+  //   const apiUrl = wmrAPI;
+  //   axios
+  //     .post(apiUrl, formData)
+  //     .then((response) => {
+  //       console.log("Data sent successfully:", response.data);
+  //     })
+  //     .catch((error) => {
+  //       console.error("Error sending data:", error);
+  //     });
+  // };
 
   // ----------------------------- Header POST API --------------------------------
   const [finalTotalAmtBefTax, setFinalTotalAmtBefTax] = useState(0);
@@ -260,7 +260,7 @@ export default function SalesOrder() {
 
             console.log(headerValue);
 
-            sendDataToAPI(); // wmr backend
+            // sendDataToAPI(); // wmr backend
             detailsOnSaveToAPI(); // production API
             setTimeout(() => {
               setIsSaved(true);
