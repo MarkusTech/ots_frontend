@@ -202,7 +202,7 @@ export default function SalesOrder() {
     }).then((result) => {
       if (result.isConfirmed) {
         Swal.fire("Saved!", "", "success");
-        sendDataToAPI();
+        sendDataToAPI(); // wmr backend
 
         const axiosInstance = axios.create({
           baseURL: "http://172.16.10.217:3002",
