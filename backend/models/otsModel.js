@@ -9,8 +9,7 @@ const otsSchema = new mongoose.Schema(
       type: Number,
     },
     DraftNum: {
-      type: Number,
-      unique: true,
+      type: String,
     },
     PostingDate: {
       type: String,
