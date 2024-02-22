@@ -262,6 +262,11 @@ export default function SalesOrder() {
           })
           .catch((error) => {
             console.error("Error sending data:", error);
+            Swal.fire(
+              "Internal Server Error, Contact MIS Department",
+              "",
+              "error"
+            );
           });
       } else if (result.isDenied) {
         Swal.fire("Draft is not saved", "", "info");
