@@ -459,7 +459,6 @@ export default function SalesOrder() {
     if (formData.CustomerCode == "") {
       Swal.fire({
         icon: "error",
-        // title: "Oops...",
         text: "Need to Select Customer First!",
       });
     } else if (validateTable[0]["itemCode"] == "") {
