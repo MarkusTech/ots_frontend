@@ -474,7 +474,6 @@ export default function SalesOrder() {
     } else if (validateTable[0]["inventoryStatus"] == "") {
       Swal.fire({
         icon: "error",
-        // title: "Oops...",
         text: "Please Input a valid Quantity",
       });
     } else if (
