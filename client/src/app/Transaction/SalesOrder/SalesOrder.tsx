@@ -1234,7 +1234,6 @@ export default function SalesOrder() {
     setOpenOUMPanel(!openOUMPanel);
 
     var quantityChange = document.getElementById("quantityInput");
-    // quantityChange?.setAttribute("placeholder", 33); // it must be a 33 not a string
     quantityChange?.setAttribute("placeholder", "0"); // wmr change
 
     console.log(quantityChange);
