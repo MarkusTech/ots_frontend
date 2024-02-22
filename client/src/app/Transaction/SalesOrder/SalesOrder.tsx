@@ -201,8 +201,6 @@ export default function SalesOrder() {
     }).then((result) => {
       if (result.isConfirmed) {
         Swal.fire("Saved!", "", "success");
-        sendDataToAPI(); // wmr backend
-
         const axiosInstance = axios.create({
           baseURL: "http://172.16.10.217:3002",
           headers: {
@@ -262,8 +260,8 @@ export default function SalesOrder() {
 
             console.log(headerValue);
 
-            // wmr backend API
-            detailsOnSaveToAPI();
+            sendDataToAPI(); // wmr backend
+            detailsOnSaveToAPI(); // production API
             setTimeout(() => {
               setIsSaved(true);
               Swal.fire({
