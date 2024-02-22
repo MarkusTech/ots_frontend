@@ -469,7 +469,6 @@ export default function SalesOrder() {
     } else if (countStatusInventory > 0) {
       Swal.fire({
         icon: "error",
-        // title: "Oops...",
         text: "Please make sure all products are available",
       });
     } else if (validateTable[0]["inventoryStatus"] == "") {
