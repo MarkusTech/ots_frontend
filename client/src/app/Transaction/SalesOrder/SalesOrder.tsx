@@ -325,27 +325,6 @@ export default function SalesOrder() {
     fetchEntryNumber();
   }, []);
 
-  // // Fetched DraftNumber
-  // useEffect(() => {
-  //   axios
-  //     .get("http://172.16.10.169:5000/api/v1/draftNumber")
-  //     .then((res) => {
-  //       const draftNumber = res.data.draftNumber;
-  //       setFormData((prevFormData) => ({
-  //         ...prevFormData,
-  //         DraftNum: draftNumber.toString(),
-  //       }));
-  //       setDraftNumber(draftNumber);
-  //     })
-  //     .catch((err) => console.log(err));
-  // }, []);
-
-  // // Post Increment Draft Number
-  // const draftNumIncrementAPI = () => {
-  //   const apiUrl = "http://172.16.10.169:5000/api/v1/draftNumber";
-  //   axios.post(apiUrl);
-  // };
-
   // ------------------------------------------ Product Details insertion -------------------------------------------
   const [tableData, setTableData] = useState([
     {
