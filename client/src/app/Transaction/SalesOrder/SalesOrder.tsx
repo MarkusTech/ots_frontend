@@ -550,7 +550,9 @@ export default function SalesOrder() {
         `${fetchAPI}/warehouse-soh/${itemcode}/${name}/${brandID}`
       );
       setWareHouseList(warehouse.data);
-    } catch (e) {}
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const onAddHeaderTaxCode = async (cardCodex: any, whseCodex: any) => {
