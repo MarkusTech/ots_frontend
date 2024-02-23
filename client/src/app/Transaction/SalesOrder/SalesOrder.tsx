@@ -258,7 +258,6 @@ export default function SalesOrder() {
             }));
             setDraftNumber(headerValue);
 
-            // sendDataToAPI(); // wmr backend
             detailsOnSaveToAPI(); // production API
             setTimeout(() => {
               setIsSaved(true);
