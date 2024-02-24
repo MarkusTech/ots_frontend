@@ -777,7 +777,7 @@ export default function SalesOrder() {
     setTotalBeforeVat(calculationAfterVat); //total after vat
     settotalAfterVat(calculationBeforeVat); //Total Amount Before VAT
     setTotalVat(calculationTotalVat); //Total VAT
-    setSCPWDdata(calculationForScORPwd); //SC/PWD Discount Total
+    setSCPWDdata(calculationForScORPwd);
     settotalAmoutDueData(calculationTotalAmoutDue);
 
     // WMR Code
