@@ -774,7 +774,7 @@ export default function SalesOrder() {
       tempSum2 - (tempSum2 - taxAmountSum) * varSCPWDdisc
     );
 
-    setTotalBeforeVat(calculationAfterVat); //total after vat
+    setTotalBeforeVat(calculationAfterVat);
     settotalAfterVat(calculationBeforeVat);
     setTotalVat(calculationTotalVat);
     setSCPWDdata(calculationForScORPwd);
