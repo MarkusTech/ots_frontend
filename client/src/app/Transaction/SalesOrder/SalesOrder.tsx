@@ -775,7 +775,7 @@ export default function SalesOrder() {
     );
 
     setTotalBeforeVat(calculationAfterVat); //total after vat
-    settotalAfterVat(calculationBeforeVat); //Total Amount Before VAT
+    settotalAfterVat(calculationBeforeVat);
     setTotalVat(calculationTotalVat);
     setSCPWDdata(calculationForScORPwd);
     settotalAmoutDueData(calculationTotalAmoutDue);
