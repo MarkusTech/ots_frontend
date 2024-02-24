@@ -984,8 +984,6 @@ export default function SalesOrder() {
     if (event.key === "Enter") {
       let belCost = "";
 
-      //wmr change
-      // if (parseFloat(sellingAfterDis) < item.cost) {
       if (parseFloat(sellingAfterDis.toString()) < item.cost) {
         belCost = "Y";
       } else {
