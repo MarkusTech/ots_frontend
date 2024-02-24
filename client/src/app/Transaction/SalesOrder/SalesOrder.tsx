@@ -752,9 +752,6 @@ export default function SalesOrder() {
     for (let i = 0; i < arrayLen; i++) {
       tempSum =
         tempSum +
-        // wmr update
-        // updatedTableData[i]["sellingPriceBeforeDiscount"] *
-        //   parseInt(updatedTableData[i]["quantity"]);
         updatedTableData[i]["sellingPriceBeforeDiscount"] *
           Number(updatedTableData[i]["quantity"]);
       tempSum2 = tempSum2 + updatedTableData[i]["grossTotal"];
