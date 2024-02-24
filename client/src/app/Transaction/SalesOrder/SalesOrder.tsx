@@ -968,8 +968,6 @@ export default function SalesOrder() {
 
     let idUOM = document.getElementById(itemCodeID);
 
-    // wmr change
-    // idUOM?.setAttribute("value", sellingAfterDis);
     idUOM?.setAttribute("value", sellingAfterDis.toString());
   };
 
