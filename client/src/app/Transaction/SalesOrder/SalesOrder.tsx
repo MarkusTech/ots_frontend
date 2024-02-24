@@ -916,8 +916,6 @@ export default function SalesOrder() {
       );
       const lowerboundArr = lowerbound.data;
       const lowerBoundFinalItem = lowerboundArr[0]["LowerBound"];
-      // const disPriceBefDis =
-      //   updatedTableData[selectedRowIndex]["sellingPriceBeforeDiscount"];
 
       let SCDiscount = "";
 
