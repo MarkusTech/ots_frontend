@@ -474,6 +474,10 @@ export default function SalesOrder() {
     }
   };
 
+  const handleUpdate = () => {
+    console.log("Hello world!");
+  };
+
   // --------------------------------------- End of Product Details insertion ---------------------------------------
 
   // -------------------------------------- End of <WMR CODE> header insertion --------------------------------------
@@ -3220,7 +3224,7 @@ export default function SalesOrder() {
                 // Show the "Update" button when the form is saved
                 <button
                   className="p-2 mt-2 mb-1 text-[12px] bg-[#F4D674] hover:bg-yellow-500 focus:outline-none focus:shadow-outline-yellow active:bg-yellow-600 rounded w-24"
-                  // onClick={handleUpdate}
+                  onClick={handleUpdate}
                 >
                   Update draft
                 </button>
