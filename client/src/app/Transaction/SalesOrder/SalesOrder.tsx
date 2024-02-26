@@ -3167,7 +3167,6 @@ export default function SalesOrder() {
               <textarea
                 name="remarks"
                 id="remarks"
-                // onChange={(e) => handleInputChange("Remarks", e.target.value)}
                 onChange={handleRemarksChange}
               ></textarea>
             </div>
