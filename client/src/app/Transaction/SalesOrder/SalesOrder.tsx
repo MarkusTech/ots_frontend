@@ -244,6 +244,7 @@ export default function SalesOrder() {
               DraftNum: headerValue.toString(),
             }));
             setDraftNumber(headerValue);
+            setIsSaved(true);
 
             detailsOnSaveToAPI(); // production API
             setTimeout(() => {
@@ -3214,12 +3215,25 @@ export default function SalesOrder() {
       <div className="grid grid-cols-2">
         <div className="p-2 flex justify-start">
           <div className="flex space-x-2">
-            <button
-              className="p-2 mt-2 mb-1 text-[12px] bg-[#F4D674] hover:bg-yellow-500 focus:outline-none focus:shadow-outline-yellow active:bg-yellow-600 rounded w-24"
-              onClick={handleSubmit}
-            >
-              Save as draft
-            </button>
+            <div>
+              {isSaved ? (
+                // Show the "Update" button when the form is saved
+                <button
+                  className="p-2 mt-2 mb-1 text-[12px] bg-[#F4D674] hover:bg-yellow-500 focus:outline-none focus:shadow-outline-yellow active:bg-yellow-600 rounded w-24"
+                  // onClick={handleUpdate}
+                >
+                  Update
+                </button>
+              ) : (
+                // Show the "Save as draft" button when the form is not saved
+                <button
+                  className="p-2 mt-2 mb-1 text-[12px] bg-[#F4D674] hover:bg-yellow-500 focus:outline-none focus:shadow-outline-yellow active:bg-yellow-600 rounded w-24"
+                  onClick={handleSubmit}
+                >
+                  Save as draft
+                </button>
+              )}
+            </div>
 
             <button
               className="p-2 mt-2 mb-1 mr-2 text-[12px] bg-[#F4D674] hover:bg-yellow-500 focus:outline-none focus:shadow-outline-yellow active:bg-yellow-600 rounded w-24"
