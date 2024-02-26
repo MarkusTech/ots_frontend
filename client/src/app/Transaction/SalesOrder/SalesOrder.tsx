@@ -12,7 +12,7 @@ export default function SalesOrder() {
   const router = useRouter();
   const inputRef = useRef<HTMLInputElement | null>(null);
 
-  const [isSaved, setIsSaved] = useState(false); // show and hide Save to draft
+  // const [isSaved, setIsSaved] = useState(false); // show and hide Save to draft
 
   const [customerList, setCustomerDataList] = useState([]);
   const [itemList, setItemDataList] = useState([]);
@@ -247,7 +247,7 @@ export default function SalesOrder() {
 
             detailsOnSaveToAPI(); // production API
             setTimeout(() => {
-              setIsSaved(true);
+              // setIsSaved(true);
               Swal.fire({
                 icon: "success",
                 text: "Successfully Save to Draft",
@@ -3215,7 +3215,7 @@ export default function SalesOrder() {
       </div>
       <div className="grid grid-cols-2">
         <div className="p-2 flex justify-start">
-          {!isSaved ? (
+          {/* {!isSaved ? (
             <button
               className="p-2 mt-2 mb-1 mr-2 text-[12px] bg-[#F4D674]"
               onClick={handleSubmit}
@@ -3229,14 +3229,29 @@ export default function SalesOrder() {
             >
               Print
             </button>
-          )}
-          <button
-            className="p-2 mt-2 mb-1 mr-2 text-[12px] bg-[#F4D674]"
-            // onClick={commit}
-            onClick={detailsTable}
-          >
-            Commit
-          </button>
+          )} */}
+          <div className="flex space-x-4">
+            <button
+              className="p-2 mt-2 mb-1 mr-2 text-[12px] bg-[#F4D674] hover:bg-yellow-500 focus:outline-none focus:shadow-outline-yellow active:bg-yellow-600 rounded w-24"
+              onClick={handleSubmit}
+            >
+              Save as draft
+            </button>
+
+            <button
+              className="p-2 mt-2 mb-1 mr-2 text-[12px] bg-[#F4D674] hover:bg-yellow-500 focus:outline-none focus:shadow-outline-yellow active:bg-yellow-600 rounded w-24"
+              onClick={detailsTable}
+            >
+              Commit
+            </button>
+
+            <button
+              className="p-2 mt-2 mb-1 mr-2 text-[12px] bg-[#F4D674] hover:bg-yellow-500 focus:outline-none focus:shadow-outline-yellow active:bg-yellow-600 rounded w-24"
+              // onClick={handlePrint}
+            >
+              Print
+            </button>
+          </div>
         </div>
         <div className="p-2 flex justify-end"></div>
       </div>
