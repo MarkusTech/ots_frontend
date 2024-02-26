@@ -3222,7 +3222,7 @@ export default function SalesOrder() {
                   className="p-2 mt-2 mb-1 text-[12px] bg-[#F4D674] hover:bg-yellow-500 focus:outline-none focus:shadow-outline-yellow active:bg-yellow-600 rounded w-24"
                   // onClick={handleUpdate}
                 >
-                  Update
+                  Update draft
                 </button>
               ) : (
                 // Show the "Save as draft" button when the form is not saved
