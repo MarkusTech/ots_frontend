@@ -12,8 +12,6 @@ export default function SalesOrder() {
   const router = useRouter();
   const inputRef = useRef<HTMLInputElement | null>(null);
 
-  // const [isSaved, setIsSaved] = useState(false); // show and hide Save to draft
-
   const [customerList, setCustomerDataList] = useState([]);
   const [itemList, setItemDataList] = useState([]);
   const [UOMList, setUOMList] = useState([]);
@@ -247,7 +245,6 @@ export default function SalesOrder() {
 
             detailsOnSaveToAPI(); // production API
             setTimeout(() => {
-              // setIsSaved(true);
               Swal.fire({
                 icon: "success",
                 text: "Successfully Save to Draft",
