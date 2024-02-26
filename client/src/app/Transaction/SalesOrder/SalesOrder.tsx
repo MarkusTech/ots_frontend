@@ -474,8 +474,84 @@ export default function SalesOrder() {
     }
   };
 
+  // Update Header and Details
   const handleUpdate = () => {
-    console.log("Hello world!");
+    const validateTable = [...tableData];
+
+    const finalTotalListArr = [...finalTotalList];
+    const arrList = finalTotalListArr[0];
+
+    const allItemsArr = [...tableData];
+    const allItemsArrLen = allItemsArr.length;
+
+    let countAllreleasing = 0;
+
+    // mode of realeasing
+    for (let i = 0; i < allItemsArrLen; i++) {
+      console.log(allItemsArr[i]["modeOfReleasing"]);
+      if (allItemsArr[i]["modeOfReleasing"] == "") {
+      } else {
+        countAllreleasing++;
+      }
+    }
+
+    // Inventory Status
+    let countStatusInventory = 0;
+
+    for (let ii = 0; ii < allItemsArrLen; ii++) {
+      if (allItemsArr[ii]["inventoryStatus"] == "Out of Stocks") {
+        countStatusInventory++;
+      }
+    }
+
+    if (formData.CustomerCode == "") {
+      Swal.fire({
+        icon: "error",
+        text: "Need to Select Customer First!",
+      });
+    } else if (validateTable[0]["itemCode"] == "") {
+      Swal.fire({
+        icon: "error",
+        text: "Need to Select Atleast 1 Product!",
+      });
+    } else if (countStatusInventory > 0) {
+      Swal.fire({
+        icon: "error",
+        text: "Please make sure all products are available",
+      });
+    } else if (validateTable[0]["inventoryStatus"] == "") {
+      Swal.fire({
+        icon: "error",
+        text: "Please Input a valid Quantity",
+      });
+    } else if (
+      isPaymentCash == "N" &&
+      isPaymentCreditCard == "N" &&
+      isPaymentDebitCard == "N" &&
+      isPaymentODC == "N" &&
+      isPaymentPDC == "N" &&
+      isPaymentPO == "N" &&
+      isPaymentOnlineTransfer == "N" &&
+      setOnAccount == "N" &&
+      isPaymentCOD == "N"
+    ) {
+      Swal.fire({
+        icon: "error",
+        text: "Need to Select Payment Method!",
+      });
+    } else if (countAllreleasing == allItemsArrLen) {
+      //  if the whole validation is done it will show an alert to save or cancel
+      updateProductionAPI();
+    } else {
+      Swal.fire({
+        icon: "error",
+        text: "Please make sure all products have mode of releasing",
+      });
+    }
+  };
+
+  const updateProductionAPI = () => {
+    console.log("Hello World!");
   };
 
   // --------------------------------------- End of Product Details insertion ---------------------------------------
