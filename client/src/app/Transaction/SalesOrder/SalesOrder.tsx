@@ -3213,7 +3213,7 @@ export default function SalesOrder() {
         <div className="p-2 flex justify-start">
           <div className="flex space-x-2">
             <button
-              className="p-2 mt-2 mb-1 mr-2 text-[12px] bg-[#F4D674] hover:bg-yellow-500 focus:outline-none focus:shadow-outline-yellow active:bg-yellow-600 rounded w-24"
+              className="p-2 mt-2 mb-1 text-[12px] bg-[#F4D674] hover:bg-yellow-500 focus:outline-none focus:shadow-outline-yellow active:bg-yellow-600 rounded w-24"
               onClick={handleSubmit}
             >
               Save as draft
