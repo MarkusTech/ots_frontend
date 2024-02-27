@@ -392,53 +392,6 @@ export default function SalesOrder() {
     console.log(dataTable);
   };
 
-  // ------------------------ POST Product Details -----------------------------------
-  const dataTable = [...tableData];
-  const detailsPostAPI = "http://172.16.10.217:3002/so-details";
-  const detailsOnSaveToAPI = () => {
-    const apiUrl = detailsPostAPI;
-
-    // Map through each item in the dataTable array
-    dataTable.forEach((rowData) => {
-      const saveDetails = {
-        // EntryNum: formData.DraftNum,
-        // EntryNum: formData.EntryNum,
-        DraftNum: formData.EntryNum,
-        ItemCode: rowData["itemCode"],
-        ItemName: rowData["itemName"],
-        Quantity: rowData["quantity"],
-        UoM: rowData["uom"],
-        UoMConv: rowData["uomConversion"],
-        Whse: rowData["location"],
-        InvStat: rowData["inventoryStatus"],
-        SellPriceBefDisc: rowData["sellingPriceBeforeDiscount"],
-        DiscRate: rowData["discountRate"],
-        SellPriceAftDisc: rowData["sellingPriceAfterDiscount"],
-        LowerBound: rowData["lowerBound"],
-        TaxCode: rowData["taxCode"],
-        TaxCodePerc: rowData["taxCodePercentage"],
-        TaxAmt: rowData["taxAmount"],
-        BelPriceDisc: rowData["belVolDisPrice"],
-        Cost: rowData["cost"],
-        BelCost: rowData["belCost"],
-        ModeReleasing: rowData["modeOfReleasing"],
-        SCPWDdisc: rowData["scPwdDiscount"],
-        GrossTotal: rowData["grossTotal"],
-      };
-
-      // Send each item to the API
-      axios
-        .post(apiUrl, saveDetails)
-        .then((response) => {
-          console.log("Data sent successfully:", response.data);
-        })
-        .catch((error) => {
-          console.error("Error sending data:", error);
-        });
-    });
-  };
-  // ------------------------ POST Product Details End -----------------------------------
-
   // Handle Draft Submit && Handle Payment Validation
   const handleSubmit = () => {
     const validateTable = [...tableData];
