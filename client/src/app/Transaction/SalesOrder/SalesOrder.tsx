@@ -945,6 +945,7 @@ export default function SalesOrder() {
     ForeignName: string;
     WalkInName: string;
     DocDate: string;
+    CreatedBy: string;
     // ... other properties
   }
 
@@ -3530,6 +3531,7 @@ export default function SalesOrder() {
                               <th>Foreign Name</th>
                               <th>Walk-in Customer Name</th>
                               <th>Document Date</th>
+                              <th>Sales Crew</th>
                             </tr>
                           </thead>
                           <tbody>
@@ -3541,6 +3543,7 @@ export default function SalesOrder() {
                                 <td>{customer.ForeignName}</td>
                                 <td>{customer.WalkInName}</td>
                                 <td>{customer.DocDate}</td>
+                                <td>{customer.CreatedBy}</td>
                               </tr>
                             ))}
                           </tbody>
