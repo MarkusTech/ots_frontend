@@ -545,7 +545,24 @@ export default function SalesOrder() {
   };
 
   const deleteDetailsThenSave = () => {
-    console.log(`Hello World!`);
+    console.log(`wennworks: ${draftNumber}`); // to be deleted
+
+    Swal.fire({
+      title: "Do you want to update this Draft?",
+      showDenyButton: true,
+      showCancelButton: true,
+      confirmButtonText: "Save",
+      denyButtonText: `Don't save`,
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire("Updated Successfully", "", "success");
+        const deleteId = draftNumber;
+        axios.delete(`http://172.16.10.217:3002/so-details/${deleteId}`);
+        console.log(`${deleteId} is successfully deleted`); // to be deleted
+      } else if (result.isDenied) {
+        Swal.fire("Draft is not saved", "", "info");
+      }
+    });
   };
 
   const updateProductionAPI = () => {
@@ -3323,7 +3340,7 @@ export default function SalesOrder() {
 
             <button
               className="p-2 mt-2 mb-1 mr-2 text-[12px] bg-[#F4D674] hover:bg-yellow-500 focus:outline-none focus:shadow-outline-yellow active:bg-yellow-600 rounded w-24"
-              // onClick={handlePrint}
+              onClick={deleteDetailsThenSave}
             >
               Print
             </button>

@@ -1,35 +1,30 @@
-import { useState } from 'react';
+import { useState } from "react";
+import axios from "axios";
 
 const YourComponent = () => {
-  const [draftNum, setDraftNum] = useState(''); // Initialize with the initial DraftNum
+  const [draftNum, setDraftNum] = useState("");
 
   const handleDelete = async () => {
     try {
-      const response = await fetch(`http://172.16.10.217:3002/so-details/${draftNum}`, {
-        method: 'DELETE',
-        headers: {
-          'Content-Type': 'application/json',
-          // Add any other headers if needed
-        },
-        // You can include a body if your API requires it for DELETE requests
-        // body: JSON.stringify({}),
-      });
+      const response = await axios.delete(
+        `http://172.16.10.217:3002/so-details/${draftNum}`,
+        {
+          // You can include additional configuration options here if needed
+        }
+      );
 
-      if (response.ok) {
-        // Delete successful
-        console.log('Data deleted successfully');
+      if (response.status === 200) {
+        console.log("Data deleted successfully");
       } else {
-        // Handle error
-        console.error('Failed to delete data');
+        console.error("Failed to delete data");
       }
     } catch (error) {
-      console.error('Error during deletion:', error);
+      console.error("Error during deletion:", error);
     }
   };
 
   return (
     <div>
-      {/* Your component JSX */}
       <input
         type="text"
         value={draftNum}
