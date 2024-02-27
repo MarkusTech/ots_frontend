@@ -387,11 +387,6 @@ export default function SalesOrder() {
     },
   ]);
 
-  const detailsTable = () => {
-    const dataTable = [...tableData];
-    console.log(dataTable);
-  };
-
   // Handle Draft Submit && Handle Payment Validation
   const handleSubmit = () => {
     const validateTable = [...tableData];
@@ -938,6 +933,22 @@ export default function SalesOrder() {
 
   const handleShowSearchHeader = () => {
     setShowSearchHeader(!showSearchHeader);
+  };
+
+  const [customers, setCustomers] = useState([]);
+  useEffect(() => {
+    axios
+      .get("http://172.16.10.217:3002/so-details/")
+      .then((response) => {
+        setCustomers(response.data.slice(0, 10));
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+      });
+  }, []);
+
+  const wmrCustomer = () => {
+    console.log(customers);
   };
 
   // UseEffect start
@@ -3508,7 +3519,18 @@ export default function SalesOrder() {
                               <th>Document Date</th>
                             </tr>
                           </thead>
-                          <tbody></tbody>
+                          <tbody>
+                            {/* {customers.map((customer) => (
+                              <tr key={customer.id}>
+                                <td>{customer.customerCode}</td>
+                                <td>{customer.customerName}</td>
+                                <td>{customer.foreignName}</td>
+                                <td>{customer.walkInCustomerName}</td>
+                                <td>{customer.draftNumber}</td>
+                                <td>{customer.documentDate}</td>
+                              </tr>
+                            ))} */}
+                          </tbody>
                         </table>
                       </div>
                     </div>
