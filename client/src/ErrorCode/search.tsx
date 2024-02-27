@@ -6,6 +6,24 @@ const YourComponent = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [customers, setCustomers] = useState([]);
 
+  // Add this interface at the beginning of your file
+  interface Customer {
+    EntryNum: string;
+    DocNum: string;
+    DraftNum: string;
+    PostingDate: string;
+    // ... other properties
+  }
+
+  // YourComponent remains the same...
+
+  const YourComponent = () => {
+    const [searchTerm, setSearchTerm] = useState("");
+    const [customers, setCustomers] = useState<Customer[]>([]);
+
+    // ... rest of the component
+  };
+
   useEffect(() => {
     // Fetch data from the API
     axios

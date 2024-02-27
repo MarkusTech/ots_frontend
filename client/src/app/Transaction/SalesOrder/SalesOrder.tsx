@@ -935,12 +935,25 @@ export default function SalesOrder() {
     setShowSearchHeader(!showSearchHeader);
   };
 
-  const [customers, setCustomers] = useState([]);
+  interface Customer {
+    EntryNum: string;
+    DocNum: string;
+    DraftNum: string;
+    PostingDate: string;
+    CustomerCode: string;
+    CustomerName: string;
+    ForeignName: string;
+    WalkInName: string;
+    DocDate: string;
+    // ... other properties
+  }
+
+  const [customers, setCustomers] = useState<Customer[]>([]);
   useEffect(() => {
     axios
       .get("http://172.16.10.217:3002/so-header/")
       .then((response) => {
-        setCustomers(response.data.slice(0, 10));
+        setCustomers(response.data.slice(0, 15));
       })
       .catch((error) => {
         console.error("Error fetching data:", error);
@@ -3520,16 +3533,16 @@ export default function SalesOrder() {
                             </tr>
                           </thead>
                           <tbody>
-                            {/* {customers.map((customer) => (
-                              <tr key={customer.id}>
-                                <td>{customer.customerCode}</td>
-                                <td>{customer.customerName}</td>
-                                <td>{customer.foreignName}</td>
-                                <td>{customer.walkInCustomerName}</td>
-                                <td>{customer.draftNumber}</td>
-                                <td>{customer.documentDate}</td>
+                            {customers.map((customer) => (
+                              <tr key={customer.DraftNum}>
+                                <td>{customer.CustomerCode}</td>
+                                <td>{customer.CustomerName}</td>
+                                <td>{customer.ForeignName}</td>
+                                <td>{customer.WalkInName}</td>
+                                <td>{customer.DraftNum}</td>
+                                <td>{customer.DocDate}</td>
                               </tr>
-                            ))} */}
+                            ))}
                           </tbody>
                         </table>
                       </div>
