@@ -66,7 +66,7 @@ export default function Home() {
   function handleRounter(page: React.SetStateAction<string>) {
     if (page === "transaction") {
       setRounterName(page);
-      console.log("transaction", page);
+      // console.log("transaction", page);
       setSubmenuOpen(!submenuOpen);
       setSubmenuOpenInq(false);
       setSubmenuOpenReports(false);
