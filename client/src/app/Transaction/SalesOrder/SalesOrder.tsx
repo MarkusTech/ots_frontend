@@ -954,7 +954,8 @@ export default function SalesOrder() {
     axios
       .get("http://172.16.10.217:3002/so-header/")
       .then((response) => {
-        setCustomers(response.data.slice(0, 15));
+        // setCustomers(response.data.slice(0, 15));
+        setCustomers(response.data);
       })
       .catch((error) => {
         console.error("Error fetching data:", error);
