@@ -104,7 +104,7 @@ export default function Home() {
     } else if (page === "setup") {
       setRounterName(page);
       // router.push('../Setup')
-      console.log("setup");
+      // console.log("setup");
       setSubmenuOpenSetUp(!submenuOpenSetUp);
       setSubmenuOpen(false);
       setSubmenuOpenInq(false);
