@@ -34,7 +34,7 @@ export default function Navigations() {
   function handleRounter(page: React.SetStateAction<string>) {
     if (page === "transaction") {
       setRounterName(page);
-      console.log("transaction", page);
+      //   console.log("transaction", page);
       setSubmenuOpen(!submenuOpen);
       setSubmenuOpenInq(false);
       setSubmenuOpenReports(false);
@@ -46,7 +46,7 @@ export default function Navigations() {
       setSpanName4("");
     } else if (page === "inquiry") {
       setRounterName(page);
-      console.log("items");
+      //   console.log("items");
       setSubmenuOpenInq(!submenuOpenInq);
       setSubmenuOpen(false);
       setSubmenuOpenReports(false);
@@ -59,7 +59,7 @@ export default function Navigations() {
     } else if (page === "reports") {
       setRounterName(page);
       // router.push('../Reports')
-      console.log("reports");
+      //   console.log("reports");
       setSubmenuOpenReports(!submenuOpenReports);
       setSubmenuOpen(false);
       setSubmenuOpenInq(false);
@@ -72,7 +72,7 @@ export default function Navigations() {
     } else if (page === "setup") {
       setRounterName(page);
       // router.push('../Setup')
-      console.log("setup");
+      //   console.log("setup");
       setSubmenuOpenSetUp(!submenuOpenSetUp);
       setSubmenuOpen(false);
       setSubmenuOpenInq(false);
