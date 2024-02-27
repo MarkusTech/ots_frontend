@@ -892,7 +892,7 @@ export default function SalesOrder() {
       TIN: tin,
     });
 
-    console.log(customerData2);
+    // console.log(customerData2);
     setShowCustomer(!showCustomer);
   };
 
