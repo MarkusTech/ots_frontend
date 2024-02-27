@@ -405,7 +405,7 @@ export default function SalesOrder() {
 
     // mode of realeasing
     for (let i = 0; i < allItemsArrLen; i++) {
-      console.log(allItemsArr[i]["modeOfReleasing"]);
+      // console.log(allItemsArr[i]["modeOfReleasing"]);
       if (allItemsArr[i]["modeOfReleasing"] == "") {
       } else {
         countAllreleasing++;
