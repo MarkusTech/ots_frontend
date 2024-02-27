@@ -3524,22 +3524,22 @@ export default function SalesOrder() {
                         <table>
                           <thead className="tables">
                             <tr>
+                              <th>Draft Number</th>
                               <th>Customer Code</th>
                               <th>Customer Name</th>
                               <th>Foreign Name</th>
                               <th>Walk-in Customer Name</th>
-                              <th>Draft Number</th>
                               <th>Document Date</th>
                             </tr>
                           </thead>
                           <tbody>
                             {customers.map((customer) => (
                               <tr key={customer.DraftNum}>
+                                <td>{customer.DraftNum}</td>
                                 <td>{customer.CustomerCode}</td>
                                 <td>{customer.CustomerName}</td>
                                 <td>{customer.ForeignName}</td>
                                 <td>{customer.WalkInName}</td>
-                                <td>{customer.DraftNum}</td>
                                 <td>{customer.DocDate}</td>
                               </tr>
                             ))}
