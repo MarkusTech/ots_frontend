@@ -198,7 +198,6 @@ export default function SalesOrder() {
         const saveHeaderDetails = {
           EntryNum: formData.EntryNum,
           DocNum: 0,
-          // DraftNum: 1234,
           PostingDate: manilaDate,
           DocDate: manilaDate,
           CustomerCode: formData.CustomerCode,
@@ -566,7 +565,17 @@ export default function SalesOrder() {
   };
 
   const updateProductionAPI = () => {
-    console.log("Hello World!");
+    Swal.fire({
+      title: "Do you want to update this Draft?",
+      showDenyButton: true,
+      showCancelButton: true,
+      confirmButtonText: "Save",
+      denyButtonText: `Don't save`,
+    }).then((result) => {
+      if (result.isConfirmed) {
+        console.log(`Hello World!`);
+      }
+    });
   };
 
   // --------------------------------------- End of Product Details insertion ---------------------------------------
