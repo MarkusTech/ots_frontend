@@ -891,8 +891,6 @@ export default function SalesOrder() {
       ShippingAdd: address,
       TIN: tin,
     });
-
-    // console.log(customerData2);
     setShowCustomer(!showCustomer);
   };
 
