@@ -654,6 +654,7 @@ export default function SalesOrder() {
     setTableData((prevData) => [
       ...prevData,
       {
+        draftNumber: "",
         entryNumber: "", // sample
         itemCode: "",
         itemName: "",
