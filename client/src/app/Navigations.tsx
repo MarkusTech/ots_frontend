@@ -112,7 +112,7 @@ export default function Navigations() {
           setSubsubmenuOpen1("");
           setSubsubmenuOpen2("active");
         } else {
-          console.log("salesorder");
+          //   console.log("salesorder");
           router.push("./Transaction/SalesOrder/");
           setSubsubmenuOpen1("");
           setSubsubmenuOpen2("active");
