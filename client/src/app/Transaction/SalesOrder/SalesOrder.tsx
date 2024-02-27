@@ -938,7 +938,7 @@ export default function SalesOrder() {
   const [customers, setCustomers] = useState([]);
   useEffect(() => {
     axios
-      .get("http://172.16.10.217:3002/so-details/")
+      .get("http://172.16.10.217:3002/so-header/")
       .then((response) => {
         setCustomers(response.data.slice(0, 10));
       })
@@ -3453,7 +3453,7 @@ export default function SalesOrder() {
 
             <button
               className="p-2 mt-2 mb-1 mr-2 text-[12px] bg-[#F4D674] hover:bg-yellow-500 focus:outline-none focus:shadow-outline-yellow active:bg-yellow-600 rounded w-24"
-              onClick={detailsTable}
+              onClick={wmrCustomer}
             >
               Commit
             </button>
