@@ -1902,7 +1902,7 @@ export default function SalesOrder() {
   const handleDatedCheck = (event: any) => {
     setIsCheckedDatedCheck(event.target.checked);
 
-    console.log(event.target.checked);
+    // console.log(event.target.checked);
 
     const finalArr = [...finalTotalList];
 
