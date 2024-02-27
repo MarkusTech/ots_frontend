@@ -3496,6 +3496,8 @@ export default function SalesOrder() {
                       position: "absolute",
                       top: "12%",
                       left: "15%",
+                      maxHeight: "500px", // Set your desired max height for the entire draggable container
+                      overflowY: "auto", // Add vertical scrollbar if content exceeds maxHeight
                     }}
                   >
                     <div
@@ -3505,6 +3507,7 @@ export default function SalesOrder() {
                       <div>Search</div>
                       <div className="text-right">
                         <span
+                          // Assuming handleShowSearchHeader function is defined
                           onClick={handleShowSearchHeader}
                           className="cursor-pointer"
                         >
