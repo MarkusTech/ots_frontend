@@ -319,7 +319,7 @@ export default function Home() {
                   <div className="content">
                     {/* Rest of your Sales Order content */}
                     {/* ... */}
-                    <SalesOrder />
+                    <SalesQoutation />
                   </div>
                 </div>
               </Draggable>

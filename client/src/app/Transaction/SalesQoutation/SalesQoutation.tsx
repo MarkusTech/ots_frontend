@@ -1,7 +1,7 @@
 import React from "react";
 
 const SalesQoutation = () => {
-  return <div>SalesQoutation</div>;
+  return <div>SalesQoutationWennMarkRecopelacion</div>;
 };
 
 export default SalesQoutation;
