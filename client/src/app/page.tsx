@@ -91,7 +91,7 @@ export default function Home() {
     } else if (page === "reports") {
       setRounterName(page);
       // router.push('../Reports')
-      console.log("reports");
+      // console.log("reports");
       setSubmenuOpenReports(!submenuOpenReports);
       setSubmenuOpen(false);
       setSubmenuOpenInq(false);
