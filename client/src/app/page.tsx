@@ -78,7 +78,7 @@ export default function Home() {
       setSpanName4("");
     } else if (page === "inquiry") {
       setRounterName(page);
-      console.log("items");
+      // console.log("items");
       setSubmenuOpenInq(!submenuOpenInq);
       setSubmenuOpen(false);
       setSubmenuOpenReports(false);
