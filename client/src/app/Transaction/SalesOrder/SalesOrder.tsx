@@ -550,6 +550,10 @@ export default function SalesOrder() {
     }
   };
 
+  const deleteDetailsThenSave = () => {
+    console.log(`Hello World!`);
+  };
+
   const updateProductionAPI = () => {
     console.log("Hello World!");
   };
