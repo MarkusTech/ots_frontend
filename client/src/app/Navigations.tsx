@@ -97,7 +97,7 @@ export default function Navigations() {
           setSubsubmenuOpen1("active");
           setSubsubmenuOpen2("");
         } else {
-          console.log("salesqoutation");
+          //   console.log("salesqoutation");
           router.push("./Transaction/SalesQoutation/");
           setSubsubmenuOpen1("active");
           setSubsubmenuOpen2("");
