@@ -544,26 +544,11 @@ export default function SalesOrder() {
   };
 
   const deleteDetailsThenSave = () => {
-    console.log(`wennworks: ${draftNumber}`); // to be deleted
-
-    Swal.fire({
-      title: "Do you want to update this Draft?",
-      showDenyButton: true,
-      showCancelButton: true,
-      confirmButtonText: "Save",
-      denyButtonText: `Don't save`,
-    }).then((result) => {
-      if (result.isConfirmed) {
-        Swal.fire("Updated Successfully", "", "success");
-        const deleteId = draftNumber;
-        axios.delete(`http://172.16.10.217:3002/so-details/${deleteId}`);
-        console.log(`${deleteId} is successfully deleted`); // to be deleted
-      } else if (result.isDenied) {
-        Swal.fire("Draft is not saved", "", "info");
-      }
-    });
+    const deleteId = draftNumber;
+    axios.delete(`http://172.16.10.217:3002/so-details/${deleteId}`);
   };
 
+  // Update Production API
   const updateProductionAPI = () => {
     Swal.fire({
       title: "Do you want to update this Draft?",
@@ -573,7 +558,119 @@ export default function SalesOrder() {
       denyButtonText: `Don't save`,
     }).then((result) => {
       if (result.isConfirmed) {
-        console.log(`Hello World!`);
+        // delete details upon saving
+        deleteDetailsThenSave();
+
+        const draftNum = draftNumber;
+        const axiosInstance = axios.create({
+          baseURL: "http://172.16.10.217:3002",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
+        const saveOnUpdateHeaderDetails = {
+          EntryNum: formData.EntryNum,
+          DocNum: 0,
+          PostingDate: manilaDate,
+          DocDate: manilaDate,
+          CustomerCode: formData.CustomerCode,
+          CustomerName: formData.CustomerName,
+          WalkInName: formData.WalkInName,
+          ShippingAdd: formData.ShippingAdd,
+          TIN: formData.TIN,
+          Reference: formData.Reference,
+          SCPWDIdNo: formData.SCPWDIdNo,
+          Branch: formData.Branch,
+          DocStat: formData.DocStat,
+          BaseDoc: 1,
+          Cash: formData.Cash,
+          CreditCard: formData.CreditCard,
+          DebitCard: formData.DebitCard,
+          ODC: formData.ODC,
+          PDC: formData.PDC,
+          OnlineTransfer: formData.OnlineTransfer,
+          OnAccount: formData.OnAccount,
+          COD: formData.COD,
+          TotalAmtBefTax: finalTotalAmtBefTax,
+          TotalTax: finalTotalTax,
+          TotalAmtAftTax: finalTotalAmtAftTax,
+          SCPWDDiscTotal: finalSCPWDDiscTotal,
+          TotalAmtDue: finalTotalAmtDue,
+          Remarks: formData.Remarks,
+          CreatedBy: "administrator",
+          DateCreated: manilaDate,
+          UpdatedBy: 1,
+          DateUpdated: "",
+        };
+
+        axiosInstance
+          .patch(`/so-header/${draftNum}`, saveOnUpdateHeaderDetails)
+          .then((response) => {
+            console.log("Data sent successfully:", response.data);
+            // detailsOnSaveToAPI(); // production API
+            const dataTable = [...tableData];
+            const detailsPostAPI = "http://172.16.10.217:3002/so-details";
+
+            dataTable.forEach((rowData) => {
+              const saveDetails = {
+                DraftNum: draftNum,
+                ItemCode: rowData["itemCode"],
+                ItemName: rowData["itemName"],
+                Quantity: rowData["quantity"],
+                UoM: rowData["uom"],
+                UoMConv: rowData["uomConversion"],
+                Whse: rowData["location"],
+                InvStat: rowData["inventoryStatus"],
+                SellPriceBefDisc: rowData["sellingPriceBeforeDiscount"],
+                DiscRate: rowData["discountRate"],
+                SellPriceAftDisc: rowData["sellingPriceAfterDiscount"],
+                LowerBound: rowData["lowerBound"],
+                TaxCode: rowData["taxCode"],
+                TaxCodePerc: rowData["taxCodePercentage"],
+                TaxAmt: rowData["taxAmount"],
+                BelPriceDisc: rowData["belVolDisPrice"],
+                Cost: rowData["cost"],
+                BelCost: rowData["belCost"],
+                ModeReleasing: rowData["modeOfReleasing"],
+                SCPWDdisc: rowData["scPwdDiscount"],
+                GrossTotal: rowData["grossTotal"],
+              };
+
+              // Send each item to the API
+              axios
+                .post(detailsPostAPI, saveDetails)
+                .then((response) => {
+                  console.log("Data sent successfully:", response.data);
+                })
+                .catch((error) => {
+                  console.error("Error sending data:", error);
+                });
+            });
+
+            // Show success message
+            Swal.fire({
+              icon: "success",
+              text: "Updated Successfully",
+            });
+          })
+          .catch((error) => {
+            console.error("Error sending data:", error);
+
+            if (error.response) {
+              // Log the full error response
+              console.error("Full error response:", error.response.data);
+            }
+
+            // Show error message
+            Swal.fire(
+              "Internal Server Error, Contact MIS Department",
+              "",
+              "error"
+            );
+          });
+      } else if (result.isDenied) {
+        // Show info message
+        Swal.fire("Draft is not saved", "", "info");
       }
     });
   };
