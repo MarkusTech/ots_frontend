@@ -7,7 +7,6 @@ import SalesQoutation from "./Transaction/SalesQoutation/SalesQoutation";
 import Draggable from "react-draggable";
 import SalesOrder from "./Transaction/SalesOrder/SalesOrder";
 import Image from "next/image";
-import FloatingPanel from "./Transaction/SalesOrder/ui/floating";
 
 export default function Home() {
   const router = useRouter(); //Router
