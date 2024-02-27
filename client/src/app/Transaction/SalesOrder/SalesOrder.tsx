@@ -759,7 +759,7 @@ export default function SalesOrder() {
     const taxcode = await axios.get(
       `${fetchAPI}/tax-code/${cardCodex}/${whseCodex}`
     );
-    console.log("Tax Code", taxcode.data);
+    // console.log("Tax Code", taxcode.data);
     settaxCodeData(taxcode.data);
   };
 
