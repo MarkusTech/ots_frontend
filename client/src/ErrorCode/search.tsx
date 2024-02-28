@@ -111,3 +111,76 @@ const YourComponent = () => {
 };
 
 export default YourComponent;
+
+{
+  showSearchHeader && (
+    <Draggable>
+      <div
+        className="bg-white shadow-lg"
+        style={{
+          border: "1px solid #ccc",
+          position: "absolute",
+          top: "12%",
+          left: "15%",
+          maxHeight: "500px", // Set your desired max height for the entire draggable container
+          overflowY: "auto", // Add vertical scrollbar if content exceeds maxHeight
+        }}
+      >
+        <div
+          className="grid grid-cols-2 p-2 text-left windowheader"
+          style={{ cursor: "move" }}
+        >
+          <div>Search</div>
+          <div className="text-right">
+            <span
+              // Assuming handleShowSearchHeader function is defined
+              onClick={handleShowSearchHeader}
+              className="cursor-pointer"
+            >
+              ❌
+            </span>
+          </div>
+        </div>
+        <div className="content">
+          <div className="p-2">
+            <div>
+              Search:{" "}
+              <input
+                type="text"
+                className="mb-1"
+                value={searchTerm}
+                onChange={handleSearch}
+              />
+            </div>
+            <table>
+              <thead className="tables">
+                <tr>
+                  <th>Draft Number</th>
+                  <th>Customer Code</th>
+                  <th>Customer Name</th>
+                  <th>Foreign Name</th>
+                  <th>Walk-in Customer Name</th>
+                  <th>Document Date</th>
+                  <th>Sales Crew</th>
+                </tr>
+              </thead>
+              <tbody>
+                {customers.map((customer) => (
+                  <tr key={customer.DraftNum}>
+                    <td>{customer.DraftNum}</td>
+                    <td>{customer.CustomerCode}</td>
+                    <td>{customer.CustomerName}</td>
+                    <td>{customer.ForeignName}</td>
+                    <td>{customer.WalkInName}</td>
+                    <td>{customer.DocDate}</td>
+                    <td>{customer.CreatedBy}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </Draggable>
+  );
+}
