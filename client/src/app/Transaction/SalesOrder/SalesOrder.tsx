@@ -3525,53 +3525,44 @@ export default function SalesOrder() {
                           />
                         </div>
                         <table>
-                          <thead className="tables">
-                            <tr>
-                              <th>Draft Number</th>
-                              <th>Customer Code</th>
-                              <th>Customer Name</th>
-                              <th>Foreign Name</th>
-                              <th>Walk-in Customer Name</th>
-                              <th>Document Date</th>
-                              <th>Sales Crew</th>
-                            </tr>
-                          </thead>
-                          <tbody
+                          <div>
+                            <thead className="tables">
+                              <tr>
+                                <th>Draft Number</th>
+                                <th>Customer Code</th>
+                                <th>Customer Name</th>
+                                <th>Foreign Name</th>
+                                <th>Walk-in Customer Name</th>
+                                <th>Document Date</th>
+                                <th>Sales Crew</th>
+                              </tr>
+                            </thead>
+                          </div>
+
+                          <div
                             style={{
                               border: "1px solid #ccc",
                               position: "absolute",
                               top: "12%",
                               left: "15%",
-                              maxHeight: "500px",
-                              overflowY: "auto",
+                              maxHeight: "500px", // Set your desired max height for the entire draggable container
+                              overflowY: "auto", // Add vertical scrollbar if content exceeds maxHeight
                             }}
                           >
-                            {customers.map((customer) => (
-                              <tr key={customer.DraftNum}>
-                                <td style={{ textAlign: "center" }}>
-                                  {customer.DraftNum}
-                                </td>
-                                <td style={{ textAlign: "center" }}>
-                                  {customer.CustomerCode}
-                                </td>
-                                <td style={{ textAlign: "center" }}>
-                                  {customer.CustomerName}
-                                </td>
-                                <td style={{ textAlign: "center" }}>
-                                  {customer.ForeignName}
-                                </td>
-                                <td style={{ textAlign: "center" }}>
-                                  {customer.WalkInName}
-                                </td>
-                                <td style={{ textAlign: "center" }}>
-                                  {customer.DocDate}
-                                </td>
-                                <td style={{ textAlign: "center" }}>
-                                  {customer.CreatedBy}
-                                </td>
-                              </tr>
-                            ))}
-                          </tbody>
+                            <tbody>
+                              {customers.map((customer) => (
+                                <tr key={customer.DraftNum}>
+                                  <td>{customer.DraftNum}</td>
+                                  <td>{customer.CustomerCode}</td>
+                                  <td>{customer.CustomerName}</td>
+                                  <td>{customer.ForeignName}</td>
+                                  <td>{customer.WalkInName}</td>
+                                  <td>{customer.DocDate}</td>
+                                  <td>{customer.CreatedBy}</td>
+                                </tr>
+                              ))}
+                            </tbody>
+                          </div>
                         </table>
                       </div>
                     </div>
