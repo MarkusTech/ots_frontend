@@ -3496,7 +3496,8 @@ export default function SalesOrder() {
                       position: "absolute",
                       top: "30%",
                       left: "15%",
-                      maxHeight: "500px", // Set your desired max height for the entire draggable container
+                      maxHeight: "500px",
+                      overflowY: "auto",
                     }}
                   >
                     <div
