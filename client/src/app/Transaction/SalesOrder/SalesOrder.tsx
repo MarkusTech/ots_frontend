@@ -183,9 +183,8 @@ export default function SalesOrder() {
     Swal.fire({
       title: "Do you want to save this Draft?",
       showDenyButton: true,
-      showCancelButton: true,
-      confirmButtonText: "Save",
-      denyButtonText: `Don't save`,
+      confirmButtonText: "Yes",
+      denyButtonText: `No`,
     }).then((result) => {
       if (result.isConfirmed) {
         Swal.fire("Saved!", "", "success");
@@ -549,9 +548,8 @@ export default function SalesOrder() {
     Swal.fire({
       title: "Do you want to update this Draft?",
       showDenyButton: true,
-      showCancelButton: true,
-      confirmButtonText: "Save",
-      denyButtonText: `Don't save`,
+      confirmButtonText: "Yes",
+      denyButtonText: `No`,
     }).then((result) => {
       if (result.isConfirmed) {
         // delete details upon saving
@@ -666,7 +664,7 @@ export default function SalesOrder() {
           });
       } else if (result.isDenied) {
         // Show info message
-        Swal.fire("Draft is not saved", "", "info");
+        Swal.fire("Draft is not Updated", "", "info");
       }
     });
   };
