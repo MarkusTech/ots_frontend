@@ -3494,10 +3494,9 @@ export default function SalesOrder() {
                     style={{
                       border: "1px solid #ccc",
                       position: "absolute",
-                      top: "12%",
+                      top: "30%",
                       left: "15%",
                       maxHeight: "500px", // Set your desired max height for the entire draggable container
-                      overflowY: "auto", // Add vertical scrollbar if content exceeds maxHeight
                     }}
                   >
                     <div
@@ -3507,7 +3506,6 @@ export default function SalesOrder() {
                       <div>Search</div>
                       <div className="text-right">
                         <span
-                          // Assuming handleShowSearchHeader function is defined
                           onClick={handleShowSearchHeader}
                           className="cursor-pointer"
                         >
@@ -3526,38 +3524,42 @@ export default function SalesOrder() {
                             onChange={handleSearch}
                           />
                         </div>
-                        <table>
-                          <thead className="tables">
-                            <tr>
-                              <th>Draft Number</th>
-                              <th>Customer Code</th>
-                              <th>Customer Name</th>
-                              <th>Foreign Name</th>
-                              <th>Walk-in Customer Name</th>
-                              <th>Document Date</th>
-                              <th>Sales Crew</th>
-                            </tr>
-                          </thead>
-                          <tbody>
-                            {customers.map((customer) => (
-                              <tr key={customer.DraftNum}>
-                                <td>{customer.DraftNum}</td>
-                                <td>{customer.CustomerCode}</td>
-                                <td>{customer.CustomerName}</td>
-                                <td>{customer.ForeignName}</td>
-                                <td>{customer.WalkInName}</td>
-                                <td>{customer.DocDate}</td>
-                                <td>{customer.CreatedBy}</td>
+                        <div className="table-container">
+                          <table className="w-full">
+                            <thead className="tables">
+                              <tr>
+                                <th>Draft Number</th>
+                                <th>Customer Code</th>
+                                <th>Customer Name</th>
+                                <th>Foreign Name</th>
+                                <th>Walk-in Customer Name</th>
+                                <th>Document Date</th>
+                                <th>Sales Crew</th>
                               </tr>
-                            ))}
-                          </tbody>
-                        </table>
+                            </thead>
+                            <tbody className="bg-white shadow-lg pt-3">
+                              {customers.map((customer) => (
+                                <tr key={customer.DraftNum}>
+                                  <td>{customer.DraftNum}</td>
+                                  <td>{customer.CustomerCode}</td>
+                                  <td>{customer.CustomerName}</td>
+                                  <td>{customer.ForeignName}</td>
+                                  <td>{customer.WalkInName}</td>
+                                  <td>{customer.DocDate}</td>
+                                  <td>{customer.CreatedBy}</td>
+                                </tr>
+                              ))}
+                            </tbody>
+                          </table>
+                        </div>
                       </div>
                     </div>
                   </div>
                 </Draggable>
               )}
             </div>
+
+            {/* End of Search Button */}
           </div>
         </div>
         <div className="p-2 flex justify-end"></div>
