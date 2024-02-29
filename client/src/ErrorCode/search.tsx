@@ -205,3 +205,12 @@ useEffect(() => {
 1067; //openItemTable
 1129; //handleItemClick
 2877; //openItemTablePanel
+/*
+
+
+http://172.16.10.217:3002/so-header/
+http://172.16.10.217:3002/so-details/
+http://172.16.10.217:3001/customer/
+
+
+*/
