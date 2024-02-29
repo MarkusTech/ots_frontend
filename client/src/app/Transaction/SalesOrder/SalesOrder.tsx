@@ -3579,18 +3579,20 @@ export default function SalesOrder() {
                                 <th>Sales Crew</th>
                               </tr>
                             </thead>
-                            <tbody className="bg-white shadow-lg pt-3">
-                              {customers.map((customer) => (
-                                <tr key={customer.DraftNum}>
-                                  <td>{customer.DraftNum}</td>
-                                  <td>{customer.CustomerCode}</td>
-                                  <td>{customer.CustomerName}</td>
-                                  <td>{customer.ForeignName}</td>
-                                  <td>{customer.WalkInName}</td>
-                                  <td>{customer.DocDate}</td>
-                                  <td>{customer.CreatedBy}</td>
-                                </tr>
-                              ))}
+                            <tbody>
+                              {filteredSaveDraftData.map(
+                                (customer: any, index) => (
+                                  <tr key={customer.DraftNum}>
+                                    <td>{customer.DraftNum}</td>
+                                    <td>{customer.CustomerCode}</td>
+                                    <td>{customer.CustomerName}</td>
+                                    <td>{customer.ForeignName}</td>
+                                    <td>{customer.WalkInName}</td>
+                                    <td>{customer.DocDate}</td>
+                                    <td>{customer.CreatedBy}</td>
+                                  </tr>
+                                )
+                              )}
                             </tbody>
                           </table>
                         </div>
