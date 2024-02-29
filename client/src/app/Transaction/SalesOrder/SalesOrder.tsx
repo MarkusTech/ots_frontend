@@ -721,13 +721,6 @@ export default function SalesOrder() {
     },
   ]);
 
-  // Save Draft
-  const onAddSaveDraft = async () => {
-    const draftSave = await axios.get("http://172.16.10.217:3002/so-header/");
-    setSaveDraftCustomer(draftSave.data);
-    console.log(saveDraftCustomer);
-  };
-
   const onAddHeader = async () => {
     const customers = await axios.get(`${fetchAPI}/customer`);
     setCustomerDataList(customers.data);
