@@ -15,7 +15,21 @@ export default function SalesOrder() {
   const [isSaved, setIsSaved] = useState(false); // to hide handle submit
 
   const [customerList, setCustomerDataList] = useState([]);
-  const [saveDraftCustomer, setSaveDraftCustomer] = useState([]); // for the list of save as draft Customers
+  interface Customer {
+    EntryNum: string;
+    DocNum: string;
+    DraftNum: string;
+    PostingDate: string;
+    CustomerCode: string;
+    CustomerName: string;
+    ForeignName: string;
+    WalkInName: string;
+    DocDate: string;
+    CreatedBy: string;
+    // ... other properties
+  }
+  const [customers, setCustomers] = useState<Customer[]>([]); // for the list of save as draft Customers
+
   const [itemList, setItemDataList] = useState([]);
   const [UOMList, setUOMList] = useState([]);
   const [UOMListIndex, setUOMListIndex] = useState([]);
@@ -840,7 +854,24 @@ export default function SalesOrder() {
     })
     .slice(0, 20); // Get the first 20 results after filtering
 
+  // ----------------------------- On Save Draft Data ----------------------------------
+  const currentSaveDraftData = customers;
+  const filteredSaveDraftData = currentSaveDraftData
+    .filter((rowData) => {
+      return Object.values(rowData).some(
+        (value: any) =>
+          value !== null &&
+          value.toString().toLowerCase().includes(searchTerm.toLowerCase())
+      );
+    })
+    .slice(0, 20); // Get the first 20 results after filtering
+
   // ---------------------------------------- IMPORTANT! --------------------------
+  // Add Draft Save Data
+  // const addDraftData = (
+
+  // )
+
   // add customer data in fields
   const addCustomerData = (
     id: any,
@@ -934,21 +965,6 @@ export default function SalesOrder() {
     setShowSearchHeader(!showSearchHeader);
   };
 
-  interface Customer {
-    EntryNum: string;
-    DocNum: string;
-    DraftNum: string;
-    PostingDate: string;
-    CustomerCode: string;
-    CustomerName: string;
-    ForeignName: string;
-    WalkInName: string;
-    DocDate: string;
-    CreatedBy: string;
-    // ... other properties
-  }
-
-  const [customers, setCustomers] = useState<Customer[]>([]);
   useEffect(() => {
     axios
       .get("http://172.16.10.217:3002/so-header/")

@@ -184,3 +184,21 @@ export default YourComponent;
     </Draggable>
   );
 }
+
+951;
+const [customers, setCustomers] = useState<Customer[]>([]);
+useEffect(() => {
+  axios
+    .get("http://172.16.10.217:3002/so-header/")
+    .then((response) => {
+      // setCustomers(response.data.slice(0, 15));
+      setCustomers(response.data);
+    })
+    .catch((error) => {
+      console.error("Error fetching data:", error);
+    });
+}, []);
+
+844;
+857;
+871; // onSaveDraft
