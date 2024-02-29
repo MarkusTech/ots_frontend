@@ -1988,8 +1988,6 @@ export default function SalesOrder() {
   const handlOnlineTransfer = (event: any) => {
     setIsCheckedOnlineTransfer(event.target.checked);
 
-    // console.log(event.target.checked);
-
     const finalArr = [...finalTotalList];
 
     if (isCheckedOnlineTransfer != true) {
