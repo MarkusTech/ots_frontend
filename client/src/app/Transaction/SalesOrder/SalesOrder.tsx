@@ -3535,9 +3535,9 @@ export default function SalesOrder() {
                     style={{
                       border: "1px solid #ccc",
                       position: "absolute",
-                      top: "30%",
-                      left: "15%",
-                      maxHeight: "500px",
+                      top: "20%",
+                      left: "20%",
+                      maxHeight: "700px",
                       overflowY: "auto",
                     }}
                   >
