@@ -868,9 +868,9 @@ export default function SalesOrder() {
 
   // ---------------------------------------- IMPORTANT! --------------------------
   // Add Draft Save Data
-  // const addDraftData = (
-
-  // )
+  const addDraftData = async (item: any) => {
+    console.log(`Hello World!`);
+  };
 
   // add customer data in fields
   const addCustomerData = (
