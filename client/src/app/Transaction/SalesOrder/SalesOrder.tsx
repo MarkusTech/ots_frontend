@@ -1140,7 +1140,7 @@ export default function SalesOrder() {
 
       setquantityData(updateQuantityData);
 
-      console.log(updateQuantityData, "qdata");
+      // console.log(updateQuantityData, "qdata");
 
       const updatedTableData = [...tableData];
 
