@@ -203,4 +203,5 @@ useEffect(() => {
 857;
 871; // onSaveDraft
 1067; //openItemTable
+1129; //handleItemClick
 2877; //openItemTablePanel
