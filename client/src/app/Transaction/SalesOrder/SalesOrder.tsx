@@ -721,6 +721,13 @@ export default function SalesOrder() {
     },
   ]);
 
+  // Save Draft
+  const onAddSaveDraft = async () => {
+    const draftSave = await axios.get("http://172.16.10.217:3002/so-header/");
+    setSaveDraftCustomer(draftSave.data);
+    console.log(saveDraftCustomer);
+  };
+
   const onAddHeader = async () => {
     const customers = await axios.get(`${fetchAPI}/customer`);
     setCustomerDataList(customers.data);
@@ -3456,7 +3463,8 @@ export default function SalesOrder() {
 
             <button
               className="p-2 mt-2 mb-1 mr-2 text-[12px] bg-[#F4D674] hover:bg-yellow-500 focus:outline-none focus:shadow-outline-yellow active:bg-yellow-600 rounded w-24"
-              onClick={wmrCustomer}
+              // onClick={wmrCustomer}
+              onClick={onAddSaveDraft}
             >
               Commit
             </button>
