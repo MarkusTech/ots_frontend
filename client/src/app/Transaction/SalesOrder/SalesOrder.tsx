@@ -3583,25 +3583,25 @@ export default function SalesOrder() {
                               {filteredSaveDraftData.map(
                                 (customer: any, index) => (
                                   <tr key={customer.DraftNum}>
-                                    <td className="tdcus">
+                                    <td className="tdcus" key={index}>
                                       {customer.DraftNum}
                                     </td>
-                                    <td className="tdcus">
+                                    <td className="tdcus" key={index}>
                                       {customer.CustomerCode}
                                     </td>
-                                    <td className="tdcus">
+                                    <td className="tdcus" key={index}>
                                       {customer.CustomerName}
                                     </td>
-                                    <td className="tdcus">
+                                    <td className="tdcus" key={index}>
                                       {customer.ForeignName}
                                     </td>
-                                    <td className="tdcus">
+                                    <td className="tdcus" key={index}>
                                       {customer.WalkInName}
                                     </td>
-                                    <td className="tdcus">
+                                    <td className="tdcus" key={index}>
                                       {customer.DocDate}
                                     </td>
-                                    <td className="tdcus">
+                                    <td className="tdcus" key={index}>
                                       {customer.CreatedBy}
                                     </td>
                                   </tr>
