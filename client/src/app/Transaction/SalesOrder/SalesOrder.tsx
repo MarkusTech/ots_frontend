@@ -15,6 +15,7 @@ export default function SalesOrder() {
   const [isSaved, setIsSaved] = useState(false); // to hide handle submit
 
   const [customerList, setCustomerDataList] = useState([]);
+  const [saveDraftCustomer, setSaveDraftCustomer] = useState([]); // for the list of save as draft Customers
   const [itemList, setItemDataList] = useState([]);
   const [UOMList, setUOMList] = useState([]);
   const [UOMListIndex, setUOMListIndex] = useState([]);
