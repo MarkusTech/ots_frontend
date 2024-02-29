@@ -1427,8 +1427,6 @@ export default function SalesOrder() {
 
     var quantityChange = document.getElementById("quantityInput");
     quantityChange?.setAttribute("placeholder", "0"); // wmr change
-
-    // console.log(quantityChange);
   };
 
   // Mode of Releasing Function
