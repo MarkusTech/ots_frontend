@@ -2050,9 +2050,6 @@ export default function SalesOrder() {
 
   const handleOnAccount = (event: any) => {
     setIsCheckedOnAccount(event.target.checked);
-
-    // console.log(event.target.checked);
-
     if (isCheckedOnAccount != true) {
       setccstatus(true);
 
