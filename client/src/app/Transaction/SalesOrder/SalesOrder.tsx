@@ -2107,8 +2107,6 @@ export default function SalesOrder() {
   const handleCashOnDel = (event: any) => {
     setIsCheckedCashOnDel(event.target.checked);
 
-    // console.log(event.target.checked);
-
     if (isCheckedCashOnDel != true) {
       setccstatus(true);
 
