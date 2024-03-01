@@ -212,6 +212,7 @@ useEffect(() => {
 http://172.16.10.217:3002/so-header/
 http://172.16.10.217:3002/so-details/
 http://172.16.10.217:3001/customer/
+http://localhost:5000/api/v1/get-draft/123123
 
 
 working on line: 3583
