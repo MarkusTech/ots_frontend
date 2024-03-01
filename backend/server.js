@@ -7,7 +7,6 @@ import dotenv from "dotenv";
 import colors from "colors";
 
 // Dabatase
-import connectDB from "./config/db.js";
 
 // UUID
 import { v4 as uuidv4 } from "uuid";
@@ -54,5 +53,4 @@ app.get("/api/v1/generateUniqueId", (req, res) => {
 // event listener
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`.bgCyan);
-  connectDB();
 });
