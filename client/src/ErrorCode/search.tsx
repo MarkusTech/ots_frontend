@@ -214,7 +214,7 @@ http://172.16.10.217:3001/customer/
 
 
 working on line: 3583
-reference line: 2960
+reference line: 2960   == handleItemClick
 
 
 */
