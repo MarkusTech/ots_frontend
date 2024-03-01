@@ -871,42 +871,44 @@ export default function SalesOrder() {
   const [selectedDraftData, setSelectedDraftData] = useState(null);
   const addDraftData = async (customer: any) => {
     setSelectedDraftData(customer);
-    setFormData({
-      DraftNum: customer.DraftNum,
-      EntryNum: customer.EntryNum,
-      DocNum: customer.DocNum,
-      CustomerCode: customer.CustomerCode,
-      CustomerName: customer.CustomerName,
-      ForeignName: "",
-      WalkInName: customer.WalkInName,
-      ShippingAdd: customer.ShippingAdd,
-      TIN: customer.TIN,
-      Reference: customer.Reference,
-      Branch: customer.Branch,
-      DocStat: customer.DocStat,
-      BaseDoc: customer.BaseDoc,
-      DocDate: customer.DocDate,
-      PostingDate: customer.PostingDate,
-      SCPWDIdNo: customer.SCPWDIdNo,
-      Cash: customer.Cash,
-      CreditCard: customer.CreditCard,
-      DebitCard: customer.DebitCard,
-      ODC: customer.ODC,
-      PDC: customer.PDC,
-      OnlineTransfer: customer.OnlineTransfer,
-      OnAccount: customer.OnAccount,
-      COD: customer.COD,
-      TotalAmtBefTax: customer.TotalAmtBefTax,
-      TotalTax: customer.TotalTax,
-      TotalAmtAftTax: customer.TotalAmtAftTax,
-      SCPWDDiscTotal: customer.SCPWDDiscTotal,
-      TotalAmtDue: customer.TotalAmtDue,
-      Remarks: customer.Remarks,
-      CreatedBy: customer.CreatedBy,
-      DateCreated: customer.DateCreated,
-      UpdatedBy: customer.UpdatedBy,
-      DateUpdated: customer.DateUpdated,
-    });
+    console.log(customers);
+
+    // setFormData({
+    //   DraftNum: customer.DraftNum,
+    //   EntryNum: customer.EntryNum,
+    //   DocNum: customer.DocNum,
+    //   CustomerCode: customer.CustomerCode,
+    //   CustomerName: customer.CustomerName,
+    //   ForeignName: "",
+    //   WalkInName: customer.WalkInName,
+    //   ShippingAdd: customer.ShippingAdd,
+    //   TIN: customer.TIN,
+    //   Reference: customer.Reference,
+    //   Branch: customer.Branch,
+    //   DocStat: customer.DocStat,
+    //   BaseDoc: customer.BaseDoc,
+    //   DocDate: customer.DocDate,
+    //   PostingDate: customer.PostingDate,
+    //   SCPWDIdNo: customer.SCPWDIdNo,
+    //   Cash: customer.Cash,
+    //   CreditCard: customer.CreditCard,
+    //   DebitCard: customer.DebitCard,
+    //   ODC: customer.ODC,
+    //   PDC: customer.PDC,
+    //   OnlineTransfer: customer.OnlineTransfer,
+    //   OnAccount: customer.OnAccount,
+    //   COD: customer.COD,
+    //   TotalAmtBefTax: customer.TotalAmtBefTax,
+    //   TotalTax: customer.TotalTax,
+    //   TotalAmtAftTax: customer.TotalAmtAftTax,
+    //   SCPWDDiscTotal: customer.SCPWDDiscTotal,
+    //   TotalAmtDue: customer.TotalAmtDue,
+    //   Remarks: customer.Remarks,
+    //   CreatedBy: customer.CreatedBy,
+    //   DateCreated: customer.DateCreated,
+    //   UpdatedBy: customer.UpdatedBy,
+    //   DateUpdated: customer.DateUpdated,
+    // });
   };
 
   // add customer data in fields
@@ -3510,6 +3512,7 @@ export default function SalesOrder() {
             <button
               className="p-2 mt-2 mb-1 mr-2 text-[12px] bg-[#F4D674] hover:bg-yellow-500 focus:outline-none focus:shadow-outline-yellow active:bg-yellow-600 rounded w-24"
               // onClick={wmrCustomer}
+              onClick={addDraftData}
             >
               Commit
             </button>
