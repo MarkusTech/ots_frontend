@@ -897,7 +897,7 @@ export default function SalesOrder() {
     console.log(`Sales Crew: ${createdBy}`);
 
     const apiData = draftData.data;
-    console.log(`DATABASE: ${draftData}`);
+    console.log(`DATABASE: ${apiData.TotalAmtDue}`);
     setCustomerData([
       {
         customerCode: customerCode,
@@ -929,11 +929,19 @@ export default function SalesOrder() {
     // setFinalSCPWDDiscTotal(apiData.SCPWDDiscTotal);
     // setFinalTotalAmtDue(apiData.TotalAmtDue);
 
-    setTotalBeforeVat(apiData.TotalAmtBefTax);
-    settotalAfterVat(apiData.TotalAmtAftTax);
-    setTotalVat(apiData.TotalTax);
-    setSCPWDdata(apiData.SCPWDDiscTotal);
-    settotalAmoutDueData(apiData.TotalTax);
+    const calculationAfterVat = localCurrency.format(apiData.TotalAmtAftTax);
+    const calculationBeforeVat = localCurrency.format(apiData.TotalAmtBefTax);
+    const calculationTotalVat = localCurrency.format(apiData.TotalTax);
+    const calculationForScORPwd = localCurrency.format(apiData.SCPWDDiscTotal);
+    const calculationTotalAmoutDue = localCurrency.format(apiData.TotalAmtDue);
+
+    setTotalBeforeVat(calculationBeforeVat);
+    settotalAfterVat(calculationAfterVat);
+    setTotalVat(calculationTotalVat);
+    setSCPWDdata(calculationForScORPwd);
+    // settotalAmoutDueData(calculationTotalAmoutDue);
+
+    settotalAmoutDueData(apiData.TotalAmtDue);
 
     // for open and close draggable and for the button save and update
     setShowSearchHeader(!showSearchHeader);
