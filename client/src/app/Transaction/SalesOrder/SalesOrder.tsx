@@ -912,6 +912,23 @@ export default function SalesOrder() {
     setScOrPwdField(apiData); // SC/PWD ID
     setDraftNumber(apiData.DraftNum); // Draft Number
 
+    // Payment Method
+    setIsPaymentCash(apiData);
+    setIsPaymentCreditCard(apiData);
+    setIsPaymentDebitCard(apiData);
+    setIsPaymentODC(apiData);
+    setIsPaymentPDC(apiData);
+    setIsPaymentOnlineTransfer(apiData);
+    setIsPaymentOnAccount(apiData);
+    setIsPaymentCOD(apiData);
+
+    // total
+    setFinalTotalAmtBefTax(apiData);
+    setFinalTotalTax(apiData);
+    setFinalTotalAmtAftTax(apiData);
+    setFinalSCPWDDiscTotal(apiData);
+    setFinalTotalAmtDue(apiData);
+
     // for open and close draggable and for the button save and update
     setShowSearchHeader(!showSearchHeader);
     setIsSaved(true);
