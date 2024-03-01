@@ -907,27 +907,27 @@ export default function SalesOrder() {
         cusLicTradNum: apiData.TIN,
       },
     ]);
-    setWalkingCustomer(apiData); // walkin customer
-    setCustomerReference(apiData); // Customer Reference
-    setScOrPwdField(apiData); // SC/PWD ID
+    setWalkingCustomer(apiData.WalkInName); // walkin customer
+    setCustomerReference(apiData.Reference); // Customer Reference
+    setScOrPwdField(apiData.SCPWDIdNo); // SC/PWD ID
     setDraftNumber(apiData.DraftNum); // Draft Number
 
     // Payment Method
-    setIsPaymentCash(apiData);
-    setIsPaymentCreditCard(apiData);
-    setIsPaymentDebitCard(apiData);
-    setIsPaymentODC(apiData);
-    setIsPaymentPDC(apiData);
-    setIsPaymentOnlineTransfer(apiData);
-    setIsPaymentOnAccount(apiData);
-    setIsPaymentCOD(apiData);
+    setIsPaymentCash(apiData.Cash);
+    setIsPaymentCreditCard(apiData.CreditCard);
+    setIsPaymentDebitCard(apiData.DebitCard);
+    setIsPaymentODC(apiData.ODC);
+    setIsPaymentPDC(apiData.PDC);
+    setIsPaymentOnlineTransfer(apiData.OnlineTransfer);
+    setIsPaymentOnAccount(apiData.OnAccount);
+    setIsPaymentCOD(apiData.COD);
 
     // total
-    setFinalTotalAmtBefTax(apiData);
-    setFinalTotalTax(apiData);
-    setFinalTotalAmtAftTax(apiData);
-    setFinalSCPWDDiscTotal(apiData);
-    setFinalTotalAmtDue(apiData);
+    setFinalTotalAmtBefTax(apiData.TotalAmtBefTax);
+    setFinalTotalTax(apiData.TotalTax);
+    setFinalTotalAmtAftTax(apiData.TotalAmtAftTax);
+    setFinalSCPWDDiscTotal(apiData.SCPWDDiscTotal);
+    setFinalTotalAmtDue(apiData.TotalAmtDue);
 
     // for open and close draggable and for the button save and update
     setShowSearchHeader(!showSearchHeader);
