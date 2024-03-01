@@ -1,5 +1,6 @@
 import sql from "mssql";
 import dotenv from "dotenv";
+import colors from "colors";
 dotenv.config();
 
 const config = {
@@ -15,7 +16,7 @@ const config = {
 
 const sqlConn = sql.connect(config, (err) => {
   if (err) console.log(err);
-  console.log("MSSQL DB Connected");
+  console.log("MSSQL DB Connected".bgGreen);
 });
 
 export default sqlConn;
