@@ -898,7 +898,6 @@ export default function SalesOrder() {
     console.log(`WMR: ${draftData.data.CustomerName}`); // to be deleted!!
 
     const apiData = draftData.data;
-
     setCustomerData([
       {
         customerCode: customerCode,
@@ -908,8 +907,9 @@ export default function SalesOrder() {
         cusLicTradNum: apiData.TIN,
       },
     ]);
+    setDraftNumber(apiData.DraftNum);
 
-    setDraftNumber(draftNum);
+    // for open and close draggable and for the button save and update
     setShowSearchHeader(!showSearchHeader);
     setIsSaved(true);
   };
