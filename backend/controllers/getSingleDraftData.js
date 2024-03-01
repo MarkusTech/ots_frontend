@@ -11,7 +11,22 @@ const getDataFromDraft = async (req, res) => {
 };
 
 const getSingleDataFromDraft = async (req, res) => {
-  res.send("Hello World!");
+  const { DraftNum } = req.params;
+  try {
+    const result =
+      await sqlConn.query`SELECT * FROM SO_Header WHERE DraftNum = ${DraftNum}`;
+
+    if (result.recordset.length > 0) {
+      // If a matching record is found, send it in the response
+      res.json(result.recordset[0]);
+    } else {
+      // If no matching record is found, send an appropriate response
+      res.status(404).json({ message: "Record not found" });
+    }
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
 };
 
 export { getSingleDataFromDraft, getDataFromDraft };
