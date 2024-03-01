@@ -1072,6 +1072,37 @@ export default function SalesOrder() {
     setScOrPwdField(getDraft.data.SCPWDIdNo); // SC/PWD ID
     setDraftNumber(getDraft.data.DraftNum); // Draft Number
 
+    // Payment Method
+    setIsPaymentCash(getDraft.data.Cash);
+    setIsPaymentCreditCard(getDraft.data.CreditCard);
+    setIsPaymentDebitCard(getDraft.data.DebitCard);
+    setIsPaymentODC(getDraft.data.ODC);
+    setIsPaymentPDC(getDraft.data.PDC);
+    setIsPaymentOnlineTransfer(getDraft.data.OnlineTransfer);
+    setIsPaymentOnAccount(getDraft.data.OnAccount);
+    setIsPaymentCOD(getDraft.data.COD);
+
+    const Yes = "Y";
+    if (getDraft.data.Cash == Yes) {
+      setIsCheckedCash(true);
+    } else if (getDraft.data.CreditCard == Yes) {
+      setIsCheckedCreditCard(true);
+    } else if (getDraft.data.DebitCard == Yes) {
+      setIsCheckedDebit(true);
+    } else if (getDraft.data.ODC == Yes) {
+      setIsCheckedDatedCheck(true);
+    } else if (getDraft.data.PDC == Yes) {
+      setIsCheckedPDC(true);
+    } else if (getDraft.data.OnlineTransfer == Yes) {
+      setIsCheckedOnlineTransfer(true);
+    } else if (getDraft.data.OnAccount == Yes) {
+      setIsCheckedOnAccount(true);
+    } else if (getDraft.data.COD) {
+      setIsCheckedCashOnDel(true);
+    } else {
+      console.log("Please Check Server");
+    }
+
     // total
     settotalAfterVat(getDraft.data.TotalAmtAftTax);
     setTotalVat(getDraft.data.TotalTax);
