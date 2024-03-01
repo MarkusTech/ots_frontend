@@ -895,14 +895,20 @@ export default function SalesOrder() {
     console.log(`Walkin Name: ${walkinNmae}`);
     console.log(`Doc Date: ${docDate}`);
     console.log(`Sales Crew: ${createdBy}`);
-    console.log(`WMR: ${draftData.data.CustomerName}`); // to be deleted!
+    console.log(`WMR: ${draftData.data.CustomerName}`); // to be deleted!!
 
-    let newArray = {
-      customerCode: customerCode,
-      customerName: customerName,
-    };
+    const apiData = draftData.data;
 
-    setCustomerData([newArray]);
+    setCustomerData([
+      {
+        customerCode: customerCode,
+        customerName: customerName,
+        customerCardFName: "",
+        cusShipAddress: apiData.ShippingAdd,
+        cusLicTradNum: apiData.TIN,
+      },
+    ]);
+
     setDraftNumber(draftNum);
     setShowSearchHeader(!showSearchHeader);
     setIsSaved(true);
