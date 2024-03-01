@@ -903,6 +903,7 @@ export default function SalesOrder() {
     setCustomerData([newArray]);
     setDraftNumber(draftNum);
     setShowSearchHeader(!showSearchHeader);
+    setIsSaved(true);
   };
 
   // add customer data in fields
