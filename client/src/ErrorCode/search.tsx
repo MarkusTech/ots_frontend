@@ -199,6 +199,7 @@ useEffect(() => {
     });
 }, []);
 
+206; // Save API
 844;
 857;
 871; // onSaveDraft this the important parts just look after this!
@@ -218,40 +219,3 @@ reference line: 2960   == handleItemClick
 
 
 */
-
-setFormData({
-  DraftNum: customer.DraftNum,
-  EntryNum: customer.EntryNum,
-  DocNum: customer.DocNum,
-  CustomerCode: customer.CustomerCode,
-  CustomerName: customer.CustomerName,
-  ForeignName: "",
-  WalkInName: customer.WalkInName,
-  ShippingAdd: customer.ShippingAdd,
-  TIN: customer.TIN,
-  Reference: customer.Reference,
-  Branch: customer.Branch,
-  DocStat: customer.DocStat,
-  BaseDoc: customer.BaseDoc,
-  DocDate: customer.DocDate,
-  PostingDate: customer.PostingDate,
-  SCPWDIdNo: customer.SCPWDIdNo,
-  Cash: customer.Cash,
-  CreditCard: customer.CreditCard,
-  DebitCard: customer.DebitCard,
-  ODC: customer.ODC,
-  PDC: customer.PDC,
-  OnlineTransfer: customer.OnlineTransfer,
-  OnAccount: customer.OnAccount,
-  COD: customer.COD,
-  TotalAmtBefTax: customer.TotalAmtBefTax,
-  TotalTax: customer.TotalTax,
-  TotalAmtAftTax: customer.TotalAmtAftTax,
-  SCPWDDiscTotal: customer.SCPWDDiscTotal,
-  TotalAmtDue: customer.TotalAmtDue,
-  Remarks: customer.Remarks,
-  CreatedBy: customer.CreatedBy,
-  DateCreated: customer.DateCreated,
-  UpdatedBy: customer.UpdatedBy,
-  DateUpdated: customer.DateUpdated,
-});

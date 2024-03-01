@@ -893,6 +893,7 @@ export default function SalesOrder() {
     console.log(`Walkin Name: ${walkinNmae}`);
     console.log(`Doc Date: ${docDate}`);
     console.log(`Sales Crew: ${createdBy}`);
+    console.log(customers[0]["CustomerName"]);
 
     let newArray = {
       customerCode: customerCode,
@@ -900,6 +901,8 @@ export default function SalesOrder() {
     };
 
     setCustomerData([newArray]);
+    setDraftNumber(draftNum);
+    setShowSearchHeader(!showSearchHeader);
   };
 
   // add customer data in fields
