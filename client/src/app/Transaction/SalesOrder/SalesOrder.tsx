@@ -895,9 +895,9 @@ export default function SalesOrder() {
     console.log(`Walkin Name: ${walkinNmae}`);
     console.log(`Doc Date: ${docDate}`);
     console.log(`Sales Crew: ${createdBy}`);
-    console.log(`WMR: ${draftData.data.CustomerName}`); // to be deleted!!
 
     const apiData = draftData.data;
+    console.log(`DATABASE: ${draftData}`);
     setCustomerData([
       {
         customerCode: customerCode,
@@ -923,11 +923,17 @@ export default function SalesOrder() {
     setIsPaymentCOD(apiData.COD);
 
     // total
-    setFinalTotalAmtBefTax(apiData.TotalAmtBefTax);
-    setFinalTotalTax(apiData.TotalTax);
-    setFinalTotalAmtAftTax(apiData.TotalAmtAftTax);
-    setFinalSCPWDDiscTotal(apiData.SCPWDDiscTotal);
-    setFinalTotalAmtDue(apiData.TotalAmtDue);
+    // setFinalTotalAmtBefTax(apiData.TotalAmtBefTax);
+    // setFinalTotalTax(apiData.TotalTax);
+    // setFinalTotalAmtAftTax(apiData.TotalAmtAftTax);
+    // setFinalSCPWDDiscTotal(apiData.SCPWDDiscTotal);
+    // setFinalTotalAmtDue(apiData.TotalAmtDue);
+
+    setTotalBeforeVat(apiData.TotalAmtBefTax);
+    settotalAfterVat(apiData.TotalAmtAftTax);
+    setTotalVat(apiData.TotalTax);
+    setSCPWDdata(apiData.SCPWDDiscTotal);
+    settotalAmoutDueData(apiData.TotalTax);
 
     // for open and close draggable and for the button save and update
     setShowSearchHeader(!showSearchHeader);
