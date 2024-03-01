@@ -869,7 +869,7 @@ export default function SalesOrder() {
   // ---------------------------------------- IMPORTANT! --------------------------
   // Add Draft Save Data
 
-  const addDraftData = (
+  const addDraftData = async (
     draftNum: any,
     customerCode: any,
     customerName: any,
@@ -886,6 +886,9 @@ export default function SalesOrder() {
       DocDate: docDate,
       CreatedBy: createdBy,
     });
+    const draftData = await axios.get(
+      `http://localhost:5000/api/v1/get-draft/${draftNum}`
+    );
     console.log(`Hello world`);
     console.log(`DraftNum: ${draftNum}`);
     console.log(`Customer Code: ${customerCode}`);
@@ -894,6 +897,7 @@ export default function SalesOrder() {
     console.log(`Doc Date: ${docDate}`);
     console.log(`Sales Crew: ${createdBy}`);
     console.log(customers[0]["CustomerName"]);
+    console.log(`WMR: ${draftData.data.CustomerName}`);
 
     let newArray = {
       customerCode: customerCode,
