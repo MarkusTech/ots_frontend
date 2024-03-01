@@ -1053,8 +1053,31 @@ export default function SalesOrder() {
       });
   }, []);
 
-  const wmrCustomer = () => {
-    console.log(customers);
+  const wmrCustomer = async () => {
+    const getDraft = await axios.get(
+      "http://localhost:5000/api/v1/get-draft/10115"
+    );
+    console.log(getDraft);
+    setCustomerData([
+      {
+        customerCode: getDraft.data.CustomerCode,
+        customerName: getDraft.data.CustomerName,
+        customerCardFName: "",
+        cusShipAddress: getDraft.data.ShippingAdd,
+        cusLicTradNum: getDraft.data.TIN,
+      },
+    ]);
+    setWalkingCustomer(getDraft.data.WalkInName); // walkin customer
+    setCustomerReference(getDraft.data.Reference); // Customer Reference
+    setScOrPwdField(getDraft.data.SCPWDIdNo); // SC/PWD ID
+    setDraftNumber(getDraft.data.DraftNum); // Draft Number
+
+    // total
+    settotalAfterVat(getDraft.data.TotalAmtAftTax);
+    setTotalVat(getDraft.data.TotalTax);
+    setTotalBeforeVat(getDraft.data.TotalAmtBefTax);
+    setSCPWDdata(getDraft.data.SCPWDDiscTotal);
+    settotalAmoutDueData(getDraft.data.TotalAmtDue);
   };
 
   // UseEffect start
@@ -2512,7 +2535,11 @@ export default function SalesOrder() {
             <div className="grid grid-cols-2">
               <label htmlFor="WalkInName">Walk-in Customer Name</label>
               <div>
-                <input type="text" onChange={handleWalkinCustomerChange} />
+                <input
+                  type="text"
+                  onChange={handleWalkinCustomerChange}
+                  value={walkInCustomer}
+                />
               </div>
             </div>
 
@@ -3548,8 +3575,7 @@ export default function SalesOrder() {
 
             <button
               className="p-2 mt-2 mb-1 mr-2 text-[12px] bg-[#F4D674] hover:bg-yellow-500 focus:outline-none focus:shadow-outline-yellow active:bg-yellow-600 rounded w-24"
-              // onClick={wmrCustomer}
-              onClick={addDraftData}
+              onClick={wmrCustomer}
             >
               Commit
             </button>
