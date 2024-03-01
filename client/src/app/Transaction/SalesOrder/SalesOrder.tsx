@@ -889,15 +889,13 @@ export default function SalesOrder() {
     const draftData = await axios.get(
       `http://localhost:5000/api/v1/get-draft/${draftNum}`
     );
-    console.log(`Hello world`);
     console.log(`DraftNum: ${draftNum}`);
     console.log(`Customer Code: ${customerCode}`);
     console.log(`Customer Name: ${customerName}`);
     console.log(`Walkin Name: ${walkinNmae}`);
     console.log(`Doc Date: ${docDate}`);
     console.log(`Sales Crew: ${createdBy}`);
-    console.log(customers[0]["CustomerName"]);
-    console.log(`WMR: ${draftData.data.CustomerName}`);
+    console.log(`WMR: ${draftData.data.CustomerName}`); // to be deleted!
 
     let newArray = {
       customerCode: customerCode,
