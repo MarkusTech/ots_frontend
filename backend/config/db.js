@@ -34,3 +34,5 @@ const sqlConn = sql.connect(config, (err) => {
   if (err) console.log(err);
   console.log("MSSQL DB Connected");
 });
+
+export default sqlConn;
