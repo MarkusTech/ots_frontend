@@ -1,7 +1,11 @@
 import express from "express";
-import { getSingleDataFromDraft } from "../controllers/getSingleDraftData.js";
+import {
+  getSingleDataFromDraft,
+  getDataFromDraft,
+} from "../controllers/getSingleDraftData.js";
 const router = express.Router();
 
-router.get("/get-draft", getSingleDataFromDraft);
+router.get("/get-draft", getDataFromDraft);
+router.get("/get-draft/:DraftNum", getSingleDataFromDraft);
 
 export default router;

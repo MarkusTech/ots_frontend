@@ -1,6 +1,6 @@
 import sqlConn from "../config/db.js";
 
-const getSingleDataFromDraft = async (req, res) => {
+const getDataFromDraft = async (req, res) => {
   try {
     const data = await sqlConn.query("Select * From SO_Header");
     res.status(200).json(data.recordset);
@@ -10,4 +10,8 @@ const getSingleDataFromDraft = async (req, res) => {
   }
 };
 
-export { getSingleDataFromDraft };
+const getSingleDataFromDraft = async (req, res) => {
+  res.send("Hello World!");
+};
+
+export { getSingleDataFromDraft, getDataFromDraft };
