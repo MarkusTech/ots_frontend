@@ -888,7 +888,7 @@ export default function SalesOrder() {
     });
     const draftData = await axios.get(
       `http://localhost:5000/api/v1/get-draft/${draftNum}`
-    );
+    ); // wmr api
     console.log(`DraftNum: ${draftNum}`);
     console.log(`Customer Code: ${customerCode}`);
     console.log(`Customer Name: ${customerName}`);
@@ -907,7 +907,10 @@ export default function SalesOrder() {
         cusLicTradNum: apiData.TIN,
       },
     ]);
-    setDraftNumber(apiData.DraftNum);
+    setWalkingCustomer(apiData); // walkin customer
+    setCustomerReference(apiData); // Customer Reference
+    setScOrPwdField(apiData); // SC/PWD ID
+    setDraftNumber(apiData.DraftNum); // Draft Number
 
     // for open and close draggable and for the button save and update
     setShowSearchHeader(!showSearchHeader);
