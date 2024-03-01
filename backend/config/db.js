@@ -15,15 +15,16 @@
 // };
 
 // export default connectDB;
-// const sql = require('mssql');
 
 import sql from "mssql";
+import dotenv from "dotenv";
+dotenv.config();
 
 const config = {
-  database: MSSQL_DATABASE,
-  server: MSSQL_SERVER,
-  user: MSSQL_USERNAME,
-  password: MSSQL_PASSWORD,
+  database: process.env.MSSQL_DATABASE,
+  server: process.env.MSSQL_SERVER,
+  user: process.env.MSSQL_USERNAME,
+  password: process.env.MSSQL_PASSWORD,
   options: {
     trustedConnection: true,
     trustServerCertificate: true,
