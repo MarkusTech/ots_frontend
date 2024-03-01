@@ -868,10 +868,13 @@ export default function SalesOrder() {
 
   // ---------------------------------------- IMPORTANT! --------------------------
   // Add Draft Save Data
-  const [selectedDraftData, setSelectedDraftData] = useState(null);
+
   const addDraftData = async (customer: any) => {
-    setSelectedDraftData(customer);
     console.log(customers);
+    setFormData({
+      ...formData,
+      DraftNum: "123123",
+    });
   };
 
   // add customer data in fields
