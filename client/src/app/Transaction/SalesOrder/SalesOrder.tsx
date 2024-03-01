@@ -869,12 +869,30 @@ export default function SalesOrder() {
   // ---------------------------------------- IMPORTANT! --------------------------
   // Add Draft Save Data
 
-  const addDraftData = async (customer: any) => {
-    console.log(customers);
+  const addDraftData = (
+    draftNum: any,
+    customerCode: any,
+    customerName: any,
+    walkinNmae: any,
+    docDate: any,
+    createdBy: any
+  ) => {
     setFormData({
       ...formData,
-      DraftNum: "123123",
+      DraftNum: draftNum,
+      CustomerCode: customerCode,
+      CustomerName: customerName,
+      WalkInName: walkinNmae,
+      DocDate: docDate,
+      CreatedBy: createdBy,
     });
+    console.log(`Hello world`);
+    console.log(`DraftNum: ${draftNum}`);
+    console.log(`Customer Code: ${customerCode}`);
+    console.log(`Customer Name: ${customerName}`);
+    console.log(`Walkin Name: ${walkinNmae}`);
+    console.log(`Doc Date: ${docDate}`);
+    console.log(`Sales Crew: ${createdBy}`);
   };
 
   // add customer data in fields
@@ -3542,7 +3560,6 @@ export default function SalesOrder() {
                                 <th>Draft Number</th>
                                 <th>Customer Code</th>
                                 <th>Customer Name</th>
-                                <th>Foreign Name</th>
                                 <th>Walk-in Customer Name</th>
                                 <th>Document Date</th>
                                 <th>Sales Crew</th>
@@ -3550,27 +3567,96 @@ export default function SalesOrder() {
                             </thead>
                             <tbody>
                               {filteredSaveDraftData.map(
-                                (customer: any, index) => (
-                                  <tr key={customer.DraftNum}>
-                                    <td className="tdcus" key={index}>
+                                (customer: any, rowIndex) => (
+                                  <tr key={rowIndex}>
+                                    <td
+                                      className="tdcus"
+                                      onClick={() =>
+                                        addDraftData(
+                                          customer.DraftNum,
+                                          customer.CustomerCode,
+                                          customer.CustomerName,
+                                          customer.WalkInName,
+                                          customer.DocDate,
+                                          customer.CreatedBy
+                                        )
+                                      }
+                                    >
                                       {customer.DraftNum}
                                     </td>
-                                    <td className="tdcus" key={index}>
+                                    <td
+                                      className="tdcus"
+                                      onClick={() =>
+                                        addDraftData(
+                                          customer.DraftNum,
+                                          customer.CustomerCode,
+                                          customer.CustomerName,
+                                          customer.WalkInName,
+                                          customer.DocDate,
+                                          customer.CreatedBy
+                                        )
+                                      }
+                                    >
                                       {customer.CustomerCode}
                                     </td>
-                                    <td className="tdcus" key={index}>
+                                    <td
+                                      className="tdcus"
+                                      onClick={() =>
+                                        addDraftData(
+                                          customer.DraftNum,
+                                          customer.CustomerCode,
+                                          customer.CustomerName,
+                                          customer.WalkInName,
+                                          customer.DocDate,
+                                          customer.CreatedBy
+                                        )
+                                      }
+                                    >
                                       {customer.CustomerName}
                                     </td>
-                                    <td className="tdcus" key={index}>
-                                      {customer.ForeignName}
-                                    </td>
-                                    <td className="tdcus" key={index}>
+                                    <td
+                                      className="tdcus"
+                                      onClick={() =>
+                                        addDraftData(
+                                          customer.DraftNum,
+                                          customer.CustomerCode,
+                                          customer.CustomerName,
+                                          customer.WalkInName,
+                                          customer.DocDate,
+                                          customer.CreatedBy
+                                        )
+                                      }
+                                    >
                                       {customer.WalkInName}
                                     </td>
-                                    <td className="tdcus" key={index}>
+                                    <td
+                                      className="tdcus"
+                                      onClick={() =>
+                                        addDraftData(
+                                          customer.DraftNum,
+                                          customer.CustomerCode,
+                                          customer.CustomerName,
+                                          customer.WalkInName,
+                                          customer.DocDate,
+                                          customer.CreatedBy
+                                        )
+                                      }
+                                    >
                                       {customer.DocDate}
                                     </td>
-                                    <td className="tdcus" key={index}>
+                                    <td
+                                      className="tdcus"
+                                      onClick={() =>
+                                        addDraftData(
+                                          customer.DraftNum,
+                                          customer.CustomerCode,
+                                          customer.CustomerName,
+                                          customer.WalkInName,
+                                          customer.DocDate,
+                                          customer.CreatedBy
+                                        )
+                                      }
+                                    >
                                       {customer.CreatedBy}
                                     </td>
                                   </tr>
