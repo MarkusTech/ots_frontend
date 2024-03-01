@@ -5,12 +5,16 @@ dotenv.config();
 
 const config = {
   database: process.env.MSSQL_DATABASE,
-  server: process.env.MSSQL_SERVER,
+  server: process.env.MSSQL_SERVER, // Use the hostname or domain name here
   user: process.env.MSSQL_USERNAME,
   password: process.env.MSSQL_PASSWORD,
   options: {
     trustedConnection: true,
     trustServerCertificate: true,
+    cryptoCredentialsDetails: {
+      minVersion: "TLSv1",
+      servername: process.env.MSSQL_SERVER, // Use the hostname or domain name here
+    },
   },
 };
 
