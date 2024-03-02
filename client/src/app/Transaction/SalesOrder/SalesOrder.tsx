@@ -1103,10 +1103,10 @@ export default function SalesOrder() {
       console.log("Please Check Server");
     }
     // to be deleted
-    // setFormData({
-    //   ...formData,
-    //   TotalTax: getDraft.data.TotalTax,
-    // });
+    setFormData({
+      ...formData,
+      TotalTax: getDraft.data.TotalTax,
+    });
 
     // total
     settotalAfterVat(getDraft.data.TotalAmtAftTax);
@@ -1154,11 +1154,11 @@ export default function SalesOrder() {
       tempSum2 - (tempSum2 - taxAmountSum) * varSCPWDdisc
     );
 
-    setTotalBeforeVat(calculationAfterVat);
-    settotalAfterVat(calculationBeforeVat);
-    setTotalVat(calculationTotalVat);
-    setSCPWDdata(calculationForScORPwd);
-    settotalAmoutDueData(calculationTotalAmoutDue);
+    // setTotalBeforeVat(calculationAfterVat);
+    // settotalAfterVat(calculationBeforeVat);
+    // setTotalVat(calculationTotalVat);
+    // setSCPWDdata(calculationForScORPwd);
+    // settotalAmoutDueData(calculationTotalAmoutDue);
 
     // WMR Code
     const calcAfterVat = tempSum2;
@@ -3583,7 +3583,7 @@ export default function SalesOrder() {
               </div>
             </div>
 
-            {/* ----------------to be deleted ------------- */}
+            {/* ---------------- to be deleted ------------- */}
             <div className="grid grid-cols-2">
               <label htmlFor="documentnumber">Wmr Try</label>
               <div>
