@@ -1100,7 +1100,7 @@ export default function SalesOrder() {
     } else if (getDraft.data.COD) {
       setIsCheckedCashOnDel(true);
     } else {
-      console.log("Please Check Server"); //sample
+      console.log("Please Check Server");
     }
 
     // total
