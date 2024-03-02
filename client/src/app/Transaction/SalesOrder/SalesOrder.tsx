@@ -3557,6 +3557,7 @@ export default function SalesOrder() {
               <label htmlFor="documentnumber">Total VAT</label>
               <div>
                 <input value={totalVat} type="text" readOnly />
+                {formData.TotalTax}
               </div>
             </div>
             <div className="grid grid-cols-2">
