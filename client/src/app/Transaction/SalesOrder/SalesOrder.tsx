@@ -1102,6 +1102,11 @@ export default function SalesOrder() {
     } else {
       console.log("Please Check Server");
     }
+    // to be deleted
+    // setFormData({
+    //   ...formData,
+    //   TotalTax: getDraft.data.TotalTax,
+    // });
 
     // total
     settotalAfterVat(getDraft.data.TotalAmtAftTax);
@@ -3557,7 +3562,6 @@ export default function SalesOrder() {
               <label htmlFor="documentnumber">Total VAT</label>
               <div>
                 <input value={totalVat} type="text" readOnly />
-                {formData.TotalTax}
               </div>
             </div>
             <div className="grid grid-cols-2">
@@ -3578,6 +3582,15 @@ export default function SalesOrder() {
                 <input value={totalAmoutDueData} type="text" readOnly />
               </div>
             </div>
+
+            {/* ----------------to be deleted ------------- */}
+            <div className="grid grid-cols-2">
+              <label htmlFor="documentnumber">Wmr Try</label>
+              <div>
+                <input type="text" value={formData.TotalTax} readOnly />
+              </div>
+            </div>
+            {/* -------------------------------------------- */}
           </div>
         </div>
         {/* ----------------------------- End Calculation ------------------------- */}
