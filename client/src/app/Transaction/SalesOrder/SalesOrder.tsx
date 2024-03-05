@@ -939,7 +939,7 @@ export default function SalesOrder() {
     settotalAfterVat(calculationAfterVat);
     setTotalVat(calculationTotalVat);
     setSCPWDdata(calculationForScORPwd);
-    // settotalAmoutDueData(calculationTotalAmoutDue);
+    settotalAmoutDueData(calculationTotalAmoutDue);
 
     settotalAmoutDueData(apiData.TotalAmtDue);
 
