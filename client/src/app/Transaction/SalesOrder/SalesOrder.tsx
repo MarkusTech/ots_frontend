@@ -1154,11 +1154,11 @@ export default function SalesOrder() {
       tempSum2 - (tempSum2 - taxAmountSum) * varSCPWDdisc
     );
 
-    // setTotalBeforeVat(calculationAfterVat);
-    // settotalAfterVat(calculationBeforeVat);
-    // setTotalVat(calculationTotalVat);
-    // setSCPWDdata(calculationForScORPwd);
-    // settotalAmoutDueData(calculationTotalAmoutDue);
+    setTotalBeforeVat(calculationAfterVat);
+    settotalAfterVat(calculationBeforeVat);
+    setTotalVat(calculationTotalVat);
+    setSCPWDdata(calculationForScORPwd);
+    settotalAmoutDueData(calculationTotalAmoutDue);
 
     // WMR Code
     const calcAfterVat = tempSum2;
