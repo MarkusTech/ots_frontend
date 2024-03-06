@@ -14,7 +14,7 @@ const getDetails = async (req, res) => {
   }
 };
 
-const getSingleDetails = async (req, res) => {
+const getSelectedDetails = async (req, res) => {
   try {
     const { DraftNum } = req.params;
     const result = await sqlConn.query(
@@ -28,4 +28,4 @@ const getSingleDetails = async (req, res) => {
   }
 };
 
-export { getDetails, getSingleDetails };
+export { getDetails, getSelectedDetails };
