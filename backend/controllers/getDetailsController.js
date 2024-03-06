@@ -14,4 +14,13 @@ const getDetails = async (req, res) => {
   }
 };
 
-export { getDetails };
+const getSingleDetails = async (req, res) => {
+  try {
+    const { DraftNum } = req.params;
+  } catch (error) {
+    console.log(error);
+    throw new Error(error);
+  }
+};
+
+export { getDetails, getSingleDetails };
