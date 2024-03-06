@@ -1103,6 +1103,49 @@ export default function SalesOrder() {
     );
     console.log(getDetails.data);
 
+    const product = getDetails.data;
+    setTableData((prevData) => [
+      ...prevData,
+      {
+        draftNumber: product.DraftNum,
+        entryNumber: "", // sample
+        itemCode: product.ItemCode,
+        itemName: product.ItemName,
+        quantity: product.Quantity,
+        uom: product.UoM,
+        uomConversion: product.UoMConv,
+        excludeBO: "N",
+        location: product.Whse,
+        price: 0,
+        inventoryStatus: product.InvStat,
+        sellingPriceBeforeDiscount: product.SellPriceBefDisc,
+        discountRate: product.DiscRate,
+        sellingPriceAfterDiscount: product.SellPriceAftDisc,
+        sellingPriceAfterDiscountTemp: 0,
+        lowerBound: product.LowerBound,
+        taxCode: product.TaxCode,
+        taxCodePercentage: product.TaxCodePerc,
+        taxAmount: product.TaxAmt,
+        volDisPrice: 0,
+        belVolDisPrice: product.BelPriceDisc,
+        cost: product.Cost,
+        belCost: product.BelCost,
+        modeOfReleasing: product.ModeReleasing,
+        scPwdDiscount: product.SCPWDdisc,
+        grossTotal: product.GrossTotal,
+        selected: false,
+        cash: "N",
+        creditcard: "N",
+        debit: "N",
+        pdc: "N",
+        po: "N",
+        datedCheck: "N",
+        onlineTransfer: "N",
+        onAccount: "N",
+        cashOnDel: "N",
+      },
+    ]);
+
     const Yes = "Y";
     if (getDraft.data.Cash == Yes) {
       setIsCheckedCash(true);
