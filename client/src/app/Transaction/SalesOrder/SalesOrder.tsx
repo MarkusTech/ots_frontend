@@ -1041,6 +1041,11 @@ export default function SalesOrder() {
     setShowSearchHeader(!showSearchHeader);
   };
 
+  // Details API
+  // useEffect(() => {
+  //   axios.get("")
+  // })
+
   useEffect(() => {
     axios
       .get("http://172.16.10.217:3002/so-header/")
