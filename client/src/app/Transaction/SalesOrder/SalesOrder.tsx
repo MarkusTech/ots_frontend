@@ -886,6 +886,11 @@ export default function SalesOrder() {
       DocDate: docDate,
       CreatedBy: createdBy,
     });
+    // Details
+    const getDetails = await axios.get(
+      `http://localhost:5000/api/v1/get-detail/'${draftNum}'`
+    );
+    // Header DraftData
     const draftData = await axios.get(
       `http://localhost:5000/api/v1/get-draft/${draftNum}`
     ); // wmr api
@@ -895,6 +900,7 @@ export default function SalesOrder() {
     console.log(`Walkin Name: ${walkinNmae}`);
     console.log(`Doc Date: ${docDate}`);
     console.log(`Sales Crew: ${createdBy}`);
+    console.log(getDetails);
 
     const apiData = draftData.data;
     console.log(`DATABASE: ${apiData.TotalAmtDue}`);
@@ -1066,7 +1072,7 @@ export default function SalesOrder() {
     const getDraft = await axios.get(
       "http://localhost:5000/api/v1/get-draft/10119"
     );
-    console.log(getDraft);
+    console.log(getDraft.data);
     setCustomerData([
       {
         customerCode: getDraft.data.CustomerCode,
@@ -1090,6 +1096,12 @@ export default function SalesOrder() {
     setIsPaymentOnlineTransfer(getDraft.data.OnlineTransfer);
     setIsPaymentOnAccount(getDraft.data.OnAccount);
     setIsPaymentCOD(getDraft.data.COD);
+
+    // Details
+    const getDetails = await axios.get(
+      `http://localhost:5000/api/v1/get-detail/'10119'`
+    );
+    console.log(getDetails.data);
 
     const Yes = "Y";
     if (getDraft.data.Cash == Yes) {
@@ -3814,3 +3826,6 @@ export default function SalesOrder() {
     </>
   );
 }
+
+// 890
+// 1075
