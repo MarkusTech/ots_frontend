@@ -22,10 +22,8 @@ const getSingleDetails = async (req, res) => {
     );
 
     if (result.recordset.length > 0) {
-      // If a matching record is found, send it in the response
       res.json(result.recordset[0]);
     } else {
-      // If no matching record is found, send an appropriate response
       res.status(404).json({ message: "Record not found" });
     }
   } catch (error) {
