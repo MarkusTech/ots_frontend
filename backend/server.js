@@ -6,6 +6,9 @@ import morgan from "morgan";
 import dotenv from "dotenv";
 import colors from "colors";
 
+// Database
+import sqlConn from "./config/db.js";
+
 // UUID
 import { v4 as uuidv4 } from "uuid";
 
@@ -52,6 +55,16 @@ app.get("/api/v1/generateUniqueId", (req, res) => {
 app.use("/api/v1", getSingleDraftRoutes);
 
 // event listener
-app.listen(port, () => {
-  console.log(`Server is running on http://localhost:${port}`.bgCyan);
+// app.listen(port, () => {
+//   console.log(`Server is running on http://localhost:${port}`.bgCyan);
+// });
+
+sqlConn.connect((err) => {
+  if (err) {
+    console.error("Error connecting to MSSQL:", err);
+  } else {
+    app.listen(port, () => {
+      console.log(`Server is running on http://localhost:${port}`.bgCyan);
+    });
+  }
 });
