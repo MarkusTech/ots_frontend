@@ -1050,6 +1050,13 @@ export default function SalesOrder() {
   //     SetWmrNum(response);
   //   })
   // })
+  const getDetailsAPI = async () => {
+    const draftNum = draftNumber;
+    const getDetails = await axios.get(
+      `http://localhost:5000/api/v1/get-detail/${draftNum}`
+    );
+    console.log(getDetails);
+  };
 
   useEffect(() => {
     axios
