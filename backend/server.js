@@ -56,11 +56,6 @@ app.get("/api/v1/generateUniqueId", (req, res) => {
 app.use("/api/v1", getSingleDraftRoutes);
 app.use("/api/v1", getDetailsRoutes);
 
-// event listener
-// app.listen(port, () => {
-//   console.log(`Server is running on http://localhost:${port}`.bgCyan);
-// });
-
 sqlConn.connect((err) => {
   if (err) {
     console.error("Error connecting to MSSQL:", err);
