@@ -19,6 +19,7 @@ import draftNumberRoutes from "./routes/draftNumberRoutes.js";
 import entryNumberRoutes from "./routes/entryNumberRoutes.js";
 import productDetailRoutes from "./routes/productDetailsRoutes.js";
 import getSingleDraftRoutes from "./routes/getSingleDraftRoutes.js";
+import getDetailsRoutes from "./routes/getDetailsRoutes.js";
 
 // dotenv config
 dotenv.config();
@@ -53,6 +54,7 @@ app.get("/api/v1/generateUniqueId", (req, res) => {
 });
 
 app.use("/api/v1", getSingleDraftRoutes);
+app.use("/api/v1", getDetailsRoutes);
 
 // event listener
 // app.listen(port, () => {
