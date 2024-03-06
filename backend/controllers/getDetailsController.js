@@ -9,8 +9,8 @@ const getDetails = async (req, res) => {
       data,
     });
   } catch (error) {
-    console.log(error);
-    throw new Error(error);
+    console.error(error);
+    res.status(500).json({ error: "Internal Server Error" });
   }
 };
 
