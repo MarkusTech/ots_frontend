@@ -1042,8 +1042,13 @@ export default function SalesOrder() {
   };
 
   // Details API
+  // const [wmrNum, SetWmrNum] = useState("")
   // useEffect(() => {
-  //   axios.get("")
+  //   const draftNum = draftNumber;
+  //   axios.get(`http://localhost:5000/api/v1/get-detail/${draftNum}`)
+  //   .then((response) => {
+  //     SetWmrNum(response);
+  //   })
   // })
 
   useEffect(() => {
