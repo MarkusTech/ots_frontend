@@ -1042,20 +1042,12 @@ export default function SalesOrder() {
   };
 
   // Details API
-  // const [wmrNum, SetWmrNum] = useState("")
-  // useEffect(() => {
-  //   const draftNum = draftNumber;
-  //   axios.get(`http://localhost:5000/api/v1/get-detail/${draftNum}`)
-  //   .then((response) => {
-  //     SetWmrNum(response);
-  //   })
-  // })
   const getDetailsAPI = async () => {
     const draftNum = draftNumber;
     const getDetails = await axios.get(
-      `http://localhost:5000/api/v1/get-detail/${draftNum}`
+      `http://localhost:5000/api/v1/get-detail/'10119'`
     );
-    console.log(getDetails);
+    console.log(getDetails.data);
   };
 
   useEffect(() => {
@@ -3644,7 +3636,8 @@ export default function SalesOrder() {
 
             <button
               className="p-2 mt-2 mb-1 mr-2 text-[12px] bg-[#F4D674] hover:bg-yellow-500 focus:outline-none focus:shadow-outline-yellow active:bg-yellow-600 rounded w-24"
-              onClick={deleteDetailsThenSave}
+              // onClick={deleteDetailsThenSave}
+              onClick={getDetailsAPI}
             >
               Print
             </button>
