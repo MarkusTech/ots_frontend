@@ -21,11 +21,7 @@ const getSingleDetails = async (req, res) => {
       `Select * from SO_Details where DraftNum = ${DraftNum}`
     );
 
-    if (result.recordset.length > 0) {
-      res.json(result.recordset[0]);
-    } else {
-      res.status(404).json({ message: "Record not found" });
-    }
+    res.status(200).json(result.recordset);
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: "Internal Server Error" });
