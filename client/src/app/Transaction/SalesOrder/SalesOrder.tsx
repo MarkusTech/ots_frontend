@@ -1068,7 +1068,7 @@ export default function SalesOrder() {
       });
   }, []);
 
-  const wmrCustomer = async () => {
+  const WmrCustomer = async () => {
     const getDraft = await axios.get(
       "http://localhost:5000/api/v1/get-draft/10119"
     );
@@ -1098,6 +1098,9 @@ export default function SalesOrder() {
     setIsPaymentCOD(getDraft.data.COD);
 
     // Details
+    useEffect(() => {
+      axios.get(`http://localhost:5000/api/v1/get-detail/'10119'`);
+    });
     const getDetails = await axios.get(
       `http://localhost:5000/api/v1/get-detail/'10119'`
     );
@@ -3685,7 +3688,7 @@ export default function SalesOrder() {
 
             <button
               className="p-2 mt-2 mb-1 mr-2 text-[12px] bg-[#F4D674] hover:bg-yellow-500 focus:outline-none focus:shadow-outline-yellow active:bg-yellow-600 rounded w-24"
-              onClick={wmrCustomer}
+              onClick={WmrCustomer}
             >
               Commit
             </button>
