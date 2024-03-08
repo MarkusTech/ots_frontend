@@ -1055,6 +1055,7 @@ export default function SalesOrder() {
     );
     console.log(getDetails.data);
   };
+  const [wmrDetails, setWmrDetails] = useState([]);
 
   useEffect(() => {
     axios
