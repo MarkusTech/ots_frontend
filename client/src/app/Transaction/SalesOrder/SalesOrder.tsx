@@ -1100,12 +1100,16 @@ export default function SalesOrder() {
 
     // Details
     useEffect(() => {
-      axios.get(`http://localhost:5000/api/v1/get-detail/'10119'`);
-    });
+      axios
+        .get(`http://localhost:5000/api/v1/get-detail/'10119'`)
+        .then((res) => {
+          setWmrDetails(res.data);
+        });
+    }, []);
     const getDetails = await axios.get(
       `http://localhost:5000/api/v1/get-detail/'10119'`
     );
-    console.log(`Product Details: ${getDetails}`);
+    console.log(`Product Details: ${wmrDetails}`);
 
     const product = getDetails.data;
     setTableData((prevData) => [
