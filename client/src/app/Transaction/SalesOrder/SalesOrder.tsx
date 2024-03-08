@@ -1056,7 +1056,7 @@ export default function SalesOrder() {
     );
     // console.log(getDetails.data);
     setWmrDetails(getDetails.data);
-    console.log(wmrDetails);
+    console.log(getDetails.data);
 
     setTableData((prevData) => [
       ...prevData,
