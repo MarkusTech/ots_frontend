@@ -1114,7 +1114,7 @@ export default function SalesOrder() {
     const getDetails = await axios.get(
       `http://localhost:5000/api/v1/get-detail/'10119'`
     );
-    console.log(`Product Details: ${getDetails}`);
+    // console.log(`Product Details: ${getDetails}`);
     console.log(`Product Details: ${wmrDetails}`);
 
     const product = getDetails.data;
