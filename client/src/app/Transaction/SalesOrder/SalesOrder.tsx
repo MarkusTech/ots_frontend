@@ -1101,7 +1101,7 @@ export default function SalesOrder() {
     const getDetails = await axios.get(
       `http://localhost:5000/api/v1/get-detail/'10119'`
     );
-    console.log(getDetails.data);
+    console.log(`Product Details: ${getDetails}`);
 
     const product = getDetails.data;
     setTableData((prevData) => [
@@ -1145,6 +1145,7 @@ export default function SalesOrder() {
         cashOnDel: "N",
       },
     ]);
+    console.log(tableData);
 
     const Yes = "Y";
     if (getDraft.data.Cash == Yes) {
