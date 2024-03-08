@@ -1054,7 +1054,52 @@ export default function SalesOrder() {
     const getDetails = await axios.get(
       `http://localhost:5000/api/v1/get-detail/'10119'`
     );
-    console.log(getDetails.data);
+    // console.log(getDetails.data);
+    setWmrDetails(getDetails.data);
+    console.log(wmrDetails);
+
+    setTableData((prevData) => [
+      ...prevData,
+      {
+        draftNumber: getDetails.data.DraftNum,
+        entryNumber: "", // sample
+        itemCode: getDetails.data.ItemCode,
+        itemName: getDetails.data.ItemName,
+        quantity: getDetails.data.Quantity,
+        uom: "",
+        uomConversion: 0,
+        excludeBO: "N",
+        location: "",
+        price: 0,
+        inventoryStatus: "",
+        sellingPriceBeforeDiscount: 0,
+        discountRate: 0,
+        sellingPriceAfterDiscount: 0,
+        sellingPriceAfterDiscountTemp: 0,
+        lowerBound: 0,
+        taxCode: "",
+        taxCodePercentage: 0,
+        taxAmount: 0,
+        volDisPrice: 0,
+        belVolDisPrice: 0,
+        cost: 0,
+        belCost: "",
+        modeOfReleasing: "",
+        scPwdDiscount: "N",
+        grossTotal: 0,
+        selected: false,
+        cash: "N",
+        creditcard: "N",
+        debit: "N",
+        pdc: "N",
+        po: "N",
+        datedCheck: "N",
+        onlineTransfer: "N",
+        onAccount: "N",
+        cashOnDel: "N",
+      },
+    ]);
+    console.log(tableData);
   };
 
   useEffect(() => {
@@ -1069,17 +1114,29 @@ export default function SalesOrder() {
       });
   }, []);
 
-  useEffect(() => {
-    axios
-      .get(`http://localhost:5000/api/v1/get-detail/'10119'`)
-      .then((res) => {
-        setWmrDetails(res.data);
-        console.log(res.data);
-      })
-      .catch((error) => {
-        console.error("Error fetching data:", error);
-      });
-  }, []); // Empty dependency array to run the effect only once on mount
+  // useEffect(() => {
+  //   axios
+  //     .get(`http://localhost:5000/api/v1/get-detail/'10119'`)
+  //     .then((res) => {
+  //       setWmrDetails(res.data);
+  //       console.log(res.data);
+  //     })
+  //     .catch((error) => {
+  //       console.error("Error fetching data:", error);
+  //     });
+  // }, []); // Empty dependency array to run the effect only once on mount
+
+  // const detailsListAPI = async () => {
+  //   await axios
+  //     .get(`http://localhost:5000/api/v1/get-detail/'10119'`)
+  //     .then((res) => {
+  //       setWmrDetails(res.data);
+  //       console.log(res.data);
+  //     })
+  //     .catch((error) => {
+  //       console.error("Error fetching data:", error);
+  //     });
+  // };
 
   const WmrCustomer = async () => {
     const getDraft = await axios.get(
