@@ -1069,6 +1069,12 @@ export default function SalesOrder() {
       });
   }, []);
 
+  useEffect(() => {
+    axios.get(`http://localhost:5000/api/v1/get-detail/'10119'`).then((res) => {
+      setWmrDetails(res.data);
+    });
+  }, []);
+
   const WmrCustomer = async () => {
     const getDraft = await axios.get(
       "http://localhost:5000/api/v1/get-draft/10119"
@@ -1099,16 +1105,10 @@ export default function SalesOrder() {
     setIsPaymentCOD(getDraft.data.COD);
 
     // Details
-    useEffect(() => {
-      axios
-        .get(`http://localhost:5000/api/v1/get-detail/'10119'`)
-        .then((res) => {
-          setWmrDetails(res.data);
-        });
-    }, []);
     const getDetails = await axios.get(
       `http://localhost:5000/api/v1/get-detail/'10119'`
     );
+    console.log(`Product Details: ${getDetails}`);
     console.log(`Product Details: ${wmrDetails}`);
 
     const product = getDetails.data;
