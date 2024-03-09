@@ -1145,7 +1145,7 @@ export default function SalesOrder() {
     console.log(getDraft.data);
     setCustomerData([
       {
-        customerCode: getDraft.data.CustomerCode, 
+        customerCode: getDraft.data.CustomerCode,
         customerName: getDraft.data.CustomerName,
         customerCardFName: "",
         cusShipAddress: getDraft.data.ShippingAdd,
@@ -1153,7 +1153,7 @@ export default function SalesOrder() {
       },
     ]);
     setWalkingCustomer(getDraft.data.WalkInName); // walkin customer
-    setCustomerReference(getDraft.data.Reference);
+    setCustomerReference(getDraft.data.Reference); // Customer Reference
     setScOrPwdField(getDraft.data.SCPWDIdNo);
     setDraftNumber(getDraft.data.DraftNum);
 
