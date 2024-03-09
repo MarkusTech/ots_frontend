@@ -1152,7 +1152,7 @@ export default function SalesOrder() {
         cusLicTradNum: getDraft.data.TIN,
       },
     ]);
-    setWalkingCustomer(getDraft.data.WalkInName); // walkin custom
+    setWalkingCustomer(getDraft.data.WalkInName); // walkin custo
     setCustomerReference(getDraft.data.Reference); // Customer Reference
     setScOrPwdField(getDraft.data.SCPWDIdNo); // SC/PWD ID
     setDraftNumber(getDraft.data.DraftNum); // Draft Number
