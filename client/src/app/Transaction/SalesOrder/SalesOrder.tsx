@@ -1155,7 +1155,7 @@ export default function SalesOrder() {
     setWalkingCustomer(getDraft.data.WalkInName); // walkin customer
     setCustomerReference(getDraft.data.Reference); // Customer Reference
     setScOrPwdField(getDraft.data.SCPWDIdNo); // SC/PWD ID
-    setDraftNumber(getDraft.data.DraftNum);
+    setDraftNumber(getDraft.data.DraftNum); // Draft Number
 
     // Payment Method
     setIsPaymentCash(getDraft.data.Cash);
