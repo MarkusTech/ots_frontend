@@ -1153,7 +1153,7 @@ export default function SalesOrder() {
       },
     ]);
     setWalkingCustomer(getDraft.data.WalkInName);
-    setCustomerReference(getDraft.data.Reference); // Custome
+    setCustomerReference(getDraft.data.Reference); // Custom
     setScOrPwdField(getDraft.data.SCPWDIdNo); // SC/PWD ID
     setDraftNumber(getDraft.data.DraftNum); // Draft Number
 
