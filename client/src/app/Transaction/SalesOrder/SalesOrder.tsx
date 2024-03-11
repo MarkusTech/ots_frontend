@@ -929,27 +929,6 @@ export default function SalesOrder() {
     setIsPaymentOnAccount(apiData.OnAccount);
     setIsPaymentCOD(apiData.COD);
 
-    // total
-    // setFinalTotalAmtBefTax(apiData.TotalAmtBefTax);
-    // setFinalTotalTax(apiData.TotalTax);
-    // setFinalTotalAmtAftTax(apiData.TotalAmtAftTax);
-    // setFinalSCPWDDiscTotal(apiData.SCPWDDiscTotal);
-    // setFinalTotalAmtDue(apiData.TotalAmtDue);
-
-    // const calculationAfterVat = localCurrency.format(apiData.TotalAmtAftTax);
-    // const calculationBeforeVat = localCurrency.format(apiData.TotalAmtBefTax);
-    // const calculationTotalVat = localCurrency.format(apiData.TotalTax);
-    // const calculationForScORPwd = localCurrency.format(apiData.SCPWDDiscTotal);
-    // const calculationTotalAmoutDue = localCurrency.format(apiData.TotalAmtDue);
-
-    // setTotalBeforeVat(calculationBeforeVat);
-    // settotalAfterVat(calculationAfterVat);
-    // setTotalVat(calculationTotalVat);
-    // setSCPWDdata(calculationForScORPwd);
-    // settotalAmoutDueData(calculationTotalAmoutDue);
-
-    // settotalAmoutDueData(apiData.TotalAmtDue);
-
     // for open and close draggable and for the button save and update
     setShowSearchHeader(!showSearchHeader);
     setIsSaved(true);
