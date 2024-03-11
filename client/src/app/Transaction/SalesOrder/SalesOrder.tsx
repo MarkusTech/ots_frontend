@@ -29,7 +29,6 @@ export default function SalesOrder() {
     // ... other properties
   }
   const [customers, setCustomers] = useState<Customer[]>([]); // for the list of save as draft Customers
-  const [wmrDetails, setWmrDetails] = useState([]);
 
   const [itemList, setItemDataList] = useState([]);
   const [UOMList, setUOMList] = useState([]);
