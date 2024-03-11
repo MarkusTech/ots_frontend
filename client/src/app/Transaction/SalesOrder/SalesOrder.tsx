@@ -1031,19 +1031,21 @@ export default function SalesOrder() {
   const [jsonDetails, setJsonDetails] = useState([]);
   // Details API
   useEffect(() => {
-    axios
-      .get(`http://localhost:5000/api/v1/get-detail/'${jsonDraftNum}'`)
-      .then((response) => {
-        setJsonDetails(response.data);
-      })
-      .catch((error) => {
-        console.error("Error fetching data:", error);
-      });
+    if (jsonDraftNum) {
+      axios
+        .get(`http://localhost:5000/api/v1/get-detail/'${jsonDraftNum}'`)
+        .then((response) => {
+          setJsonDetails(response.data);
+        })
+        .catch((error) => {
+          console.error("Error fetching data:", error);
+        });
+    }
   }, [jsonDraftNum]);
 
-  // useEffect(() => {
-  //   console.log(jsonDetails);
-  // }, [jsonDetails]);
+  useEffect(() => {
+    console.log(jsonDetails);
+  }, [jsonDetails]);
 
   const getDetailsAPI = async () => {
     setJsonDraftNum("10119");
@@ -1092,8 +1094,7 @@ export default function SalesOrder() {
     setIsPaymentCOD(getDraft.data.COD);
 
     // Details
-    setJsonDraftNum("10119");
-    console.log(jsonDraftNum);
+    setJsonDraftNum("10118");
 
     const Yes = "Y";
     if (getDraft.data.Cash == Yes) {
