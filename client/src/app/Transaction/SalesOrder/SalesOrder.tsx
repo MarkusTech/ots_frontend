@@ -1094,6 +1094,7 @@ export default function SalesOrder() {
     // Details
     setJsonDraftNum("10119");
     console.log(jsonDraftNum);
+
     const Yes = "Y";
     if (getDraft.data.Cash == Yes) {
       setIsCheckedCash(true);
