@@ -1093,30 +1093,6 @@ export default function SalesOrder() {
       });
   }, []);
 
-  // useEffect(() => {
-  //   axios
-  //     .get(`http://localhost:5000/api/v1/get-detail/'10119'`)
-  //     .then((res) => {
-  //       setWmrDetails(res.data);
-  //       console.log(res.data);
-  //     })
-  //     .catch((error) => {
-  //       console.error("Error fetching data:", error);
-  //     });
-  // }, []); // Empty dependency array to run the effect only once on mount
-
-  // const detailsListAPI = async () => {
-  //   await axios
-  //     .get(`http://localhost:5000/api/v1/get-detail/'10119'`)
-  //     .then((res) => {
-  //       setWmrDetails(res.data);
-  //       console.log(res.data);
-  //     })
-  //     .catch((error) => {
-  //       console.error("Error fetching data:", error);
-  //     });
-  // };
-
   const draftNumToFetch = "10119";
   const [selectedData, setSelectedData] = useState<{
     draftNumber: string;
