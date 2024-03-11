@@ -1078,8 +1078,9 @@ export default function SalesOrder() {
 
   // Header
   useEffect(() => {
+    // .get("http://172.16.10.217:3002/so-header/")
     axios
-      .get("http://172.16.10.217:3002/so-header/")
+      .get("http://localhost:5000/api/v1/get-draft")
       .then((response) => {
         // setCustomers(response.data.slice(0, 15));
         setCustomers(response.data);
