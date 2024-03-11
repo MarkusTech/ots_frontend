@@ -3841,8 +3841,3 @@ export default function SalesOrder() {
     </>
   );
 }
-
-// 363 = tableData
-// 890
-// 1075
-// 1104
