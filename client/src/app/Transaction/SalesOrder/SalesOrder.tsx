@@ -1028,14 +1028,18 @@ export default function SalesOrder() {
   };
 
   // Details API
+  useEffect(() => {
+    axios
+      .get(`http://localhost:5000/api/v1/get-detail/'10119'`)
+      .then((response) => {
+        setWmrDetails(response.data);
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+      });
+  }, []);
   const getDetailsAPI = async () => {
-    const draftNum = draftNumber;
-    const getDetails = await axios.get(
-      `http://localhost:5000/api/v1/get-detail/'10119'`
-    );
-    // console.log(getDetails.data);
-    setWmrDetails(getDetails.data);
-    console.log(getDetails.data);
+    console.log(wmrDetails);
   };
 
   useEffect(() => {
