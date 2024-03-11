@@ -1027,19 +1027,22 @@ export default function SalesOrder() {
     setShowSearchHeader(!showSearchHeader);
   };
 
+  const [jsonDraftNum, setJsonDraftNum] = useState("");
+  const [jsonDetails, setJsonDetails] = useState([]);
   // Details API
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/api/v1/get-detail/'10119'`)
+      .get(`http://localhost:5000/api/v1/get-detail/'${jsonDraftNum}'`)
       .then((response) => {
-        setWmrDetails(response.data);
+        setJsonDetails(response.data);
       })
       .catch((error) => {
         console.error("Error fetching data:", error);
       });
-  }, []);
+  }, [jsonDraftNum]);
+
   const getDetailsAPI = async () => {
-    console.log(wmrDetails);
+    console.log(jsonDetails);
   };
 
   // Header
@@ -1085,7 +1088,8 @@ export default function SalesOrder() {
     setIsPaymentCOD(getDraft.data.COD);
 
     // Details
-
+    setJsonDraftNum("10119");
+    console.log(jsonDraftNum);
     const Yes = "Y";
     if (getDraft.data.Cash == Yes) {
       setIsCheckedCash(true);
