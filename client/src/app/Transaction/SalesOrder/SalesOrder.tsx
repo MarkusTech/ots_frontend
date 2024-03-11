@@ -1027,9 +1027,9 @@ export default function SalesOrder() {
     setShowSearchHeader(!showSearchHeader);
   };
 
+  // Details API
   const [jsonDraftNum, setJsonDraftNum] = useState("");
   const [jsonDetails, setJsonDetails] = useState([]); // temporary storage for details
-  // Details API
   useEffect(() => {
     if (jsonDraftNum) {
       axios
