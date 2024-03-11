@@ -3629,15 +3629,6 @@ export default function SalesOrder() {
                 <input value={totalAmoutDueData} type="text" readOnly />
               </div>
             </div>
-
-            {/* ---------------- to be deleted ------------- */}
-            <div className="grid grid-cols-2">
-              <label htmlFor="documentnumber">Wmr Try</label>
-              <div>
-                <input type="text" value={formData.TotalTax} readOnly />
-              </div>
-            </div>
-            {/* -------------------------------------------- */}
           </div>
         </div>
         {/* ----------------------------- End Calculation ------------------------- */}
