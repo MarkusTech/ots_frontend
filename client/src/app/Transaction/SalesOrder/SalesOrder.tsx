@@ -1065,10 +1065,10 @@ export default function SalesOrder() {
           setTableData([...tableData, ...newData]);
 
           // to remove 1 row on adding the details
-          // setTableData((prevData) => prevData.filter((_, index) => index));
-          // setmodeOfrelisingArr((prevData) =>
-          //   prevData.filter((_, index) => index)
-          // );
+          setTableData((prevData) => prevData.filter((_, index) => index));
+          setmodeOfrelisingArr((prevData) =>
+            prevData.filter((_, index) => index)
+          );
         })
         .catch((error) => {
           console.error("Error fetching data:", error);
