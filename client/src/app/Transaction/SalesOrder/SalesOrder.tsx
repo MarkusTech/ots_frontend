@@ -1103,6 +1103,50 @@ export default function SalesOrder() {
     uom: string;
     // Add other properties with their respective types
   } | null>(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(
+          `http://localhost:5000/api/v1/get-detail/${draftNumToFetch}`
+        );
+        const jsonData = response.data;
+
+        console.log("Raw JSON Data:", jsonData);
+
+        if (jsonData.length > 0) {
+          const item = jsonData[0];
+          console.log("Item:", item);
+
+          const mappedData = {
+            draftNumber: item.DraftNum,
+            entryNumber: item.LineID,
+            itemCode: item.ItemCode,
+            itemName: item.ItemName,
+            quantity: item.Quantity,
+            uom: item.UoM,
+            // ... other properties
+          };
+
+          console.log("Mapped Data:", mappedData);
+
+          setSelectedData(mappedData);
+        } else {
+          console.log("No data found for the given draftNum.");
+          setSelectedData(null);
+        }
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+
+    fetchData();
+  }, [draftNumToFetch]);
+
+  useEffect(() => {
+    console.log("Final selectedData:", selectedData);
+  }, [selectedData]);
+
   const WmrCustomer = async () => {
     const getDraft = await axios.get(
       "http://localhost:5000/api/v1/get-draft/10119"
