@@ -1,64 +1,61 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 
 const YourComponent = () => {
-  const [selectedDraftNum, setSelectedDraftNum] = useState(null);
-  const [jsonData, setJsonData] = useState([]);
+  const [draftNum, setDraftNum] = useState(""); // State to store the draftNum
+  const [selectedData, setSelectedData] = useState(null);
+
+  const fetchData = async () => {
+    try {
+      const response = await fetch(`/api/getData?draftNum=${draftNum}`);
+      const jsonData = await response.json();
+
+      if (jsonData.length > 0) {
+        const item = jsonData[0]; // Assuming draftNum is unique and only one item is expected
+        const mappedData = {
+          draftNumber: item.DraftNum,
+          entryNumber: item.LineID,
+          itemCode: item.ItemCode,
+          itemName: item.ItemName,
+          quantity: item.Quantity,
+          uom: item.UoM,
+          // ... other properties
+        };
+
+        setSelectedData(mappedData);
+      } else {
+        console.log("No data found for the given draftNum.");
+        setSelectedData(null);
+      }
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
 
   useEffect(() => {
-    // Fetch data from your API endpoint when selectedDraftNum changes
-    const fetchData = async () => {
-      try {
-        if (selectedDraftNum) {
-          const response = await fetch(
-            `your-api-endpoint-url?draftNum=${selectedDraftNum}`
-          );
-          const data = await response.json();
-
-          // Update the state with the fetched data
-          setJsonData(data);
-        }
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
-    };
-
-    // Call the fetchData function when selectedDraftNum changes
-    fetchData();
-  }, [selectedDraftNum]); // Dependency array includes selectedDraftNum
-
-  // Function to handle draft number selection
-  const handleDraftNumSelect = (draftNum) => {
-    setSelectedDraftNum(draftNum);
-  };
+    if (draftNum) {
+      fetchData();
+    }
+  }, [draftNum]); // Run the effect whenever draftNum changes
 
   return (
     <div>
-      <h1>Your Component</h1>
+      {/* Input field to enter draftNum */}
+      <input
+        type="text"
+        placeholder="Enter draftNum"
+        value={draftNum}
+        onChange={(e) => setDraftNum(e.target.value)}
+      />
 
-      {/* Your table where you select a draft number */}
-      <table>
-        {/* Your table content */}
-        <tbody>
-          <tr>
-            <td>
-              {/* Example button to select a draft number */}
-              <button onClick={() => handleDraftNumSelect("10119")}>
-                Select Draft 10119
-              </button>
-            </td>
-            {/* Add more rows/buttons for other draft numbers */}
-          </tr>
-        </tbody>
-      </table>
-
-      {/* Use jsonData in your component */}
-      <ul>
-        {jsonData.map((item) => (
-          <li key={item.LineID}>
-            {item.ItemName} - Quantity: {item.Quantity}
-          </li>
-        ))}
-      </ul>
+      {/* Render your component UI here */}
+      {selectedData && (
+        <div>
+          {/* Display selectedData properties in your UI */}
+          <p>Draft Number: {selectedData.draftNumber}</p>
+          <p>Entry Number: {selectedData.entryNumber}</p>
+          {/* ... other properties */}
+        </div>
+      )}
     </div>
   );
 };
