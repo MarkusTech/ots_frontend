@@ -929,13 +929,6 @@ export default function SalesOrder() {
     setIsPaymentOnAccount(apiData.OnAccount);
     setIsPaymentCOD(apiData.COD);
 
-    // total
-    // setFinalTotalAmtBefTax(apiData.TotalAmtBefTax);
-    // setFinalTotalTax(apiData.TotalTax);
-    // setFinalTotalAmtAftTax(apiData.TotalAmtAftTax);
-    // setFinalSCPWDDiscTotal(apiData.SCPWDDiscTotal);
-    // setFinalTotalAmtDue(apiData.TotalAmtDue);
-
     const calculationAfterVat = localCurrency.format(apiData.TotalAmtAftTax);
     const calculationBeforeVat = localCurrency.format(apiData.TotalAmtBefTax);
     const calculationTotalVat = localCurrency.format(apiData.TotalTax);
