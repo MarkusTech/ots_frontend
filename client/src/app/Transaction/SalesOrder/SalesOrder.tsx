@@ -1036,6 +1036,32 @@ export default function SalesOrder() {
         .get(`http://localhost:5000/api/v1/get-detail/'${jsonDraftNum}'`)
         .then((response) => {
           setJsonDetails(response.data);
+
+          const newData = response.data.map((item: any) => ({
+            draftNumber: item.DraftNum,
+            itemCode: item.ItemCode,
+            itemName: item.ItemName,
+            quantity: item.Quantity,
+            uom: item.UoM,
+            uomConversion: item.UoMConv,
+            location: item.Whse,
+            inventoryStatus: item.InvStat,
+            sellingPriceBeforeDiscount: item.SellPriceBefDisc,
+            discountRate: item.DiscRate,
+            sellingPriceAfterDiscount: item.SellPriceAftDisc,
+            lowerBound: item.LowerBound,
+            taxCode: item.TaxCode,
+            taxCodePercentage: item.TaxCodePerc,
+            taxAmount: item.TaxAmt,
+            belVolDisPrice: item.BelPriceDisc,
+            cost: item.Cost,
+            belCost: item.BelCost,
+            modeOfReleasing: item.ModeReleasing,
+            scPwdDiscount: item.SCPWDdisc,
+            grossTotal: item.GrossTotal,
+          }));
+
+          setTableData([...tableData, ...newData]);
         })
         .catch((error) => {
           console.error("Error fetching data:", error);

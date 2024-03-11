@@ -217,3 +217,81 @@ const YourComponent = () => {
 };
 
 export default YourComponent;
+
+// -------------------------------------------------
+import { useEffect, useState } from "react";
+import axios from "axios";
+
+const WmrCustomer = async () => {
+  const getDraft = await axios.get(
+    "http://localhost:5000/api/v1/get-draft/10119"
+  );
+
+  // ... your existing logic
+
+  // Set jsonDraftNum after processing
+  setJsonDraftNum(getDraft.data.DraftNum);
+};
+
+const YourComponent = () => {
+  const [jsonDraftNum, setJsonDraftNum] = useState("");
+  const [jsonDetails, setJsonDetails] = useState([]);
+
+  useEffect(() => {
+    WmrCustomer();
+  }, []); // This ensures the WmrCustomer function is called only once when the component mounts
+
+  useEffect(() => {
+    if (jsonDraftNum) {
+      axios
+        .get(`http://localhost:5000/api/v1/get-detail/'${jsonDraftNum}'`)
+        .then((response) => {
+          setJsonDetails(response.data);
+        })
+        .catch((error) => {
+          console.error("Error fetching data:", error);
+        });
+    }
+  }, [jsonDraftNum]);
+
+  // Rest of your component code...
+};
+
+// ---------------------------------------------------------------
+useEffect(() => {
+  if (jsonDraftNum) {
+    axios
+      .get(`http://localhost:5000/api/v1/get-detail/'${jsonDraftNum}'`)
+      .then((response) => {
+        // Assuming response.data is an array of objects
+        const newData = response.data.map((item) => ({
+          draftNumber: item.DraftNum,
+          entryNumber: item.LineID,
+          itemCode: item.ItemCode,
+          itemName: item.ItemName,
+          quantity: item.Quantity,
+          uom: item.UoM,
+          uomConversion: item.UoMConv,
+          // Add other properties similarly
+          // ...
+        }));
+
+        setTableData([...tableData, ...newData]);
+
+        // Clearing other properties as per your existing logic
+        setJsonDetails(response.data);
+        setTableData({
+          ...tableData,
+          draftNumber: "",
+          entryNumber: "",
+          itemCode: "",
+          itemName: "",
+          quantity: 0,
+          // ... (other properties)
+        });
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+      });
+  }
+}, [jsonDraftNum]);
