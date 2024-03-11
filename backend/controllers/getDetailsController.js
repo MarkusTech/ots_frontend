@@ -14,32 +14,14 @@ const getDetails = async (req, res) => {
   }
 };
 
-// const getSelectedDetails = async (req, res) => {
-//   try {
-//     const { DraftNum } = req.params;
-//     const result = await sqlConn.query(
-//       `Select * from SO_Details where DraftNum = ${DraftNum}`
-//     );
-
-//     res.status(200).json(result.recordset);
-//   } catch (error) {
-//     console.error(error);
-//     res.status(500).json({ error: "Internal Server Error" });
-//   }
-// };
-
 const getSelectedDetails = async (req, res) => {
   try {
     const { DraftNum } = req.params;
     const result = await sqlConn.query(
-      "SELECT * FROM SO_Details WHERE DraftNum = @DraftNum",
-      {
-        replacements: { DraftNum: parseInt(DraftNum, 10) }, // Assuming DraftNum is an integer
-        type: sqlConn.QueryTypes.SELECT,
-      }
+      `Select * from SO_Details where DraftNum = ${DraftNum}`
     );
 
-    res.status(200).json(result);
+    res.status(200).json(result.recordset);
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: "Internal Server Error" });
