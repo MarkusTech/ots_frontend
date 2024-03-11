@@ -1041,8 +1041,12 @@ export default function SalesOrder() {
       });
   }, [jsonDraftNum]);
 
+  // useEffect(() => {
+  //   console.log(jsonDetails);
+  // }, [jsonDetails]);
+
   const getDetailsAPI = async () => {
-    console.log(jsonDetails);
+    setJsonDraftNum("10119");
   };
 
   // Header
