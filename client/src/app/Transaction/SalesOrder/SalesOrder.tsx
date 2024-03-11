@@ -1042,6 +1042,7 @@ export default function SalesOrder() {
     console.log(wmrDetails);
   };
 
+  // Header
   useEffect(() => {
     axios
       .get("http://172.16.10.217:3002/so-header/")
