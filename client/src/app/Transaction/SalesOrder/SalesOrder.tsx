@@ -1117,11 +1117,12 @@ export default function SalesOrder() {
   //     });
   // };
 
+  const [selectedData, setSelectedData] = useState(null);
   const WmrCustomer = async () => {
     const getDraft = await axios.get(
       "http://localhost:5000/api/v1/get-draft/10119"
     );
-    console.log(getDraft.data);
+    // console.log(getDraft.data);
     setCustomerData([
       {
         customerCode: getDraft.data.CustomerCode,
@@ -1147,55 +1148,11 @@ export default function SalesOrder() {
     setIsPaymentCOD(getDraft.data.COD);
 
     // Details
-    const getDetails = await axios.get(
+    const response = await axios.get(
       `http://localhost:5000/api/v1/get-detail/'10119'`
     );
-    // console.log(`Product Details: ${getDetails}`);
-    console.log(`Product Details: ${wmrDetails}`);
-
-    const product = getDetails.data;
-    setTableData((prevData) => [
-      ...prevData,
-      {
-        draftNumber: product.DraftNum,
-        entryNumber: "", // sample
-        itemCode: product.ItemCode,
-        itemName: product.ItemName,
-        quantity: product.Quantity,
-        uom: product.UoM,
-        uomConversion: product.UoMConv,
-        excludeBO: "N",
-        location: product.Whse,
-        price: 0,
-        inventoryStatus: product.InvStat,
-        sellingPriceBeforeDiscount: product.SellPriceBefDisc,
-        discountRate: product.DiscRate,
-        sellingPriceAfterDiscount: product.SellPriceAftDisc,
-        sellingPriceAfterDiscountTemp: 0,
-        lowerBound: product.LowerBound,
-        taxCode: product.TaxCode,
-        taxCodePercentage: product.TaxCodePerc,
-        taxAmount: product.TaxAmt,
-        volDisPrice: 0,
-        belVolDisPrice: product.BelPriceDisc,
-        cost: product.Cost,
-        belCost: product.BelCost,
-        modeOfReleasing: product.ModeReleasing,
-        scPwdDiscount: product.SCPWDdisc,
-        grossTotal: product.GrossTotal,
-        selected: false,
-        cash: "N",
-        creditcard: "N",
-        debit: "N",
-        pdc: "N",
-        po: "N",
-        datedCheck: "N",
-        onlineTransfer: "N",
-        onAccount: "N",
-        cashOnDel: "N",
-      },
-    ]);
-    console.log(tableData);
+    const jsonData = await response.data;
+    console.log(jsonData);
 
     const Yes = "Y";
     if (getDraft.data.Cash == Yes) {
