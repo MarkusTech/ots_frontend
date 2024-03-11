@@ -905,6 +905,7 @@ export default function SalesOrder() {
 
     const apiData = draftData.data;
     console.log(`DATABASE: ${apiData.TotalAmtDue}`);
+    setJsonDraftNum(draftNum);
     setCustomerData([
       {
         customerCode: customerCode,
@@ -1048,7 +1049,7 @@ export default function SalesOrder() {
   }, [jsonDetails]);
 
   const getDetailsAPI = async () => {
-    setJsonDraftNum("10119");
+    setJsonDraftNum("10119"); // a good lead
   };
 
   // Header
