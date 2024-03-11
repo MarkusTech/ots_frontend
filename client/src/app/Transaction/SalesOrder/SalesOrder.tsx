@@ -1117,7 +1117,16 @@ export default function SalesOrder() {
   //     });
   // };
 
-  const [selectedData, setSelectedData] = useState(null);
+  const draftNumToFetch = "10119";
+  const [selectedData, setSelectedData] = useState<{
+    draftNumber: string;
+    entryNumber: string;
+    itemCode: string;
+    itemName: string;
+    quantity: number;
+    uom: string;
+    // Add other properties with their respective types
+  } | null>(null);
   const WmrCustomer = async () => {
     const getDraft = await axios.get(
       "http://localhost:5000/api/v1/get-draft/10119"
@@ -1151,8 +1160,30 @@ export default function SalesOrder() {
     const response = await axios.get(
       `http://localhost:5000/api/v1/get-detail/'10119'`
     );
-    const jsonData = await response.data;
+
+    const jsonData = response.data; // Removed await, assuming response.data is already parsed
+
     console.log(jsonData);
+
+    if (jsonData.length > 0) {
+      const item = jsonData[0]; // Assuming draftNum is unique and only one item is expected
+      const mappedData = {
+        draftNumber: item.DraftNum,
+        entryNumber: item.LineID,
+        itemCode: item.ItemCode,
+        itemName: item.ItemName,
+        quantity: item.Quantity,
+        uom: item.UoM,
+        // ... other properties
+      };
+
+      setSelectedData(mappedData);
+    } else {
+      console.log("No data found for the given draftNum.");
+      setSelectedData(null);
+    }
+
+    console.log(selectedData);
 
     const Yes = "Y";
     if (getDraft.data.Cash == Yes) {
