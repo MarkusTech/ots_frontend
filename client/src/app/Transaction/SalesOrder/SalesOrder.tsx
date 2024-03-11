@@ -894,16 +894,8 @@ export default function SalesOrder() {
     const draftData = await axios.get(
       `http://localhost:5000/api/v1/get-draft/${draftNum}`
     ); // wmr api
-    console.log(`DraftNum: ${draftNum}`);
-    console.log(`Customer Code: ${customerCode}`);
-    console.log(`Customer Name: ${customerName}`);
-    console.log(`Walkin Name: ${walkinNmae}`);
-    console.log(`Doc Date: ${docDate}`);
-    console.log(`Sales Crew: ${createdBy}`);
-    console.log(getDetails);
 
     const apiData = draftData.data;
-    console.log(`DATABASE: ${apiData.TotalAmtDue}`);
     setJsonDraftNum(draftNum);
     setCustomerData([
       {
