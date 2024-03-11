@@ -1028,7 +1028,7 @@ export default function SalesOrder() {
   };
 
   const [jsonDraftNum, setJsonDraftNum] = useState("");
-  const [jsonDetails, setJsonDetails] = useState([]);
+  const [jsonDetails, setJsonDetails] = useState([]); // temporary storage for details
   // Details API
   useEffect(() => {
     if (jsonDraftNum) {
