@@ -888,14 +888,11 @@ export default function SalesOrder() {
       DocDate: docDate,
       CreatedBy: createdBy,
     });
-    // Details
-    const getDetails = await axios.get(
-      `${backendAPI}/api/v1/get-detail/'${draftNum}'`
-    );
+
     // Header DraftData
     const draftData = await axios.get(
       `${backendAPI}/api/v1/get-draft/${draftNum}`
-    ); // wmr api
+    );
 
     const apiData = draftData.data;
     setJsonDraftNum(draftNum);
