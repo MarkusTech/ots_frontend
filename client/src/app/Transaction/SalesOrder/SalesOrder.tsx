@@ -946,6 +946,9 @@ export default function SalesOrder() {
       console.log("Please Select Payment Method!");
     }
 
+    // To addrow if you select draft item
+    setcardCodedata(customerCode);
+
     // for open and close draggable and for the button save and update
     setShowSearchHeader(!showSearchHeader);
     setIsSaved(true);
