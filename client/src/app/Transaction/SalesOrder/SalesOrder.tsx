@@ -1095,18 +1095,9 @@ export default function SalesOrder() {
     }
   }, [jsonDraftNum]);
 
-  // -- To be deleted! --
-  useEffect(() => {
-    console.log(jsonDetails);
-  }, [jsonDetails]);
-  // -------------------
-
   const getDetailsAPI = async () => {
-    setJsonDraftNum("10119"); // a good lead
-    // window.location.reload();
-    // setTimeout(() => {
-    //   router.push("/Transaction/salesorder");
-    // }, 1000);
+    // setJsonDraftNum("10119"); // a good lead
+    window.location.reload();
   };
 
   // Header
