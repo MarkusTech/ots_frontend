@@ -923,6 +923,29 @@ export default function SalesOrder() {
     setIsPaymentOnAccount(apiData.OnAccount);
     setIsPaymentCOD(apiData.COD);
 
+    // payment method
+    const Yes = "Y";
+    if (draftData.data.Cash == Yes) {
+      setIsCheckedCash(true);
+    } else if (draftData.data.CreditCard == Yes) {
+      setIsCheckedCreditCard(true);
+    } else if (draftData.data.DebitCard == Yes) {
+      setIsCheckedDebit(true);
+      draftData;
+    } else if (draftData.data.ODC == Yes) {
+      setIsCheckedDatedCheck(true);
+    } else if (draftData.data.PDC == Yes) {
+      setIsCheckedPDC(true);
+    } else if (draftData.data.OnlineTransfer == Yes) {
+      setIsCheckedOnlineTransfer(true);
+    } else if (draftData.data.OnAccount == Yes) {
+      setIsCheckedOnAccount(true);
+    } else if (draftData.data.COD) {
+      setIsCheckedCashOnDel(true);
+    } else {
+      console.log("Please Select Payment Method!");
+    }
+
     // for open and close draggable and for the button save and update
     setShowSearchHeader(!showSearchHeader);
     setIsSaved(true);
