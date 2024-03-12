@@ -94,6 +94,8 @@ export default function SalesOrder() {
   });
 
   // -------------------------------------- <WMR CODE> Header Insertion --------------------------------------
+  const backendAPI = "http://172.16.10.169:5000";
+
   const [walkInCustomer, setWalkingCustomer] = useState("");
   const [customerReference, setCustomerReference] = useState("");
   const [remarksField, setRemarksField] = useState("");
@@ -888,11 +890,11 @@ export default function SalesOrder() {
     });
     // Details
     const getDetails = await axios.get(
-      `http://localhost:5000/api/v1/get-detail/'${draftNum}'`
+      `${backendAPI}/api/v1/get-detail/'${draftNum}'`
     );
     // Header DraftData
     const draftData = await axios.get(
-      `http://localhost:5000/api/v1/get-draft/${draftNum}`
+      `${backendAPI}/api/v1/get-draft/${draftNum}`
     ); // wmr api
 
     const apiData = draftData.data;
