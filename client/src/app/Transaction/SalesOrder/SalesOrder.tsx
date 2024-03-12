@@ -1027,7 +1027,7 @@ export default function SalesOrder() {
   useEffect(() => {
     if (jsonDraftNum) {
       axios
-        .get(`http://localhost:5000/api/v1/get-detail/'${jsonDraftNum}'`)
+        .get(`${backendAPI}/api/v1/get-detail/'${jsonDraftNum}'`)
         .then((response) => {
           setJsonDetails(response.data);
 
