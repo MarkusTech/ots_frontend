@@ -1102,9 +1102,11 @@ export default function SalesOrder() {
   // -------------------
 
   const getDetailsAPI = async () => {
-    // setJsonDraftNum("10119"); // a good lead
+    setJsonDraftNum("10119"); // a good lead
     // window.location.reload();
-    toggleWindow("salesorder");
+    // setTimeout(() => {
+    //   router.push("/Transaction/salesorder");
+    // }, 1000);
   };
 
   // Header
