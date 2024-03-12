@@ -866,7 +866,7 @@ export default function SalesOrder() {
           value.toString().toLowerCase().includes(searchTerm.toLowerCase())
       );
     })
-    .slice(0, 20); // Get the first 20 results after filtering
+    .slice(0, 20);
 
   // ---------------------------------------- IMPORTANT! --------------------------
   // Add Draft Save Data
@@ -1044,7 +1044,7 @@ export default function SalesOrder() {
     setShowSearchHeader(!showSearchHeader);
   };
 
-  // Details API
+  // ---------------------------------------- Details API ------------------------------------------
   const [jsonDraftNum, setJsonDraftNum] = useState("");
   const [jsonDetails, setJsonDetails] = useState([]); // temporary storage for details
   useEffect(() => {
