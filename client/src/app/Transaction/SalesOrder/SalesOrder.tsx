@@ -1085,7 +1085,7 @@ export default function SalesOrder() {
   useEffect(() => {
     // .get("http://172.16.10.217:3002/so-header/")
     axios
-      .get("http://localhost:5000/api/v1/get-draft")
+      .get(`${backendAPI}/api/v1/get-draft`)
       .then((response) => {
         // setCustomers(response.data.slice(0, 15));
         setCustomers(response.data);
@@ -1096,9 +1096,7 @@ export default function SalesOrder() {
   }, []);
 
   const WmrCustomer = async () => {
-    const getDraft = await axios.get(
-      "http://localhost:5000/api/v1/get-draft/10119"
-    );
+    const getDraft = await axios.get(`${backendAPI}/api/v1/get-draft/10119`);
     console.log(getDraft.data);
     setCustomerData([
       {
