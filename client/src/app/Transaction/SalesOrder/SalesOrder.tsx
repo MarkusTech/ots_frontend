@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import axios from "axios";
 import { useRef } from "react";
 import Swal from "sweetalert2";
+import { useWindowState } from "./WindowsState";
 
 export default function SalesOrder() {
   // const inputRef = useRef(null);
@@ -15,6 +16,8 @@ export default function SalesOrder() {
   const [isSaved, setIsSaved] = useState(false); // to hide handle submit
 
   const [customerList, setCustomerDataList] = useState([]);
+
+  const { showSalesOrder, toggleWindow } = useWindowState();
 
   interface Customer {
     EntryNum: string;
@@ -3678,6 +3681,10 @@ export default function SalesOrder() {
               className="p-2 mt-2 mb-1 mr-2 text-[12px] bg-[#F4D674] hover:bg-yellow-500 focus:outline-none focus:shadow-outline-yellow active:bg-yellow-600 rounded w-24"
               // onClick={deleteDetailsThenSave}
               onClick={getDetailsAPI}
+              // onClick={() => {
+              //   window.close(); // Close the previous window
+              //   toggleWindow("salesorder"); // Toggle the Sales Order window
+              // }}
             >
               Print
             </button>

@@ -7,9 +7,11 @@ import SalesQoutation from "./Transaction/SalesQoutation/SalesQoutation";
 import Draggable from "react-draggable";
 import SalesOrder from "./Transaction/SalesOrder/SalesOrder";
 import Image from "next/image";
+import { useWindowState } from "../app/Transaction/SalesOrder/WindowsState";
 
 export default function Home() {
   const router = useRouter(); //Router
+  const { showSalesOrder, toggleSalesOrder, toggleWindow } = useWindowState(); // Use the state and functions
 
   const [rounterName, setRounterName] = React.useState("");
 
@@ -35,26 +37,26 @@ export default function Home() {
 
   // Window
 
-  const [showSalesOrder, setShowSalesOrder] = useState(false);
+  // const [showSalesOrder, setShowSalesOrder] = useState(false);
   const [showSalesQoutation, setShowSalesQoutation] = useState(false);
 
-  const toggleSalesOrder = () => {
-    setShowSalesOrder(!showSalesOrder);
-  };
+  // const toggleSalesOrder = () => {
+  //   setShowSalesOrder(!showSalesOrder);
+  // };
 
   const toggleSalesQoutation = () => {
     setShowSalesQoutation(!showSalesQoutation);
   };
 
-  const toggleWindow = (e: any) => {
-    if (e === "salesqoutation") {
-      setShowSalesQoutation(false);
-      setShowSalesQoutation(!showSalesQoutation);
-    } else if (e === "salesorder") {
-      setShowSalesOrder(false);
-      setShowSalesOrder(!showSalesOrder);
-    }
-  };
+  // const toggleWindow = (e: any) => {
+  //   if (e === "salesqoutation") {
+  //     setShowSalesQoutation(false);
+  //     setShowSalesQoutation(!showSalesQoutation);
+  //   } else if (e === "salesorder") {
+  //     setShowSalesOrder(false);
+  //     setShowSalesOrder(!showSalesOrder);
+  //   }
+  // };
 
   // End Of Declaration
 
