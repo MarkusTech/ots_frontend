@@ -56,11 +56,6 @@ export default function Home() {
     }
   };
 
-  // const handleDrag = (e, ui) => {
-  //   // You can add custom logic here if needed
-  //   console.log('Dragging...', ui);
-  // };
-
   // End Of Declaration
 
   function handleRounter(page: React.SetStateAction<string>) {
