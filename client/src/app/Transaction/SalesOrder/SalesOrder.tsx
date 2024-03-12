@@ -1038,6 +1038,7 @@ export default function SalesOrder() {
             uomConversion: item.UoMConv,
             location: item.Whse,
             inventoryStatus: item.InvStat,
+            price: item.SellPriceBefDisc,
             sellingPriceBeforeDiscount: item.SellPriceBefDisc,
             discountRate: item.DiscRate,
             sellingPriceAfterDiscount: item.SellPriceAftDisc,
@@ -1068,9 +1069,11 @@ export default function SalesOrder() {
     }
   }, [jsonDraftNum]);
 
+  // -- To be deleted! --
   useEffect(() => {
     console.log(jsonDetails);
   }, [jsonDetails]);
+  // -------------------
 
   const getDetailsAPI = async () => {
     setJsonDraftNum("10119"); // a good lead
