@@ -15,6 +15,22 @@ export default function SalesOrder() {
   const [isSaved, setIsSaved] = useState(false); // to hide handle submit
 
   const [customerList, setCustomerDataList] = useState([]);
+
+  // --------------------------------------------------------------
+  const [showSalesOrder, setShowSalesOrder] = useState(false);
+  const [showSalesQoutation, setShowSalesQoutation] = useState(false);
+
+  const toggleWindow = (e: any) => {
+    if (e === "salesqoutation") {
+      setShowSalesQoutation(false);
+      setShowSalesQoutation(!showSalesQoutation);
+    } else if (e === "salesorder") {
+      setShowSalesOrder(false);
+      setShowSalesOrder(!showSalesOrder);
+    }
+  };
+  // --------------------------------------------------------------
+
   interface Customer {
     EntryNum: string;
     DocNum: string;
@@ -1101,7 +1117,9 @@ export default function SalesOrder() {
   // -------------------
 
   const getDetailsAPI = async () => {
-    setJsonDraftNum("10119"); // a good lead
+    // setJsonDraftNum("10119"); // a good lead
+    // window.location.reload();
+    toggleWindow("salesorder");
   };
 
   // Header
