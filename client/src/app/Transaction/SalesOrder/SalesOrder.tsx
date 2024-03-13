@@ -955,6 +955,8 @@ export default function SalesOrder() {
     setcardCodedata(customerCode);
     onAddHeaderTaxCode(customerCode, "GSCNAPGS");
 
+    setSearchTerm("");
+
     // for open and close draggable and for the button save and update
     setShowSearchHeader(!showSearchHeader);
     setIsSaved(true);
@@ -996,6 +998,9 @@ export default function SalesOrder() {
     setcardCodedata(id);
 
     setCustomerData([newArray]);
+
+    // to clear search input history
+    setSearchTerm("");
 
     setFormData({
       ...formData,
