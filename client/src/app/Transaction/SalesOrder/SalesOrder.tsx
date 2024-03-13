@@ -1405,6 +1405,7 @@ export default function SalesOrder() {
       setOpenItemTablePanel(!openItemTablePanel);
       setSellingPriceAfterDis(item.Price);
     }
+    setSearchTerm("");
   };
 
   const changeTextBoxValue = (rowIndex: any) => {
