@@ -845,6 +845,10 @@ export default function SalesOrder() {
     onAddheaderItems();
   };
 
+  const handleSearchForDraft = (event: any) => {
+    setSearchTerm(event.target.value);
+  };
+
   const handleSearch = (event: any) => {
     setSearchTerm(event.target.value);
   };
@@ -3738,7 +3742,7 @@ export default function SalesOrder() {
                             type="text"
                             className="mb-1"
                             value={searchTerm}
-                            onChange={handleSearch}
+                            onChange={handleSearchForDraft}
                           />
                         </div>
                         <div className="table-container">
