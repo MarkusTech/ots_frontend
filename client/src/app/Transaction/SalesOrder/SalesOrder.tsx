@@ -949,7 +949,7 @@ export default function SalesOrder() {
 
     // To addrow if you select draft item
     setcardCodedata(customerCode);
-    // onAddHeaderTaxCode(customerCode, "GSCNAPGS");
+    onAddHeaderTaxCode(customerCode, "GSCNAPGS");
 
     // for open and close draggable and for the button save and update
     setShowSearchHeader(!showSearchHeader);
