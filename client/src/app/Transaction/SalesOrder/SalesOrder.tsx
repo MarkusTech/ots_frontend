@@ -2940,14 +2940,16 @@ export default function SalesOrder() {
                     <input
                       className=" border-l-white border-t-white border-r-white"
                       type="text"
-                      placeholder="0"
-                      // ref={inputRef}
+                      placeholder={
+                        rowData.quantity === 0
+                          ? ""
+                          : rowData.quantity.toString()
+                      }
                       onChange={(e) =>
                         handleQuantityChange(rowIndex, e.target.value)
                       }
                       id="quantityInput"
                       onClick={handleSelectAll}
-                      // value={rowData.quantity}
                     />
                   </td>
                   <td
