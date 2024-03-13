@@ -1439,7 +1439,8 @@ export default function SalesOrder() {
         updatedTableData[rowIndex] = {
           ...item,
           grossTotal: value * item.quantity,
-          belVolDisPrice: "Y",
+          // belVolDisPrice: "Y",
+          belVolDisPrice: 0,
           sellingPriceAfterDiscount: value,
           belCost: belCost,
         };
@@ -1449,7 +1450,8 @@ export default function SalesOrder() {
         updatedTableData[rowIndex] = {
           ...item,
           grossTotal: value * item.quantity,
-          belVolDisPrice: "N",
+          // belVolDisPrice: "N",
+          belVolDisPrice: 0,
           sellingPriceAfterDiscount: value,
           belCost: belCost,
         };
