@@ -3027,9 +3027,9 @@ export default function SalesOrder() {
                   </td>
                   <td
                     className={
-                      rowData.belVolDisPrice == "Y"
-                        ? "bg-red-200 "
-                        : "bg-green-200"
+                      rowData.belVolDisPrice == 0 // i change it from "Y" and then swap the color
+                        ? "bg-green-200"
+                        : "bg-red-200 "
                     }
                   >
                     {rowData.quantity == 0 ? "" : rowData.belVolDisPrice}
