@@ -768,7 +768,6 @@ export default function SalesOrder() {
     const taxcode = await axios.get(
       `${fetchAPI}/tax-code/${cardCodex}/${whseCodex}`
     );
-    // console.log("Tax Code", taxcode.data);
     settaxCodeData(taxcode.data);
   };
 
@@ -942,6 +941,7 @@ export default function SalesOrder() {
     } else if (draftData.data.COD) {
       setIsCheckedCashOnDel(true);
     } else {
+      Swal.fire("Please Select Payment Method!", "", "info");
       console.log("Please Select Payment Method!");
     }
 
