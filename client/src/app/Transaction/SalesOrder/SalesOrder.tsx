@@ -2868,7 +2868,8 @@ export default function SalesOrder() {
 
                   {/* Unit of Measurement */}
                   <td>
-                    {rowData.itemCode == 0 ? (
+                    {/* {rowData.itemCode == 0 */}
+                    {rowData.itemCode == "" ? (
                       ""
                     ) : (
                       <div className="grid grid-cols-2">
