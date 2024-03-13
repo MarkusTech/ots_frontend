@@ -2,22 +2,17 @@
 
 import React, { use, useEffect, useState } from "react";
 import Draggable from "react-draggable";
-import { useRouter } from "next/navigation";
 import axios from "axios";
 import { useRef } from "react";
 import Swal from "sweetalert2";
 import { useWindowState } from "./WindowsState";
 
 export default function SalesOrder() {
-  // const inputRef = useRef(null);
-  const router = useRouter();
   const inputRef = useRef<HTMLInputElement | null>(null);
 
   const [isSaved, setIsSaved] = useState(false); // to hide handle submit
 
   const [customerList, setCustomerDataList] = useState([]);
-
-  const { showSalesOrder, toggleWindow } = useWindowState();
 
   interface Customer {
     EntryNum: string;
