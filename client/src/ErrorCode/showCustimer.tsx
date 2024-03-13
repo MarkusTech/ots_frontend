@@ -2,19 +2,17 @@
 
 import React, { use, useEffect, useState } from "react";
 import Draggable from "react-draggable";
-import { useRouter } from "next/navigation";
 import axios from "axios";
 import { useRef } from "react";
 import Swal from "sweetalert2";
 
 export default function SalesOrder() {
-  // const inputRef = useRef(null);
-  const router = useRouter();
   const inputRef = useRef<HTMLInputElement | null>(null);
 
   const [isSaved, setIsSaved] = useState(false); // to hide handle submit
 
   const [customerList, setCustomerDataList] = useState([]);
+
   interface Customer {
     EntryNum: string;
     DocNum: string;
@@ -29,7 +27,6 @@ export default function SalesOrder() {
     // ... other properties
   }
   const [customers, setCustomers] = useState<Customer[]>([]); // for the list of save as draft Customers
-  const [wmrDetails, setWmrDetails] = useState([]);
 
   const [itemList, setItemDataList] = useState([]);
   const [UOMList, setUOMList] = useState([]);
@@ -95,6 +92,8 @@ export default function SalesOrder() {
   });
 
   // -------------------------------------- <WMR CODE> Header Insertion --------------------------------------
+  const backendAPI = "http://172.16.10.169:5000";
+
   const [walkInCustomer, setWalkingCustomer] = useState("");
   const [customerReference, setCustomerReference] = useState("");
   const [remarksField, setRemarksField] = useState("");
@@ -840,6 +839,10 @@ export default function SalesOrder() {
     onAddheaderItems();
   };
 
+  const handleSearchForDraft = (event: any) => {
+    setSearchTerm(event.target.value);
+  };
+
   const handleSearch = (event: any) => {
     setSearchTerm(event.target.value);
   };
@@ -865,7 +868,7 @@ export default function SalesOrder() {
           value.toString().toLowerCase().includes(searchTerm.toLowerCase())
       );
     })
-    .slice(0, 20); // Get the first 20 results after filtering
+    .slice(0, 20);
 
   // ---------------------------------------- IMPORTANT! --------------------------
   // Add Draft Save Data
@@ -887,24 +890,14 @@ export default function SalesOrder() {
       DocDate: docDate,
       CreatedBy: createdBy,
     });
-    // Details
-    const getDetails = await axios.get(
-      `http://localhost:5000/api/v1/get-detail/'${draftNum}'`
-    );
+
     // Header DraftData
     const draftData = await axios.get(
-      `http://localhost:5000/api/v1/get-draft/${draftNum}`
-    ); // wmr api
-    console.log(`DraftNum: ${draftNum}`);
-    console.log(`Customer Code: ${customerCode}`);
-    console.log(`Customer Name: ${customerName}`);
-    console.log(`Walkin Name: ${walkinNmae}`);
-    console.log(`Doc Date: ${docDate}`);
-    console.log(`Sales Crew: ${createdBy}`);
-    console.log(getDetails);
+      `${backendAPI}/api/v1/get-draft/${draftNum}`
+    );
 
     const apiData = draftData.data;
-    console.log(`DATABASE: ${apiData.TotalAmtDue}`);
+    setJsonDraftNum(draftNum);
     setCustomerData([
       {
         customerCode: customerCode,
@@ -929,26 +922,34 @@ export default function SalesOrder() {
     setIsPaymentOnAccount(apiData.OnAccount);
     setIsPaymentCOD(apiData.COD);
 
-    // total
-    // setFinalTotalAmtBefTax(apiData.TotalAmtBefTax);
-    // setFinalTotalTax(apiData.TotalTax);
-    // setFinalTotalAmtAftTax(apiData.TotalAmtAftTax);
-    // setFinalSCPWDDiscTotal(apiData.SCPWDDiscTotal);
-    // setFinalTotalAmtDue(apiData.TotalAmtDue);
+    // payment method
+    const Yes = "Y";
+    if (draftData.data.Cash == Yes) {
+      setIsCheckedCash(true);
+    } else if (draftData.data.CreditCard == Yes) {
+      setIsCheckedCreditCard(true);
+    } else if (draftData.data.DebitCard == Yes) {
+      setIsCheckedDebit(true);
+      draftData;
+    } else if (draftData.data.ODC == Yes) {
+      setIsCheckedDatedCheck(true);
+    } else if (draftData.data.PDC == Yes) {
+      setIsCheckedPDC(true);
+    } else if (draftData.data.OnlineTransfer == Yes) {
+      setIsCheckedOnlineTransfer(true);
+    } else if (draftData.data.OnAccount == Yes) {
+      setIsCheckedOnAccount(true);
+    } else if (draftData.data.COD) {
+      setIsCheckedCashOnDel(true);
+    } else {
+      console.log("Please Select Payment Method!");
+    }
 
-    // const calculationAfterVat = localCurrency.format(apiData.TotalAmtAftTax);
-    // const calculationBeforeVat = localCurrency.format(apiData.TotalAmtBefTax);
-    // const calculationTotalVat = localCurrency.format(apiData.TotalTax);
-    // const calculationForScORPwd = localCurrency.format(apiData.SCPWDDiscTotal);
-    // const calculationTotalAmoutDue = localCurrency.format(apiData.TotalAmtDue);
+    // To addrow if you select draft item
+    setcardCodedata(customerCode);
+    onAddHeaderTaxCode(customerCode, "GSCNAPGS");
 
-    // setTotalBeforeVat(calculationBeforeVat);
-    // settotalAfterVat(calculationAfterVat);
-    // setTotalVat(calculationTotalVat);
-    // setSCPWDdata(calculationForScORPwd);
-    // settotalAmoutDueData(calculationTotalAmoutDue);
-
-    // settotalAmoutDueData(apiData.TotalAmtDue);
+    setSearchTerm("");
 
     // for open and close draggable and for the button save and update
     setShowSearchHeader(!showSearchHeader);
@@ -991,6 +992,9 @@ export default function SalesOrder() {
     setcardCodedata(id);
 
     setCustomerData([newArray]);
+
+    // to clear search input history
+    setSearchTerm("");
 
     setFormData({
       ...formData,
@@ -1048,65 +1052,66 @@ export default function SalesOrder() {
     setShowSearchHeader(!showSearchHeader);
   };
 
-  // Details API
-  const getDetailsAPI = async () => {
-    const draftNum = draftNumber;
-    const getDetails = await axios.get(
-      `http://localhost:5000/api/v1/get-detail/'10119'`
-    );
-    // console.log(getDetails.data);
-    setWmrDetails(getDetails.data);
-    console.log(getDetails.data);
+  // ---------------------------------------- Details API ------------------------------------------
+  const [jsonDraftNum, setJsonDraftNum] = useState("");
+  const [jsonDetails, setJsonDetails] = useState([]); // temporary storage for details
+  useEffect(() => {
+    if (jsonDraftNum) {
+      axios
+        .get(`${backendAPI}/api/v1/get-detail/'${jsonDraftNum}'`)
+        .then((response) => {
+          setJsonDetails(response.data);
 
-    setTableData((prevData) => [
-      ...prevData,
-      {
-        draftNumber: getDetails.data.DraftNum,
-        entryNumber: "", // sample
-        itemCode: getDetails.data.ItemCode,
-        itemName: getDetails.data.ItemName,
-        quantity: getDetails.data.Quantity,
-        uom: "",
-        uomConversion: 0,
-        excludeBO: "N",
-        location: "",
-        price: 0,
-        inventoryStatus: "",
-        sellingPriceBeforeDiscount: 0,
-        discountRate: 0,
-        sellingPriceAfterDiscount: 0,
-        sellingPriceAfterDiscountTemp: 0,
-        lowerBound: 0,
-        taxCode: "",
-        taxCodePercentage: 0,
-        taxAmount: 0,
-        volDisPrice: 0,
-        belVolDisPrice: 0,
-        cost: 0,
-        belCost: "",
-        modeOfReleasing: "",
-        scPwdDiscount: "N",
-        grossTotal: 0,
-        selected: false,
-        cash: "N",
-        creditcard: "N",
-        debit: "N",
-        pdc: "N",
-        po: "N",
-        datedCheck: "N",
-        onlineTransfer: "N",
-        onAccount: "N",
-        cashOnDel: "N",
-      },
-    ]);
-    console.log(tableData);
+          const newData = response.data.map((item: any) => ({
+            draftNumber: item.DraftNum,
+            itemCode: item.ItemCode,
+            itemName: item.ItemName,
+            quantity: item.Quantity,
+            uom: item.UoM,
+            uomConversion: item.UoMConv,
+            location: item.Whse,
+            inventoryStatus: item.InvStat,
+            price: item.SellPriceBefDisc,
+            sellingPriceBeforeDiscount: item.SellPriceBefDisc,
+            discountRate: item.DiscRate,
+            sellingPriceAfterDiscount: item.SellPriceAftDisc,
+            lowerBound: item.LowerBound,
+            taxCode: item.TaxCode,
+            taxCodePercentage: item.TaxCodePerc,
+            taxAmount: item.TaxAmt,
+            belVolDisPrice: item.BelPriceDisc,
+            cost: item.Cost,
+            belCost: item.BelCost,
+            modeOfReleasing: item.ModeReleasing,
+            scPwdDiscount: item.SCPWDdisc,
+            grossTotal: item.GrossTotal,
+          }));
+
+          // add the data from selected details
+          setTableData([...tableData, ...newData]);
+
+          // to remove 1 row on adding the details
+          setTableData((prevData) => prevData.filter((_, index) => index));
+          setmodeOfrelisingArr((prevData) =>
+            prevData.filter((_, index) => index)
+          );
+        })
+        .catch((error) => {
+          console.error("Error fetching data:", error);
+        });
+    }
+  }, [jsonDraftNum]);
+
+  const getDetailsAPI = async () => {
+    // setJsonDraftNum("10119"); // a good lead
+    window.location.reload();
   };
 
+  // Header
   useEffect(() => {
     axios
-      .get("http://172.16.10.217:3002/so-header/")
+      .get(`${backendAPI}/api/v1/get-draft`)
       .then((response) => {
-        // setCustomers(response.data.slice(0, 15));
         setCustomers(response.data);
       })
       .catch((error) => {
@@ -1114,34 +1119,8 @@ export default function SalesOrder() {
       });
   }, []);
 
-  // useEffect(() => {
-  //   axios
-  //     .get(`http://localhost:5000/api/v1/get-detail/'10119'`)
-  //     .then((res) => {
-  //       setWmrDetails(res.data);
-  //       console.log(res.data);
-  //     })
-  //     .catch((error) => {
-  //       console.error("Error fetching data:", error);
-  //     });
-  // }, []); // Empty dependency array to run the effect only once on mount
-
-  // const detailsListAPI = async () => {
-  //   await axios
-  //     .get(`http://localhost:5000/api/v1/get-detail/'10119'`)
-  //     .then((res) => {
-  //       setWmrDetails(res.data);
-  //       console.log(res.data);
-  //     })
-  //     .catch((error) => {
-  //       console.error("Error fetching data:", error);
-  //     });
-  // };
-
   const WmrCustomer = async () => {
-    const getDraft = await axios.get(
-      "http://localhost:5000/api/v1/get-draft/10119"
-    );
+    const getDraft = await axios.get(`${backendAPI}/api/v1/get-draft/10119`);
     console.log(getDraft.data);
     setCustomerData([
       {
@@ -1168,55 +1147,7 @@ export default function SalesOrder() {
     setIsPaymentCOD(getDraft.data.COD);
 
     // Details
-    const getDetails = await axios.get(
-      `http://localhost:5000/api/v1/get-detail/'10119'`
-    );
-    // console.log(`Product Details: ${getDetails}`);
-    console.log(`Product Details: ${wmrDetails}`);
-
-    const product = getDetails.data;
-    setTableData((prevData) => [
-      ...prevData,
-      {
-        draftNumber: product.DraftNum,
-        entryNumber: "", // sample
-        itemCode: product.ItemCode,
-        itemName: product.ItemName,
-        quantity: product.Quantity,
-        uom: product.UoM,
-        uomConversion: product.UoMConv,
-        excludeBO: "N",
-        location: product.Whse,
-        price: 0,
-        inventoryStatus: product.InvStat,
-        sellingPriceBeforeDiscount: product.SellPriceBefDisc,
-        discountRate: product.DiscRate,
-        sellingPriceAfterDiscount: product.SellPriceAftDisc,
-        sellingPriceAfterDiscountTemp: 0,
-        lowerBound: product.LowerBound,
-        taxCode: product.TaxCode,
-        taxCodePercentage: product.TaxCodePerc,
-        taxAmount: product.TaxAmt,
-        volDisPrice: 0,
-        belVolDisPrice: product.BelPriceDisc,
-        cost: product.Cost,
-        belCost: product.BelCost,
-        modeOfReleasing: product.ModeReleasing,
-        scPwdDiscount: product.SCPWDdisc,
-        grossTotal: product.GrossTotal,
-        selected: false,
-        cash: "N",
-        creditcard: "N",
-        debit: "N",
-        pdc: "N",
-        po: "N",
-        datedCheck: "N",
-        onlineTransfer: "N",
-        onAccount: "N",
-        cashOnDel: "N",
-      },
-    ]);
-    console.log(tableData);
+    setJsonDraftNum("10118");
 
     const Yes = "Y";
     if (getDraft.data.Cash == Yes) {
@@ -1411,8 +1342,6 @@ export default function SalesOrder() {
 
       setquantityData(updateQuantityData);
 
-      // console.log(updateQuantityData, "qdata");
-
       const updatedTableData = [...tableData];
 
       let taxRateDataNow = 0;
@@ -1470,6 +1399,7 @@ export default function SalesOrder() {
       setOpenItemTablePanel(!openItemTablePanel);
       setSellingPriceAfterDis(item.Price);
     }
+    setSearchTerm("");
   };
 
   const changeTextBoxValue = (rowIndex: any) => {
@@ -1513,7 +1443,8 @@ export default function SalesOrder() {
         updatedTableData[rowIndex] = {
           ...item,
           grossTotal: value * item.quantity,
-          belVolDisPrice: "Y",
+          // belVolDisPrice: "Y",
+          belVolDisPrice: 0,
           sellingPriceAfterDiscount: value,
           belCost: belCost,
         };
@@ -1523,7 +1454,8 @@ export default function SalesOrder() {
         updatedTableData[rowIndex] = {
           ...item,
           grossTotal: value * item.quantity,
-          belVolDisPrice: "N",
+          // belVolDisPrice: "N",
+          belVolDisPrice: 0,
           sellingPriceAfterDiscount: value,
           belCost: belCost,
         };
@@ -2942,7 +2874,8 @@ export default function SalesOrder() {
 
                   {/* Unit of Measurement */}
                   <td>
-                    {rowData.itemCode == 0 ? (
+                    {/* {rowData.itemCode == 0 */}
+                    {rowData.itemCode == "" ? (
                       ""
                     ) : (
                       <div className="grid grid-cols-2">
@@ -3014,14 +2947,16 @@ export default function SalesOrder() {
                     <input
                       className=" border-l-white border-t-white border-r-white"
                       type="text"
-                      placeholder="0"
-                      // ref={inputRef}
+                      placeholder={
+                        rowData.quantity === 0
+                          ? ""
+                          : rowData.quantity.toString()
+                      }
                       onChange={(e) =>
                         handleQuantityChange(rowIndex, e.target.value)
                       }
                       id="quantityInput"
                       onClick={handleSelectAll}
-                      // value={rowData.quantity}
                     />
                   </td>
                   <td
@@ -3079,7 +3014,8 @@ export default function SalesOrder() {
                             }
                           />
                         </div>
-                        <div>{rowData.sellingPriceAfterDiscountTemp}</div>
+                        {/* <div>{rowData.sellingPriceAfterDiscountTemp}</div> */}
+                        <div>{rowData.sellingPriceAfterDiscount}</div>
                       </div>
                     )}
                   </td>
@@ -3098,9 +3034,9 @@ export default function SalesOrder() {
                   </td>
                   <td
                     className={
-                      rowData.belVolDisPrice == "Y"
-                        ? "bg-red-200 "
-                        : "bg-green-200"
+                      rowData.belVolDisPrice == 0 // i change it from "Y" and then swap the color
+                        ? "bg-green-200"
+                        : "bg-red-200 "
                     }
                   >
                     {rowData.quantity == 0 ? "" : rowData.belVolDisPrice}
@@ -3718,15 +3654,6 @@ export default function SalesOrder() {
                 <input value={totalAmoutDueData} type="text" readOnly />
               </div>
             </div>
-
-            {/* ---------------- to be deleted ------------- */}
-            <div className="grid grid-cols-2">
-              <label htmlFor="documentnumber">Wmr Try</label>
-              <div>
-                <input type="text" value={formData.TotalTax} readOnly />
-              </div>
-            </div>
-            {/* -------------------------------------------- */}
           </div>
         </div>
         {/* ----------------------------- End Calculation ------------------------- */}
@@ -3765,6 +3692,10 @@ export default function SalesOrder() {
               className="p-2 mt-2 mb-1 mr-2 text-[12px] bg-[#F4D674] hover:bg-yellow-500 focus:outline-none focus:shadow-outline-yellow active:bg-yellow-600 rounded w-24"
               // onClick={deleteDetailsThenSave}
               onClick={getDetailsAPI}
+              // onClick={() => {
+              //   window.close(); // Close the previous window
+              //   toggleWindow("salesorder"); // Toggle the Sales Order window
+              // }}
             >
               Print
             </button>
@@ -3811,7 +3742,7 @@ export default function SalesOrder() {
                             type="text"
                             className="mb-1"
                             value={searchTerm}
-                            onChange={handleSearch}
+                            onChange={handleSearchForDraft}
                           />
                         </div>
                         <div className="table-container">
@@ -3941,8 +3872,3 @@ export default function SalesOrder() {
     </>
   );
 }
-
-// 363 = tableData
-// 890
-// 1075
-// 1104
