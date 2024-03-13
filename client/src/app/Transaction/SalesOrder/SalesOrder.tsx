@@ -3007,7 +3007,8 @@ export default function SalesOrder() {
                             }
                           />
                         </div>
-                        <div>{rowData.sellingPriceAfterDiscountTemp}</div>
+                        {/* <div>{rowData.sellingPriceAfterDiscountTemp}</div> */}
+                        <div>{rowData.sellingPriceAfterDiscount}</div>
                       </div>
                     )}
                   </td>
