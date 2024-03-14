@@ -1525,14 +1525,14 @@ export default function SalesOrder() {
 
       setTotalVat(taxAmountx);
 
-      console.log(
-        "selPrice:",
-        item.sellingPriceAfterDiscountTemp,
-        "selprice/1.12:",
-        unitprice,
-        "taxamount:",
-        taxAmountx
-      );
+      // console.log(
+      //   "selPrice:",
+      //   item.sellingPriceAfterDiscountTemp,
+      //   "selprice/1.12:",
+      //   unitprice,
+      //   "taxamount:",
+      //   taxAmountx
+      // );
 
       updatedTableData[rowIndex] = {
         ...item,
