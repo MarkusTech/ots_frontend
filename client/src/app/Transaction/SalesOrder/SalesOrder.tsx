@@ -942,7 +942,6 @@ export default function SalesOrder() {
       setIsCheckedCashOnDel(true);
     } else {
       Swal.fire("Please Select Payment Method!", "", "info");
-      console.log("Please Select Payment Method!");
     }
 
     // To addrow if you select draft item
