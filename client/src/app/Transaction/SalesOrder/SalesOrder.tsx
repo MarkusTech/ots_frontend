@@ -668,6 +668,11 @@ export default function SalesOrder() {
             if (error.response) {
               // Log the full error response
               console.error("Full error response:", error.response.data);
+              Swal.fire(
+                "Internal Server Error, Contact MIS Department",
+                "",
+                "error"
+              );
             }
 
             // Show error message
