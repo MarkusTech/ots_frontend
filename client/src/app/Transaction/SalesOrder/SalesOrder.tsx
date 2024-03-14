@@ -1553,11 +1553,6 @@ export default function SalesOrder() {
     };
 
     setTableData(updatedTableData);
-    // console.log(
-    //   value,
-    //   item.quantity,
-    //   stocksAvailabilityArr[0]["StockAvailable"]
-    // );
   };
 
   let localCurrency = new Intl.NumberFormat("en-PH", {
