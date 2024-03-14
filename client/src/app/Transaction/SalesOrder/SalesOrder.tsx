@@ -1404,6 +1404,7 @@ export default function SalesOrder() {
       setOpenItemTablePanel(!openItemTablePanel);
       setSellingPriceAfterDis(item.Price);
     }
+    // to clear search input history
     setSearchTerm("");
   };
 
