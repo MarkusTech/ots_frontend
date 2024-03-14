@@ -1574,8 +1574,8 @@ export default function SalesOrder() {
 
   let localCurrency = new Intl.NumberFormat("en-PH", {
     style: "currency",
-    currency: "PHP", // Philippines currency code for Philippine Peso
-  });
+    currency: "PHP", // Philippines currency code for Philippine Pes
+  }); // Philippines currency code for Philippine Peso
 
   const handleSearchItem = (event: any) => {
     setSearchTerm(event.target.value);
