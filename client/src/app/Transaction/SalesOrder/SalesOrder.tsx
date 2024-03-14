@@ -1518,7 +1518,7 @@ export default function SalesOrder() {
       );
       const stocksAvailabilityArr = stocksAvailability.data;
 
-      console.log("stocks", quantityXuomConversion);
+      // console.log("stocks", quantityXuomConversion);
 
       let unitprice = item.sellingPriceAfterDiscountTemp / (1 + 0.12);
       let taxAmountx = item.sellingPriceAfterDiscountTemp - unitprice;
@@ -1565,11 +1565,11 @@ export default function SalesOrder() {
     };
 
     setTableData(updatedTableData);
-    console.log(
-      value,
-      item.quantity,
-      stocksAvailabilityArr[0]["StockAvailable"]
-    );
+    // console.log(
+    //   value,
+    //   item.quantity,
+    //   stocksAvailabilityArr[0]["StockAvailable"]
+    // );
   };
 
   let localCurrency = new Intl.NumberFormat("en-PH", {
