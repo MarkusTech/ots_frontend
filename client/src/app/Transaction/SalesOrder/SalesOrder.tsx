@@ -1517,8 +1517,6 @@ export default function SalesOrder() {
       );
       const stocksAvailabilityArr = stocksAvailability.data;
 
-      // console.log("stocks", quantityXuomConversion);
-
       let unitprice = item.sellingPriceAfterDiscountTemp / (1 + 0.12);
       let taxAmountx = item.sellingPriceAfterDiscountTemp - unitprice;
 
