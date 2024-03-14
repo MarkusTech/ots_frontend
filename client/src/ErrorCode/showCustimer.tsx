@@ -5,6 +5,7 @@ import Draggable from "react-draggable";
 import axios from "axios";
 import { useRef } from "react";
 import Swal from "sweetalert2";
+import { useWindowState } from "./WindowsState";
 
 export default function SalesOrder() {
   const inputRef = useRef<HTMLInputElement | null>(null);
@@ -491,7 +492,6 @@ export default function SalesOrder() {
 
     // mode of realeasing
     for (let i = 0; i < allItemsArrLen; i++) {
-      // console.log(allItemsArr[i]["modeOfReleasing"]);
       if (allItemsArr[i]["modeOfReleasing"] == "") {
       } else {
         countAllreleasing++;
@@ -768,7 +768,6 @@ export default function SalesOrder() {
     const taxcode = await axios.get(
       `${fetchAPI}/tax-code/${cardCodex}/${whseCodex}`
     );
-    // console.log("Tax Code", taxcode.data);
     settaxCodeData(taxcode.data);
   };
 
@@ -942,6 +941,7 @@ export default function SalesOrder() {
     } else if (draftData.data.COD) {
       setIsCheckedCashOnDel(true);
     } else {
+      Swal.fire("Please Select Payment Method!", "", "info");
       console.log("Please Select Payment Method!");
     }
 
@@ -1518,21 +1518,21 @@ export default function SalesOrder() {
       );
       const stocksAvailabilityArr = stocksAvailability.data;
 
-      console.log("stocks", quantityXuomConversion);
+      // console.log("stocks", quantityXuomConversion);
 
       let unitprice = item.sellingPriceAfterDiscountTemp / (1 + 0.12);
       let taxAmountx = item.sellingPriceAfterDiscountTemp - unitprice;
 
       setTotalVat(taxAmountx);
 
-      console.log(
-        "selPrice:",
-        item.sellingPriceAfterDiscountTemp,
-        "selprice/1.12:",
-        unitprice,
-        "taxamount:",
-        taxAmountx
-      );
+      // console.log(
+      //   "selPrice:",
+      //   item.sellingPriceAfterDiscountTemp,
+      //   "selprice/1.12:",
+      //   unitprice,
+      //   "taxamount:",
+      //   taxAmountx
+      // );
 
       updatedTableData[rowIndex] = {
         ...item,
@@ -1565,11 +1565,11 @@ export default function SalesOrder() {
     };
 
     setTableData(updatedTableData);
-    console.log(
-      value,
-      item.quantity,
-      stocksAvailabilityArr[0]["StockAvailable"]
-    );
+    // console.log(
+    //   value,
+    //   item.quantity,
+    //   stocksAvailabilityArr[0]["StockAvailable"]
+    // );
   };
 
   let localCurrency = new Intl.NumberFormat("en-PH", {
