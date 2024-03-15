@@ -3695,14 +3695,27 @@ export default function SalesOrder() {
                     </div>
                     <div className="content">
                       <div className="p-2">
-                        <div>
-                          Search:{" "}
-                          <input
-                            type="text"
-                            className="mb-1"
-                            value={searchTerm}
-                            onChange={handleSearchForDraft}
-                          />
+                        <div className="flex">
+                          <div>
+                            Search:{" "}
+                            <input
+                              type="text"
+                              className="mb-1"
+                              value={searchTerm}
+                              onChange={handleSearchForDraft}
+                            />
+                          </div>
+                          <div className="flex-grow"></div>
+                          <div className="flex items-center">
+                            <label>Filter From:</label>
+                            <button className="ml-auto rounded-lg bg-blue-500 text-white px-4 py-2 mr-2">
+                              sad
+                            </button>
+                            <label>To: </label>
+                            <button className="rounded-lg bg-blue-500 text-white px-4 py-2">
+                              sad2
+                            </button>
+                          </div>
                         </div>
                         <div className="table-container">
                           <table className="w-full">
