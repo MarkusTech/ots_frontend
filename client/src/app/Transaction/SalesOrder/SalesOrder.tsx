@@ -1793,16 +1793,6 @@ export default function SalesOrder() {
                 item.sellingPriceBeforeDiscount) *
               100;
 
-            console.log(
-              i,
-              disRateFor,
-              item2.creditcard,
-              item2.debit,
-              item2.pdc,
-              item2.po,
-              "- Done CC"
-            );
-
             const newupdatedTableData = [...tableData];
             const itemnew = newupdatedTableData[i];
 
