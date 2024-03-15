@@ -559,7 +559,7 @@ export default function SalesOrder() {
         text: "Need to Select Payment Method!",
       });
     } else if (countAllreleasing == allItemsArrLen) {
-      //  if the whole validation is done it will show an alert to save or cancel
+      //  if the whole validation is done it will show an alert to save or cancel!
       updateProductionAPI();
     } else {
       Swal.fire({
