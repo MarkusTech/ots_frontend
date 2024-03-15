@@ -1702,8 +1702,6 @@ export default function SalesOrder() {
     );
     const stocksAvailabilityArr = stocksAvailability.data;
 
-    console.log(stocksAvailabilityArr[0]["StockAvailable"]);
-
     updatedTableData[selectedRowIndex] = {
       ...item,
       location: itemdata,
