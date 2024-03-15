@@ -1392,7 +1392,6 @@ export default function SalesOrder() {
       );
       SCDiscount = scdiscount.data[0]["SCDiscount"];
       console.log("Damns", scdiscount.data[0]["SCDiscount"]);
-      console.log(scdiscount.data, "hehe");
 
       updatedTableData[selectedRowIndex] = {
         ...updatedTableData[selectedRowIndex],
