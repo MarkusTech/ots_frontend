@@ -1460,8 +1460,6 @@ export default function SalesOrder() {
         belCost = "N";
       }
 
-      console.log("enter", sellingAfterDis, item.cost, value);
-
       if (parseFloat(value) < parseFloat(sellingAfterDisTemp.toString())) {
         updatedTableData[rowIndex] = {
           ...item,
