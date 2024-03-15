@@ -1391,7 +1391,6 @@ export default function SalesOrder() {
         `${fetchAPI}/sc-discount/${cardCodedata}/${item.ItemCode}`
       );
       SCDiscount = scdiscount.data[0]["SCDiscount"];
-      console.log("Damns", scdiscount.data[0]["SCDiscount"]);
 
       updatedTableData[selectedRowIndex] = {
         ...updatedTableData[selectedRowIndex],
