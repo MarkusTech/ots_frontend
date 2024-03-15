@@ -854,8 +854,6 @@ export default function SalesOrder() {
       },
     ]);
 
-    console.log("Add setmodeOfrelisingArr", modeOfrelisingArr);
-
     onAddHeader();
     onAddheaderItems();
   };
