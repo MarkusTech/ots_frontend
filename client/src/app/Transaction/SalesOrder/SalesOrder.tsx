@@ -1190,7 +1190,7 @@ export default function SalesOrder() {
     } else if (getDraft.data.COD) {
       setIsCheckedCashOnDel(true);
     } else {
-      console.log("Please Select Payment Method!");
+      Swal.fire("Please Select Payment Method!", "", "error");
     }
     // to be deleted
     setFormData({
