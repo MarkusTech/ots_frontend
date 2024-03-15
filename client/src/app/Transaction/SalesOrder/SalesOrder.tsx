@@ -2425,11 +2425,6 @@ export default function SalesOrder() {
     UpdatedBy: number;
     DateUpdated: string;
   };
-
-  const SCPWDinput = (id: any) => {
-    setscpdwdID(id);
-  };
-
   // -------------------------------------------------------------------------------
   return (
     <>
