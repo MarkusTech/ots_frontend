@@ -3708,12 +3708,15 @@ export default function SalesOrder() {
                           <div className="flex-grow"></div>
                           <div className="flex items-center">
                             <label>Filter From:</label>
-                            <button className="ml-auto rounded-lg bg-blue-500 text-white px-4 py-2 mr-2">
-                              sad
+                            <button className="p-2 mt-2 mb-1 mr-2 text-[12px] bg-[#F4D674] hover:bg-yellow-500 focus:outline-none focus:shadow-outline-yellow active:bg-yellow-600 rounded w-24">
+                              Date From
                             </button>
                             <label>To: </label>
-                            <button className="rounded-lg bg-blue-500 text-white px-4 py-2">
-                              sad2
+                            <button className="p-2 mt-2 mb-1 mr-2 text-[12px] bg-[#F4D674] hover:bg-yellow-500 focus:outline-none focus:shadow-outline-yellow active:bg-yellow-600 rounded w-24">
+                              Date To
+                            </button>
+                            <button className="p-2 mt-2 mb-1 mr-2 text-[12px] bg-[#F4D674] hover:bg-yellow-500 focus:outline-none focus:shadow-outline-yellow active:bg-yellow-600 rounded w-24">
+                              Filter
                             </button>
                           </div>
                         </div>
