@@ -5,6 +5,7 @@ import Draggable from "react-draggable";
 import axios from "axios";
 import { useRef } from "react";
 import Swal from "sweetalert2";
+import salesCrewData from "../../Data/salesCrewData.json";
 import { useWindowState } from "./WindowsState";
 
 export default function SalesOrder() {
@@ -13,6 +14,12 @@ export default function SalesOrder() {
   const [isSaved, setIsSaved] = useState(false); // to hide handle submit
 
   const [customerList, setCustomerDataList] = useState([]);
+
+  // Sales Crew
+  const [selectedSalesCrew, setSelectedSalesCrew] = useState<string>("");
+  const addSalesCrews = (value: string) => {
+    setSelectedSalesCrew(value);
+  };
 
   interface Customer {
     EntryNum: string;
@@ -3600,13 +3607,16 @@ export default function SalesOrder() {
             <div>
               <select
                 className="selections"
-                onChange={(e) => addSalesCrew(e.target.value)}
-                name=""
+                onChange={(e) => addSalesCrews(e.target.value)}
+                value={selectedSalesCrew}
                 id="salescrew"
               >
-                <option value=""></option>
-                <option value="Boss Mark">Boss Mark</option>
-                <option value="Dan">Dan</option>
+                <option value="">Select a Sales Crew</option>
+                {salesCrewData.map((crew: { name: string }, index: number) => (
+                  <option key={index} value={crew.name}>
+                    {crew.name}
+                  </option>
+                ))}
               </select>
             </div>
           </div>
