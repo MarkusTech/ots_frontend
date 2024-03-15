@@ -14,6 +14,8 @@ export default function SalesOrder() {
   const [isSaved, setIsSaved] = useState(false); // to hide handle submit
 
   const [customerList, setCustomerDataList] = useState([]);
+  // Validate Customer Code to Disabled Walkin Customer field
+  const [validateCustomerCode, setValidateCustomerCode] = useState("");
 
   // Sales Crew
   const [selectedSalesCrew, setSelectedSalesCrew] = useState<string>("");
@@ -975,7 +977,6 @@ export default function SalesOrder() {
     setIsSaved(true);
   };
 
-  const [validateCustomerCode, setValidateCustomerCode] = useState("");
   // add customer data in fields
   const addCustomerData = (
     id: any,
