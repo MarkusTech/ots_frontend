@@ -2415,7 +2415,7 @@ export default function SalesOrder() {
     }
   });
 
-  // To Remove
+  // ------------- To Remove ------------------
   const [validateSalesCrew, setValidateSalesCrew] = useState("");
   const addSalesCrew = (salescrewx: any) => {
     const arrForsales = [...finalTotalList];
@@ -2428,6 +2428,7 @@ export default function SalesOrder() {
     setfinalTotalList(arrForsales);
     setValidateSalesCrew(salescrewx);
   };
+  // -----------------------------------------
 
   type headerDetails = {
     DraftNum: number;
