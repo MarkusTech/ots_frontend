@@ -444,7 +444,7 @@ export default function SalesOrder() {
         icon: "error",
         text: "Need to Select Customer First!",
       });
-    } else if (validateSalesCrew == "") {
+    } else if (selectedSalesCrew == "") {
       Swal.fire({
         icon: "error",
         text: "Need to Select Sales Crew!",
@@ -529,7 +529,7 @@ export default function SalesOrder() {
         icon: "error",
         text: "Need to Select Atleast 1 Product!",
       });
-    } else if (validateSalesCrew == "") {
+    } else if (selectedSalesCrew == "") {
       Swal.fire({
         icon: "error",
         text: "Need to Select Sales Crew!",
@@ -1127,7 +1127,7 @@ export default function SalesOrder() {
   const getDetailsAPI = async () => {
     // setJsonDraftNum("10119"); // a good lead
     // window.location.reload();
-    console.log(validateSalesCrew);
+    console.log(selectedSalesCrew);
   };
 
   // Header
@@ -2415,6 +2415,7 @@ export default function SalesOrder() {
     }
   });
 
+  // To Remove
   const [validateSalesCrew, setValidateSalesCrew] = useState("");
   const addSalesCrew = (salescrewx: any) => {
     const arrForsales = [...finalTotalList];
