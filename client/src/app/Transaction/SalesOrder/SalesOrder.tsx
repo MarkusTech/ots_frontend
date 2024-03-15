@@ -2601,18 +2601,19 @@ export default function SalesOrder() {
             <div className="grid grid-cols-2">
               <label htmlFor="WalkInName">Walk-in Customer Name</label>
               <div>
-                {validateCustomerCode === "C000112" ? (
+                {validateCustomerCode === "C000107" ||
+                validateCustomerCode === "C000111" ? (
                   <input
                     type="text"
                     onChange={handleWalkinCustomerChange}
                     value={walkInCustomer}
-                    disabled
                   />
                 ) : (
                   <input
                     type="text"
                     onChange={handleWalkinCustomerChange}
                     value={walkInCustomer}
+                    disabled
                   />
                 )}
               </div>
