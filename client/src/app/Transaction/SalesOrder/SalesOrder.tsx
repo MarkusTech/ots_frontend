@@ -975,6 +975,7 @@ export default function SalesOrder() {
     setIsSaved(true);
   };
 
+  const [validateCustomerCode, setValidateCustomerCode] = useState("");
   // add customer data in fields
   const addCustomerData = (
     id: any,
@@ -984,6 +985,7 @@ export default function SalesOrder() {
     tin: any
   ) => {
     onAddHeaderTaxCode(id, "GSCNAPGS");
+    setValidateCustomerCode(id);
 
     const updatedTableData = [...tableData];
 
@@ -2584,7 +2586,7 @@ export default function SalesOrder() {
               </div>
             </div>
 
-            <div className="grid grid-cols-2">
+            {/* <div className="grid grid-cols-2">
               <label htmlFor="WalkInName">Walk-in Customer Name</label>
               <div>
                 <input
@@ -2592,6 +2594,26 @@ export default function SalesOrder() {
                   onChange={handleWalkinCustomerChange}
                   value={walkInCustomer}
                 />
+              </div>
+            </div> */}
+
+            <div className="grid grid-cols-2">
+              <label htmlFor="WalkInName">Walk-in Customer Name</label>
+              <div>
+                {validateCustomerCode === "C000112" ? (
+                  <input
+                    type="text"
+                    onChange={handleWalkinCustomerChange}
+                    value={walkInCustomer}
+                    disabled
+                  />
+                ) : (
+                  <input
+                    type="text"
+                    onChange={handleWalkinCustomerChange}
+                    value={walkInCustomer}
+                  />
+                )}
               </div>
             </div>
 
