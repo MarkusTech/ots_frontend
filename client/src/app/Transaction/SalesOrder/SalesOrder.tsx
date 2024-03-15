@@ -1685,8 +1685,6 @@ export default function SalesOrder() {
       modeOfReleasing: moderel,
     };
 
-    console.log(item);
-
     setTableData(updatedTableData);
     setOpenModRelTablePanel(!openModRelTablePanel);
   };
