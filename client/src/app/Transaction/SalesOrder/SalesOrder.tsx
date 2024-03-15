@@ -1042,8 +1042,6 @@ export default function SalesOrder() {
     setmodeOfrelisingArr((prevData) =>
       prevData.filter((_, index) => index !== rowIndex)
     );
-
-    console.log("new mode afterdelete", modeOfrelisingArr);
   };
 
   const handleShowDoc = () => {
