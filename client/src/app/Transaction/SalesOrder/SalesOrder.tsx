@@ -437,6 +437,11 @@ export default function SalesOrder() {
         icon: "error",
         text: "Need to Select Customer First!",
       });
+    } else if (validateSalesCrew == "") {
+      Swal.fire({
+        icon: "error",
+        text: "Need to Select Sales Crew!",
+      });
     } else if (validateTable[0]["itemCode"] == "") {
       Swal.fire({
         icon: "error",
@@ -516,6 +521,11 @@ export default function SalesOrder() {
       Swal.fire({
         icon: "error",
         text: "Need to Select Atleast 1 Product!",
+      });
+    } else if (validateSalesCrew == "") {
+      Swal.fire({
+        icon: "error",
+        text: "Need to Select Sales Crew!",
       });
     } else if (countStatusInventory > 0) {
       Swal.fire({
@@ -1109,7 +1119,8 @@ export default function SalesOrder() {
 
   const getDetailsAPI = async () => {
     // setJsonDraftNum("10119"); // a good lead
-    window.location.reload();
+    // window.location.reload();
+    console.log(validateSalesCrew);
   };
 
   // Header
@@ -2397,6 +2408,7 @@ export default function SalesOrder() {
     }
   });
 
+  const [validateSalesCrew, setValidateSalesCrew] = useState("");
   const addSalesCrew = (salescrewx: any) => {
     const arrForsales = [...finalTotalList];
 
@@ -2406,6 +2418,7 @@ export default function SalesOrder() {
     };
 
     setfinalTotalList(arrForsales);
+    setValidateSalesCrew(salescrewx);
   };
 
   type headerDetails = {
