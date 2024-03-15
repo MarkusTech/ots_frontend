@@ -2587,17 +2587,6 @@ export default function SalesOrder() {
               </div>
             </div>
 
-            {/* <div className="grid grid-cols-2">
-              <label htmlFor="WalkInName">Walk-in Customer Name</label>
-              <div>
-                <input
-                  type="text"
-                  onChange={handleWalkinCustomerChange}
-                  value={walkInCustomer}
-                />
-              </div>
-            </div> */}
-
             <div className="grid grid-cols-2">
               <label htmlFor="WalkInName">Walk-in Customer Name</label>
               <div>
