@@ -1463,7 +1463,6 @@ export default function SalesOrder() {
       console.log("enter", sellingAfterDis, item.cost, value);
 
       if (parseFloat(value) < parseFloat(sellingAfterDisTemp.toString())) {
-        console.log("Y");
         updatedTableData[rowIndex] = {
           ...item,
           grossTotal: value * item.quantity,
