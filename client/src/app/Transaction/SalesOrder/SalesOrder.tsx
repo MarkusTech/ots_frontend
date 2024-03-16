@@ -1148,15 +1148,6 @@ export default function SalesOrder() {
     }
   }, [jsonDraftNum]);
 
-  // --------- To be Deleted! ----------
-  const getDetailsAPI = async () => {
-    // setJsonDraftNum("10119"); // a good lead
-    // window.location.reload();
-    // console.log(selectedSalesCrew);
-    console.log(manilaDate);
-  };
-  // ----------------------------------
-
   // Header
   useEffect(() => {
     axios
