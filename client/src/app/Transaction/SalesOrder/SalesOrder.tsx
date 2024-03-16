@@ -599,8 +599,8 @@ export default function SalesOrder() {
         const saveOnUpdateHeaderDetails = {
           EntryNum: formData.EntryNum,
           DocNum: 0,
-          PostingDate: manilaDate,
-          DocDate: manilaDate,
+          PostingDate: todayDate,
+          DocDate: todayDate,
           CustomerCode: formData.CustomerCode,
           CustomerName: formData.CustomerName,
           WalkInName: formData.WalkInName,
@@ -626,7 +626,7 @@ export default function SalesOrder() {
           TotalAmtDue: finalTotalAmtDue,
           Remarks: formData.Remarks,
           CreatedBy: "administrator",
-          DateCreated: manilaDate,
+          DateCreated: todayDate,
           UpdatedBy: 1,
           DateUpdated: "",
         };
