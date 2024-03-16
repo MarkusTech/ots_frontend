@@ -1152,7 +1152,8 @@ export default function SalesOrder() {
   const getDetailsAPI = async () => {
     // setJsonDraftNum("10119"); // a good lead
     // window.location.reload();
-    console.log(selectedSalesCrew);
+    // console.log(selectedSalesCrew);
+    console.log(manilaDate);
   };
   // ----------------------------------
 
