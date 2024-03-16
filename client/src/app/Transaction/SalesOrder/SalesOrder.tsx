@@ -3707,12 +3707,22 @@ export default function SalesOrder() {
                           </div>
                           <div className="flex-grow"></div>
                           <div className="flex items-center">
-                            <label>Filter From:</label>
-                            {/* data from */}
-                            <input type="date" />
-                            <label>To: </label>
-                            {/* date to */}
-                            <input type="date" />
+                            <label htmlFor="fromDate" className="mr-2">
+                              Filter From:
+                            </label>
+                            <input
+                              id="fromDate"
+                              type="date"
+                              className="w-24 md:w-32 px-2 py-1 border rounded"
+                            />
+                            <label htmlFor="toDate" className="ml-4 mr-2">
+                              To:
+                            </label>
+                            <input
+                              id="toDate"
+                              type="date"
+                              className="w-24 md:w-32 px-2 py-1 border rounded"
+                            />
                             <button className="p-2 mt-2 mb-1 mr-2 text-[12px] bg-[#F4D674] hover:bg-yellow-500 focus:outline-none focus:shadow-outline-yellow active:bg-yellow-600 rounded w-24">
                               Filter
                             </button>
