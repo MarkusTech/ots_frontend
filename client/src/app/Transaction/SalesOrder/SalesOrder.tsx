@@ -3695,7 +3695,7 @@ export default function SalesOrder() {
                     </div>
                     <div className="content">
                       <div className="p-2">
-                        <div className="flex">
+                        <div className="flex items-center">
                           <div>
                             Search:{" "}
                             <input
@@ -3729,6 +3729,7 @@ export default function SalesOrder() {
                             </button>
                           </div>
                         </div>
+
                         <div className="table-container">
                           <table className="w-full">
                             <thead className="tables">
