@@ -1001,6 +1001,7 @@ export default function SalesOrder() {
   ) => {
     onAddHeaderTaxCode(id, "GSCNAPGS");
     setValidateCustomerCode(id);
+    setTodayDate(manilaDate);
 
     const updatedTableData = [...tableData];
 
