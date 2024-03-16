@@ -16,6 +16,7 @@ export default function SalesOrder() {
   const [customerList, setCustomerDataList] = useState([]);
   // Validate Customer Code to Disabled Walkin Customer field
   const [validateCustomerCode, setValidateCustomerCode] = useState("");
+  const [todayDate, setTodayDate] = useState("");
 
   // Sales Crew
   const [selectedSalesCrew, setSelectedSalesCrew] = useState<string>("");
@@ -136,8 +137,8 @@ export default function SalesOrder() {
     Branch: "",
     DocStat: "",
     BaseDoc: 0,
-    DocDate: manilaDate,
-    PostingDate: manilaDate,
+    DocDate: todayDate,
+    PostingDate: todayDate,
     SCPWDIdNo: "",
     // Payment Method
     Cash: "",
@@ -156,7 +157,7 @@ export default function SalesOrder() {
     TotalAmtDue: "",
     Remarks: "",
     CreatedBy: "Administrator",
-    DateCreated: manilaDate,
+    DateCreated: todayDate,
     UpdatedBy: "",
     DateUpdated: "",
   });
@@ -714,7 +715,6 @@ export default function SalesOrder() {
   // -------------------------- Filter Date --------------------------
   const [fromDate, setFromDate] = useState("");
   const [toDate, setToDate] = useState("");
-  const [todayDate, setTodayDate] = useState("");
 
   const handleFilter = () => {
     console.log("From Date:", fromDate);
