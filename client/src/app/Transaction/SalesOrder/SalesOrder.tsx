@@ -2754,23 +2754,13 @@ export default function SalesOrder() {
           <div className="grid grid-cols-2">
             <label htmlFor="entrynumber">Document Date</label>
             <div>
-              <input
-                type="text"
-                value={todayDate}
-                className="bg-slate-200"
-                readOnly
-              />
+              <input type="text" value={todayDate} readOnly />
             </div>
           </div>
           <div className="grid grid-cols-2">
             <label htmlFor="entrynumber">Posting Date</label>
             <div>
-              <input
-                type="text"
-                value={todayDate}
-                className="bg-slate-200"
-                readOnly
-              />
+              <input type="text" value={todayDate} readOnly />
             </div>
           </div>
           <div className="grid grid-cols-2">
