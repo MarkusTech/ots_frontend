@@ -775,6 +775,7 @@ export default function SalesOrder() {
   const onAddHeader = async () => {
     const customers = await axios.get(`${fetchAPI}/customer`);
     setCustomerDataList(customers.data);
+    // setTodayDate(manilaDate);
   };
 
   const onAddheaderItems = async () => {
