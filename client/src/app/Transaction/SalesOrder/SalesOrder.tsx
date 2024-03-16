@@ -710,6 +710,16 @@ export default function SalesOrder() {
   // --------------------------------------- End of Product Details insertion ---------------------------------------
 
   // -------------------------------------- End of <WMR CODE> header insertion --------------------------------------
+
+  // -------------------------- Filter Date --------------------------
+  const [fromDate, setFromDate] = useState("");
+  const [toDate, setToDate] = useState("");
+
+  const handleFilter = () => {
+    console.log("From Date:", fromDate);
+    console.log("To Date:", toDate);
+  };
+
   let customerData2 = [{}];
   let currentCustomerData = customerList;
   const arrayCustomer = [customerList];
@@ -3714,6 +3724,7 @@ export default function SalesOrder() {
                               id="fromDate"
                               type="date"
                               className="w-24 md:w-32 px-2 py-1 border rounded"
+                              onChange={(e) => setFromDate(e.target.value)}
                             />
                             <label htmlFor="toDate" className="ml-4 mr-2">
                               To:
@@ -3722,9 +3733,13 @@ export default function SalesOrder() {
                               id="toDate"
                               type="date"
                               className="w-24 md:w-32 px-2 py-1 border rounded"
+                              onChange={(e) => setToDate(e.target.value)}
                             />
                             <p>:&nbsp;</p>
-                            <button className="p-2 mt-2 mb-1 mr-2 text-xs bg-yellow-400 hover:bg-yellow-500 focus:outline-none focus:shadow-outline-yellow active:bg-yellow-600 rounded w-24">
+                            <button
+                              className="p-2 mt-2 mb-1 mr-2 text-xs bg-yellow-400 hover:bg-yellow-500 focus:outline-none focus:shadow-outline-yellow active:bg-yellow-600 rounded w-24"
+                              onClick={handleFilter}
+                            >
                               Filter
                             </button>
                           </div>
