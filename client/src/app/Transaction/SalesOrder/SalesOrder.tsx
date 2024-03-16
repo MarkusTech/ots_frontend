@@ -714,11 +714,15 @@ export default function SalesOrder() {
   // -------------------------- Filter Date --------------------------
   const [fromDate, setFromDate] = useState("");
   const [toDate, setToDate] = useState("");
+  const [todayDate, setTodayDate] = useState("");
 
   const handleFilter = () => {
     console.log("From Date:", fromDate);
     console.log("To Date:", toDate);
+    setTodayDate(manilaDate);
   };
+
+  // ------------------------ End Filter Date --------------------------
 
   let customerData2 = [{}];
   let currentCustomerData = customerList;
@@ -2751,7 +2755,7 @@ export default function SalesOrder() {
             <div>
               <input
                 type="text"
-                value={manilaDate}
+                value={todayDate}
                 className="bg-slate-200"
                 readOnly
               />
@@ -2762,7 +2766,7 @@ export default function SalesOrder() {
             <div>
               <input
                 type="text"
-                value={manilaDate}
+                value={todayDate}
                 className="bg-slate-200"
                 readOnly
               />
