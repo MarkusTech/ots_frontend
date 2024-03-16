@@ -96,7 +96,6 @@ export default function SalesOrder() {
   const user = "Administrator";
 
   const now = new Date();
-
   // Date Now()
   const manilaDate = now.toLocaleDateString("en-US", {
     timeZone: "Asia/Manila",
@@ -956,6 +955,17 @@ export default function SalesOrder() {
     setIsPaymentOnlineTransfer(apiData.OnlineTransfer);
     setIsPaymentOnAccount(apiData.OnAccount);
     setIsPaymentCOD(apiData.COD);
+
+    // -------------- date ----------------
+    const dateString = apiData.PostingDate;
+    const date = new Date(dateString);
+    const formattedDate = date.toLocaleDateString("en-US", {
+      month: "numeric",
+      day: "numeric",
+      year: "numeric",
+    });
+    setTodayDate(formattedDate);
+    // ----------- End Date --------------
 
     // payment method
     const Yes = "Y";
