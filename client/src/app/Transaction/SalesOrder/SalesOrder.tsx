@@ -3723,7 +3723,7 @@ export default function SalesOrder() {
                               type="date"
                               className="w-24 md:w-32 px-2 py-1 border rounded"
                             />
-                            <p>&nbsp;</p>
+                            <p>:&nbsp;</p>
                             <button className="p-2 mt-2 mb-1 mr-2 text-xs bg-yellow-400 hover:bg-yellow-500 focus:outline-none focus:shadow-outline-yellow active:bg-yellow-600 rounded w-24">
                               Filter
                             </button>
