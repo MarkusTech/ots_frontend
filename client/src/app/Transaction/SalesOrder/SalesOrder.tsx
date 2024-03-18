@@ -998,7 +998,7 @@ export default function SalesOrder() {
     setSearchTerm("");
 
     // for open and close draggable and for the button save and update
-    // for open and close draggable and for the butto
+    // for open and close draggable and for the butt
     setShowSearchHeader(!showSearchHeader);
     setIsSaved(true);
   };
