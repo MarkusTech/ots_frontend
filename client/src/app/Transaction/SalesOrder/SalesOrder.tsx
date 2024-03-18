@@ -2592,7 +2592,11 @@ export default function SalesOrder() {
                 Customer Reference
               </label>
               <div>
-                <input type="text" onChange={handleCustomerChange} />
+                <input
+                  type="text"
+                  value={customerReference}
+                  onChange={handleCustomerChange}
+                />
               </div>
             </div>
 
