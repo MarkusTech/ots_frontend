@@ -952,7 +952,7 @@ export default function SalesOrder() {
     setScOrPwdField(apiData.SCPWDIdNo); // SC/PWD ID
     setDraftNumber(apiData.DraftNum); // Draft Number
     setSelectedSalesCrew(apiData.SalesCrew); // Sales Crew
-    setRemarksField(apiData.Remarks);
+    setRemarksField(apiData.Remarks); // Remarks
 
     // Payment Method
     setIsPaymentCash(apiData.Cash);
