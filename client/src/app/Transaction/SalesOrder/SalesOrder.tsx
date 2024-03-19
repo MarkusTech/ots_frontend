@@ -942,7 +942,7 @@ export default function SalesOrder() {
       {
         customerCode: customerCode,
         customerName: customerName,
-        customerCardFName: "",
+        customerCardFName: apiData.ForeignName,
         cusShipAddress: apiData.ShippingAdd,
         cusLicTradNum: apiData.TIN,
       },
