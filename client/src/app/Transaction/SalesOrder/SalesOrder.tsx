@@ -127,7 +127,7 @@ export default function SalesOrder() {
     // Cutomer
     CustomerCode: "",
     CustomerName: "",
-    ForeignName: "", // no value on backend
+    ForeignName: "",
     WalkInName: "",
     ShippingAdd: "",
     TIN: "",
