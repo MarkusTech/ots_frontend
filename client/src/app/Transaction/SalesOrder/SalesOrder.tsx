@@ -951,6 +951,7 @@ export default function SalesOrder() {
     setScOrPwdField(apiData.SCPWDIdNo); // SC/PWD ID
     setDraftNumber(apiData.DraftNum); // Draft Number
     setSelectedSalesCrew(apiData.SalesCrew); // Sales Crew
+    setRemarksField(apiData.Remarks);
 
     // Payment Method
     setIsPaymentCash(apiData.Cash);
@@ -3553,6 +3554,7 @@ export default function SalesOrder() {
                 name="remarks"
                 id="remarks"
                 onChange={handleRemarksChange}
+                value={remarksField}
               ></textarea>
             </div>
           </div>
