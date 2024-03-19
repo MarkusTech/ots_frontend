@@ -1175,6 +1175,9 @@ export default function SalesOrder() {
   const consoleData = () => {
     console.log(salesCrew);
     console.log(selectedSalesCrew);
+    // alert(salesCrew);
+    // alert(selectedSalesCrew);
+    alert("Hello World!");
   };
 
   // Header
