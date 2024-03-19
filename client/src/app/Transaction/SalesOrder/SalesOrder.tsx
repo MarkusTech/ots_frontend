@@ -950,6 +950,7 @@ export default function SalesOrder() {
     setCustomerReference(apiData.Reference); // Customer Reference
     setScOrPwdField(apiData.SCPWDIdNo); // SC/PWD ID
     setDraftNumber(apiData.DraftNum); // Draft Number
+    setSelectedSalesCrew(apiData.SalesCrew); // Sales Crew
 
     // Payment Method
     setIsPaymentCash(apiData.Cash);
