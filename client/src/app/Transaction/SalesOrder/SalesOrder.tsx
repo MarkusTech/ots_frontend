@@ -5,7 +5,6 @@ import Draggable from "react-draggable";
 import axios from "axios";
 import { useRef } from "react";
 import Swal from "sweetalert2";
-import salesCrewData from "../../Data/salesCrewData.json";
 import { useWindowState } from "./WindowsState";
 
 export default function SalesOrder() {
