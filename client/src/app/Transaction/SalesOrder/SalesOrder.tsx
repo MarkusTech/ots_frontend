@@ -255,6 +255,7 @@ export default function SalesOrder() {
           UpdatedBy: 1,
           DateUpdated: "",
           SalesCrew: selectedSalesCrew,
+          ForeignName: formData.ForeignName,
         };
 
         axiosInstance
