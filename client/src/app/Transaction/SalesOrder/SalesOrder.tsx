@@ -1079,6 +1079,7 @@ export default function SalesOrder() {
   const handleShowCustomer = () => {
     setShowCustomer(!showCustomer);
     onAddHeader();
+    setSearchTerm("");
 
     const updatedTableData = [...tableData];
 
