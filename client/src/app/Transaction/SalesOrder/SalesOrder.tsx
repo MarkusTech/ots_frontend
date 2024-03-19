@@ -19,6 +19,7 @@ export default function SalesOrder() {
   const [todayDate, setTodayDate] = useState("");
 
   // Sales Crew
+  const [salesCrew, setSalesCrew] = useState([]);
   const [selectedSalesCrew, setSelectedSalesCrew] = useState<string>("");
   const addSalesCrews = (value: string) => {
     setSelectedSalesCrew(value);
@@ -1151,6 +1152,25 @@ export default function SalesOrder() {
         });
     }
   }, [jsonDraftNum]);
+
+  // sales Crew
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get("http://172.16.10.217:3001/salescrew");
+        setSalesCrew(response.data);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  const consoleData = () => {
+    console.log(salesCrew);
+    console.log(selectedSalesCrew);
+  };
 
   // Header
   useEffect(() => {
@@ -3515,9 +3535,9 @@ export default function SalesOrder() {
                 id="salescrew"
               >
                 <option value="">Select a Sales Crew</option>
-                {salesCrewData.map((crew: { name: string }, index: number) => (
-                  <option key={index} value={crew.name}>
-                    {crew.name}
+                {salesCrew.map((crew: any, index: any) => (
+                  <option key={index} value={crew.SlpName}>
+                    {crew.SlpName}
                   </option>
                 ))}
               </select>
@@ -3606,7 +3626,7 @@ export default function SalesOrder() {
 
             <button
               className="p-2 mt-2 mb-1 mr-2 text-[12px] bg-[#F4D674] hover:bg-yellow-500 focus:outline-none focus:shadow-outline-yellow active:bg-yellow-600 rounded w-24"
-              // onClick={}
+              onClick={consoleData}
             >
               Print
             </button>
