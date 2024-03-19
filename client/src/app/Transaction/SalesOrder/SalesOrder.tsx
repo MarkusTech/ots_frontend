@@ -121,7 +121,7 @@ export default function SalesOrder() {
   ]);
 
   const [formData, setFormData] = useState({
-    DraftNum: "", // no value on b
+    DraftNum: "", // no value on
     EntryNum: "",
     DocNum: 0,
     // Cutomer
