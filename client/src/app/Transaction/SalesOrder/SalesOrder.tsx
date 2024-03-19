@@ -630,6 +630,7 @@ export default function SalesOrder() {
           DateCreated: todayDate,
           UpdatedBy: 1,
           DateUpdated: "",
+          SalesCrew: selectedSalesCrew,
         };
 
         axiosInstance
