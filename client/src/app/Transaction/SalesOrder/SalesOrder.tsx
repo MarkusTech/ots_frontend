@@ -132,6 +132,7 @@ export default function SalesOrder() {
     ShippingAdd: "",
     TIN: "",
     Reference: "",
+    SalesCrew: selectedSalesCrew,
     // ReadOnly
     Branch: "",
     DocStat: "",
@@ -253,6 +254,7 @@ export default function SalesOrder() {
           DateCreated: todayDate,
           UpdatedBy: 1,
           DateUpdated: "",
+          SalesCrew: selectedSalesCrew,
         };
 
         axiosInstance
