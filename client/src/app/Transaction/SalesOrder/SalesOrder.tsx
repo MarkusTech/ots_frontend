@@ -3660,7 +3660,7 @@ export default function SalesOrder() {
                           <div className="flex-grow"></div>
                           <div className="flex items-center">
                             <label htmlFor="fromDate" className="mr-2">
-                              Filter From:
+                              Filter By Date:
                             </label>
                             <input
                               id="fromDate"
@@ -3668,7 +3668,7 @@ export default function SalesOrder() {
                               className="w-24 md:w-32 px-2 py-1 border rounded"
                               onChange={(e) => setFromDate(e.target.value)}
                             />
-                            <label htmlFor="toDate" className="ml-4 mr-2">
+                            {/* <label htmlFor="toDate" className="ml-4 mr-2">
                               To:
                             </label>
                             <input
@@ -3676,7 +3676,7 @@ export default function SalesOrder() {
                               type="date"
                               className="w-24 md:w-32 px-2 py-1 border rounded"
                               onChange={(e) => setToDate(e.target.value)}
-                            />
+                            /> */}
                             <p>:&nbsp;</p>
                             <button
                               className="p-1 mt-2 mb-1 mr-2 text-xs bg-yellow-400 hover:bg-yellow-500 focus:outline-none focus:shadow-outline-yellow active:bg-yellow-600 rounded w-24"
