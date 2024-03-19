@@ -719,6 +719,7 @@ export default function SalesOrder() {
     console.log("From Date:", fromDate);
     console.log("To Date:", toDate);
     setTodayDate(manilaDate);
+    setSearchTerm(fromDate);
   };
 
   // ------------------------ End Filter Date --------------------------
@@ -873,6 +874,7 @@ export default function SalesOrder() {
     onAddheaderItems();
   };
 
+  // handle search for draft data
   const handleSearchForDraft = (event: any) => {
     setSearchTerm(event.target.value);
   };
@@ -1096,6 +1098,7 @@ export default function SalesOrder() {
 
   const handleShowSearchHeader = () => {
     setShowSearchHeader(!showSearchHeader);
+    setSearchTerm("");
   };
 
   // ---------------------------------------- Details API ------------------------------------------
