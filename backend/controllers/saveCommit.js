@@ -57,14 +57,12 @@ const saveCommitHeader = async (req, res) => {
       ${CreatedBy}, ${DateCreated}, ${UpdatedBy}, ${DateUpdated}, ${SalesCrew}, ${ForeignName})`;
 
     const docNumResult = await sqlConn.query`
-      SELECT SCOPE_IDENTITY() AS DocNum`;
+      SELECT DocNum From SO_Header_Commit Where DraftNum = ${DraftNum}`;
 
-    const docNum = docNumResult.recordset[0].DocNum;
+    const DocNumber = docNumResult.recordset[0].DocNum;
 
     res.status(200).json({
-      success: true,
-      message: "Successfully Saved to Header",
-      result,
+      DocNumber,
     });
   } catch (error) {
     console.log(error);
@@ -72,8 +70,10 @@ const saveCommitHeader = async (req, res) => {
   }
 };
 
+const getAllCommitedHeader = async (req, res) => {};
+
 const saveCommitDetails = async (req, res) => {
   const {} = req.body;
 };
 
-export { saveCommitHeader, saveCommitDetails };
+export { saveCommitHeader, saveCommitDetails, getAllCommitedHeader };
