@@ -13,11 +13,6 @@ import sqlConn from "./config/db.js";
 import { v4 as uuidv4 } from "uuid";
 
 // Routes
-import productRoutes from "./routes/productRoutes.js";
-import otsRoutes from "./routes/otsRoutes.js";
-import draftNumberRoutes from "./routes/draftNumberRoutes.js";
-import entryNumberRoutes from "./routes/entryNumberRoutes.js";
-import productDetailRoutes from "./routes/productDetailsRoutes.js";
 import getSingleDraftRoutes from "./routes/getSingleDraftRoutes.js";
 import getDetailsRoutes from "./routes/getDetailsRoutes.js";
 import saveCommitRoutes from "./routes/saveCommitRoutes.js";
@@ -41,19 +36,13 @@ app.get("/", (req, res) => {
   res.send("Server is running");
 });
 
-// Rest API
-app.use("/api/v1", productRoutes);
-app.use("/api/v1", otsRoutes);
-app.use("/api/v1", draftNumberRoutes);
-app.use("/api/v1", entryNumberRoutes);
-app.use("/api/v1", productDetailRoutes);
-
 // uuid API
 app.get("/api/v1/generateUniqueId", (req, res) => {
   const uniqueId = uuidv4();
   res.json({ uniqueId });
 });
 
+// Rest API
 app.use("/api/v1", getSingleDraftRoutes);
 app.use("/api/v1", getDetailsRoutes);
 app.use("/api/v1", saveCommitRoutes);
