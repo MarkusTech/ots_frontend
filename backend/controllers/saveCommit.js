@@ -8,4 +8,4 @@ const saveCommitDetails = async (req, res) => {
   res.send("Save Commit Details");
 };
 
-export { saveCommitHeader };
+export { saveCommitHeader, saveCommitDetails };

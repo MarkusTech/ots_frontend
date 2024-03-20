@@ -1,7 +1,11 @@
 import express from "express";
-import { saveCommitHeader } from "../controllers/saveCommit.js";
+import {
+  saveCommitHeader,
+  saveCommitDetails,
+} from "../controllers/saveCommit.js";
 const router = express.Router();
 
-router.post("/save-commit", saveCommitHeader);
+router.post("/save-commit-header", saveCommitHeader);
+router.post("/save-commit-details", saveCommitDetails);
 
 export default router;
