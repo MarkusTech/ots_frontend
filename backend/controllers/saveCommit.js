@@ -41,6 +41,31 @@ const saveCommitHeader = async (req, res) => {
     // Convert date strings to Date objects and then to ISO 8601 format
     const isoPostingDate = new Date(PostingDate).toISOString();
     const isoDocDate = new Date(DocDate).toISOString();
+
+    const result = await sqlConn.query`
+      INSERT INTO [OTS_DB].[dbo].[SO_Header_Commit]
+      ([EntryNum], [DraftNum], [PostingDate], [DocDate], [CustomerCode], [CustomerName],
+      [WalkInName], [ShippingAdd], [TIN], [Reference], [SCPWDIdNo], [Branch], [DocStat], [BaseDoc],
+      [Cash], [DebitCard], [CreditCard], [ODC], [PDC], [OnlineTransfer], [OnAccount], [COD],
+      [TotalAmtBefTax], [TotalTax], [TotalAmtTax], [SCPWDDiscTotal], [TotalAmtDue], [Remarks],
+      [CreatedBy], [DateCreated], [UpdatedBy], [DateUpdated], [SalesCrew], [ForeignName])
+      VALUES
+      (${EntryNum}, ${DraftNum}, ${isoPostingDate}, ${isoDocDate}, ${CustomerCode}, ${CustomerName},
+      ${WalkInName}, ${ShippingAdd}, ${TIN}, ${Reference}, ${SCPWDIdNo}, ${Branch}, ${DocStat}, ${BaseDoc},
+      ${Cash}, ${DebitCard}, ${CreditCard}, ${ODC}, ${PDC}, ${OnlineTransfer}, ${OnAccount}, ${COD},
+      ${TotalAmtBefTax}, ${TotalTax}, ${TotalAmtTax}, ${SCPWDDiscTotal}, ${TotalAmtDue}, ${Remarks},
+      ${CreatedBy}, ${DateCreated}, ${UpdatedBy}, ${DateUpdated}, ${SalesCrew}, ${ForeignName})`;
+
+    const docNumResult = await sqlConn.query`
+      SELECT SCOPE_IDENTITY() AS DocNum`;
+
+    const docNum = docNumResult.recordset[0].DocNum;
+
+    res.status(200).json({
+      success: true,
+      message: "Successfully Saved to Header",
+      result,
+    });
   } catch (error) {
     console.log(error);
     res.status(500).json({ error: "Internal Server Error" });
