@@ -88,7 +88,68 @@ const getAllCommitedHeader = async (req, res) => {
 };
 
 const saveCommitDetails = async (req, res) => {
-  const {} = req.body;
+  const {
+    LineID,
+    DraftNum,
+    ItemCode,
+    ItemName,
+    Quantity,
+    UoM,
+    UoMConv,
+    Whse,
+    InvStat,
+    SellPriceBefDisc,
+    DiscRate,
+    SellPriceAftDisc,
+    LowerBound,
+    TaxCode,
+    TaxCodePerc,
+    TaxAmt,
+    BelPriceDisc,
+    Cost,
+    BelCost,
+    ModeReleasing,
+    SCPWDdisc,
+    GrossTotal,
+  } = req.body;
+
+  try {
+    const result = await sqlConn.query`
+    INSERT INTO [dbo].[SO_Details_Commit]
+           ([LineID]
+           ,[DraftNum]
+           ,[ItemCode]
+           ,[ItemName]
+           ,[Quantity]
+           ,[UoM]
+           ,[UoMConv]
+           ,[Whse]
+           ,[InvStat]
+           ,[SellPriceBefDisc]
+           ,[DiscRate]
+           ,[SellPriceAftDisc]
+           ,[LowerBound]
+           ,[TaxCode]
+           ,[TaxCodePerc]
+           ,[TaxAmt]
+           ,[BelPriceDisc]
+           ,[Cost]
+           ,[BelCost]
+           ,[ModeReleasing]
+           ,[SCPWDdisc]
+           ,[GrossTotal])
+     VALUES
+            (${LineID},${DraftNum},${ItemCode},${ItemName},${Quantity},${UoM},${UoMConv},${Whse},${InvStat},${SellPriceBefDisc},${DiscRate},${SellPriceAftDisc},${LowerBound},${TaxCode},${TaxCodePerc},${TaxAmt},${BelPriceDisc},${Cost},${BelCost},${ModeReleasing},${SCPWDdisc},${GrossTotal})`;
+
+    res.status(200).json({
+      success: true,
+      message: "Details Commited Successfully",
+      result,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
 };
 
 export { saveCommitHeader, saveCommitDetails, getAllCommitedHeader };
