@@ -70,23 +70,6 @@ const saveCommitHeader = async (req, res) => {
   }
 };
 
-const getAllCommitedHeader = async (req, res) => {
-  try {
-    const result =
-      await sqlConn.query`Select * FROM [OTS_DB].[dbo].[SO_Header_Commit]`;
-
-    const data = result.recordset;
-    res.status(200).json({
-      success: true,
-      message: "Commit Header Fetched!",
-      data,
-    });
-  } catch (error) {
-    console.log(error);
-    res.status(500).json({ error: "Internal Server Error" });
-  }
-};
-
 const saveCommitDetails = async (req, res) => {
   const {
     LineID,
@@ -152,4 +135,42 @@ const saveCommitDetails = async (req, res) => {
   }
 };
 
-export { saveCommitHeader, saveCommitDetails, getAllCommitedHeader };
+const getAllCommitedHeader = async (req, res) => {
+  try {
+    const result =
+      await sqlConn.query`Select * FROM [OTS_DB].[dbo].[SO_Header_Commit]`;
+
+    const data = result.recordset;
+    res.status(200).json({
+      success: true,
+      message: "Commit Header Fetched!",
+      data,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+};
+
+const getAllCommitedDetails = async (req, res) => {
+  try {
+    const result = await sqlConn.query`Select * FROM [dbo].[SO_Details_Commit]`;
+
+    const data = result.recordset;
+    res.status(200).json({
+      success: true,
+      message: "Commit Details Fetched!",
+      data,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+};
+
+export {
+  saveCommitHeader,
+  saveCommitDetails,
+  getAllCommitedHeader,
+  getAllCommitedDetails,
+};
