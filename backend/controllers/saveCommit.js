@@ -1,11 +1,51 @@
 import sqlConn from "../config/db.js";
 
 const saveCommitHeader = async (req, res) => {
-  res.send("Save Commit Header");
+  const {
+    EntryNum,
+    DocNum,
+    DraftNum,
+    PostingDate,
+    DocDate,
+    CustomerCode,
+    CustomerName,
+    WalkInName,
+    ShippingAdd,
+    TIN,
+    Reference,
+    SCPWDIdNo,
+    Branch,
+    DocStat,
+    BaseDoc,
+    Cash,
+    DebitCard,
+    CreditCard,
+    ODC,
+    PDC,
+    OnlineTransfer,
+    OnAccount,
+    COD,
+    TotalAmtBefTax,
+    TotalTax,
+    TotalAmtTax,
+    SCPWDDiscTotal,
+    TotalAmtDue,
+    Remark,
+    CreatedBy,
+    DateCreated,
+    UpdatedBy,
+    DateUpdated,
+    SalesCrew,
+    ForeignName,
+  } = req.body;
+  try {
+  } catch (error) {
+    console.log(error);
+  }
 };
 
 const saveCommitDetails = async (req, res) => {
-  res.send("Save Commit Details");
+  const {} = req.body;
 };
 
 export { saveCommitHeader, saveCommitDetails };
