@@ -13,7 +13,37 @@ import sqlConn from "../config/db.js";
 app.post("/saveCommitHeader", async (req, res) => {
   const {
     EntryNum,
-    // other fields
+    DraftNum,
+    PostingDate,
+    DocDate,
+    CustomerCode,
+    CustomerName,
+    WalkInName,
+    ShippingAdd,
+    TIN,
+    Reference,
+    SCPWDIdNo,
+    Branch,
+    DocStat,
+    BaseDoc,
+    Cash,
+    DebitCard,
+    CreditCard,
+    ODC,
+    PDC,
+    OnlineTransfer,
+    OnAccount,
+    COD,
+    TotalAmtBefTax,
+    TotalTax,
+    TotalAmtTax,
+    SCPWDDiscTotal,
+    TotalAmtDue,
+    Remark,
+    CreatedBy,
+    DateCreated,
+    UpdatedBy,
+    DateUpdated,
     SalesCrew,
     ForeignName,
   } = req.body;
@@ -22,19 +52,27 @@ app.post("/saveCommitHeader", async (req, res) => {
     // Connect to MSSQL database
     await sql.connect(sqlConn);
 
-    // Define your query to save the commit header
+    // Define your SQL query to insert commit header data
     const query = `
-            -- Write your SQL query here to save the commit header
+            INSERT INTO [OTS_DB].[dbo].[SO_Header_Commit]
+            ([EntryNum], [DraftNum], [PostingDate], [DocDate], [CustomerCode], [CustomerName],
+            [WalkInName], [ShippingAdd], [TIN], [Reference], [SCPWDIdNo], [Branch], [DocStat], [BaseDoc],
+            [Cash], [DebitCard], [CreditCard], [ODC], [PDC], [OnlineTransfer], [OnAccount], [COD],
+            [TotalAmtBefTax], [TotalTax], [TotalAmtTax], [SCPWDDiscTotal], [TotalAmtDue], [Remarks],
+            [CreatedBy], [DateCreated], [UpdatedBy], [DateUpdated], [SalesCrew], [ForeignName])
+            VALUES
+            (${EntryNum}, ${DraftNum}, '${PostingDate}', '${DocDate}', '${CustomerCode}', '${CustomerName}',
+            '${WalkInName}', '${ShippingAdd}', '${TIN}', '${Reference}', '${SCPWDIdNo}', '${Branch}', '${DocStat}', ${BaseDoc},
+            '${Cash}', '${DebitCard}', '${CreditCard}', '${ODC}', '${PDC}', '${OnlineTransfer}', '${OnAccount}', '${COD}',
+            ${TotalAmtBefTax}, ${TotalTax}, ${TotalAmtTax}, ${SCPWDDiscTotal}, ${TotalAmtDue}, '${Remark}',
+            '${CreatedBy}', '${DateCreated}', '${UpdatedBy}', '${DateUpdated}', '${SalesCrew}', '${ForeignName}')
         `;
 
     // Execute the query
-    const result = await sql.query(query);
+    await sql.query(query);
 
-    // Fetch the DocNum from the result (assuming it's returned)
-    const docNum = result.recordset[0].DocNum;
-
-    // Return the DocNum in the response
-    res.json({ docNum });
+    // Return success response
+    res.json({ success: true });
   } catch (error) {
     console.log(error);
     res.status(500).json({ error: "Internal Server Error" });

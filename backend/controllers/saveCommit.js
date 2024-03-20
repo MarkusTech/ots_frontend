@@ -3,7 +3,6 @@ import sqlConn from "../config/db.js";
 const saveCommitHeader = async (req, res) => {
   const {
     EntryNum,
-    DocNum,
     DraftNum,
     PostingDate,
     DocDate,
@@ -39,6 +38,7 @@ const saveCommitHeader = async (req, res) => {
     ForeignName,
   } = req.body;
   try {
+    const result = await sqlConn.query``;
   } catch (error) {
     console.log(error);
     res.status(500).json({ error: "Internal Server Error" });
