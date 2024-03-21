@@ -180,6 +180,7 @@ const commit = async (req, res) => {
       success: true,
       message: "Successfully Commited!",
       data,
+      result,
     });
   } catch (error) {
     console.log(error);
