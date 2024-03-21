@@ -171,16 +171,23 @@ const getAllCommitedDetails = async (req, res) => {
 const commit = async (req, res) => {
   const { DraftNum } = req.body;
   try {
-    const result = await sqlConn.query`EXEC dbo.SP_COMMIT_SO ${DraftNum}`;
+    const result =
+      await sqlConn.query`SELECT * FROM [OTS_DB].[dbo].[SO_Header] WHERE DraftNum = ${DraftNum}`;
+
+    if (result.recordset.length === 0) {
+      throw new Error("No DraftNum found in the table");
+    }
+
+    const draftNum = result.recordset[0].DraftNum;
+
+    const spResult = await sqlConn.query`EXEC dbo.SP_COMMIT_SO ${draftNum}`;
+
     const DocNumber =
       await sqlConn.query`SELECT DocNum FROM SO_Header WHERE DraftNum= ${DraftNum}`;
 
     const data = DocNumber.recordset[0];
-    res.status(200).json({
-      success: true,
-      message: "Successfully Commited!",
+    res.json({
       data,
-      result,
     });
   } catch (error) {
     console.log(error);
