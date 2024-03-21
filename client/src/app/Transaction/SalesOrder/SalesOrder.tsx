@@ -11,6 +11,7 @@ export default function SalesOrder() {
   const inputRef = useRef<HTMLInputElement | null>(null);
 
   const [isSaved, setIsSaved] = useState(false); // to hide handle submit
+  const [isCommited, setIsCommited] = useState(false); // to hide commit
 
   const [customerList, setCustomerDataList] = useState([]);
   // Validate Customer Code to Disabled Walkin Customer field
@@ -713,10 +714,12 @@ export default function SalesOrder() {
 
   const saveCommit = () => {
     console.log(`Hello World!`);
+    Swal.fire("Save!", "", "info");
   };
 
   const swalCommit = () => {
     Swal.fire("Need To Save as a Draft first!", "", "info");
+    setIsCommited(true);
   };
 
   // --------------------------------------- End of Product Details insertion ---------------------------------------
@@ -3626,12 +3629,23 @@ export default function SalesOrder() {
               )}
             </div>
 
-            <button
-              className="p-2 mt-2 mb-1 mr-2 text-[12px] bg-[#F4D674] hover:bg-yellow-500 focus:outline-none focus:shadow-outline-yellow active:bg-yellow-600 rounded w-24"
-              onClick={swalCommit}
-            >
-              Commit
-            </button>
+            <div>
+              {isCommited ? (
+                <button
+                  className="p-2 mt-2 mb-1 mr-2 text-[12px] bg-[#F4D674] hover:bg-yellow-500 focus:outline-none focus:shadow-outline-yellow active:bg-yellow-600 rounded w-24"
+                  onClick={saveCommit}
+                >
+                  Commit
+                </button>
+              ) : (
+                <button
+                  className="p-2 mt-2 mb-1 mr-2 text-[12px] bg-[#F4D674] hover:bg-yellow-500 focus:outline-none focus:shadow-outline-yellow active:bg-yellow-600 rounded w-24"
+                  onClick={swalCommit}
+                >
+                  Commit
+                </button>
+              )}
+            </div>
 
             <button
               className="p-2 mt-2 mb-1 mr-2 text-[12px] bg-[#F4D674] hover:bg-yellow-500 focus:outline-none focus:shadow-outline-yellow active:bg-yellow-600 rounded w-24"
