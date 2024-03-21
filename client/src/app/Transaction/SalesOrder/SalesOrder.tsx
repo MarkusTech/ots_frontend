@@ -3705,15 +3705,6 @@ export default function SalesOrder() {
                               className="w-24 md:w-32 px-2 py-1 border rounded"
                               onChange={(e) => setFromDate(e.target.value)}
                             />
-                            {/* <label htmlFor="toDate" className="ml-4 mr-2">
-                              To:
-                            </label>
-                            <input
-                              id="toDate"
-                              type="date"
-                              className="w-24 md:w-32 px-2 py-1 border rounded"
-                              onChange={(e) => setToDate(e.target.value)}
-                            /> */}
                             <p>:&nbsp;</p>
                             <button
                               className="p-1 mt-2 mb-1 mr-2 text-xs bg-yellow-400 hover:bg-yellow-500 focus:outline-none focus:shadow-outline-yellow active:bg-yellow-600 rounded w-24"
