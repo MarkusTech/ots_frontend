@@ -169,7 +169,22 @@ const getAllCommitedDetails = async (req, res) => {
 };
 
 const commit = async (req, res) => {
-  res.send("commit");
+  const { DraftNum } = req.body;
+  try {
+    const result = await sqlConn.query`EXEC dbo.SP_COMMIT_SO ${DraftNum}`;
+    const DocNumber =
+      await sqlConn.query`SELECT DocNum FROM SO_Header WHERE DraftNum= ${DraftNum}`;
+
+    const data = DocNumber.recordset[0];
+    res.status(200).json({
+      success: true,
+      message: "Successfully Commited!",
+      data,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ erro: "Internal Server Error" });
+  }
 };
 
 export {
