@@ -168,9 +168,14 @@ const getAllCommitedDetails = async (req, res) => {
   }
 };
 
+const commit = async (req, res) => {
+  res.send("commit");
+};
+
 export {
   saveCommitHeader,
   saveCommitDetails,
   getAllCommitedHeader,
   getAllCommitedDetails,
+  commit,
 };
