@@ -712,9 +712,11 @@ export default function SalesOrder() {
     });
   };
 
-  const saveCommit = () => {
-    console.log(`Hello World!`);
-    Swal.fire("Save!", "", "info");
+  const saveCommit = async () => {
+    // const draftNum = draftNumber;
+    // const commit = axios.put("http://localhost:3000/commit", {
+    //   DraftNum: draftNum,
+    // });
   };
 
   const swalCommit = () => {
