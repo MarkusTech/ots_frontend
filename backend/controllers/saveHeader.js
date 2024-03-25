@@ -42,9 +42,16 @@ const saveHeader = async (req, res) => {
     const isoPostingDate = new Date(PostingDate).toISOString();
     const isoDocDate = new Date(DocDate).toISOString();
 
+    const sqlDraftNum =
+      await sqlConn.query`Select MAX(DraftNum) from SO_Header`;
+    const totalDraftNum = (sqlDraftNum += 1);
+    console.log(totalDraftNum);
+
     const result = await sqlConn.query``;
   } catch (error) {
     console.log(error);
     res.status(500).json({ error: "Internal Server Error" });
   }
 };
+
+export { saveHeader };
