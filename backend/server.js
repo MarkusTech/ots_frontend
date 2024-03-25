@@ -16,6 +16,7 @@ import { v4 as uuidv4 } from "uuid";
 import getSingleDraftRoutes from "./routes/getSingleDraftRoutes.js";
 import getDetailsRoutes from "./routes/getDetailsRoutes.js";
 import saveCommitRoutes from "./routes/saveCommitRoutes.js";
+import saveHeaderRoutes from "./routes/saveHeaderRoutes.js";
 
 // dotenv config
 dotenv.config();
@@ -46,6 +47,7 @@ app.get("/api/v1/generateUniqueId", (req, res) => {
 app.use("/api/v1", getSingleDraftRoutes);
 app.use("/api/v1", getDetailsRoutes);
 app.use("/api/v1", saveCommitRoutes);
+app.use("/api/v1", saveHeaderRoutes);
 
 sqlConn.connect((err) => {
   if (err) {
