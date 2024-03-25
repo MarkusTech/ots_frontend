@@ -4,6 +4,7 @@ const saveHeader = async (req, res) => {
   const {
     EntryNum,
     DraftNum,
+    DocNum,
     PostingDate,
     DocDate,
     CustomerCode,
@@ -26,7 +27,7 @@ const saveHeader = async (req, res) => {
     COD,
     TotalAmtBefTax,
     TotalTax,
-    TotalAmtTax,
+    TotalAmtAftTax,
     SCPWDDiscTotal,
     TotalAmtDue,
     Remarks,
@@ -39,11 +40,33 @@ const saveHeader = async (req, res) => {
   } = req.body;
 
   try {
+    const isoPostingDate = new Date(PostingDate).toISOString();
+    const isoDocDate = new Date(DocDate).toISOString();
+    // validating the last number of draftNumber
     const draftNumResult =
       await sqlConn.query`SELECT MAX(DraftNum) AS maxDraftNum FROM SO_Header`;
     const maxDraftNum = parseInt(draftNumResult.recordset[0].maxDraftNum);
     const incrementedDraftNum = maxDraftNum + 1;
-    res.send(incrementedDraftNum.toString());
+    // res.send(incrementedDraftNum.toString());
+    const saveDraftNum = incrementedDraftNum.toString();
+
+    // inserting value to the header
+    const saveHeaderValues = await sqlConn.query`INSERT INTO SO_Header
+    ([EntryNum], [DraftNum], [DocNum], [PostingDate], [DocDate], [CustomerCode], [CustomerName],
+    [WalkInName], [ShippingAdd], [TIN], [Reference], [SCPWDIdNo], [Branch], [DocStat], [BaseDoc],
+    [Cash], [DebitCard], [CreditCard], [ODC], [PDC], [OnlineTransfer], [OnAccount], [COD],
+    [TotalAmtBefTax], [TotalTax], [TotalAmtAftTax], [SCPWDDiscTotal], [TotalAmtDue], [Remarks],
+    [CreatedBy], [DateCreated], [UpdatedBy], [DateUpdated], [SalesCrew], [ForeignName])
+    VALUES
+    (${EntryNum}, ${saveDraftNum},${DocNum}, ${isoPostingDate}, ${isoDocDate}, ${CustomerCode}, ${CustomerName},
+    ${WalkInName}, ${ShippingAdd}, ${TIN}, ${Reference}, ${SCPWDIdNo}, ${Branch}, ${DocStat}, ${BaseDoc},
+    ${Cash}, ${DebitCard}, ${CreditCard}, ${ODC}, ${PDC}, ${OnlineTransfer}, ${OnAccount}, ${COD},
+    ${TotalAmtBefTax}, ${TotalTax}, ${TotalAmtAftTax}, ${SCPWDDiscTotal}, ${TotalAmtDue}, ${Remarks},
+    ${CreatedBy}, ${DateCreated}, ${UpdatedBy}, ${DateUpdated}, ${SalesCrew}, ${ForeignName})`;
+
+    const result = sqlConn.query`Select DraftNum from SO_Header Where EntryNum = ${EntryNum}`;
+
+    res.send(result);
   } catch (error) {
     console.log(error);
     res.status(500).json({ error: "Internal Server Error" });
