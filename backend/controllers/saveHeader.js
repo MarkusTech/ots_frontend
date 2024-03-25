@@ -64,12 +64,10 @@ const saveHeader = async (req, res) => {
     ${TotalAmtBefTax}, ${TotalTax}, ${TotalAmtAftTax}, ${SCPWDDiscTotal}, ${TotalAmtDue}, ${Remarks},
     ${CreatedBy}, ${DateCreated}, ${UpdatedBy}, ${DateUpdated}, ${SalesCrew}, ${ForeignName})`;
 
-    const result = sqlConn.query`Select DraftNum from SO_Header Where EntryNum = ${EntryNum}`;
-
     res.status(200).json({
       success: true,
       message: "Header Successfully Save",
-      result: result.recordset,
+      saveDraftNum,
     });
   } catch (error) {
     console.log(error);
