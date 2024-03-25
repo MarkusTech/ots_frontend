@@ -216,7 +216,7 @@ export default function SalesOrder() {
       if (result.isConfirmed) {
         Swal.fire("Saved!", "", "success");
         const axiosInstance = axios.create({
-          baseURL: "http://172.16.10.217:3002",
+          baseURL: "http://172.16.10.169:5000/api/v1",
           headers: {
             "Content-Type": "application/json",
           },
@@ -260,7 +260,7 @@ export default function SalesOrder() {
         };
 
         axiosInstance
-          .post("/so-header", saveHeaderDetails)
+          .post("/header", saveHeaderDetails)
           .then((response) => {
             console.log("Data sent successfully:", response.data);
 
@@ -309,6 +309,7 @@ export default function SalesOrder() {
                   .post(detailsPostAPI, saveDetails)
                   .then((response) => {
                     console.log("Data sent successfully:", response.data);
+                    setIsSaved(true);
                   })
                   .catch((error) => {
                     console.error("Error sending data:", error);
@@ -323,11 +324,11 @@ export default function SalesOrder() {
           })
           .catch((error) => {
             console.error("Error sending data:", error);
-            Swal.fire(
-              "Internal Server Error, Contact MIS Department",
-              "",
-              "error"
-            );
+            // Swal.fire(
+            //   "Internal Server Error, Contact MIS Department",
+            //   "",
+            //   "error"
+            // );
           });
       } else if (result.isDenied) {
         Swal.fire("Draft is not saved", "", "info");
