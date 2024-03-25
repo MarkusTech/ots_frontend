@@ -263,6 +263,7 @@ export default function SalesOrder() {
           .post("/header", saveHeaderDetails)
           .then((response) => {
             console.log("Data sent successfully:", response.data);
+            setIsSaved(true);
 
             // Getting Response Value
             const responseData = response.data;
@@ -309,7 +310,6 @@ export default function SalesOrder() {
                   .post(detailsPostAPI, saveDetails)
                   .then((response) => {
                     console.log("Data sent successfully:", response.data);
-                    setIsSaved(true);
                   })
                   .catch((error) => {
                     console.error("Error sending data:", error);
