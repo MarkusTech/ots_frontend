@@ -39,15 +39,17 @@ const saveHeader = async (req, res) => {
   } = req.body;
 
   try {
-    const isoPostingDate = new Date(PostingDate).toISOString();
-    const isoDocDate = new Date(DocDate).toISOString();
+    // const sqlDraftNumResult =
+    //   await sqlConn.query`SELECT MAX(DraftNum)FROM SO_Header`;
+    // const maxDraftNum = sqlDraftNumResult[0].DraftNum;
+    // const totalDraftNum = maxDraftNum + 1;
+    // res.send(totalDraftNum.toString());
 
-    const sqlDraftNum =
-      await sqlConn.query`Select MAX(DraftNum) from SO_Header`;
-    const totalDraftNum = (sqlDraftNum += 1);
-    console.log(totalDraftNum);
-
-    const result = await sqlConn.query``;
+    const draftNumResult =
+      await sqlConn.query`SELECT MAX(DraftNum) AS maxDraftNum FROM SO_Header`;
+    const maxDraftNum = parseInt(draftNumResult.recordset[0].maxDraftNum);
+    const incrementedDraftNum = maxDraftNum + 1;
+    res.send(incrementedDraftNum.toString());
   } catch (error) {
     console.log(error);
     res.status(500).json({ error: "Internal Server Error" });
