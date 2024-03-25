@@ -66,7 +66,11 @@ const saveHeader = async (req, res) => {
 
     const result = sqlConn.query`Select DraftNum from SO_Header Where EntryNum = ${EntryNum}`;
 
-    res.send(result);
+    res.status(200).json({
+      success: true,
+      message: "Header Successfully Save",
+      result: result.recordset,
+    });
   } catch (error) {
     console.log(error);
     res.status(500).json({ error: "Internal Server Error" });
