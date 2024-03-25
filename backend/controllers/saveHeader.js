@@ -39,12 +39,6 @@ const saveHeader = async (req, res) => {
   } = req.body;
 
   try {
-    // const sqlDraftNumResult =
-    //   await sqlConn.query`SELECT MAX(DraftNum)FROM SO_Header`;
-    // const maxDraftNum = sqlDraftNumResult[0].DraftNum;
-    // const totalDraftNum = maxDraftNum + 1;
-    // res.send(totalDraftNum.toString());
-
     const draftNumResult =
       await sqlConn.query`SELECT MAX(DraftNum) AS maxDraftNum FROM SO_Header`;
     const maxDraftNum = parseInt(draftNumResult.recordset[0].maxDraftNum);
