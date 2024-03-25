@@ -1,3 +1,5 @@
+import sqlConn from "../config/db.js";
+
 const saveHeader = async (req, res) => {
   const {
     EntryNum,
@@ -39,6 +41,8 @@ const saveHeader = async (req, res) => {
   try {
     const isoPostingDate = new Date(PostingDate).toISOString();
     const isoDocDate = new Date(DocDate).toISOString();
+
+    const result = await sqlConn.query``;
   } catch (error) {
     console.log(error);
     res.status(500).json({ error: "Internal Server Error" });
