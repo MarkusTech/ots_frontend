@@ -763,11 +763,6 @@ export default function SalesOrder() {
         icon: "error",
         text: "Please make sure all products are available",
       });
-    } else if (validateTable[0]["inventoryStatus"] == "") {
-      Swal.fire({
-        icon: "error",
-        text: "Please Input a valid Quantity",
-      });
     } else if (
       isPaymentCash == "N" &&
       isPaymentCreditCard == "N" &&
@@ -796,10 +791,19 @@ export default function SalesOrder() {
 
   const saveCommit = async () => {
     const draftNum = draftNumber;
-    await axios.put("http://localhost:5000/api/v1/final-commit", {
-      DraftNum: draftNum,
-    });
-    console.log(draftNum);
+    try {
+      await axios.put("http://localhost:5000/api/v1/final-commit", {
+        DraftNum: draftNum,
+      });
+      Swal.fire("Successfully Commited", "", "info");
+    } catch (error) {
+      console.error("Error updating draft:", error);
+      Swal.fire("Error!", "Failed to update draft", "error");
+    }
+    // await axios.put("http://localhost:5000/api/v1/final-commit", {
+    //   DraftNum: draftNum,
+    // });
+    // console.log(draftNum);
   };
 
   const swalCommit = () => {
