@@ -437,6 +437,7 @@ export default function SalesOrder() {
       }
     }
 
+    setIsCommited(true);
     // Inventory Status
     let countStatusInventory = 0;
 
@@ -714,7 +715,7 @@ export default function SalesOrder() {
     });
   };
 
-  handleSaveCommit = async () => {
+  const handleSaveCommit = async () => {
     const validateTable = [...tableData];
 
     const finalTotalListArr = [...finalTotalList];
@@ -794,10 +795,11 @@ export default function SalesOrder() {
   };
 
   const saveCommit = async () => {
-    // const draftNum = draftNumber;
-    // const commit = axios.put("http://localhost:3000/commit", {
-    //   DraftNum: draftNum,
-    // });
+    const draftNum = draftNumber;
+    await axios.put("http://localhost:5000/api/v1/final-commit", {
+      DraftNum: draftNum,
+    });
+    console.log(draftNum);
   };
 
   const swalCommit = () => {
@@ -1024,6 +1026,7 @@ export default function SalesOrder() {
       DocDate: docDate,
       CreatedBy: createdBy,
     });
+    setIsCommited(true);
 
     // Header DraftData
     const draftData = await axios.get(
@@ -3716,7 +3719,7 @@ export default function SalesOrder() {
               {isCommited ? (
                 <button
                   className="p-2 mt-2 mb-1 mr-2 text-[12px] bg-[#F4D674] hover:bg-yellow-500 focus:outline-none focus:shadow-outline-yellow active:bg-yellow-600 rounded w-24"
-                  onClick={saveCommit}
+                  onClick={handleSaveCommit}
                 >
                   Commit
                 </button>

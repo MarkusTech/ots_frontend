@@ -31,3 +31,19 @@ const onAddHeader = async () => {
   setCustomerDataList(customers.data);
   // setTodayDate(manilaDate);
 };
+
+const saveCommit = async () => {
+  const draftNum = draftNumber;
+  try {
+    await axios.put("http://localhost:5000/api/v1/final-commit", {
+      DraftNum: draftNum,
+    });
+    console.log(draftNum);
+    // Show success message using SweetAlert
+    swal("Success!", "Draft updated successfully", "success");
+  } catch (error) {
+    console.error("Error updating draft:", error);
+    // Show error message using SweetAlert
+    swal("Error!", "Failed to update draft", "error");
+  }
+};
