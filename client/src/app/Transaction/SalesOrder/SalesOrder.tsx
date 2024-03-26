@@ -816,7 +816,6 @@ export default function SalesOrder() {
 
   const swalCommit = () => {
     Swal.fire("Need To Save as a Draft first!", "", "info");
-    // setIsCommited(true);
   };
 
   // --------------------------------------- End of Product Details insertion ---------------------------------------
