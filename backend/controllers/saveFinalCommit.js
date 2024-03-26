@@ -14,7 +14,7 @@ const saveCommit = async (req, res) => {
     res.status(200).json({
       success: true,
       message: "Commited Successfully",
-      result,
+      incrementedDraftNum,
     });
   } catch (error) {
     console.log(error);
