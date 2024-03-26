@@ -2734,7 +2734,7 @@ export default function SalesOrder() {
             </div>
           </div>
           <div className="grid grid-cols-2">
-            <label htmlFor="entrynumber">Document Date</label>
+            <label htmlFor="docdate">Document Date</label>
             <div>
               <input type="text" value={todayDate} readOnly />
             </div>
