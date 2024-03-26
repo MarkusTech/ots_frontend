@@ -3541,7 +3541,7 @@ export default function SalesOrder() {
             </div>
           </div>
           <div className="grid grid-cols-2">
-            <label htmlFor="documentnumber">Sales Crew</label>
+            <label htmlFor="salescrew">Sales Crew</label>
             <div>
               <select
                 className="selections"
@@ -3559,7 +3559,7 @@ export default function SalesOrder() {
             </div>
           </div>
           <div className="grid grid-cols-2">
-            <label htmlFor="documentnumber">Remarks</label>
+            <label htmlFor="remarks">Remarks</label>
             <div>
               <textarea
                 name="remarks"
