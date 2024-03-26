@@ -2568,7 +2568,7 @@ export default function SalesOrder() {
 
             {/* need to edit */}
             <div className="grid grid-cols-2">
-              <label className="" htmlFor="entrynumber">
+              <label className="" htmlFor="foreignName">
                 Foreign Name
               </label>
               <div>
