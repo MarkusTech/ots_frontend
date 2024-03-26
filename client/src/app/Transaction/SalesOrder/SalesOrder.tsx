@@ -2740,13 +2740,13 @@ export default function SalesOrder() {
             </div>
           </div>
           <div className="grid grid-cols-2">
-            <label htmlFor="entrynumber">Posting Date</label>
+            <label htmlFor="postDate">Posting Date</label>
             <div>
               <input type="text" value={todayDate} readOnly />
             </div>
           </div>
           <div className="grid grid-cols-2">
-            <label htmlFor="entrynumber">Delivery Date</label>
+            <label htmlFor="deliveryDate">Delivery Date</label>
             <div>
               <input type="date" />
             </div>
@@ -3407,7 +3407,7 @@ export default function SalesOrder() {
         <div className="w-[300px] ">
           <div className="grid grid-cols-2">
             {/* ------------------------ Mode of Payment! ------------------------- */}
-            <label htmlFor="documentnumber">Mode of Payment:</label>
+            <label htmlFor="modeofpayment">Mode of Payment:</label>
             <div className="">
               <div className="flex justify-start gap-2 w-[100px]">
                 <input
@@ -3504,7 +3504,7 @@ export default function SalesOrder() {
           {/* End of mode of payment */}
 
           <div className="grid grid-cols-2">
-            <label htmlFor="documentnumber">Mode of Releasing</label>
+            <label htmlFor="moderel">Mode of Releasing</label>
             <div>
               <select
                 className="selections"
