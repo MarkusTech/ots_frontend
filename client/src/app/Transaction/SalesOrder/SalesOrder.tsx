@@ -799,9 +799,14 @@ export default function SalesOrder() {
       if (result.isConfirmed) {
         const draftNum = draftNumber;
         try {
-          axios.put("http://localhost:5000/api/v1/final-commit", {
-            DraftNum: draftNum,
-          });
+          axios
+            .put("http://localhost:5000/api/v1/final-commit", {
+              DraftNum: draftNum,
+            })
+            .then((response) => {
+              const responseData = response.data.incrementedDraftNum;
+              console.log(responseData);
+            });
           Swal.fire("Successfully Commited", "", "success");
         } catch (error) {
           console.error("Error updating draft:", error);
