@@ -265,7 +265,7 @@ export default function SalesOrder() {
             console.log("Data sent successfully:", response.data);
             setIsSaved(true);
 
-            // Getting Response Value
+            // Getting Response Value and set DraftNumber
             const responseData = response.data;
             const headerValue = responseData.saveDraftNum;
 
