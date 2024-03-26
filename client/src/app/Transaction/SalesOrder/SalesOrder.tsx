@@ -2714,7 +2714,7 @@ export default function SalesOrder() {
             )}
           </div>
           <div className="grid grid-cols-2">
-            <label htmlFor="documentnumber">Draft Number</label>
+            <label htmlFor="draftNumber">Draft Number</label>
             <div>
               <input
                 type="text"
