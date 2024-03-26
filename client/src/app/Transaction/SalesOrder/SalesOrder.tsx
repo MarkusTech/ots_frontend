@@ -790,20 +790,28 @@ export default function SalesOrder() {
   };
 
   const saveCommit = async () => {
-    const draftNum = draftNumber;
-    try {
-      await axios.put("http://localhost:5000/api/v1/final-commit", {
-        DraftNum: draftNum,
-      });
-      Swal.fire("Successfully Commited", "", "info");
-    } catch (error) {
-      console.error("Error updating draft:", error);
-      Swal.fire("Error!", "Failed to update draft", "error");
-    }
-    // await axios.put("http://localhost:5000/api/v1/final-commit", {
-    //   DraftNum: draftNum,
-    // });
-    // console.log(draftNum);
+    Swal.fire({
+      title: "Do you want to Commit?",
+      showDenyButton: true,
+      confirmButtonText: "Yes",
+      denyButtonText: `No`,
+    }).then((result) => {
+      if (result.isConfirmed) {
+        const draftNum = draftNumber;
+        try {
+          axios.put("http://localhost:5000/api/v1/final-commit", {
+            DraftNum: draftNum,
+          });
+          Swal.fire("Successfully Commited", "", "success");
+        } catch (error) {
+          console.error("Error updating draft:", error);
+          Swal.fire("Error!", "Failed to update draft", "error");
+        }
+      } else if (result.isDenied) {
+        // Show info message
+        Swal.fire("Not Commited", "", "info");
+      }
+    });
   };
 
   const swalCommit = () => {
