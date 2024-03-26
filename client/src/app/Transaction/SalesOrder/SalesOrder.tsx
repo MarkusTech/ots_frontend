@@ -3575,7 +3575,7 @@ export default function SalesOrder() {
         <div className="text-right w-full grid justify-end">
           <div className="w-[440px] ">
             <div className="grid grid-cols-2 text-right">
-              <label htmlFor="documentnumber" className="text-right">
+              <label htmlFor="totAmountBefVat" className="text-right">
                 Total Amount Before VAT
               </label>
               <div>
@@ -3583,25 +3583,25 @@ export default function SalesOrder() {
               </div>
             </div>
             <div className="grid grid-cols-2">
-              <label htmlFor="documentnumber">Total VAT</label>
+              <label htmlFor="totalVat">Total VAT</label>
               <div>
                 <input value={totalVat} type="text" readOnly />
               </div>
             </div>
             <div className="grid grid-cols-2">
-              <label htmlFor="documentnumber">Total After VAT</label>
+              <label htmlFor="totalAftVat">Total After VAT</label>
               <div>
                 <input value={totalBeforeVat} type="text" readOnly />
               </div>
             </div>
             <div className="grid grid-cols-2">
-              <label htmlFor="documentnumber">SC/PWD Discount Total</label>
+              <label htmlFor="PwdDisTotal">SC/PWD Discount Total</label>
               <div>
                 <input value={SCPWDdata} type="text" readOnly />
               </div>
             </div>
             <div className="grid grid-cols-2">
-              <label htmlFor="documentnumber">Total Amount Due</label>
+              <label htmlFor="totAmtDue">Total Amount Due</label>
               <div>
                 <input value={totalAmoutDueData} type="text" readOnly />
               </div>
