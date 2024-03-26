@@ -267,7 +267,9 @@ export default function SalesOrder() {
 
             // Getting Response Value
             const responseData = response.data;
-            const headerValue = responseData.header[0][""];
+            const headerValue = responseData.saveDraftNum;
+            console.log(headerValue);
+
             setFormData((prevFormData) => ({
               ...prevFormData,
               DraftNum: headerValue.toString(),
