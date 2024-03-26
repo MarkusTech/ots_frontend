@@ -105,6 +105,7 @@ export default function SalesOrder() {
   // -------------------------------------- <WMR CODE> Header Insertion --------------------------------------
   const backendAPI = "http://172.16.10.169:5000";
 
+  const [docNumber, setDocNumber] = useState("0");
   const [walkInCustomer, setWalkingCustomer] = useState("");
   const [customerReference, setCustomerReference] = useState("");
   const [remarksField, setRemarksField] = useState("");
@@ -806,6 +807,8 @@ export default function SalesOrder() {
             .then((response) => {
               const responseData = response.data.incrementedDraftNum;
               console.log(responseData);
+              setDocNumber(responseData);
+              //
             });
           Swal.fire("Successfully Commited", "", "success");
         } catch (error) {
@@ -1087,6 +1090,8 @@ export default function SalesOrder() {
     });
     setTodayDate(formattedDate);
     // ----------- End Date --------------
+
+    setDocNumber(apiData.DocNum);
 
     // payment method
     const Yes = "Y";
@@ -2780,9 +2785,9 @@ export default function SalesOrder() {
           <div className="grid grid-cols-2">
             <label htmlFor="documentnumber">Document Number</label>
             <div>
-              <input value={0} type="text" />
+              <input value={docNumber !== "0" ? docNumber : 0} type="text" />
             </div>
-
+            {/*  */}
             {/* Document Number */}
             {showDoc && (
               <Draggable>
