@@ -3722,16 +3722,26 @@ export default function SalesOrder() {
               {isSaved ? (
                 // Show the "Update" button when the form is saved
                 <button
-                  className="p-2 mt-2 mb-1 text-[12px] bg-[#F4D674] hover:bg-yellow-500 focus:outline-none focus:shadow-outline-yellow active:bg-yellow-600 rounded w-24"
+                  className={`p-2 mt-2 mb-1 text-[12px] ${
+                    isDocNumberGreaterThanZero
+                      ? "bg-red-300 cursor-not-allowed"
+                      : "bg-[#F4D674] hover:bg-yellow-500 focus:outline-none focus:shadow-outline-yellow active:bg-yellow-600"
+                  } rounded w-24`}
                   onClick={handleUpdate}
+                  disabled={isDocNumberGreaterThanZero}
                 >
                   Update draft
                 </button>
               ) : (
                 // Show the "Save as draft" button when the form is not saved
                 <button
-                  className="p-2 mt-2 mb-1 text-[12px] bg-[#F4D674] hover:bg-yellow-500 focus:outline-none focus:shadow-outline-yellow active:bg-yellow-600 rounded w-24"
+                  className={`p-2 mt-2 mb-1 text-[12px] ${
+                    isDocNumberGreaterThanZero
+                      ? "bg-red-300 cursor-not-allowed"
+                      : "bg-[#F4D674] hover:bg-yellow-500 focus:outline-none focus:shadow-outline-yellow active:bg-yellow-600"
+                  } rounded w-24`}
                   onClick={handleSubmit}
+                  disabled={isDocNumberGreaterThanZero}
                 >
                   Save as draft
                 </button>
@@ -3741,16 +3751,26 @@ export default function SalesOrder() {
             <div>
               {isCommited ? (
                 <button
-                  className="p-2 mt-2 mb-1 mr-2 text-[12px] bg-[#F4D674] hover:bg-yellow-500 focus:outline-none focus:shadow-outline-yellow active:bg-yellow-600 rounded w-24"
+                  className={`p-2 mt-2 mb-1 mr-2 text-[12px] ${
+                    isDocNumberGreaterThanZero
+                      ? "bg-red-300 cursor-not-allowed"
+                      : "bg-[#F4D674] hover:bg-yellow-500 focus:outline-none focus:shadow-outline-yellow active:bg-yellow-600"
+                  } rounded w-24`}
                   onClick={handleSaveCommit}
+                  disabled={isDocNumberGreaterThanZero}
                 >
                   Commit
                 </button>
               ) : (
-                // display an sweet alert
+                // display a sweet alert
                 <button
-                  className="p-2 mt-2 mb-1 mr-2 text-[12px] bg-[#F4D674] hover:bg-yellow-500 focus:outline-none focus:shadow-outline-yellow active:bg-yellow-600 rounded w-24"
+                  className={`p-2 mt-2 mb-1 mr-2 text-[12px] ${
+                    isDocNumberGreaterThanZero
+                      ? "bg-red-300 cursor-not-allowed"
+                      : "bg-[#F4D674] hover:bg-yellow-500 focus:outline-none focus:shadow-outline-yellow active:bg-yellow-600"
+                  } rounded w-24`}
                   onClick={swalCommit}
+                  disabled={isDocNumberGreaterThanZero}
                 >
                   Commit
                 </button>
