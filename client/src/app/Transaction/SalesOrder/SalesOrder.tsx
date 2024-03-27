@@ -12,6 +12,7 @@ export default function SalesOrder() {
 
   const [isSaved, setIsSaved] = useState(false); // to hide handle submit
   const [isCommited, setIsCommited] = useState(false); // to hide commit
+  const [isDocNumAboveZero, setIsDocNumAboveZero] = useState(false);
 
   const [customerList, setCustomerDataList] = useState([]);
   // Validate Customer Code to Disabled Walkin Customer field
