@@ -12,7 +12,6 @@ export default function SalesOrder() {
 
   const [isSaved, setIsSaved] = useState(false); // to hide handle submit
   const [isCommited, setIsCommited] = useState(false); // to hide commit
-  const [isEnabled, setIsEnabled] = useState(false);
 
   const [customerList, setCustomerDataList] = useState([]);
   // Validate Customer Code to Disabled Walkin Customer field
@@ -107,6 +106,8 @@ export default function SalesOrder() {
   const backendAPI = "http://172.16.10.169:5000";
 
   const [docNumber, setDocNumber] = useState("0");
+  const isDocNumberGreaterThanZero = parseInt(docNumber) > 0; // if DocNum is Greater Than Zero the commit and update button will be disabled
+
   const [walkInCustomer, setWalkingCustomer] = useState("");
   const [customerReference, setCustomerReference] = useState("");
   const [remarksField, setRemarksField] = useState("");
