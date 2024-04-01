@@ -92,6 +92,7 @@ export default function SalesOrder() {
   // print mode of releasing and payment
   const [modeOfPaymentPrint, setModeOfPaymentPrint] = useState("");
   const [modeOfReleasingPrint, setModeOfReleasingPrint] = useState("");
+  const [customerPrint, setCustomerPrint] = useState("");
 
   const [ccstatus, setccstatus] = useState(false);
   // End of Payment useState
@@ -1052,6 +1053,7 @@ export default function SalesOrder() {
       DocDate: docDate,
       CreatedBy: createdBy,
     });
+    setCustomerPrint(customerName);
     setIsCommited(true);
 
     // Header DraftData
@@ -2545,7 +2547,7 @@ export default function SalesOrder() {
         <h4>DC-SBI GENSAN</h4>
         <h3>SALES ORDER STUB </h3>
         <h1>${docNumber}</h1>
-        <h4>WALK-IN</h4>
+        <h4>${customerPrint}</h4>
         <h4>${modeOfPaymentPrint}</h4>
         <h4>${modeOfReleasingPrint}</h4>
         <h4>DGCD</h4>
