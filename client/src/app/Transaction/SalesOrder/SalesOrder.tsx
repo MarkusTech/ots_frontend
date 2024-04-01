@@ -88,6 +88,7 @@ export default function SalesOrder() {
   const [isCheckedOnlineTransfer, setIsCheckedOnlineTransfer] = useState(false);
   const [isCheckedOnAccount, setIsCheckedOnAccount] = useState(false);
   const [isCheckedCashOnDel, setIsCheckedCashOnDel] = useState(false);
+  const [modeOfPaymentPrint, setModeOfPaymentPrint] = useState("");
 
   const [ccstatus, setccstatus] = useState(false);
   // End of Payment useState
@@ -1100,21 +1101,29 @@ export default function SalesOrder() {
     const Yes = "Y";
     if (draftData.data.Cash == Yes) {
       setIsCheckedCash(true);
+      setModeOfPaymentPrint("Cash");
     } else if (draftData.data.CreditCard == Yes) {
       setIsCheckedCreditCard(true);
+      setModeOfPaymentPrint("CreditCard");
     } else if (draftData.data.DebitCard == Yes) {
       setIsCheckedDebit(true);
-      draftData;
+      setModeOfPaymentPrint("DebitCard");
+      // draftData;
     } else if (draftData.data.ODC == Yes) {
       setIsCheckedDatedCheck(true);
+      setModeOfPaymentPrint("ODC");
     } else if (draftData.data.PDC == Yes) {
       setIsCheckedPDC(true);
+      setModeOfPaymentPrint("PDC");
     } else if (draftData.data.OnlineTransfer == Yes) {
       setIsCheckedOnlineTransfer(true);
+      setModeOfPaymentPrint("OnlineTransfer");
     } else if (draftData.data.OnAccount == Yes) {
       setIsCheckedOnAccount(true);
+      setModeOfPaymentPrint("OnAccount");
     } else if (draftData.data.COD) {
       setIsCheckedCashOnDel(true);
+      setModeOfPaymentPrint("COD");
     } else {
       Swal.fire("Please Select Payment Method!", "", "info");
     }
@@ -2529,7 +2538,7 @@ export default function SalesOrder() {
         <h3>SALES ORDER STUB </h3>
         <h1>${docNumber}</h1>
         <h4>WALK-IN</h4>
-        <h4>CASH</h4>
+        <h4>${modeOfPaymentPrint}</h4>
         <h4>STANDARD-PICK-UP</h4>
         <h4>DGCD</h4>
         <h4>${selectedSalesCrew}</h4>
