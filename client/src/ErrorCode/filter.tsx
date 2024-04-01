@@ -41,4 +41,28 @@ export default function DateFilter() {
   );
 }
 
+// const PrintReceipt = () => {
+//   const printWindow = window.open("", "_blank");
+
+//   if (printWindow) {
+//     printWindow.document.write(`
+//     <div className="text-center">
+//       <h4>SAFETYBUILD INC</h4>
+//       <h4>DC-SBI GENSAN</h4>
+//       <h3>SALES ORDER STUB </h3>
+//       <h1>${docNumber}</h1>
+//       <h4>${customerPrint}</h4>
+//       <h4>${modeOfPaymentPrint}</h4>
+//       <h4>${modeOfReleasingPrint}</h4>
+//       <h4>GSCNAPGS</h4>
+//       <h4>${selectedSalesCrew}</h4>
+//       <h4>${totalAmoutDueData}</h4>
+//     </div>
+//   `);
+
+//     printWindow.document.close();
+//     printWindow.print();
+//   }
+// };
+
 // 715
