@@ -1255,6 +1255,7 @@ export default function SalesOrder() {
         .get(`${backendAPI}/api/v1/get-detail/'${jsonDraftNum}'`)
         .then((response) => {
           setJsonDetails(response.data);
+          console.log(jsonDetails);
 
           const newData = response.data.map((item: any) => ({
             draftNumber: item.DraftNum,
@@ -1283,6 +1284,10 @@ export default function SalesOrder() {
 
           // add the data from selected details
           setTableData([...tableData, ...newData]);
+
+          if (newData.length > 0) {
+            setModeOfReleasingPrint(newData[0].modeOfReleasing);
+          }
 
           // to remove 1 row on adding the details
           setTableData((prevData) => prevData.filter((_, index) => index));
@@ -2542,7 +2547,7 @@ export default function SalesOrder() {
         <h1>${docNumber}</h1>
         <h4>WALK-IN</h4>
         <h4>${modeOfPaymentPrint}</h4>
-        <h4>STANDARD-PICK-UP</h4>
+        <h4>${modeOfReleasingPrint}</h4>
         <h4>DGCD</h4>
         <h4>${selectedSalesCrew}</h4>
         <h4>${totalAmoutDueData}</h4>
