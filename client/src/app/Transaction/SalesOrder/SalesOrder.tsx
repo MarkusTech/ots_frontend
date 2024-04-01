@@ -1228,6 +1228,11 @@ export default function SalesOrder() {
     setSearchTerm("");
   };
 
+  const [showPrint, setShowPrint] = useState(false);
+  const handleShowPrint = () => {
+    setShowPrint(!showPrint);
+  };
+
   // ---------------------------------------- Details API ------------------------------------------
   const [jsonDraftNum, setJsonDraftNum] = useState("");
   const [jsonDetails, setJsonDetails] = useState([]); // temporary storage for details
