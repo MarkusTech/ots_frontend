@@ -2508,6 +2508,13 @@ export default function SalesOrder() {
     UpdatedBy: number;
     DateUpdated: string;
   };
+
+  // ------------------------------ Windows Print -------------------------------
+  const PrintReceipt = () => {
+    window.print();
+  };
+
+  // --------------------------- End Windows Print ------------------------------
   // -------------------------------------------------------------------------------
   return (
     <>
