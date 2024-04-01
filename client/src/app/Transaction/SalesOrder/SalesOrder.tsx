@@ -2524,15 +2524,16 @@ export default function SalesOrder() {
     if (printWindow) {
       printWindow.document.write(`
       <div className="text-center">
-        <div>SAFETYBUILD INC</div>
-        <div>DC-SBI GENSAN</div>
-        <div className="font-bold">SALES ORDER STUB</div>
-        <div>29963</div>
-        <div>WALK-IN</div>
-        <div>CASH</div>
-        <div>DGCD</div>
-        <div>${selectedSalesCrew}</div>
-        <div>${totalAmoutDueData}</div>
+        <h4>SAFETYBUILD INC</h4>
+        <h4>DC-SBI GENSAN</h4>
+        <h3>SALES ORDER STUB </h3>
+        <h1>${docNumber}</h1>
+        <h4>WALK-IN</h4>
+        <h4>CASH</h4>
+        <h4>STANDARD-PICK-UP</h4>
+        <h4>DGCD</h4>
+        <h4>${selectedSalesCrew}</h4>
+        <h4>${totalAmoutDueData}</h4>
       </div>
     `);
 
