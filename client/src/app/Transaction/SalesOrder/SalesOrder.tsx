@@ -2535,8 +2535,6 @@ export default function SalesOrder() {
   };
 
   // ------------------------------ Windows Print -------------------------------
-  const price1 = 1890000;
-
   const PrintReceipt = () => {
     const printWindow = window.open("", "_blank");
 
