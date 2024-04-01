@@ -12,6 +12,7 @@ export default function SalesOrder() {
 
   const [isSaved, setIsSaved] = useState(false); // to hide handle submit
   const [isCommited, setIsCommited] = useState(false); // to hide commit
+  const [showPrint, setShowPrint] = useState(false); // to hide print button
 
   const [customerList, setCustomerDataList] = useState([]);
   // Validate Customer Code to Disabled Walkin Customer field
@@ -1228,7 +1229,7 @@ export default function SalesOrder() {
     setSearchTerm("");
   };
 
-  const [showPrint, setShowPrint] = useState(false);
+  // show print
   const handleShowPrint = () => {
     setShowPrint(!showPrint);
   };
@@ -2516,7 +2517,14 @@ export default function SalesOrder() {
 
   // ------------------------------ Windows Print -------------------------------
   const PrintReceipt = () => {
-    window.print();
+    const content = document.querySelector(".draggable-content");
+
+    if (content) {
+      const printWindow = window.open("", "_blank");
+      printWindow.document.write(content.innerHTML);
+      printWindow.document.close();
+      printWindow.print();
+    }
   };
 
   // --------------------------- End Windows Print ------------------------------
@@ -3789,12 +3797,59 @@ export default function SalesOrder() {
               )}
             </div>
 
-            <button
-              className="p-2 mt-2 mb-1 mr-2 text-[12px] bg-[#F4D674] hover:bg-yellow-500 focus:outline-none focus:shadow-outline-yellow active:bg-yellow-600 rounded w-24"
-              // onClick={}
-            >
-              Print
-            </button>
+            {/* ------------------------------------------- Print Button ------------------------------------------ */}
+            <div>
+              <button
+                className="p-2 mt-2 mb-1 mr-2 text-[12px] bg-[#F4D674] hover:bg-yellow-500 focus:outline-none focus:shadow-outline-yellow active:bg-yellow-600 rounded w-24"
+                onClick={handleShowPrint}
+              >
+                Print
+              </button>
+              {showPrint && (
+                <Draggable>
+                  <div
+                    className="bg-white shadow-lg draggable-content"
+                    style={{
+                      border: "1px solid #ccc",
+                      position: "absolute",
+                      top: "20%",
+                      left: "35%",
+                      maxHeight: "700px",
+                      overflowY: "auto",
+                      width: "400px",
+                      height: "400px",
+                    }}
+                  >
+                    <div className="text-right">
+                      <span
+                        onClick={handleShowPrint}
+                        className="cursor-pointer"
+                      >
+                        ❌
+                      </span>
+                    </div>
+                    <div>SAFETYBUILD INC</div>
+                    <div>DC-SBI GENSAN</div>
+                    <div className="bold">SALES ORDER STUB</div>
+                    <div>29963</div>
+                    <div>WALK-IN</div>
+                    <div>CASH</div>
+                    <div>DGCD</div>
+                    <div>ROSE MARIE PANGINAHOG</div>
+                    <div>189,000.00</div>
+                    <br />
+                    <br />
+                    <br />
+                    <button
+                      className="p-2 mt-2 mb-1 mr-2 text-[12px] bg-[#F4D674] hover:bg-yellow-500 focus:outline-none focus:shadow-outline-yellow active:bg-yellow-600 rounded w-24"
+                      onClick={PrintReceipt}
+                    >
+                      Print
+                    </button>
+                  </div>
+                </Draggable>
+              )}
+            </div>
             {/* ------------------------------------------ Search Button ---------------------------------------------- */}
             <div>
               <button
