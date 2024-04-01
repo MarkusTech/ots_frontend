@@ -2516,21 +2516,25 @@ export default function SalesOrder() {
   };
 
   // ------------------------------ Windows Print -------------------------------
+  const price1 = 1890000;
+
   const PrintReceipt = () => {
     const printWindow = window.open("", "_blank");
 
     if (printWindow) {
       printWindow.document.write(`
+      <div className="text-center">
         <div>SAFETYBUILD INC</div>
         <div>DC-SBI GENSAN</div>
-        <div style="font-weight: bold;">SALES ORDER STUB</div>
+        <div className="font-bold">SALES ORDER STUB</div>
         <div>29963</div>
         <div>WALK-IN</div>
         <div>CASH</div>
         <div>DGCD</div>
-        <div>ROSE MARIE PANGINAHOG</div>
-        <div>189,000.00</div>
-      `);
+        <div>${selectedSalesCrew}</div>
+        <div>${totalAmoutDueData}</div>
+      </div>
+    `);
 
       printWindow.document.close();
       printWindow.print();
