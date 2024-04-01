@@ -88,7 +88,10 @@ export default function SalesOrder() {
   const [isCheckedOnlineTransfer, setIsCheckedOnlineTransfer] = useState(false);
   const [isCheckedOnAccount, setIsCheckedOnAccount] = useState(false);
   const [isCheckedCashOnDel, setIsCheckedCashOnDel] = useState(false);
+
+  // print mode of releasing and payment
   const [modeOfPaymentPrint, setModeOfPaymentPrint] = useState("");
+  const [modeOfReleasingPrint, setModeOfReleasingPrint] = useState("");
 
   const [ccstatus, setccstatus] = useState(false);
   // End of Payment useState
