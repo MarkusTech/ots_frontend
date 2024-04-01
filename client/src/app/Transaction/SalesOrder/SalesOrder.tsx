@@ -2559,8 +2559,12 @@ export default function SalesOrder() {
                             font-family: Arial, sans-serif;
                             text-align: center;
                         }
+                        h3{
+                          font-weight: bold;
+                        }
                         h4 {
                             margin: 5px 0;
+                            font-weight: bold;
                         }
                     }
                 </style>
