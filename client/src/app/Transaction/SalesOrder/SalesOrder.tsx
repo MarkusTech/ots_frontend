@@ -113,6 +113,7 @@ export default function SalesOrder() {
 
   const [docNumber, setDocNumber] = useState("0");
   const isDocNumberGreaterThanZero = parseInt(docNumber) > 0; // if DocNum is Greater Than Zero the commit and update button will be disabled
+  const printButtonDisabled = parseInt(docNumber) == 0;
 
   const [walkInCustomer, setWalkingCustomer] = useState("");
   const [customerReference, setCustomerReference] = useState("");
@@ -3830,13 +3831,18 @@ export default function SalesOrder() {
             {/* ------------------------------------------- Print Button ------------------------------------------ */}
             <div>
               <button
-                className="p-2 mt-2 mb-1 mr-2 text-[12px] bg-[#F4D674] hover:bg-yellow-500 focus:outline-none focus:shadow-outline-yellow active:bg-yellow-600 rounded w-24"
-                // onClick={handleShowPrint}
+                className={`p-2 mt-2 mb-1 mr-2 text-[12px] ${
+                  printButtonDisabled
+                    ? "bg-red-300 cursor-not-allowed"
+                    : "bg-[#F4D674] hover:bg-yellow-500 focus:outline-none focus:shadow-outline-yellow active:bg-yellow-600"
+                } rounded w-24`}
+                disabled={printButtonDisabled}
                 onClick={PrintReceipt}
               >
                 Print
               </button>
             </div>
+
             {/* ------------------------------------------ Search Button ---------------------------------------------- */}
             <div>
               <button
