@@ -2548,7 +2548,7 @@ export default function SalesOrder() {
         <h4>${customerPrint}</h4>
         <h4>${modeOfPaymentPrint}</h4>
         <h4>${modeOfReleasingPrint}</h4>
-        <h4>DGCD</h4>
+        <h4>GSCNAPGS</h4>
         <h4>${selectedSalesCrew}</h4>
         <h4>${totalAmoutDueData}</h4>
       </div>
