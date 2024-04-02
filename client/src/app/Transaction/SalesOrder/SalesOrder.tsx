@@ -2940,10 +2940,10 @@ export default function SalesOrder() {
                 <th>Cost</th>
                 <th>Below Cost</th>
                 <th>Mode of Releasing</th>
-                {/* <th>Tracker for Dropship/Back-order</th>
-                <th>Pick up Location</th> */}
                 <th>SC/PWD Discount (Y/N)</th>
                 <th>Gross Total</th>
+                {/* <th>Tracker for Dropship/Back-order</th>
+                <th>Pick up Location</th> */}
               </tr>
             </thead>
             <tbody>
