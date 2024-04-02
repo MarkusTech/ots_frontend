@@ -3188,11 +3188,30 @@ export default function SalesOrder() {
                     {rowData.scPwdDiscount}
                   </td>
                   {/* Gross Total */}
+                  {/* Tracker */}
                   <td>
                     {rowData.quantity == 0
                       ? ""
                       : localCurrency.format(rowData.grossTotal)}
                   </td>
+                  <td>
+                    {rowData.quantity == 0 ? (
+                      ""
+                    ) : (
+                      <div className="flex gap-3 justify-end">
+                        <div>{rowData.modeOfReleasing}</div>
+                        <div className="text-right">
+                          <button
+                            onClick={() => openModRelTable(rowIndex)}
+                            className="bg-[#F0AB00] pr-1 pl-1"
+                          >
+                            =
+                          </button>
+                        </div>
+                      </div>
+                    )}
+                  </td>
+                  {/* ------------------- */}
                 </tr>
               ))}
             </tbody>
