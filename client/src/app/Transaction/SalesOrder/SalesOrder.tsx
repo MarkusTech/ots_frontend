@@ -2536,61 +2536,6 @@ export default function SalesOrder() {
   };
 
   // ------------------------------ Windows Print -------------------------------
-  // const PrintReceipt = () => {
-  //   const printWindow = window.open("", "_blank");
-
-  //   if (printWindow) {
-  //     printWindow.document.write(`
-  //           <!DOCTYPE html>
-  //           <html lang="en">
-  //           <head>
-  //               <meta charset="UTF-8">
-  //               <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  //               <title>Sales Order Stub</title>
-  //               <style>
-  //                   @media print {
-  //                       @page {
-  //                           size: auto;
-  //                           margin: 0mm;
-  //                       }
-  //                       body {
-  //                           margin: 0;
-  //                           padding: 20px;
-  //                           font-family: Arial, sans-serif;
-  //                           text-align: center;
-  //                       }
-  //                       h3{
-  //                         font-weight: bold;
-  //                       }
-  //                       h4 {
-  //                           margin: 5px 0;
-  //                           font-weight: bold;
-  //                       }
-  //                   }
-  //               </style>
-  //           </head>
-  //           <body>
-  //               <div>
-  //                   <h4>SAFETYBUILD INC</h4>
-  //                   <h4>DC-SBI GENSAN</h4>
-  //                   <h3>SALES ORDER STUB </h3>
-  //                   <h1>${docNumber}</h1>
-  //                   <h4>${customerPrint}</h4>
-  //                   <h4>${modeOfPaymentPrint}</h4>
-  //                   <h4>${modeOfReleasingPrint}</h4>
-  //                   <h4>GSCNAPGS</h4>
-  //                   <h4>${selectedSalesCrew}</h4>
-  //                   <h4>${totalAmoutDueData}</h4>
-  //               </div>
-  //           </body>
-  //           </html>
-  //       `);
-
-  //     printWindow.document.close();
-  //     printWindow.print();
-  //   }
-  // };
-
   const PrintReceipt = () => {
     const printWindow = window.open("", "_blank");
 
