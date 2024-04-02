@@ -2959,7 +2959,6 @@ export default function SalesOrder() {
                       <span className="text-md text-red-600">❌</span>
                     </button>
                   </td>
-
                   {/* Item Code */}
                   <td>
                     <div className="flex gap-3 justify-end">
@@ -2976,10 +2975,8 @@ export default function SalesOrder() {
                       </div>
                     </div>
                   </td>
-
                   {/* Item Name */}
                   <td>{rowData.itemName}</td>
-
                   {/* Unit of Measurement */}
                   <td>
                     {/* {rowData.itemCode == 0 */}
@@ -3003,10 +3000,8 @@ export default function SalesOrder() {
                       </div>
                     )}
                   </td>
-
                   {/* UOM Conversion */}
                   <td>{rowData.uom == "" ? "" : rowData.uomConversion}</td>
-
                   {/* Handle Exlude BO */}
                   <td>
                     <select
@@ -3022,7 +3017,6 @@ export default function SalesOrder() {
                       <option value="Y">Y</option>
                     </select>
                   </td>
-
                   {/* Warehouse */}
                   <td>
                     {rowData.uom == "" ? (
@@ -3051,6 +3045,7 @@ export default function SalesOrder() {
                       </div>
                     )}
                   </td>
+                  {/* Quantity */}
                   <td>
                     <input
                       className=" border-l-white border-t-white border-r-white"
@@ -3067,6 +3062,7 @@ export default function SalesOrder() {
                       onClick={handleSelectAll}
                     />
                   </td>
+                  {/* Inventory Status */}
                   <td
                     className={
                       rowData.quantity == 0
@@ -3078,9 +3074,9 @@ export default function SalesOrder() {
                         : ""
                     }
                   >
-                    {/* inventory status */}
                     {rowData.quantity == 0 ? "" : rowData.inventoryStatus}
                   </td>
+                  {/* price */}
                   <td>
                     {rowData.quantity == 0
                       ? ""
@@ -3127,19 +3123,23 @@ export default function SalesOrder() {
                       </div>
                     )}
                   </td>
-
+                  {/* Lower Bound */}
                   <td>
                     {rowData.quantity == 0
                       ? ""
                       : localCurrency.format(rowData.lowerBound)}
                   </td>
+                  {/* tax code */}
                   <td>{rowData.taxCode}</td>
+                  {/* Tax rate */}
                   <td>{rowData.taxCodePercentage}%</td>
+                  {/* Tax Amount */}
                   <td>
                     {rowData.quantity == 0
                       ? ""
                       : localCurrency.format(rowData.taxAmount)}
                   </td>
+                  {/* Below Volume Discount Price */}
                   <td
                     className={
                       rowData.belVolDisPrice == 0 // i change it from "Y" and then swap the color
@@ -3149,7 +3149,9 @@ export default function SalesOrder() {
                   >
                     {rowData.quantity == 0 ? "" : rowData.belVolDisPrice}
                   </td>
+                  {/* Cost */}
                   <td>{Math.floor(rowData.cost).toFixed(2)}</td>
+                  {/* Below Cost */}
                   <td
                     className={
                       rowData.belCost == "Y" ? "bg-red-200" : "bg-green-200"
@@ -3157,6 +3159,7 @@ export default function SalesOrder() {
                   >
                     {rowData.belCost}
                   </td>
+                  {/* Mode Of Releasing */}
                   <td>
                     {rowData.quantity == 0 ? (
                       ""
