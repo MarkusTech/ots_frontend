@@ -2484,42 +2484,6 @@ export default function SalesOrder() {
     }
   });
 
-  // type headerDetails = {
-  //   DraftNum: number;
-  //   EntryNum: string;
-  //   DocNum: number;
-  //   PostingDate: string;
-  //   DocDate: string;
-  //   CustomerCode: string;
-  //   CustomerName: string;
-  //   WalkInName: string;
-  //   ShippingAdd: string;
-  //   TIN: string;
-  //   Reference: string;
-  //   SCPWDIdNo: string;
-  //   Branch: string;
-  //   DocStat: string;
-  //   BaseDoc: number;
-  //   Cash: string;
-  //   CreditCard: string;
-  //   DebitCard: string;
-  //   ODC: string;
-  //   PDC: string;
-  //   OnlineTransfer: string;
-  //   OnAccount: string;
-  //   COD: string;
-  //   TotalAmtBefTax: number;
-  //   TotalTax: number;
-  //   TotalAmtAftTax: number;
-  //   SCPWDDiscTotal: number;
-  //   TotalAmtDue: number;
-  //   Remarks: string;
-  //   CreatedBy: number;
-  //   DateCreated: string;
-  //   UpdatedBy: number;
-  //   DateUpdated: string;
-  // };
-
   // ------------------------------ Windows Print -------------------------------
   const PrintReceipt = () => {
     const printWindow = window.open("", "_blank");
