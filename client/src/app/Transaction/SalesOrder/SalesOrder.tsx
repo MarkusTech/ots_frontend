@@ -2616,10 +2616,17 @@ export default function SalesOrder() {
                         }
                         h3 {
                             font-weight: bold;
+                            margin: 0;
+                            padding: 0;
                         }
                         h4 {
                             margin: 5px 0;
                             font-weight: bold;
+                        }
+                        h1 {
+                          font-size: 80px;
+                          margin: 0;
+                          padding: 0;
                         }
                     }
                 </style>
