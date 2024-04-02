@@ -2484,21 +2484,6 @@ export default function SalesOrder() {
     }
   });
 
-  // ------------- To Remove ------------------
-  const [validateSalesCrew, setValidateSalesCrew] = useState("");
-  const addSalesCrew = (salescrewx: any) => {
-    const arrForsales = [...finalTotalList];
-
-    arrForsales[0] = {
-      ...arrForsales[0],
-      salescrew: salescrewx,
-    };
-
-    setfinalTotalList(arrForsales);
-    setValidateSalesCrew(salescrewx);
-  };
-  // -----------------------------------------
-
   type headerDetails = {
     DraftNum: number;
     EntryNum: string;
