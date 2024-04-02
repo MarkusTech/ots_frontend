@@ -3177,6 +3177,7 @@ export default function SalesOrder() {
                       </div>
                     )}
                   </td>
+                  {/* SC/PWD Discount */}
                   <td
                     className={
                       rowData.scPwdDiscount == "N"
@@ -3186,6 +3187,7 @@ export default function SalesOrder() {
                   >
                     {rowData.scPwdDiscount}
                   </td>
+                  {/* Gross Total */}
                   <td>
                     {rowData.quantity == 0
                       ? ""
