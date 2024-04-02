@@ -2557,6 +2557,10 @@ export default function SalesOrder() {
                           margin: 0;
                           padding: 0;
                         }
+                        p {
+                          margin: 0;
+                          padding: 0;
+                        }
                     }
                 </style>
             </head>
@@ -2569,7 +2573,8 @@ export default function SalesOrder() {
                     <p>${customerPrint}</p>
                     <p>${modeOfPaymentPrint}</p>
                     <p>${modeOfReleasingPrint}</p>
-                    <p>GSCNAPGS</p>
+                    <p>Tracker</p>
+                    <p>SA</p>
                     <p>${selectedSalesCrew}</p>
                     <p>${totalAmoutDueData}</p>
                 </div>
