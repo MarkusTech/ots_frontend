@@ -2536,74 +2536,10 @@ export default function SalesOrder() {
   };
 
   // ------------------------------ Windows Print -------------------------------
-  // const PrintReceipt = () => {
-  //   const printWindow = window.open("", "_blank");
-
-  //   if (printWindow) {
-  //     printWindow.document.write(`
-  //           <!DOCTYPE html>
-  //           <html lang="en">
-  //           <head>
-  //               <meta charset="UTF-8">
-  //               <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  //               <title>Sales Order Stub</title>
-  //               <style>
-  //                   @media print {
-  //                       @page {
-  //                           size: auto;
-  //                           margin: 0mm;
-  //                       }
-  //                       body {
-  //                           margin: 0;
-  //                           padding: 20px;
-  //                           font-family: Arial, sans-serif;
-  //                           text-align: center;
-  //                       }
-  //                       h3 {
-  //                           font-weight: bold;
-  //                           margin: 0;
-  //                           padding: 0;
-  //                       }
-  //                       h4 {
-  //                           margin: 5px 0;
-  //                           font-weight: bold;
-  //                       }
-  //                       h1 {
-  //                         font-size: 80px;
-  //                         margin: 0;
-  //                         padding: 0;
-  //                       }
-  //                   }
-  //               </style>
-  //           </head>
-  //           <body>
-  //               <div>
-  //                   <h4>SAFETYBUILD INC</h4>
-  //                   <h4>DC-SBI GENSAN</h4>
-  //                   <h3>SALES ORDER STUB</h3>
-  //                   <h1>${docNumber}</h1>
-  //                   <h4>${customerPrint}</h4>
-  //                   <h4>${modeOfPaymentPrint}</h4>
-  //                   <h4>${modeOfReleasingPrint}</h4>
-  //                   <h4>GSCNAPGS</h4>
-  //                   <h4>${selectedSalesCrew}</h4>
-  //                   <h4>${totalAmoutDueData}</h4>
-  //               </div>
-  //           </body>
-  //           </html>
-  //       `);
-
-  //     printWindow.document.close();
-  //     printWindow.print();
-  //   }
-  // };
-
   const PrintReceipt = () => {
     const printWindow = window.open("", "_blank");
 
-    if (printWindow && printWindow.location.href === "about:blank") {
-      // Assuming you have variables defined for docNumber, customerPrint, modeOfPaymentPrint, modeOfReleasingPrint, selectedSalesCrew, and totalAmoutDueData
-
+    if (printWindow) {
       printWindow.document.write(`
             <!DOCTYPE html>
             <html lang="en">
@@ -2659,16 +2595,6 @@ export default function SalesOrder() {
 
       printWindow.document.close();
       printWindow.print();
-
-      // Close the print window after printing
-      printWindow.addEventListener("afterprint", () => {
-        printWindow.close();
-        // Redirect back to the main page
-        window.location.href = "mainpage.html"; // Replace "mainpage.html" with your main page URL
-      });
-
-      // Close the current page (sales order stub page)
-      window.close();
     }
   };
 
