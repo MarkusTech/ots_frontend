@@ -2541,7 +2541,7 @@ export default function SalesOrder() {
                         body {
                             margin: 0;
                             padding: 20px;
-                            font-family:Calibri (Body);
+                            font-family:"Calibri", sans-serif;
                             text-align: center;
                         }
                         h3 {
@@ -2550,7 +2550,7 @@ export default function SalesOrder() {
                         }
                         h4 {
                             margin: 5px 0;
-                            font-size: 15px
+                            font-size: 13px
                         }
                         h1 {
                           font-size: 50px;
@@ -2560,6 +2560,7 @@ export default function SalesOrder() {
                         p {
                           margin: 0;
                           padding: 0;
+                          font-size: 15px
                         }
                     }
                 </style>
