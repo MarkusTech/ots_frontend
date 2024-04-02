@@ -2650,11 +2650,6 @@ export default function SalesOrder() {
 
       printWindow.document.close();
       printWindow.print();
-
-      // Close the print window after printing
-      printWindow.addEventListener("afterprint", () => {
-        printWindow.close();
-      });
     }
   };
 
