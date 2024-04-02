@@ -3193,7 +3193,7 @@ export default function SalesOrder() {
                       ? ""
                       : localCurrency.format(rowData.grossTotal)}
                   </td>
-                  {/* Tracker */}
+                  {/* -------------- Tracker --------------- */}
                   <td>
                     {rowData.quantity == 0 ? (
                       ""
@@ -3211,7 +3211,7 @@ export default function SalesOrder() {
                       </div>
                     )}
                   </td>
-                  {/* --------------------------------- */}
+                  {/* ---------------------------------------- */}
                 </tr>
               ))}
             </tbody>
