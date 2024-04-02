@@ -2541,20 +2541,19 @@ export default function SalesOrder() {
                         body {
                             margin: 0;
                             padding: 20px;
-                            font-family: Arial, sans-serif;
+                            font-family:Calibri (Body);
                             text-align: center;
                         }
                         h3 {
-                            font-weight: bold;
                             margin: 0;
                             padding: 0;
                         }
                         h4 {
                             margin: 5px 0;
-                            font-weight: bold;
+                            font-size: 15px
                         }
                         h1 {
-                          font-size: 80px;
+                          font-size: 50px;
                           margin: 0;
                           padding: 0;
                         }
@@ -2565,14 +2564,14 @@ export default function SalesOrder() {
                 <div>
                     <h4>SAFETYBUILD INC</h4>
                     <h4>DC-SBI GENSAN</h4>
-                    <h3>SALES ORDER STUB</h3>
+                    <h3 class="salesOrder">SALES ORDER STUB</h3>
                     <h1>${docNumber}</h1>
-                    <h4>${customerPrint}</h4>
-                    <h4>${modeOfPaymentPrint}</h4>
-                    <h4>${modeOfReleasingPrint}</h4>
-                    <h4>GSCNAPGS</h4>
-                    <h4>${selectedSalesCrew}</h4>
-                    <h4>${totalAmoutDueData}</h4>
+                    <p>${customerPrint}</p>
+                    <p>${modeOfPaymentPrint}</p>
+                    <p>${modeOfReleasingPrint}</p>
+                    <p>GSCNAPGS</p>
+                    <p>${selectedSalesCrew}</p>
+                    <p>${totalAmoutDueData}</p>
                 </div>
             </body>
             </html>
