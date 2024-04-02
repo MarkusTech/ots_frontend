@@ -3188,12 +3188,12 @@ export default function SalesOrder() {
                     {rowData.scPwdDiscount}
                   </td>
                   {/* Gross Total */}
-                  {/* Tracker */}
                   <td>
                     {rowData.quantity == 0
                       ? ""
                       : localCurrency.format(rowData.grossTotal)}
                   </td>
+                  {/* Tracker */}
                   <td>
                     {rowData.quantity == 0 ? (
                       ""
@@ -3211,7 +3211,7 @@ export default function SalesOrder() {
                       </div>
                     )}
                   </td>
-                  {/* ------------------- */}
+                  {/* --------------------------------- */}
                 </tr>
               ))}
             </tbody>
