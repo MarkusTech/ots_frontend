@@ -2562,13 +2562,17 @@ export default function SalesOrder() {
                           padding: 0;
                           font-size: 15px
                         }
+                        .normal{
+                          margin: 5px 0;
+                          font-size: 13px
+                        }
                     }
                 </style>
             </head>
             <body>
                 <div>
-                    <h4>SAFETYBUILD INC</h4>
-                    <h4>DC-SBI GENSAN</h4>
+                    <h4>SAFETYBUILD INC.</h4>
+                    <p class="normal">GSC-DADIANGAS CORNERSTONE CENTER</p>
                     <h3 class="salesOrder">SALES ORDER STUB</h3>
                     <h1>${docNumber}</h1>
                     <p>${customerPrint}</p>
