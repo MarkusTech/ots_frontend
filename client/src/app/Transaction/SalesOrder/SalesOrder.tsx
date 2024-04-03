@@ -1466,6 +1466,8 @@ export default function SalesOrder() {
     setSelectedRowIndex(rowIndex);
   };
 
+
+
   const [quantityData, setquantityData] = useState([
     {
       itemCode: "",
@@ -3427,7 +3429,7 @@ export default function SalesOrder() {
                   <table>
                     <thead className="tables">
                       <tr>
-                        <th>Item Code</th>
+                        <th>Mode Of Releasing</th>
                       </tr>
                     </thead>
                     <tbody>
