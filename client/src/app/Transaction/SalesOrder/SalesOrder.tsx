@@ -1468,7 +1468,7 @@ export default function SalesOrder() {
     setSelectedRowIndex(rowIndex);
   };
 
-  // ---------------------- new ---------------------------
+  // ---------------------- new ----------------------------
   const [openTruckPanel, setOpenTruckPanel] = useState(false);
   const [openPickUpLocations, setOpenPickUpLocations] = useState(false);
 
@@ -1479,7 +1479,7 @@ export default function SalesOrder() {
   const openPickUpLocation = () => {
     setOpenPickUpLocations(!openPickUpLocations);
   };
-  // -----------------------------------------------------
+  // ------------------------------------------------------
 
   const [quantityData, setquantityData] = useState([
     {
@@ -3214,10 +3214,10 @@ export default function SalesOrder() {
                       ""
                     ) : (
                       <div className="flex gap-3 justify-end">
-                        <div>{rowData.modeOfReleasing}</div>
+                        {/* <div>{rowData.modeOfReleasing}</div> */}
                         <div className="text-right">
                           <button
-                            onClick={() => openModRelTable(rowIndex)}
+                            onClick={() => openTruckerTable()}
                             className="bg-[#F0AB00] pr-1 pl-1"
                           >
                             =
@@ -3233,10 +3233,10 @@ export default function SalesOrder() {
                       ""
                     ) : (
                       <div className="flex gap-3 justify-end">
-                        <div>{rowData.modeOfReleasing}</div>
+                        {/* <div>{rowData.modeOfReleasing}</div> */}
                         <div className="text-right">
                           <button
-                            onClick={() => openModRelTable(rowIndex)}
+                            onClick={() => openPickUpLocation()}
                             className="bg-[#F0AB00] pr-1 pl-1"
                           >
                             =
@@ -3415,6 +3415,7 @@ export default function SalesOrder() {
           </Draggable>
         )}
 
+        {/* Open Mode Of Releasing */}
         {openModRelTablePanel && (
           <Draggable>
             <div
@@ -3498,6 +3499,175 @@ export default function SalesOrder() {
           </Draggable>
         )}
 
+        {/* Open Trucker Table */}
+        {openTruckPanel && (
+          <Draggable>
+            <div
+              className="fields overflow-x-auto bg-white shadow-lg"
+              style={{
+                border: "1px solid #ccc",
+                position: "absolute",
+                top: "40%",
+                left: "65%",
+              }}
+            >
+              <div
+                className="grid grid-cols-2 p-2 text-left windowheader"
+                style={{ cursor: "move" }}
+              >
+                <div>Mode of Releasing</div>
+                <div className="text-right">
+                  <span onClick={openModRelTable} className="cursor-pointer">
+                    ❌
+                  </span>
+                </div>
+              </div>
+              <div className="p-2">
+                <div className="content">
+                  <table>
+                    <thead className="tables">
+                      <tr>
+                        <th>Mode Of Releasing</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>
+                          <select
+                            name=""
+                            className="w-full p-2"
+                            onChange={(e) => changeManualModRel(e.target.value)}
+                            id=""
+                          >
+                            <option value="" disabled selected>
+                              Please Select
+                            </option>
+                            <option value="Standard-Pick-up">
+                              Standard-Pick-up
+                            </option>
+                            <option value="Standard-Delivery">
+                              Standard-Delivery
+                            </option>
+                            <option value="Standard-Pick-up to Other Store">
+                              Standard-Pick-up to Other Store
+                            </option>
+                            <option value="Back Order-Pick-up">
+                              Back Order-Pick-up
+                            </option>
+                            <option value="Back Order-Delivery">
+                              Back Order-Delivery
+                            </option>
+                            <option value="Back Order-Pick-up to Other Store">
+                              Back Order-Pick-up to Other Store
+                            </option>
+                            <option value="Drop-Ship-Pick-up to DC">
+                              Drop-Ship-Pick-up to DC
+                            </option>
+                            <option value="Drop-Ship-Pick-up to Vendor">
+                              Drop-Ship-Pick-up to Vendor
+                            </option>
+                            <option value="Drop-Ship-Delivery from DC">
+                              Drop-Ship-Delivery from DC
+                            </option>
+                            <option value="Drop-Ship-Delivery from Vendor">
+                              Drop-Ship-Delivery from Vendor
+                            </option>
+                          </select>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </Draggable>
+        )}
+
+        {/* Open Pick Up Location Panel */}
+        {openPickUpLocations && (
+          <Draggable>
+            <div
+              className="fields overflow-x-auto bg-white shadow-lg"
+              style={{
+                border: "1px solid #ccc",
+                position: "absolute",
+                top: "40%",
+                left: "65%",
+              }}
+            >
+              <div
+                className="grid grid-cols-2 p-2 text-left windowheader"
+                style={{ cursor: "move" }}
+              >
+                <div>Mode of Releasing</div>
+                <div className="text-right">
+                  <span onClick={openModRelTable} className="cursor-pointer">
+                    ❌
+                  </span>
+                </div>
+              </div>
+              <div className="p-2">
+                <div className="content">
+                  <table>
+                    <thead className="tables">
+                      <tr>
+                        <th>Mode Of Releasing</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>
+                          <select
+                            name=""
+                            className="w-full p-2"
+                            onChange={(e) => changeManualModRel(e.target.value)}
+                            id=""
+                          >
+                            <option value="" disabled selected>
+                              Please Select
+                            </option>
+                            <option value="Standard-Pick-up">
+                              Standard-Pick-up
+                            </option>
+                            <option value="Standard-Delivery">
+                              Standard-Delivery
+                            </option>
+                            <option value="Standard-Pick-up to Other Store">
+                              Standard-Pick-up to Other Store
+                            </option>
+                            <option value="Back Order-Pick-up">
+                              Back Order-Pick-up
+                            </option>
+                            <option value="Back Order-Delivery">
+                              Back Order-Delivery
+                            </option>
+                            <option value="Back Order-Pick-up to Other Store">
+                              Back Order-Pick-up to Other Store
+                            </option>
+                            <option value="Drop-Ship-Pick-up to DC">
+                              Drop-Ship-Pick-up to DC
+                            </option>
+                            <option value="Drop-Ship-Pick-up to Vendor">
+                              Drop-Ship-Pick-up to Vendor
+                            </option>
+                            <option value="Drop-Ship-Delivery from DC">
+                              Drop-Ship-Delivery from DC
+                            </option>
+                            <option value="Drop-Ship-Delivery from Vendor">
+                              Drop-Ship-Delivery from Vendor
+                            </option>
+                          </select>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </Draggable>
+        )}
+
+        {/* Open Location Panel */}
         {openLocationPanel && (
           <Draggable>
             <div
