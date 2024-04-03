@@ -1468,7 +1468,7 @@ export default function SalesOrder() {
     setSelectedRowIndex(rowIndex);
   };
 
-  // ---------------------- new ---------------------------
+  // ---------------------- new ----------------------------
   const [openTruckPanel, setOpenTruckPanel] = useState(false);
   const [openPickUpLocations, setOpenPickUpLocations] = useState(false);
 
@@ -1479,7 +1479,7 @@ export default function SalesOrder() {
   const openPickUpLocation = () => {
     setOpenPickUpLocations(!openPickUpLocations);
   };
-  // -----------------------------------------------------
+  // ------------------------------------------------------
 
   const [quantityData, setquantityData] = useState([
     {
@@ -2955,10 +2955,10 @@ export default function SalesOrder() {
                 <th>Cost</th>
                 <th>Below Cost</th>
                 <th>Mode of Releasing</th>
-                <th>SC/PWD Discount (Y/N)</th>
-                <th>Gross Total</th>
                 <th>Trucker for Dropship/Back-order</th>
                 <th>Pick up Location</th>
+                <th>SC/PWD Discount (Y/N)</th>
+                <th>Gross Total</th>
               </tr>
             </thead>
             <tbody>
@@ -3192,22 +3192,6 @@ export default function SalesOrder() {
                       </div>
                     )}
                   </td>
-                  {/* SC/PWD Discount */}
-                  <td
-                    className={
-                      rowData.scPwdDiscount == "N"
-                        ? "bg-red-200"
-                        : "bg-green-200"
-                    }
-                  >
-                    {rowData.scPwdDiscount}
-                  </td>
-                  {/* Gross Total */}
-                  <td>
-                    {rowData.quantity == 0
-                      ? ""
-                      : localCurrency.format(rowData.grossTotal)}
-                  </td>
                   {/* -------------- Tracker --------------- */}
                   <td>
                     {rowData.quantity == 0 ? (
@@ -3246,6 +3230,22 @@ export default function SalesOrder() {
                     )}
                   </td>
                   {/* ---------------------------------------- */}
+                  {/* SC/PWD Discount */}
+                  <td
+                    className={
+                      rowData.scPwdDiscount == "N"
+                        ? "bg-red-200"
+                        : "bg-green-200"
+                    }
+                  >
+                    {rowData.scPwdDiscount}
+                  </td>
+                  {/* Gross Total */}
+                  <td>
+                    {rowData.quantity == 0
+                      ? ""
+                      : localCurrency.format(rowData.grossTotal)}
+                  </td>
                 </tr>
               ))}
             </tbody>
