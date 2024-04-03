@@ -65,6 +65,8 @@ export default function SalesOrder() {
   const [openModRelTablePanel, setOpenModRelTablePanel] = useState(false);
   const [openLocationPanel, setOpenLocationPanel] = useState(false);
   const [showItems, setShowItems] = useState(false);
+  // const [openTruckPanel, setOpenTruckPanel] = useState(false);
+  // const [openPickUpLocations, setOpenPickUpLocations] = useState(false);
 
   const [sellingPriceAfterDiscountData, setSellingPriceAfterDis] = useState(0);
 
@@ -1466,7 +1468,16 @@ export default function SalesOrder() {
     setSelectedRowIndex(rowIndex);
   };
 
+  const [openTruckPanel, setOpenTruckPanel] = useState(false);
+  const [openPickUpLocations, setOpenPickUpLocations] = useState(false);
 
+  const openTruckerTable = () => {
+    setOpenTruckPanel(!openTruckPanel);
+  };
+
+  const openPickUpLocation = () => {
+    setOpenPickUpLocations(!openPickUpLocation);
+  };
 
   const [quantityData, setquantityData] = useState([
     {
@@ -2944,7 +2955,7 @@ export default function SalesOrder() {
                 <th>Mode of Releasing</th>
                 <th>SC/PWD Discount (Y/N)</th>
                 <th>Gross Total</th>
-                <th>Tracker for Dropship/Back-order</th>
+                <th>Trucker for Dropship/Back-order</th>
                 <th>Pick up Location</th>
               </tr>
             </thead>
