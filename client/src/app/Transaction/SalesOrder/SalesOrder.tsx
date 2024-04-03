@@ -1468,6 +1468,7 @@ export default function SalesOrder() {
     setSelectedRowIndex(rowIndex);
   };
 
+  // ---------------------- new ---------------------------
   const [openTruckPanel, setOpenTruckPanel] = useState(false);
   const [openPickUpLocations, setOpenPickUpLocations] = useState(false);
 
@@ -1476,8 +1477,9 @@ export default function SalesOrder() {
   };
 
   const openPickUpLocation = () => {
-    setOpenPickUpLocations(!openPickUpLocation);
+    setOpenPickUpLocations(!openPickUpLocations);
   };
+  // -----------------------------------------------------
 
   const [quantityData, setquantityData] = useState([
     {
