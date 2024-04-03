@@ -1468,7 +1468,7 @@ export default function SalesOrder() {
     setSelectedRowIndex(rowIndex);
   };
 
-  // ---------------------- new ----------------------------
+  // ---------------------- new ---------------------------
   const [openTruckPanel, setOpenTruckPanel] = useState(false);
   const [openPickUpLocations, setOpenPickUpLocations] = useState(false);
 
@@ -1479,7 +1479,7 @@ export default function SalesOrder() {
   const openPickUpLocation = () => {
     setOpenPickUpLocations(!openPickUpLocations);
   };
-  // ------------------------------------------------------
+  // -----------------------------------------------------
 
   const [quantityData, setquantityData] = useState([
     {
@@ -3515,9 +3515,9 @@ export default function SalesOrder() {
                 className="grid grid-cols-2 p-2 text-left windowheader"
                 style={{ cursor: "move" }}
               >
-                <div>Mode of Releasing</div>
+                <div>Trucker for Dropship/Back-order</div>
                 <div className="text-right">
-                  <span onClick={openModRelTable} className="cursor-pointer">
+                  <span onClick={openTruckerTable} className="cursor-pointer">
                     ❌
                   </span>
                 </div>
@@ -3527,7 +3527,7 @@ export default function SalesOrder() {
                   <table>
                     <thead className="tables">
                       <tr>
-                        <th>Mode Of Releasing</th>
+                        <th>Trucker for Dropship/Back-order</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -3536,42 +3536,16 @@ export default function SalesOrder() {
                           <select
                             name=""
                             className="w-full p-2"
-                            onChange={(e) => changeManualModRel(e.target.value)}
+                            // onChange={(e) => changeManualModRel(e.target.value)}
                             id=""
                           >
                             <option value="" disabled selected>
                               Please Select
                             </option>
-                            <option value="Standard-Pick-up">
-                              Standard-Pick-up
-                            </option>
-                            <option value="Standard-Delivery">
-                              Standard-Delivery
-                            </option>
-                            <option value="Standard-Pick-up to Other Store">
-                              Standard-Pick-up to Other Store
-                            </option>
-                            <option value="Back Order-Pick-up">
-                              Back Order-Pick-up
-                            </option>
-                            <option value="Back Order-Delivery">
-                              Back Order-Delivery
-                            </option>
-                            <option value="Back Order-Pick-up to Other Store">
-                              Back Order-Pick-up to Other Store
-                            </option>
-                            <option value="Drop-Ship-Pick-up to DC">
-                              Drop-Ship-Pick-up to DC
-                            </option>
-                            <option value="Drop-Ship-Pick-up to Vendor">
-                              Drop-Ship-Pick-up to Vendor
-                            </option>
-                            <option value="Drop-Ship-Delivery from DC">
-                              Drop-Ship-Delivery from DC
-                            </option>
-                            <option value="Drop-Ship-Delivery from Vendor">
-                              Drop-Ship-Delivery from Vendor
-                            </option>
+                            <option value="Customer">Customer</option>
+                            <option value="Store">Store</option>
+                            <option value="Vendor">Vendor</option>
+                            <option value="N/A">N/A</option>
                           </select>
                         </td>
                       </tr>
@@ -3599,9 +3573,9 @@ export default function SalesOrder() {
                 className="grid grid-cols-2 p-2 text-left windowheader"
                 style={{ cursor: "move" }}
               >
-                <div>Mode of Releasing</div>
+                <div>Pick Up Location</div>
                 <div className="text-right">
-                  <span onClick={openModRelTable} className="cursor-pointer">
+                  <span onClick={openPickUpLocation} className="cursor-pointer">
                     ❌
                   </span>
                 </div>
@@ -3611,7 +3585,7 @@ export default function SalesOrder() {
                   <table>
                     <thead className="tables">
                       <tr>
-                        <th>Mode Of Releasing</th>
+                        <th>Pick Up Location</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -3620,42 +3594,15 @@ export default function SalesOrder() {
                           <select
                             name=""
                             className="w-full p-2"
-                            onChange={(e) => changeManualModRel(e.target.value)}
+                            // onChange={(e) => changeManualModRel(e.target.value)}
                             id=""
                           >
                             <option value="" disabled selected>
                               Please Select
                             </option>
-                            <option value="Standard-Pick-up">
-                              Standard-Pick-up
-                            </option>
-                            <option value="Standard-Delivery">
-                              Standard-Delivery
-                            </option>
-                            <option value="Standard-Pick-up to Other Store">
-                              Standard-Pick-up to Other Store
-                            </option>
-                            <option value="Back Order-Pick-up">
-                              Back Order-Pick-up
-                            </option>
-                            <option value="Back Order-Delivery">
-                              Back Order-Delivery
-                            </option>
-                            <option value="Back Order-Pick-up to Other Store">
-                              Back Order-Pick-up to Other Store
-                            </option>
-                            <option value="Drop-Ship-Pick-up to DC">
-                              Drop-Ship-Pick-up to DC
-                            </option>
-                            <option value="Drop-Ship-Pick-up to Vendor">
-                              Drop-Ship-Pick-up to Vendor
-                            </option>
-                            <option value="Drop-Ship-Delivery from DC">
-                              Drop-Ship-Delivery from DC
-                            </option>
-                            <option value="Drop-Ship-Delivery from Vendor">
-                              Drop-Ship-Delivery from Vendor
-                            </option>
+                            <option value="SA">Selling Area</option>
+                            <option value="Storage">Storage</option>
+                            <option value="Whse">Wharehouse</option>
                           </select>
                         </td>
                       </tr>
