@@ -1468,7 +1468,7 @@ export default function SalesOrder() {
     setSelectedRowIndex(rowIndex);
   };
 
-  // ---------------------- trucker and pick up location -----------------
+  // ---------------------- trucker and pick up location ----------------
   const [openTruckPanel, setOpenTruckPanel] = useState(false);
   const [openPickUpLocations, setOpenPickUpLocations] = useState(false);
 
