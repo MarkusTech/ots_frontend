@@ -337,11 +337,11 @@ export default function SalesOrder() {
           })
           .catch((error) => {
             console.error("Error sending data:", error);
-            // Swal.fire(
-            //   "Internal Server Error, Contact MIS Department",
-            //   "",
-            //   "error"
-            // );
+            Swal.fire(
+              "Internal Server Error, Contact MIS Department",
+              "",
+              "error"
+            );
           });
       } else if (result.isDenied) {
         Swal.fire("Draft is not saved", "", "info");
@@ -1468,7 +1468,7 @@ export default function SalesOrder() {
     setSelectedRowIndex(rowIndex);
   };
 
-  // ---------------------- new ----------------------------
+  // ---------------------- trucker and pick up location ----------------------------
   const [openTruckPanel, setOpenTruckPanel] = useState(false);
   const [openPickUpLocations, setOpenPickUpLocations] = useState(false);
 
@@ -1479,7 +1479,7 @@ export default function SalesOrder() {
   const openPickUpLocation = () => {
     setOpenPickUpLocations(!openPickUpLocations);
   };
-  // ------------------------------------------------------
+  // ------------------------------------------------------------------------------
 
   const [quantityData, setquantityData] = useState([
     {
