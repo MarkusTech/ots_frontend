@@ -2529,7 +2529,7 @@ export default function SalesOrder() {
                         }
                         h4 {
                             margin: 5px 0;
-                            font-size: 13px
+                            font-size: 13px;
                         }
                         h1 {
                           font-size: 50px;
@@ -2539,11 +2539,11 @@ export default function SalesOrder() {
                         p {
                           margin: 0;
                           padding: 0;
-                          font-size: 15px
+                          font-size: 15px;
                         }
                         .normal{
                           margin: 5px 0;
-                          font-size: 13px
+                          font-size: 13px;
                         }
                     }
                 </style>
