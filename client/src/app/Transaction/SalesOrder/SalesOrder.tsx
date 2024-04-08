@@ -1828,12 +1828,14 @@ export default function SalesOrder() {
     const updatedTableData = [...tableData];
     updatedTableData[0].truckPanelORDropShip = trucker;
     setTableData(updatedTableData);
+    setOpenTruckPanel(!openTruckPanel);
   };
 
   const changeManualPickUpLocation = (pickUpLocation: any) => {
     const updatedTableData = [...tableData];
     updatedTableData[0].pickUpLocation = pickUpLocation;
     setTableData(updatedTableData);
+    setOpenPickUpLocations(!openPickUpLocations);
   };
 
   const handleWarehoueChange = async (rowIndex: any, itemdata: any) => {
