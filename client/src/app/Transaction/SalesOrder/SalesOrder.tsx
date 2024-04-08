@@ -3558,7 +3558,6 @@ export default function SalesOrder() {
                             onChange={(e) =>
                               changeManualTruckPanel(e.target.value)
                             }
-                            id=""
                           >
                             <option value="" disabled selected>
                               Please Select
@@ -3618,7 +3617,6 @@ export default function SalesOrder() {
                             onChange={(e) =>
                               changeManualPickUpLocation(e.target.value)
                             }
-                            id=""
                           >
                             <option value="" disabled selected>
                               Please Select
