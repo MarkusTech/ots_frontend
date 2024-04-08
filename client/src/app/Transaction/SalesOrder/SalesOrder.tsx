@@ -426,6 +426,8 @@ export default function SalesOrder() {
       onlineTransfer: "N",
       onAccount: "N",
       cashOnDel: "N",
+      truckPanelORDropShip: "",
+      pickUpLocation: "",
     },
   ]);
 
@@ -989,6 +991,8 @@ export default function SalesOrder() {
         onlineTransfer: "N",
         onAccount: "N",
         cashOnDel: "N",
+        truckPanelORDropShip: "",
+        pickUpLocation: "",
       },
     ]);
 
