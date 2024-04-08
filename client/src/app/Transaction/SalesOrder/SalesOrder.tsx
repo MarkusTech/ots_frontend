@@ -1819,9 +1819,10 @@ export default function SalesOrder() {
     setOpenModRelTablePanel(!openModRelTablePanel);
   };
 
-  const changeManualTruckPanel = () => {};
+  // Task
+  const changeManualTruckPanel = (trucker: any) => {};
 
-  const changeManualPickUpLocation = () => {};
+  const changeManualPickUpLocation = (pickUpLocation: any) => {};
 
   const handleWarehoueChange = async (rowIndex: any, itemdata: any) => {
     const updatedTableData = [...tableData];
@@ -3540,7 +3541,9 @@ export default function SalesOrder() {
                           <select
                             name=""
                             className="w-full p-2"
-                            // onChange={(e) => changeManualModRel(e.target.value)}
+                            onChange={(e) =>
+                              changeManualTruckPanel(e.target.value)
+                            }
                             id=""
                           >
                             <option value="" disabled selected>
@@ -3598,7 +3601,9 @@ export default function SalesOrder() {
                           <select
                             name=""
                             className="w-full p-2"
-                            // onChange={(e) => changeManualModRel(e.target.value)}
+                            onChange={(e) =>
+                              changeManualPickUpLocation(e.target.value)
+                            }
                             id=""
                           >
                             <option value="" disabled selected>
