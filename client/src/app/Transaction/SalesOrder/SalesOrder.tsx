@@ -3472,7 +3472,6 @@ export default function SalesOrder() {
                             name=""
                             className="w-full p-2"
                             onChange={(e) => changeManualModRel(e.target.value)}
-                            id=""
                           >
                             <option value="" disabled selected>
                               Please Select
