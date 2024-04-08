@@ -1819,6 +1819,10 @@ export default function SalesOrder() {
     setOpenModRelTablePanel(!openModRelTablePanel);
   };
 
+  const changeManualTruckPanel = () => {};
+
+  const changeManualPickUpLocation = () => {};
+
   const handleWarehoueChange = async (rowIndex: any, itemdata: any) => {
     const updatedTableData = [...tableData];
     const item = updatedTableData[selectedRowIndex];
