@@ -1820,9 +1820,13 @@ export default function SalesOrder() {
   };
 
   // Task
-  const changeManualTruckPanel = (trucker: any) => {};
+  const changeManualTruckPanel = (trucker: any) => {
+    const updatedTableData = [...tableData];
+  };
 
-  const changeManualPickUpLocation = (pickUpLocation: any) => {};
+  const changeManualPickUpLocation = (pickUpLocation: any) => {
+    const updatedTableData = [...tableData];
+  };
 
   const handleWarehoueChange = async (rowIndex: any, itemdata: any) => {
     const updatedTableData = [...tableData];
