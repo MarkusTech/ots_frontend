@@ -1840,6 +1840,8 @@ export default function SalesOrder() {
     setOpenTruckPanel(!openTruckPanel);
   };
 
+  //TruckerForDropShipOrBackOrder
+
   const changeManualPickUpLocation = (location: any) => {
     const updatedTableData = [...tableData];
 
