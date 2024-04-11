@@ -1262,15 +1262,11 @@ export default function SalesOrder() {
 
   // ---------------------------------------- Details API ------------------------------------------
   const [jsonDraftNum, setJsonDraftNum] = useState("");
-  const [jsonDetails, setJsonDetails] = useState([]); // temporary storage for details
   useEffect(() => {
     if (jsonDraftNum) {
       axios
         .get(`${backendAPI}/api/v1/get-detail/'${jsonDraftNum}'`)
         .then((response) => {
-          setJsonDetails(response.data);
-          console.log(jsonDetails);
-
           const newData = response.data.map((item: any) => ({
             draftNumber: item.DraftNum,
             itemCode: item.ItemCode,
