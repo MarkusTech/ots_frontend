@@ -1476,12 +1476,14 @@ export default function SalesOrder() {
   const [openTruckPanel, setOpenTruckPanel] = useState(false);
   const [openPickUpLocations, setOpenPickUpLocations] = useState(false);
 
-  const openTruckerTable = () => {
+  const openTruckerTable = (rowIndex: any) => {
     setOpenTruckPanel(!openTruckPanel);
+    setSelectedRowIndex(rowIndex);
   };
 
-  const openPickUpLocation = () => {
+  const openPickUpLocation = (rowIndex: any) => {
     setOpenPickUpLocations(!openPickUpLocations);
+    setSelectedRowIndex(rowIndex);
   };
   // -----------------------------------------------------------------------------
 
@@ -1826,14 +1828,28 @@ export default function SalesOrder() {
   // Task
   const changeManualTruckPanel = (trucker: any) => {
     const updatedTableData = [...tableData];
-    updatedTableData[0].truckPanelORDropShip = trucker;
+
+    const item = updatedTableData[selectedRowIndex];
+
+    updatedTableData[selectedRowIndex] = {
+      ...item,
+      truckPanelORDropShip: trucker,
+    };
+
     setTableData(updatedTableData);
     setOpenTruckPanel(!openTruckPanel);
   };
 
-  const changeManualPickUpLocation = (pickUpLocation: any) => {
+  const changeManualPickUpLocation = (location: any) => {
     const updatedTableData = [...tableData];
-    updatedTableData[0].pickUpLocation = pickUpLocation;
+
+    const item = updatedTableData[selectedRowIndex];
+
+    updatedTableData[selectedRowIndex] = {
+      ...item,
+      pickUpLocation: location,
+    };
+
     setTableData(updatedTableData);
     setOpenPickUpLocations(!openPickUpLocations);
   };
@@ -3224,7 +3240,7 @@ export default function SalesOrder() {
                         <div>{rowData.truckPanelORDropShip}</div>
                         <div className="text-right">
                           <button
-                            onClick={() => openTruckerTable()}
+                            onClick={() => openTruckerTable(rowIndex)}
                             className="bg-[#F0AB00] pr-1 pl-1"
                           >
                             =
@@ -3243,7 +3259,7 @@ export default function SalesOrder() {
                         <div>{rowData.pickUpLocation}</div>
                         <div className="text-right">
                           <button
-                            onClick={() => openPickUpLocation()}
+                            onClick={() => openPickUpLocation(rowIndex)}
                             className="bg-[#F0AB00] pr-1 pl-1"
                           >
                             =
