@@ -2599,8 +2599,8 @@ export default function SalesOrder() {
                     <p>${customerPrint}</p>
                     <p>${modeOfPaymentPrint}</p>
                     <p>${modeOfReleasingPrint}</p>
-                    <p>Tracker</p>
-                    <p>SA</p>
+                    <p>${tableData[0].truckPanelORDropShip}</p>
+                    <p>${tableData[0].pickUpLocation}</p>
                     <p>${selectedSalesCrew}</p>
                     <p>${totalAmoutDueData}</p>
                 </div>
