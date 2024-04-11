@@ -316,6 +316,9 @@ export default function SalesOrder() {
                   ModeReleasing: rowData["modeOfReleasing"],
                   SCPWDdisc: rowData["scPwdDiscount"],
                   GrossTotal: rowData["grossTotal"],
+                  TruckerForDropShipOrBackOrder:
+                    rowData["truckPanelORDropShip"],
+                  PickUpLocation: rowData["pickUpLocation"],
                 };
 
                 // Send each item to the API
@@ -683,6 +686,8 @@ export default function SalesOrder() {
                 ModeReleasing: rowData["modeOfReleasing"],
                 SCPWDdisc: rowData["scPwdDiscount"],
                 GrossTotal: rowData["grossTotal"],
+                TruckerForDropShipOrBackOrder: rowData["truckPanelORDropShip"],
+                PickUpLocation: rowData["pickUpLocation"],
               };
 
               // Send each item to the API
@@ -1840,7 +1845,7 @@ export default function SalesOrder() {
     setOpenTruckPanel(!openTruckPanel);
   };
 
-  //TruckerForDropShipOrBackOrder
+  // TruckerForDropShipOrBackOrder
 
   const changeManualPickUpLocation = (location: any) => {
     const updatedTableData = [...tableData];
