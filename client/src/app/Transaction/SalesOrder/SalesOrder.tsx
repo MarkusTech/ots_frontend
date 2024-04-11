@@ -1294,6 +1294,8 @@ export default function SalesOrder() {
             modeOfReleasing: item.ModeReleasing,
             scPwdDiscount: item.SCPWDdisc,
             grossTotal: item.GrossTotal,
+            truckPanelORDropShip: item.TruckerForDropShipOrBackOrder,
+            pickUpLocation: item.PickUpLocation,
           }));
 
           // add the data from selected details
