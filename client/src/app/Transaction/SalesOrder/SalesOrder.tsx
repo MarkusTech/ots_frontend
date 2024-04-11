@@ -1838,6 +1838,10 @@ export default function SalesOrder() {
     setOpenPickUpLocations(!openPickUpLocations);
   };
 
+  const consoleLog = () => {
+    console.log(tableData);
+  };
+
   const handleWarehoueChange = async (rowIndex: any, itemdata: any) => {
     const updatedTableData = [...tableData];
     const item = updatedTableData[selectedRowIndex];
@@ -3217,7 +3221,7 @@ export default function SalesOrder() {
                       ""
                     ) : (
                       <div className="flex gap-3 justify-end">
-                        {/* <div>{rowData.modeOfReleasing}</div> */}
+                        <div>{rowData.truckPanelORDropShip}</div>
                         <div className="text-right">
                           <button
                             onClick={() => openTruckerTable()}
@@ -3236,7 +3240,7 @@ export default function SalesOrder() {
                       ""
                     ) : (
                       <div className="flex gap-3 justify-end">
-                        {/* <div>{rowData.modeOfReleasing}</div> */}
+                        <div>{rowData.pickUpLocation}</div>
                         <div className="text-right">
                           <button
                             onClick={() => openPickUpLocation()}
@@ -4039,6 +4043,15 @@ export default function SalesOrder() {
                 onClick={PrintReceipt}
               >
                 Print
+              </button>
+            </div>
+
+            <div>
+              <button
+                className="p-2 mt-2 mb-1 mr-2 text-[12px] bg-[#F4D674] hover:bg-yellow-500 focus:outline-none focus:shadow-outline-yellow active:bg-yellow-600 rounded w-24"
+                onClick={consoleLog}
+              >
+                Trial
               </button>
             </div>
 
