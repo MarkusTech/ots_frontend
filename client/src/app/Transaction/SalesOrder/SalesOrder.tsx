@@ -1828,7 +1828,6 @@ export default function SalesOrder() {
     setOpenModRelTablePanel(!openModRelTablePanel);
   };
 
-  // Task
   const changeManualTruckPanel = (trucker: any) => {
     const updatedTableData = [...tableData];
 
