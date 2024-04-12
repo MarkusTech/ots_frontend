@@ -2597,16 +2597,15 @@ export default function SalesOrder() {
                     <h1>${docNumber}</h1>
                     <p>${customerPrint}</p>
                     <p>${modeOfPaymentPrint}</p>
-                    <p>${modeOfReleasingPrint}</p>
+                    <p>${modeOfReleasingPrint}: ${tableData[0].pickUpLocation}</p>
                     <p>${tableData[0].truckPanelORDropShip}</p>
-                    <p>${tableData[0].pickUpLocation}</p>
                     <p>${selectedSalesCrew}</p>
                     <p>${totalAmoutDueData}</p>
                 </div>
             </body>
             </html>
         `);
-
+      // <p>${tableData[0].pickUpLocation}</p>
       printWindow.document.close();
       printWindow.print();
 
@@ -3642,9 +3641,9 @@ export default function SalesOrder() {
                             <option value="" disabled selected>
                               Please Select
                             </option>
-                            <option value="SA">Selling Area</option>
-                            <option value="Storage">Storage</option>
-                            <option value="Whse">Wharehouse</option>
+                            <option value="SEL">SEL - Selling Area</option>
+                            <option value="STG">STG - Storage</option>
+                            <option value="WHS">WHS - Wharehouse</option>
                           </select>
                         </td>
                       </tr>
