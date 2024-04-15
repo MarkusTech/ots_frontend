@@ -1866,10 +1866,6 @@ export default function SalesOrder() {
     setOpenPickUpLocations(!openPickUpLocations);
   };
 
-  const consoleLog = () => {
-    console.log(tableData);
-  };
-
   // Task
   const handleWarehoueChange = async (rowIndex: any, itemdata: any) => {
     const updatedTableData = [...tableData];
