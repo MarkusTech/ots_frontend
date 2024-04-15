@@ -1582,17 +1582,6 @@ export default function SalesOrder() {
     setSearchTerm("");
   };
 
-  // useEffect(() => {
-  //   const updatedTableData = [...tableData];
-  //   if (tableData[0]["location"] == "GSCNAPGS") {
-  //     updatedTableData[selectedRowIndex] = {
-  //       ...updatedTableData[selectedRowIndex],
-  //       // truckPanelORDropShip: "",
-  //       pickUpLocation: "WMR",
-  //     };
-  //   }
-  // });
-
   const changeTextBoxValue = (rowIndex: any) => {
     let sellingAfDis = document.getElementById("sellingAfDis");
 
