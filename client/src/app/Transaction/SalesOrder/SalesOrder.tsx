@@ -1870,6 +1870,7 @@ export default function SalesOrder() {
     console.log(tableData);
   };
 
+  // Task
   const handleWarehoueChange = async (rowIndex: any, itemdata: any) => {
     const updatedTableData = [...tableData];
     const item = updatedTableData[selectedRowIndex];
