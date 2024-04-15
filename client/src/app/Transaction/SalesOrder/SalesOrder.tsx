@@ -1562,16 +1562,36 @@ export default function SalesOrder() {
         taxAmount: item.SRP * 0.12,
         grossTotal: item.SRP,
         scPwdDiscount: SCDiscount,
+        // truckPanelORDropShip: "",
+        pickUpLocation: "WHS",
       };
       setTableData(updatedTableData);
       setShowItems(false);
       setSelectedRowIndex(null);
       setOpenItemTablePanel(!openItemTablePanel);
       setSellingPriceAfterDis(item.Price);
+      // if (tableData[0]["location"] == "GSCNAPGS") {
+      //   updatedTableData[selectedRowIndex] = {
+      //     ...updatedTableData[selectedRowIndex],
+      //     // truckPanelORDropShip: "",
+      //     pickUpLocation: "WMR",
+      //   };
+      // }
     }
     // to clear search input history
     setSearchTerm("");
   };
+
+  // useEffect(() => {
+  //   const updatedTableData = [...tableData];
+  //   if (tableData[0]["location"] == "GSCNAPGS") {
+  //     updatedTableData[selectedRowIndex] = {
+  //       ...updatedTableData[selectedRowIndex],
+  //       // truckPanelORDropShip: "",
+  //       pickUpLocation: "WMR",
+  //     };
+  //   }
+  // });
 
   const changeTextBoxValue = (rowIndex: any) => {
     let sellingAfDis = document.getElementById("sellingAfDis");
