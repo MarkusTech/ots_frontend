@@ -1562,7 +1562,7 @@ export default function SalesOrder() {
         taxAmount: item.SRP * 0.12,
         grossTotal: item.SRP,
         scPwdDiscount: SCDiscount,
-        // truckPanelORDropShip: "",
+        truckPanelORDropShip: "Customer",
         pickUpLocation: "WHS",
       };
       setTableData(updatedTableData);
