@@ -4274,3 +4274,5 @@ export default function SalesOrder() {
     </>
   );
 }
+
+// SELECT dbo.fn_GetPickUpLocation('0006697HWFAN',1,'GSCNAPGS')
