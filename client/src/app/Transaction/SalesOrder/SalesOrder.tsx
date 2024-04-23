@@ -1570,13 +1570,6 @@ export default function SalesOrder() {
       setSelectedRowIndex(null);
       setOpenItemTablePanel(!openItemTablePanel);
       setSellingPriceAfterDis(item.Price);
-      // if (tableData[0]["location"] == "GSCNAPGS") {
-      //   updatedTableData[selectedRowIndex] = {
-      //     ...updatedTableData[selectedRowIndex],
-      //     // truckPanelORDropShip: "",
-      //     pickUpLocation: "WMR",
-      //   };
-      // }
     }
     // to clear search input history
     setSearchTerm("");
