@@ -1499,8 +1499,8 @@ export default function SalesOrder() {
 
   let countAllItem = 0;
 
-  const [pickUpItemCode, setPickUpItemCode] = useState("");
-  const [pickUpLocationValue, setPickUpLocationValue] = useState("");
+  // const [pickUpItemCode, setPickUpItemCode] = useState("");
+  // const [pickUpLocationValue, setPickUpLocationValue] = useState("");
   // i will put the pickUpLocation in the useEffect
   // useEffect(() => {
   //   if (pickUpItemCode) {
@@ -1557,6 +1557,19 @@ export default function SalesOrder() {
       );
       SCDiscount = scdiscount.data[0]["SCDiscount"];
 
+      let pickUpLocData = "";
+
+      if (item.itemCode != "") {
+        axios
+          .get(
+            `http://172.16.10.217:3001/pickup-location/${item.itemCode}/1/GSCNAPGS`
+          )
+          .then((response) => {
+            pickUpLocData = response.data;
+            console.log(response.data);
+          });
+      }
+
       updatedTableData[selectedRowIndex] = {
         ...updatedTableData[selectedRowIndex],
         entryNumber: formData.DraftNum, //sample
@@ -1579,7 +1592,7 @@ export default function SalesOrder() {
         grossTotal: item.SRP,
         scPwdDiscount: SCDiscount,
         truckPanelORDropShip: "",
-        pickUpLocation: pickUpLocationValue,
+        pickUpLocation: pickUpLocData,
       };
       setTableData(updatedTableData);
       setShowItems(false);
@@ -1587,7 +1600,7 @@ export default function SalesOrder() {
       setOpenItemTablePanel(!openItemTablePanel);
       setSellingPriceAfterDis(item.Price);
       // PICK UP
-      setPickUpItemCode(item.ItemCode);
+      // setPickUpItemCode(item.ItemCode);
     }
     // to clear search input history
     setSearchTerm("");
