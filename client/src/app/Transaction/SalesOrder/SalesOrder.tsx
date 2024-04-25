@@ -936,8 +936,14 @@ export default function SalesOrder() {
       );
       setWareHouseList(warehouse.data);
       // const warehouseCodex = warehouse.data;
-      // if(warehouse.data != ""){
-      //   axios.get(`http://172.16.10.217:3001/pickup-location/${itemcode}/1/${warehouseCodex}`)
+      // if (warehouse.data != "") {
+      //   axios
+      //     .get(
+      //       `http://172.16.10.217:3001/pickup-location/${itemcode}/1/${warehouseCodex}`
+      //     )
+      //     .then((response) => {
+      //       alert(response.data);
+      //     });
       // }
     } catch (error) {
       console.log(error);
