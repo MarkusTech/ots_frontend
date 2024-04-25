@@ -2,9 +2,9 @@ import sqlConn from "../config/db.js";
 
 const receipt = async (req, res) => {
   try {
-    const { DraftNumber } = req.body;
+    const { DraftNumber } = req.params;
     const result = await sqlConn.query(
-      `SELECT DISTINCT ModeReleasing,dbo.fn_GetSOModeOfRel(DraftNum,ModeReleasing) AS PickUpLocation FROM View_SOReleasing WHERE DraftNUm=${DraftNumber}`
+      `SELECT DISTINCT ModeReleasing,dbo.fn_GetSOModeOfRel(DraftNum,ModeReleasing) AS PickUpLocation FROM View_SOReleasing WHERE DraftNUm='${DraftNumber}'`
     );
     res.status(200).json({
       success: true,
