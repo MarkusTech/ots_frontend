@@ -1557,43 +1557,41 @@ export default function SalesOrder() {
       );
       SCDiscount = scdiscount.data[0]["SCDiscount"];
 
-      // let pickUpLocData = "";
+      let pickUpLocData = "";
+      if (item.itemCode != "") {
+        axios
+          .get(
+            `http://172.16.10.217:3001/pickup-location/${item.itemCode}/1/GSCNAPGS`
+          )
+          .then((response) => {
+            console.log(response.data);
+            updatedTableData[selectedRowIndex] = {
+              ...updatedTableData[selectedRowIndex],
+              entryNumber: formData.DraftNum, //sample
+              itemCode: item.ItemCode,
+              itemName: item.ItemName,
+              quantity: 1,
+              discountRate: 0,
+              uom: item.UomCode,
+              location: "GSCNAPGS",
+              price: item.SRP,
+              lowerBound: lowerBoundFinalItem,
+              taxCode: taxCodeDataNow,
+              uomConversion: item.NumInSale,
+              taxCodePercentage: taxRateDataNow,
+              belCost: "N",
+              sellingPriceBeforeDiscount: item.SRP,
+              sellingPriceAfterDiscount: item.SRP,
+              sellingPriceAfterDiscountTemp: item.SRP,
+              taxAmount: item.SRP * 0.12,
+              grossTotal: item.SRP,
+              scPwdDiscount: SCDiscount,
+              truckPanelORDropShip: "",
+              pickUpLocation: response.data,
+            };
+          });
+      }
 
-      // if (item.itemCode != "") {
-      //   axios
-      //     .get(
-      //       `http://172.16.10.217:3001/pickup-location/${item.itemCode}/1/GSCNAPGS`
-      //     )
-      //     .then((response) => {
-      //       pickUpLocData = response.data;
-      //       console.log(response.data);
-      //     });
-      // }
-
-      updatedTableData[selectedRowIndex] = {
-        ...updatedTableData[selectedRowIndex],
-        entryNumber: formData.DraftNum, //sample
-        itemCode: item.ItemCode,
-        itemName: item.ItemName,
-        quantity: 1,
-        discountRate: 0,
-        uom: item.UomCode,
-        location: "GSCNAPGS",
-        price: item.SRP,
-        lowerBound: lowerBoundFinalItem,
-        taxCode: taxCodeDataNow,
-        uomConversion: item.NumInSale,
-        taxCodePercentage: taxRateDataNow,
-        belCost: "N",
-        sellingPriceBeforeDiscount: item.SRP,
-        sellingPriceAfterDiscount: item.SRP,
-        sellingPriceAfterDiscountTemp: item.SRP,
-        taxAmount: item.SRP * 0.12,
-        grossTotal: item.SRP,
-        scPwdDiscount: SCDiscount,
-        truckPanelORDropShip: "",
-        pickUpLocation: "SEL",
-      };
       setTableData(updatedTableData);
       setShowItems(false);
       setSelectedRowIndex(null);
