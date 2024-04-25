@@ -1557,18 +1557,18 @@ export default function SalesOrder() {
       );
       SCDiscount = scdiscount.data[0]["SCDiscount"];
 
-      let pickUpLocData = "";
+      // let pickUpLocData = "";
 
-      if (item.itemCode != "") {
-        axios
-          .get(
-            `http://172.16.10.217:3001/pickup-location/${item.itemCode}/1/GSCNAPGS`
-          )
-          .then((response) => {
-            pickUpLocData = response.data;
-            console.log(response.data);
-          });
-      }
+      // if (item.itemCode != "") {
+      //   axios
+      //     .get(
+      //       `http://172.16.10.217:3001/pickup-location/${item.itemCode}/1/GSCNAPGS`
+      //     )
+      //     .then((response) => {
+      //       pickUpLocData = response.data;
+      //       console.log(response.data);
+      //     });
+      // }
 
       updatedTableData[selectedRowIndex] = {
         ...updatedTableData[selectedRowIndex],
@@ -1592,15 +1592,13 @@ export default function SalesOrder() {
         grossTotal: item.SRP,
         scPwdDiscount: SCDiscount,
         truckPanelORDropShip: "",
-        pickUpLocation: pickUpLocData,
+        pickUpLocation: "SEL",
       };
       setTableData(updatedTableData);
       setShowItems(false);
       setSelectedRowIndex(null);
       setOpenItemTablePanel(!openItemTablePanel);
       setSellingPriceAfterDis(item.Price);
-      // PICK UP
-      // setPickUpItemCode(item.ItemCode);
     }
     // to clear search input history
     setSearchTerm("");
