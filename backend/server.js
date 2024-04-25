@@ -19,6 +19,7 @@ import saveCommitRoutes from "./routes/saveCommitRoutes.js";
 import saveHeaderRoutes from "./routes/saveHeaderRoutes.js";
 import saveDetailsRoutes from "./routes/saveDetailsRoutes.js";
 import saveFinalCommit from "./routes/saveFinalCommitRoutes.js";
+import receiptRoutes from "./routes/receiptRoutes.js";
 
 // dotenv config
 dotenv.config();
@@ -52,6 +53,7 @@ app.use("/api/v1", saveCommitRoutes);
 app.use("/api/v1", saveHeaderRoutes);
 app.use("/api/v1", saveDetailsRoutes);
 app.use("/api/v1", saveFinalCommit);
+app.use("/api/v1", receiptRoutes);
 
 sqlConn.connect((err) => {
   if (err) {
