@@ -2,7 +2,7 @@ import sqlConn from "../config/db.js";
 
 const receipt = async (req, res) => {
   try {
-    const { DraftNumber } = req.params;
+    const { DraftNumber } = req.body;
     const result = await sqlConn.query(
       `SELECT DISTINCT ModeReleasing,dbo.fn_GetSOModeOfRel(DraftNum,ModeReleasing) AS PickUpLocation FROM View_SOReleasing WHERE DraftNUm=${DraftNumber}`
     );
