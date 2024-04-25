@@ -1560,7 +1560,7 @@ export default function SalesOrder() {
       if (item.itemCode != "") {
         axios
           .get(
-            `http://172.16.10.217:3001/pickup-location/${item.itemCode}/1/GSCNAPGS`
+            `http://172.16.10.217:3001/pickup-location/${item.itemCode}/1/${warehouseCode}`
           )
           .then((response) => {
             console.log(response.data);
