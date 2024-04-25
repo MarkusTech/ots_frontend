@@ -1500,18 +1500,20 @@ export default function SalesOrder() {
   let countAllItem = 0;
 
   const [pickUpItemCode, setPickUpItemCode] = useState("");
+  const [pickUpLocationValue, setPickUpLocationValue] = useState("");
   // i will put the pickUpLocation in the useEffect
-  useEffect(() => {
-    if (pickUpItemCode) {
-      axios
-        .get(
-          `http://172.16.10.217:3001/pickup-location/${pickUpItemCode}/1/GSCNAPGS`
-        )
-        .then((response) => {
-          console.log(response.data);
-        });
-    }
-  }, [pickUpItemCode]);
+  // useEffect(() => {
+  //   if (pickUpItemCode) {
+  //     axios
+  //       .get(
+  //         `http://172.16.10.217:3001/pickup-location/${pickUpItemCode}/1/GSCNAPGS`
+  //       )
+  //       .then((response) => {
+  //         console.log(response.data);
+  //         setPickUpLocationValue(response.data);
+  //       });
+  //   }
+  // }, [pickUpItemCode]);
 
   // task
   const handleItemClick = async (item: any) => {
@@ -1579,7 +1581,7 @@ export default function SalesOrder() {
         grossTotal: item.SRP,
         scPwdDiscount: SCDiscount,
         truckPanelORDropShip: "",
-        pickUpLocation: "SEL",
+        pickUpLocation: pickUpLocationValue,
       };
       setTableData(updatedTableData);
       setShowItems(false);
