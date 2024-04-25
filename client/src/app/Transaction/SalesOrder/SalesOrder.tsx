@@ -1499,8 +1499,19 @@ export default function SalesOrder() {
 
   let countAllItem = 0;
 
+  const [pickUpItemCode, setPickUpItemCode] = useState("");
   // i will put the pickUpLocation in the useEffect
-  useEffect(() => {});
+  useEffect(() => {
+    if (pickUpItemCode) {
+      axios
+        .get(
+          `http://172.16.10.217:3001/pickup-location/${pickUpItemCode}/1/GSCNAPGS`
+        )
+        .then((response) => {
+          console.log(response.data);
+        });
+    }
+  }, [pickUpItemCode]);
 
   // task
   const handleItemClick = async (item: any) => {
@@ -1530,6 +1541,8 @@ export default function SalesOrder() {
       taxCodeData.map((e: any) => {
         taxCodeDataNow = e.TaxCode;
       });
+
+      // const pickUpLoc = await axios.get(`http://172.16.10.217:3001/pickup-location/${item.ItemCode}/1/GSCNAPGS`)
 
       const lowerbound = await axios.get(
         `${fetchAPI}/lowerbound/${priceListNum}/${taxCodeDataNow}/${item.ItemCode}/${warehouseCode}/1`
@@ -1573,6 +1586,8 @@ export default function SalesOrder() {
       setSelectedRowIndex(null);
       setOpenItemTablePanel(!openItemTablePanel);
       setSellingPriceAfterDis(item.Price);
+      // PICK UP
+      setPickUpItemCode(item.ItemCode);
     }
     // to clear search input history
     setSearchTerm("");
