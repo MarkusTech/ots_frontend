@@ -1544,8 +1544,6 @@ export default function SalesOrder() {
         taxCodeDataNow = e.TaxCode;
       });
 
-      // const pickUpLoc = await axios.get(`http://172.16.10.217:3001/pickup-location/${item.ItemCode}/1/GSCNAPGS`)
-
       const lowerbound = await axios.get(
         `${fetchAPI}/lowerbound/${priceListNum}/${taxCodeDataNow}/${item.ItemCode}/${warehouseCode}/1`
       );
