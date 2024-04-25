@@ -935,6 +935,10 @@ export default function SalesOrder() {
         `${fetchAPI}/warehouse-soh/${itemcode}/${name}/${brandID}`
       );
       setWareHouseList(warehouse.data);
+      // const warehouseCodex = warehouse.data;
+      // if(warehouse.data != ""){
+      //   axios.get(`http://172.16.10.217:3001/pickup-location/${itemcode}/1/${warehouseCodex}`)
+      // }
     } catch (error) {
       console.log(error);
     }
