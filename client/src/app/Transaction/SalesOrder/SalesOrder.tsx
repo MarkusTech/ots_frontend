@@ -928,7 +928,7 @@ export default function SalesOrder() {
     setUOMListIndex(rowIndex);
   };
 
-  // new task
+  // new task 931 && 1467
   const onAddHeaderWareHouse = async (itemcode: any, name: any, uom: any) => {
     try {
       const warehouse = await axios.get(
