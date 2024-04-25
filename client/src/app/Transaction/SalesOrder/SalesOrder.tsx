@@ -1557,7 +1557,6 @@ export default function SalesOrder() {
       );
       SCDiscount = scdiscount.data[0]["SCDiscount"];
 
-      let pickUpLocData = "";
       if (item.itemCode != "") {
         axios
           .get(
