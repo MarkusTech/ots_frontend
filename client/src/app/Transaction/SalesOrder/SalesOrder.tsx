@@ -1557,10 +1557,13 @@ export default function SalesOrder() {
       );
       SCDiscount = scdiscount.data[0]["SCDiscount"];
 
+      const itemCodex = item.ItemCode;
+      // alert(itemCodex);
+
       if (item.itemCode != "") {
         axios
           .get(
-            `http://172.16.10.217:3001/pickup-location/${item.itemCode}/1/${warehouseCode}`
+            `http://172.16.10.217:3001/pickup-location/${itemCodex}/1/${warehouseCode}`
           )
           .then((response) => {
             console.log(response.data);
