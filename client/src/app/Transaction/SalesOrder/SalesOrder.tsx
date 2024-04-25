@@ -1476,6 +1476,16 @@ export default function SalesOrder() {
     setSelectedRowIndex(rowIndex);
     onAddHeaderWareHouse(itemcode, name, uom);
 
+    // if (itemcode != "") {
+    //   axios
+    //     .get(
+    //       `http://172.16.10.217:3001/pickup-location/${itemcode}/1/${WareHouseList}`
+    //     )
+    //     .then((response) => {
+    //       alert(response.data);
+    //     });
+    // }
+
     setitemcodewh(itemcode);
     setitemnamews(itemname);
     setitemuomws(name);
