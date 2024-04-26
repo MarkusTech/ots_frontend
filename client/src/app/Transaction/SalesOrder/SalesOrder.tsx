@@ -1922,10 +1922,18 @@ export default function SalesOrder() {
     );
     const stocksAvailabilityArr = stocksAvailability.data;
 
+    const pickUpLocation = await axios.get(
+      `http://172.16.10.217:3001/pickup-location/0006090SBDFB/1/GSCNAPGS`
+    );
+    const pickUpLocationData = pickUpLocation.data;
+
+    // alert(pickUpLocationData);
+
     updatedTableData[selectedRowIndex] = {
       ...item,
       location: itemdata,
       inventoryStatus: stocksAvailabilityArr[0]["StockAvailable"],
+      pickUpLocation: pickUpLocationData,
     };
     setTableData(updatedTableData);
     setOpenLocationPanel(!openLocationPanel);
