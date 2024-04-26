@@ -2638,7 +2638,6 @@ export default function SalesOrder() {
             </body>
             </html>
         `);
-      // <p>${tableData[0].pickUpLocation}</p>
       printWindow.document.close();
       printWindow.print();
 
