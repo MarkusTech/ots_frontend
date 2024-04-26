@@ -928,6 +928,8 @@ export default function SalesOrder() {
     setUOMListIndex(rowIndex);
   };
 
+  var [itemCodeData, setItemCodeData] = useState("");
+  var [wharehouseData, setWhareHouseData] = useState("");
   // new task 931 && 1467
   const onAddHeaderWareHouse = async (itemcode: any, name: any, uom: any) => {
     try {
@@ -935,10 +937,29 @@ export default function SalesOrder() {
         `${fetchAPI}/warehouse-soh/${itemcode}/${name}/${brandID}`
       );
       setWareHouseList(warehouse.data);
+      const wareCode = warehouse.data;
+      // -----------------------------------
+      setWhareHouseData(wareCode);
+      setItemCodeData(itemcode);
     } catch (error) {
       console.log(error);
     }
   };
+
+  useEffect(() => {
+    const updatedTableData = [...tableData];
+    const item = updatedTableData[selectedRowIndex];
+    axios
+      .get(
+        `http://172.16.10.217:3001/pickup-location/${itemCodeData}/1/${wharehouseData}`
+      )
+      .then((response) => {
+        updatedTableData[selectedRowIndex] = {
+          ...item,
+          pickUpLocation: response.data,
+        };
+      });
+  });
 
   const onAddHeaderTaxCode = async (cardCodex: any, whseCodex: any) => {
     const taxcode = await axios.get(
@@ -1454,6 +1475,7 @@ export default function SalesOrder() {
     onAddHeaderUOM(itemCode, rowIndex);
   };
 
+  const [onAddPickUpLocation, setOnAddPickUpLocation] = useState("");
   // handle Warehouse
   const openLocationTable = (
     rowIndex: any,
@@ -1465,7 +1487,6 @@ export default function SalesOrder() {
     setOpenLocationPanel(!openLocationPanel);
     setSelectedRowIndex(rowIndex);
     onAddHeaderWareHouse(itemcode, name, uom);
-    // onAddPickUpLocation(itemcode);
 
     setitemcodewh(itemcode);
     setitemnamews(itemname);
@@ -1886,10 +1907,10 @@ export default function SalesOrder() {
     );
     const stocksAvailabilityArr = stocksAvailability.data;
 
-    const pickUpLocation = await axios.get(
-      `http://172.16.10.217:3001/pickup-location/0006090SBDFB/1/${WareHouseList}`
-    );
-    const pickUpLocationData = pickUpLocation.data;
+    // const pickUpLocation = await axios.get(
+    //   `http://172.16.10.217:3001/pickup-location/${itemCodeData}/1/${wharehouseData}`
+    // );
+    // const pickUpLocationData = pickUpLocation.data;
 
     // alert(pickUpLocationData);
 
@@ -1897,7 +1918,7 @@ export default function SalesOrder() {
       ...item,
       location: itemdata,
       inventoryStatus: stocksAvailabilityArr[0]["StockAvailable"],
-      pickUpLocation: pickUpLocationData,
+      // pickUpLocation: pickUpLocationData,
     };
     setTableData(updatedTableData);
     setOpenLocationPanel(!openLocationPanel);
