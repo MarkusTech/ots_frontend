@@ -1493,16 +1493,6 @@ export default function SalesOrder() {
     onAddHeaderWareHouse(itemcode, name, uom);
     // onAddPickUpLocation(itemcode);
 
-    // if (itemcode != "") {
-    //   axios
-    //     .get(
-    //       `http://172.16.10.217:3001/pickup-location/${itemcode}/1/${WareHouseList}`
-    //     )
-    //     .then((response) => {
-    //       alert(response.data);
-    //     });
-    // }
-
     setitemcodewh(itemcode);
     setitemnamews(itemname);
     setitemuomws(name);
