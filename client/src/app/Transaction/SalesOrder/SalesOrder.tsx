@@ -940,21 +940,6 @@ export default function SalesOrder() {
     }
   };
 
-  // new Code
-  // const onAddPickUpLocation = async (itemcode: any) => {
-  //   if (itemcode !== "") {
-  //     try {
-  //       const response = await axios.get(
-  //         `http://172.16.10.217:3001/pickup-location/${itemcode}/1/${WareHouseList}`
-  //       );
-  //       // Assuming response.data contains the desired data from the API
-  //       alert(response.data);
-  //     } catch (error) {
-  //       console.error("Error fetching data:", error);
-  //     }
-  //   }
-  // };
-
   const onAddHeaderTaxCode = async (cardCodex: any, whseCodex: any) => {
     const taxcode = await axios.get(
       `${fetchAPI}/tax-code/${cardCodex}/${whseCodex}`
@@ -1902,7 +1887,7 @@ export default function SalesOrder() {
     const stocksAvailabilityArr = stocksAvailability.data;
 
     const pickUpLocation = await axios.get(
-      `http://172.16.10.217:3001/pickup-location/0006090SBDFB/1/GSCNAPGS`
+      `http://172.16.10.217:3001/pickup-location/0006090SBDFB/1/${WareHouseList}`
     );
     const pickUpLocationData = pickUpLocation.data;
 
