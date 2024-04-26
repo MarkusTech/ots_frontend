@@ -93,8 +93,8 @@ export default function SalesOrder() {
 
   // print mode of releasing and payment
   const [modeOfPaymentPrint, setModeOfPaymentPrint] = useState("");
-  const [modeOfReleasingPrint, setModeOfReleasingPrint] = useState("");
-  const [pickUpLocationDataPrint, setPickUpLocationDataPrint] = useState("");
+  const [modeOfReleasingPrint, setModeOfReleasingPrint] = useState([]);
+  const [pickUpLocationDataPrint, setPickUpLocationDataPrint] = useState([]);
   const [customerPrint, setCustomerPrint] = useState("");
 
   const [ccstatus, setccstatus] = useState(false);
@@ -1307,7 +1307,6 @@ export default function SalesOrder() {
             axios
               .get(`http://localhost:5000/api/v1/receipt/${jsonDraftNum}`)
               .then((response) => {
-                // alert(response.data["PickUpLocation"]);
                 const pickUpLocationData = response.data["PickUpLocation"];
                 const modeOfReleasingData = response.data["ModeReleasing"];
                 setModeOfReleasingPrint(modeOfReleasingData);
@@ -2631,7 +2630,7 @@ export default function SalesOrder() {
                     <h1>${docNumber}</h1>
                     <p>${customerPrint}</p>
                     <p>${modeOfPaymentPrint}</p>
-                    <p>${modeOfReleasingPrint}: ${tableData[0].pickUpLocation}</p>
+                    <p>${modeOfReleasingPrint}: ${pickUpLocationDataPrint}</p>
                     <p>${tableData[0].truckPanelORDropShip}</p>
                     <p>${selectedSalesCrew}</p>
                     <p>${totalAmoutDueData}</p>
