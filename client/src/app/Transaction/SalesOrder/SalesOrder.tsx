@@ -928,6 +928,7 @@ export default function SalesOrder() {
     setUOMListIndex(rowIndex);
   };
 
+  // for Validating pick up location
   const [itemCodeData, setItemCodeData] = useState("");
   const onAddHeaderWareHouse = async (itemcode: any, name: any, uom: any) => {
     try {
@@ -1457,7 +1458,6 @@ export default function SalesOrder() {
     onAddHeaderUOM(itemCode, rowIndex);
   };
 
-  const [onAddPickUpLocation, setOnAddPickUpLocation] = useState("");
   // handle Warehouse
   const openLocationTable = (
     rowIndex: any,
@@ -1877,7 +1877,6 @@ export default function SalesOrder() {
     setOpenPickUpLocations(!openPickUpLocations);
   };
 
-  // Task
   const handleWarehoueChange = async (rowIndex: any, itemdata: any) => {
     const updatedTableData = [...tableData];
     const item = updatedTableData[selectedRowIndex];
@@ -1894,7 +1893,7 @@ export default function SalesOrder() {
     );
     const pickUpLocationData = pickUpLocation.data;
 
-    alert(pickUpLocationData);
+    // alert(pickUpLocationData);
 
     updatedTableData[selectedRowIndex] = {
       ...item,
