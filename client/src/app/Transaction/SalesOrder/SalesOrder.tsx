@@ -94,6 +94,7 @@ export default function SalesOrder() {
   // print mode of releasing and payment
   const [modeOfPaymentPrint, setModeOfPaymentPrint] = useState("");
   const [modeOfReleasingPrint, setModeOfReleasingPrint] = useState("");
+  const [pickUpLocationDataPrint, setPickUpLocationDataPrint] = useState("");
   const [customerPrint, setCustomerPrint] = useState("");
 
   const [ccstatus, setccstatus] = useState(false);
@@ -1303,7 +1304,15 @@ export default function SalesOrder() {
           setTableData([...tableData, ...newData]);
 
           if (newData.length > 0) {
-            setModeOfReleasingPrint(newData[0].modeOfReleasing);
+            axios
+              .get(`http://localhost:5000/api/v1/receipt/${jsonDraftNum}`)
+              .then((response) => {
+                // alert(response.data["PickUpLocation"]);
+                const pickUpLocationData = response.data["PickUpLocation"];
+                const modeOfReleasingData = response.data["ModeReleasing"];
+                setModeOfReleasingPrint(modeOfReleasingData);
+                setPickUpLocationDataPrint(pickUpLocationData);
+              });
           }
 
           // to remove 1 row on adding the details
