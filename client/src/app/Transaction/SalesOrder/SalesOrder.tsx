@@ -929,7 +929,6 @@ export default function SalesOrder() {
   };
 
   const [itemCodeData, setItemCodeData] = useState("");
-  const [wharehouseData, setWhareHouseData] = useState("");
   // new task 931 && 1467
   const onAddHeaderWareHouse = async (itemcode: any, name: any, uom: any) => {
     try {
@@ -939,36 +938,11 @@ export default function SalesOrder() {
       setWareHouseList(warehouse.data);
       const wareCode = warehouse.data;
       // -----------------------------------
-      setWhareHouseData(wareCode);
       setItemCodeData(itemcode);
     } catch (error) {
       console.log(error);
     }
   };
-
-  // useEffect(() => {
-  //   const updatedTableData = [...tableData];
-  //   const item = updatedTableData[selectedRowIndex];
-
-  //   // Check if both itemCodeData and wharehouseData are not empty
-  //   if (itemCodeData && wharehouseData) {
-  //     axios
-  //       .get(
-  //         `http://172.16.10.217:3001/pickup-location/${itemCodeData}/1/${wharehouseData}`
-  //       )
-  //       .then((response) => {
-  //         updatedTableData[selectedRowIndex] = {
-  //           ...item,
-  //           pickUpLocation: response.data,
-  //         };
-  //         // Update the state with the modified table data
-  //         setTableData(updatedTableData);
-  //       })
-  //       .catch((error) => {
-  //         console.log(error);
-  //       });
-  //   }
-  // }, [itemCodeData, wharehouseData, selectedRowIndex, tableData]); // Add dependencies to watch for changes
 
   const onAddHeaderTaxCode = async (cardCodex: any, whseCodex: any) => {
     const taxcode = await axios.get(
