@@ -935,17 +935,6 @@ export default function SalesOrder() {
         `${fetchAPI}/warehouse-soh/${itemcode}/${name}/${brandID}`
       );
       setWareHouseList(warehouse.data);
-      // const warehouseCodex = warehouse.data;
-
-      // if (warehouse.data != "") {
-      //   axios
-      //     .get(
-      //       `http://172.16.10.217:3001/pickup-location/0006090SBDFB/1/GSCNAPGS`
-      //     )
-      //     .then((response) => {
-      //       alert(response.data);
-      //     });
-      // }
     } catch (error) {
       console.log(error);
     }
