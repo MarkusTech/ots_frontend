@@ -929,7 +929,6 @@ export default function SalesOrder() {
   };
 
   const [itemCodeData, setItemCodeData] = useState("");
-  // new task 931 && 1467
   const onAddHeaderWareHouse = async (itemcode: any, name: any, uom: any) => {
     try {
       const warehouse = await axios.get(
