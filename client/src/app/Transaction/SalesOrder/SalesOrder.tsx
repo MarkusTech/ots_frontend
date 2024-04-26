@@ -936,10 +936,11 @@ export default function SalesOrder() {
       );
       setWareHouseList(warehouse.data);
       // const warehouseCodex = warehouse.data;
+
       // if (warehouse.data != "") {
       //   axios
       //     .get(
-      //       `http://172.16.10.217:3001/pickup-location/${itemcode}/1/${warehouseCodex}`
+      //       `http://172.16.10.217:3001/pickup-location/0006090SBDFB/1/GSCNAPGS`
       //     )
       //     .then((response) => {
       //       alert(response.data);
@@ -949,6 +950,21 @@ export default function SalesOrder() {
       console.log(error);
     }
   };
+
+  // new Code
+  // const onAddPickUpLocation = async (itemcode: any) => {
+  //   if (itemcode !== "") {
+  //     try {
+  //       const response = await axios.get(
+  //         `http://172.16.10.217:3001/pickup-location/${itemcode}/1/${WareHouseList}`
+  //       );
+  //       // Assuming response.data contains the desired data from the API
+  //       alert(response.data);
+  //     } catch (error) {
+  //       console.error("Error fetching data:", error);
+  //     }
+  //   }
+  // };
 
   const onAddHeaderTaxCode = async (cardCodex: any, whseCodex: any) => {
     const taxcode = await axios.get(
@@ -1475,6 +1491,7 @@ export default function SalesOrder() {
     setOpenLocationPanel(!openLocationPanel);
     setSelectedRowIndex(rowIndex);
     onAddHeaderWareHouse(itemcode, name, uom);
+    // onAddPickUpLocation(itemcode);
 
     // if (itemcode != "") {
     //   axios
@@ -4302,4 +4319,4 @@ export default function SalesOrder() {
   );
 }
 
-// SELECT dbo.fn_GetPickUpLocation('0006697HWFAN',1,'GSCNAPGS')
+// 931 && 1467
