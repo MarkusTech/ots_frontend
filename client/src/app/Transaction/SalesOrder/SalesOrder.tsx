@@ -1301,7 +1301,7 @@ export default function SalesOrder() {
           }));
 
           // add the data from selected details
-          // add the data from selected de
+          // add the data from selected d
           setTableData([...tableData, ...newData]);
 
           if (newData.length > 0) {
