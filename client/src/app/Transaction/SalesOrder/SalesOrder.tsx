@@ -1303,22 +1303,38 @@ export default function SalesOrder() {
           // add the data from selected details
           setTableData([...tableData, ...newData]);
 
-          if (newData.length > 0) {
-            axios
-              .get(`http://localhost:5000/api/v1/receipt/${jsonDraftNum}`)
-              .then((response) => {
-                const pickUpLocationData = response.data["PickUpLocation"];
-                const modeOfReleasingData = response.data["ModeReleasing"];
-                setModeOfReleasingPrint(modeOfReleasingData);
-                setPickUpLocationDataPrint(pickUpLocationData);
-              });
-          }
+          // if (newData.length > 0) {
+          //   axios
+          //     .get(`http://localhost:5000/api/v1/receipt/${jsonDraftNum}`)
+          //     .then((response) => {
+          //       const pickUpLocationData = response.data["PickUpLocation"];
+          //       const modeOfReleasingData = response.data["ModeReleasing"];
+          //       setModeOfReleasingPrint(modeOfReleasingData);
+          //       setPickUpLocationDataPrint(pickUpLocationData);
+          //     });
+          // }
 
           // to remove 1 row on adding the details
           setTableData((prevData) => prevData.filter((_, index) => index));
           setmodeOfrelisingArr((prevData) =>
             prevData.filter((_, index) => index)
           );
+        })
+        .catch((error) => {
+          console.error("Error fetching data:", error);
+        });
+    }
+  }, [jsonDraftNum]);
+
+  // ------------------------------------------------------------------------
+  const [motherFuckingCode, setMotherFuckingCode] = useState([]);
+  useEffect(() => {
+    if (jsonDraftNum) {
+      axios
+        .get(`http://localhost:5000/api/v1/receipt/${jsonDraftNum}`)
+        .then((response) => {
+          const extractedData = response.data[0];
+          setMotherFuckingCode(extractedData);
         })
         .catch((error) => {
           console.error("Error fetching data:", error);
@@ -2630,7 +2646,17 @@ export default function SalesOrder() {
                     <h1>${docNumber}</h1>
                     <p>${customerPrint}</p>
                     <p>${modeOfPaymentPrint}</p>
-                    <p>${modeOfReleasingPrint}: ${pickUpLocationDataPrint}</p>
+                    <div>
+                      ${motherFuckingCode
+                        .map(
+                          (item, index) => `
+                        <div key=${index}>
+                          <p>${item.ModeReleasing}: ${item.PickUpLocation}</p>
+                        </div>
+                      `
+                        )
+                        .join("")}
+                    </div>
                     <p>${tableData[0].truckPanelORDropShip}</p>
                     <p>${selectedSalesCrew}</p>
                     <p>${totalAmoutDueData}</p>
@@ -2647,6 +2673,7 @@ export default function SalesOrder() {
       }, 1000); // Adjust the timeout as needed
     }
   };
+  // <p>${modeOfReleasingPrint}: ${pickUpLocationDataPrint}</p>
 
   // --------------------------- End Windows Print ------------------------------
   return (
@@ -4098,7 +4125,7 @@ export default function SalesOrder() {
             <div>
               <button
                 className="p-2 mt-2 mb-1 mr-2 text-[12px] bg-[#F4D674] hover:bg-yellow-500 focus:outline-none focus:shadow-outline-yellow active:bg-yellow-600 rounded w-24"
-                // onClick={consoleLog}
+                // onClick={printerrrr}
               >
                 Trial
               </button>
