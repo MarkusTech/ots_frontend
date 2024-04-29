@@ -8,7 +8,8 @@ const receipt = async (req, res) => {
     );
 
     if (result.recordset.length > 0) {
-      res.json(result.recordset[0]);
+      // res.json(result.recordset[0]);
+      res.json(result.recordsets);
     } else {
       // If no matching record is found, send an appropriate response
       res.status(404).json({ message: "Record not found" });
