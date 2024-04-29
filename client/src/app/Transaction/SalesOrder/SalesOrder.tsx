@@ -93,9 +93,8 @@ export default function SalesOrder() {
 
   // print mode of releasing and payment
   const [modeOfPaymentPrint, setModeOfPaymentPrint] = useState("");
-  const [modeOfReleasingPrint, setModeOfReleasingPrint] = useState([]);
-  const [pickUpLocationDataPrint, setPickUpLocationDataPrint] = useState([]);
   const [customerPrint, setCustomerPrint] = useState("");
+  const [motherFuckingCode, setMotherFuckingCode] = useState([]);
 
   const [ccstatus, setccstatus] = useState(false);
   // End of Payment useState
@@ -1327,7 +1326,6 @@ export default function SalesOrder() {
   }, [jsonDraftNum]);
 
   // ----------------------- Printing Reciept -----------------------------
-  const [motherFuckingCode, setMotherFuckingCode] = useState([]);
   useEffect(() => {
     if (jsonDraftNum) {
       axios
