@@ -1303,14 +1303,38 @@ export default function SalesOrder() {
           // add the data from selected details
           setTableData([...tableData, ...newData]);
 
+          // if (newData.length > 0) {
+          //   axios
+          //     .get(`http://localhost:5000/api/v1/receipt/${jsonDraftNum}`)
+          //     .then((response) => {
+          //       const pickUpLocationData = response.data["PickUpLocation"];
+          //       const modeOfReleasingData = response.data["ModeReleasing"];
+          //       setModeOfReleasingPrint(modeOfReleasingData);
+          //       setPickUpLocationDataPrint(pickUpLocationData);
+          //     });
+          // }
+
           if (newData.length > 0) {
             axios
               .get(`http://localhost:5000/api/v1/receipt/${jsonDraftNum}`)
               .then((response) => {
-                const pickUpLocationData = response.data["PickUpLocation"];
-                const modeOfReleasingData = response.data["ModeReleasing"];
+                // Assuming response.data is an array of objects
+                const responseData = response.data;
+
+                // Extract ModeReleasing and PickUpLocation properties from each object
+                const modeOfReleasingData = responseData.map(
+                  (item: any) => item.ModeReleasing
+                );
+                const pickUpLocationData = responseData.map(
+                  (item: any) => item.PickUpLocation
+                );
+
+                // Update state variables with the extracted data
                 setModeOfReleasingPrint(modeOfReleasingData);
                 setPickUpLocationDataPrint(pickUpLocationData);
+              })
+              .catch((error) => {
+                console.error("Error fetching data:", error);
               });
           }
 
