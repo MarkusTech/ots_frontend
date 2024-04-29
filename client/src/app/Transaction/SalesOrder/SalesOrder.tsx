@@ -1326,34 +1326,6 @@ export default function SalesOrder() {
     }
   }, [jsonDraftNum]);
 
-  // ----------------------------------------------------
-  // useEffect(() => {
-  //   if (jsonDraftNum) {
-  //     axios
-  //       .get(`http://localhost:5000/api/v1/receipt/${jsonDraftNum}`)
-  //       .then((response) => {
-  //         // Extract data from the response
-  //         const responseData = response.data;
-
-  //         // Assuming responseData is an array of objects
-  //         const modeOfReleasingData = responseData.map(
-  //           (item) => item.ModeReleasing
-  //         );
-  //         const pickUpLocationData = responseData.map(
-  //           (item) => item.PickUpLocation
-  //         );
-
-  //         // Update state variables
-  //         setModeOfReleasingPrint(modeOfReleasingData);
-  //         setPickUpLocationDataPrint(pickUpLocationData);
-  //         alert(modeOfReleasingData);
-  //       })
-  //       .catch((error) => {
-  //         console.error("Error fetching data:", error);
-  //       });
-  //   }
-  // }, [jsonDraftNum]);
-
   // sales Crew
   useEffect(() => {
     const fetchData = async () => {
