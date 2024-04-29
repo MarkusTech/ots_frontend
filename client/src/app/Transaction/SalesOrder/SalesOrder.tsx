@@ -1326,7 +1326,7 @@ export default function SalesOrder() {
     }
   }, [jsonDraftNum]);
 
-  // ------------------------------------------------------------------------
+  // ----------------------- Printing Reciept -----------------------------
   const [motherFuckingCode, setMotherFuckingCode] = useState([]);
   useEffect(() => {
     if (jsonDraftNum) {
