@@ -1302,17 +1302,6 @@ export default function SalesOrder() {
           // add the data from selected details
           setTableData([...tableData, ...newData]);
 
-          // if (newData.length > 0) {
-          //   axios
-          //     .get(`http://localhost:5000/api/v1/receipt/${jsonDraftNum}`)
-          //     .then((response) => {
-          //       const pickUpLocationData = response.data["PickUpLocation"];
-          //       const modeOfReleasingData = response.data["ModeReleasing"];
-          //       setModeOfReleasingPrint(modeOfReleasingData);
-          //       setPickUpLocationDataPrint(pickUpLocationData);
-          //     });
-          // }
-
           // to remove 1 row on adding the details
           setTableData((prevData) => prevData.filter((_, index) => index));
           setmodeOfrelisingArr((prevData) =>
