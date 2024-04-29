@@ -1314,30 +1314,6 @@ export default function SalesOrder() {
           //     });
           // }
 
-          if (newData.length > 0) {
-            axios
-              .get(`http://localhost:5000/api/v1/receipt/${jsonDraftNum}`)
-              .then((response) => {
-                // Assuming response.data is an array of objects
-                const responseData = response.data;
-
-                // Extract ModeReleasing and PickUpLocation properties from each object
-                const modeOfReleasingData = responseData.map(
-                  (item: any) => item.ModeReleasing
-                );
-                const pickUpLocationData = responseData.map(
-                  (item: any) => item.PickUpLocation
-                );
-
-                // Update state variables with the extracted data
-                setModeOfReleasingPrint(modeOfReleasingData);
-                setPickUpLocationDataPrint(pickUpLocationData);
-              })
-              .catch((error) => {
-                console.error("Error fetching data:", error);
-              });
-          }
-
           // to remove 1 row on adding the details
           setTableData((prevData) => prevData.filter((_, index) => index));
           setmodeOfrelisingArr((prevData) =>
@@ -1351,28 +1327,32 @@ export default function SalesOrder() {
   }, [jsonDraftNum]);
 
   // ----------------------------------------------------
-  // useEffect(() => {
-  //   if (jsonDraftNum) {
-  //     axios
-  //       .get(`http://localhost:5000/api/v1/receipt/${jsonDraftNum}`)
-  //       .then((response) => {
-  //         // Extract data from the response
-  //         const responseData = response.data;
+  useEffect(() => {
+    if (jsonDraftNum) {
+      axios
+        .get(`http://localhost:5000/api/v1/receipt/${jsonDraftNum}`)
+        .then((response) => {
+          // Extract data from the response
+          const responseData = response.data;
 
-  //         // Assuming responseData is an array of objects
-  //         const modeOfReleasingData = responseData.map(item => item.ModeReleasing);
-  //         const pickUpLocationData = responseData.map(item => item.PickUpLocation);
+          // Assuming responseData is an array of objects
+          const modeOfReleasingData = responseData.map(
+            (item) => item.ModeReleasing
+          );
+          const pickUpLocationData = responseData.map(
+            (item) => item.PickUpLocation
+          );
 
-  //         // Update state variables
-  //         setModeOfReleasingPrint(modeOfReleasingData);
-  //         setPickUpLocationDataPrint(pickUpLocationData);
-  //         alert(modeOfReleasingData)
-  //       })
-  //       .catch(error => {
-  //         console.error('Error fetching data:', error);
-  //       });
-  //   }
-  // }, [jsonDraftNum]);
+          // Update state variables
+          setModeOfReleasingPrint(modeOfReleasingData);
+          setPickUpLocationDataPrint(pickUpLocationData);
+          alert(modeOfReleasingData);
+        })
+        .catch((error) => {
+          console.error("Error fetching data:", error);
+        });
+    }
+  }, [jsonDraftNum]);
 
   // sales Crew
   useEffect(() => {
