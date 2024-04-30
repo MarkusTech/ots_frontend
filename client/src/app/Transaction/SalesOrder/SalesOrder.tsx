@@ -464,19 +464,6 @@ export default function SalesOrder() {
       }
     }
 
-    // warehousee
-    let locationValues = [];
-    for (let i = 0; i < tableData.length; i++) {
-      locationValues.push(tableData[i].location);
-    }
-    const forbiddenLocations = [
-      "DSBIGSDS",
-      "GSCDCCDS",
-      "GSCNAPDS",
-      "DCTGSCDS",
-      "DCTSCTDS",
-    ];
-
     if (formData.CustomerCode == "") {
       Swal.fire({
         icon: "error",
@@ -519,22 +506,7 @@ export default function SalesOrder() {
       });
     } else if (countAllreleasing == allItemsArrLen) {
       //  if the whole validation is done it will show an alert to save or cancel
-      // sendToProductionAPI();
-      // -------------------------------------
-      // locationValues.forEach((location) => {
-      //   if (countStatusInventory > 0) {
-      //     Swal.fire({
-      //       icon: "error",
-      //       text: "Please make sure all products are available",
-      //     });
-      //   }
-      //   if (forbiddenLocations.includes(location)) {
-      //     alert(`${location} is allowed`);
-      //   } else {
-      //     alert(`${location} is forbidden!`);
-      //   }
-      // });
-      alert(locationValues);
+      sendToProductionAPI();
     } else {
       Swal.fire({
         icon: "error",
