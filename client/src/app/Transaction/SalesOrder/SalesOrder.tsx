@@ -464,6 +464,20 @@ export default function SalesOrder() {
       }
     }
 
+    // warehouse
+    let warehouseArray: any = [];
+    for (let wi = 0; wi < allItemsArrLen; wi++) {
+      if (
+        allItemsArr[wi]["location"] == "DSBIGSDS" ||
+        "GSCDCCDS" ||
+        "GSCNAPDS" ||
+        "DCTGSCDS" ||
+        "DCTSCTDS"
+      ) {
+        warehouseArray += allItemsArr[wi];
+      }
+    }
+
     if (formData.CustomerCode == "") {
       Swal.fire({
         icon: "error",
@@ -507,9 +521,6 @@ export default function SalesOrder() {
     } else if (countAllreleasing == allItemsArrLen) {
       //  if the whole validation is done it will show an alert to save or cancel
       sendToProductionAPI();
-      // if(){
-      //   sendToProductionAPI();
-      // }
     } else {
       Swal.fire({
         icon: "error",
