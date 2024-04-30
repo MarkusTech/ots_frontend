@@ -465,18 +465,6 @@ export default function SalesOrder() {
     }
 
     // warehouse
-    let warehouseArray: any = [];
-    for (let wi = 0; wi < allItemsArrLen; wi++) {
-      if (
-        allItemsArr[wi]["location"] == "DSBIGSDS" ||
-        "GSCDCCDS" ||
-        "GSCNAPDS" ||
-        "DCTGSCDS" ||
-        "DCTSCTDS"
-      ) {
-        warehouseArray += allItemsArr[wi];
-      }
-    }
 
     if (formData.CustomerCode == "") {
       Swal.fire({
