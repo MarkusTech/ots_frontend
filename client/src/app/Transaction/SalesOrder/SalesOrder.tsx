@@ -507,6 +507,9 @@ export default function SalesOrder() {
     } else if (countAllreleasing == allItemsArrLen) {
       //  if the whole validation is done it will show an alert to save or cancel
       sendToProductionAPI();
+      // if(){
+      //   sendToProductionAPI();
+      // }
     } else {
       Swal.fire({
         icon: "error",
@@ -1515,7 +1518,6 @@ export default function SalesOrder() {
 
   let countAllItem = 0;
 
-  // task
   const handleItemClick = async (item: any) => {
     countAllItem = countAllItem + 1;
 
