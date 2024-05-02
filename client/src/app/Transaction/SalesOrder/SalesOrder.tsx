@@ -1915,56 +1915,6 @@ export default function SalesOrder() {
     setOpenPickUpLocations(!openPickUpLocations);
   };
 
-  // ---------------------------------- To be Deleted -----------------------------------
-
-  // const handleWarehoueChange = async (rowIndex: any, itemdata: any) => {
-  //   const updatedTableData = [...tableData];
-  //   const item = updatedTableData[selectedRowIndex];
-
-  //   const quantityXuomConversion = item.quantity * item.uomConversion;
-
-  //   const stocksAvailability = await axios.get(
-  //     `${process.env.NEXT_PUBLIC_IP}/stocks-availability/0/${item.itemCode}/${itemdata}/${quantityXuomConversion}/${item.excludeBO}`
-  //   );
-  //   const stocksAvailabilityArr = stocksAvailability.data;
-
-  //   const pickUpLocation = await axios.get(
-  //     `http://172.16.10.217:3001/pickup-location/${itemCodeData}/1/${itemdata}`
-  //   );
-  //   const pickUpLocationData = pickUpLocation.data;
-
-  //   // Get The data and splice algorithm
-  //   const getTableData = tableData[0]["location"];
-  //   const lastTwo = getTableData.substring(getTableData.length - 2);
-
-  //   if (lastTwo == "DS") {
-  //     updatedTableData[selectedRowIndex] = {
-  //       ...item,
-  //       location: itemdata,
-  //       inventoryStatus: "Available",
-  //       pickUpLocation: pickUpLocationData,
-  //     };
-  //     setTableData(updatedTableData);
-  //   } else {
-  //     updatedTableData[selectedRowIndex] = {
-  //       ...item,
-  //       location: itemdata,
-  //       inventoryStatus: stocksAvailabilityArr[0]["StockAvailable"],
-  //       pickUpLocation: pickUpLocationData,
-  //     };
-  //     setTableData(updatedTableData);
-  //   }
-  //   // updatedTableData[selectedRowIndex] = {
-  //   //   ...item,
-  //   //   location: itemdata,
-  //   //   inventoryStatus: stocksAvailabilityArr[0]["StockAvailable"],
-  //   //   pickUpLocation: pickUpLocationData,
-  //   // };
-  //   // setTableData(updatedTableData);
-  //   setOpenLocationPanel(!openLocationPanel);
-  // };
-  // ------------------------------------------------------------------------------------------
-
   const handleWarehoueChange = async (rowIndex: any, itemdata: any) => {
     const updatedTableData = [...tableData];
     const item = updatedTableData[selectedRowIndex];
@@ -1992,7 +1942,6 @@ export default function SalesOrder() {
         pickUpLocation: pickUpLocationData,
       };
       setTableData(updatedTableData);
-      alert(lastTwo);
     } else {
       updatedTableData[selectedRowIndex] = {
         ...item,
