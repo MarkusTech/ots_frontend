@@ -841,7 +841,7 @@ export default function SalesOrder() {
         const draftNum = draftNumber;
         try {
           axios
-            .put("http://localhost:5000/api/v1/final-commit", {
+            .put("http://172.16.10.169:5000/api/v1/final-commit", {
               DraftNum: draftNum,
             })
             .then((response) => {
@@ -1340,7 +1340,7 @@ export default function SalesOrder() {
   useEffect(() => {
     if (jsonDraftNum) {
       axios
-        .get(`http://localhost:5000/api/v1/receipt/${jsonDraftNum}`)
+        .get(`http://172.16.10.169:5000/api/v1/receipt/${jsonDraftNum}`)
         .then((response) => {
           const extractedData = response.data[0];
           setMotherFuckingCode(extractedData);
