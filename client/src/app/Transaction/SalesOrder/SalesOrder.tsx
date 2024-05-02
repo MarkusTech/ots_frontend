@@ -458,9 +458,19 @@ export default function SalesOrder() {
     // Inventory Status
     let countStatusInventory = 0;
 
+    // task
     for (let ii = 0; ii < allItemsArrLen; ii++) {
-      if (allItemsArr[ii]["inventoryStatus"] == "Out of Stocks") {
+      const getData = allItemsArr[ii]["modeOfReleasing"];
+      const parts = getData.split("-");
+      const backOrder = parts[0];
+      const validateThis = "Back Order";
+      if (
+        allItemsArr[ii]["inventoryStatus"] == "Out of Stocks" &&
+        validateThis != backOrder
+        // allItemsArr[ii]["modeOfReleasing"] == "Back Order"
+      ) {
         countStatusInventory++;
+        alert(validateThis);
       }
     }
 
