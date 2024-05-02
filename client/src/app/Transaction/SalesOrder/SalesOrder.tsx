@@ -469,7 +469,6 @@ export default function SalesOrder() {
         validateThis != backOrder
       ) {
         countStatusInventory++;
-        alert(validateThis);
       }
     }
 
@@ -548,7 +547,14 @@ export default function SalesOrder() {
     let countStatusInventory = 0;
 
     for (let ii = 0; ii < allItemsArrLen; ii++) {
-      if (allItemsArr[ii]["inventoryStatus"] == "Out of Stocks") {
+      const getData = allItemsArr[ii]["modeOfReleasing"];
+      const parts = getData.split("-");
+      const backOrder = parts[0];
+      const validateThis = "Back Order";
+      if (
+        allItemsArr[ii]["inventoryStatus"] == "Out of Stocks" &&
+        validateThis != backOrder
+      ) {
         countStatusInventory++;
       }
     }
@@ -766,7 +772,14 @@ export default function SalesOrder() {
     let countStatusInventory = 0;
 
     for (let ii = 0; ii < allItemsArrLen; ii++) {
-      if (allItemsArr[ii]["inventoryStatus"] == "Out of Stocks") {
+      const getData = allItemsArr[ii]["modeOfReleasing"];
+      const parts = getData.split("-");
+      const backOrder = parts[0];
+      const validateThis = "Back Order";
+      if (
+        allItemsArr[ii]["inventoryStatus"] == "Out of Stocks" &&
+        validateThis != backOrder
+      ) {
         countStatusInventory++;
       }
     }
