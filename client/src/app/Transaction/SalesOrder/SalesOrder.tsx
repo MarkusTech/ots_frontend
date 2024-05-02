@@ -467,7 +467,6 @@ export default function SalesOrder() {
       if (
         allItemsArr[ii]["inventoryStatus"] == "Out of Stocks" &&
         validateThis != backOrder
-        // allItemsArr[ii]["modeOfReleasing"] == "Back Order"
       ) {
         countStatusInventory++;
         alert(validateThis);
