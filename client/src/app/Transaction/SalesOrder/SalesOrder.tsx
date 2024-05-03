@@ -585,6 +585,14 @@ export default function SalesOrder() {
       }
     }
 
+    // Quantity
+    let countQuantity = 0;
+    for (let i = 0; i < tableData.length; i++) {
+      if (allItemsArr[i]["inventoryStatus"] == "") {
+        countQuantity++;
+      }
+    }
+
     // Inventory Status
     let countStatusInventory = 0;
 
@@ -601,27 +609,62 @@ export default function SalesOrder() {
       }
     }
 
+    // Blocker for Trucker for Dropship/Back-order
+    let countModeOfRel = 0;
+    let countNotDropBack = 0;
+    for (let i = 0; i < tableData.length; i++) {
+      const getData = allItemsArr[i]["modeOfReleasing"];
+      const parts = getData.split("-");
+      const backOrder = parts[0];
+      if (
+        backOrder == "Back Order" &&
+        allItemsArr[i]["truckPanelORDropShip"] == "N/A"
+      ) {
+        countModeOfRel++;
+      } else if (
+        backOrder == "Drop" &&
+        allItemsArr[i]["truckPanelORDropShip"] == "N/A"
+      ) {
+        countModeOfRel++;
+      } else if (
+        backOrder == "Standard" &&
+        allItemsArr[i]["truckPanelORDropShip"] != "N/A"
+      ) {
+        countNotDropBack++;
+      }
+    }
+
     if (formData.CustomerCode == "") {
       Swal.fire({
         icon: "error",
         text: "Need to Select Customer First!",
-      });
-    } else if (validateTable[0]["itemCode"] == "") {
-      Swal.fire({
-        icon: "error",
-        text: "Need to Select Atleast 1 Product!",
       });
     } else if (selectedSalesCrew == "") {
       Swal.fire({
         icon: "error",
         text: "Need to Select Sales Crew!",
       });
+    } else if (validateTable[0]["itemCode"] == "") {
+      Swal.fire({
+        icon: "error",
+        text: "Need to Select Atleast 1 Product!",
+      });
     } else if (countStatusInventory > 0) {
       Swal.fire({
         icon: "error",
         text: "Please make sure all products are available",
       });
-    } else if (validateTable[0]["inventoryStatus"] == "") {
+    } else if (countModeOfRel > 0) {
+      Swal.fire({
+        icon: "error",
+        text: "Please make sure Trucker for Dropship/Back-order is not N/A for the Dropship or Back-Order",
+      });
+    } else if (countNotDropBack > 0) {
+      Swal.fire({
+        icon: "error",
+        text: "Please put N/A on Dropship/Back-order if mode of releasing is not Dropship or Back-order",
+      });
+    } else if (countQuantity > 0) {
       Swal.fire({
         icon: "error",
         text: "Please Input a valid Quantity",
