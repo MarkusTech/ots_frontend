@@ -1924,13 +1924,18 @@ export default function SalesOrder() {
     const updatedTableData = [...tableData];
 
     const item = updatedTableData[selectedRowIndex];
+    const getData = moderel;
+    const parts = getData.split("-");
+    const cutData = parts[0];
 
-    updatedTableData[selectedRowIndex] = {
-      ...item,
-      modeOfReleasing: moderel,
-    };
-
-    setTableData(updatedTableData);
+    if (cutData == "Standard") {
+      updatedTableData[selectedRowIndex] = {
+        ...item,
+        modeOfReleasing: moderel,
+        truckPanelORDropShip: "N/A",
+      };
+      setTableData(updatedTableData);
+    }
     setOpenModRelTablePanel(!openModRelTablePanel);
   };
 
