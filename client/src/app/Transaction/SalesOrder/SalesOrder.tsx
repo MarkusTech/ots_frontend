@@ -473,6 +473,7 @@ export default function SalesOrder() {
 
     // Blocker for Trucker for Dropship/Back-order
     let countModeOfRel = 0;
+    const countNotDropShipOrBackOrder = 0;
     for (let i = 0; i < tableData.length; i++) {
       const getData = allItemsArr[i]["modeOfReleasing"];
       const parts = getData.split("-");
