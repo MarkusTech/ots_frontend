@@ -473,7 +473,7 @@ export default function SalesOrder() {
 
     // Blocker for Trucker for Dropship/Back-order
     let countModeOfRel = 0;
-    const countNotDropShipOrBackOrder = 0;
+    let countNotDropShipOrBackOrder = 0;
     for (let i = 0; i < tableData.length; i++) {
       const getData = allItemsArr[i]["modeOfReleasing"];
       const parts = getData.split("-");
@@ -483,14 +483,25 @@ export default function SalesOrder() {
         allItemsArr[i]["truckPanelORDropShip"] == ""
       ) {
         countModeOfRel++;
-        alert(countModeOfRel);
       } else if (
         backOrder == "Drop" &&
         allItemsArr[i]["truckPanelORDropShip"] == ""
       ) {
         countModeOfRel++;
-        alert(countModeOfRel);
       }
+      // } else if (
+      //   backOrder != "Back Order" &&
+      //   allItemsArr[i]["truckPanelORDropShip"] != ""
+      // ) {
+      //   countNotDropShipOrBackOrder++;
+      //   alert(countNotDropShipOrBackOrder);
+      // } else if (
+      //   backOrder != "Drop" &&
+      //   allItemsArr[i]["truckPanelORDropShip"] != ""
+      // ) {
+      //   countNotDropShipOrBackOrder++;
+      //   alert(countNotDropShipOrBackOrder);
+      // }
     }
 
     if (formData.CustomerCode == "") {
