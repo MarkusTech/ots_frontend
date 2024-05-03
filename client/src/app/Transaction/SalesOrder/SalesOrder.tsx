@@ -3713,10 +3713,10 @@ export default function SalesOrder() {
                             <option value="" disabled selected>
                               Please Select
                             </option>
+                            <option value="N/A">N/A</option>
                             <option value="Customer">Customer</option>
                             <option value="Store">Store</option>
                             <option value="Vendor">Vendor</option>
-                            <option value="N/A">N/A</option>
                           </select>
                         </td>
                       </tr>
