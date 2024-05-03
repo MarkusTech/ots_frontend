@@ -458,7 +458,6 @@ export default function SalesOrder() {
     // Inventory Status
     let countStatusInventory = 0;
 
-    // task 05-02-2024
     for (let ii = 0; ii < allItemsArrLen; ii++) {
       const getData = allItemsArr[ii]["modeOfReleasing"];
       const parts = getData.split("-");
@@ -471,6 +470,11 @@ export default function SalesOrder() {
         countStatusInventory++;
       }
     }
+
+    // TASK
+    // Blocker for Trucker for Dropship/Back-order
+    const countModeOfRel = 0;
+    for (let i = 0; i < tableData.length; i++) {}
 
     if (formData.CustomerCode == "") {
       Swal.fire({
