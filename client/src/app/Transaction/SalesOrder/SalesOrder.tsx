@@ -454,6 +454,14 @@ export default function SalesOrder() {
       }
     }
 
+    // Quantity
+    let countQuantity = 0;
+    for (let i = 0; i < tableData.length; i++) {
+      if (allItemsArr[i]["inventoryStatus"] == "") {
+        countQuantity++;
+      }
+    }
+
     setIsCommited(true);
     // Inventory Status
     let countStatusInventory = 0;
@@ -526,7 +534,7 @@ export default function SalesOrder() {
         icon: "error",
         text: "Please put N/A on Dropship/Back-order if mode of releasing is not Dropship or Back-order",
       });
-    } else if (validateTable[0]["inventoryStatus"] == "") {
+    } else if (countQuantity > 0) {
       Swal.fire({
         icon: "error",
         text: "Please Input a valid Quantity",
