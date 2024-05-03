@@ -480,17 +480,17 @@ export default function SalesOrder() {
       const backOrder = parts[0];
       if (
         backOrder == "Back Order" &&
-        allItemsArr[i]["truckPanelORDropShip"] == ""
+        allItemsArr[i]["truckPanelORDropShip"] == "N/A"
       ) {
         countModeOfRel++;
       } else if (
         backOrder == "Drop" &&
-        allItemsArr[i]["truckPanelORDropShip"] == ""
+        allItemsArr[i]["truckPanelORDropShip"] == "N/A"
       ) {
         countModeOfRel++;
       } else if (
         backOrder == "Standard" &&
-        allItemsArr[i]["truckPanelORDropShip"] != ""
+        allItemsArr[i]["truckPanelORDropShip"] != "N/A"
       ) {
         countNotDropBack++;
       }
@@ -519,12 +519,12 @@ export default function SalesOrder() {
     } else if (countModeOfRel > 0) {
       Swal.fire({
         icon: "error",
-        text: "Please make sure Trucker for Dropship/Back-order have a value",
+        text: "Please make sure Trucker for Dropship/Back-order is not N/A for the Dropship or Back-Order",
       });
     } else if (countNotDropBack > 0) {
       Swal.fire({
         icon: "error",
-        text: "Dont Put a value on Dropship/Back-order if mode of releasing is not Dropship/Back-order",
+        text: "Please put N/A on Dropship/Back-order if mode of releasing is not Dropship or Back-order",
       });
     } else if (validateTable[0]["inventoryStatus"] == "") {
       Swal.fire({
@@ -1929,6 +1929,13 @@ export default function SalesOrder() {
     const cutData = parts[0];
 
     if (cutData == "Standard") {
+      updatedTableData[selectedRowIndex] = {
+        ...item,
+        modeOfReleasing: moderel,
+        truckPanelORDropShip: "N/A",
+      };
+      setTableData(updatedTableData);
+    } else {
       updatedTableData[selectedRowIndex] = {
         ...item,
         modeOfReleasing: moderel,
