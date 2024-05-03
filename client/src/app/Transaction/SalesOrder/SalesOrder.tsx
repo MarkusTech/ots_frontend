@@ -473,6 +473,7 @@ export default function SalesOrder() {
 
     // Blocker for Trucker for Dropship/Back-order
     let countModeOfRel = 0;
+    let countNotDropBack = 0;
     for (let i = 0; i < tableData.length; i++) {
       const getData = allItemsArr[i]["modeOfReleasing"];
       const parts = getData.split("-");
@@ -487,6 +488,11 @@ export default function SalesOrder() {
         allItemsArr[i]["truckPanelORDropShip"] == ""
       ) {
         countModeOfRel++;
+      } else if (
+        backOrder == "Standard" &&
+        allItemsArr[i]["truckPanelORDropShip"] != ""
+      ) {
+        countNotDropBack++;
       }
     }
 
@@ -514,6 +520,11 @@ export default function SalesOrder() {
       Swal.fire({
         icon: "error",
         text: "Please make sure Trucker for Dropship/Back-order have a value",
+      });
+    } else if (countNotDropBack > 0) {
+      Swal.fire({
+        icon: "error",
+        text: "Dont Put a value on Dropship/Back-order if mode of releasing is not Dropship/Back-order",
       });
     } else if (validateTable[0]["inventoryStatus"] == "") {
       Swal.fire({
