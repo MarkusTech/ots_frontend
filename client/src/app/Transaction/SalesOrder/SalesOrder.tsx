@@ -1923,6 +1923,7 @@ export default function SalesOrder() {
       updatedTableData[i] = {
         ...item,
         modeOfReleasing: value,
+        truckPanelORDropShip: "N/A",
       };
       setTableData(updatedTableData);
     }
