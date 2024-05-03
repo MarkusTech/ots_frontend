@@ -471,10 +471,26 @@ export default function SalesOrder() {
       }
     }
 
-    // TASK
     // Blocker for Trucker for Dropship/Back-order
-    const countModeOfRel = 0;
-    for (let i = 0; i < tableData.length; i++) {}
+    let countModeOfRel = 0;
+    for (let i = 0; i < tableData.length; i++) {
+      const getData = allItemsArr[i]["modeOfReleasing"];
+      const parts = getData.split("-");
+      const backOrder = parts[0];
+      if (
+        backOrder == "Back Order" &&
+        allItemsArr[i]["truckPanelORDropShip"] == ""
+      ) {
+        countModeOfRel++;
+        alert(countModeOfRel);
+      } else if (
+        backOrder == "Drop" &&
+        allItemsArr[i]["truckPanelORDropShip"] == ""
+      ) {
+        countModeOfRel++;
+        alert(countModeOfRel);
+      }
+    }
 
     if (formData.CustomerCode == "") {
       Swal.fire({
@@ -495,6 +511,11 @@ export default function SalesOrder() {
       Swal.fire({
         icon: "error",
         text: "Please make sure all products are available",
+      });
+    } else if (countModeOfRel > 0) {
+      Swal.fire({
+        icon: "error",
+        text: "Please make sure Trucker for Dropship/Back-order have a value",
       });
     } else if (validateTable[0]["inventoryStatus"] == "") {
       Swal.fire({
