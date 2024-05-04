@@ -1780,7 +1780,6 @@ export default function SalesOrder() {
       SCDiscount = scdiscount.data[0]["SCDiscount"];
 
       const itemCodex = item.ItemCode;
-      // alert(itemCodex);
 
       if (item.itemCode != "") {
         axios
