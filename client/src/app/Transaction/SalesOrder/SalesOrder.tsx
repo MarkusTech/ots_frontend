@@ -700,6 +700,11 @@ export default function SalesOrder() {
         icon: "error",
         text: "Please Input a valid Quantity",
       });
+    } else if (countDS > 0) {
+      Swal.fire({
+        icon: "error",
+        text: "Please Change the Mode of Releasing to Drop Ship if your Warehouse have DS",
+      });
     } else if (
       isPaymentCash == "N" &&
       isPaymentCreditCard == "N" &&
@@ -980,6 +985,11 @@ export default function SalesOrder() {
       Swal.fire({
         icon: "error",
         text: "Please Input a valid Quantity",
+      });
+    } else if (countDS > 0) {
+      Swal.fire({
+        icon: "error",
+        text: "Please Change the Mode of Releasing to Drop Ship if your Warehouse have DS",
       });
     } else if (
       isPaymentCash == "N" &&
