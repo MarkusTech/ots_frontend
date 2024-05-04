@@ -512,8 +512,6 @@ export default function SalesOrder() {
       const parts = getData1.split("-");
       const lastTwo = getData2.substring(getData2.length - 2);
       const backOrder = parts[0];
-      alert(lastTwo);
-      alert(backOrder);
       if (lastTwo == "DS" && backOrder != "Drop") {
         countDS++;
       }
