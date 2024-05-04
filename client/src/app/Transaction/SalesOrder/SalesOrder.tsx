@@ -1699,6 +1699,10 @@ export default function SalesOrder() {
     setitemuomws(name);
   };
 
+  const closeLocationTable = () => {
+    setOpenLocationPanel(!openLocationPanel);
+  };
+
   const openModRelTable = (rowIndex: any) => {
     setOpenModRelTablePanel(!openModRelTablePanel);
     setSelectedRowIndex(rowIndex);
@@ -3978,7 +3982,10 @@ export default function SalesOrder() {
               >
                 <div>Warehouse</div>
                 <div className="text-right">
-                  <span onClick={openLocationTable} className="cursor-pointer">
+                  <span
+                    onClick={() => closeLocationTable()}
+                    className="cursor-pointer"
+                  >
                     ❌
                   </span>
                 </div>
