@@ -1678,6 +1678,10 @@ export default function SalesOrder() {
     onAddHeaderUOM(itemCode, rowIndex);
   };
 
+  const closeOUMTable = () => {
+    setOpenOUMPanel(!openOUMPanel);
+  };
+
   // handle Warehouse
   const openLocationTable = (
     rowIndex: any,
@@ -3706,7 +3710,10 @@ export default function SalesOrder() {
               >
                 <div>Select OUM</div>
                 <div className="text-right">
-                  <span onClick={openOUMTable} className="cursor-pointer">
+                  <span
+                    onClick={() => closeOUMTable()}
+                    className="cursor-pointer"
+                  >
                     ❌
                   </span>
                 </div>
