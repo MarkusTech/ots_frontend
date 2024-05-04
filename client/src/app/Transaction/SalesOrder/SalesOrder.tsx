@@ -65,8 +65,6 @@ export default function SalesOrder() {
   const [openModRelTablePanel, setOpenModRelTablePanel] = useState(false);
   const [openLocationPanel, setOpenLocationPanel] = useState(false);
   const [showItems, setShowItems] = useState(false);
-  // const [openTruckPanel, setOpenTruckPanel] = useState(false);
-  // const [openPickUpLocations, setOpenPickUpLocations] = useState(false);
 
   const [sellingPriceAfterDiscountData, setSellingPriceAfterDis] = useState(0);
 
@@ -94,7 +92,15 @@ export default function SalesOrder() {
   // print mode of releasing and payment
   const [modeOfPaymentPrint, setModeOfPaymentPrint] = useState("");
   const [customerPrint, setCustomerPrint] = useState("");
-  const [motherFuckingCode, setMotherFuckingCode] = useState([]);
+
+  interface MotherFuckingItem {
+    ModeReleasing: string;
+    PickUpLocation: string;
+  }
+  const [motherFuckingCode, setMotherFuckingCode] = useState<
+    MotherFuckingItem[]
+  >([]);
+  // const [motherFuckingCode, setMotherFuckingCode] = useState([]);
 
   const [ccstatus, setccstatus] = useState(false);
   // End of Payment useState
