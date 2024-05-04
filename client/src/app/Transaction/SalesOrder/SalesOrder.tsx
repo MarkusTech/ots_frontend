@@ -3282,6 +3282,9 @@ export default function SalesOrder() {
                 <th>Price</th>
                 <th>Selling Price before Discount</th>
                 <th>Discount Rate (%)</th>
+                <th>Mode of Releasing</th>
+                <th>Trucker for Dropship/Back-order</th>
+                <th>Pick up Location</th>
                 <th>Selling Price after Discount</th>
                 <th>Lower Bound</th>
                 <th>Tax Code</th>
@@ -3291,9 +3294,6 @@ export default function SalesOrder() {
                 <th>Below Vol. Disc. Price</th>
                 <th>Cost</th>
                 <th>Below Cost</th>
-                <th>Mode of Releasing</th>
-                <th>Trucker for Dropship/Back-order</th>
-                <th>Pick up Location</th>
                 <th>SC/PWD Discount (Y/N)</th>
                 <th>Gross Total</th>
               </tr>
@@ -3453,6 +3453,61 @@ export default function SalesOrder() {
                       ? 0
                       : Math.max(rowData.discountRate).toFixed(2)}
                   </td>
+                  {/* Mode Of Releasing */}
+                  <td>
+                    {rowData.quantity == 0 ? (
+                      ""
+                    ) : (
+                      <div className="flex gap-3 justify-end">
+                        <div>{rowData.modeOfReleasing}</div>
+                        <div className="text-right">
+                          <button
+                            onClick={() => openModRelTable(rowIndex)}
+                            className="bg-[#F0AB00] pr-1 pl-1"
+                          >
+                            =
+                          </button>
+                        </div>
+                      </div>
+                    )}
+                  </td>
+                  {/* -------------- Tracker --------------- */}
+                  <td>
+                    {rowData.quantity == 0 ? (
+                      ""
+                    ) : (
+                      <div className="flex gap-3 justify-end">
+                        <div>{rowData.truckPanelORDropShip}</div>
+                        <div className="text-right">
+                          <button
+                            onClick={() => openTruckerTable(rowIndex)}
+                            className="bg-[#F0AB00] pr-1 pl-1"
+                          >
+                            =
+                          </button>
+                        </div>
+                      </div>
+                    )}
+                  </td>
+                  {/* ---------------------------------------- */}
+                  {/* -------------- Pick Up Location --------------- */}
+                  <td>
+                    {rowData.quantity == 0 ? (
+                      ""
+                    ) : (
+                      <div className="flex gap-3 justify-end">
+                        <div>{rowData.pickUpLocation}</div>
+                        <div className="text-right">
+                          <button
+                            onClick={() => openPickUpLocation(rowIndex)}
+                            className="bg-[#F0AB00] pr-1 pl-1"
+                          >
+                            =
+                          </button>
+                        </div>
+                      </div>
+                    )}
+                  </td>
                   {/* Selling Price After Discount wmr code */}
                   <td>
                     {rowData.quantity == 0 ? (
@@ -3510,61 +3565,6 @@ export default function SalesOrder() {
                     }
                   >
                     {rowData.belCost}
-                  </td>
-                  {/* Mode Of Releasing */}
-                  <td>
-                    {rowData.quantity == 0 ? (
-                      ""
-                    ) : (
-                      <div className="flex gap-3 justify-end">
-                        <div>{rowData.modeOfReleasing}</div>
-                        <div className="text-right">
-                          <button
-                            onClick={() => openModRelTable(rowIndex)}
-                            className="bg-[#F0AB00] pr-1 pl-1"
-                          >
-                            =
-                          </button>
-                        </div>
-                      </div>
-                    )}
-                  </td>
-                  {/* -------------- Tracker --------------- */}
-                  <td>
-                    {rowData.quantity == 0 ? (
-                      ""
-                    ) : (
-                      <div className="flex gap-3 justify-end">
-                        <div>{rowData.truckPanelORDropShip}</div>
-                        <div className="text-right">
-                          <button
-                            onClick={() => openTruckerTable(rowIndex)}
-                            className="bg-[#F0AB00] pr-1 pl-1"
-                          >
-                            =
-                          </button>
-                        </div>
-                      </div>
-                    )}
-                  </td>
-                  {/* ---------------------------------------- */}
-                  {/* -------------- Pick Up Location --------------- */}
-                  <td>
-                    {rowData.quantity == 0 ? (
-                      ""
-                    ) : (
-                      <div className="flex gap-3 justify-end">
-                        <div>{rowData.pickUpLocation}</div>
-                        <div className="text-right">
-                          <button
-                            onClick={() => openPickUpLocation(rowIndex)}
-                            className="bg-[#F0AB00] pr-1 pl-1"
-                          >
-                            =
-                          </button>
-                        </div>
-                      </div>
-                    )}
                   </td>
                   {/* ---------------------------------------- */}
                   {/* SC/PWD Discount */}
