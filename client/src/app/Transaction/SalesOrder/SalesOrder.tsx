@@ -1170,7 +1170,7 @@ export default function SalesOrder() {
     onAddheaderItems();
   }, []);
 
-  const handleAddRow = (rowIndex: any, fieldName: any) => {
+  const handleAddRow = () => {
     setTableData((prevData) => [
       ...prevData,
       {
@@ -4074,7 +4074,7 @@ export default function SalesOrder() {
       <div className="text-left ml-2">
         {cardCodedata != "" && (
           <button
-            onClick={handleAddRow}
+            onClick={() => handleAddRow()}
             className="p-1 mt-2 mb-1 text-[12px] bg-[#F4D674]"
           >
             <span>+</span> Add Row
