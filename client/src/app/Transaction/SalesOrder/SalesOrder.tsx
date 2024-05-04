@@ -504,6 +504,21 @@ export default function SalesOrder() {
       }
     }
 
+    // If Warehouse have DS, The mode of releasing must be Drop Ship
+    let countDS = 0;
+    for (let i = 0; i < tableData.length; i++) {
+      const getData1 = allItemsArr[i]["modeOfReleasing"];
+      const getData2 = allItemsArr[i]["location"];
+      const parts = getData1.split("-");
+      const lastTwo = getData2.substring(getData2.length - 2);
+      const backOrder = parts[0];
+      alert(lastTwo);
+      alert(backOrder);
+      if (lastTwo == "DS" && backOrder != "Drop") {
+        countDS++;
+      }
+    }
+
     if (formData.CustomerCode == "") {
       Swal.fire({
         icon: "error",
