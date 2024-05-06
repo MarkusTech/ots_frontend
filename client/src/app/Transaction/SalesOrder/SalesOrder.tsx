@@ -292,7 +292,7 @@ export default function SalesOrder() {
               DraftNum: headerValue.toString(),
             }));
             setDraftNumber(headerValue);
-            // setJsonDraftNum(headerValue);
+            // setJsonDraftNum(headerValue); deleted
             const idiotDraftNumber = headerValue;
             setIsSaved(true);
             setTimeout(() => {
