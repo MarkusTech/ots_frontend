@@ -292,7 +292,7 @@ export default function SalesOrder() {
               DraftNum: headerValue.toString(),
             }));
             setDraftNumber(headerValue);
-            // setJsonDraftNum(headerValue); deleted
+            // setJsonDraftNum(headerValue);
             const idiotDraftNumber = headerValue;
             setIsSaved(true);
             setTimeout(() => {
@@ -524,6 +524,20 @@ export default function SalesOrder() {
       }
     }
 
+    // If Not DS The mode Of Releasing must not be drop ship
+    let notDSDropShip = 0;
+    for (let i = 0; i < tableData.length; i++) {
+      const getData1 = allItemsArr[i]["modeOfReleasing"];
+      const getData2 = allItemsArr[i]["location"];
+      const parts = getData1.split("-");
+      const lastTwo = getData2.substring(getData2.length - 2);
+      const backOrder = parts[0];
+      if (lastTwo != "DS" && backOrder == "Drop") {
+        notDSDropShip++;
+      }
+    }
+
+    // -------------- BLOCKERS ----------------
     if (formData.CustomerCode == "") {
       Swal.fire({
         icon: "error",
@@ -558,6 +572,11 @@ export default function SalesOrder() {
       Swal.fire({
         icon: "error",
         text: "Please Input a valid Quantity",
+      });
+    } else if (notDSDropShip > 0) {
+      Swal.fire({
+        icon: "error",
+        text: "If not DS the Mode of releasing must not be Drop-ship",
       });
     } else if (countDS > 0) {
       Swal.fire({
@@ -672,6 +691,20 @@ export default function SalesOrder() {
       }
     }
 
+    // If Not DS The mode Of Releasing must not be drop ship
+    let notDSDropShip = 0;
+    for (let i = 0; i < tableData.length; i++) {
+      const getData1 = allItemsArr[i]["modeOfReleasing"];
+      const getData2 = allItemsArr[i]["location"];
+      const parts = getData1.split("-");
+      const lastTwo = getData2.substring(getData2.length - 2);
+      const backOrder = parts[0];
+      if (lastTwo != "DS" && backOrder == "Drop") {
+        notDSDropShip++;
+      }
+    }
+
+    // -------------- BLOCKERS ----------------
     if (formData.CustomerCode == "") {
       Swal.fire({
         icon: "error",
@@ -701,6 +734,11 @@ export default function SalesOrder() {
       Swal.fire({
         icon: "error",
         text: "Please put N/A on Dropship/Back-order if mode of releasing is not Dropship or Back-order",
+      });
+    } else if (notDSDropShip > 0) {
+      Swal.fire({
+        icon: "error",
+        text: "If not DS the Mode of releasing must not be Drop-ship",
       });
     } else if (countQuantity > 0) {
       Swal.fire({
@@ -958,6 +996,20 @@ export default function SalesOrder() {
       }
     }
 
+    // If Not DS The mode Of Releasing must not be drop ship
+    let notDSDropShip = 0;
+    for (let i = 0; i < tableData.length; i++) {
+      const getData1 = allItemsArr[i]["modeOfReleasing"];
+      const getData2 = allItemsArr[i]["location"];
+      const parts = getData1.split("-");
+      const lastTwo = getData2.substring(getData2.length - 2);
+      const backOrder = parts[0];
+      if (lastTwo != "DS" && backOrder == "Drop") {
+        notDSDropShip++;
+      }
+    }
+
+    // -------------- BLOCKERS ----------------
     if (formData.CustomerCode == "") {
       Swal.fire({
         icon: "error",
@@ -982,6 +1034,11 @@ export default function SalesOrder() {
       Swal.fire({
         icon: "error",
         text: "Please make sure Trucker for Dropship/Back-order is not N/A for the Dropship or Back-Order",
+      });
+    } else if (notDSDropShip > 0) {
+      Swal.fire({
+        icon: "error",
+        text: "If not DS the Mode of releasing must not be Drop-ship",
       });
     } else if (countNotDropBack > 0) {
       Swal.fire({
