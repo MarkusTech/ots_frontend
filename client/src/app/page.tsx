@@ -114,28 +114,28 @@ export default function Home() {
     }
   }
 
-  function handleRounter2(page: React.SetStateAction<string>) {
-    let split = window.location.pathname.split("/");
+  // function handleRounter2(page: React.SetStateAction<string>) {
+  //   let split = window.location.pathname.split("/");
 
-    if (page === "salesqoutation") {
-      if (split[1] === "Transaction") {
-        setSubsubmenuOpen1("active");
-        setSubsubmenuOpen2("");
-      } else {
-        setSubsubmenuOpen1("active");
-        setSubsubmenuOpen2("");
-      }
-    } else if (page === "salesorder") {
-      if (split[1] === "Transaction") {
-        setSubsubmenuOpen1("");
-        setSubsubmenuOpen2("active");
-      } else {
-        console.log("salesorder");
-        setSubsubmenuOpen1("");
-        setSubsubmenuOpen2("active");
-      }
-    }
-  }
+  //   if (page === "salesqoutation") {
+  //     if (split[1] === "Transaction") {
+  //       setSubsubmenuOpen1("active");
+  //       setSubsubmenuOpen2("");
+  //     } else {
+  //       setSubsubmenuOpen1("active");
+  //       setSubsubmenuOpen2("");
+  //     }
+  //   } else if (page === "salesorder") {
+  //     if (split[1] === "Transaction") {
+  //       setSubsubmenuOpen1("");
+  //       setSubsubmenuOpen2("active");
+  //     } else {
+  //       console.log("salesorder");
+  //       setSubsubmenuOpen1("");
+  //       setSubsubmenuOpen2("active");
+  //     }
+  //   }
+  // }
 
   const handleSubmenuClick = (e: any) => {
     e.stopPropagation(); // Prevent the event from reaching the parent li
@@ -143,9 +143,6 @@ export default function Home() {
 
   return (
     <>
-      {/* <div className="fixed w-full bg-white z-10">
-      ss
-    </div> */}
       <div className="flex z-20">
         <div className="p-2 nav w-60">
           <div className="">
