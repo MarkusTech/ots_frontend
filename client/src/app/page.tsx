@@ -212,18 +212,24 @@ export default function Home() {
                       <span className={`${spanName4}`}>Set Up</span>
                       {submenuOpenSetUp && (
                         <ul className="submenu p-2">
-                          <li>Users</li>
-                          <li onClick={() => handleRounter("approval")}>
-                            Approval
-                            {submenuOpenSetUp && (
-                              <ul className="submenu p-2">
-                                <li>Price list & Stocks Inquiry</li>
-                                <li>Credit Line Monitoring</li>
-                                {/* Add more submenu items as needed */}
-                              </ul>
-                            )}
-                          </li>
                           {/* Add more submenu items as needed */}
+
+                          <li onClick={handleSubmenuClick}>
+                            <a
+                              onClick={() => toggleWindow("salesqoutation")}
+                              className={`${subsubmenuOpen1}`}
+                            >
+                              Users
+                            </a>
+                          </li>
+                          <li onClick={handleSubmenuClick}>
+                            <a
+                              onClick={() => toggleWindow("salesorder")}
+                              className={`${subsubmenuOpen2}`}
+                            >
+                              Settings
+                            </a>
+                          </li>
                         </ul>
                       )}
                     </li>
@@ -333,3 +339,15 @@ export default function Home() {
     </>
   );
 }
+
+// <li>Users</li>
+//                           <li onClick={() => handleRounter("approval")}>
+//                             Approval
+//                             {submenuOpenSetUp && (
+//                               <ul className="submenu p-2">
+//                                 <li>Price list & Stocks Inquiry</li>
+//                                 <li>Credit Line Monitoring</li>
+//                                 {/* Add more submenu items as needed */}
+//                               </ul>
+//                             )}
+//                           </li>
