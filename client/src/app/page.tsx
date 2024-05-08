@@ -208,7 +208,7 @@ export default function Home() {
                           </li>
                           <li onClick={handleSubmenuClick}>
                             <a
-                              onClick={() => toggleWindow("salesorder")}
+                              onClick={() => toggleWindow("settings")}
                               className={`${subsubmenuOpen2}`}
                             >
                               Settings

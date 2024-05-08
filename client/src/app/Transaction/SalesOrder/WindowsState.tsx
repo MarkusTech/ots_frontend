@@ -16,6 +16,8 @@ export const useWindowState = () => {
     } else if (e === "users") {
       // setShowUsers(!showUsers);
       alert("Hello");
+    } else if (e === "settings") {
+      setShowSalesOrder(!showSalesOrder);
     }
   };
 
