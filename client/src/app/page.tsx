@@ -144,6 +144,7 @@ export default function Home() {
               <div className="p-2">
                 <div className="w-[200px]">
                   <ul>
+                    {/* ----------------------------- TRANSACTION ------------------------------- */}
                     <li
                       className={`p-2 linav ${
                         routerName === "transaction" ? "active" : ""
@@ -173,6 +174,8 @@ export default function Home() {
                         </ul>
                       )}
                     </li>
+
+                    {/* ----------------------------- INQUIRY ------------------------------- */}
                     <li
                       className={`p-2 linav ${
                         routerName === "inquiry" ? "active" : ""
@@ -188,6 +191,8 @@ export default function Home() {
                         </ul>
                       )}
                     </li>
+
+                    {/* ----------------------------- REPORTS ------------------------------- */}
                     <li
                       className={`p-2 linav ${
                         routerName === "reports" ? "active" : ""
@@ -203,6 +208,8 @@ export default function Home() {
                         </ul>
                       )}
                     </li>
+
+                    {/* ----------------------------- SETUP ------------------------------- */}
                     <li
                       className={`p-2 linav ${
                         routerName === "setup" ? "active" : ""
@@ -239,6 +246,8 @@ export default function Home() {
             </div>
           </div>
         </div>
+
+        {/* ----------------------------- DRAGGABLE ------------------------------- */}
         <div className="w-full overflow-auto">
           <div className="body w-[100%] bg-red-50 h-screen overflow-auto">
             {showSalesOrder && (
