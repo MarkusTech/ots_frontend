@@ -33,10 +33,6 @@ export default function Home() {
   const [spanName3, setSpanName3] = useState("");
   const [spanName4, setSpanName4] = useState("");
 
-  // Z-index
-
-  // Window
-
   // const [showSalesOrder, setShowSalesOrder] = useState(false);
   const [showSalesQoutation, setShowSalesQoutation] = useState(false);
 
@@ -63,7 +59,6 @@ export default function Home() {
   function handleRounter(page: React.SetStateAction<string>) {
     if (page === "transaction") {
       setRounterName(page);
-      // console.log("transaction", page);
       setSubmenuOpen(!submenuOpen);
       setSubmenuOpenInq(false);
       setSubmenuOpenReports(false);
@@ -75,7 +70,6 @@ export default function Home() {
       setSpanName4("");
     } else if (page === "inquiry") {
       setRounterName(page);
-      // console.log("items");
       setSubmenuOpenInq(!submenuOpenInq);
       setSubmenuOpen(false);
       setSubmenuOpenReports(false);
@@ -87,8 +81,6 @@ export default function Home() {
       setSpanName4("");
     } else if (page === "reports") {
       setRounterName(page);
-      // router.push('../Reports')
-      // console.log("reports");
       setSubmenuOpenReports(!submenuOpenReports);
       setSubmenuOpen(false);
       setSubmenuOpenInq(false);
@@ -100,8 +92,6 @@ export default function Home() {
       setSpanName4("");
     } else if (page === "setup") {
       setRounterName(page);
-      // router.push('../Setup')
-      // console.log("setup");
       setSubmenuOpenSetUp(!submenuOpenSetUp);
       setSubmenuOpen(false);
       setSubmenuOpenInq(false);
