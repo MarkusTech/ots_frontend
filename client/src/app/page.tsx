@@ -241,9 +241,6 @@ export default function Home() {
                 </div>
               </div>
             </div>
-            {/* <div className="absolute  bg-red-200 w-[100%]">
-              s
-            </div> */}
           </div>
         </div>
         <div className="w-full overflow-auto">
@@ -281,8 +278,6 @@ export default function Home() {
                     </div>
                   </div>
                   <div className="content">
-                    {/* Rest of your Sales Order content */}
-                    {/* ... */}
                     <SalesOrder />
                   </div>
                 </div>
