@@ -236,28 +236,52 @@ export default function SignUpPage() {
                     </thead>
                     <tbody>
                       <tr>
-                        <td className="tdcus">Sample</td>
-                        <td className="tdcus">Sample</td>
-                        <td className="tdcus">Sample</td>
-                        <td className="tdcus">Sample</td>
-                        <td className="tdcus">Sample</td>
-                        <td className="tdcus">Sample</td>
+                        <td className="tdcus">Wenn Mark Recopelacion</td>
+                        <td className="tdcus">Web Developer</td>
+                        <td className="tdcus">123123</td>
+                        <td className="tdcus">DGCD</td>
+                        <td className="tdcus">GSCNAPGS</td>
+                        <td className="tdcus">12</td>
                       </tr>
                       <tr>
-                        <td className="tdcus">Sample</td>
-                        <td className="tdcus">Sample</td>
-                        <td className="tdcus">Sample</td>
-                        <td className="tdcus">Sample</td>
-                        <td className="tdcus">Sample</td>
-                        <td className="tdcus">Sample</td>
+                        <td className="tdcus">Markus Cabaron</td>
+                        <td className="tdcus">Programmer</td>
+                        <td className="tdcus">123123</td>
+                        <td className="tdcus">DGCD</td>
+                        <td className="tdcus">GSCNAPGS</td>
+                        <td className="tdcus">12</td>
                       </tr>
                       <tr>
-                        <td className="tdcus">Sample</td>
-                        <td className="tdcus">Sample</td>
-                        <td className="tdcus">Sample</td>
-                        <td className="tdcus">Sample</td>
-                        <td className="tdcus">Sample</td>
-                        <td className="tdcus">Sample</td>
+                        <td className="tdcus">Markus Lee</td>
+                        <td className="tdcus">Mobile Developer</td>
+                        <td className="tdcus">123123</td>
+                        <td className="tdcus">DGCD</td>
+                        <td className="tdcus">GSCNAPGS</td>
+                        <td className="tdcus">12</td>
+                      </tr>
+                      <tr>
+                        <td className="tdcus">John Doe</td>
+                        <td className="tdcus">Software Engineer</td>
+                        <td className="tdcus">123456</td>
+                        <td className="tdcus">ABC</td>
+                        <td className="tdcus">Warehouse1</td>
+                        <td className="tdcus">34</td>
+                      </tr>
+                      <tr>
+                        <td className="tdcus">Jane Smith</td>
+                        <td className="tdcus">Data Analyst</td>
+                        <td className="tdcus">789012</td>
+                        <td className="tdcus">XYZ</td>
+                        <td className="tdcus">Warehouse2</td>
+                        <td className="tdcus">56</td>
+                      </tr>
+                      <tr>
+                        <td className="tdcus">Alice Johnson</td>
+                        <td className="tdcus">UI/UX Designer</td>
+                        <td className="tdcus">345678</td>
+                        <td className="tdcus">PQR</td>
+                        <td className="tdcus">Warehouse3</td>
+                        <td className="tdcus">78</td>
                       </tr>
                     </tbody>
                   </table>
