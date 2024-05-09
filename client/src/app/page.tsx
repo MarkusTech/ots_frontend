@@ -6,6 +6,7 @@ import { useState } from "react";
 import SalesQoutation from "./Transaction/SalesQoutation/SalesQoutation";
 import Draggable from "react-draggable";
 import SalesOrder from "./Transaction/SalesOrder/SalesOrder";
+import Users from "./Setup/Users/page";
 import Image from "next/image";
 import { useWindowState } from "../app/Transaction/SalesOrder/WindowsState";
 
@@ -198,6 +199,22 @@ export default function Home() {
                               Settings
                             </a>
                           </li>
+                          <li onClick={handleSubmenuClick}>
+                            <a
+                              onClick={() => toggleWindow("pricelist")}
+                              className={`${subsubmenuOpen2}`}
+                            >
+                              Price list & Stocks Inquiry
+                            </a>
+                          </li>
+                          <li onClick={handleSubmenuClick}>
+                            <a
+                              onClick={() => toggleWindow("creditline")}
+                              className={`${subsubmenuOpen2}`}
+                            >
+                              Credit Line Monitoring
+                            </a>
+                          </li>
                         </ul>
                       )}
                     </li>
@@ -302,7 +319,7 @@ export default function Home() {
                     <div></div>
                   </div>
                   <div className="content">
-                    <SalesQoutation />
+                    <Users />
                   </div>
                 </div>
               </Draggable>
