@@ -243,6 +243,22 @@ export default function SignUpPage() {
                         <td className="tdcus">Sample</td>
                         <td className="tdcus">Sample</td>
                       </tr>
+                      <tr>
+                        <td className="tdcus">Sample</td>
+                        <td className="tdcus">Sample</td>
+                        <td className="tdcus">Sample</td>
+                        <td className="tdcus">Sample</td>
+                        <td className="tdcus">Sample</td>
+                        <td className="tdcus">Sample</td>
+                      </tr>
+                      <tr>
+                        <td className="tdcus">Sample</td>
+                        <td className="tdcus">Sample</td>
+                        <td className="tdcus">Sample</td>
+                        <td className="tdcus">Sample</td>
+                        <td className="tdcus">Sample</td>
+                        <td className="tdcus">Sample</td>
+                      </tr>
                     </tbody>
                   </table>
                 </div>
