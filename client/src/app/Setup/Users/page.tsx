@@ -196,6 +196,7 @@ export default function SignUpPage() {
       )}
       <br />
       <br />
+      <div className="pt-72"></div>
     </Container>
   );
 }
