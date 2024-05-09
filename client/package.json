@@ -9,6 +9,9 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@emotion/react": "^11.11.4",
+    "@emotion/styled": "^11.11.5",
+    "@mui/material": "^5.15.17",
     "@types/axios": "^0.14.0",
     "axios": "^1.6.7",
     "cors": "^2.8.5",
