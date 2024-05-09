@@ -280,6 +280,9 @@ export default function Home() {
               </Draggable>
             )}
 
+            {/* Set Users */}
+            {showUsers && <Draggable></Draggable>}
+
             <div className="absolute bottom-2 right-2 rounded-lg bg-white flex gap-3 shadow-xl text-[13px]">
               {/* <FloatingPanel /> */}
               <div className="flex gap-2 p-2 transition-all hover:text-[#F0AB00]">
