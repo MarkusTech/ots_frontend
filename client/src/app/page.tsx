@@ -11,7 +11,7 @@ import { useWindowState } from "../app/Transaction/SalesOrder/WindowsState";
 
 export default function Home() {
   const router = useRouter(); //Router
-  const { showSalesOrder, toggleSalesOrder, toggleWindow } = useWindowState(); // Use the state and functions
+  const { showSalesOrder, showUsers, toggleWindow } = useWindowState(); // Use the state and functions
 
   const [rounterName, setRounterName] = React.useState("");
 
