@@ -70,12 +70,12 @@ export default function SignUpPage() {
               onChange={handleChange}
             />
           </Grid>
-          <Grid item xs={12} sm={6}>
+          <Grid item xs={12} sm={1}>
             <Button
-              fullWidth
+              // fullWidth
               variant="outlined"
               onClick={handleButtonClick} // You need to define handleButtonClick function
-              style={{ height: "100%", fontWeight: "bold" }}
+              style={{ height: "100%", width: "130px", fontWeight: "bold" }}
             >
               Select User
             </Button>
