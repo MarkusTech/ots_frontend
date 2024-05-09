@@ -36,25 +36,9 @@ export default function Home() {
   // const [showSalesOrder, setShowSalesOrder] = useState(false);
   const [showSalesQoutation, setShowSalesQoutation] = useState(false);
 
-  // const toggleSalesOrder = () => {
-  //   setShowSalesOrder(!showSalesOrder);
-  // };
-
   const toggleSalesQoutation = () => {
     setShowSalesQoutation(!showSalesQoutation);
   };
-
-  // const toggleWindow = (e: any) => {
-  //   if (e === "salesqoutation") {
-  //     setShowSalesQoutation(false);
-  //     setShowSalesQoutation(!showSalesQoutation);
-  //   } else if (e === "salesorder") {
-  //     setShowSalesOrder(false);
-  //     setShowSalesOrder(!showSalesOrder);
-  //   }
-  // };
-
-  // End Of Declaration
 
   function handleRounter(page: React.SetStateAction<string>) {
     if (page === "transaction") {
