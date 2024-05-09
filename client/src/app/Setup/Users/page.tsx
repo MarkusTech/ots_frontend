@@ -27,6 +27,7 @@ const initialFormData: FormData = {
 
 export default function SignUpPage() {
   const [formData, setFormData] = useState<FormData>(initialFormData);
+  const [showUsers, setShowUsers] = useState(false);
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -40,6 +41,10 @@ export default function SignUpPage() {
     e.preventDefault();
     // Handle form submission
     console.log(formData);
+  };
+
+  const handleButtonClick = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
   };
 
   return (
@@ -66,7 +71,7 @@ export default function SignUpPage() {
             <Button
               fullWidth
               variant="outlined"
-              // onClick={handleButtonClick} // You need to define handleButtonClick function
+              onClick={handleButtonClick} // You need to define handleButtonClick function
               style={{ height: "100%", fontWeight: "bold" }}
             >
               Select User
