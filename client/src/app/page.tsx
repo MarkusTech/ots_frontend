@@ -281,7 +281,7 @@ export default function Home() {
               </Draggable>
             )}
 
-            {/* Set Users */}
+            {/* Set Users Draggable*/}
             {showUsers && (
               <Draggable handle=".header">
                 <div
@@ -339,15 +339,3 @@ export default function Home() {
     </>
   );
 }
-
-//                            <li>Users</li>
-//                           <li onClick={() => handleRounter("approval")}>
-//                             Approval
-//                             {submenuOpenSetUp && (
-//                               <ul className="submenu p-2">
-//                                 <li>Price list & Stocks Inquiry</li>
-//                                 <li>Credit Line Monitoring</li>
-//                                 {/* Add more submenu items as needed */}
-//                               </ul>
-//                             )}
-//                           </li>
