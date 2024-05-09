@@ -63,6 +63,16 @@ export default function SignUpPage() {
             />
           </Grid>
           <Grid item xs={12} sm={6}>
+            <Button
+              fullWidth
+              variant="outlined"
+              // onClick={handleButtonClick} // You need to define handleButtonClick function
+              style={{ height: "100%", fontWeight: "bold" }}
+            >
+              Select User
+            </Button>
+          </Grid>
+          <Grid item xs={12} sm={6}>
             <TextField
               fullWidth
               id="fullName"
