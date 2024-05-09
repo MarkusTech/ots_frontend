@@ -281,7 +281,34 @@ export default function Home() {
             )}
 
             {/* Set Users */}
-            {showUsers && <Draggable></Draggable>}
+            {showUsers && (
+              <Draggable handle=".header">
+                <div
+                  className="container bg-white"
+                  style={{
+                    border: "1px solid #ccc",
+                    position: "absolute",
+                    zIndex: 2,
+                    top: "5%",
+                    left: "15%",
+                    transform: "translate(-50%, -50%)",
+                  }}
+                >
+                  <div
+                    className="header grid grid-cols-2 p-2 text-left windowheader"
+                    style={{ cursor: "move" }}
+                  >
+                    <div>SETUP USER</div>
+                    <div></div>
+                  </div>
+                  <div className="content">
+                    {/* Rest of your Sales Order content */}
+                    {/* ... */}
+                    <SalesQoutation />
+                  </div>
+                </div>
+              </Draggable>
+            )}
 
             {/* FLOATER */}
             <div className="absolute bottom-2 right-2 rounded-lg bg-white flex gap-3 shadow-xl text-[13px]">
