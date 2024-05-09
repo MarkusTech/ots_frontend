@@ -192,6 +192,8 @@ export default function SignUpPage() {
               left: "20%",
               maxHeight: "700px",
               overflowY: "auto",
+              background: "white", // Set background to white
+              zIndex: "9999", // Set a high z-index value to bring it to the front
             }}
           >
             <div
