@@ -43,8 +43,10 @@ export default function SignUpPage() {
     console.log(formData);
   };
 
-  const handleButtonClick = (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  const handleButtonClick = (
+    event: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ) => {
+    setShowUsers(!showUsers);
   };
 
   return (
@@ -176,6 +178,7 @@ export default function SignUpPage() {
           Save
         </Button>
       </form>
+      {showUsers && <div>Hello</div>}
       <br />
       <br />
     </Container>
