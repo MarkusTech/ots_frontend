@@ -186,11 +186,64 @@ export default function SignUpPage() {
             style={{
               border: "1px solid #ccc",
               position: "absolute",
-              top: "12%",
-              left: "15%",
+              top: "20%",
+              left: "20%",
+              maxHeight: "700px",
+              overflowY: "auto",
             }}
           >
-            Hello World!
+            <div
+              className="grid grid-cols-2 p-2 text-left windowheader"
+              style={{ cursor: "move" }}
+            >
+              <div>Search</div>
+              <div className="text-right">
+                <span onClick={handleButtonClick} className="cursor-pointer">
+                  ❌
+                </span>
+              </div>
+            </div>
+            <div className="content">
+              <div className="p-2">
+                <div className="flex items-center">
+                  <div>
+                    Search:{" "}
+                    <input
+                      type="text"
+                      className="mb-1"
+                      // value={searchTerm}
+                      // onChange={handleSearchForDraft}
+                    />
+                  </div>
+                  <div className="flex-grow"></div>
+                </div>
+
+                <div className="table-container">
+                  <table className="w-full">
+                    <thead className="tables">
+                      <tr>
+                        <th>Draft Number</th>
+                        <th>Customer Code</th>
+                        <th>Customer Name</th>
+                        <th>Walk-in Customer Name</th>
+                        <th>Document Date</th>
+                        <th>Sales Crew</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td className="tdcus">Sample</td>
+                        <td className="tdcus">Sample</td>
+                        <td className="tdcus">Sample</td>
+                        <td className="tdcus">Sample</td>
+                        <td className="tdcus">Sample</td>
+                        <td className="tdcus">Sample</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
           </div>
         </Draggable>
       )}
