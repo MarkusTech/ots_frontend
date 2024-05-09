@@ -302,8 +302,6 @@ export default function Home() {
                     <div></div>
                   </div>
                   <div className="content">
-                    {/* Rest of your Sales Order content */}
-                    {/* ... */}
                     <SalesQoutation />
                   </div>
                 </div>
