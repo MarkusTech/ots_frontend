@@ -199,22 +199,6 @@ export default function Home() {
                               Settings
                             </a>
                           </li>
-                          <li onClick={handleSubmenuClick}>
-                            <a
-                              onClick={() => toggleWindow("pricelist")}
-                              className={`${subsubmenuOpen2}`}
-                            >
-                              Price list & Stocks Inquiry
-                            </a>
-                          </li>
-                          <li onClick={handleSubmenuClick}>
-                            <a
-                              onClick={() => toggleWindow("creditline")}
-                              className={`${subsubmenuOpen2}`}
-                            >
-                              Credit Line Monitoring
-                            </a>
-                          </li>
                         </ul>
                       )}
                     </li>
