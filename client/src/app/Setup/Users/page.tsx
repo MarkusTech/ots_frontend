@@ -179,6 +179,8 @@ export default function SignUpPage() {
           Save
         </Button>
       </form>
+
+      {/* Show Users Draggable */}
       {showUsers && (
         <Draggable>
           <div
