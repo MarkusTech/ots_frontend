@@ -222,12 +222,12 @@ export default function SignUpPage() {
                   <table className="w-full">
                     <thead className="tables">
                       <tr>
-                        <th>Draft Number</th>
-                        <th>Customer Code</th>
-                        <th>Customer Name</th>
-                        <th>Walk-in Customer Name</th>
-                        <th>Document Date</th>
-                        <th>Sales Crew</th>
+                        <th>Employee Name</th>
+                        <th>Position</th>
+                        <th>Branch ID</th>
+                        <th>Branch Name</th>
+                        <th>Designated Warehouse</th>
+                        <th>Price List Number</th>
                       </tr>
                     </thead>
                     <tbody>
