@@ -202,6 +202,7 @@ export default function SignUpPage() {
               id="password"
               name="password"
               label="Password"
+              type="password"
               variant="outlined"
               value={formData.password}
               onChange={handleChange}
@@ -278,7 +279,7 @@ export default function SignUpPage() {
                         <tr
                           key={index}
                           onClick={() => handleUserSelect(user)}
-                          className="hover:bg-gray-100 cursor-pointer"
+                          className="hover:bg-blue-100 cursor-pointer"
                         >
                           <td>{user.EmpName}</td>
                           <td>{user.Position}</td>
