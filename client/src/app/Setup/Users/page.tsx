@@ -92,6 +92,8 @@ export default function SignUpPage() {
   return (
     <Container component="main" maxWidth="md">
       <div>
+        <br />
+        <br />
         <Typography variant="h4" align="center" gutterBottom>
           Register User
         </Typography>
@@ -297,8 +299,6 @@ export default function SignUpPage() {
           </div>
         </Draggable>
       )}
-      <br />
-      <br />
       <div className="pt-72"></div>
     </Container>
   );
