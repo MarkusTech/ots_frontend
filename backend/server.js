@@ -22,6 +22,9 @@ import saveDetailsRoutes from "./routes/saveDetailsRoutes.js";
 import saveFinalCommit from "./routes/saveFinalCommitRoutes.js";
 import receiptRoutes from "./routes/receiptRoutes.js";
 
+// Routes v2
+import db2_paylocRoutes from "./routes/db2_paylocRoutes.js";
+
 // dotenv config
 dotenv.config();
 const port = process.env.PORT;
@@ -56,6 +59,7 @@ app.use("/api/v1", saveHeaderRoutes);
 app.use("/api/v1", saveDetailsRoutes);
 app.use("/api/v1", saveFinalCommit);
 app.use("/api/v1", receiptRoutes);
+app.use("/api/v2", db2_paylocRoutes);
 
 sqlConn.connect((err) => {
   if (err) {
