@@ -275,7 +275,11 @@ export default function SignUpPage() {
                     </thead>
                     <tbody>
                       {users.map((user, index) => (
-                        <tr key={index} onClick={() => handleUserSelect(user)}>
+                        <tr
+                          key={index}
+                          onClick={() => handleUserSelect(user)}
+                          className="hover:bg-gray-100 cursor-pointer"
+                        >
                           <td>{user.EmpName}</td>
                           <td>{user.Position}</td>
                           <td>{user.BPLId}</td>
