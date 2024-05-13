@@ -1,4 +1,4 @@
-import React, { useState, ChangeEvent, FormEvent } from "react";
+import React, { useState, useEffect, ChangeEvent, FormEvent } from "react";
 import { TextField, Button, Grid, Typography, Container } from "@mui/material";
 import Draggable from "react-draggable";
 
@@ -26,9 +26,33 @@ const initialFormData: FormData = {
   password: "",
 };
 
+interface UserData {
+  EmpName: string;
+  Position: string;
+  BPLId: number;
+  BPLName: string;
+  DflWhs: string;
+  PriceListNum: number;
+}
+
 export default function SignUpPage() {
   const [formData, setFormData] = useState<FormData>(initialFormData);
   const [showUsers, setShowUsers] = useState(false);
+  const [users, setUsers] = useState<UserData[]>([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch("http://172.16.10.217:3001/employees");
+        const data = await response.json();
+        setUsers(data);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+
+    fetchData();
+  }, []);
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -41,7 +65,7 @@ export default function SignUpPage() {
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     // Handle form submission
-    console.log(formData);
+    console.log(users);
   };
 
   const handleButtonClick = (
@@ -200,7 +224,7 @@ export default function SignUpPage() {
               className="grid grid-cols-2 p-2 text-left windowheader"
               style={{ cursor: "move" }}
             >
-              <div>Search</div>
+              <div>Select User</div>
               <div className="text-right">
                 <span onClick={handleButtonClick} className="cursor-pointer">
                   ❌
@@ -235,54 +259,16 @@ export default function SignUpPage() {
                       </tr>
                     </thead>
                     <tbody>
-                      <tr>
-                        <td className="tdcus">Wenn Mark Recopelacion</td>
-                        <td className="tdcus">Web Developer</td>
-                        <td className="tdcus">123123</td>
-                        <td className="tdcus">DGCD</td>
-                        <td className="tdcus">GSCNAPGS</td>
-                        <td className="tdcus">12</td>
-                      </tr>
-                      <tr>
-                        <td className="tdcus">Markus Cabaron</td>
-                        <td className="tdcus">Programmer</td>
-                        <td className="tdcus">123123</td>
-                        <td className="tdcus">DGCD</td>
-                        <td className="tdcus">GSCNAPGS</td>
-                        <td className="tdcus">12</td>
-                      </tr>
-                      <tr>
-                        <td className="tdcus">Markus Lee</td>
-                        <td className="tdcus">Mobile Developer</td>
-                        <td className="tdcus">123123</td>
-                        <td className="tdcus">DGCD</td>
-                        <td className="tdcus">GSCNAPGS</td>
-                        <td className="tdcus">12</td>
-                      </tr>
-                      <tr>
-                        <td className="tdcus">John Doe</td>
-                        <td className="tdcus">Software Engineer</td>
-                        <td className="tdcus">123456</td>
-                        <td className="tdcus">ABC</td>
-                        <td className="tdcus">Warehouse1</td>
-                        <td className="tdcus">34</td>
-                      </tr>
-                      <tr>
-                        <td className="tdcus">Jane Smith</td>
-                        <td className="tdcus">Data Analyst</td>
-                        <td className="tdcus">789012</td>
-                        <td className="tdcus">XYZ</td>
-                        <td className="tdcus">Warehouse2</td>
-                        <td className="tdcus">56</td>
-                      </tr>
-                      <tr>
-                        <td className="tdcus">Alice Johnson</td>
-                        <td className="tdcus">UI/UX Designer</td>
-                        <td className="tdcus">345678</td>
-                        <td className="tdcus">PQR</td>
-                        <td className="tdcus">Warehouse3</td>
-                        <td className="tdcus">78</td>
-                      </tr>
+                      {users.map((user, index) => (
+                        <tr key={index}>
+                          <td>{user.EmpName}</td>
+                          <td>{user.Position}</td>
+                          <td>{user.BPLId}</td>
+                          <td>{user.BPLName}</td>
+                          <td>{user.DflWhs}</td>
+                          <td>{user.PriceListNum}</td>
+                        </tr>
+                      ))}
                     </tbody>
                   </table>
                 </div>
