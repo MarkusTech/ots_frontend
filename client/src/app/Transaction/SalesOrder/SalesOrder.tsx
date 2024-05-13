@@ -4529,9 +4529,8 @@ export default function SalesOrder() {
                             <tbody>
                               {filteredSaveDraftData.map(
                                 (customer: any, rowIndex) => (
-                                  <tr key={rowIndex}>
+                                  <tr key={rowIndex} className="tdcus">
                                     <td
-                                      className="tdcus"
                                       onClick={() =>
                                         addDraftData(
                                           customer.DraftNum,
@@ -4546,7 +4545,6 @@ export default function SalesOrder() {
                                       {customer.DraftNum}
                                     </td>
                                     <td
-                                      className="tdcus"
                                       onClick={() =>
                                         addDraftData(
                                           customer.DraftNum,
@@ -4561,7 +4559,6 @@ export default function SalesOrder() {
                                       {customer.CustomerCode}
                                     </td>
                                     <td
-                                      className="tdcus"
                                       onClick={() =>
                                         addDraftData(
                                           customer.DraftNum,
@@ -4576,7 +4573,6 @@ export default function SalesOrder() {
                                       {customer.CustomerName}
                                     </td>
                                     <td
-                                      className="tdcus"
                                       onClick={() =>
                                         addDraftData(
                                           customer.DraftNum,
@@ -4591,7 +4587,6 @@ export default function SalesOrder() {
                                       {customer.WalkInName}
                                     </td>
                                     <td
-                                      className="tdcus"
                                       onClick={() =>
                                         addDraftData(
                                           customer.DraftNum,
@@ -4606,7 +4601,6 @@ export default function SalesOrder() {
                                       {customer.DocDate}
                                     </td>
                                     <td
-                                      className="tdcus"
                                       onClick={() =>
                                         addDraftData(
                                           customer.DraftNum,
