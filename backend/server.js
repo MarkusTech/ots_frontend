@@ -8,6 +8,7 @@ import colors from "colors";
 
 // Database
 import sqlConn from "./config/db.js";
+import sqlConn2 from "./config/db2.js";
 
 // UUID
 import { v4 as uuidv4 } from "uuid";
@@ -23,7 +24,8 @@ import receiptRoutes from "./routes/receiptRoutes.js";
 
 // dotenv config
 dotenv.config();
-const port = process.env.PORT || 5001;
+const port = process.env.PORT;
+const port2 = process.env.PORT2 || 5001;
 
 // rest obj
 const app = express();
@@ -61,6 +63,16 @@ sqlConn.connect((err) => {
   } else {
     app.listen(port, () => {
       console.log(`Server is running on http://localhost:${port}`.bgCyan);
+    });
+  }
+});
+
+sqlConn2.connect((err) => {
+  if (err) {
+    console.error("Error connecting to MSSQL:", err);
+  } else {
+    app.listen(port2, () => {
+      console.log(`Server is running on http://localhost:${port2}`.bgCyan);
     });
   }
 });
