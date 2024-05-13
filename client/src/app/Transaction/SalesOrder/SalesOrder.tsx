@@ -4437,14 +4437,14 @@ export default function SalesOrder() {
               </button>
             </div>
 
-            <div>
+            {/* <div>
               <button
                 className="p-2 mt-2 mb-1 mr-2 text-[12px] bg-[#F4D674] hover:bg-yellow-500 focus:outline-none focus:shadow-outline-yellow active:bg-yellow-600 rounded w-24"
                 // onClick={printerrrr}
               >
                 Trial
               </button>
-            </div>
+            </div> */}
 
             {/* ------------------------------------------ Search Button ---------------------------------------------- */}
             <div>
