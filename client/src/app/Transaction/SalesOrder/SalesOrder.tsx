@@ -3707,47 +3707,23 @@ export default function SalesOrder() {
                     <tbody>
                       {filteredDataItem.map((item: any, index) => (
                         // eslint-disable-next-line react/jsx-key
-                        <tr className="trcus cursor-pointer">
-                          <td
-                            className="tdcus"
-                            key={index}
-                            onClick={() => handleItemClick(item)}
-                          >
+                        <tr className="tdcus cursor-pointer">
+                          <td key={index} onClick={() => handleItemClick(item)}>
                             {item.ItemCode}
                           </td>
-                          <td
-                            className="tdcus"
-                            key={index}
-                            onClick={() => handleItemClick(item)}
-                          >
+                          <td key={index} onClick={() => handleItemClick(item)}>
                             {item.ItemName}
                           </td>
-                          <td
-                            className="tdcus"
-                            key={index}
-                            onClick={() => handleItemClick(item)}
-                          >
+                          <td key={index} onClick={() => handleItemClick(item)}>
                             {localCurrency.format(item.SRP)}
                           </td>
-                          <td
-                            className="tdcus"
-                            key={index}
-                            onClick={() => handleItemClick(item)}
-                          >
+                          <td key={index} onClick={() => handleItemClick(item)}>
                             {item.Availability}
                           </td>
-                          <td
-                            className="tdcus"
-                            key={index}
-                            onClick={() => handleItemClick(item)}
-                          >
+                          <td key={index} onClick={() => handleItemClick(item)}>
                             {item.UomCode}
                           </td>
-                          <td
-                            className="tdcus"
-                            key={index}
-                            onClick={() => handleItemClick(item)}
-                          >
+                          <td key={index} onClick={() => handleItemClick(item)}>
                             {item.NumInSale}
                           </td>
                         </tr>
