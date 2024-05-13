@@ -3053,9 +3053,8 @@ export default function SalesOrder() {
                             </thead>
                             <tbody>
                               {filteredData.map((rowData: any, rowIndex) => (
-                                <tr className="trcus" key={rowIndex}>
+                                <tr className="tdcus" key={rowIndex}>
                                   <td
-                                    className="tdcus"
                                     onClick={() =>
                                       addCustomerData(
                                         rowData.CardCode,
@@ -3069,7 +3068,6 @@ export default function SalesOrder() {
                                     {rowData.CardCode}
                                   </td>
                                   <td
-                                    className="tdcus"
                                     onClick={() =>
                                       addCustomerData(
                                         rowData.CardCode,
@@ -3083,7 +3081,6 @@ export default function SalesOrder() {
                                     {rowData.CardName}
                                   </td>
                                   <td
-                                    className="tdcus"
                                     onClick={() =>
                                       addCustomerData(
                                         rowData.CardCode,
@@ -3097,7 +3094,6 @@ export default function SalesOrder() {
                                     {rowData.CardFName}
                                   </td>
                                   <td
-                                    className="tdcus"
                                     onClick={() =>
                                       addCustomerData(
                                         rowData.CardCode,
@@ -3111,7 +3107,6 @@ export default function SalesOrder() {
                                     {rowData.Address}
                                   </td>
                                   <td
-                                    className="tdcus"
                                     onClick={() =>
                                       addCustomerData(
                                         rowData.CardCode,
