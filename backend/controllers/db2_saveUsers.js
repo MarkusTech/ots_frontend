@@ -142,15 +142,19 @@ const updateUser = async (req, res) => {
 
 const getTheLastUserId = async (req, res) => {
   try {
-    const data = sqlConn2.query`Select max(UserId) from [OTS_DB].[dbo].[User];`;
+    const result = await sqlConn2.query(
+      "SELECT MAX(UserId) AS LastUserId FROM [OTS_DB].[dbo].[User]"
+    );
+
+    const lastUserId = result.recordset[0].LastUserId;
 
     res.status(200).json({
       success: true,
       message: "Last User ID",
-      data,
+      data: lastUserId,
     });
   } catch (error) {
-    console.log(error);
+    console.error(error);
     res.status(500).json({
       success: false,
       message: "Error finding the last User ID",
