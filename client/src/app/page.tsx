@@ -188,7 +188,7 @@ export default function Home() {
                               onClick={() => toggleWindow("users")}
                               className={`${subsubmenuOpen1}`}
                             >
-                              Users
+                              Create Users
                             </a>
                           </li>
                           <li onClick={handleSubmenuClick}>
@@ -196,7 +196,7 @@ export default function Home() {
                               onClick={() => toggleWindow("settings")}
                               className={`${subsubmenuOpen2}`}
                             >
-                              Settings
+                              View & Update User
                             </a>
                           </li>
                         </ul>
@@ -300,7 +300,14 @@ export default function Home() {
                     style={{ cursor: "move" }}
                   >
                     <div>SETUP USER</div>
-                    <div></div>
+                    <div>
+                      {/* <span
+                        className="text-md text-red-600 cursor-pointer"
+                        onClick={() => toggleWindow("salesorder")}
+                      >
+                        ❌
+                      </span> */}
+                    </div>
                   </div>
                   <div className="content">
                     <Users />
