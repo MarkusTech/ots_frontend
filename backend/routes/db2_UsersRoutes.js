@@ -9,7 +9,7 @@ const router = express.Router();
 
 router.post("/users", saveUsers);
 router.get("/users", getUsers);
-router.get("/user/:id", getSingleUsers);
-router.put("/user/:id", updateUser);
+router.get("/user/:UserId", getSingleUsers);
+router.put("/user/:UserId", updateUser);
 
 export default router;

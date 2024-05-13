@@ -60,11 +60,84 @@ const getUsers = async (req, res) => {
 };
 
 const getSingleUsers = async (req, res) => {
-  res.send("Get Single Users");
+  try {
+    const { UserId } = req.params;
+
+    const result =
+      await sqlConn2.query`SELECT * FROM [dbo].[User] WHERE UserId = ${UserId}`;
+    const record = result.recordset[0]; // Assuming UserId is unique and fetches only one record
+
+    if (record) {
+      res.status(200).json({
+        success: true,
+        message: "User Found",
+        data: record,
+      });
+    } else {
+      res.status(404).json({
+        success: false,
+        message: "User not found",
+      });
+    }
+  } catch (error) {
+    console.error("Error fetching user:", error.message);
+    res.status(500).json({
+      success: false,
+      message: "Error fetching user",
+      error: error.message,
+    });
+  }
 };
 
 const updateUser = async (req, res) => {
-  res.send("Update Users");
+  try {
+    const { UserId } = req.params;
+    const {
+      EmpName,
+      Position,
+      BranchID,
+      BranchName,
+      WhsCode,
+      PriceListNum,
+      userName,
+      Password,
+    } = req.body;
+
+    // Execute SQL query to update user information
+    const result = await sqlConn2.query`
+        UPDATE [dbo].[User] 
+        SET EmpName = ${EmpName},
+            Position = ${Position},
+            BranchID = ${BranchID},
+            BranchName = ${BranchName},
+            WhsCode = ${WhsCode},
+            PriceListNum = ${PriceListNum},
+            UserName = ${userName},
+            Password = ${Password}
+        WHERE UserId = ${UserId}
+      `;
+
+    // Check if any rows were affected by the update
+    if (result.rowsAffected[0] > 0) {
+      res.status(200).json({
+        success: true,
+        message: "User updated successfully",
+      });
+    } else {
+      // If no rows were affected, it means the user with the given UserId was not found
+      res.status(404).json({
+        success: false,
+        message: "User not found",
+      });
+    }
+  } catch (error) {
+    console.error("Error updating user:", error.message);
+    res.status(500).json({
+      success: false,
+      message: "Error updating user",
+      error: error.message,
+    });
+  }
 };
 
 export { saveUsers, getUsers, getSingleUsers, updateUser };
