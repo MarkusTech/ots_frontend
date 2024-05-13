@@ -24,6 +24,7 @@ import receiptRoutes from "./routes/receiptRoutes.js";
 
 // Routes v2
 import db2_paylocRoutes from "./routes/db2_paylocRoutes.js";
+import db2_UserRoutes from "./routes/db2_UsersRoutes.js";
 
 // dotenv config
 dotenv.config();
@@ -59,7 +60,10 @@ app.use("/api/v1", saveHeaderRoutes);
 app.use("/api/v1", saveDetailsRoutes);
 app.use("/api/v1", saveFinalCommit);
 app.use("/api/v1", receiptRoutes);
+
+// API V2
 app.use("/api/v2", db2_paylocRoutes);
+app.use("/api/v2", db2_UserRoutes);
 
 sqlConn.connect((err) => {
   if (err) {
