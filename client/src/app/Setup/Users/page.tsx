@@ -74,6 +74,21 @@ export default function SignUpPage() {
     setShowUsers(!showUsers);
   };
 
+  const handleUserSelect = (selectedUser: any) => {
+    setFormData({
+      userID: "1",
+      fullName: selectedUser.EmpName,
+      position: selectedUser.Position,
+      branchID: selectedUser.BPLId,
+      branchName: selectedUser.BPLName,
+      warehouseCode: selectedUser.DflWhs,
+      priceListNumber: selectedUser.PriceListNum,
+      username: "", // You may want to clear username and password when selecting a new user
+      password: "",
+    });
+    setShowUsers(false); // Close the user selection table after selecting a user
+  };
+
   return (
     <Container component="main" maxWidth="md">
       <div>
@@ -260,7 +275,7 @@ export default function SignUpPage() {
                     </thead>
                     <tbody>
                       {users.map((user, index) => (
-                        <tr key={index}>
+                        <tr key={index} onClick={() => handleUserSelect(user)}>
                           <td>{user.EmpName}</td>
                           <td>{user.Position}</td>
                           <td>{user.BPLId}</td>
