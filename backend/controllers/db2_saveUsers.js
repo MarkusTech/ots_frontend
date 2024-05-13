@@ -140,4 +140,23 @@ const updateUser = async (req, res) => {
   }
 };
 
-export { saveUsers, getUsers, getSingleUsers, updateUser };
+const getTheLastUserId = async (req, res) => {
+  try {
+    const data = sqlConn2.query`Select max(UserId) from [OTS_DB].[dbo].[User];`;
+
+    res.status(200).json({
+      success: true,
+      message: "Last User ID",
+      data,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({
+      success: false,
+      message: "Error finding the last User ID",
+      error: error.message,
+    });
+  }
+};
+
+export { saveUsers, getUsers, getSingleUsers, updateUser, getTheLastUserId };
