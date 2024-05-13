@@ -4082,9 +4082,8 @@ export default function SalesOrder() {
                       <tbody>
                         {WareHouseList.map((item: any, index) => (
                           // eslint-disable-next-line react/jsx-key
-                          <tr>
+                          <tr className="tdcus">
                             <td
-                              className="tdcus"
                               key={index}
                               onClick={(e) =>
                                 handleWarehoueChange(index, item.WhsCode)
@@ -4093,7 +4092,6 @@ export default function SalesOrder() {
                               {item.WhsCode}
                             </td>
                             <td
-                              className="tdcus"
                               key={index}
                               onClick={(e) =>
                                 handleWarehoueChange(index, item.WhsCode)
@@ -4102,7 +4100,6 @@ export default function SalesOrder() {
                               {item.WhsName}
                             </td>
                             <td
-                              className="tdcus"
                               key={index}
                               onClick={(e) =>
                                 handleWarehoueChange(index, item.WhsCode)
@@ -4111,7 +4108,6 @@ export default function SalesOrder() {
                               {item.Availability}
                             </td>
                             <td
-                              className="tdcus"
                               key={index}
                               onClick={(e) =>
                                 handleWarehoueChange(index, item.WhsCode)
@@ -4120,7 +4116,6 @@ export default function SalesOrder() {
                               {item.OnHand}
                             </td>
                             <td
-                              className="tdcus"
                               key={index}
                               onClick={(e) =>
                                 handleWarehoueChange(index, item.WhsCode)
