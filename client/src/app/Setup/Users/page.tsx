@@ -83,7 +83,7 @@ export default function SignUpPage() {
       branchName: selectedUser.BPLName,
       warehouseCode: selectedUser.DflWhs,
       priceListNumber: selectedUser.PriceListNum,
-      username: "", // You may want to clear username and password when selecting a new user
+      username: "",
       password: "",
     });
     setShowUsers(false); // Close the user selection table after selecting a user
