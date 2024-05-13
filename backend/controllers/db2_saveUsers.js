@@ -40,7 +40,23 @@ const saveUsers = async (req, res) => {
 };
 
 const getUsers = async (req, res) => {
-  res.send("Get Users");
+  try {
+    const result = await sqlConn2.query`SELECT * FROM [dbo].[User]`;
+    const recordset = result.recordset;
+
+    res.status(200).json({
+      success: true,
+      message: "Users Fetched",
+      data: recordset,
+    });
+  } catch (error) {
+    console.error("Error fetching users:", error.message);
+    res.status(500).json({
+      success: false,
+      message: "Error fetching users",
+      error: error.message,
+    });
+  }
 };
 
 const getSingleUsers = async (req, res) => {
