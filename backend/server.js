@@ -80,7 +80,7 @@ sqlConn2.connect((err) => {
     console.error("Error connecting to MSSQL:", err);
   } else {
     app.listen(port2, () => {
-      console.log(`Server is running on http://localhost:${port2}`.bgCyan);
+      console.log(`Server2 is running on http://localhost:${port2}`.bgCyan);
     });
   }
 });

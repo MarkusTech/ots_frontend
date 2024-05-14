@@ -20,7 +20,7 @@ const config = {
 
 const sqlConn2 = sql.connect(config, (err) => {
   if (err) console.log(err);
-  console.log("MSSQL DB Connected".bgGreen);
+  console.log("MSSQL2 DB Connected".bgGreen);
 });
 
 export default sqlConn2;
