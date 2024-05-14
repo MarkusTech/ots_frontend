@@ -7,6 +7,7 @@ import SalesQoutation from "./Transaction/SalesQoutation/SalesQoutation";
 import Draggable from "react-draggable";
 import SalesOrder from "./Transaction/SalesOrder/SalesOrder";
 import Users from "./Setup/Users/page";
+import ViewUser from "./Setup/ViewUsers/page";
 import Image from "next/image";
 import { useWindowState } from "../app/Transaction/SalesOrder/WindowsState";
 
@@ -344,7 +345,7 @@ export default function Home() {
                     </div>
                   </div>
                   <div className="content">
-                    <Users />
+                    <ViewUser />
                   </div>
                 </div>
               </Draggable>
