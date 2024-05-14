@@ -93,7 +93,7 @@ const deleteUser = async (req, res) => {
   const { UserId } = req.params;
   try {
     const data =
-      await sqlConn2.query`DELETE FROM [dbo].[User] WHERE UserID = '${UserId}'`;
+      await sqlConn2.query`DELETE FROM [dbo].[User] WHERE UserID = ${UserId}`;
     res.status(200).json({
       success: true,
       message: "User Deleted Successfully",
