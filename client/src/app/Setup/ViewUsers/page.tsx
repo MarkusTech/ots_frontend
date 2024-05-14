@@ -90,34 +90,34 @@ const ViewPage: React.FC = () => {
                 key={user.UserID}
                 className="hover:bg-blue-100 cursor-pointer transition-colors"
               >
-                <td className="px-6 py-3 whitespace-nowrap text-sm font-medium text-gray-900">
+                <td className="px-6 py-2 whitespace-nowrap text-sm font-medium text-gray-900">
                   {user.UserID}
                 </td>
-                <td className="px-6 py-3 whitespace-nowrap text-sm text-gray-500">
+                <td className="px-6 py-2 whitespace-nowrap text-sm text-gray-500">
                   {user.EmpName}
                 </td>
-                <td className="px-6 py-3 whitespace-nowrap text-sm text-gray-500">
+                <td className="px-6 py-2 whitespace-nowrap text-sm text-gray-500">
                   {user.Position}
                 </td>
-                <td className="px-6 py-3 whitespace-nowrap text-sm text-gray-500">
+                <td className="px-6 py-2 whitespace-nowrap text-sm text-gray-500">
                   {user.BranchID}
                 </td>
-                <td className="px-6 py-3 whitespace-nowrap text-sm text-gray-500">
+                <td className="px-6 py-2 whitespace-nowrap text-sm text-gray-500">
                   {user.BranchName}
                 </td>
-                <td className="px-6 py-3 whitespace-nowrap text-sm text-gray-500">
+                <td className="px-6 py-2 whitespace-nowrap text-sm text-gray-500">
                   {user.WhsCode}
                 </td>
-                <td className="px-6 py-3 whitespace-nowrap text-sm text-gray-500">
+                <td className="px-6 py-2 whitespace-nowrap text-sm text-gray-500">
                   {user.PriceListNum}
                 </td>
-                <td className="px-6 py-3 whitespace-nowrap text-sm text-gray-500">
+                <td className="px-6 py-2 whitespace-nowrap text-sm text-gray-500">
                   {user.UserName}
                 </td>
-                <td className="px-6 py-3 whitespace-nowrap text-sm text-gray-500">
+                <td className="px-6 py-2 whitespace-nowrap text-sm text-gray-500">
                   {user.Password}
                 </td>
-                <td className="px-6 py-3 whitespace-nowrap text-right text-sm font-medium">
+                <td className="px-6 py-2 whitespace-nowrap text-right text-sm font-medium">
                   <button
                     className="text-indigo-600 hover:text-indigo-900"
                     onClick={handleShowEdit}
@@ -162,7 +162,76 @@ const ViewPage: React.FC = () => {
       {/* show add */}
       {showAdd && (
         <Draggable>
-          <div>wmr</div>
+          <div
+            className="bg-white shadow-lg"
+            style={{
+              border: "1px solid #ccc",
+              position: "absolute",
+              top: "20%",
+              left: "20%",
+              maxHeight: "700px",
+              overflowY: "auto",
+              background: "white",
+              zIndex: "9999", // Set a high z-index value to bring it to the front. HAHAHA
+            }}
+          >
+            <div
+              className="grid grid-cols-2 p-2 text-left windowheader"
+              style={{ cursor: "move" }}
+            >
+              <div>Select User</div>
+              <div className="text-right">
+                <span className="cursor-pointer">❌</span>
+              </div>
+            </div>
+            <div className="content">
+              <div className="p-2">
+                <div className="flex items-center">
+                  <div>
+                    Search:{" "}
+                    <input
+                      type="text"
+                      className="mb-1"
+                      // value={searchTerm}
+                      // onChange={handleSearchForDraft}
+                    />
+                  </div>
+                  <div className="flex-grow"></div>
+                </div>
+
+                <div className="table-container">
+                  <table className="w-full">
+                    <thead className="tables">
+                      <tr>
+                        <th>Employee Name</th>
+                        <th>Position</th>
+                        <th>Branch ID</th>
+                        <th>Branch Name</th>
+                        <th>Designated Warehouse</th>
+                        <th>Price List Number</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {/* {users.map((user, index) => (
+                        <tr
+                          key={index}
+                          onClick={() => handleUserSelect(user)}
+                          className="hover:bg-blue-100 cursor-pointer"
+                        >
+                          <td>{user.EmpName}</td>
+                          <td>{user.Position}</td>
+                          <td>{user.BPLId}</td>
+                          <td>{user.BPLName}</td>
+                          <td>{user.DflWhs}</td>
+                          <td>{user.PriceListNum}</td>
+                        </tr>
+                      ))} */}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
         </Draggable>
       )}
     </div>
