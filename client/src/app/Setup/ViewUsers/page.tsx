@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import EditIcon from "@mui/icons-material/Edit";
+import Draggable from "react-draggable";
 
 // Define types for user data
 interface User {
@@ -160,9 +161,9 @@ const ViewPage: React.FC = () => {
 
       {/* show add */}
       {showAdd && (
-        <div>
-          <div>Show Add</div>
-        </div>
+        <Draggable>
+          <div>wmr</div>
+        </Draggable>
       )}
     </div>
   );
