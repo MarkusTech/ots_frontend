@@ -154,9 +154,63 @@ const ViewPage: React.FC = () => {
 
       {/* Draggable */}
       {showEdit && (
-        <div>
-          <div>WennWorks</div>
-        </div>
+        <Draggable>
+          <div
+            className="bg-white shadow-lg"
+            style={{
+              border: "1px solid #ccc",
+              position: "absolute",
+              top: "20%",
+              left: "20%",
+              maxHeight: "700px",
+              overflowY: "auto",
+              background: "white",
+              zIndex: "9999", // Set a high z-index value to bring it to the front. HAHAHA
+            }}
+          >
+            <div
+              className="grid grid-cols-2 p-2 text-left windowheader"
+              style={{ cursor: "move" }}
+            >
+              <div>Select User</div>
+              <div className="text-right">
+                <span className="cursor-pointer">❌</span>
+              </div>
+            </div>
+            <div className="content">
+              <div className="p-2">
+                <div className="flex items-center">
+                  <div>
+                    Search:{" "}
+                    <input
+                      type="text"
+                      className="mb-1"
+                      // value={searchTerm}
+                      // onChange={handleSearchForDraft}
+                    />
+                  </div>
+                  <div className="flex-grow"></div>
+                </div>
+
+                <div className="table-container">
+                  <table className="w-full">
+                    <thead className="tables">
+                      <tr>
+                        <th>Employee Name</th>
+                        <th>Position</th>
+                        <th>Branch ID</th>
+                        <th>Branch Name</th>
+                        <th>Designated Warehouse</th>
+                        <th>Price List Number</th>
+                      </tr>
+                    </thead>
+                    <tbody></tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </Draggable>
       )}
 
       {/* show add */}
@@ -211,22 +265,7 @@ const ViewPage: React.FC = () => {
                         <th>Price List Number</th>
                       </tr>
                     </thead>
-                    <tbody>
-                      {/* {users.map((user, index) => (
-                        <tr
-                          key={index}
-                          onClick={() => handleUserSelect(user)}
-                          className="hover:bg-blue-100 cursor-pointer"
-                        >
-                          <td>{user.EmpName}</td>
-                          <td>{user.Position}</td>
-                          <td>{user.BPLId}</td>
-                          <td>{user.BPLName}</td>
-                          <td>{user.DflWhs}</td>
-                          <td>{user.PriceListNum}</td>
-                        </tr>
-                      ))} */}
-                    </tbody>
+                    <tbody></tbody>
                   </table>
                 </div>
               </div>
