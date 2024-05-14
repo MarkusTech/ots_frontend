@@ -81,8 +81,14 @@ const ViewPage: React.FC = () => {
             </th>
           </tr>
         </thead>
-        <tbody className="bg-white divide-y divide-gray-200">
-          {users.map((user: User) => (
+        <tbody
+          className={
+            users.length > 13
+              ? "bg-white divide-y divide-gray-200 h-96 overflow-y-auto"
+              : "bg-white divide-y divide-gray-200"
+          }
+        >
+          {users.slice(0, 13).map((user: User) => (
             <tr
               key={user.UserID}
               className="hover:bg-blue-100 cursor-pointer transition-colors"
