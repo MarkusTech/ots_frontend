@@ -77,9 +77,6 @@ const ViewPage: React.FC = () => {
                 Username
               </th>
               <th className="px-6 py-3 text-left text-xs font-semibold text-gray-700 uppercase">
-                Password
-              </th>
-              <th className="px-6 py-3 text-left text-xs font-semibold text-gray-700 uppercase">
                 Actions
               </th>
             </tr>
@@ -113,9 +110,6 @@ const ViewPage: React.FC = () => {
                 </td>
                 <td className="px-6 py-2 whitespace-nowrap text-sm text-gray-500">
                   {user.UserName}
-                </td>
-                <td className="px-6 py-2 whitespace-nowrap text-sm text-gray-500">
-                  {user.Password}
                 </td>
                 <td className="px-6 py-2 whitespace-nowrap text-right text-sm font-medium">
                   <button
