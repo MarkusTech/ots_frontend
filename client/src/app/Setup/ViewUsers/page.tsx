@@ -41,6 +41,28 @@ const ViewPage: React.FC = () => {
 
   return (
     <div className="container mx-auto">
+      <div className="flex justify-between mb-4 py-2">
+        <div>
+          <h2 className="text-lg font-semibold text-gray-800"></h2>
+        </div>
+        <div className="flex items-center">
+          <button className="flex items-center px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:outline-none focus:bg-blue-600">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-5 w-5 mr-2"
+              viewBox="0 0 20 20"
+              fill="currentColor"
+            >
+              <path
+                fillRule="evenodd"
+                d="M10 2a8 8 0 1 0 0 16 8 8 0 0 0 0-16zM9 9V5a1 1 0 0 1 2 0v4h4a1 1 0 0 1 0 2h-4v4a1 1 0 1 1-2 0v-4H5a1 1 0 1 1 0-2h4V9z"
+                clipRule="evenodd"
+              />
+            </svg>
+            Create
+          </button>
+        </div>
+      </div>
       <table className="min-w-full divide-y divide-gray-200 shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
         <thead className="bg-gray-50">
           <tr className="bg-blue-100">
