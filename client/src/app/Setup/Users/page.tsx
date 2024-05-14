@@ -1,6 +1,7 @@
 import React, { useState, useEffect, ChangeEvent, FormEvent } from "react";
 import { TextField, Button, Grid, Typography, Container } from "@mui/material";
 import Draggable from "react-draggable";
+import Swal from "sweetalert2";
 
 interface FormData {
   userID: string;
@@ -62,10 +63,45 @@ export default function SignUpPage() {
     });
   };
 
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // Handle form submission
-    console.log(users);
+
+    const payload = {
+      EmpName: formData.fullName,
+      Position: formData.position,
+      BranchID: Number(formData.branchID),
+      BranchName: formData.branchName,
+      WhsCode: formData.warehouseCode,
+      PriceListNum: Number(formData.priceListNumber),
+      userName: formData.username,
+      Password: formData.password,
+    };
+
+    try {
+      const response = await fetch("http://172.16.10.169:5001/api/v2/users", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(payload),
+      });
+
+      if (response.ok) {
+        const responseData = await response.json();
+        console.log("User registered successfully:", responseData);
+        Swal.fire({
+          icon: "success",
+          title: "Success",
+          text: "User registered successfully",
+        });
+        // Reset form
+        setFormData(initialFormData);
+      } else {
+        console.error("Failed to register user:", response.statusText);
+      }
+    } catch (error) {
+      console.error("Error registering user:", error);
+    }
   };
 
   const handleButtonClick = (
