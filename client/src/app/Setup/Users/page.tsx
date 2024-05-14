@@ -92,30 +92,37 @@ export default function SignUpPage() {
       Password: formData.password,
     };
 
-    try {
-      const response = await fetch("http://172.16.10.169:5001/api/v2/users", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(payload),
+    if (formData.username == "" || formData.password == "") {
+      Swal.fire({
+        icon: "error",
+        text: "Need to Fill Username and Password",
       });
-
-      if (response.ok) {
-        const responseData = await response.json();
-        console.log("User registered successfully:", responseData);
-        Swal.fire({
-          icon: "success",
-          title: "Success",
-          text: "User registered successfully",
+    } else {
+      try {
+        const response = await fetch("http://172.16.10.169:5001/api/v2/users", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(payload),
         });
-        // Reset form
-        setFormData(initialFormData);
-      } else {
-        console.error("Failed to register user:", response.statusText);
+
+        if (response.ok) {
+          const responseData = await response.json();
+          console.log("User registered successfully:", responseData);
+          Swal.fire({
+            icon: "success",
+            title: "Success",
+            text: "User registered successfully",
+          });
+          // Reset form
+          setFormData(initialFormData);
+        } else {
+          console.error("Failed to register user:", response.statusText);
+        }
+      } catch (error) {
+        console.error("Error registering user:", error);
       }
-    } catch (error) {
-      console.error("Error registering user:", error);
     }
   };
 
