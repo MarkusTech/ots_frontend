@@ -12,7 +12,8 @@ import { useWindowState } from "../app/Transaction/SalesOrder/WindowsState";
 
 export default function Home() {
   const router = useRouter(); //Router
-  const { showSalesOrder, showUsers, toggleWindow } = useWindowState(); // Use the state and functions
+  const { showSalesOrder, showUsers, viewUsers, toggleWindow } =
+    useWindowState(); // Use the state and functions
 
   const [rounterName, setRounterName] = React.useState("");
 
@@ -193,7 +194,7 @@ export default function Home() {
                           </li>
                           <li onClick={handleSubmenuClick}>
                             <a
-                              onClick={() => toggleWindow("settings")}
+                              onClick={() => toggleWindow("view")}
                               className={`${subsubmenuOpen2}`}
                             >
                               View & Update User
@@ -307,6 +308,39 @@ export default function Home() {
                       >
                         ❌
                       </span> */}
+                    </div>
+                  </div>
+                  <div className="content">
+                    <Users />
+                  </div>
+                </div>
+              </Draggable>
+            )}
+            {viewUsers && (
+              <Draggable handle=".header">
+                <div
+                  className="container bg-white"
+                  style={{
+                    border: "1px solid #ccc",
+                    position: "absolute",
+                    zIndex: 2,
+                    top: "5%",
+                    left: "15%",
+                    transform: "translate(-50%, -50%)",
+                  }}
+                >
+                  <div
+                    className="header grid grid-cols-2 p-2 text-left windowheader"
+                    style={{ cursor: "move" }}
+                  >
+                    <div>USER LIST</div>
+                    <div>
+                      {/* <span
+                      className="text-md text-red-600 cursor-pointer"
+                      onClick={() => toggleWindow("salesorder")}
+                    >
+                      ❌
+                    </span> */}
                     </div>
                   </div>
                   <div className="content">
