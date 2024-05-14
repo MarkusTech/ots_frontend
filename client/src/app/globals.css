@@ -16,10 +16,10 @@
   }
 }
 
-.body{
+.body {
   font-family: Poppins;
   background: rgb(223, 223, 223);
-  
+
   text-align: center;
   padding: 20px;
   height: 100vh;
@@ -27,99 +27,101 @@
 
 /* Navigations */
 
-.nav{
+.nav {
   border-bottom: solid 1px #c4c4c4;
 }
 
-ul, li{
+ul,
+li {
   font-size: 15px;
 }
 
-ul li{
+ul li {
   cursor: pointer;
-  
+
   width: 100%;
 }
 
-.linav{
+.linav {
   text-align: left;
 }
 
-input{
+input {
   padding: 5px;
   border: solid 1px #c4c4c4;
 }
 
-.selections{
+.selections {
   border: solid 1px #5a5a5a;
   width: 200px;
 }
 
-.submenu li{
+.submenu li {
   padding: 5px;
-  
 }
 
-.active{
+.active {
   animation: active 0.5s ease-in-out;
-  color: #F0AB00;
+  color: #f0ab00;
   font-weight: bold;
 }
 
-.submenu{
-  border-left: solid 2px #F0AB00;
+.submenu {
+  border-left: solid 2px #f0ab00;
   transition: all 0.5s ease-in-out;
   animation: submenu 0.7s ease-in-out;
 }
 
-.submenu li{
+.submenu li {
   padding-left: 10px;
   animation: listall 0.5s ease-in-out;
 }
 
-.submenu li:hover{
-  color: #F0AB00;
+.submenu li:hover {
+  color: #f0ab00;
 }
 
 @keyframes listall {
-  
 }
 
 @keyframes submenu {
-  0%{
+  0% {
     opacity: 0%;
     color: black;
-  }50%{
+  }
+  50% {
     opacity: 0%;
     color: black;
-  }100%{
+  }
+  100% {
     opacity: 100%;
   }
 }
 
 @keyframes active {
-  0%{
+  0% {
     padding-left: 0px;
-  }50%{
+  }
+  50% {
     color: #000000;
     padding-left: 3px;
-  }100%{
-    color: #F0AB00;
+  }
+  100% {
+    color: #f0ab00;
     padding-left: 0px;
   }
 }
 
 /* Navigations */
 
-
 /* Sales Qoutation */
 
-.salesQoutation{
+.salesQoutation {
   text-align: left;
-  background-color: #E5E5E5;
+  background-color: #e5e5e5;
 }
 
-.salesbody{
+.salesbody {
   text-align: left;
   background-color: #ffffff;
 }
@@ -153,9 +155,8 @@ input{
 
 /* Optional: Hide scrollbar when not scrolling */
 .salesbody::-webkit-scrollbar-thumb:hover {
-  background-color: #F0AB00;
+  background-color: #f0ab00;
   opacity: 50%;
-  
 }
 
 .fields::-webkit-scrollbar {
@@ -182,37 +183,40 @@ input{
 
 /* Optional: Hide scrollbar when not scrolling */
 .fields::-webkit-scrollbar-thumb:hover {
-  background-color: #F0AB00;
+  background-color: #f0ab00;
   opacity: 50%;
 }
 
-.salesbody input{
+.salesbody input {
   height: 20px;
   width: 200px;
 }
 
-table{
+table {
   border-collapse: collapse;
   font-size: 12px;
   width: 100%;
 }
 
-th{
-  background-color: #E5E5E5;
+th {
+  background-color: #e5e5e5;
 }
 
-th, tr, td{
+th,
+tr,
+td {
   border: solid 1px rgb(197, 197, 197);
   padding: 4px;
 }
 
-
-.tables th, td{
+.tables th,
+td {
   white-space: nowrap;
   font-weight: 400;
 }
 
-.tables th, td{
+.tables th,
+td {
   white-space: nowrap;
 }
 
@@ -242,44 +246,45 @@ th, tr, td{
   cursor: pointer;
 }
 
-.col1 div{
+.col1 div {
   margin-bottom: 2px;
 }
 
 /* Drag */
 
-.SalesOrderDiv{
+.SalesOrderDiv {
   border: solid 1px #8d8d8d;
   font-size: 13px;
   padding: 5px;
   box-shadow: 2px 2px 2px 2px rgba(141, 141, 141, 0.5);
 }
 
-.SalesOrderDivBody{
+.SalesOrderDivBody {
   border-top: solid 1px #8d8d8d;
   padding: 10px;
 }
 
-.salesForms{
+.salesForms {
   font-size: 13px;
 }
 
-.salesForms div{
+.salesForms div {
   margin-bottom: 2px;
 }
 
-.salesForms input{
+.salesForms input {
   height: 23px;
   border: solid 1px rgb(129, 129, 129);
 }
 
-input, textarea{
+input,
+textarea {
   height: 20px;
   width: 200px;
   border: solid 1px rgb(129, 129, 129);
 }
 
-textarea{
+textarea {
   height: 50px;
   width: 200px;
   border: solid 1px rgb(129, 129, 129);
@@ -287,18 +292,21 @@ textarea{
 
 /* Global CSS */
 
-.windowheader{
-  background-color: #CBD5E1;
+.windowheader {
+  background-color: #cbd5e1;
 }
-
 
 /* Customer Data */
 
-.tdcus:hover{
-  background-color: #F0AB00;
+.tdcus:hover {
+  background-color: #f0ab00;
   cursor: pointer;
 }
 
-.trcus:hover{
+.trcus:hover {
   background-color: #e0e0e0;
+}
+
+.tableHeigthView {
+  height: 700px;
 }
