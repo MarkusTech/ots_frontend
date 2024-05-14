@@ -1,18 +1,9 @@
 import React from "react";
-import {
-  Table,
-  TableHead,
-  TableBody,
-  TableRow,
-  TableCell,
-  Paper,
-  IconButton,
-} from "@mui/material";
 import EditIcon from "@mui/icons-material/Edit";
 
 // Define types for user data
 interface User {
-  userId: number;
+  userId: string;
   fullName: string;
   position: string;
   branchID: string;
@@ -26,7 +17,7 @@ interface User {
 // Sample user data array (replace with your actual user data)
 const users: User[] = [
   {
-    userId: 123,
+    userId: "1",
     fullName: "John Doe",
     position: "Manager",
     branchID: "1234",
@@ -37,7 +28,7 @@ const users: User[] = [
     password: "password",
   },
   {
-    userId: 123,
+    userId: "2",
     fullName: "Jane Smith",
     position: "Supervisor",
     branchID: "5678",
@@ -53,48 +44,80 @@ const users: User[] = [
 const ViewPage: React.FC = () => {
   return (
     <div className="container mx-auto">
-      <Paper className="overflow-x-auto">
-        <Table className="min-w-max w-full table-auto">
-          <TableHead>
-            <TableRow className="bg-gray-800 text-white">
-              <TableCell className="p-2">User ID</TableCell>
-              <TableCell className="p-2">Full Name</TableCell>
-              <TableCell className="p-2">Position</TableCell>
-              <TableCell className="p-2">Branch ID</TableCell>
-              <TableCell className="p-2">Branch Name</TableCell>
-              <TableCell className="p-2">Warehouse Code</TableCell>
-              <TableCell className="p-2">Price List Number</TableCell>
-              <TableCell className="p-2">Username</TableCell>
-              <TableCell className="p-2">Password</TableCell>
-              <TableCell className="p-2">Actions</TableCell>{" "}
-              {/* New cell for actions */}
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {users.map((user: User, index: number) => (
-              <TableRow
-                key={index}
-                className="bg-gray-100 hover:bg-gray-200 transition-colors"
-              >
-                <TableCell className="p-2">{user.userId}</TableCell>
-                <TableCell className="p-2">{user.fullName}</TableCell>
-                <TableCell className="p-2">{user.position}</TableCell>
-                <TableCell className="p-2">{user.branchID}</TableCell>
-                <TableCell className="p-2">{user.branchName}</TableCell>
-                <TableCell className="p-2">{user.warehouseCode}</TableCell>
-                <TableCell className="p-2">{user.priceListNumber}</TableCell>
-                <TableCell className="p-2">{user.username}</TableCell>
-                <TableCell className="p-2">{user.password}</TableCell>
-                <TableCell className="p-2 flex justify-center items-center">
-                  <IconButton aria-label="edit" className="focus:outline-none">
-                    <EditIcon className="text-blue-500" />
-                  </IconButton>
-                </TableCell>
-              </TableRow>
-            ))}
-          </TableBody>
-        </Table>
-      </Paper>
+      <table className="min-w-full divide-y divide-gray-200 shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
+        <thead className="bg-gray-50">
+          <tr>
+            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+              User ID
+            </th>
+            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+              Full Name
+            </th>
+            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+              Position
+            </th>
+            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+              Branch ID
+            </th>
+            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+              Branch Name
+            </th>
+            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+              Warehouse Code
+            </th>
+            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+              Price List Number
+            </th>
+            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+              Username
+            </th>
+            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+              Password
+            </th>
+            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+              Actions
+            </th>
+          </tr>
+        </thead>
+        <tbody className="bg-white divide-y divide-gray-200">
+          {users.map((user: User) => (
+            <tr key={user.userId}>
+              <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                {user.userId}
+              </td>
+              <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                {user.fullName}
+              </td>
+              <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                {user.position}
+              </td>
+              <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                {user.branchID}
+              </td>
+              <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                {user.branchName}
+              </td>
+              <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                {user.warehouseCode}
+              </td>
+              <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                {user.priceListNumber}
+              </td>
+              <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                {user.username}
+              </td>
+              <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                {user.password}
+              </td>
+              <td className="px-12 py-4 whitespace-nowrap text-right text-sm font-medium">
+                <button className="text-indigo-600 hover:text-indigo-900">
+                  <EditIcon />
+                </button>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
     </div>
   );
 };
