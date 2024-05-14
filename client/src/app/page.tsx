@@ -334,14 +334,16 @@ export default function Home() {
                     className="header grid grid-cols-2 p-2 text-left windowheader"
                     style={{ cursor: "move" }}
                   >
-                    <div>USER LIST</div>
-                    <div>
-                      {/* <span
-                      className="text-md text-red-600 cursor-pointer"
-                      onClick={() => toggleWindow("salesorder")}
-                    >
-                      ❌
-                    </span> */}
+                    <div className="flex justify-between items-center">
+                      <div>USER LIST</div>
+                      {/* <div>
+                        <span
+                          className="text-md text-red-600 cursor-pointer"
+                          onClick={() => toggleWindow("view")}
+                        >
+                          ❌
+                        </span>
+                      </div> */}
                     </div>
                   </div>
                   <div className="content">
