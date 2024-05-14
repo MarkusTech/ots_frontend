@@ -41,7 +41,7 @@ export default function SignUpPage() {
   const [formData, setFormData] = useState<FormData>(initialFormData);
   const [showUsers, setShowUsers] = useState(false);
   const [users, setUsers] = useState<UserData[]>([]);
-  const [lastUserID, setLastUserID] = useState<number | null>(null);
+  const [lastUserID, setLastUserID] = useState("");
 
   useEffect(() => {
     const fetchData = async () => {
@@ -61,7 +61,9 @@ export default function SignUpPage() {
     axios
       .get("http://172.16.10.169:5001/api/v2/userId")
       .then((response) => {
-        setLastUserID(response.data.data);
+        const lastUserNum = response.data.data;
+        const addOneUserNum = lastUserNum + 1;
+        setLastUserID(addOneUserNum);
       })
       .catch((error) => {
         console.error("Error fetching data:", error);
@@ -125,7 +127,7 @@ export default function SignUpPage() {
 
   const handleUserSelect = (selectedUser: any) => {
     setFormData({
-      userID: "1",
+      userID: lastUserID,
       fullName: selectedUser.EmpName,
       position: selectedUser.Position,
       branchID: selectedUser.BPLId,
@@ -158,6 +160,9 @@ export default function SignUpPage() {
               variant="outlined"
               value={formData.userID}
               onChange={handleChange}
+              InputProps={{
+                readOnly: true,
+              }}
             />
           </Grid>
           <Grid item xs={12} sm={1}>
@@ -179,6 +184,9 @@ export default function SignUpPage() {
               variant="outlined"
               value={formData.fullName}
               onChange={handleChange}
+              InputProps={{
+                readOnly: true,
+              }}
             />
           </Grid>
           <Grid item xs={12} sm={6}>
@@ -190,6 +198,9 @@ export default function SignUpPage() {
               variant="outlined"
               value={formData.position}
               onChange={handleChange}
+              InputProps={{
+                readOnly: true,
+              }}
             />
           </Grid>
           <Grid item xs={12} sm={6}>
@@ -201,6 +212,9 @@ export default function SignUpPage() {
               variant="outlined"
               value={formData.branchID}
               onChange={handleChange}
+              InputProps={{
+                readOnly: true,
+              }}
             />
           </Grid>
           <Grid item xs={12} sm={6}>
@@ -212,6 +226,9 @@ export default function SignUpPage() {
               variant="outlined"
               value={formData.branchName}
               onChange={handleChange}
+              InputProps={{
+                readOnly: true,
+              }}
             />
           </Grid>
           <Grid item xs={12} sm={6}>
@@ -223,6 +240,9 @@ export default function SignUpPage() {
               variant="outlined"
               value={formData.warehouseCode}
               onChange={handleChange}
+              InputProps={{
+                readOnly: true,
+              }}
             />
           </Grid>
           <Grid item xs={12} sm={6}>
@@ -234,6 +254,9 @@ export default function SignUpPage() {
               variant="outlined"
               value={formData.priceListNumber}
               onChange={handleChange}
+              InputProps={{
+                readOnly: true,
+              }}
             />
           </Grid>
           <Grid item xs={12} sm={6}>
