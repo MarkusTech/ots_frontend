@@ -16,6 +16,7 @@ interface User {
 
 const ViewPage: React.FC = () => {
   const [users, setUsers] = useState<User[]>([]);
+  const [showEdit, setShowEdit] = useState(false);
 
   useEffect(() => {
     const fetchUsers = async () => {
@@ -33,6 +34,10 @@ const ViewPage: React.FC = () => {
 
     fetchUsers();
   }, []);
+
+  const handleShowEdit = () => {
+    setShowEdit(!showEdit);
+  };
 
   return (
     <div className="container mx-auto">
@@ -105,7 +110,10 @@ const ViewPage: React.FC = () => {
                 {user.Password}
               </td>
               <td className="px-12 py-4 whitespace-nowrap text-right text-sm font-medium">
-                <button className="text-indigo-600 hover:text-indigo-900">
+                <button
+                  className="text-indigo-600 hover:text-indigo-900"
+                  onClick={handleShowEdit}
+                >
                   <EditIcon />
                 </button>
               </td>
@@ -113,6 +121,11 @@ const ViewPage: React.FC = () => {
           ))}
         </tbody>
       </table>
+      {showEdit && (
+        <div>
+          <div>WennWorks</div>
+        </div>
+      )}
     </div>
   );
 };
