@@ -17,6 +17,7 @@ interface User {
 const ViewPage: React.FC = () => {
   const [users, setUsers] = useState<User[]>([]);
   const [showEdit, setShowEdit] = useState(false);
+  const [showAdd, setShowAdd] = useState(false);
 
   useEffect(() => {
     const fetchUsers = async () => {
@@ -37,6 +38,10 @@ const ViewPage: React.FC = () => {
 
   const handleShowEdit = () => {
     setShowEdit(!showEdit);
+  };
+
+  const handleShowAdd = () => {
+    setShowAdd(!showAdd);
   };
 
   return (
@@ -123,7 +128,10 @@ const ViewPage: React.FC = () => {
       </table>
       <div className="flex justify-between items-center mb-6 pt-2 px-4">
         <h2 className="text-lg font-semibold text-gray-800"></h2>
-        <button className="flex items-center px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:outline-none focus:bg-blue-600">
+        <button
+          className="flex items-center px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:outline-none focus:bg-blue-600"
+          onClick={handleShowAdd}
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className="h-5 w-5 mr-2"
@@ -144,6 +152,13 @@ const ViewPage: React.FC = () => {
       {showEdit && (
         <div>
           <div>WennWorks</div>
+        </div>
+      )}
+
+      {/* show add */}
+      {showAdd && (
+        <div>
+          <div>Show Add</div>
         </div>
       )}
     </div>
