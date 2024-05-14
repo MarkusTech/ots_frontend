@@ -1,47 +1,39 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import EditIcon from "@mui/icons-material/Edit";
 
 // Define types for user data
 interface User {
-  userId: string;
-  fullName: string;
-  position: string;
-  branchID: string;
-  branchName: string;
-  warehouseCode: string;
-  priceListNumber: string;
-  username: string;
-  password: string;
+  UserID: string;
+  EmpName: string;
+  Position: string;
+  BranchID: string;
+  BranchName: string;
+  WhsCode: string;
+  PriceListNum: string;
+  UserName: string;
+  Password: string;
 }
 
-// Sample user data array (replace with your actual user data)
-const users: User[] = [
-  {
-    userId: "1",
-    fullName: "John Doe",
-    position: "Manager",
-    branchID: "1234",
-    branchName: "Branch A",
-    warehouseCode: "WH001",
-    priceListNumber: "001",
-    username: "johndoe",
-    password: "password",
-  },
-  {
-    userId: "2",
-    fullName: "Jane Smith",
-    position: "Supervisor",
-    branchID: "5678",
-    branchName: "Branch B",
-    warehouseCode: "WH002",
-    priceListNumber: "002",
-    username: "janesmith",
-    password: "password123",
-  },
-  // Add more users as needed
-];
-
 const ViewPage: React.FC = () => {
+  const [users, setUsers] = useState<User[]>([]);
+
+  useEffect(() => {
+    const fetchUsers = async () => {
+      try {
+        const response = await fetch("http://172.16.10.169:5001/api/v2/users");
+        if (!response.ok) {
+          throw new Error("Failed to fetch user data");
+        }
+        const data = await response.json();
+        setUsers(data.data);
+      } catch (error) {
+        console.error("Error fetching user data:", error);
+      }
+    };
+
+    fetchUsers();
+  }, []);
+
   return (
     <div className="container mx-auto">
       <table className="min-w-full divide-y divide-gray-200 shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
@@ -81,33 +73,33 @@ const ViewPage: React.FC = () => {
         </thead>
         <tbody className="bg-white divide-y divide-gray-200">
           {users.map((user: User) => (
-            <tr key={user.userId}>
+            <tr key={user.UserID}>
               <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                {user.userId}
+                {user.UserID}
               </td>
               <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                {user.fullName}
+                {user.EmpName}
               </td>
               <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                {user.position}
+                {user.Position}
               </td>
               <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                {user.branchID}
+                {user.BranchID}
               </td>
               <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                {user.branchName}
+                {user.BranchName}
               </td>
               <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                {user.warehouseCode}
+                {user.WhsCode}
               </td>
               <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                {user.priceListNumber}
+                {user.PriceListNum}
               </td>
               <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                {user.username}
+                {user.UserName}
               </td>
               <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                {user.password}
+                {user.Password}
               </td>
               <td className="px-12 py-4 whitespace-nowrap text-right text-sm font-medium">
                 <button className="text-indigo-600 hover:text-indigo-900">
