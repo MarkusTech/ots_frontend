@@ -89,6 +89,26 @@ const getSingleUsers = async (req, res) => {
   }
 };
 
+const deleteUser = async (req, res) => {
+  const { UserId } = req.params;
+  try {
+    const data =
+      await sqlConn2.query`DELETE FROM [dbo].[User] WHERE UserID = '${UserId}'`;
+    res.status(200).json({
+      success: true,
+      message: "User Deleted Successfully",
+      data,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({
+      success: false,
+      message: "Error Deleting User",
+      error: error.message,
+    });
+  }
+};
+
 const updateUser = async (req, res) => {
   try {
     const { UserId } = req.params;
@@ -163,4 +183,11 @@ const getTheLastUserId = async (req, res) => {
   }
 };
 
-export { saveUsers, getUsers, getSingleUsers, updateUser, getTheLastUserId };
+export {
+  saveUsers,
+  getUsers,
+  getSingleUsers,
+  updateUser,
+  getTheLastUserId,
+  deleteUser,
+};
