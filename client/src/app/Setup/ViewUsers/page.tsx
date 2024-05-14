@@ -46,6 +46,7 @@ const ViewPage: React.FC = () => {
 
   return (
     <div className="container mx-auto">
+      {/* the css on tableHeightView is on global css */}
       <div className="tableHeigthView overflow-y-auto">
         <table className="min-w-full divide-y divide-gray-200 shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
           <thead className="bg-gray-50">
