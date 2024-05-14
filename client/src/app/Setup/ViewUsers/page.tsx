@@ -82,34 +82,34 @@ const ViewPage: React.FC = () => {
               key={user.UserID}
               className="hover:bg-blue-100 cursor-pointer transition-colors"
             >
-              <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+              <td className="px-6 py-3 whitespace-nowrap text-sm font-medium text-gray-900">
                 {user.UserID}
               </td>
-              <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+              <td className="px-6 py-3 whitespace-nowrap text-sm text-gray-500">
                 {user.EmpName}
               </td>
-              <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+              <td className="px-6 py-3 whitespace-nowrap text-sm text-gray-500">
                 {user.Position}
               </td>
-              <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+              <td className="px-6 py-3 whitespace-nowrap text-sm text-gray-500">
                 {user.BranchID}
               </td>
-              <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+              <td className="px-6 py-3 whitespace-nowrap text-sm text-gray-500">
                 {user.BranchName}
               </td>
-              <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+              <td className="px-6 py-3 whitespace-nowrap text-sm text-gray-500">
                 {user.WhsCode}
               </td>
-              <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+              <td className="px-6 py-3 whitespace-nowrap text-sm text-gray-500">
                 {user.PriceListNum}
               </td>
-              <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+              <td className="px-6 py-3 whitespace-nowrap text-sm text-gray-500">
                 {user.UserName}
               </td>
-              <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+              <td className="px-6 py-3 whitespace-nowrap text-sm text-gray-500">
                 {user.Password}
               </td>
-              <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+              <td className="px-6 py-3 whitespace-nowrap text-right text-sm font-medium">
                 <button
                   className="text-indigo-600 hover:text-indigo-900"
                   onClick={handleShowEdit}
