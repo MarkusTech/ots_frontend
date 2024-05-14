@@ -2,6 +2,7 @@ import React, { useState, useEffect, ChangeEvent, FormEvent } from "react";
 import { TextField, Button, Grid, Typography, Container } from "@mui/material";
 import Draggable from "react-draggable";
 import Swal from "sweetalert2";
+import axios from "axios";
 
 interface FormData {
   userID: string;
@@ -40,6 +41,7 @@ export default function SignUpPage() {
   const [formData, setFormData] = useState<FormData>(initialFormData);
   const [showUsers, setShowUsers] = useState(false);
   const [users, setUsers] = useState<UserData[]>([]);
+  const [lastUserID, setLastUserID] = useState<number | null>(null);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -53,6 +55,17 @@ export default function SignUpPage() {
     };
 
     fetchData();
+  }, []);
+
+  useEffect(() => {
+    axios
+      .get("http://172.16.10.169:5001/api/v2/userId")
+      .then((response) => {
+        setLastUserID(response.data.data);
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+      });
   }, []);
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
