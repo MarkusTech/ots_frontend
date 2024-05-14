@@ -38,42 +38,45 @@ const ViewPage: React.FC = () => {
     <div className="container mx-auto">
       <table className="min-w-full divide-y divide-gray-200 shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
         <thead className="bg-gray-50">
-          <tr>
-            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+          <tr className="bg-blue-100">
+            <th className="px-6 py-3 text-left text-xs font-semibold text-gray-700 uppercase">
               User ID
             </th>
-            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+            <th className="px-6 py-3 text-left text-xs font-semibold text-gray-700 uppercase">
               Full Name
             </th>
-            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+            <th className="px-6 py-3 text-left text-xs font-semibold text-gray-700 uppercase">
               Position
             </th>
-            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+            <th className="px-6 py-3 text-left text-xs font-semibold text-gray-700 uppercase">
               Branch ID
             </th>
-            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+            <th className="px-6 py-3 text-left text-xs font-semibold text-gray-700 uppercase">
               Branch Name
             </th>
-            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+            <th className="px-6 py-3 text-left text-xs font-semibold text-gray-700 uppercase">
               Warehouse Code
             </th>
-            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+            <th className="px-6 py-3 text-left text-xs font-semibold text-gray-700 uppercase">
               Price List Number
             </th>
-            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+            <th className="px-6 py-3 text-left text-xs font-semibold text-gray-700 uppercase">
               Username
             </th>
-            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+            <th className="px-6 py-3 text-left text-xs font-semibold text-gray-700 uppercase">
               Password
             </th>
-            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+            <th className="px-6 py-3 text-left text-xs font-semibold text-gray-700 uppercase">
               Actions
             </th>
           </tr>
         </thead>
         <tbody className="bg-white divide-y divide-gray-200">
           {users.map((user: User) => (
-            <tr key={user.UserID}>
+            <tr
+              key={user.UserID}
+              className="hover:bg-blue-100 cursor-pointer transition-colors"
+            >
               <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
                 {user.UserID}
               </td>
