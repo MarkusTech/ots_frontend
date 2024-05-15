@@ -166,42 +166,13 @@ const ViewPage: React.FC = () => {
               className="grid grid-cols-2 p-2 text-left windowheader"
               style={{ cursor: "move" }}
             >
-              <div>Select User</div>
+              <div>Edit User</div>
               <div className="text-right">
                 <span className="cursor-pointer">❌</span>
               </div>
             </div>
             <div className="content">
-              <div className="p-2">
-                <div className="flex items-center">
-                  <div>
-                    Search:{" "}
-                    <input
-                      type="text"
-                      className="mb-1"
-                      // value={searchTerm}
-                      // onChange={handleSearchForDraft}
-                    />
-                  </div>
-                  <div className="flex-grow"></div>
-                </div>
-
-                <div className="table-container">
-                  <table className="w-full">
-                    <thead className="tables">
-                      <tr>
-                        <th>Employee Name</th>
-                        <th>Position</th>
-                        <th>Branch ID</th>
-                        <th>Branch Name</th>
-                        <th>Designated Warehouse</th>
-                        <th>Price List Number</th>
-                      </tr>
-                    </thead>
-                    <tbody></tbody>
-                  </table>
-                </div>
-              </div>
+              <div className="p-2">asdasd</div>
             </div>
           </div>
         </Draggable>
