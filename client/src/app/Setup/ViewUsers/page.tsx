@@ -1,7 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, ChangeEvent, FormEvent } from "react";
 import EditIcon from "@mui/icons-material/Edit";
 import Draggable from "react-draggable";
 import { TextField, Button, Grid, Typography, Container } from "@mui/material";
+import Swal from "sweetalert2";
+import axios from "axios";
 
 // Define types for user data
 interface User {
@@ -53,6 +55,117 @@ const ViewPage: React.FC = () => {
   const [users, setUsers] = useState<User[]>([]);
   const [showEdit, setShowEdit] = useState(false);
   const [showAdd, setShowAdd] = useState(false);
+
+  const [formData, setFormData] = useState<FormData>(initialFormData);
+  const [showUsers, setShowUsers] = useState(false);
+  const [employees, setEmployees] = useState<UserData[]>([]);
+  const [lastUserID, setLastUserID] = useState("");
+
+  // Save User
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch("http://172.16.10.217:3001/employees");
+        const data = await response.json();
+        setEmployees(data);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  useEffect(() => {
+    axios
+      .get("http://172.16.10.169:5001/api/v2/userId")
+      .then((response) => {
+        const lastUserNum = response.data.data;
+        const addOneUserNum = lastUserNum + 1;
+        setLastUserID(addOneUserNum);
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+      });
+  }, []);
+
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+  };
+
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    const payload = {
+      EmpName: formData.fullName,
+      Position: formData.position,
+      BranchID: Number(formData.branchID),
+      BranchName: formData.branchName,
+      WhsCode: formData.warehouseCode,
+      PriceListNum: Number(formData.priceListNumber),
+      userName: formData.username,
+      Password: formData.password,
+    };
+
+    if (formData.username == "" || formData.password == "") {
+      Swal.fire({
+        icon: "error",
+        text: "Need to Fill Username and Password",
+      });
+    } else {
+      try {
+        const response = await fetch("http://172.16.10.169:5001/api/v2/users", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(payload),
+        });
+
+        if (response.ok) {
+          const responseData = await response.json();
+          console.log("User registered successfully:", responseData);
+          Swal.fire({
+            icon: "success",
+            title: "Success",
+            text: "User registered successfully",
+          });
+          // Reset form
+          setFormData(initialFormData);
+        } else {
+          console.error("Failed to register user:", response.statusText);
+        }
+      } catch (error) {
+        console.error("Error registering user:", error);
+      }
+    }
+  };
+
+  const handleButtonClick = (
+    event: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ) => {
+    setShowUsers(!showUsers);
+  };
+
+  const handleUserSelect = (selectedUser: any) => {
+    setFormData({
+      userID: lastUserID,
+      fullName: selectedUser.EmpName,
+      position: selectedUser.Position,
+      branchID: selectedUser.BPLId,
+      branchName: selectedUser.BPLName,
+      warehouseCode: selectedUser.DflWhs,
+      priceListNumber: selectedUser.PriceListNum,
+      username: "",
+      password: "",
+    });
+    setShowUsers(false); // Close the user selection table after selecting a user
+  };
+  //
 
   useEffect(() => {
     const fetchUsers = async () => {
@@ -249,8 +362,7 @@ const ViewPage: React.FC = () => {
                       Register User
                     </Typography>
                   </div>
-                  {/* <form onSubmit={handleSubmit}> */}
-                  <form>
+                  <form onSubmit={handleSubmit}>
                     <Grid container spacing={2}>
                       <Grid item xs={12} sm={6}>
                         <TextField
@@ -259,8 +371,8 @@ const ViewPage: React.FC = () => {
                           name="userID"
                           label="UserID"
                           variant="outlined"
-                          // value={formData.userID}
-                          // onChange={handleChange}
+                          value={formData.userID}
+                          onChange={handleChange}
                           InputProps={{
                             readOnly: true,
                           }}
@@ -270,7 +382,7 @@ const ViewPage: React.FC = () => {
                         <Button
                           // fullWidth
                           variant="outlined"
-                          // onClick={handleButtonClick} // You need to define handleButtonClick function
+                          onClick={handleButtonClick} // You need to define handleButtonClick function
                           style={{
                             height: "100%",
                             width: "130px",
@@ -287,8 +399,8 @@ const ViewPage: React.FC = () => {
                           name="fullName"
                           label="Full Name"
                           variant="outlined"
-                          // value={formData.fullName}
-                          // onChange={handleChange}
+                          value={formData.fullName}
+                          onChange={handleChange}
                           InputProps={{
                             readOnly: true,
                           }}
@@ -301,8 +413,8 @@ const ViewPage: React.FC = () => {
                           name="position"
                           label="Position"
                           variant="outlined"
-                          // value={formData.position}
-                          // onChange={handleChange}
+                          value={formData.position}
+                          onChange={handleChange}
                           InputProps={{
                             readOnly: true,
                           }}
@@ -315,8 +427,8 @@ const ViewPage: React.FC = () => {
                           name="branchID"
                           label="Branch ID"
                           variant="outlined"
-                          // value={formData.branchID}
-                          // onChange={handleChange}
+                          value={formData.branchID}
+                          onChange={handleChange}
                           InputProps={{
                             readOnly: true,
                           }}
@@ -329,8 +441,8 @@ const ViewPage: React.FC = () => {
                           name="branchName"
                           label="Branch Name"
                           variant="outlined"
-                          // value={formData.branchName}
-                          // onChange={handleChange}
+                          value={formData.branchName}
+                          onChange={handleChange}
                           InputProps={{
                             readOnly: true,
                           }}
@@ -343,8 +455,8 @@ const ViewPage: React.FC = () => {
                           name="warehouseCode"
                           label="Warehouse Code"
                           variant="outlined"
-                          // value={formData.warehouseCode}
-                          // onChange={handleChange}
+                          value={formData.warehouseCode}
+                          onChange={handleChange}
                           InputProps={{
                             readOnly: true,
                           }}
@@ -357,8 +469,8 @@ const ViewPage: React.FC = () => {
                           name="priceListNumber"
                           label="Price List Number"
                           variant="outlined"
-                          // value={formData.priceListNumber}
-                          // onChange={handleChange}
+                          value={formData.priceListNumber}
+                          onChange={handleChange}
                           InputProps={{
                             readOnly: true,
                           }}
@@ -371,8 +483,8 @@ const ViewPage: React.FC = () => {
                           name="username"
                           label="Username"
                           variant="outlined"
-                          // value={formData.username}
-                          // onChange={handleChange}
+                          value={formData.username}
+                          onChange={handleChange}
                         />
                       </Grid>
                       <Grid item xs={12} sm={6}>
@@ -383,8 +495,8 @@ const ViewPage: React.FC = () => {
                           label="Password"
                           type="password"
                           variant="outlined"
-                          // value={formData.password}
-                          // onChange={handleChange}
+                          value={formData.password}
+                          onChange={handleChange}
                         />
                       </Grid>
                     </Grid>
@@ -400,7 +512,7 @@ const ViewPage: React.FC = () => {
                   </form>
 
                   {/* Show Users Draggable */}
-                  {/* {showUsers && (
+                  {showUsers && (
                     <Draggable>
                       <div
                         className="bg-white shadow-lg"
@@ -457,7 +569,7 @@ const ViewPage: React.FC = () => {
                                   </tr>
                                 </thead>
                                 <tbody>
-                                  {users.map((user, index) => (
+                                  {employees.map((user, index) => (
                                     <tr
                                       key={index}
                                       onClick={() => handleUserSelect(user)}
@@ -478,7 +590,7 @@ const ViewPage: React.FC = () => {
                         </div>
                       </div>
                     </Draggable>
-                  )} */}
+                  )}
                   <div className="pt-72"></div>
                 </Container>
               </div>
