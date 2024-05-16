@@ -16,6 +16,39 @@ interface User {
   Password: string;
 }
 
+interface FormData {
+  userID: string;
+  fullName: string;
+  position: string;
+  branchID: string;
+  branchName: string;
+  warehouseCode: string;
+  priceListNumber: string;
+  username: string;
+  password: string;
+}
+
+interface UserData {
+  EmpName: string;
+  Position: string;
+  BPLId: number;
+  BPLName: string;
+  DflWhs: string;
+  PriceListNum: number;
+}
+
+const initialFormData: FormData = {
+  userID: "",
+  fullName: "",
+  position: "",
+  branchID: "",
+  branchName: "",
+  warehouseCode: "",
+  priceListNumber: "",
+  username: "",
+  password: "",
+};
+
 const ViewPage: React.FC = () => {
   const [users, setUsers] = useState<User[]>([]);
   const [showEdit, setShowEdit] = useState(false);
