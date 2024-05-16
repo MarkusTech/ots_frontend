@@ -40,7 +40,7 @@ const initialFormData: FormData = {
 export default function SignUpPage() {
   const [formData, setFormData] = useState<FormData>(initialFormData);
   const [showUsers, setShowUsers] = useState(false);
-  const [users, setUsers] = useState<UserData[]>([]);
+  const [employees, setEmployees] = useState<UserData[]>([]);
   const [lastUserID, setLastUserID] = useState("");
 
   useEffect(() => {
@@ -48,7 +48,7 @@ export default function SignUpPage() {
       try {
         const response = await fetch("http://172.16.10.217:3001/employees");
         const data = await response.json();
-        setUsers(data);
+        setEmployees(data);
       } catch (error) {
         console.error("Error fetching data:", error);
       }
@@ -356,7 +356,7 @@ export default function SignUpPage() {
                       </tr>
                     </thead>
                     <tbody>
-                      {users.map((user, index) => (
+                      {employees.map((user, index) => (
                         <tr
                           key={index}
                           onClick={() => handleUserSelect(user)}
