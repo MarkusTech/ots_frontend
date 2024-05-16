@@ -16,6 +16,15 @@ interface FormData {
   password: string;
 }
 
+interface UserData {
+  EmpName: string;
+  Position: string;
+  BPLId: number;
+  BPLName: string;
+  DflWhs: string;
+  PriceListNum: number;
+}
+
 const initialFormData: FormData = {
   userID: "",
   fullName: "",
@@ -27,15 +36,6 @@ const initialFormData: FormData = {
   username: "",
   password: "",
 };
-
-interface UserData {
-  EmpName: string;
-  Position: string;
-  BPLId: number;
-  BPLName: string;
-  DflWhs: string;
-  PriceListNum: number;
-}
 
 export default function SignUpPage() {
   const [formData, setFormData] = useState<FormData>(initialFormData);
