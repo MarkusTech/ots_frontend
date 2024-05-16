@@ -545,13 +545,7 @@ const ViewPage: React.FC = () => {
                           <div className="p-2">
                             <div className="flex items-center">
                               <div>
-                                Search:{" "}
-                                <input
-                                  type="text"
-                                  className="mb-1"
-                                  // value={searchTerm}
-                                  // onChange={handleSearchForDraft}
-                                />
+                                Search: <input type="text" className="mb-1" />
                               </div>
                               <div className="flex-grow"></div>
                             </div>
