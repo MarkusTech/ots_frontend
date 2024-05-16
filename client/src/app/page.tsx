@@ -198,7 +198,7 @@ export default function Home() {
                               onClick={() => toggleWindow("view")}
                               className={`${subsubmenuOpen2}`}
                             >
-                              View & Update User
+                              Users
                             </a>
                           </li>
                         </ul>
