@@ -476,11 +476,11 @@ const ViewPage: React.FC = () => {
                       fullWidth
                       style={{ marginTop: 20 }}
                     >
-                      Save
+                      Update
                     </Button>
                   </form>
 
-                  {/* Show Users Draggable */}
+                  {/* --------------------------- Show Users Draggable ----------------------- */}
                   {showUsers && (
                     <Draggable>
                       <div
