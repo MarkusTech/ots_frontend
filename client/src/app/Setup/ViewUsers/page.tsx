@@ -165,7 +165,8 @@ const ViewPage: React.FC = () => {
     });
     setShowUsers(false); // Close the user selection table after selecting a user
   };
-  //
+
+  // -----------------------------------------------------------------------------
 
   useEffect(() => {
     const fetchUsers = async () => {
