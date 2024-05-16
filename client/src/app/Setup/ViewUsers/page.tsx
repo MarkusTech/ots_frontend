@@ -201,7 +201,9 @@ const ViewPage: React.FC = () => {
             >
               <div>Register User</div>
               <div className="text-right">
-                <span className="cursor-pointer">❌</span>
+                <span className="cursor-pointer" onClick={handleShowAdd}>
+                  ❌
+                </span>
               </div>
             </div>
             <div className="content">
