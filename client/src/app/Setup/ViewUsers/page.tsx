@@ -198,10 +198,12 @@ const ViewPage: React.FC = () => {
 
   const handleShowEdit = () => {
     setShowEdit(!showEdit);
+    setFormData(initialFormData);
   };
 
   const handleShowAdd = () => {
     setShowAdd(!showAdd);
+    setFormData(initialFormData);
   };
 
   return (
