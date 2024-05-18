@@ -503,9 +503,9 @@ const ViewPage: React.FC = () => {
                                   edge="end"
                                 >
                                   {showPassword ? (
-                                    <VisibilityOff />
-                                  ) : (
                                     <Visibility />
+                                  ) : (
+                                    <VisibilityOff />
                                   )}
                                 </IconButton>
                               </InputAdornment>
@@ -788,9 +788,9 @@ const ViewPage: React.FC = () => {
                                   edge="end"
                                 >
                                   {showPassword ? (
-                                    <VisibilityOff />
-                                  ) : (
                                     <Visibility />
+                                  ) : (
+                                    <VisibilityOff />
                                   )}
                                 </IconButton>
                               </InputAdornment>
