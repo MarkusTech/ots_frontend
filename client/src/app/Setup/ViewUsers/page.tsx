@@ -61,20 +61,17 @@ const ViewPage: React.FC = () => {
   const [employees, setEmployees] = useState<UserData[]>([]);
   const [lastUserID, setLastUserID] = useState("");
 
-  // Save User
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch("http://172.16.10.217:3001/employees");
-        const data = await response.json();
+    axios
+      .get("http://172.16.10.217:3001/employees")
+      .then((response) => {
+        const data = response.data;
         setEmployees(data);
-      } catch (error) {
+      })
+      .catch((error) => {
         console.error("Error fetching data:", error);
-      }
-    };
-
-    fetchData();
-  }, []);
+      });
+  }, [employees]);
 
   useEffect(() => {
     axios
