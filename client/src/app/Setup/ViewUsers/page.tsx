@@ -166,7 +166,7 @@ const ViewPage: React.FC = () => {
   };
 
   // -----------------------------------------------------------------------------
-
+  // get the user and assign it in the table
   useEffect(() => {
     const fetchUsers = async () => {
       try {
