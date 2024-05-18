@@ -165,6 +165,20 @@ const ViewPage: React.FC = () => {
     setShowUsers(false); // Close the user selection table after selecting a user
   };
 
+  const handleSeletedEditUser = (selectedUser: any) => {
+    setFormData({
+      userID: selectedUser.UserID,
+      fullName: selectedUser.EmpName,
+      position: selectedUser.Position,
+      branchID: selectedUser.BranchID,
+      branchName: selectedUser.BranchName,
+      warehouseCode: selectedUser.WhsCode,
+      priceListNumber: selectedUser.PriceListNum,
+      username: selectedUser.UserName,
+      password: "",
+    });
+  };
+
   // -----------------------------------------------------------------------------
   // get the user and assign it in the table
   useEffect(() => {
@@ -230,6 +244,7 @@ const ViewPage: React.FC = () => {
             {users.map((user: User) => (
               <tr
                 key={user.UserID}
+                onClick={() => handleSeletedEditUser(user)}
                 className="hover:bg-blue-100 cursor-pointer transition-colors"
               >
                 <td className="px-6 py-2 whitespace-nowrap text-sm font-medium text-gray-900">
