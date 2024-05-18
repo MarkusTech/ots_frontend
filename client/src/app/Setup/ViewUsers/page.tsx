@@ -1,7 +1,16 @@
 import React, { useState, useEffect, ChangeEvent, FormEvent } from "react";
 import EditIcon from "@mui/icons-material/Edit";
 import Draggable from "react-draggable";
-import { TextField, Button, Grid, Typography, Container } from "@mui/material";
+import {
+  TextField,
+  Button,
+  Grid,
+  Typography,
+  Container,
+  IconButton,
+  InputAdornment,
+} from "@mui/material";
+import { Visibility, VisibilityOff } from "@mui/icons-material";
 import Swal from "sweetalert2";
 import axios from "axios";
 
@@ -60,6 +69,7 @@ const ViewPage: React.FC = () => {
   const [showUsers, setShowUsers] = useState(false);
   const [employees, setEmployees] = useState<UserData[]>([]);
   const [lastUserID, setLastUserID] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
 
   // get the the employees to register
   useEffect(() => {
@@ -204,6 +214,10 @@ const ViewPage: React.FC = () => {
   const handleShowAdd = () => {
     setShowAdd(!showAdd);
     setFormData(initialFormData);
+  };
+
+  const handleClickShowPassword = () => {
+    setShowPassword(!showPassword);
   };
 
   return (
@@ -476,10 +490,27 @@ const ViewPage: React.FC = () => {
                           id="password"
                           name="password"
                           label="Password"
-                          type="password"
+                          type={showPassword ? "text" : "password"}
                           variant="outlined"
                           value={formData.password}
                           onChange={handleChange}
+                          InputProps={{
+                            endAdornment: (
+                              <InputAdornment position="end">
+                                <IconButton
+                                  aria-label="toggle password visibility"
+                                  onClick={handleClickShowPassword}
+                                  edge="end"
+                                >
+                                  {showPassword ? (
+                                    <VisibilityOff />
+                                  ) : (
+                                    <Visibility />
+                                  )}
+                                </IconButton>
+                              </InputAdornment>
+                            ),
+                          }}
                         />
                       </Grid>
                     </Grid>
@@ -744,10 +775,27 @@ const ViewPage: React.FC = () => {
                           id="password"
                           name="password"
                           label="Password"
-                          type="password"
+                          type={showPassword ? "text" : "password"}
                           variant="outlined"
                           value={formData.password}
                           onChange={handleChange}
+                          InputProps={{
+                            endAdornment: (
+                              <InputAdornment position="end">
+                                <IconButton
+                                  aria-label="toggle password visibility"
+                                  onClick={handleClickShowPassword}
+                                  edge="end"
+                                >
+                                  {showPassword ? (
+                                    <VisibilityOff />
+                                  ) : (
+                                    <Visibility />
+                                  )}
+                                </IconButton>
+                              </InputAdornment>
+                            ),
+                          }}
                         />
                       </Grid>
                     </Grid>
