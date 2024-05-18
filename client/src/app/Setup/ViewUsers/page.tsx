@@ -61,6 +61,7 @@ const ViewPage: React.FC = () => {
   const [employees, setEmployees] = useState<UserData[]>([]);
   const [lastUserID, setLastUserID] = useState("");
 
+  // get the the employees to register
   useEffect(() => {
     axios
       .get("http://172.16.10.217:3001/employees")
@@ -71,7 +72,7 @@ const ViewPage: React.FC = () => {
       .catch((error) => {
         console.error("Error fetching data:", error);
       });
-  }, [employees]);
+  }, []);
 
   useEffect(() => {
     axios
