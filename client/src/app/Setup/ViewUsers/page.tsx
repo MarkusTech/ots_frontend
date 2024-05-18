@@ -125,6 +125,7 @@ const ViewPage: React.FC = () => {
 
         if (response.ok) {
           const responseData = await response.json();
+          setShowAdd(!showAdd);
           console.log("User registered successfully:", responseData);
           Swal.fire({
             icon: "success",
