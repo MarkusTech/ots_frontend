@@ -170,19 +170,17 @@ const ViewPage: React.FC = () => {
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        const response = await fetch("http://172.16.10.169:5001/api/v2/users");
-        if (!response.ok) {
-          throw new Error("Failed to fetch user data");
-        }
-        const data = await response.json();
-        setUsers(data.data);
+        const response = await axios.get(
+          "http://172.16.10.169:5001/api/v2/users"
+        );
+        setUsers(response.data.data);
       } catch (error) {
         console.error("Error fetching user data:", error);
       }
     };
 
     fetchUsers();
-  }, []);
+  }, []); // Empty dependency array to run only on mount
 
   const handleShowEdit = () => {
     setShowEdit(!showEdit);
