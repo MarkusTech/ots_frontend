@@ -272,14 +272,14 @@ const ViewPage: React.FC = () => {
     }
   };
 
+  useEffect(() => {
+    getUsers();
+  }, [fetchTrigger]);
+
   const handleShowEdit = () => {
     setShowEdit(!showEdit);
     setFormData(initialFormData);
   };
-
-  useEffect(() => {
-    getUsers();
-  }, [fetchTrigger]);
 
   const handleShowAdd = () => {
     setShowAdd(!showAdd);
