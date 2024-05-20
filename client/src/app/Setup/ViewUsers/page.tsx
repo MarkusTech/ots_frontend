@@ -23,6 +23,7 @@ interface User {
   BranchName: string;
   WhsCode: string;
   PriceListNum: string;
+  Status: string;
   UserName: string;
   Password: string;
 }
@@ -35,6 +36,7 @@ interface FormData {
   branchName: string;
   warehouseCode: string;
   priceListNumber: string;
+  status: string;
   username: string;
   password: string;
 }
@@ -56,6 +58,7 @@ const initialFormData: FormData = {
   branchName: "",
   warehouseCode: "",
   priceListNumber: "",
+  status: "",
   username: "",
   password: "",
 };
@@ -119,6 +122,7 @@ const ViewPage: React.FC = () => {
       PriceListNum: Number(formData.priceListNumber),
       userName: formData.username,
       Password: formData.password,
+      Status: "Active",
     };
 
     if (formData.username == "" || formData.password == "") {
@@ -231,6 +235,7 @@ const ViewPage: React.FC = () => {
       branchName: selectedUser.BPLName,
       warehouseCode: selectedUser.DflWhs,
       priceListNumber: selectedUser.PriceListNum,
+      status: "Active",
       username: "",
       password: "",
     });
@@ -246,6 +251,7 @@ const ViewPage: React.FC = () => {
       branchName: selectedUser.BranchName,
       warehouseCode: selectedUser.WhsCode,
       priceListNumber: selectedUser.PriceListNum,
+      status: "Active",
       username: selectedUser.UserName,
       password: "",
     });
@@ -258,6 +264,9 @@ const ViewPage: React.FC = () => {
       const response = await axios.get(
         "http://172.16.10.169:5001/api/v2/users"
       );
+      const data = response.data.data;
+      console.log(data);
+
       setUsers(response.data.data);
       setAddedItem(response.data.data);
     } catch (error) {
@@ -355,7 +364,9 @@ const ViewPage: React.FC = () => {
                 <td className="px-6 py-2 whitespace-nowrap text-sm text-gray-500">
                   {user.UserName}
                 </td>
-                <td></td>
+                <td className="px-6 py-2 whitespace-nowrap text-sm text-gray-500">
+                  {user.Status}
+                </td>
                 <td className="px-6 py-2 whitespace-nowrap text-right text-sm font-medium">
                   <button
                     className="text-indigo-600 hover:text-indigo-900"
