@@ -415,9 +415,14 @@ const ViewPage: React.FC = () => {
                 <td className="px-6 py-2 whitespace-nowrap text-sm text-gray-500">
                   {user.UserName}
                 </td>
-                <td className="px-6 py-2 whitespace-nowrap text-sm text-gray-500">
+                <td
+                  className={`px-6 py-2 whitespace-nowrap text-sm ${
+                    user.Status === "Active" ? "text-green-500" : "text-red-500"
+                  }`}
+                >
                   {user.Status}
                 </td>
+
                 <td className="px-6 py-2 whitespace-nowrap text-right text-sm font-medium">
                   <button
                     className="text-indigo-600 hover:text-indigo-900"
