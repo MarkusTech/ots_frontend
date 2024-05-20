@@ -9,6 +9,10 @@ import {
   Container,
   IconButton,
   InputAdornment,
+  Select,
+  MenuItem,
+  FormControl,
+  InputLabel,
 } from "@mui/material";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import Swal from "sweetalert2";
@@ -173,6 +177,7 @@ const ViewPage: React.FC = () => {
       PriceListNum: Number(formData.priceListNumber),
       userName: formData.username,
       Password: formData.password,
+      Status: formData.status,
     };
 
     if (formData.username === "" || formData.password === "") {
@@ -469,18 +474,22 @@ const ViewPage: React.FC = () => {
                           >
                             Select User
                           </Button>
-                          <Button
-                            fullWidth
+                          <FormControl
                             variant="outlined"
-                            onClick={handleButtonClick} // You need to define handleButtonClick function
-                            style={{
-                              height: "55px",
-                              width: "200px",
-                              fontWeight: "bold",
-                            }}
+                            style={{ width: "200px" }}
                           >
-                            Select User
-                          </Button>
+                            <InputLabel>Status</InputLabel>
+                            <Select
+                              value={formData.status}
+                              onChange={handleChange}
+                              label="Status"
+                              name="status"
+                              style={{ height: "55px", fontWeight: "bold" }}
+                            >
+                              <MenuItem value="Inactive">Inactive</MenuItem>
+                              <MenuItem value="Active">Active</MenuItem>
+                            </Select>
+                          </FormControl>
                         </div>
                       </Grid>
                       <Grid item xs={12} sm={6}>
