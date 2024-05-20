@@ -79,6 +79,7 @@ const ViewPage: React.FC = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [addedItem, setAddedItem] = useState("");
   const [fetchTrigger, setFetchTrigger] = useState(0); // State to trigger re-fetch
+  const [selectedStatus, setSelectedStatus] = useState("");
 
   // get the the employees to register
   useEffect(() => {
@@ -112,6 +113,10 @@ const ViewPage: React.FC = () => {
       ...formData,
       [name]: value,
     });
+  };
+
+  const handleStatusChange = (event: any) => {
+    setSelectedStatus(event.target.value);
   };
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
@@ -177,7 +182,7 @@ const ViewPage: React.FC = () => {
       PriceListNum: Number(formData.priceListNumber),
       userName: formData.username,
       Password: formData.password,
-      Status: formData.status,
+      Status: selectedStatus,
     };
 
     if (formData.username === "" || formData.password === "") {
@@ -480,10 +485,9 @@ const ViewPage: React.FC = () => {
                           >
                             <InputLabel>Status</InputLabel>
                             <Select
-                              value={formData.status}
-                              onChange={handleChange}
+                              // value={selectedStatus}
+                              onChange={handleStatusChange}
                               label="Status"
-                              name="status"
                               style={{ height: "55px", fontWeight: "bold" }}
                             >
                               <MenuItem value="Inactive">Inactive</MenuItem>
