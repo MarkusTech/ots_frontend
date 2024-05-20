@@ -129,6 +129,14 @@ const ViewPage: React.FC = () => {
     });
   };
 
+  const handleEditChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setEditFormData({
+      ...editFormData,
+      [name]: value,
+    });
+  };
+
   const handleStatusChange = (event: any) => {
     setSelectedStatus(event.target.value);
   };
@@ -441,7 +449,7 @@ const ViewPage: React.FC = () => {
         </button>
       </div>
 
-      {/* Draggable Show Edit*/}
+      {/* ----------------------------------Draggable Show Edit ------------------------------------ */}
       {showEdit && (
         <Draggable>
           <div
@@ -488,7 +496,7 @@ const ViewPage: React.FC = () => {
                           label="UserID"
                           variant="outlined"
                           value={editFormData.userID}
-                          onChange={handleChange}
+                          onChange={handleEditChange}
                           InputProps={{
                             readOnly: true,
                           }}
@@ -533,10 +541,7 @@ const ViewPage: React.FC = () => {
                           label="Full Name"
                           variant="outlined"
                           value={editFormData.fullName}
-                          onChange={handleChange}
-                          InputProps={{
-                            readOnly: true,
-                          }}
+                          onChange={handleEditChange}
                         />
                       </Grid>
                       <Grid item xs={12} sm={6}>
@@ -547,10 +552,7 @@ const ViewPage: React.FC = () => {
                           label="Position"
                           variant="outlined"
                           value={editFormData.position}
-                          onChange={handleChange}
-                          InputProps={{
-                            readOnly: true,
-                          }}
+                          onChange={handleEditChange}
                         />
                       </Grid>
                       <Grid item xs={12} sm={6}>
@@ -561,10 +563,7 @@ const ViewPage: React.FC = () => {
                           label="Branch ID"
                           variant="outlined"
                           value={editFormData.branchID}
-                          onChange={handleChange}
-                          InputProps={{
-                            readOnly: true,
-                          }}
+                          onChange={handleEditChange}
                         />
                       </Grid>
                       <Grid item xs={12} sm={6}>
@@ -575,10 +574,7 @@ const ViewPage: React.FC = () => {
                           label="Branch Name"
                           variant="outlined"
                           value={editFormData.branchName}
-                          onChange={handleChange}
-                          InputProps={{
-                            readOnly: true,
-                          }}
+                          onChange={handleEditChange}
                         />
                       </Grid>
                       <Grid item xs={12} sm={6}>
@@ -589,10 +585,7 @@ const ViewPage: React.FC = () => {
                           label="Warehouse Code"
                           variant="outlined"
                           value={editFormData.warehouseCode}
-                          onChange={handleChange}
-                          InputProps={{
-                            readOnly: true,
-                          }}
+                          onChange={handleEditChange}
                         />
                       </Grid>
                       <Grid item xs={12} sm={6}>
@@ -603,10 +596,7 @@ const ViewPage: React.FC = () => {
                           label="Price List Number"
                           variant="outlined"
                           value={editFormData.priceListNumber}
-                          onChange={handleChange}
-                          InputProps={{
-                            readOnly: true,
-                          }}
+                          onChange={handleEditChange}
                         />
                       </Grid>
                       <Grid item xs={12} sm={6}>
@@ -617,7 +607,7 @@ const ViewPage: React.FC = () => {
                           label="Username"
                           variant="outlined"
                           value={editFormData.username}
-                          onChange={handleChange}
+                          onChange={handleEditChange}
                         />
                       </Grid>
                       <Grid item xs={12} sm={6}>
@@ -629,7 +619,7 @@ const ViewPage: React.FC = () => {
                           type={showPassword ? "text" : "password"}
                           variant="outlined"
                           value={editFormData.password}
-                          onChange={handleChange}
+                          onChange={handleEditChange}
                           InputProps={{
                             endAdornment: (
                               <InputAdornment position="end">
