@@ -455,19 +455,33 @@ const ViewPage: React.FC = () => {
                           }}
                         />
                       </Grid>
-                      <Grid item xs={12} sm={1}>
-                        <Button
-                          // fullWidth
-                          variant="outlined"
-                          onClick={handleButtonClick} // You need to define handleButtonClick function
-                          style={{
-                            height: "100%",
-                            width: "130px",
-                            fontWeight: "bold",
-                          }}
-                        >
-                          Select User
-                        </Button>
+                      <Grid item xs={12} sm={6}>
+                        <div className="flex gap-4">
+                          <Button
+                            fullWidth
+                            variant="outlined"
+                            onClick={handleButtonClick} // You need to define handleButtonClick function
+                            style={{
+                              height: "55px",
+                              width: "200px",
+                              fontWeight: "bold",
+                            }}
+                          >
+                            Select User
+                          </Button>
+                          <Button
+                            fullWidth
+                            variant="outlined"
+                            onClick={handleButtonClick} // You need to define handleButtonClick function
+                            style={{
+                              height: "55px",
+                              width: "200px",
+                              fontWeight: "bold",
+                            }}
+                          >
+                            Select User
+                          </Button>
+                        </div>
                       </Grid>
                       <Grid item xs={12} sm={6}>
                         <TextField
