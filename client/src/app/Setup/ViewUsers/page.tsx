@@ -154,6 +154,64 @@ const ViewPage: React.FC = () => {
     }
   };
 
+  const handleEdit = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    const payload = {
+      EmpName: formData.fullName,
+      Position: formData.position,
+      BranchID: Number(formData.branchID),
+      BranchName: formData.branchName,
+      WhsCode: formData.warehouseCode,
+      PriceListNum: Number(formData.priceListNumber),
+      userName: formData.username,
+      Password: formData.password,
+    };
+
+    if (formData.username === "" || formData.password === "") {
+      Swal.fire({
+        icon: "error",
+        text: "Need to Fill Username and Password",
+      });
+      return; // Add return to stop the function execution if validation fails
+    }
+
+    try {
+      const response = await axios.put(
+        `http://172.16.10.169:5001/api/v2/user/${formData.userID}`,
+        payload,
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
+      if (response.status >= 200 && response.status < 300) {
+        // Check for successful response
+        const responseData = response.data;
+        setShowAdd(!showAdd);
+        console.log("User registered successfully:", responseData);
+        Swal.fire({
+          icon: "success",
+          title: "Success",
+          text: "User registered successfully",
+        });
+        // Reset form
+        setFormData(initialFormData);
+      } else {
+        console.error("Failed to register user:", response.statusText);
+      }
+    } catch (error) {
+      console.error("Error registering user:", error);
+      Swal.fire({
+        icon: "error",
+        title: "Error",
+        text: "Failed to register user",
+      });
+    }
+  };
+
   const handleButtonClick = (
     event: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ) => {
@@ -359,7 +417,7 @@ const ViewPage: React.FC = () => {
                       Edit User
                     </Typography>
                   </div>
-                  <form onSubmit={handleSubmit}>
+                  <form onSubmit={handleEdit}>
                     <Grid container spacing={2}>
                       <Grid item xs={12} sm={6}>
                         <TextField
