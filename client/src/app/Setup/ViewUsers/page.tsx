@@ -100,7 +100,7 @@ const ViewPage: React.FC = () => {
       .catch((error) => {
         console.error("Error fetching data:", error);
       });
-  }, []);
+  }, [fetchTrigger]);
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
