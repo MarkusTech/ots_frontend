@@ -10,6 +10,7 @@ const saveUsers = async (req, res) => {
     PriceListNum,
     userName,
     Password,
+    Status,
   } = req.body;
 
   // Trim string values if they exceed column sizes
@@ -17,9 +18,10 @@ const saveUsers = async (req, res) => {
   const trimmedBranchName = BranchName.substring(0, 50); // Adjust 50 to match column size
   const trimmedUserName = userName.substring(0, 50); // Adjust 50 to match column size
   const trimmedPassword = Password.substring(0, 50); // Adjust 50 to match column size
+  const trimmedStatus = Status.substring(0, 50);
 
   const data = await sqlConn2.query`INSERT INTO [dbo].[User]
-    (EmpName, Position, UserName, Password, BranchID, BranchName, WhsCode, PriceListNum)
+    (EmpName, Position, UserName, Password, BranchID, BranchName, WhsCode, PriceListNum, Status)
     VALUES
     (
       ${trimmedEmpName},
@@ -29,7 +31,8 @@ const saveUsers = async (req, res) => {
       ${BranchID},
       ${trimmedBranchName},
       ${WhsCode},
-      ${PriceListNum}
+      ${PriceListNum},
+      ${trimmedStatus}
     )`;
 
   res.status(200).json({
