@@ -248,20 +248,29 @@ const ViewPage: React.FC = () => {
 
   // -----------------------------------------------------------------------------
   // get the user and assign it in the table
-  useEffect(() => {
-    const fetchUsers = async () => {
-      try {
-        const response = await axios.get(
-          "http://172.16.10.169:5001/api/v2/users"
-        );
-        setUsers(response.data.data);
-      } catch (error) {
-        console.error("Error fetching user data:", error);
-      }
-    };
+  // useEffect(() => {
+  //   const fetchUsers = async () => {
+  //     try {
+  //       const response = await axios.get(
+  //         "http://172.16.10.169:5001/api/v2/users"
+  //       );
+  //       setUsers(response.data.data);
+  //     } catch (error) {
+  //       console.error("Error fetching user data:", error);
+  //     }
+  //   };
 
-    fetchUsers();
-  }, []); // Empty dependency array to run only on mount
+  //   fetchUsers();
+  // }, []); // Empty dependency array to run only on mount
+
+  const getUsers = async () => {
+    const response = await axios.get("http://172.16.10.169:5001/api/v2/users");
+    setUsers(response.data.data);
+  };
+
+  useEffect(() => {
+    getUsers();
+  }, []);
 
   const handleShowEdit = () => {
     setShowEdit(!showEdit);
