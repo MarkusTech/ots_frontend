@@ -316,8 +316,6 @@ const ViewPage: React.FC = () => {
       const response = await axios.get(
         "http://172.16.10.169:5001/api/v2/users"
       );
-      const data = response.data.data;
-
       setUsers(response.data.data);
       setAddedItem(response.data.data);
     } catch (error) {
