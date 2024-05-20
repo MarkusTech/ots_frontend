@@ -267,18 +267,6 @@ const ViewPage: React.FC = () => {
   };
 
   const handleSeletedEditUser = (selectedUser: any) => {
-    // setFormData({
-    //   userID: selectedUser.UserID,
-    //   fullName: selectedUser.EmpName,
-    //   position: selectedUser.Position,
-    //   branchID: selectedUser.BranchID,
-    //   branchName: selectedUser.BranchName,
-    //   warehouseCode: selectedUser.WhsCode,
-    //   priceListNumber: selectedUser.PriceListNum,
-    //   status: "Active",
-    //   username: selectedUser.UserName,
-    //   password: "",
-    // });
     setSelectedUserID(selectedUser.UserID);
   };
 
