@@ -250,16 +250,7 @@ const ViewPage: React.FC = () => {
   };
 
   // -----------------------------------------------------------------------------
-  // const getUsers = async () => {
-  //   const response = await axios.get("http://172.16.10.169:5001/api/v2/users");
-  //   setUsers(response.data.data);
-  //   setAddedItem(response.data.data);
-  // };
-
-  // useEffect(() => {
-  //   getUsers();
-  // }, [addedItem]);
-
+  // Update table data without reloading
   const getUsers = async () => {
     try {
       const response = await axios.get(
@@ -275,6 +266,8 @@ const ViewPage: React.FC = () => {
   useEffect(() => {
     getUsers();
   }, [fetchTrigger]);
+
+  // -----------------------------------------------------------------------------
 
   const handleShowEdit = () => {
     setShowEdit(!showEdit);
