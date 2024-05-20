@@ -275,7 +275,6 @@ const ViewPage: React.FC = () => {
         "http://172.16.10.169:5001/api/v2/users"
       );
       const data = response.data.data;
-      console.log(data);
 
       setUsers(response.data.data);
       setAddedItem(response.data.data);
