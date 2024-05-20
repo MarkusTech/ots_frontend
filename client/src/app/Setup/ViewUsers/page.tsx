@@ -304,7 +304,7 @@ const ViewPage: React.FC = () => {
           });
         })
         .catch((error) => {
-          // Handle errors if any
+          console.error("Error fetching users:", error);
         });
     }
   }, [selectedUserID]);
