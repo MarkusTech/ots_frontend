@@ -188,18 +188,18 @@ const ViewPage: React.FC = () => {
     e.preventDefault();
 
     const payload = {
-      EmpName: formData.fullName,
-      Position: formData.position,
-      BranchID: Number(formData.branchID),
-      BranchName: formData.branchName,
-      WhsCode: formData.warehouseCode,
-      PriceListNum: Number(formData.priceListNumber),
-      userName: formData.username,
-      Password: formData.password,
+      EmpName: editFormData.fullName,
+      Position: editFormData.position,
+      BranchID: Number(editFormData.branchID),
+      BranchName: editFormData.branchName,
+      WhsCode: editFormData.warehouseCode,
+      PriceListNum: Number(editFormData.priceListNumber),
+      userName: editFormData.username,
+      Password: editFormData.password,
       Status: selectedStatus,
     };
 
-    if (formData.username === "" || formData.password === "") {
+    if (editFormData.username === "" || editFormData.password === "") {
       Swal.fire({
         icon: "error",
         text: "Need to Fill Username and Password",
@@ -209,7 +209,7 @@ const ViewPage: React.FC = () => {
 
     try {
       const response = await axios.put(
-        `http://172.16.10.169:5001/api/v2/user/${formData.userID}`,
+        `http://172.16.10.169:5001/api/v2/user/${selectedUserID}`,
         payload,
         {
           headers: {
@@ -231,6 +231,7 @@ const ViewPage: React.FC = () => {
         });
         // Reset form
         setFormData(initialFormData);
+        setEditFormData(initialFormData);
       } else {
         console.error("Failed to update user:", response.statusText);
       }
@@ -513,7 +514,7 @@ const ViewPage: React.FC = () => {
                           >
                             <InputLabel>Status</InputLabel>
                             <Select
-                              // value={selectedStatus}
+                              // value={editFormData.status}
                               onChange={handleStatusChange}
                               label="Status"
                               style={{ height: "55px", fontWeight: "bold" }}
