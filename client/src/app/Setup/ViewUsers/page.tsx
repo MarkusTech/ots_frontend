@@ -193,6 +193,8 @@ const ViewPage: React.FC = () => {
       if (response.status >= 200 && response.status < 300) {
         // Check for successful response
         const responseData = response.data;
+        setFetchTrigger((prev) => prev + 1);
+        setShowEdit(!showEdit);
         console.log("User updated successfully:", responseData);
         Swal.fire({
           icon: "success",
