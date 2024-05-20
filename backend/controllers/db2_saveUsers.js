@@ -124,6 +124,7 @@ const updateUser = async (req, res) => {
       PriceListNum,
       userName,
       Password,
+      Status,
     } = req.body;
 
     // Execute SQL query to update user information
@@ -136,7 +137,8 @@ const updateUser = async (req, res) => {
             WhsCode = ${WhsCode},
             PriceListNum = ${PriceListNum},
             UserName = ${userName},
-            Password = ${Password}
+            Password = ${Password},
+            Status = ${Status}
         WHERE UserId = ${UserId}
       `;
 
