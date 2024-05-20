@@ -44,6 +44,18 @@ interface FormData {
   username: string;
   password: string;
 }
+interface EditFormData {
+  userID: string;
+  fullName: string;
+  position: string;
+  branchID: string;
+  branchName: string;
+  warehouseCode: string;
+  priceListNumber: string;
+  status: string;
+  username: string;
+  password: string;
+}
 
 interface UserData {
   EmpName: string;
@@ -73,6 +85,8 @@ const ViewPage: React.FC = () => {
   const [showAdd, setShowAdd] = useState(false);
 
   const [formData, setFormData] = useState<FormData>(initialFormData);
+  const [editFormData, setEditFormData] =
+    useState<EditFormData>(initialFormData);
   const [showUsers, setShowUsers] = useState(false);
   const [employees, setEmployees] = useState<UserData[]>([]);
   const [lastUserID, setLastUserID] = useState("");
@@ -253,19 +267,46 @@ const ViewPage: React.FC = () => {
   };
 
   const handleSeletedEditUser = (selectedUser: any) => {
-    setFormData({
-      userID: selectedUser.UserID,
-      fullName: selectedUser.EmpName,
-      position: selectedUser.Position,
-      branchID: selectedUser.BranchID,
-      branchName: selectedUser.BranchName,
-      warehouseCode: selectedUser.WhsCode,
-      priceListNumber: selectedUser.PriceListNum,
-      status: "Active",
-      username: selectedUser.UserName,
-      password: "",
-    });
+    // setFormData({
+    //   userID: selectedUser.UserID,
+    //   fullName: selectedUser.EmpName,
+    //   position: selectedUser.Position,
+    //   branchID: selectedUser.BranchID,
+    //   branchName: selectedUser.BranchName,
+    //   warehouseCode: selectedUser.WhsCode,
+    //   priceListNumber: selectedUser.PriceListNum,
+    //   status: "Active",
+    //   username: selectedUser.UserName,
+    //   password: "",
+    // });
+    setSelectedUserID(selectedUser.UserID);
   };
+
+  const [selectedUserID, setSelectedUserID] = useState();
+  useEffect(() => {
+    if (selectedUserID) {
+      axios
+        .get(`http://172.16.10.169:5001/api/v2/user/${selectedUserID}`)
+        .then((response) => {
+          let data = response.data.data;
+          setEditFormData({
+            userID: selectedUserID,
+            fullName: data.EmpName,
+            position: data.Position,
+            branchID: data.BranchID,
+            branchName: data.BranchName,
+            warehouseCode: data.WhsCode,
+            priceListNumber: data.PriceListNum,
+            status: data.Status,
+            username: data.UserName,
+            password: data.Password,
+          });
+        })
+        .catch((error) => {
+          // Handle errors if any
+        });
+    }
+  }, [selectedUserID]);
 
   // -----------------------------------------------------------------------------
   // Update table data without reloading
@@ -457,7 +498,7 @@ const ViewPage: React.FC = () => {
                           name="userID"
                           label="UserID"
                           variant="outlined"
-                          value={formData.userID}
+                          value={editFormData.userID}
                           onChange={handleChange}
                           InputProps={{
                             readOnly: true,
@@ -502,7 +543,7 @@ const ViewPage: React.FC = () => {
                           name="fullName"
                           label="Full Name"
                           variant="outlined"
-                          value={formData.fullName}
+                          value={editFormData.fullName}
                           onChange={handleChange}
                           InputProps={{
                             readOnly: true,
@@ -516,7 +557,7 @@ const ViewPage: React.FC = () => {
                           name="position"
                           label="Position"
                           variant="outlined"
-                          value={formData.position}
+                          value={editFormData.position}
                           onChange={handleChange}
                           InputProps={{
                             readOnly: true,
@@ -530,7 +571,7 @@ const ViewPage: React.FC = () => {
                           name="branchID"
                           label="Branch ID"
                           variant="outlined"
-                          value={formData.branchID}
+                          value={editFormData.branchID}
                           onChange={handleChange}
                           InputProps={{
                             readOnly: true,
@@ -544,7 +585,7 @@ const ViewPage: React.FC = () => {
                           name="branchName"
                           label="Branch Name"
                           variant="outlined"
-                          value={formData.branchName}
+                          value={editFormData.branchName}
                           onChange={handleChange}
                           InputProps={{
                             readOnly: true,
@@ -558,7 +599,7 @@ const ViewPage: React.FC = () => {
                           name="warehouseCode"
                           label="Warehouse Code"
                           variant="outlined"
-                          value={formData.warehouseCode}
+                          value={editFormData.warehouseCode}
                           onChange={handleChange}
                           InputProps={{
                             readOnly: true,
@@ -572,7 +613,7 @@ const ViewPage: React.FC = () => {
                           name="priceListNumber"
                           label="Price List Number"
                           variant="outlined"
-                          value={formData.priceListNumber}
+                          value={editFormData.priceListNumber}
                           onChange={handleChange}
                           InputProps={{
                             readOnly: true,
@@ -586,7 +627,7 @@ const ViewPage: React.FC = () => {
                           name="username"
                           label="Username"
                           variant="outlined"
-                          value={formData.username}
+                          value={editFormData.username}
                           onChange={handleChange}
                         />
                       </Grid>
@@ -598,7 +639,7 @@ const ViewPage: React.FC = () => {
                           label="Password"
                           type={showPassword ? "text" : "password"}
                           variant="outlined"
-                          value={formData.password}
+                          value={editFormData.password}
                           onChange={handleChange}
                           InputProps={{
                             endAdornment: (
