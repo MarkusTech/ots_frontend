@@ -316,7 +316,7 @@ const ViewPage: React.FC = () => {
               <th className="px-6 py-3 text-left text-xs font-semibold text-gray-700 uppercase">
                 Username
               </th>
-              <th className="px-6 py-3 text-left text-xs font-semibold text-gray-700 uppercase">
+              <th className="px-2 py-3 text-left text-xs font-semibold text-gray-700 uppercase">
                 Actions
               </th>
             </tr>
