@@ -139,6 +139,10 @@ const ViewPage: React.FC = () => {
 
   const handleStatusChange = (event: any) => {
     setSelectedStatus(event.target.value);
+    setEditFormData({
+      ...editFormData,
+      status: event.target.value,
+    });
   };
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
@@ -522,7 +526,7 @@ const ViewPage: React.FC = () => {
                           >
                             <InputLabel>Status</InputLabel>
                             <Select
-                              // value={editFormData.status}
+                              value={editFormData.status}
                               onChange={handleStatusChange}
                               label="Status"
                               style={{ height: "55px", fontWeight: "bold" }}
