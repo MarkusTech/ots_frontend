@@ -70,6 +70,8 @@ const ViewPage: React.FC = () => {
   const [employees, setEmployees] = useState<UserData[]>([]);
   const [lastUserID, setLastUserID] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+  const [addedItem, setAddedItem] = useState("");
+  const [fetchTrigger, setFetchTrigger] = useState(0); // State to trigger re-fetch
 
   // get the the employees to register
   useEffect(() => {
@@ -137,6 +139,7 @@ const ViewPage: React.FC = () => {
         if (response.ok) {
           const responseData = await response.json();
           setShowAdd(!showAdd);
+          setFetchTrigger((prev) => prev + 1);
           console.log("User registered successfully:", responseData);
           Swal.fire({
             icon: "success",
@@ -247,35 +250,36 @@ const ViewPage: React.FC = () => {
   };
 
   // -----------------------------------------------------------------------------
-  // get the user and assign it in the table
-  // useEffect(() => {
-  //   const fetchUsers = async () => {
-  //     try {
-  //       const response = await axios.get(
-  //         "http://172.16.10.169:5001/api/v2/users"
-  //       );
-  //       setUsers(response.data.data);
-  //     } catch (error) {
-  //       console.error("Error fetching user data:", error);
-  //     }
-  //   };
+  // const getUsers = async () => {
+  //   const response = await axios.get("http://172.16.10.169:5001/api/v2/users");
+  //   setUsers(response.data.data);
+  //   setAddedItem(response.data.data);
+  // };
 
-  //   fetchUsers();
-  // }, []); // Empty dependency array to run only on mount
+  // useEffect(() => {
+  //   getUsers();
+  // }, [addedItem]);
 
   const getUsers = async () => {
-    const response = await axios.get("http://172.16.10.169:5001/api/v2/users");
-    setUsers(response.data.data);
+    try {
+      const response = await axios.get(
+        "http://172.16.10.169:5001/api/v2/users"
+      );
+      setUsers(response.data.data);
+      setAddedItem(response.data.data);
+    } catch (error) {
+      console.error("Error fetching users:", error);
+    }
   };
-
-  useEffect(() => {
-    getUsers();
-  }, []);
 
   const handleShowEdit = () => {
     setShowEdit(!showEdit);
     setFormData(initialFormData);
   };
+
+  useEffect(() => {
+    getUsers();
+  }, [fetchTrigger]);
 
   const handleShowAdd = () => {
     setShowAdd(!showAdd);
