@@ -316,6 +316,9 @@ const ViewPage: React.FC = () => {
               <th className="px-6 py-3 text-left text-xs font-semibold text-gray-700 uppercase">
                 Username
               </th>
+              <th className="px-6 py-3 text-left text-xs font-semibold text-gray-700 uppercase">
+                Status
+              </th>
               <th className="px-2 py-3 text-left text-xs font-semibold text-gray-700 uppercase">
                 Actions
               </th>
@@ -352,6 +355,7 @@ const ViewPage: React.FC = () => {
                 <td className="px-6 py-2 whitespace-nowrap text-sm text-gray-500">
                   {user.UserName}
                 </td>
+                <td></td>
                 <td className="px-6 py-2 whitespace-nowrap text-right text-sm font-medium">
                   <button
                     className="text-indigo-600 hover:text-indigo-900"
