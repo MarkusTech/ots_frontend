@@ -190,24 +190,23 @@ const ViewPage: React.FC = () => {
       if (response.status >= 200 && response.status < 300) {
         // Check for successful response
         const responseData = response.data;
-        setShowAdd(!showAdd);
-        console.log("User registered successfully:", responseData);
+        console.log("User updated successfully:", responseData);
         Swal.fire({
           icon: "success",
           title: "Success",
-          text: "User registered successfully",
+          text: "User updated successfully",
         });
         // Reset form
         setFormData(initialFormData);
       } else {
-        console.error("Failed to register user:", response.statusText);
+        console.error("Failed to update user:", response.statusText);
       }
     } catch (error) {
-      console.error("Error registering user:", error);
+      console.error("Error updating user:", error);
       Swal.fire({
         icon: "error",
         title: "Error",
-        text: "Failed to register user",
+        text: "Failed to update user",
       });
     }
   };
