@@ -357,6 +357,8 @@ export default function Home() {
               </Draggable>
             )}
 
+            {/* Login */}
+
             {/* FLOATER */}
             <div className="absolute bottom-2 right-2 rounded-lg bg-white flex gap-3 shadow-xl text-[13px]">
               {/* <FloatingPanel /> */}
