@@ -242,7 +242,6 @@ const ViewPage: React.FC = () => {
           text: "User updated successfully",
         });
         // Reset form
-        setFormData(initialFormData);
         setEditFormData(initialFormData);
       } else {
         console.error("Failed to update user:", response.statusText);
