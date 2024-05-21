@@ -10,6 +10,18 @@ import Users from "./Setup/Users/page";
 import ViewUser from "./Setup/ViewUsers/page";
 import Image from "next/image";
 import { useWindowState } from "../app/Transaction/SalesOrder/WindowsState";
+import {
+  Container,
+  Box,
+  Avatar,
+  Typography,
+  TextField,
+  Button,
+  Grid,
+  Link,
+  CssBaseline,
+} from "@mui/material";
+import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 
 export default function Home() {
   const router = useRouter(); //Router
@@ -356,6 +368,68 @@ export default function Home() {
             )}
 
             {/* Login */}
+            {showLogin && (
+              <Draggable>
+                <Container component="main" maxWidth="xs">
+                  <CssBaseline />
+                  <Box
+                    sx={{
+                      marginTop: 8,
+                      backgroundColor: "white",
+                      border: "1px solid #e0e0e0",
+                      borderRadius: "8px",
+                      padding: "20px",
+                      display: "flex",
+                      flexDirection: "column",
+                      alignItems: "center",
+                    }}
+                  >
+                    {/* Change bgcolor to a custom color */}
+                    <Avatar sx={{ m: 1, bgcolor: "#1976D2" }}>
+                      <LockOutlinedIcon />
+                    </Avatar>
+                    <Typography component="h1" variant="h5">
+                      Login
+                    </Typography>
+                    <Box component="form" noValidate sx={{ mt: 1 }}>
+                      <TextField
+                        margin="normal"
+                        required
+                        fullWidth
+                        id="username"
+                        label="Username"
+                        name="username"
+                        autoComplete="username"
+                        autoFocus
+                      />
+                      <TextField
+                        margin="normal"
+                        required
+                        fullWidth
+                        name="password"
+                        label="Password"
+                        type="password"
+                        id="password"
+                        autoComplete="current-password"
+                      />
+                      <Button
+                        type="submit"
+                        fullWidth
+                        variant="contained"
+                        sx={{
+                          mt: 3,
+                          mb: 2,
+                          backgroundColor: "#1976D2",
+                          color: "white",
+                        }} // Custom color for the button
+                      >
+                        Login
+                      </Button>
+                    </Box>
+                  </Box>
+                </Container>
+              </Draggable>
+            )}
 
             {/* FLOATER */}
             <div className="absolute bottom-2 right-2 rounded-lg bg-white flex gap-3 shadow-xl text-[13px]">
