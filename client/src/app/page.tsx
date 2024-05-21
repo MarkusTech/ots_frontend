@@ -75,14 +75,10 @@ export default function Home() {
 
   const [showLogin, setShowLogin] = useState(false);
   const [formData, setFormData] = useState<FormData>(initialFormData);
-  let userLogin = 0;
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const loginUser = () => {
-    userLogin += 1;
-    alert(userLogin);
-  };
-
-  const showLoginFunction = () => {
+    setIsLoggedIn(!isLoggedIn);
     setShowLogin(!showLogin);
     setFormData({
       userID: "selectedUserID",
@@ -96,6 +92,10 @@ export default function Home() {
       username: "data.UserName",
       password: "data.Password",
     });
+  };
+
+  const showLoginFunction = () => {
+    setShowLogin(!showLogin);
   };
 
   function handleRounter(page: React.SetStateAction<string>) {
@@ -256,9 +256,17 @@ export default function Home() {
             </div>
             {/* Login Button */}
             <div className="SideBarButtonDown">
-              <button className="custom-button" onClick={showLoginFunction}>
-                Login
-              </button>
+              <div>
+                {isLoggedIn ? (
+                  <button className="custom-button" onClick={showLoginFunction}>
+                    Logout
+                  </button>
+                ) : (
+                  <button className="custom-button" onClick={showLoginFunction}>
+                    Login
+                  </button>
+                )}
+              </div>
             </div>
           </div>
         </div>
@@ -399,12 +407,7 @@ export default function Home() {
                     <Typography component="h1" variant="h5">
                       Login
                     </Typography>
-                    <Box
-                      component="form"
-                      onClick={loginUser}
-                      noValidate
-                      sx={{ mt: 1 }}
-                    >
+                    <Box component="form" noValidate sx={{ mt: 1 }}>
                       <TextField
                         margin="normal"
                         required
@@ -426,7 +429,7 @@ export default function Home() {
                         autoComplete="current-password"
                       />
                       <Button
-                        type="submit"
+                        onClick={loginUser}
                         fullWidth
                         variant="contained"
                         sx={{
