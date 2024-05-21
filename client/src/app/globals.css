@@ -310,3 +310,26 @@ textarea {
 .tableHeigthView {
   height: 700px;
 }
+
+.SideBarButtonDown {
+  position: relative; /* Relative positioning for the container */
+  height: 685px; /* Ensure the container takes full height */
+}
+
+.custom-button {
+  background-color: blue; /* Change to your desired color */
+  color: white; /* Optional: change the text color */
+  padding: 10px 20px; /* Optional: add padding */
+  border: none; /* Optional: remove border */
+  border-radius: 5px; /* Optional: add border radius */
+  cursor: pointer; /* Optional: change cursor on hover */
+  position: fixed; /* Position the button fixed */
+  bottom: 20px; /* Adjust the value to position from the bottom */
+  left: 20px; /* Adjust the value to position from the left */
+  z-index: 1000; /* Ensure the button is above other elements */
+  width: 190px;
+}
+
+.custom-button:hover {
+  background-color: darkblue; /* Optional: change color on hover */
+}
