@@ -385,68 +385,66 @@ export default function Home() {
 
             {/* Login */}
             {showLogin && (
-              <Draggable>
-                <Container component="main" maxWidth="xs">
-                  <CssBaseline />
-                  <Box
-                    sx={{
-                      marginTop: 8,
-                      backgroundColor: "white",
-                      border: "1px solid #e0e0e0",
-                      borderRadius: "8px",
-                      padding: "20px",
-                      display: "flex",
-                      flexDirection: "column",
-                      alignItems: "center",
-                    }}
-                  >
-                    <Image
-                      src="/image/Buildmore.png" // Path to your logout image
-                      alt="Logout Image"
-                      width={500} // specify the width of the image
-                      height={500} // specify the height of the image
-                    />
-                    {/* <Typography component="h1" variant="h5">
+              <Container component="main" maxWidth="xs">
+                <CssBaseline />
+                <Box
+                  sx={{
+                    marginTop: 8,
+                    backgroundColor: "white",
+                    border: "1px solid #e0e0e0",
+                    borderRadius: "8px",
+                    padding: "20px",
+                    display: "flex",
+                    flexDirection: "column",
+                    alignItems: "center",
+                  }}
+                >
+                  <Image
+                    src="/image/Buildmore.png" // Path to your logout image
+                    alt="Logout Image"
+                    width={500} // specify the width of the image
+                    height={500} // specify the height of the image
+                  />
+                  {/* <Typography component="h1" variant="h5">
                       Login
                     </Typography> */}
-                    <Box component="form" noValidate sx={{ mt: 1 }}>
-                      <TextField
-                        margin="normal"
-                        required
-                        fullWidth
-                        id="username"
-                        label="Username"
-                        name="username"
-                        autoComplete="username"
-                        autoFocus
-                      />
-                      <TextField
-                        margin="normal"
-                        required
-                        fullWidth
-                        name="password"
-                        label="Password"
-                        type="password"
-                        id="password"
-                        autoComplete="current-password"
-                      />
-                      <Button
-                        onClick={loginUser}
-                        fullWidth
-                        variant="contained"
-                        sx={{
-                          mt: 3,
-                          mb: 2,
-                          backgroundColor: "#F69629",
-                          color: "white",
-                        }} // Custom color for the button
-                      >
-                        Login
-                      </Button>
-                    </Box>
+                  <Box component="form" noValidate sx={{ mt: 1 }}>
+                    <TextField
+                      margin="normal"
+                      required
+                      fullWidth
+                      id="username"
+                      label="Username"
+                      name="username"
+                      autoComplete="username"
+                      autoFocus
+                    />
+                    <TextField
+                      margin="normal"
+                      required
+                      fullWidth
+                      name="password"
+                      label="Password"
+                      type="password"
+                      id="password"
+                      autoComplete="current-password"
+                    />
+                    <Button
+                      onClick={loginUser}
+                      fullWidth
+                      variant="contained"
+                      sx={{
+                        mt: 3,
+                        mb: 2,
+                        backgroundColor: "#F69629",
+                        color: "white",
+                      }} // Custom color for the button
+                    >
+                      Login
+                    </Button>
                   </Box>
-                </Container>
-              </Draggable>
+                </Box>
+              </Container>
             )}
 
             {/* FLOATER */}
@@ -454,7 +452,7 @@ export default function Home() {
               {/* <FloatingPanel /> */}
               <div className="flex gap-2 p-2 transition-all hover:text-[#F0AB00]">
                 <div className="">User:</div>
-                <span className="underline">{formData.fullName}</span>
+                <span className="underline">{formData.username}</span>
               </div>
               <div className="flex gap-2 p-2">
                 <div>Branch ID:</div>
