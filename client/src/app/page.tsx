@@ -73,10 +73,14 @@ export default function Home() {
   const [spanName3, setSpanName3] = useState("");
   const [spanName4, setSpanName4] = useState("");
 
-  // const [showSalesOrder, setShowSalesOrder] = useState(false);
-  const [showSalesQoutation, setShowSalesQoutation] = useState(false);
   const [showLogin, setShowLogin] = useState(false);
   const [formData, setFormData] = useState<FormData>(initialFormData);
+  let userLogin = 0;
+
+  const loginUser = () => {
+    userLogin += 1;
+    alert(userLogin);
+  };
 
   const showLoginFunction = () => {
     setShowLogin(!showLogin);
@@ -92,10 +96,6 @@ export default function Home() {
       username: "data.UserName",
       password: "data.Password",
     });
-  };
-
-  const toggleSalesQoutation = () => {
-    setShowSalesQoutation(!showSalesQoutation);
   };
 
   function handleRounter(page: React.SetStateAction<string>) {
@@ -305,36 +305,6 @@ export default function Home() {
               </Draggable>
             )}
 
-            {showSalesQoutation && (
-              // onDrag={handleDrag}
-              <Draggable handle=".header">
-                <div
-                  className="container bg-white"
-                  style={{
-                    border: "1px solid #ccc",
-                    position: "absolute",
-                    zIndex: 2,
-                    top: "5%",
-                    left: "15%",
-                    transform: "translate(-50%, -50%)",
-                  }}
-                >
-                  <div
-                    className="header grid grid-cols-2 p-2 text-left windowheader"
-                    style={{ cursor: "move" }}
-                  >
-                    <div>Sales Qoutation</div>
-                    <div></div>
-                  </div>
-                  <div className="content">
-                    {/* Rest of your Sales Order content */}
-                    {/* ... */}
-                    <SalesQoutation />
-                  </div>
-                </div>
-              </Draggable>
-            )}
-
             {/* Set Users Draggable*/}
             {showUsers && (
               <Draggable handle=".header">
@@ -429,7 +399,12 @@ export default function Home() {
                     <Typography component="h1" variant="h5">
                       Login
                     </Typography>
-                    <Box component="form" noValidate sx={{ mt: 1 }}>
+                    <Box
+                      component="form"
+                      onClick={loginUser}
+                      noValidate
+                      sx={{ mt: 1 }}
+                    >
                       <TextField
                         margin="normal"
                         required
