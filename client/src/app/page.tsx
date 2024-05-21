@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import SalesQoutation from "./Transaction/SalesQoutation/SalesQoutation";
@@ -22,6 +22,32 @@ import {
   CssBaseline,
 } from "@mui/material";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
+
+interface FormData {
+  userID: string;
+  fullName: string;
+  position: string;
+  branchID: string;
+  branchName: string;
+  warehouseCode: string;
+  priceListNumber: string;
+  status: string;
+  username: string;
+  password: string;
+}
+
+const initialFormData: FormData = {
+  userID: "",
+  fullName: "",
+  position: "",
+  branchID: "",
+  branchName: "",
+  warehouseCode: "",
+  priceListNumber: "",
+  status: "",
+  username: "",
+  password: "",
+};
 
 export default function Home() {
   const router = useRouter(); //Router
@@ -51,9 +77,22 @@ export default function Home() {
   // const [showSalesOrder, setShowSalesOrder] = useState(false);
   const [showSalesQoutation, setShowSalesQoutation] = useState(false);
   const [showLogin, setShowLogin] = useState(false);
+  const [formData, setFormData] = useState<FormData>(initialFormData);
 
   const showLoginFunction = () => {
     setShowLogin(!showLogin);
+    setFormData({
+      userID: "selectedUserID",
+      fullName: "data.EmpName",
+      position: "data.Position",
+      branchID: "data.BranchID",
+      branchName: "data.BranchName",
+      warehouseCode: "data.WhsCode",
+      priceListNumber: "data.PriceListNum",
+      status: "data.Status",
+      username: "data.UserName",
+      password: "data.Password",
+    });
   };
 
   const toggleSalesQoutation = () => {
@@ -436,23 +475,23 @@ export default function Home() {
               {/* <FloatingPanel /> */}
               <div className="flex gap-2 p-2 transition-all hover:text-[#F0AB00]">
                 <div className="">User:</div>
-                <span className="underline">Administrator</span>
+                <span className="underline">{formData.fullName}</span>
               </div>
               <div className="flex gap-2 p-2">
                 <div>Branch ID:</div>
-                <span className="underline">29</span>
+                <span className="underline">{formData.branchID}</span>
               </div>
               <div className="flex gap-2 p-2">
                 <div>Branch:</div>
-                <span className="underline">GENSAN BRANCH</span>
+                <span className="underline">{formData.branchName}</span>
               </div>
               <div className="flex gap-2 p-2">
                 <div>WHS Code:</div>
-                <span className="underline">GSCNAPGS</span>
+                <span className="underline">{formData.warehouseCode}</span>
               </div>
               <div className="flex gap-2 p-2">
                 <div>Pricelist Num:</div>
-                <span className="underline">14</span>
+                <span className="underline">{formData.priceListNumber}</span>
               </div>
             </div>
           </div>
