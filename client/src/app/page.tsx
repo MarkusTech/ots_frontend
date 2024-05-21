@@ -208,6 +208,10 @@ export default function Home() {
                 </div>
               </div>
             </div>
+
+            <div className="SideBarButtonDown">
+              <button className="custom-button">Login</button>
+            </div>
           </div>
         </div>
 
