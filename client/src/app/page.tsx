@@ -209,9 +209,9 @@ export default function Home() {
               </div>
             </div>
             {/* Login Button */}
-            <div className="SideBarButtonDown">
+            {/* <div className="SideBarButtonDown">
               <button className="custom-button">Login</button>
-            </div>
+            </div> */}
           </div>
         </div>
 
