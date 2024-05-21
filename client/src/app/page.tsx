@@ -38,6 +38,11 @@ export default function Home() {
 
   // const [showSalesOrder, setShowSalesOrder] = useState(false);
   const [showSalesQoutation, setShowSalesQoutation] = useState(false);
+  const [showLogin, setShowLogin] = useState(false);
+
+  const showLoginFunction = () => {
+    setShowLogin(!showLogin);
+  };
 
   const toggleSalesQoutation = () => {
     setShowSalesQoutation(!showSalesQoutation);
@@ -184,15 +189,6 @@ export default function Home() {
                       {submenuOpenSetUp && (
                         <ul className="submenu p-2">
                           {/* Add more submenu items as needed */}
-
-                          <li onClick={handleSubmenuClick}>
-                            <a
-                              onClick={() => toggleWindow("users")}
-                              className={`${subsubmenuOpen1}`}
-                            >
-                              Create Users
-                            </a>
-                          </li>
                           <li onClick={handleSubmenuClick}>
                             <a
                               onClick={() => toggleWindow("view")}
@@ -209,9 +205,11 @@ export default function Home() {
               </div>
             </div>
             {/* Login Button */}
-            {/* <div className="SideBarButtonDown">
-              <button className="custom-button">Login</button>
-            </div> */}
+            <div className="SideBarButtonDown">
+              <button className="custom-button" onClick={showLoginFunction}>
+                Login
+              </button>
+            </div>
           </div>
         </div>
 

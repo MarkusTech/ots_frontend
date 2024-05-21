@@ -436,7 +436,7 @@ const ViewPage: React.FC = () => {
       <div className="flex justify-between items-center mb-6 pt-2 px-4">
         <h2 className="text-lg font-semibold text-gray-800"></h2>
         <button
-          className="flex items-center px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:outline-none focus:bg-blue-600"
+          className="flex items-center px-4 py-2 button-custom-bg-color text-white rounded-md focus:outline-none focus:bg-blue-600"
           onClick={handleShowAdd}
         >
           <svg
