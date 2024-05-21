@@ -317,7 +317,7 @@ textarea {
 }
 
 .custom-button {
-  background-color: #fed748; /* Change to your desired color */
+  background-color: #f69629; /* Change to your desired color */
   color: white; /* Optional: change the text color */
   padding: 10px 20px; /* Optional: add padding */
   border: none; /* Optional: remove border */
@@ -331,13 +331,13 @@ textarea {
 }
 
 .custom-button:hover {
-  background-color: #d1a105; /* Optional: change color on hover */
+  background-color: #f69629; /* Optional: change color on hover */
 }
 
 .button-custom-bg-color {
-  background-color: #fed748;
+  background-color: #f69629;
 }
 
 .button-custom-bg-color:hover {
-  background-color: #d1a105;
+  background-color: #f69629;
 }

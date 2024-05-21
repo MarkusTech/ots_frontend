@@ -400,13 +400,15 @@ export default function Home() {
                       alignItems: "center",
                     }}
                   >
-                    {/* Change bgcolor to a custom color */}
-                    <Avatar sx={{ m: 1, bgcolor: "#1976D2" }}>
-                      <LockOutlinedIcon />
-                    </Avatar>
-                    <Typography component="h1" variant="h5">
+                    <Image
+                      src="/image/Buildmore.png" // Path to your logout image
+                      alt="Logout Image"
+                      width={500} // specify the width of the image
+                      height={500} // specify the height of the image
+                    />
+                    {/* <Typography component="h1" variant="h5">
                       Login
-                    </Typography>
+                    </Typography> */}
                     <Box component="form" noValidate sx={{ mt: 1 }}>
                       <TextField
                         margin="normal"
@@ -435,7 +437,7 @@ export default function Home() {
                         sx={{
                           mt: 3,
                           mb: 2,
-                          backgroundColor: "#FED748",
+                          backgroundColor: "#F69629",
                           color: "white",
                         }} // Custom color for the button
                       >
