@@ -4349,7 +4349,7 @@ export default function SalesOrder() {
                   className={`p-2 mt-2 mb-1 text-[12px] ${
                     isDocNumberGreaterThanZero
                       ? "bg-red-300 cursor-not-allowed"
-                      : "bg-[#F4D674] hover:bg-yellow-500 focus:outline-none focus:shadow-outline-yellow active:bg-yellow-600"
+                      : "bg-[#f69629] hover:bg-yellow-500 focus:outline-none focus:shadow-outline-yellow active:bg-yellow-600"
                   } rounded w-24`}
                   onClick={handleSubmit}
                   disabled={isDocNumberGreaterThanZero}
@@ -4365,7 +4365,7 @@ export default function SalesOrder() {
                   className={`p-2 mt-2 mb-1 mr-2 text-[12px] ${
                     isDocNumberGreaterThanZero
                       ? "bg-red-300 cursor-not-allowed"
-                      : "bg-[#F4D674] hover:bg-yellow-500 focus:outline-none focus:shadow-outline-yellow active:bg-yellow-600"
+                      : "bg-[#f69629] hover:bg-yellow-500 focus:outline-none focus:shadow-outline-yellow active:bg-yellow-600"
                   } rounded w-24`}
                   onClick={handleSaveCommit}
                   disabled={isDocNumberGreaterThanZero}
@@ -4378,7 +4378,7 @@ export default function SalesOrder() {
                   className={`p-2 mt-2 mb-1 mr-2 text-[12px] ${
                     isDocNumberGreaterThanZero
                       ? "bg-red-300 cursor-not-allowed"
-                      : "bg-[#F4D674] hover:bg-yellow-500 focus:outline-none focus:shadow-outline-yellow active:bg-yellow-600"
+                      : "bg-[#f69629] hover:bg-yellow-500 focus:outline-none focus:shadow-outline-yellow active:bg-yellow-600"
                   } rounded w-24`}
                   onClick={swalCommit}
                   disabled={isDocNumberGreaterThanZero}
@@ -4394,7 +4394,7 @@ export default function SalesOrder() {
                 className={`p-2 mt-2 mb-1 mr-2 text-[12px] ${
                   printButtonDisabled
                     ? "bg-red-300 cursor-not-allowed"
-                    : "bg-[#F4D674] hover:bg-yellow-500 focus:outline-none focus:shadow-outline-yellow active:bg-yellow-600"
+                    : "bg-[#f69629] hover:bg-yellow-500 focus:outline-none focus:shadow-outline-yellow active:bg-yellow-600"
                 } rounded w-24`}
                 disabled={printButtonDisabled}
                 onClick={PrintReceipt}
@@ -4406,7 +4406,7 @@ export default function SalesOrder() {
             {/* ------------------------------------------ Search Button ---------------------------------------------- */}
             <div>
               <button
-                className="p-2 mt-2 mb-1 mr-2 text-[12px] bg-[#F4D674] hover:bg-yellow-500 focus:outline-none focus:shadow-outline-yellow active:bg-yellow-600 rounded w-24"
+                className="p-2 mt-2 mb-1 mr-2 text-[12px] bg-[#f69629] hover:bg-yellow-500 focus:outline-none focus:shadow-outline-yellow active:bg-yellow-600 rounded w-24"
                 onClick={handleShowSearchHeader}
               >
                 Search
@@ -4463,7 +4463,7 @@ export default function SalesOrder() {
                             />
                             <p>:&nbsp;</p>
                             <button
-                              className="p-1 mt-2 mb-1 mr-2 text-xs bg-yellow-400 hover:bg-yellow-500 focus:outline-none focus:shadow-outline-yellow active:bg-yellow-600 rounded w-24"
+                              className="p-1 mt-2 mb-1 mr-2 text-xs bg-[#f69629] hover:bg-yellow-500 focus:outline-none focus:shadow-outline-yellow active:bg-yellow-600 rounded w-24"
                               onClick={handleFilter}
                             >
                               Filter
