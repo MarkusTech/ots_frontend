@@ -9,18 +9,7 @@ import Users from "./Setup/Users/page";
 import ViewUser from "./Setup/ViewUsers/page";
 import Image from "next/image";
 import { useWindowState } from "../app/Transaction/SalesOrder/WindowsState";
-import {
-  Container,
-  Box,
-  Avatar,
-  Typography,
-  TextField,
-  Button,
-  Grid,
-  Link,
-  CssBaseline,
-} from "@mui/material";
-import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
+import { Container, Box, TextField, Button, CssBaseline } from "@mui/material";
 import axios from "axios";
 
 interface FormData {
@@ -174,7 +163,7 @@ export default function Home() {
       }
     } catch (error) {
       console.error("Error during login:", error);
-      alert("Internal server error");
+      alert("Pataka rakag input");
     }
   };
 
