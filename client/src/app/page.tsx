@@ -21,6 +21,7 @@ import {
   CssBaseline,
 } from "@mui/material";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
+import axios from "axios";
 
 interface FormData {
   userID: string;
@@ -77,7 +78,7 @@ export default function Home() {
   const [formData, setFormData] = useState<FormData>(initialFormData);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-  const loginUser = () => {
+  const loginUser1 = () => {
     setIsLoggedIn(!isLoggedIn);
     setShowLogin(!showLogin);
     setFormData({
@@ -148,6 +149,33 @@ export default function Home() {
 
   const handleSubmenuClick = (e: any) => {
     e.stopPropagation(); // Prevent the event from reaching the parent li
+  };
+
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+
+  const loginUser = async () => {
+    try {
+      const response = await axios.post(
+        "http://172.16.10.169:5001/api/v1/login",
+        {
+          userName: username,
+          Password: password,
+        }
+      );
+
+      if (response.data.success) {
+        // Handle successful login (e.g., redirect to another page or store user info)
+        console.log("Login successful", response.data);
+        alert("Login Diponggol");
+      } else {
+        // Handle login failure (e.g., display an error message)
+        alert(response.data.message);
+      }
+    } catch (error) {
+      console.error("Error during login:", error);
+      alert("Internal server error");
+    }
   };
 
   return (
@@ -400,14 +428,11 @@ export default function Home() {
                   }}
                 >
                   <Image
-                    src="/image/Buildmore.png" // Path to your logout image
+                    src="/image/Buildmore.png"
                     alt="Logout Image"
-                    width={500} // specify the width of the image
-                    height={500} // specify the height of the image
+                    width={500}
+                    height={500}
                   />
-                  {/* <Typography component="h1" variant="h5">
-                      Login
-                    </Typography> */}
                   <Box component="form" noValidate sx={{ mt: 1 }}>
                     <TextField
                       margin="normal"
@@ -418,6 +443,8 @@ export default function Home() {
                       name="username"
                       autoComplete="username"
                       autoFocus
+                      value={username}
+                      onChange={(e) => setUsername(e.target.value)}
                     />
                     <TextField
                       margin="normal"
@@ -428,6 +455,8 @@ export default function Home() {
                       type="password"
                       id="password"
                       autoComplete="current-password"
+                      value={password}
+                      onChange={(e) => setPassword(e.target.value)}
                     />
                     <Button
                       onClick={loginUser}
@@ -438,7 +467,7 @@ export default function Home() {
                         mb: 2,
                         backgroundColor: "#F69629",
                         color: "white",
-                      }} // Custom color for the button
+                      }}
                     >
                       Login
                     </Button>
