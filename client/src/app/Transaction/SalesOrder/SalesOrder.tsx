@@ -4111,7 +4111,7 @@ export default function SalesOrder() {
         {cardCodedata != "" && (
           <button
             onClick={() => handleAddRow()}
-            className="p-1 mt-2 mb-1 text-[12px] bg-[#F4D674]"
+            className="p-1 mt-2 mb-1 text-[12px] bg-[#f69629]"
           >
             <span>+</span> Add Row
           </button>
@@ -4592,5 +4592,3 @@ export default function SalesOrder() {
     </>
   );
 }
-
-// 931 && 1467
