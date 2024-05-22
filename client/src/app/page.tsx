@@ -155,7 +155,7 @@ export default function Home() {
 
       if (response.data.success) {
         // Handle successful login (e.g., redirect to another page or store user info)
-        console.log("Login successful", response.data);
+        console.log("Login successful", response.data.user);
         alert("Login Diponggol");
       } else {
         // Handle login failure (e.g., display an error message)
