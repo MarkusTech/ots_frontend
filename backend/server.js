@@ -61,7 +61,7 @@ app.use("/api/v1", saveHeaderRoutes);
 app.use("/api/v1", saveDetailsRoutes);
 app.use("/api/v1", saveFinalCommit);
 app.use("/api/v1", receiptRoutes);
-app.use("/api/v1,", loginRoutes);
+app.use("/api/v1", loginRoutes);
 
 // API V2
 app.use("/api/v2", db2_paylocRoutes);
