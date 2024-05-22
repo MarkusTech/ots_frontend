@@ -651,7 +651,10 @@ const ViewPage: React.FC = () => {
                       variant="contained"
                       color="primary"
                       fullWidth
-                      style={{ marginTop: 20 }}
+                      style={{
+                        marginTop: 20,
+                        backgroundColor: "#f69629",
+                      }}
                     >
                       Update
                     </Button>
@@ -936,7 +939,10 @@ const ViewPage: React.FC = () => {
                       variant="contained"
                       color="primary"
                       fullWidth
-                      style={{ marginTop: 20 }}
+                      style={{
+                        marginTop: 20,
+                        backgroundColor: "#f69629",
+                      }}
                     >
                       Save
                     </Button>
