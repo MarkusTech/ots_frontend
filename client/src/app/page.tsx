@@ -174,7 +174,13 @@ export default function Home() {
           <div className="">
             <div className="flex items-center justify-center">
               {/* LOGO */}
-              <Image src="/image/ots.jpg" alt="logo" width={70} height={70} />
+              {/* <Image src="/image/ots.jpg" alt="logo" width={70} height={70} /> */}
+              <Image
+                src="/image/Buildmore.png"
+                alt="Logout Image"
+                width={500}
+                height={500}
+              />
             </div>
             <div className="flex items-center justify-center">
               <div className="p-2">
