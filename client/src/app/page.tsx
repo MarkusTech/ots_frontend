@@ -72,6 +72,29 @@ export default function Home() {
     setShowLogin(!showLogin);
   };
 
+  const logoutUser = () => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "Do you want to logout?",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, logout!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        // Handle the logout process
+        setFormData(initialFormData);
+        setIsLoggedIn(!isLoggedIn);
+        Swal.fire(
+          "Logged Out!",
+          "You have been logged out successfully.",
+          "success"
+        );
+      }
+    });
+  };
+
   function handleRounter(page: React.SetStateAction<string>) {
     if (page === "transaction") {
       setRounterName(page);
@@ -285,7 +308,7 @@ export default function Home() {
             <div className="SideBarButtonDown">
               <div>
                 {isLoggedIn ? (
-                  <button className="custom-button" onClick={showLoginFunction}>
+                  <button className="custom-button" onClick={logoutUser}>
                     Logout
                   </button>
                 ) : (
