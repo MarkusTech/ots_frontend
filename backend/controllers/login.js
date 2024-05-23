@@ -22,14 +22,26 @@ const login = async (req, res) => {
         .json({ success: false, message: "Invalid username or password" });
     }
 
-    // If credentials are correct
-    res.status(200).json({
-      success: true,
-      message: "Login successful",
-      userId: user.id,
-      userName: user.UserName,
-      user,
-    });
+    // Check if the username is "admin" and the password is correct
+    if (userName === "admin") {
+      // If credentials are correct and the user is an admin
+      return res.status(200).json({
+        success: true,
+        message: "Admin",
+        userId: user.id,
+        userName: user.UserName,
+        user,
+      });
+    } else {
+      // If credentials are correct but the user is not an admin
+      return res.status(200).json({
+        success: true,
+        message: "Login successful",
+        userId: user.id,
+        userName: user.UserName,
+        user,
+      });
+    }
   } catch (error) {
     console.error("Error during login:", error);
     res.status(500).json({ success: false, message: "Internal server error" });
