@@ -20,6 +20,17 @@ const saveUsers = async (req, res) => {
   const trimmedPassword = Password.substring(0, 50); // Adjust 50 to match column size
   const trimmedStatus = Status.substring(0, 50);
 
+  // Check if a user with the same EmpName already exists
+  const existingUser =
+    await sqlConn2.query`SELECT * FROM [dbo].[User] WHERE EmpName = ${trimmedEmpName}`;
+
+  if (existingUser.recordset.length > 0) {
+    return res.status(400).json({
+      success: false,
+      message: "User with this EmpName already exists",
+    });
+  }
+
   const data = await sqlConn2.query`INSERT INTO [dbo].[User]
     (EmpName, Position, UserName, Password, BranchID, BranchName, WhsCode, PriceListNum, Status)
     VALUES
@@ -37,7 +48,7 @@ const saveUsers = async (req, res) => {
 
   res.status(200).json({
     success: true,
-    message: "User Save Successfully",
+    message: "User saved successfully",
     data,
   });
 };
