@@ -155,8 +155,19 @@ export default function Home() {
 
       if (response.data.success) {
         // Handle successful login (e.g., redirect to another page or store user info)
-        console.log("Login successful", response.data.user);
-        alert("Login Diponggol");
+        const user = response.data.user;
+        setFormData({
+          userID: user.UserID,
+          fullName: user.EmpName,
+          position: user.Position,
+          branchID: user.BranchID,
+          branchName: user.BranchName,
+          warehouseCode: user.WhsCode,
+          priceListNumber: user.PriceListNum,
+          status: user.Status,
+          username: user.UserName,
+          password: user.Password,
+        });
       } else {
         // Handle login failure (e.g., display an error message)
         alert(response.data.message);
