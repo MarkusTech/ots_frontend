@@ -11,6 +11,7 @@ import Image from "next/image";
 import { useWindowState } from "../app/Transaction/SalesOrder/WindowsState";
 import { Container, Box, TextField, Button, CssBaseline } from "@mui/material";
 import axios from "axios";
+import Swal from "sweetalert2";
 
 interface FormData {
   userID: string;
@@ -168,13 +169,18 @@ export default function Home() {
           username: user.UserName,
           password: user.Password,
         });
+        setIsLoggedIn(!isLoggedIn);
+        setShowLogin(!showLogin);
       } else {
         // Handle login failure (e.g., display an error message)
         alert(response.data.message);
       }
     } catch (error) {
-      console.error("Error during login:", error);
-      alert("Pataka rakag input");
+      Swal.fire({
+        icon: "error",
+        title: "Error",
+        text: "Wrong Username or Password",
+      });
     }
   };
 
