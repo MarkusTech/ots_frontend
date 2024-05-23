@@ -68,9 +68,9 @@ export default function Home() {
   const [formData, setFormData] = useState<FormData>(initialFormData);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-  const showLoginFunction = () => {
-    setShowLogin(!showLogin);
-  };
+  // const showLoginFunction = () => {
+  //   setShowLogin(!showLogin);
+  // };
 
   const logoutUser = () => {
     Swal.fire({
@@ -314,9 +314,7 @@ export default function Home() {
                     Logout
                   </button>
                 ) : (
-                  <button className="custom-button" onClick={showLoginFunction}>
-                    Login
-                  </button>
+                  <button></button>
                 )}
               </div>
             </div>
@@ -436,7 +434,7 @@ export default function Home() {
             )}
 
             {/* Login */}
-            {showLogin && (
+            {!isLoggedIn && (
               <Container component="main" maxWidth="xs">
                 <CssBaseline />
                 <Box
@@ -491,6 +489,10 @@ export default function Home() {
                         mb: 2,
                         backgroundColor: "#F69629",
                         color: "white",
+                        "&:hover": {
+                          backgroundColor: "#F69629",
+                          boxShadow: "0px 4px 15px rgba(0, 0, 0, 0.2)",
+                        },
                       }}
                     >
                       Login
