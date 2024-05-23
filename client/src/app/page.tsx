@@ -66,6 +66,7 @@ export default function Home() {
   const [showLogin, setShowLogin] = useState(false);
   const [formData, setFormData] = useState<FormData>(initialFormData);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isAdminLoggedIn, setIsAdminLoggedIn] = useState(false);
 
   const logoutUser = () => {
     Swal.fire({
@@ -156,7 +157,7 @@ export default function Home() {
         }
       );
 
-      if (response.data.success) {
+      if (response.data.message == "User") {
         // Handle successful login (e.g., redirect to another page or store user info)
         const user = response.data.user;
         setFormData({
@@ -172,6 +173,29 @@ export default function Home() {
           password: user.Password,
         });
         setIsLoggedIn(!isLoggedIn);
+        setShowLogin(!showLogin);
+        Swal.fire({
+          icon: "success",
+          title: "Login Successful",
+          text: `Welcome, ${user.EmpName}`,
+        });
+        setUsername("");
+        setPassword("");
+      } else if (response.data.message == "Admin") {
+        const user = response.data.user;
+        setFormData({
+          userID: user.UserID,
+          fullName: user.EmpName,
+          position: user.Position,
+          branchID: user.BranchID,
+          branchName: user.BranchName,
+          warehouseCode: user.WhsCode,
+          priceListNumber: user.PriceListNum,
+          status: user.Status,
+          username: user.UserName,
+          password: user.Password,
+        });
+        setIsAdminLoggedIn(!isAdminLoggedIn);
         setShowLogin(!showLogin);
         Swal.fire({
           icon: "success",
@@ -207,7 +231,7 @@ export default function Home() {
                 height={500}
               />
             </div>
-            {isLoggedIn && (
+            {isAdminLoggedIn && (
               <div className="flex items-center justify-center">
                 <div className="p-2">
                   <div className="w-[200px]">
@@ -296,6 +320,80 @@ export default function Home() {
                                 Users
                               </a>
                             </li>
+                          </ul>
+                        )}
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            )}
+            {isLoggedIn && (
+              <div className="flex items-center justify-center">
+                <div className="p-2">
+                  <div className="w-[200px]">
+                    <ul>
+                      {/* ----------------------------- TRANSACTION ------------------------------- */}
+                      <li
+                        className={`p-2 linav ${
+                          routerName === "transaction" ? "active" : ""
+                        }`}
+                        onClick={() => handleRounter("transaction")}
+                      >
+                        <span className={`${spanName1}`}>Transaction</span>
+                        {submenuOpen && (
+                          <ul className="submenu p-2">
+                            <li onClick={handleSubmenuClick}>
+                              <a
+                                onClick={() => toggleWindow("salesqoutation")}
+                                className={`${subsubmenuOpen1}`}
+                              >
+                                Sales Quotation
+                              </a>
+                            </li>
+                            <li onClick={handleSubmenuClick}>
+                              <a
+                                onClick={() => toggleWindow("salesorder")}
+                                className={`${subsubmenuOpen2}`}
+                              >
+                                Sales Order
+                              </a>
+                            </li>
+                            {/* Add more submenu items as needed */}
+                          </ul>
+                        )}
+                      </li>
+
+                      {/* ----------------------------- INQUIRY ------------------------------- */}
+                      <li
+                        className={`p-2 linav ${
+                          routerName === "inquiry" ? "active" : ""
+                        }`}
+                        onClick={() => handleRounter("inquiry")}
+                      >
+                        <span className={`${spanName2}`}>Inquiry</span>
+                        {submenuOpenInq && (
+                          <ul className="submenu p-2">
+                            <li>Price list & Stocks Inquiry</li>
+                            <li>Credit Line Monitoring</li>
+                            {/* Add more submenu items as needed */}
+                          </ul>
+                        )}
+                      </li>
+
+                      {/* ----------------------------- REPORTS ------------------------------- */}
+                      <li
+                        className={`p-2 linav ${
+                          routerName === "reports" ? "active" : ""
+                        }`}
+                        onClick={() => handleRounter("reports")}
+                      >
+                        <span className={`${spanName3}`}>Reports</span>
+                        {submenuOpenReports && (
+                          <ul className="submenu p-2">
+                            <li>Price list & Stocks Inquiry</li>
+                            <li>Credit Line Monitoring</li>
+                            {/* Add more submenu items as needed */}
                           </ul>
                         )}
                       </li>
