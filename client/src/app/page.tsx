@@ -231,6 +231,7 @@ export default function Home() {
                 height={500}
               />
             </div>
+            {/* If credentials are correct and the user is Admin */}
             {isAdminLoggedIn && (
               <div className="flex items-center justify-center">
                 <div className="p-2">
@@ -328,6 +329,8 @@ export default function Home() {
                 </div>
               </div>
             )}
+
+            {/* If credentials are correct and the user is not admin */}
             {isLoggedIn && (
               <div className="flex items-center justify-center">
                 <div className="p-2">
