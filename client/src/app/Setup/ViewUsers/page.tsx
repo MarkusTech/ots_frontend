@@ -281,7 +281,7 @@ const ViewPage: React.FC = () => {
     setSelectedUserID(selectedUser.UserID);
   };
 
-  const [selectedUserID, setSelectedUserID] = useState();
+  const [selectedUserID, setSelectedUserID] = useState<string | null>(null);
   useEffect(() => {
     if (selectedUserID) {
       axios
