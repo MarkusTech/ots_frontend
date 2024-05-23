@@ -487,10 +487,10 @@ export default function Home() {
                       sx={{
                         mt: 3,
                         mb: 2,
-                        backgroundColor: "#F69629",
+                        backgroundColor: "#F69629 !important",
                         color: "white",
                         "&:hover": {
-                          backgroundColor: "#F69629",
+                          backgroundColor: "#F69629 !important",
                           boxShadow: "0px 4px 15px rgba(0, 0, 0, 0.2)",
                         },
                       }}
