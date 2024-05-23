@@ -171,6 +171,11 @@ export default function Home() {
         });
         setIsLoggedIn(!isLoggedIn);
         setShowLogin(!showLogin);
+        Swal.fire({
+          icon: "success",
+          title: "Login Successful",
+          text: `Welcome, ${user.EmpName}`,
+        });
       } else {
         // Handle login failure (e.g., display an error message)
         alert(response.data.message);
