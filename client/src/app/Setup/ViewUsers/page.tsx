@@ -186,7 +186,10 @@ const ViewPage: React.FC = () => {
           // Reset form
           setFormData(initialFormData);
         } else {
-          console.error("Failed to register user:", response.statusText);
+          Swal.fire({
+            icon: "error",
+            text: "User Already Registered",
+          });
         }
       } catch (error) {
         console.error("Error registering user:", error);
