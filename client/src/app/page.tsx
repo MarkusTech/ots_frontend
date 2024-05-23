@@ -2,7 +2,6 @@
 
 import React, { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import SalesQoutation from "./Transaction/SalesQoutation/SalesQoutation";
 import Draggable from "react-draggable";
 import SalesOrder from "./Transaction/SalesOrder/SalesOrder";
 import Users from "./Setup/Users/page";
