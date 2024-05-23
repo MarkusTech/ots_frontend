@@ -181,7 +181,7 @@ export default function Home() {
               {/* LOGO */}
               <Image
                 src="/image/Buildmore.png"
-                alt="Logout Image"
+                alt="Logo Image"
                 width={500}
                 height={500}
               />
