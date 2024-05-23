@@ -209,101 +209,103 @@ export default function Home() {
                 height={500}
               />
             </div>
-            <div className="flex items-center justify-center">
-              <div className="p-2">
-                <div className="w-[200px]">
-                  <ul>
-                    {/* ----------------------------- TRANSACTION ------------------------------- */}
-                    <li
-                      className={`p-2 linav ${
-                        routerName === "transaction" ? "active" : ""
-                      }`}
-                      onClick={() => handleRounter("transaction")}
-                    >
-                      <span className={`${spanName1}`}>Transaction</span>
-                      {submenuOpen && (
-                        <ul className="submenu p-2">
-                          <li onClick={handleSubmenuClick}>
-                            <a
-                              onClick={() => toggleWindow("salesqoutation")}
-                              className={`${subsubmenuOpen1}`}
-                            >
-                              Sales Quotation
-                            </a>
-                          </li>
-                          <li onClick={handleSubmenuClick}>
-                            <a
-                              onClick={() => toggleWindow("salesorder")}
-                              className={`${subsubmenuOpen2}`}
-                            >
-                              Sales Order
-                            </a>
-                          </li>
-                          {/* Add more submenu items as needed */}
-                        </ul>
-                      )}
-                    </li>
+            {isLoggedIn && (
+              <div className="flex items-center justify-center">
+                <div className="p-2">
+                  <div className="w-[200px]">
+                    <ul>
+                      {/* ----------------------------- TRANSACTION ------------------------------- */}
+                      <li
+                        className={`p-2 linav ${
+                          routerName === "transaction" ? "active" : ""
+                        }`}
+                        onClick={() => handleRounter("transaction")}
+                      >
+                        <span className={`${spanName1}`}>Transaction</span>
+                        {submenuOpen && (
+                          <ul className="submenu p-2">
+                            <li onClick={handleSubmenuClick}>
+                              <a
+                                onClick={() => toggleWindow("salesqoutation")}
+                                className={`${subsubmenuOpen1}`}
+                              >
+                                Sales Quotation
+                              </a>
+                            </li>
+                            <li onClick={handleSubmenuClick}>
+                              <a
+                                onClick={() => toggleWindow("salesorder")}
+                                className={`${subsubmenuOpen2}`}
+                              >
+                                Sales Order
+                              </a>
+                            </li>
+                            {/* Add more submenu items as needed */}
+                          </ul>
+                        )}
+                      </li>
 
-                    {/* ----------------------------- INQUIRY ------------------------------- */}
-                    <li
-                      className={`p-2 linav ${
-                        routerName === "inquiry" ? "active" : ""
-                      }`}
-                      onClick={() => handleRounter("inquiry")}
-                    >
-                      <span className={`${spanName2}`}>Inquiry</span>
-                      {submenuOpenInq && (
-                        <ul className="submenu p-2">
-                          <li>Price list & Stocks Inquiry</li>
-                          <li>Credit Line Monitoring</li>
-                          {/* Add more submenu items as needed */}
-                        </ul>
-                      )}
-                    </li>
+                      {/* ----------------------------- INQUIRY ------------------------------- */}
+                      <li
+                        className={`p-2 linav ${
+                          routerName === "inquiry" ? "active" : ""
+                        }`}
+                        onClick={() => handleRounter("inquiry")}
+                      >
+                        <span className={`${spanName2}`}>Inquiry</span>
+                        {submenuOpenInq && (
+                          <ul className="submenu p-2">
+                            <li>Price list & Stocks Inquiry</li>
+                            <li>Credit Line Monitoring</li>
+                            {/* Add more submenu items as needed */}
+                          </ul>
+                        )}
+                      </li>
 
-                    {/* ----------------------------- REPORTS ------------------------------- */}
-                    <li
-                      className={`p-2 linav ${
-                        routerName === "reports" ? "active" : ""
-                      }`}
-                      onClick={() => handleRounter("reports")}
-                    >
-                      <span className={`${spanName3}`}>Reports</span>
-                      {submenuOpenReports && (
-                        <ul className="submenu p-2">
-                          <li>Price list & Stocks Inquiry</li>
-                          <li>Credit Line Monitoring</li>
-                          {/* Add more submenu items as needed */}
-                        </ul>
-                      )}
-                    </li>
+                      {/* ----------------------------- REPORTS ------------------------------- */}
+                      <li
+                        className={`p-2 linav ${
+                          routerName === "reports" ? "active" : ""
+                        }`}
+                        onClick={() => handleRounter("reports")}
+                      >
+                        <span className={`${spanName3}`}>Reports</span>
+                        {submenuOpenReports && (
+                          <ul className="submenu p-2">
+                            <li>Price list & Stocks Inquiry</li>
+                            <li>Credit Line Monitoring</li>
+                            {/* Add more submenu items as needed */}
+                          </ul>
+                        )}
+                      </li>
 
-                    {/* ----------------------------- SETUP ------------------------------- */}
-                    <li
-                      className={`p-2 linav ${
-                        routerName === "setup" ? "active" : ""
-                      }`}
-                      onClick={() => handleRounter("setup")}
-                    >
-                      <span className={`${spanName4}`}>Set Up</span>
-                      {submenuOpenSetUp && (
-                        <ul className="submenu p-2">
-                          {/* Add more submenu items as needed */}
-                          <li onClick={handleSubmenuClick}>
-                            <a
-                              onClick={() => toggleWindow("view")}
-                              className={`${subsubmenuOpen2}`}
-                            >
-                              Users
-                            </a>
-                          </li>
-                        </ul>
-                      )}
-                    </li>
-                  </ul>
+                      {/* ----------------------------- SETUP ------------------------------- */}
+                      <li
+                        className={`p-2 linav ${
+                          routerName === "setup" ? "active" : ""
+                        }`}
+                        onClick={() => handleRounter("setup")}
+                      >
+                        <span className={`${spanName4}`}>Set Up</span>
+                        {submenuOpenSetUp && (
+                          <ul className="submenu p-2">
+                            {/* Add more submenu items as needed */}
+                            <li onClick={handleSubmenuClick}>
+                              <a
+                                onClick={() => toggleWindow("view")}
+                                className={`${subsubmenuOpen2}`}
+                              >
+                                Users
+                              </a>
+                            </li>
+                          </ul>
+                        )}
+                      </li>
+                    </ul>
+                  </div>
                 </div>
               </div>
-            </div>
+            )}
             {/* Login Button */}
             <div className="SideBarButtonDown">
               <div>
