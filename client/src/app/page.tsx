@@ -87,7 +87,9 @@ export default function Home() {
           "You have been logged out successfully.",
           "success"
         );
-        window.location.reload();
+        setTimeout(() => {
+          window.location.reload();
+        }, 1500);
       }
     });
   };
