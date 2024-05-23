@@ -68,10 +68,6 @@ export default function Home() {
   const [formData, setFormData] = useState<FormData>(initialFormData);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-  // const showLoginFunction = () => {
-  //   setShowLogin(!showLogin);
-  // };
-
   const logoutUser = () => {
     Swal.fire({
       title: "Are you sure?",
