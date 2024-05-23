@@ -146,6 +146,7 @@ export default function Home() {
 
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [isShowButton, setIsShowButton] = useState(false);
 
   const loginUser = async () => {
     try {
@@ -174,6 +175,7 @@ export default function Home() {
         });
         setIsLoggedIn(!isLoggedIn);
         setShowLogin(!showLogin);
+        setIsShowButton(!isShowButton);
         Swal.fire({
           icon: "success",
           title: "Login Successful",
@@ -197,6 +199,7 @@ export default function Home() {
         });
         setIsAdminLoggedIn(!isAdminLoggedIn);
         setShowLogin(!showLogin);
+        setIsShowButton(!isShowButton);
         Swal.fire({
           icon: "success",
           title: "Login Successful",
@@ -408,7 +411,7 @@ export default function Home() {
             {/* Login Button */}
             <div className="SideBarButtonDown">
               <div>
-                {isLoggedIn ? (
+                {isShowButton ? (
                   <button className="custom-button" onClick={logoutUser}>
                     Logout
                   </button>
@@ -533,7 +536,7 @@ export default function Home() {
             )}
 
             {/* Login */}
-            {!isLoggedIn && (
+            {!showLogin && (
               <Container component="main" maxWidth="xs">
                 <CssBaseline />
                 <Box
