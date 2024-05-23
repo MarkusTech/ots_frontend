@@ -93,7 +93,6 @@ const ViewPage: React.FC = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [addedItem, setAddedItem] = useState("");
   const [fetchTrigger, setFetchTrigger] = useState(0); // State to trigger re-fetch
-  const [selectedStatus, setSelectedStatus] = useState("");
 
   // get the the employees to register
   useEffect(() => {
@@ -138,7 +137,6 @@ const ViewPage: React.FC = () => {
   };
 
   const handleStatusChange = (event: any) => {
-    setSelectedStatus(event.target.value);
     setEditFormData({
       ...editFormData,
       status: event.target.value,
@@ -208,7 +206,7 @@ const ViewPage: React.FC = () => {
       PriceListNum: Number(editFormData.priceListNumber),
       userName: editFormData.username,
       Password: editFormData.password,
-      Status: selectedStatus,
+      Status: editFormData.status,
     };
 
     if (editFormData.username === "" || editFormData.password === "") {
