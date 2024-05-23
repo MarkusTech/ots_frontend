@@ -178,6 +178,8 @@ export default function Home() {
           title: "Login Successful",
           text: `Welcome, ${user.EmpName}`,
         });
+        setUsername("");
+        setPassword("");
       } else {
         // Handle login failure (e.g., display an error message)
         alert(response.data.message);
