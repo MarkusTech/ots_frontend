@@ -68,23 +68,6 @@ export default function Home() {
   const [formData, setFormData] = useState<FormData>(initialFormData);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-  const loginUser1 = () => {
-    setIsLoggedIn(!isLoggedIn);
-    setShowLogin(!showLogin);
-    setFormData({
-      userID: "selectedUserID",
-      fullName: "data.EmpName",
-      position: "data.Position",
-      branchID: "data.BranchID",
-      branchName: "data.BranchName",
-      warehouseCode: "data.WhsCode",
-      priceListNumber: "data.PriceListNum",
-      status: "data.Status",
-      username: "data.UserName",
-      password: "data.Password",
-    });
-  };
-
   const showLoginFunction = () => {
     setShowLogin(!showLogin);
   };
