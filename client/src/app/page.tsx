@@ -150,6 +150,8 @@ export default function Home() {
   const [password, setPassword] = useState("");
   const [isShowButton, setIsShowButton] = useState(false);
 
+  let loginAttempts = 0;
+
   const loginUser = async () => {
     try {
       const response = await axios.post(
@@ -175,6 +177,9 @@ export default function Home() {
           username: user.UserName,
           password: user.Password,
         });
+        // Clear login attempts on successful login
+        loginAttempts = 0;
+
         setIsLoggedIn(!isLoggedIn);
         setShowLogin(!showLogin);
         setIsShowButton(!isShowButton);
@@ -199,6 +204,8 @@ export default function Home() {
           username: user.UserName,
           password: user.Password,
         });
+        // Clear login attempts on successful login
+        loginAttempts = 0;
         setIsAdminLoggedIn(!isAdminLoggedIn);
         setShowLogin(!showLogin);
         setIsShowButton(!isShowButton);
@@ -214,11 +221,23 @@ export default function Home() {
         alert(response.data.message);
       }
     } catch (error) {
-      Swal.fire({
-        icon: "error",
-        title: "Error",
-        text: "Wrong Username or Password",
-      });
+      loginAttempts++;
+      if (loginAttempts <= 2) {
+        Swal.fire({
+          icon: "error",
+          title: "Error",
+          text: "Wrong Username or Password",
+        });
+      }
+      // Check if the maximum login attempts reached
+      if (loginAttempts === 3) {
+        Swal.fire({
+          icon: "warning",
+          title: "Contact MIS Department",
+          text: "You have reached the maximum number of login attempts with incorrect password. Please contact the MIS department.",
+        });
+        return;
+      }
     }
   };
 
