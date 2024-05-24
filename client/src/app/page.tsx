@@ -219,6 +219,7 @@ export default function Home() {
       } else {
         // Handle login failure (e.g., display an error message)
         alert(response.data.message);
+        loginAttempts++;
       }
     } catch (error) {
       loginAttempts++;
@@ -228,8 +229,6 @@ export default function Home() {
           title: "Error",
           text: "Wrong Username or Password",
         });
-        setUsername("");
-        setPassword("");
       }
       // Check if the maximum login attempts reached
       if (loginAttempts === 3) {
@@ -238,8 +237,6 @@ export default function Home() {
           title: "Contact MIS Department",
           text: "You have reached the maximum number of login attempts with incorrect password. Please contact the MIS department.",
         });
-        setUsername("");
-        setPassword("");
         return;
       }
     }
