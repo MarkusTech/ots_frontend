@@ -6,6 +6,7 @@ import Draggable from "react-draggable";
 import SalesOrder from "./Transaction/SalesOrder/SalesOrder";
 import Users from "./Setup/Users/page";
 import ViewUser from "./Setup/ViewUsers/page";
+import ApprovalType from "./ApprovalProcedure/approvalType/page";
 import Image from "next/image";
 import { useWindowState } from "../app/Transaction/SalesOrder/WindowsState";
 import { Container, Box, TextField, Button, CssBaseline } from "@mui/material";
@@ -710,7 +711,7 @@ export default function Home() {
                       {/* <div>
                         <span
                           className="text-md text-red-600 cursor-pointer"
-                          onClick={() => toggleWindow("view")}
+                          onClick={() => toggleWindow("approvalType")}
                         >
                           ❌
                         </span>
@@ -718,7 +719,7 @@ export default function Home() {
                     </div>
                   </div>
                   <div className="content">
-                    <ViewUser />
+                    <ApprovalType />
                   </div>
                 </div>
               </Draggable>
