@@ -327,6 +327,31 @@ export default function Home() {
                         )}
                       </li>
 
+                      {/* ----------------------------- Approval Procedure ------------------------------- */}
+                      <li
+                        className={`p-2 linav ${
+                          routerName === "setup" ? "active" : ""
+                        }`}
+                        onClick={() => handleRounter("setup")}
+                      >
+                        <span className={`${spanName4}`}>
+                          Approval Procedure
+                        </span>
+                        {submenuOpenSetUp && (
+                          <ul className="submenu p-2">
+                            {/* Add more submenu items as needed */}
+                            <li onClick={handleSubmenuClick}>
+                              <a
+                                onClick={() => toggleWindow("view")}
+                                className={`${subsubmenuOpen2}`}
+                              >
+                                Users
+                              </a>
+                            </li>
+                          </ul>
+                        )}
+                      </li>
+
                       {/* ----------------------------- SETUP ------------------------------- */}
                       <li
                         className={`p-2 linav ${
