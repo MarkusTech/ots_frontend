@@ -40,8 +40,13 @@ const initialFormData: FormData = {
 
 export default function Home() {
   const router = useRouter(); //Router
-  const { showSalesOrder, showUsers, viewUsers, toggleWindow } =
-    useWindowState(); // Use the state and functions
+  const {
+    showSalesOrder,
+    showUsers,
+    viewUsers,
+    showApprovalType,
+    toggleWindow,
+  } = useWindowState(); // Use the state and functions
 
   const [rounterName, setRounterName] = React.useState("");
 
@@ -365,7 +370,7 @@ export default function Home() {
                             {/* Add more submenu items as needed */}
                             <li onClick={handleSubmenuClick}>
                               <a
-                                onClick={() => toggleWindow("")}
+                                onClick={() => toggleWindow("approvalType")}
                                 className={`${subsubmenuOpen1}`}
                               >
                                 Approval Type
@@ -680,6 +685,43 @@ export default function Home() {
                   </Box>
                 </Box>
               </Container>
+            )}
+
+            {/* Approval Type */}
+            {showApprovalType && (
+              <Draggable handle=".header">
+                <div
+                  className="container bg-white"
+                  style={{
+                    border: "1px solid #ccc",
+                    position: "absolute",
+                    zIndex: 2,
+                    top: "5%",
+                    left: "15%",
+                    transform: "translate(-50%, -50%)",
+                  }}
+                >
+                  <div
+                    className="header grid grid-cols-2 p-2 text-left windowheader"
+                    style={{ cursor: "move" }}
+                  >
+                    <div className="flex justify-between items-center">
+                      <div>USER LIST</div>
+                      {/* <div>
+                        <span
+                          className="text-md text-red-600 cursor-pointer"
+                          onClick={() => toggleWindow("view")}
+                        >
+                          ❌
+                        </span>
+                      </div> */}
+                    </div>
+                  </div>
+                  <div className="content">
+                    <ViewUser />
+                  </div>
+                </div>
+              </Draggable>
             )}
 
             {/* FLOATER */}

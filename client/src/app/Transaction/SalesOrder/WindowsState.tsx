@@ -16,8 +16,16 @@ export const useWindowState = () => {
       setShowUsers(!showUsers);
     } else if (e === "view") {
       setViewUsers(!viewUsers);
+    } else if (e == "approvalType") {
+      setShowApprovalType(!showApprovalType);
     }
   };
 
-  return { showSalesOrder, showUsers, viewUsers, toggleWindow };
+  return {
+    showSalesOrder,
+    showUsers,
+    viewUsers,
+    showApprovalType,
+    toggleWindow,
+  };
 };
