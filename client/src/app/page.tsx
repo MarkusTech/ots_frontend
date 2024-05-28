@@ -51,6 +51,7 @@ export default function Home() {
   const [submenuOpenInq, setSubmenuOpenInq] = useState(false);
   const [submenuOpenReports, setSubmenuOpenReports] = useState(false);
   const [submenuOpenSetUp, setSubmenuOpenSetUp] = useState(false);
+  const [submenuOpenApproval, setSubmenuOpenApproval] = useState(false);
   const [routerName, setRouterName] = useState("");
 
   // submenu transaction
@@ -62,6 +63,7 @@ export default function Home() {
   const [spanName2, setSpanName2] = useState("");
   const [spanName3, setSpanName3] = useState("");
   const [spanName4, setSpanName4] = useState("");
+  const [spanName5, setSpanName5] = useState("");
 
   const [showLogin, setShowLogin] = useState(false);
   const [formData, setFormData] = useState<FormData>(initialFormData);
@@ -101,44 +103,65 @@ export default function Home() {
       setSubmenuOpenInq(false);
       setSubmenuOpenReports(false);
       setSubmenuOpenSetUp(false);
+      setSubmenuOpenApproval(false);
 
       setSpanName1("active");
       setSpanName2("");
       setSpanName3("");
       setSpanName4("");
+      setSpanName5("");
     } else if (page === "inquiry") {
       setRounterName(page);
       setSubmenuOpenInq(!submenuOpenInq);
       setSubmenuOpen(false);
       setSubmenuOpenReports(false);
       setSubmenuOpenSetUp(false);
+      setSubmenuOpenApproval(false);
 
       setSpanName1("");
       setSpanName2("active");
       setSpanName3("");
       setSpanName4("");
+      setSpanName5("");
     } else if (page === "reports") {
       setRounterName(page);
       setSubmenuOpenReports(!submenuOpenReports);
       setSubmenuOpen(false);
       setSubmenuOpenInq(false);
       setSubmenuOpenSetUp(false);
+      setSubmenuOpenApproval(false);
 
       setSpanName1("");
       setSpanName2("");
       setSpanName3("active");
       setSpanName4("");
+      setSpanName5("");
+    } else if (page === "approval") {
+      setRounterName(page);
+      setSubmenuOpenSetUp(false);
+      setSubmenuOpen(false);
+      setSubmenuOpenInq(false);
+      setSubmenuOpenReports(false);
+      setSubmenuOpenApproval(!submenuOpenApproval);
+
+      setSpanName1("");
+      setSpanName2("");
+      setSpanName3("");
+      setSpanName4("active");
+      setSpanName5("");
     } else if (page === "setup") {
       setRounterName(page);
       setSubmenuOpenSetUp(!submenuOpenSetUp);
       setSubmenuOpen(false);
       setSubmenuOpenInq(false);
       setSubmenuOpenReports(false);
+      setSubmenuOpenApproval(false);
 
       setSpanName1("");
       setSpanName2("");
       setSpanName3("");
-      setSpanName4("active");
+      setSpanName4("");
+      setSpanName5("active");
     }
   }
 
@@ -330,14 +353,14 @@ export default function Home() {
                       {/* ----------------------------- Approval Procedure ------------------------------- */}
                       <li
                         className={`p-2 linav ${
-                          routerName === "setup" ? "active" : ""
+                          routerName === "approval" ? "active" : ""
                         }`}
-                        onClick={() => handleRounter("setup")}
+                        onClick={() => handleRounter("approval")}
                       >
                         <span className={`${spanName4}`}>
                           Approval Procedure
                         </span>
-                        {submenuOpenSetUp && (
+                        {submenuOpenApproval && (
                           <ul className="submenu p-2">
                             {/* Add more submenu items as needed */}
                             <li onClick={handleSubmenuClick}>
@@ -345,7 +368,7 @@ export default function Home() {
                                 onClick={() => toggleWindow("view")}
                                 className={`${subsubmenuOpen2}`}
                               >
-                                Users
+                                Approve
                               </a>
                             </li>
                           </ul>
