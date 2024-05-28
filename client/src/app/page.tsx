@@ -598,10 +598,11 @@ export default function Home() {
                     top: "5%",
                     left: "15%",
                     transform: "translate(-50%, -50%)",
+                    maxWidth: "80%", // Adjust the value as needed
                   }}
                 >
                   <div
-                    className="header grid grid-cols-2 p-2 text-left windowheader"
+                    className="header grid grid-cols-1 p-2 text-left windowheader"
                     style={{ cursor: "move" }}
                   >
                     <div className="flex w-full justify-between">
