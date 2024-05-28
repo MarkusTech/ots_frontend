@@ -704,6 +704,7 @@ export default function Home() {
                     top: "5%",
                     left: "15%",
                     transform: "translate(-50%, -50%)",
+                    width: "600px", // Add this line to set the width
                   }}
                 >
                   <div
@@ -711,15 +712,15 @@ export default function Home() {
                     style={{ cursor: "move" }}
                   >
                     <div className="flex justify-between items-center">
-                      <div>USER LIST</div>
+                      <div>Approval Type</div>
                       {/* <div>
-                        <span
-                          className="text-md text-red-600 cursor-pointer"
-                          onClick={() => toggleWindow("approvalType")}
-                        >
-                          ❌
-                        </span>
-                      </div> */}
+                      <span
+                        className="text-md text-red-600 cursor-pointer"
+                        onClick={() => toggleWindow("approvalType")}
+                      >
+                        ❌
+                      </span>
+                    </div> */}
                     </div>
                   </div>
                   <div className="content">
