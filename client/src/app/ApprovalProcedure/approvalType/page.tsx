@@ -5,14 +5,7 @@ import {
   TextField,
   Button,
   Grid,
-  Typography,
   Container,
-  IconButton,
-  InputAdornment,
-  Select,
-  MenuItem,
-  FormControl,
-  InputLabel,
 } from "@mui/material";
 
 const ApprovalTypePage: React.FC = () => {
