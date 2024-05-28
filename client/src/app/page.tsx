@@ -365,10 +365,18 @@ export default function Home() {
                             {/* Add more submenu items as needed */}
                             <li onClick={handleSubmenuClick}>
                               <a
-                                onClick={() => toggleWindow("view")}
+                                onClick={() => toggleWindow("")}
+                                className={`${subsubmenuOpen1}`}
+                              >
+                                Approval Type
+                              </a>
+                            </li>
+                            <li onClick={handleSubmenuClick}>
+                              <a
+                                onClick={() => toggleWindow("")}
                                 className={`${subsubmenuOpen2}`}
                               >
-                                Approve
+                                Approval Procedure
                               </a>
                             </li>
                           </ul>
@@ -382,7 +390,7 @@ export default function Home() {
                         }`}
                         onClick={() => handleRounter("setup")}
                       >
-                        <span className={`${spanName4}`}>Set Up</span>
+                        <span className={`${spanName5}`}>Set Up</span>
                         {submenuOpenSetUp && (
                           <ul className="submenu p-2">
                             {/* Add more submenu items as needed */}
