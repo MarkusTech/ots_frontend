@@ -17,9 +17,14 @@ import {
 
 const ApprovalTypePage: React.FC = () => {
   const [showCreateApproval, setShowCreateApproval] = useState(false);
+  const [showEditApproval, setShowEditApproval] = useState(false);
 
   const createButton = () => {
     setShowCreateApproval(!showCreateApproval);
+  };
+
+  const editButton = () => {
+    setShowEditApproval(!setShowEditApproval);
   };
 
   const handleSubmit = () => {
@@ -54,7 +59,7 @@ const ApprovalTypePage: React.FC = () => {
               <td className="px-6 py-2 whitespace-nowrap text-right text-sm font-medium">
                 <button
                   className="text-indigo-600 hover:text-indigo-900"
-                  // onClick={handleShowEdit}
+                  onClick={editButton}
                 >
                   <EditIcon />
                 </button>
@@ -70,7 +75,7 @@ const ApprovalTypePage: React.FC = () => {
               <td className="px-6 py-2 whitespace-nowrap text-right text-sm font-medium">
                 <button
                   className="text-indigo-600 hover:text-indigo-900"
-                  // onClick={handleShowEdit}
+                  onClick={editButton}
                 >
                   <EditIcon />
                 </button>
@@ -86,7 +91,7 @@ const ApprovalTypePage: React.FC = () => {
               <td className="px-6 py-2 whitespace-nowrap text-right text-sm font-medium">
                 <button
                   className="text-indigo-600 hover:text-indigo-900"
-                  // onClick={handleShowEdit}
+                  onClick={editButton}
                 >
                   <EditIcon />
                 </button>
@@ -102,7 +107,7 @@ const ApprovalTypePage: React.FC = () => {
               <td className="px-6 py-2 whitespace-nowrap text-right text-sm font-medium">
                 <button
                   className="text-indigo-600 hover:text-indigo-900"
-                  // onClick={handleShowEdit}
+                  onClick={editButton}
                 >
                   <EditIcon />
                 </button>
