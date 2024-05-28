@@ -6,6 +6,8 @@ export const useWindowState = () => {
   const [showSalesOrder, setShowSalesOrder] = useState(false);
   const [showUsers, setShowUsers] = useState(false);
   const [viewUsers, setViewUsers] = useState(false);
+  const [showApprovalType, setShowApprovalType] = useState(false);
+  const [showApprovalProcedure, setShowApprovalProcedure] = useState(false);
 
   const toggleWindow = (e: any) => {
     if (e === "salesorder") {
