@@ -24,7 +24,7 @@ const ApprovalTypePage: React.FC = () => {
   };
 
   const editButton = () => {
-    setShowEditApproval(!setShowEditApproval);
+    setShowEditApproval(!showEditApproval);
   };
 
   const handleSubmit = () => {
@@ -138,6 +138,84 @@ const ApprovalTypePage: React.FC = () => {
         </button>
       </div>
 
+      {/* show edit approval */}
+      {showEditApproval && (
+        <Draggable>
+          <div
+            className="bg-white shadow-lg"
+            style={{
+              border: "1px solid #ccc",
+              position: "absolute",
+              top: "20%",
+              left: "20%",
+              maxHeight: "700px",
+              overflowY: "auto",
+              background: "white",
+              zIndex: "9999", // Set a high z-index value to bring it to the front. HAHAHA
+            }}
+          >
+            <div
+              className="grid grid-cols-2 p-2 text-left windowheader"
+              style={{ cursor: "move" }}
+            >
+              <div>Edit Approval Type</div>
+              <div className="text-right">
+                <span className="cursor-pointer" onClick={editButton}>
+                  ❌
+                </span>
+              </div>
+            </div>
+            <div className="content">
+              <div className="p-2">
+                <Container component="main" maxWidth="md">
+                  <br />
+                  <form onSubmit={handleSubmit}>
+                    <Grid container spacing={1}>
+                      <Grid item xs={12} sm={12}>
+                        <TextField
+                          fullWidth
+                          id="approvalTypeId"
+                          name="approvalTypeId"
+                          label="Approval Type ID"
+                          variant="outlined"
+                          // value={formData.userID}
+                          // onChange={handleChange}
+                        />
+                      </Grid>
+                      <Grid item xs={12} sm={12}>
+                        <TextField
+                          fullWidth
+                          id="approvalTypeId"
+                          name="approvalTypeId"
+                          label="Approval Type"
+                          variant="outlined"
+                          // value={formData.userID}
+                          // onChange={handleChange}
+                        />
+                      </Grid>
+                    </Grid>
+                    <Button
+                      type="submit"
+                      variant="contained"
+                      color="primary"
+                      fullWidth
+                      style={{
+                        marginTop: 20,
+                        backgroundColor: "#f69629",
+                      }}
+                    >
+                      Save
+                    </Button>
+                    <br />
+                    <br />
+                  </form>
+                </Container>
+              </div>
+            </div>
+          </div>
+        </Draggable>
+      )}
+
       {/* show create approval */}
       {showCreateApproval && (
         <Draggable>
@@ -168,11 +246,7 @@ const ApprovalTypePage: React.FC = () => {
             <div className="content">
               <div className="p-2">
                 <Container component="main" maxWidth="md">
-                  <div>
-                    <Typography variant="h4" align="center" gutterBottom>
-                      Create Approval Type
-                    </Typography>
-                  </div>
+                  <br />
                   <form onSubmit={handleSubmit}>
                     <Grid container spacing={1}>
                       <Grid item xs={12} sm={12}>
