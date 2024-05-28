@@ -489,10 +489,10 @@ const ViewPage: React.FC = () => {
                 <Container component="main" maxWidth="md">
                   <div>
                     <br />
-                    <br />
+                    {/* <br />
                     <Typography variant="h4" align="center" gutterBottom>
                       Edit User
-                    </Typography>
+                    </Typography> */}
                   </div>
                   <form onSubmit={handleEdit}>
                     <Grid container spacing={2}>
@@ -776,10 +776,10 @@ const ViewPage: React.FC = () => {
                 <Container component="main" maxWidth="md">
                   <div>
                     <br />
-                    <br />
+                    {/* <br />
                     <Typography variant="h4" align="center" gutterBottom>
                       Register User
-                    </Typography>
+                    </Typography> */}
                   </div>
                   <form onSubmit={handleSubmit}>
                     <Grid container spacing={2}>
