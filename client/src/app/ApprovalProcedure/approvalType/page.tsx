@@ -1,7 +1,31 @@
-import React from "react";
+import React, { useState, useEffect, ChangeEvent, FormEvent } from "react";
 import EditIcon from "@mui/icons-material/Edit";
+import Draggable from "react-draggable";
+import {
+  TextField,
+  Button,
+  Grid,
+  Typography,
+  Container,
+  IconButton,
+  InputAdornment,
+  Select,
+  MenuItem,
+  FormControl,
+  InputLabel,
+} from "@mui/material";
 
-const page = () => {
+const ApprovalTypePage: React.FC = () => {
+  const [showCreateApproval, setShowCreateApproval] = useState(false);
+
+  const createButton = () => {
+    setShowCreateApproval(!showCreateApproval);
+  };
+
+  const handleSubmit = () => {
+    console.log("Hello World!");
+  };
+
   return (
     <div className="container mx-auto">
       <div className="tableHeigthView overflow-y-auto">
@@ -91,7 +115,7 @@ const page = () => {
         <h2 className="text-lg font-semibold text-gray-800"></h2>
         <button
           className="flex items-center px-4 py-2 button-custom-bg-color text-white rounded-md focus:outline-none focus:bg-blue-600"
-          // onClick={handleShowAdd}
+          onClick={createButton}
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -108,8 +132,90 @@ const page = () => {
           Create
         </button>
       </div>
+
+      {/* show create approval */}
+      {showCreateApproval && (
+        <Draggable>
+          <div
+            className="bg-white shadow-lg"
+            style={{
+              border: "1px solid #ccc",
+              position: "absolute",
+              top: "20%",
+              left: "20%",
+              maxHeight: "700px",
+              overflowY: "auto",
+              background: "white",
+              zIndex: "9999", // Set a high z-index value to bring it to the front. HAHAHA
+            }}
+          >
+            <div
+              className="grid grid-cols-2 p-2 text-left windowheader"
+              style={{ cursor: "move" }}
+            >
+              <div>Create Approval Type</div>
+              <div className="text-right">
+                <span className="cursor-pointer" onClick={createButton}>
+                  ❌
+                </span>
+              </div>
+            </div>
+            <div className="content">
+              <div className="p-2">
+                <Container component="main" maxWidth="md">
+                  <div>
+                    <Typography variant="h4" align="center" gutterBottom>
+                      Create Approval Type
+                    </Typography>
+                  </div>
+                  <form onSubmit={handleSubmit}>
+                    <Grid container spacing={1}>
+                      <Grid item xs={12} sm={12}>
+                        <TextField
+                          fullWidth
+                          id="approvalTypeId"
+                          name="approvalTypeId"
+                          label="Approval Type ID"
+                          variant="outlined"
+                          // value={formData.userID}
+                          // onChange={handleChange}
+                        />
+                      </Grid>
+                      <Grid item xs={12} sm={12}>
+                        <TextField
+                          fullWidth
+                          id="approvalTypeId"
+                          name="approvalTypeId"
+                          label="Approval Type"
+                          variant="outlined"
+                          // value={formData.userID}
+                          // onChange={handleChange}
+                        />
+                      </Grid>
+                    </Grid>
+                    <Button
+                      type="submit"
+                      variant="contained"
+                      color="primary"
+                      fullWidth
+                      style={{
+                        marginTop: 20,
+                        backgroundColor: "#f69629",
+                      }}
+                    >
+                      Save
+                    </Button>
+                    <br />
+                    <br />
+                  </form>
+                </Container>
+              </div>
+            </div>
+          </div>
+        </Draggable>
+      )}
     </div>
   );
 };
 
-export default page;
+export default ApprovalTypePage;
