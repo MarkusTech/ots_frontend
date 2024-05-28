@@ -381,7 +381,9 @@ export default function Home() {
                             </li>
                             <li onClick={handleSubmenuClick}>
                               <a
-                                onClick={() => toggleWindow("")}
+                                onClick={() =>
+                                  toggleWindow("approvalProcedure")
+                                }
                                 className={`${subsubmenuOpen2}`}
                               >
                                 Approval Procedure
