@@ -18,6 +18,8 @@ export const useWindowState = () => {
       setViewUsers(!viewUsers);
     } else if (e == "approvalType") {
       setShowApprovalType(!showApprovalType);
+    } else if (e == "approvalProcedure") {
+      setShowApprovalProcedure(!showApprovalProcedure);
     }
   };
 
@@ -26,6 +28,7 @@ export const useWindowState = () => {
     showUsers,
     viewUsers,
     showApprovalType,
+    showApprovalProcedure,
     toggleWindow,
   };
 };
