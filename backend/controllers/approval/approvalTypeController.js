@@ -6,9 +6,9 @@ const saveApprovalType = async (req, res) => {
     // Execute the query
     const result = await sqlConn.query`
         INSERT INTO [dbo].[AppType]
-               ([AppTypeID], [AppType])
+               ([AppType])
         VALUES
-               (${AppTypeID}, ${AppType});
+               (${AppType});
       `;
 
     // Send a success response
