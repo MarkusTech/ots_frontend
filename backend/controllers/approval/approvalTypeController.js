@@ -79,7 +79,33 @@ const getSingleApprovalType = async (req, res) => {
 };
 
 const updateApprovalType = async (req, res) => {
-  res.send("Update selected Approval Tyope");
+  const { AppTypeID } = req.params;
+  const { AppType } = req.body;
+  try {
+    const result = await sqlConn.query(`UPDATE [dbo].[AppType]
+    SET [AppType] = ${AppType}
+  WHERE AppTypeID = ${AppTypeID}`);
+    const recordset = result.recordset;
+
+    if (!result) {
+      res.status(404).json({
+        success: false,
+        message: "Unable to find and update",
+      });
+    }
+
+    res.status(200).json({
+      success: true,
+      message: "Updated Successfully",
+      data: recordset,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({
+      success: false,
+      message: error.message,
+    });
+  }
 };
 
 const deleteApprovalType = async (req, res) => {
