@@ -1,4 +1,4 @@
-import sqlConn from "../config/db.js";
+import sqlConn from "../../config/db.js";
 
 const login = async (req, res) => {
   const { userName, Password } = req.body;

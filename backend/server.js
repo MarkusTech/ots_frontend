@@ -20,7 +20,7 @@ import saveCommitRoutes from "./routes/ordertaking/saveCommitRoutes.js";
 import saveHeaderRoutes from "./routes/ordertaking/saveHeaderRoutes.js";
 import saveFinalCommit from "./routes/ordertaking/saveFinalCommitRoutes.js";
 import receiptRoutes from "./routes/ordertaking/receiptRoutes.js";
-import loginRoutes from "./routes/loginRoutes.js";
+import loginRoutes from "./routes/auth/loginRoutes.js";
 
 // Routes v2
 import db2_paylocRoutes from "./routes/location/db2_paylocRoutes.js";
