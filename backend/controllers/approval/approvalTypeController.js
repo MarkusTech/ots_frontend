@@ -82,13 +82,16 @@ const updateApprovalType = async (req, res) => {
   const { AppTypeID } = req.params;
   const { AppType } = req.body;
   try {
-    const result = await sqlConn.query(`UPDATE [dbo].[AppType]
-    SET [AppType] = ${AppType}
-  WHERE AppTypeID = ${AppTypeID}`);
-    const recordset = result.recordset;
+    // Execute the query with parameterized inputs
+    const result = await sqlConn.query`
+        UPDATE [dbo].[AppType]
+        SET [AppType] = ${AppType}
+        WHERE [AppTypeID] = ${AppTypeID}
+      `;
 
-    if (!result) {
-      res.status(404).json({
+    // Check if any row was affected
+    if (result.rowsAffected[0] === 0) {
+      return res.status(404).json({
         success: false,
         message: "Unable to find and update",
       });
@@ -97,7 +100,7 @@ const updateApprovalType = async (req, res) => {
     res.status(200).json({
       success: true,
       message: "Updated Successfully",
-      data: recordset,
+      result,
     });
   } catch (error) {
     console.log(error);
