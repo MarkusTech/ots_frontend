@@ -1,4 +1,4 @@
-import sqlConn from "../config/db.js";
+import sqlConn from "../../config/db.js";
 
 const receipt = async (req, res) => {
   try {

@@ -14,12 +14,12 @@ import sqlConn2 from "./config/db2.js";
 import { v4 as uuidv4 } from "uuid";
 
 // Routes
-import getSingleDraftRoutes from "./routes/getSingleDraftRoutes.js";
-import getDetailsRoutes from "./routes/getDetailsRoutes.js";
-import saveCommitRoutes from "./routes/saveCommitRoutes.js";
-import saveHeaderRoutes from "./routes/saveHeaderRoutes.js";
-import saveFinalCommit from "./routes/saveFinalCommitRoutes.js";
-import receiptRoutes from "./routes/receiptRoutes.js";
+import getSingleDraftRoutes from "./routes/ordertaking/getSingleDraftRoutes.js";
+import getDetailsRoutes from "./routes/ordertaking/getDetailsRoutes.js";
+import saveCommitRoutes from "./routes/ordertaking/saveCommitRoutes.js";
+import saveHeaderRoutes from "./routes/ordertaking/saveHeaderRoutes.js";
+import saveFinalCommit from "./routes/ordertaking/saveFinalCommitRoutes.js";
+import receiptRoutes from "./routes/ordertaking/receiptRoutes.js";
 import loginRoutes from "./routes/loginRoutes.js";
 
 // Routes v2

@@ -2,7 +2,7 @@ import express from "express";
 import {
   getSingleDataFromDraft,
   getDataFromDraft,
-} from "../controllers/getSingleDraftData.js";
+} from "../../controllers/ordertaking/getSingleDraftData.js";
 const router = express.Router();
 
 router.get("/get-draft", getDataFromDraft);

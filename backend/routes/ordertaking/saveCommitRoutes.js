@@ -5,7 +5,7 @@ import {
   getAllCommitedHeader,
   getAllCommitedDetails,
   commit,
-} from "../controllers/saveCommit.js";
+} from "../../controllers/ordertaking/saveCommit.js";
 const router = express.Router();
 
 router.post("/save-commit-header", saveCommitHeader);
