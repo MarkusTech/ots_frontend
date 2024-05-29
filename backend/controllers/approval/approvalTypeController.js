@@ -34,6 +34,7 @@ const getApprovalType = async (req, res) => {
       res.status(404).json({
         success: false,
         message: "Unable to fetched Data",
+        data: recordset,
       });
     }
     res.status(200).json({
