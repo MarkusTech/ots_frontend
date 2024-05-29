@@ -27,7 +27,27 @@ const saveApprovalType = async (req, res) => {
 };
 
 const getApprovalType = async (req, res) => {
-  res.send("Get all approval type");
+  try {
+    const result = await sqlConn.query(`Select * From [dbo].[AppType]`);
+    const recordset = result.recordset;
+    if (!result) {
+      res.status(404).json({
+        success: false,
+        message: "Unable to fetched Data",
+      });
+    }
+    res.status(200).json({
+      success: true,
+      message: "Approval List Feched!",
+      data: recordset,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({
+      success: false,
+      message: error.message,
+    });
+  }
 };
 
 const getSingleApprovalType = async (req, res) => {
