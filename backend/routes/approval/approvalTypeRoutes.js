@@ -11,7 +11,7 @@ const router = express.Router();
 router.post("/approval/type", saveApprovalType);
 router.get("/approval/type", getApprovalType);
 router.get("/approval/type/:AppTypeID", getSingleApprovalType);
-router.put("/approval/type/:id", updateApprovalType);
-router.delete("/approval/type", deleteApprovalType);
+router.put("/approval/type/:AppTypeID", updateApprovalType);
+router.delete("/approval/type/::AppTypeID", deleteApprovalType);
 
 export default router;
