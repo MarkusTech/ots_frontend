@@ -1,4 +1,4 @@
-import sqlConn2 from "../config/db2.js";
+import sqlConn2 from "../../config/db2.js";
 
 const getLocation = async (req, res) => {
   try {
