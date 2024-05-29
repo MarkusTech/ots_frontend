@@ -29,7 +29,7 @@ import arpprovalTypeRoutes from "./routes/approval/approvalTypeRoutes.js";
 
 // dotenv config
 dotenv.config();
-const port = process.env.PORT;
+const port = process.env.PORT || 5000;
 const port2 = process.env.PORT2 || 5001;
 
 // rest obj
