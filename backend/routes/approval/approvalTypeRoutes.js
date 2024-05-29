@@ -12,6 +12,6 @@ router.post("/approval/type", saveApprovalType);
 router.get("/approval/type", getApprovalType);
 router.get("/approval/type/:AppTypeID", getSingleApprovalType);
 router.put("/approval/type/:AppTypeID", updateApprovalType);
-router.delete("/approval/type/::AppTypeID", deleteApprovalType);
+router.delete("/approval/type/:AppTypeID", deleteApprovalType);
 
 export default router;

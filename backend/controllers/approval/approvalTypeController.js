@@ -83,7 +83,31 @@ const updateApprovalType = async (req, res) => {
 };
 
 const deleteApprovalType = async (req, res) => {
-  res.send("Delete Approval Type");
+  const { AppTypeID } = req.params;
+  try {
+    const result = await sqlConn.query(
+      `DELETE FROM [dbo].[AppType] WHERE AppTypeID = ${AppTypeID}`
+    );
+
+    if (!result) {
+      res.status(404).json({
+        success: false,
+        message: `Unable to find and delete ${AppTypeID}`,
+      });
+    }
+
+    res.status(200).json({
+      success: true,
+      message: "Deleted Successfully",
+      result,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({
+      success: false,
+      message: error.message,
+    });
+  }
 };
 
 export {
