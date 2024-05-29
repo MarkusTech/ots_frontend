@@ -52,7 +52,30 @@ const getApprovalType = async (req, res) => {
 };
 
 const getSingleApprovalType = async (req, res) => {
-  res.send("Get Selected Approval Type");
+  const { AppTypeID } = req.params;
+  try {
+    const result = await sqlConn.query(
+      `SELECT * FROM [dbo].[AppType] WHERE AppTypeID = ${AppTypeID}`
+    );
+    const recordset = result.recordset;
+    if (!result) {
+      res.status(404).json({
+        success: false,
+        message: "Unable to find",
+      });
+    }
+    res.status(200).json({
+      success: true,
+      message: "Approval Type Found",
+      data: recordset,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({
+      success: false,
+      message: error.message,
+    });
+  }
 };
 
 const updateApprovalType = async (req, res) => {
