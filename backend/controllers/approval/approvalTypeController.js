@@ -1,14 +1,14 @@
 import sqlConn from "../../config/db.js";
 
 const saveApprovalType = async (req, res) => {
-  const { AppTypeID, appType } = req.body;
+  const { AppTypeID, AppType } = req.body;
   try {
     // Execute the query
     const result = await sqlConn.query`
         INSERT INTO [dbo].[AppType]
                ([AppTypeID], [AppType])
         VALUES
-               (${AppTypeID}, ${appType});
+               (${AppTypeID}, ${AppType});
       `;
 
     // Send a success response
@@ -23,9 +23,6 @@ const saveApprovalType = async (req, res) => {
       success: false,
       message: error.message,
     });
-  } finally {
-    // Close the connection
-    sql.close();
   }
 };
 
