@@ -1,4 +1,4 @@
-import sqlConn from "../config/db.js";
+import sqlConn from "../../config/db.js";
 
 const pickUpLocation = async (req, res) => {
   try {

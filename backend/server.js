@@ -24,7 +24,7 @@ import loginRoutes from "./routes/loginRoutes.js";
 
 // Routes v2
 import db2_paylocRoutes from "./routes/db2_paylocRoutes.js";
-import db2_UserRoutes from "./routes/db2_UsersRoutes.js";
+import db2_UserRoutes from "./routes/users/db2_UsersRoutes.js";
 
 // dotenv config
 dotenv.config();

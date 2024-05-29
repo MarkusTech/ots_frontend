@@ -6,7 +6,7 @@ import {
   updateUser,
   getTheLastUserId,
   deleteUser,
-} from "../controllers/db2_saveUsers.js";
+} from "../../controllers/users/db2_saveUsers.js";
 const router = express.Router();
 
 router.post("/users", saveUsers);
