@@ -13,6 +13,7 @@ const ApprovalTypePage: React.FC = () => {
   const [showCreateApproval, setShowCreateApproval] = useState(false);
   const [showEditApproval, setShowEditApproval] = useState(false);
   const [approvalList, setApprovalList] = useState<Approval[]>([]);
+  const [fetchTrigger, setFetchTrigger] = useState(0); // State to trigger re-fetch
   const [formData, setFormData] = useState({
     approvalType: "",
   });
@@ -22,7 +23,7 @@ const ApprovalTypePage: React.FC = () => {
       const data = response.data.data;
       setApprovalList(data);
     });
-  }, []);
+  }, [fetchTrigger]);
 
   const createButton = () => {
     setShowCreateApproval(!showCreateApproval);
@@ -55,6 +56,7 @@ const ApprovalTypePage: React.FC = () => {
           approvalType: "",
         });
         setShowCreateApproval(!showCreateApproval);
+        setFetchTrigger((prev) => prev + 1);
       }
     } catch (error) {
       console.error("Error creating approval type:", error);
