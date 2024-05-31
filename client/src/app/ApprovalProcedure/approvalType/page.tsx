@@ -3,6 +3,7 @@ import EditIcon from "@mui/icons-material/Edit";
 import Draggable from "react-draggable";
 import { TextField, Button, Grid, Container } from "@mui/material";
 import axios from "axios";
+import Swal from "sweetalert2";
 
 interface Approval {
   AppTypeID: number;
@@ -69,6 +70,46 @@ const ApprovalTypePage: React.FC = () => {
         });
         setShowCreateApproval(!showCreateApproval);
         setFetchTrigger((prev) => prev + 1);
+        Swal.fire({
+          icon: "success",
+          title: "Success",
+          text: "Approval Type Save successfully",
+        });
+      }
+    } catch (error) {
+      console.error("Error creating approval type:", error);
+    }
+  };
+
+  const handleEdit = async (e: any) => {
+    e.preventDefault();
+
+    const payload = {
+      AppType: editFormdata.AppType,
+    };
+    try {
+      const response = await axios.put(
+        `http://localhost:5000/api/v2/approval/type/${selectedAppTypeID}`,
+        payload,
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
+      if (response.status >= 200 && response.status < 300) {
+        setFetchTrigger((prev) => prev + 1);
+        setShowEditApproval(!showEditApproval);
+        setEditFormData({
+          AppTypeID: 0,
+          AppType: "",
+        });
+        Swal.fire({
+          icon: "success",
+          title: "Success",
+          text: "Approval Type updated successfully",
+        });
       }
     } catch (error) {
       console.error("Error creating approval type:", error);
@@ -83,12 +124,12 @@ const ApprovalTypePage: React.FC = () => {
     }));
   };
 
-  const handleEditChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    setEditFormData({
-      ...editFormdata,
-      [name]: value,
-    });
+  const handleEditChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = event.target;
+    setEditFormData((prevState) => ({
+      ...prevState,
+      [name]: name === "AppTypeID" ? Number(value) : value,
+    }));
   };
 
   const [selectedAppTypeID, setSelectedAppTypeID] = useState<number | null>(
@@ -188,12 +229,12 @@ const ApprovalTypePage: React.FC = () => {
             style={{
               border: "1px solid #ccc",
               position: "absolute",
-              top: "20%",
+              top: "40%",
               left: "20%",
               maxHeight: "700px",
               overflowY: "auto",
               background: "white",
-              zIndex: "9999", // Set a high z-index value to bring it to the front. HAHAHA
+              zIndex: "9999",
             }}
           >
             <div
@@ -211,13 +252,13 @@ const ApprovalTypePage: React.FC = () => {
               <div className="p-2">
                 <Container component="main" maxWidth="md">
                   <br />
-                  <form onSubmit={handleSubmit}>
+                  <form onSubmit={handleEdit}>
                     <Grid container spacing={1}>
                       <Grid item xs={12} sm={12}>
                         <TextField
                           fullWidth
-                          id="approvalTypeId"
-                          name="approvalTypeId"
+                          id="AppTypeID"
+                          name="AppTypeID"
                           label="Approval Type ID"
                           variant="outlined"
                           value={editFormdata.AppTypeID}
@@ -230,8 +271,8 @@ const ApprovalTypePage: React.FC = () => {
                       <Grid item xs={12} sm={12}>
                         <TextField
                           fullWidth
-                          id="approvalTypeId"
-                          name="approvalTypeId"
+                          id="AppType"
+                          name="AppType"
                           label="Approval Type"
                           variant="outlined"
                           value={editFormdata.AppType}
@@ -244,16 +285,12 @@ const ApprovalTypePage: React.FC = () => {
                       variant="contained"
                       color="primary"
                       fullWidth
-                      style={{
-                        marginTop: 20,
-                        backgroundColor: "#f69629",
-                      }}
+                      style={{ marginTop: 20, backgroundColor: "#f69629" }}
                     >
-                      Save
+                      Update
                     </Button>
-                    <br />
-                    <br />
                   </form>
+                  <br />
                 </Container>
               </div>
             </div>
