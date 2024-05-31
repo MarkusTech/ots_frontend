@@ -17,7 +17,12 @@ const ApprovalTypePage: React.FC = () => {
   const [formData, setFormData] = useState({
     approvalType: "",
   });
+  const [editFormdata, setEditFormData] = useState({
+    AppTypeID: 0,
+    AppType: "",
+  });
 
+  // get all list
   useEffect(() => {
     axios.get("http://localhost:5000/api/v2/approval/type").then((response) => {
       const data = response.data.data;
@@ -70,6 +75,34 @@ const ApprovalTypePage: React.FC = () => {
       [name]: value,
     }));
   };
+
+  const handleEditChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setEditFormData({
+      ...editFormdata,
+      [name]: value,
+    });
+  };
+
+  const [selectedAppTypeID, setSelectedAppTypeID] = useState<number | null>(
+    null
+  );
+  useEffect(() => {
+    if (selectedAppTypeID) {
+      axios
+        .get(`http://localhost:5000/api/v2/approval/type/${selectedAppTypeID}`)
+        .then((response) => {
+          let data = response.data.data;
+          setEditFormData({
+            AppTypeID: selectedAppTypeID,
+            AppType: data.EmpName,
+          });
+        })
+        .catch((error) => {
+          console.error("Error fetching users:", error);
+        });
+    }
+  }, [selectedAppTypeID]);
 
   return (
     <div className="container mx-auto">
@@ -175,8 +208,11 @@ const ApprovalTypePage: React.FC = () => {
                           name="approvalTypeId"
                           label="Approval Type ID"
                           variant="outlined"
-                          // value={formData.userID}
-                          // onChange={handleChange}
+                          value={editFormdata.AppTypeID}
+                          onChange={handleEditChange}
+                          InputProps={{
+                            readOnly: true,
+                          }}
                         />
                       </Grid>
                       <Grid item xs={12} sm={12}>
@@ -186,8 +222,8 @@ const ApprovalTypePage: React.FC = () => {
                           name="approvalTypeId"
                           label="Approval Type"
                           variant="outlined"
-                          // value={formData.userID}
-                          // onChange={handleChange}
+                          value={editFormdata.AppType}
+                          onChange={handleEditChange}
                         />
                       </Grid>
                     </Grid>
