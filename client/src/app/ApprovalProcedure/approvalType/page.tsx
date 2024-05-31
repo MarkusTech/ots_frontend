@@ -13,6 +13,9 @@ const ApprovalTypePage: React.FC = () => {
   const [showCreateApproval, setShowCreateApproval] = useState(false);
   const [showEditApproval, setShowEditApproval] = useState(false);
   const [approvalList, setApprovalList] = useState<Approval[]>([]);
+  const [formData, setFormData] = useState({
+    approvalType: "",
+  });
 
   useEffect(() => {
     axios.get("http://localhost:5000/api/v2/approval/type").then((response) => {
@@ -29,8 +32,41 @@ const ApprovalTypePage: React.FC = () => {
     setShowEditApproval(!showEditApproval);
   };
 
-  const handleSubmit = () => {
-    console.log("Hello World!");
+  const handleSubmit = async (event: any) => {
+    event.preventDefault();
+
+    const payload = {
+      AppType: formData.approvalType,
+    };
+    try {
+      const response = await fetch(
+        "http://localhost:5000/api/v2/approval/type",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(payload),
+        }
+      );
+
+      if (response.ok) {
+        setFormData({
+          approvalType: "",
+        });
+        setShowCreateApproval(!showCreateApproval);
+      }
+    } catch (error) {
+      console.error("Error creating approval type:", error);
+    }
+  };
+
+  const handleChange = (event: any) => {
+    const { name, value } = event.target;
+    setFormData((prevState) => ({
+      ...prevState,
+      [name]: value,
+    }));
   };
 
   return (
@@ -188,7 +224,7 @@ const ApprovalTypePage: React.FC = () => {
               maxHeight: "700px",
               overflowY: "auto",
               background: "white",
-              zIndex: "9999", // Set a high z-index value to bring it to the front. HAHAHA
+              zIndex: "9999",
             }}
           >
             <div
@@ -208,26 +244,26 @@ const ApprovalTypePage: React.FC = () => {
                   <br />
                   <form onSubmit={handleSubmit}>
                     <Grid container spacing={1}>
-                      <Grid item xs={12} sm={12}>
+                      {/* <Grid item xs={12} sm={12}>
                         <TextField
                           fullWidth
                           id="approvalTypeId"
                           name="approvalTypeId"
                           label="Approval Type ID"
                           variant="outlined"
-                          // value={formData.userID}
+                          // value={formData.approvalTypeId}
                           // onChange={handleChange}
                         />
-                      </Grid>
+                      </Grid> */}
                       <Grid item xs={12} sm={12}>
                         <TextField
                           fullWidth
-                          id="approvalTypeId"
-                          name="approvalTypeId"
+                          id="approvalType"
+                          name="approvalType"
                           label="Approval Type"
                           variant="outlined"
-                          // value={formData.userID}
-                          // onChange={handleChange}
+                          value={formData.approvalType}
+                          onChange={handleChange}
                         />
                       </Grid>
                     </Grid>
@@ -236,10 +272,7 @@ const ApprovalTypePage: React.FC = () => {
                       variant="contained"
                       color="primary"
                       fullWidth
-                      style={{
-                        marginTop: 20,
-                        backgroundColor: "#f69629",
-                      }}
+                      style={{ marginTop: 20, backgroundColor: "#f69629" }}
                     >
                       Save
                     </Button>
