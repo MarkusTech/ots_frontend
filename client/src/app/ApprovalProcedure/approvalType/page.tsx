@@ -32,10 +32,17 @@ const ApprovalTypePage: React.FC = () => {
 
   const createButton = () => {
     setShowCreateApproval(!showCreateApproval);
+    setFormData({
+      approvalType: "",
+    });
   };
 
   const editButton = () => {
     setShowEditApproval(!showEditApproval);
+    setEditFormData({
+      AppTypeID: 0,
+      AppType: "",
+    });
   };
 
   const handleSubmit = async (event: any) => {
@@ -95,7 +102,7 @@ const ApprovalTypePage: React.FC = () => {
           let data = response.data.data;
           setEditFormData({
             AppTypeID: selectedAppTypeID,
-            AppType: data.EmpName,
+            AppType: data[0].AppType,
           });
         })
         .catch((error) => {
@@ -103,6 +110,10 @@ const ApprovalTypePage: React.FC = () => {
         });
     }
   }, [selectedAppTypeID]);
+
+  const handleSelectedEditApproval = (approvalID: any) => {
+    setSelectedAppTypeID(approvalID.AppTypeID);
+  };
 
   return (
     <div className="container mx-auto">
@@ -125,6 +136,7 @@ const ApprovalTypePage: React.FC = () => {
             {approvalList.map((approval: Approval) => (
               <tr
                 key={approval.AppTypeID}
+                onClick={() => handleSelectedEditApproval(approval)}
                 className="hover:bg-blue-100 cursor-pointer transition-colors"
               >
                 <td className="px-6 py-2 whitespace-nowrap text-sm font-medium text-gray-900">
