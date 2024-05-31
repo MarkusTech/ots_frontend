@@ -15,6 +15,9 @@ const ApprovalTypePage: React.FC = () => {
   const [showEditApproval, setShowEditApproval] = useState(false);
   const [approvalList, setApprovalList] = useState<Approval[]>([]);
   const [fetchTrigger, setFetchTrigger] = useState(0); // State to trigger re-fetch
+  const [selectedAppTypeID, setSelectedAppTypeID] = useState<number | null>(
+    null
+  );
   const [formData, setFormData] = useState({
     approvalType: "",
   });
@@ -101,6 +104,7 @@ const ApprovalTypePage: React.FC = () => {
       if (response.status >= 200 && response.status < 300) {
         setFetchTrigger((prev) => prev + 1);
         setShowEditApproval(!showEditApproval);
+        setSelectedAppTypeID(null);
         setEditFormData({
           AppTypeID: 0,
           AppType: "",
@@ -132,9 +136,6 @@ const ApprovalTypePage: React.FC = () => {
     }));
   };
 
-  const [selectedAppTypeID, setSelectedAppTypeID] = useState<number | null>(
-    null
-  );
   useEffect(() => {
     if (selectedAppTypeID) {
       axios
