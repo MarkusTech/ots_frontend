@@ -1,16 +1,25 @@
-import React, { useState, useEffect, ChangeEvent, FormEvent } from "react";
+import React, { useState, useEffect, ChangeEvent, FormEvent, use } from "react";
 import EditIcon from "@mui/icons-material/Edit";
 import Draggable from "react-draggable";
-import {
-  TextField,
-  Button,
-  Grid,
-  Container,
-} from "@mui/material";
+import { TextField, Button, Grid, Container } from "@mui/material";
+import axios from "axios";
+
+interface Approval {
+  AppTypeID: number;
+  AppType: string;
+}
 
 const ApprovalTypePage: React.FC = () => {
   const [showCreateApproval, setShowCreateApproval] = useState(false);
   const [showEditApproval, setShowEditApproval] = useState(false);
+  const [approvalList, setApprovalList] = useState<Approval[]>([]);
+
+  useEffect(() => {
+    axios.get("http://localhost:5000/api/v2/approval/type").then((response) => {
+      const data = response.data.data;
+      setApprovalList(data);
+    });
+  }, []);
 
   const createButton = () => {
     setShowCreateApproval(!showCreateApproval);
@@ -42,70 +51,27 @@ const ApprovalTypePage: React.FC = () => {
             </tr>
           </thead>
           <tbody className="bg-white divide-y divide-gray-200">
-            <tr className="hover:bg-blue-100 cursor-pointer transition-colors">
-              <td className="px-6 py-2 whitespace-nowrap text-sm font-medium text-gray-900">
-                00001
-              </td>
-              <td className="px-6 py-2 whitespace-nowrap text-sm text-gray-500">
-                Below Standard Discounting
-              </td>
-              <td className="px-6 py-2 whitespace-nowrap text-right text-sm font-medium">
-                <button
-                  className="text-indigo-600 hover:text-indigo-900"
-                  onClick={editButton}
-                >
-                  <EditIcon />
-                </button>
-              </td>
-            </tr>
-            <tr className="hover:bg-blue-100 cursor-pointer transition-colors">
-              <td className="px-6 py-2 whitespace-nowrap text-sm font-medium text-gray-900">
-                00002
-              </td>
-              <td className="px-6 py-2 whitespace-nowrap text-sm text-gray-500">
-                Below Cost
-              </td>
-              <td className="px-6 py-2 whitespace-nowrap text-right text-sm font-medium">
-                <button
-                  className="text-indigo-600 hover:text-indigo-900"
-                  onClick={editButton}
-                >
-                  <EditIcon />
-                </button>
-              </td>
-            </tr>
-            <tr className="hover:bg-blue-100 cursor-pointer transition-colors">
-              <td className="px-6 py-2 whitespace-nowrap text-sm font-medium text-gray-900">
-                00003
-              </td>
-              <td className="px-6 py-2 whitespace-nowrap text-sm text-gray-500">
-                Over Credit
-              </td>
-              <td className="px-6 py-2 whitespace-nowrap text-right text-sm font-medium">
-                <button
-                  className="text-indigo-600 hover:text-indigo-900"
-                  onClick={editButton}
-                >
-                  <EditIcon />
-                </button>
-              </td>
-            </tr>
-            <tr className="hover:bg-blue-100 cursor-pointer transition-colors">
-              <td className="px-6 py-2 whitespace-nowrap text-sm font-medium text-gray-900">
-                00004
-              </td>
-              <td className="px-6 py-2 whitespace-nowrap text-sm text-gray-500">
-                PO Issuance from PDC
-              </td>
-              <td className="px-6 py-2 whitespace-nowrap text-right text-sm font-medium">
-                <button
-                  className="text-indigo-600 hover:text-indigo-900"
-                  onClick={editButton}
-                >
-                  <EditIcon />
-                </button>
-              </td>
-            </tr>
+            {approvalList.map((approval: Approval) => (
+              <tr
+                key={approval.AppTypeID}
+                className="hover:bg-blue-100 cursor-pointer transition-colors"
+              >
+                <td className="px-6 py-2 whitespace-nowrap text-sm font-medium text-gray-900">
+                  {approval.AppTypeID}
+                </td>
+                <td className="px-6 py-2 whitespace-nowrap text-sm text-gray-500">
+                  {approval.AppType}
+                </td>
+                <td className="px-6 py-2 whitespace-nowrap text-right text-sm font-medium">
+                  <button
+                    className="text-indigo-600 hover:text-indigo-900"
+                    onClick={editButton}
+                  >
+                    <EditIcon />
+                  </button>
+                </td>
+              </tr>
+            ))}
           </tbody>
         </table>
       </div>
