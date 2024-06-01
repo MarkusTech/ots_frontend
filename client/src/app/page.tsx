@@ -748,19 +748,19 @@ export default function Home() {
                   }}
                 >
                   <div
-                    className="header grid grid-cols-2 p-2 text-left windowheader"
+                    className="header grid grid-cols-1 p-2 text-left windowheader"
                     style={{ cursor: "move" }}
                   >
                     <div className="flex justify-between items-center">
                       <div>Approval Procedure</div>
-                      {/* <div>
+                      <div>
                         <span
                           className="text-md text-red-600 cursor-pointer"
                           onClick={() => toggleWindow("approvalType")}
                         >
                           ❌
                         </span>
-                      </div> */}
+                      </div>
                     </div>
                   </div>
                   <div className="content">
