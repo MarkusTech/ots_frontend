@@ -24,22 +24,12 @@ const page = () => {
               }}
             />
           </Grid>
-          <Grid item xs={12} sm={1}>
-            <Button
-              // fullWidth
-              variant="outlined"
-              // onClick={handleButtonClick}
-              style={{ height: "100%", width: "130px", fontWeight: "bold" }}
-            >
-              Select User
-            </Button>
-          </Grid>
           <Grid item xs={12} sm={6}>
             <TextField
               fullWidth
-              id="fullName"
-              name="fullName"
-              label="Full Name"
+              id="AppTypeID"
+              name="AppTypeID"
+              label="Approval Type ID"
               variant="outlined"
               InputProps={{
                 readOnly: true,
@@ -49,54 +39,10 @@ const page = () => {
           <Grid item xs={12} sm={6}>
             <TextField
               fullWidth
-              id="position"
-              name="position"
-              label="Position"
-              variant="outlined"
-              // value={formData.position}
-              // onChange={handleChange}
-              InputProps={{
-                readOnly: true,
-              }}
-            />
-          </Grid>
-          <Grid item xs={12} sm={6}>
-            <TextField
-              fullWidth
-              id="branchID"
-              name="branchID"
-              label="Branch ID"
-              variant="outlined"
-              // value={formData.branchID}
-              // onChange={handleChange}
-              InputProps={{
-                readOnly: true,
-              }}
-            />
-          </Grid>
-          <Grid item xs={12} sm={6}>
-            <TextField
-              fullWidth
-              id="branchName"
-              name="branchName"
-              label="Branch Name"
-              variant="outlined"
-              // value={formData.branchName}
-              // onChange={handleChange}
-              InputProps={{
-                readOnly: true,
-              }}
-            />
-          </Grid>
-          <Grid item xs={12} sm={6}>
-            <TextField
-              fullWidth
-              id="warehouseCode"
-              name="warehouseCode"
+              id="WhseCode"
+              name="WhseCode"
               label="Warehouse Code"
               variant="outlined"
-              // value={formData.warehouseCode}
-              // onChange={handleChange}
               InputProps={{
                 readOnly: true,
               }}
@@ -105,12 +51,10 @@ const page = () => {
           <Grid item xs={12} sm={6}>
             <TextField
               fullWidth
-              id="priceListNumber"
-              name="priceListNumber"
-              label="Price List Number"
+              id="DocType"
+              name="DocType"
+              label="Document Type"
               variant="outlined"
-              // value={formData.priceListNumber}
-              // onChange={handleChange}
               InputProps={{
                 readOnly: true,
               }}
@@ -119,28 +63,29 @@ const page = () => {
           <Grid item xs={12} sm={6}>
             <TextField
               fullWidth
-              id="username"
-              name="username"
-              label="Username"
+              id="Type"
+              name="Type"
+              label="Type"
               variant="outlined"
-              // value={formData.username}
-              // onChange={handleChange}
+              InputProps={{
+                readOnly: true,
+              }}
             />
           </Grid>
           <Grid item xs={12} sm={6}>
             <TextField
               fullWidth
-              id="password"
-              name="password"
-              label="Password"
-              type="password"
+              id="NumApprover"
+              name="NumApprover"
+              label="Number of Approver"
               variant="outlined"
-              // value={formData.password}
-              // onChange={handleChange}
+              InputProps={{
+                readOnly: true,
+              }}
             />
           </Grid>
         </Grid>
-        <Button
+        {/* <Button
           type="submit"
           variant="contained"
           color="primary"
@@ -148,7 +93,7 @@ const page = () => {
           style={{ marginTop: 20 }}
         >
           Save
-        </Button>
+        </Button> */}
       </form>
       <div className="pt-72"></div>
     </Container>
