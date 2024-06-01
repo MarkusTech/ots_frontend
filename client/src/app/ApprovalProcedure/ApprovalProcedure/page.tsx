@@ -41,8 +41,6 @@ const page = () => {
               name="fullName"
               label="Full Name"
               variant="outlined"
-              // value={formData.fullName}
-              // onChange={handleChange}
               InputProps={{
                 readOnly: true,
               }}
