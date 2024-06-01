@@ -744,6 +744,7 @@ export default function Home() {
                     top: "5%",
                     left: "15%",
                     transform: "translate(-50%, -50%)",
+                    width: "800px", // Add this line to set the width
                   }}
                 >
                   <div
