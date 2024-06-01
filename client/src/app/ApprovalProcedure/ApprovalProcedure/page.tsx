@@ -10,21 +10,20 @@ const page = () => {
       </div>
       <form>
         <Grid container spacing={3}>
-          <Grid item xs={12} sm={6}>
+          {/* First Row */}
+          <Grid item xs={12} sm={4}>
             <TextField
               fullWidth
               id="AppProcID"
               name="AppProcID"
               label="Approval Procedure ID"
               variant="outlined"
-              // value={formData.userID}
-              // onChange={handleChange}
               InputProps={{
                 readOnly: true,
               }}
             />
           </Grid>
-          <Grid item xs={12} sm={6}>
+          <Grid item xs={12} sm={4}>
             <TextField
               fullWidth
               id="AppTypeID"
@@ -36,7 +35,7 @@ const page = () => {
               }}
             />
           </Grid>
-          <Grid item xs={12} sm={6}>
+          <Grid item xs={12} sm={4}>
             <TextField
               fullWidth
               id="WhseCode"
@@ -48,7 +47,9 @@ const page = () => {
               }}
             />
           </Grid>
-          <Grid item xs={12} sm={6}>
+
+          {/* Second Row */}
+          <Grid item xs={12} sm={4}>
             <TextField
               fullWidth
               id="DocType"
@@ -60,7 +61,7 @@ const page = () => {
               }}
             />
           </Grid>
-          <Grid item xs={12} sm={6}>
+          <Grid item xs={12} sm={4}>
             <TextField
               fullWidth
               id="Type"
@@ -72,7 +73,7 @@ const page = () => {
               }}
             />
           </Grid>
-          <Grid item xs={12} sm={6}>
+          <Grid item xs={12} sm={4}>
             <TextField
               fullWidth
               id="NumApprover"
