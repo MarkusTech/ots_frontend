@@ -756,7 +756,7 @@ export default function Home() {
                       <div>
                         <span
                           className="text-md text-red-600 cursor-pointer"
-                          onClick={() => toggleWindow("approvalType")}
+                          onClick={() => toggleWindow("approvalProcedure")}
                         >
                           ❌
                         </span>
