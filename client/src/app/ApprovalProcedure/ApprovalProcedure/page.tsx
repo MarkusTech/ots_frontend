@@ -1,6 +1,16 @@
 import React, { useState } from "react";
-import { TextField, Grid, Container, Tabs, Tab, Box } from "@mui/material";
-
+import {
+  TextField,
+  Grid,
+  Container,
+  Tabs,
+  Tab,
+  Box,
+  Select,
+  MenuItem,
+  FormControl,
+  InputLabel,
+} from "@mui/material";
 const Page: React.FC = () => {
   const [activeTab, setActiveTab] = useState<number>(0);
 
@@ -69,16 +79,19 @@ const Page: React.FC = () => {
               />
             </Grid>
             <Grid item xs={12} sm={4}>
-              <TextField
-                fullWidth
-                id="Type"
-                name="Type"
-                label="Type"
-                variant="outlined"
-                InputProps={{
-                  readOnly: true,
-                }}
-              />
+              <FormControl variant="outlined" fullWidth>
+                <InputLabel id="Type-label">Type</InputLabel>
+                <Select
+                  labelId="Type-label"
+                  id="Type"
+                  // value={type}
+                  // onChange={handleTypeChange}
+                  label="Type"
+                >
+                  <MenuItem value="Sequential">Sequential</MenuItem>
+                  <MenuItem value="Simultaneous">Simultaneous</MenuItem>
+                </Select>
+              </FormControl>
             </Grid>
             <Grid item xs={12} sm={4}>
               <TextField
@@ -99,6 +112,7 @@ const Page: React.FC = () => {
     }
   };
 
+  // Main form
   return (
     <Container component="main" maxWidth="md">
       <div>
@@ -158,16 +172,19 @@ const Page: React.FC = () => {
             />
           </Grid>
           <Grid item xs={12} sm={4}>
-            <TextField
-              fullWidth
-              id="Type"
-              name="Type"
-              label="Type"
-              variant="outlined"
-              InputProps={{
-                readOnly: true,
-              }}
-            />
+            <FormControl variant="outlined" fullWidth>
+              <InputLabel id="Type-label">Type</InputLabel>
+              <Select
+                labelId="Type-label"
+                id="Type"
+                // value={type}
+                // onChange={handleTypeChange}
+                label="Type"
+              >
+                <MenuItem value="Sequential">Sequential</MenuItem>
+                <MenuItem value="Simultaneous">Simultaneous</MenuItem>
+              </Select>
+            </FormControl>
           </Grid>
           <Grid item xs={12} sm={4}>
             <TextField
@@ -189,8 +206,8 @@ const Page: React.FC = () => {
           <br />
         </div>
         <Tabs value={activeTab} onChange={handleTabChange} centered>
-          <Tab label="Tab 1" />
-          <Tab label="Tab 2" />
+          <Tab label="Originator" />
+          <Tab label="Approver" />
         </Tabs>
         <form>
           <Box mt={3}>{renderTabContent(activeTab)}</Box>
