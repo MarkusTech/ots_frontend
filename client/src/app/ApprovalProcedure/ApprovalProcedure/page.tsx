@@ -28,7 +28,7 @@ const page = () => {
               fullWidth
               id="AppTypeID"
               name="AppTypeID"
-              label="Approval Type ID"
+              label="Approval Type"
               variant="outlined"
               InputProps={{
                 readOnly: true,
