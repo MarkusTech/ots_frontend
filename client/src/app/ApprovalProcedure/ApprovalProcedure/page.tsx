@@ -287,9 +287,7 @@ const Page: React.FC = () => {
               name="NumApprover"
               label="Number of Approver"
               variant="outlined"
-              InputProps={{
-                readOnly: true,
-              }}
+              type="number"
             />
           </Grid>
         </Grid>
