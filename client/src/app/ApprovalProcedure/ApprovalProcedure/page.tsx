@@ -51,6 +51,7 @@ const Page: React.FC = () => {
   const [selectedAppTypeID, setSelectedAppTypeID] = useState<number | null>(
     null
   );
+  const [selectedWarehouse, setSelectedWarehouse] = useState<string>("");
   const [lastApprovalID, setLastApprovalID] = useState<number>();
   const [approvalTypeArr, setApprovalTypeArr] = useState<ApprovalType[]>([]);
   const [warehouseList, setWarehouseList] = useState<WarehouseList[]>([]);
@@ -87,6 +88,17 @@ const Page: React.FC = () => {
     if (selectedType) {
       setSelectedAppTypeID(selectedType.AppTypeID);
       console.log("Selected AppTypeID:", selectedType.AppTypeID);
+    }
+  };
+
+  const handleWarehouseChange = (event: any) => {
+    const selectedWarehouse = warehouseList.find(
+      (warehouse) => warehouse.WhsName === event.target.value
+    );
+
+    if (selectedWarehouse) {
+      setSelectedWarehouse(selectedWarehouse.WhsCode);
+      console.log("Selected Warehouse:", selectedWarehouse.WhsCode);
     }
   };
 
@@ -234,18 +246,29 @@ const Page: React.FC = () => {
           </Grid>
           {/* ------------------ Warehouse Code ------------------ */}
           <Grid item xs={12} sm={4}>
-            <TextField
-              fullWidth
-              id="WhseCode"
-              name="WhseCode"
-              label="Warehouse Code"
-              variant="outlined"
-              InputProps={{
-                readOnly: true,
-              }}
-            />
+            <FormControl variant="outlined" fullWidth>
+              <InputLabel id="WhseCode">Warehouse Code</InputLabel>
+              <Select
+                labelId="WhseCode"
+                id="WhseCode"
+                value={
+                  selectedWarehouse
+                    ? warehouseList.find(
+                        (warehouse) => warehouse.WhsCode === selectedWarehouse
+                      )?.WhsName || ""
+                    : ""
+                }
+                onChange={handleWarehouseChange}
+                label="Warehouse Code"
+              >
+                {warehouseList.map((warehouse) => (
+                  <MenuItem key={warehouse.WhsCode} value={warehouse.WhsName}>
+                    {warehouse.WhsName}
+                  </MenuItem>
+                ))}
+              </Select>
+            </FormControl>
           </Grid>
-
           {/* Second Row */}
           {/* ------------------ DocType Type ------------------ */}
           <Grid item xs={12} sm={4}>
