@@ -174,7 +174,6 @@ const Page: React.FC = () => {
               name="AppProcID"
               label="Approval Procedure ID"
               variant="outlined"
-              value={lastApprovalID}
               InputProps={{
                 readOnly: true,
               }}
