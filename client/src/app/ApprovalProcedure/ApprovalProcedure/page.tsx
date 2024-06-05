@@ -41,7 +41,8 @@ interface ApprovalType {
 const Page: React.FC = () => {
   const [activeTab, setActiveTab] = useState<number>(0);
   const [type, setType] = useState<string>("");
-  const [approvalType, setApprovalType] = useState<ApprovalType[]>([]);
+  const [approvalType, setApprovalType] = useState<string>("");
+  const [approvalTypeArr, setApprovalTypeArr] = useState<ApprovalType[]>([]);
 
   const handleTabChange = (event: React.ChangeEvent<{}>, newValue: number) => {
     setActiveTab(newValue);
@@ -63,12 +64,16 @@ const Page: React.FC = () => {
     setType(event.target.value);
   };
 
+  const handleApprovalTypeChange = (event: any) => {
+    setApprovalType(event.target.value);
+  };
+
   useEffect(() => {
     axios
       .get("http://localhost:5000/api/v2/approval/type")
       .then((response) => {
         const data = response.data.data;
-        setApprovalType(data);
+        setApprovalTypeArr(data);
       })
       .catch((error) => {
         console.error("Error fetching approval types:", error);
@@ -152,16 +157,22 @@ const Page: React.FC = () => {
             />
           </Grid>
           <Grid item xs={12} sm={4}>
-            <TextField
-              fullWidth
-              id="AppTypeID"
-              name="AppTypeID"
-              label="Approval Type"
-              variant="outlined"
-              InputProps={{
-                readOnly: true,
-              }}
-            />
+            <FormControl variant="outlined" fullWidth>
+              <InputLabel id="Type-label">Approval Type</InputLabel>
+              <Select
+                labelId="Type-label"
+                id="AppTypeID"
+                value={approvalType}
+                onChange={handleApprovalTypeChange}
+                label="Approval Type"
+              >
+                {approvalTypeArr.map((type) => (
+                  <MenuItem key={type.AppTypeID} value={type.AppType}>
+                    {type.AppType}
+                  </MenuItem>
+                ))}
+              </Select>
+            </FormControl>
           </Grid>
           <Grid item xs={12} sm={4}>
             <TextField
