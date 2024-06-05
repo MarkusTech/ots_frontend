@@ -41,7 +41,7 @@ interface ApprovalType {
 const Page: React.FC = () => {
   const [activeTab, setActiveTab] = useState<number>(0);
   const [type, setType] = useState<string>("");
-  const [focused, setFocused] = useState(false);
+  const [reload, setReload] = useState(false);
   const [selectedAppTypeID, setSelectedAppTypeID] = useState<number | null>(
     null
   );
@@ -81,6 +81,7 @@ const Page: React.FC = () => {
 
   const handleSave = () => {
     console.log(lastApprovalID);
+    setReload(!reload);
   };
 
   useEffect(() => {
@@ -91,7 +92,7 @@ const Page: React.FC = () => {
         let approvalID = data + 1;
         setLastApprovalID(approvalID);
       });
-  }, []);
+  }, [reload]);
 
   useEffect(() => {
     axios
