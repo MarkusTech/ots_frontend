@@ -92,14 +92,15 @@ const Page: React.FC = () => {
   };
 
   const handleWarehouseChange = (event: any) => {
-    const selectedWarehouse = warehouseList.find(
-      (warehouse) => warehouse.WhsName === event.target.value
-    );
+    const selectedWhsCode = event.target.value;
 
-    if (selectedWarehouse) {
-      setSelectedWarehouse(selectedWarehouse.WhsCode);
-      console.log("Selected Warehouse:", selectedWarehouse.WhsCode);
-    }
+    warehouseList.map((warehouse) => {
+      if (warehouse.WhsCode === selectedWhsCode) {
+        setSelectedWarehouse(warehouse.WhsCode);
+        console.log("Selected Warehouse:", warehouse.WhsCode);
+      }
+      return null; // map requires a return value, so we return null here
+    });
   };
 
   const handleSave = () => {
@@ -251,24 +252,19 @@ const Page: React.FC = () => {
               <Select
                 labelId="WhseCode"
                 id="WhseCode"
-                value={
-                  selectedWarehouse
-                    ? warehouseList.find(
-                        (warehouse) => warehouse.WhsCode === selectedWarehouse
-                      )?.WhsName || ""
-                    : ""
-                }
+                value={selectedWarehouse || ""}
                 onChange={handleWarehouseChange}
                 label="Warehouse Code"
               >
                 {warehouseList.map((warehouse) => (
-                  <MenuItem key={warehouse.WhsCode} value={warehouse.WhsName}>
+                  <MenuItem key={warehouse.WhsCode} value={warehouse.WhsCode}>
                     {warehouse.WhsName}
                   </MenuItem>
                 ))}
               </Select>
             </FormControl>
           </Grid>
+
           {/* Second Row */}
           {/* ------------------ DocType Type ------------------ */}
           <Grid item xs={12} sm={4}>
