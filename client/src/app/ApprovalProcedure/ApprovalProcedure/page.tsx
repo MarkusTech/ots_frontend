@@ -99,7 +99,7 @@ const Page: React.FC = () => {
         setSelectedWarehouse(warehouse.WhsCode);
         console.log("Selected Warehouse:", warehouse.WhsCode);
       }
-      return null; // map requires a return value, so we return null here
+      return null;
     });
   };
 
