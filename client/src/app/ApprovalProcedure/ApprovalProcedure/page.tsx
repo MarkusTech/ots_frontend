@@ -18,6 +18,7 @@ import {
   TableRow,
   Paper,
 } from "@mui/material";
+import Button from "@mui/material/Button";
 import axios from "axios";
 
 interface OriginatorData {
@@ -75,6 +76,10 @@ const Page: React.FC = () => {
       setSelectedAppTypeID(selectedType.AppTypeID);
       console.log("Selected AppTypeID:", selectedType.AppTypeID);
     }
+  };
+
+  const handleSave = () => {
+    console.log(`Save`);
   };
 
   useEffect(() => {
@@ -262,6 +267,25 @@ const Page: React.FC = () => {
           <Box mt={3}>{renderTabContent(activeTab)}</Box>
         </form>
         <div className="pt-72"></div>
+
+        {/* Save button */}
+        <Button
+          onClick={handleSave}
+          fullWidth
+          variant="contained"
+          sx={{
+            mt: 3,
+            mb: 2,
+            backgroundColor: "#F69629 !important",
+            color: "white",
+            "&:hover": {
+              backgroundColor: "#F69629 !important",
+              boxShadow: "0px 4px 15px rgba(0, 0, 0, 0.2)",
+            },
+          }}
+        >
+          Save
+        </Button>
       </div>
     </Container>
   );
