@@ -5,6 +5,13 @@ const getLastApprovalID = async (req, res) => {
     const result = await sqlConn.query(`SELECT MAX(AppProcID) AS LastAppProcID
     FROM [dbo].[AppProc_Main]`);
 
+    if (!result) {
+      res.status(404).json({
+        success: false,
+        message: "Last Approval ID cannot be found!",
+      });
+    }
+
     res.status(200).json({
       success: true,
       message: "Last Approval ID found",
