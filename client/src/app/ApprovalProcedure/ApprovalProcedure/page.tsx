@@ -49,6 +49,7 @@ const Page: React.FC = () => {
   const [approvalTypeArr, setApprovalTypeArr] = useState<ApprovalType[]>([]);
   const [lastApprovalID, setLastApprovalID] = useState<number>();
 
+  // for tab changing
   const handleTabChange = (event: React.ChangeEvent<{}>, newValue: number) => {
     setActiveTab(newValue);
   };
