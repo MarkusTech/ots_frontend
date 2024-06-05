@@ -3,9 +3,9 @@ import sqlConn2 from "../../config/db2.js";
 const getListOfWarehouse = async (req, res) => {
   try {
     const result = await sqlConn2.query(`
-      SELECT [WhsCode], [WhsName]
-      FROM [BCD_TEST_DB].[dbo].[OWHS]
-      WHERE [Inactive] = 'N'
+    SELECT [WhsCode], [WhsName]
+    FROM [BCD_TEST_DB].[dbo].[OWHS]
+    WHERE [Inactive] = 'N' and WhsName is not null;
     `);
 
     if (!result) {
