@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   TextField,
   Grid,
@@ -18,6 +18,7 @@ import {
   TableRow,
   Paper,
 } from "@mui/material";
+import axios from "axios";
 
 interface OriginatorData {
   id: number;
@@ -34,6 +35,7 @@ interface ApproverData {
 
 const Page: React.FC = () => {
   const [activeTab, setActiveTab] = useState<number>(0);
+  const [type, setType] = useState("");
 
   const handleTabChange = (event: React.ChangeEvent<{}>, newValue: number) => {
     setActiveTab(newValue);
@@ -50,6 +52,16 @@ const Page: React.FC = () => {
     { id: 2, name: "Jane Smith", position: "Designer", level: "1" },
     { id: 3, name: "Alice Johnson", position: "Manager", level: "1" },
   ];
+
+  const handleTypeChange = (event: any) => {
+    setType(event.target.value);
+  };
+
+  useEffect(() => {
+    axios.get("http://localhost:5000/api/v2/approval/type").then((response) => {
+      console.log(response.data.data);
+    });
+  }, []);
 
   const renderTabContent = (index: number) => {
     switch (index) {
@@ -171,8 +183,8 @@ const Page: React.FC = () => {
               <Select
                 labelId="Type-label"
                 id="Type"
-                // value={type}
-                // onChange={handleTypeChange}
+                value={type}
+                onChange={handleTypeChange}
                 label="Type"
               >
                 <MenuItem value="Sequential">Sequential</MenuItem>
