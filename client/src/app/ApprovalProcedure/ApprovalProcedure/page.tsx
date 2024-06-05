@@ -91,6 +91,7 @@ const Page: React.FC = () => {
     }
   };
 
+  // handle warehouse change
   const handleWarehouseChange = (event: any) => {
     const selectedWhsCode = event.target.value;
 
