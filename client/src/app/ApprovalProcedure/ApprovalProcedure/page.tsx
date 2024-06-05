@@ -180,6 +180,9 @@ const Page: React.FC = () => {
               InputProps={{
                 readOnly: true,
               }}
+              InputLabelProps={{
+                shrink: true,
+              }}
             />
           </Grid>
           {/* ------------------ Approval Type ------------------ */}
