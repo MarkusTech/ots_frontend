@@ -42,6 +42,9 @@ const Page: React.FC = () => {
   const [activeTab, setActiveTab] = useState<number>(0);
   const [type, setType] = useState<string>("");
   const [approvalType, setApprovalType] = useState<string>("");
+  const [selectedAppTypeID, setSelectedAppTypeID] = useState<number | null>(
+    null
+  );
   const [approvalTypeArr, setApprovalTypeArr] = useState<ApprovalType[]>([]);
 
   const handleTabChange = (event: React.ChangeEvent<{}>, newValue: number) => {
@@ -65,7 +68,13 @@ const Page: React.FC = () => {
   };
 
   const handleApprovalTypeChange = (event: any) => {
-    setApprovalType(event.target.value);
+    const selectedType = approvalTypeArr.find(
+      (type) => type.AppType === event.target.value
+    );
+    if (selectedType) {
+      setSelectedAppTypeID(selectedType.AppTypeID);
+      console.log("Selected AppTypeID:", selectedType.AppTypeID);
+    }
   };
 
   useEffect(() => {
@@ -162,7 +171,13 @@ const Page: React.FC = () => {
               <Select
                 labelId="Type-label"
                 id="AppTypeID"
-                value={approvalType}
+                value={
+                  selectedAppTypeID
+                    ? approvalTypeArr.find(
+                        (type) => type.AppTypeID === selectedAppTypeID
+                      )?.AppType || ""
+                    : ""
+                }
                 onChange={handleApprovalTypeChange}
                 label="Approval Type"
               >
