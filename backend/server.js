@@ -26,6 +26,7 @@ import loginRoutes from "./routes/auth/loginRoutes.js";
 import db2_paylocRoutes from "./routes/location/db2_paylocRoutes.js";
 import db2_UserRoutes from "./routes/users/db2_UsersRoutes.js";
 import arpprovalTypeRoutes from "./routes/approval/approvalTypeRoutes.js";
+import getLastApprovalIDRoutes from "./routes/approval/getLastApprovalIDRoutes.js";
 
 // dotenv config
 dotenv.config();
@@ -66,6 +67,7 @@ app.use("/api/v1", loginRoutes);
 app.use("/api/v2", db2_paylocRoutes);
 app.use("/api/v2", db2_UserRoutes);
 app.use("/api/v2", arpprovalTypeRoutes);
+app.use("/api/v2", getLastApprovalIDRoutes);
 
 sqlConn.connect((err) => {
   if (err) {
