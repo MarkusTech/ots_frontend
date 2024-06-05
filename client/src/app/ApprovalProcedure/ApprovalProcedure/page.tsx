@@ -282,7 +282,7 @@ const Page: React.FC = () => {
         <form>
           <Box mt={3}>{renderTabContent(activeTab)}</Box>
         </form>
-        <div className="pt-72"></div>
+        <div className="pt-40"></div>
 
         {/* Save button */}
         <div className="flex justify-between items-center mb-6 pt-2 px-4">
