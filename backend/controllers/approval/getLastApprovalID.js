@@ -1,4 +1,4 @@
-import sqlConn from "../../config/db";
+import sqlConn from "../../config/db.js";
 
 const getLastApprovalID = async (req, res) => {
   try {
