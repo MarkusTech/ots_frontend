@@ -38,6 +38,11 @@ interface ApprovalType {
   AppType: string;
 }
 
+interface WarehouseList {
+  WhsCode: string;
+  WhsName: string;
+}
+
 const Page: React.FC = () => {
   const [activeTab, setActiveTab] = useState<number>(0);
   const [type, setType] = useState<string>("");
@@ -46,8 +51,9 @@ const Page: React.FC = () => {
   const [selectedAppTypeID, setSelectedAppTypeID] = useState<number | null>(
     null
   );
-  const [approvalTypeArr, setApprovalTypeArr] = useState<ApprovalType[]>([]);
   const [lastApprovalID, setLastApprovalID] = useState<number>();
+  const [approvalTypeArr, setApprovalTypeArr] = useState<ApprovalType[]>([]);
+  const [warehouseList, setWarehouseList] = useState<WarehouseList[]>([]);
 
   // for tab changing
   const handleTabChange = (event: React.ChangeEvent<{}>, newValue: number) => {
@@ -87,7 +93,17 @@ const Page: React.FC = () => {
   const handleSave = () => {
     console.log(lastApprovalID);
     setReload(!reload);
+    console.log(warehouseList);
   };
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:5000/api/v2/list-warehouse")
+      .then((response) => {
+        const data = response.data.data;
+        setWarehouseList(data);
+      });
+  }, []);
 
   useEffect(() => {
     axios
