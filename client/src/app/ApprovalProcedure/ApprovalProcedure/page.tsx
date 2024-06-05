@@ -64,12 +64,16 @@ const Page: React.FC = () => {
   };
 
   useEffect(() => {
-    axios.get("http://localhost:5000/api/v2/approval/type").then((response) => {
-      console.log(response.data.data);
-      const data = response.data.data;
-      setApprovalType(data);
-    });
-  }, []);
+    axios
+      .get("http://localhost:5000/api/v2/approval/type")
+      .then((response) => {
+        const data = response.data.data;
+        setApprovalType(data);
+      })
+      .catch((error) => {
+        console.error("Error fetching approval types:", error);
+      });
+  }, []); // Only run once when the component mounts
 
   const renderTabContent = (index: number) => {
     switch (index) {
