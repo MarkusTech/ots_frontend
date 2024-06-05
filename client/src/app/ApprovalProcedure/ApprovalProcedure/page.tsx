@@ -270,19 +270,11 @@ const Page: React.FC = () => {
 
         {/* Save button */}
         <Button
-          onClick={handleSave}
-          fullWidth
+          type="submit"
           variant="contained"
-          sx={{
-            mt: 3,
-            mb: 2,
-            backgroundColor: "#F69629 !important",
-            color: "white",
-            "&:hover": {
-              backgroundColor: "#F69629 !important",
-              boxShadow: "0px 4px 15px rgba(0, 0, 0, 0.2)",
-            },
-          }}
+          color="primary"
+          fullWidth
+          style={{ marginTop: 20, backgroundColor: "#f69629" }}
         >
           Save
         </Button>
