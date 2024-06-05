@@ -33,9 +33,15 @@ interface ApproverData {
   level: string;
 }
 
+interface ApprovalType {
+  AppTypeID: number;
+  AppType: string;
+}
+
 const Page: React.FC = () => {
   const [activeTab, setActiveTab] = useState<number>(0);
-  const [type, setType] = useState("");
+  const [type, setType] = useState<string>("");
+  const [approvalType, setApprovalType] = useState<ApprovalType[]>([]);
 
   const handleTabChange = (event: React.ChangeEvent<{}>, newValue: number) => {
     setActiveTab(newValue);
@@ -60,6 +66,8 @@ const Page: React.FC = () => {
   useEffect(() => {
     axios.get("http://localhost:5000/api/v2/approval/type").then((response) => {
       console.log(response.data.data);
+      const data = response.data.data;
+      setApprovalType(data);
     });
   }, []);
 
