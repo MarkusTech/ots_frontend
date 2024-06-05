@@ -269,15 +269,27 @@ const Page: React.FC = () => {
         <div className="pt-72"></div>
 
         {/* Save button */}
-        <Button
-          type="submit"
-          variant="contained"
-          color="primary"
-          fullWidth
-          style={{ marginTop: 20, backgroundColor: "#f69629" }}
-        >
-          Save
-        </Button>
+        <div className="flex justify-between items-center mb-6 pt-2 px-4">
+          <h2 className="text-lg font-semibold text-gray-800"></h2>
+          <button
+            className="flex items-center px-4 py-2 button-custom-bg-color text-white rounded-md focus:outline-none focus:bg-blue-600"
+            onClick={handleSave}
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-5 w-5 mr-2"
+              viewBox="0 0 20 20"
+              fill="currentColor"
+            >
+              <path
+                fillRule="evenodd"
+                d="M10 2a8 8 0 1 0 0 16 8 8 0 0 0 0-16zM9 9V5a1 1 0 0 1 2 0v4h4a1 1 0 0 1 0 2h-4v4a1 1 0 1 1-2 0v-4H5a1 1 0 1 1 0-2h4V9z"
+                clipRule="evenodd"
+              />
+            </svg>
+            Save
+          </button>
+        </div>
       </div>
     </Container>
   );
