@@ -18,7 +18,6 @@ import {
   TableRow,
   Paper,
 } from "@mui/material";
-import Button from "@mui/material/Button";
 import axios from "axios";
 
 interface OriginatorData {
@@ -42,7 +41,7 @@ interface ApprovalType {
 const Page: React.FC = () => {
   const [activeTab, setActiveTab] = useState<number>(0);
   const [type, setType] = useState<string>("");
-  const [approvalType, setApprovalType] = useState<string>("");
+  const [focused, setFocused] = useState(false);
   const [selectedAppTypeID, setSelectedAppTypeID] = useState<number | null>(
     null
   );
@@ -88,7 +87,9 @@ const Page: React.FC = () => {
     axios
       .get(`http://localhost:5000/api/v2/last-approval-id`)
       .then((response) => {
-        setLastApprovalID(response.data.data.LastAppProcID);
+        const data = response.data.data.LastAppProcID;
+        let approvalID = data + 1;
+        setLastApprovalID(approvalID);
       });
   }, []);
 
@@ -175,6 +176,7 @@ const Page: React.FC = () => {
               name="AppProcID"
               label="Approval Procedure ID"
               variant="outlined"
+              value={lastApprovalID}
               InputProps={{
                 readOnly: true,
               }}
