@@ -47,6 +47,7 @@ const Page: React.FC = () => {
     null
   );
   const [approvalTypeArr, setApprovalTypeArr] = useState<ApprovalType[]>([]);
+  const [lastApprovalID, setLastApprovalID] = useState<number>();
 
   const handleTabChange = (event: React.ChangeEvent<{}>, newValue: number) => {
     setActiveTab(newValue);
@@ -79,8 +80,16 @@ const Page: React.FC = () => {
   };
 
   const handleSave = () => {
-    console.log(`Save`);
+    console.log(lastApprovalID);
   };
+
+  useEffect(() => {
+    axios
+      .get(`http://localhost:5000/api/v2/last-approval-id`)
+      .then((response) => {
+        setLastApprovalID(response.data.data.LastAppProcID);
+      });
+  }, []);
 
   useEffect(() => {
     axios
@@ -165,6 +174,7 @@ const Page: React.FC = () => {
               name="AppProcID"
               label="Approval Procedure ID"
               variant="outlined"
+              value={lastApprovalID}
               InputProps={{
                 readOnly: true,
               }}
