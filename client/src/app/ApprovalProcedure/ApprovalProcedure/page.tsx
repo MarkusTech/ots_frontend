@@ -41,6 +41,7 @@ interface ApprovalType {
 const Page: React.FC = () => {
   const [activeTab, setActiveTab] = useState<number>(0);
   const [type, setType] = useState<string>("");
+  const [doctype, setDoctype] = useState<string>("");
   const [reload, setReload] = useState(false);
   const [selectedAppTypeID, setSelectedAppTypeID] = useState<number | null>(
     null
@@ -67,6 +68,10 @@ const Page: React.FC = () => {
 
   const handleTypeChange = (event: any) => {
     setType(event.target.value);
+  };
+
+  const handleDocChange = (event: any) => {
+    setDoctype(event.target.value);
   };
 
   const handleApprovalTypeChange = (event: any) => {
@@ -228,16 +233,19 @@ const Page: React.FC = () => {
           {/* Second Row */}
           {/* ------------------ DocType Type ------------------ */}
           <Grid item xs={12} sm={4}>
-            <TextField
-              fullWidth
-              id="DocType"
-              name="DocType"
-              label="Document Type"
-              variant="outlined"
-              InputProps={{
-                readOnly: true,
-              }}
-            />
+            <FormControl variant="outlined" fullWidth>
+              <InputLabel id="Doc-Type">Document Type</InputLabel>
+              <Select
+                labelId="Doc-Type"
+                id="Doc-Type"
+                value={doctype}
+                onChange={handleDocChange}
+                label="Document Type"
+              >
+                <MenuItem value="SalesOrder">Sales Order</MenuItem>
+                <MenuItem value="SalesQoutation">Sales Quotation</MenuItem>
+              </Select>
+            </FormControl>
           </Grid>
           {/* ------------------ Type ------------------ */}
           <Grid item xs={12} sm={4}>
