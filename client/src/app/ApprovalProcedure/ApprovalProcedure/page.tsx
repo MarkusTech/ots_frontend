@@ -92,7 +92,7 @@ const Page: React.FC = () => {
       .catch((error) => {
         console.error("Error fetching approval types:", error);
       });
-  }, []); // Only run once when the component mounts
+  }, []);
 
   const renderTabContent = (index: number) => {
     switch (index) {
