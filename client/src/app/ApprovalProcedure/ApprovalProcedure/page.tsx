@@ -190,6 +190,7 @@ const Page: React.FC = () => {
               </Select>
             </FormControl>
           </Grid>
+          {/* ------------------ Warehouse Code ------------------ */}
           <Grid item xs={12} sm={4}>
             <TextField
               fullWidth
@@ -204,6 +205,7 @@ const Page: React.FC = () => {
           </Grid>
 
           {/* Second Row */}
+          {/* ------------------ DocType Type ------------------ */}
           <Grid item xs={12} sm={4}>
             <TextField
               fullWidth
@@ -216,6 +218,7 @@ const Page: React.FC = () => {
               }}
             />
           </Grid>
+          {/* ------------------ Type ------------------ */}
           <Grid item xs={12} sm={4}>
             <FormControl variant="outlined" fullWidth>
               <InputLabel id="Type-label">Type</InputLabel>
@@ -231,6 +234,7 @@ const Page: React.FC = () => {
               </Select>
             </FormControl>
           </Grid>
+          {/* ------------------ Number of Approver ------------------ */}
           <Grid item xs={12} sm={4}>
             <TextField
               fullWidth
