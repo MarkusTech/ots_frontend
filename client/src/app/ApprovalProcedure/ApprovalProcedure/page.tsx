@@ -165,6 +165,7 @@ const Page: React.FC = () => {
               }}
             />
           </Grid>
+          {/* ------------------ Approval Type ------------------ */}
           <Grid item xs={12} sm={4}>
             <FormControl variant="outlined" fullWidth>
               <InputLabel id="Type-label">Approval Type</InputLabel>
