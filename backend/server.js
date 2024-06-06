@@ -21,6 +21,7 @@ import saveHeaderRoutes from "./routes/ordertaking/saveHeaderRoutes.js";
 import saveFinalCommit from "./routes/ordertaking/saveFinalCommitRoutes.js";
 import receiptRoutes from "./routes/ordertaking/receiptRoutes.js";
 import loginRoutes from "./routes/auth/loginRoutes.js";
+import approvalProcedureRoutes from "./routes/approval/approvalProcedureRoutes.js";
 
 // Routes v2
 import db2_paylocRoutes from "./routes/location/db2_paylocRoutes.js";
@@ -63,6 +64,7 @@ app.use("/api/v1", saveHeaderRoutes);
 app.use("/api/v1", saveFinalCommit);
 app.use("/api/v1", receiptRoutes);
 app.use("/api/v1", loginRoutes);
+app.use("/api/v1", approvalProcedureRoutes);
 
 // API V2
 app.use("/api/v2", db2_paylocRoutes);
