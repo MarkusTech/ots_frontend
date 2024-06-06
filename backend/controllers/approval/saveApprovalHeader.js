@@ -15,6 +15,13 @@ const saveApprovalHeader = async (req, res) => {
            (${AppTypeID}, '${WhseCode}', '${DocType}', '${Type}', ${NumApprover})
   `);
 
+    if (!data) {
+      res.status(404).json({
+        success: false,
+        message: "Unable to save Approval Header",
+      });
+    }
+
     res.status(201).json({
       success: true,
       message: "Data inserted successfully",
