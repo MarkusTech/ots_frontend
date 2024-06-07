@@ -19,6 +19,7 @@ import {
   Paper,
 } from "@mui/material";
 import axios from "axios";
+import Draggable from "react-draggable";
 
 interface OriginatorData {
   id: number;
@@ -43,6 +44,35 @@ interface WarehouseList {
   WhsName: string;
 }
 
+interface ApprovalData {
+  approvalProcedureId: string;
+  approvalType: string;
+  warehouseCode: string;
+  documentType: string;
+  type: string;
+  numberOfApprover: number;
+}
+
+const rows: ApprovalData[] = [
+  {
+    approvalProcedureId: "001",
+    approvalType: "Standard",
+    warehouseCode: "WH01",
+    documentType: "Invoice",
+    type: "Automatic",
+    numberOfApprover: 3,
+  },
+  {
+    approvalProcedureId: "002",
+    approvalType: "Express",
+    warehouseCode: "WH02",
+    documentType: "Purchase Order",
+    type: "Manual",
+    numberOfApprover: 2,
+  },
+  // Add more rows as needed
+];
+
 const Page: React.FC = () => {
   const [activeTab, setActiveTab] = useState<number>(0);
   const [type, setType] = useState<string>("");
@@ -55,10 +85,15 @@ const Page: React.FC = () => {
   const [lastApprovalID, setLastApprovalID] = useState<number>();
   const [approvalTypeArr, setApprovalTypeArr] = useState<ApprovalType[]>([]);
   const [warehouseList, setWarehouseList] = useState<WarehouseList[]>([]);
+  const [showCreateApproval, setShowCreateApproval] = useState(false);
 
   // for tab changing
   const handleTabChange = (event: React.ChangeEvent<{}>, newValue: number) => {
     setActiveTab(newValue);
+  };
+
+  const showApprovalButton = () => {
+    setShowCreateApproval(!showCreateApproval);
   };
 
   const users: OriginatorData[] = [
@@ -199,139 +234,37 @@ const Page: React.FC = () => {
   // Main form
   return (
     <Container component="main" maxWidth="md">
-      <div>
-        <br />
-      </div>
-      <form>
-        <Grid container spacing={3}>
-          {/* First Row */}
-          <Grid item xs={12} sm={4}>
-            <TextField
-              fullWidth
-              id="AppProcID"
-              name="AppProcID"
-              label="Approval Procedure ID"
-              variant="outlined"
-              value={lastApprovalID}
-              InputProps={{
-                readOnly: true,
-              }}
-              InputLabelProps={{
-                shrink: true,
-              }}
-            />
-          </Grid>
-          {/* ------------------ Approval Type ------------------ */}
-          <Grid item xs={12} sm={4}>
-            <FormControl variant="outlined" fullWidth>
-              <InputLabel id="Type-label">Approval Type</InputLabel>
-              <Select
-                labelId="Type-label"
-                id="AppTypeID"
-                value={
-                  selectedAppTypeID
-                    ? approvalTypeArr.find(
-                        (type) => type.AppTypeID === selectedAppTypeID
-                      )?.AppType || ""
-                    : ""
-                }
-                onChange={handleApprovalTypeChange}
-                label="Approval Type"
-              >
-                {approvalTypeArr.map((type) => (
-                  <MenuItem key={type.AppTypeID} value={type.AppType}>
-                    {type.AppType}
-                  </MenuItem>
-                ))}
-              </Select>
-            </FormControl>
-          </Grid>
-          {/* ------------------ Warehouse Code ------------------ */}
-          <Grid item xs={12} sm={4}>
-            <FormControl variant="outlined" fullWidth>
-              <InputLabel id="WhseCode">Warehouse Code</InputLabel>
-              <Select
-                labelId="WhseCode"
-                id="WhseCode"
-                value={selectedWarehouse || ""}
-                onChange={handleWarehouseChange}
-                label="Warehouse Code"
-              >
-                {warehouseList.map((warehouse) => (
-                  <MenuItem key={warehouse.WhsCode} value={warehouse.WhsCode}>
-                    {warehouse.WhsName}
-                  </MenuItem>
-                ))}
-              </Select>
-            </FormControl>
-          </Grid>
-
-          {/* Second Row */}
-          {/* ------------------ DocType Type ------------------ */}
-          <Grid item xs={12} sm={4}>
-            <FormControl variant="outlined" fullWidth>
-              <InputLabel id="Doc-Type">Document Type</InputLabel>
-              <Select
-                labelId="Doc-Type"
-                id="Doc-Type"
-                value={doctype}
-                onChange={handleDocChange}
-                label="Document Type"
-              >
-                <MenuItem value="SalesOrder">Sales Order</MenuItem>
-                <MenuItem value="SalesQoutation">Sales Quotation</MenuItem>
-              </Select>
-            </FormControl>
-          </Grid>
-          {/* ------------------ Type ------------------ */}
-          <Grid item xs={12} sm={4}>
-            <FormControl variant="outlined" fullWidth>
-              <InputLabel id="Type-label">Type</InputLabel>
-              <Select
-                labelId="Type-label"
-                id="Type"
-                value={type}
-                onChange={handleTypeChange}
-                label="Type"
-              >
-                <MenuItem value="Sequential">Sequential</MenuItem>
-                <MenuItem value="Simultaneous">Simultaneous</MenuItem>
-              </Select>
-            </FormControl>
-          </Grid>
-          {/* ------------------ Number of Approver ------------------ */}
-          <Grid item xs={12} sm={4}>
-            <TextField
-              fullWidth
-              id="NumApprover"
-              name="NumApprover"
-              label="Number of Approver"
-              variant="outlined"
-              type="number"
-            />
-          </Grid>
-        </Grid>
-      </form>
-
-      <div className="tabssss">
-        <div>
-          <br />
-        </div>
-        <Tabs value={activeTab} onChange={handleTabChange} centered>
-          <Tab label="Originator" />
-          <Tab label="Approver" />
-        </Tabs>
-        <form>
-          <Box mt={3}>{renderTabContent(activeTab)}</Box>
-        </form>
-        <div className="pt-40"></div>
-
-        {/* Save button */}
+      <TableContainer component={Paper}>
+        <Table sx={{ minWidth: 650 }} aria-label="approval table">
+          <TableHead>
+            <TableRow>
+              <TableCell>Approval Procedure ID</TableCell>
+              <TableCell>Approval Type</TableCell>
+              <TableCell>Warehouse Code</TableCell>
+              <TableCell>Document Type</TableCell>
+              <TableCell>Type</TableCell>
+              <TableCell>Number of Approver</TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {rows.map((row) => (
+              <TableRow key={row.approvalProcedureId}>
+                <TableCell>{row.approvalProcedureId}</TableCell>
+                <TableCell>{row.approvalType}</TableCell>
+                <TableCell>{row.warehouseCode}</TableCell>
+                <TableCell>{row.documentType}</TableCell>
+                <TableCell>{row.type}</TableCell>
+                <TableCell>{row.numberOfApprover}</TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+        <div className="pt-96"></div>
         <div className="flex justify-between items-center mb-6 pt-2 px-4">
           <h2 className="text-lg font-semibold text-gray-800"></h2>
           <button
             className="flex items-center px-4 py-2 button-custom-bg-color text-white rounded-md focus:outline-none focus:bg-blue-600"
-            onClick={handleSave}
+            onClick={showApprovalButton}
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -345,10 +278,173 @@ const Page: React.FC = () => {
                 clipRule="evenodd"
               />
             </svg>
-            Save
+            Create
           </button>
         </div>
-      </div>
+        <br />
+      </TableContainer>
+
+      {showCreateApproval && (
+        <Draggable>
+          <div>
+            <div>
+              <br />
+            </div>
+            <form>
+              <Grid container spacing={3}>
+                {/* First Row */}
+                <Grid item xs={12} sm={4}>
+                  <TextField
+                    fullWidth
+                    id="AppProcID"
+                    name="AppProcID"
+                    label="Approval Procedure ID"
+                    variant="outlined"
+                    value={lastApprovalID}
+                    InputProps={{
+                      readOnly: true,
+                    }}
+                    InputLabelProps={{
+                      shrink: true,
+                    }}
+                  />
+                </Grid>
+                {/* ------------------ Approval Type ------------------ */}
+                <Grid item xs={12} sm={4}>
+                  <FormControl variant="outlined" fullWidth>
+                    <InputLabel id="Type-label">Approval Type</InputLabel>
+                    <Select
+                      labelId="Type-label"
+                      id="AppTypeID"
+                      value={
+                        selectedAppTypeID
+                          ? approvalTypeArr.find(
+                              (type) => type.AppTypeID === selectedAppTypeID
+                            )?.AppType || ""
+                          : ""
+                      }
+                      onChange={handleApprovalTypeChange}
+                      label="Approval Type"
+                    >
+                      {approvalTypeArr.map((type) => (
+                        <MenuItem key={type.AppTypeID} value={type.AppType}>
+                          {type.AppType}
+                        </MenuItem>
+                      ))}
+                    </Select>
+                  </FormControl>
+                </Grid>
+                {/* ------------------ Warehouse Code ------------------ */}
+                <Grid item xs={12} sm={4}>
+                  <FormControl variant="outlined" fullWidth>
+                    <InputLabel id="WhseCode">Warehouse Code</InputLabel>
+                    <Select
+                      labelId="WhseCode"
+                      id="WhseCode"
+                      value={selectedWarehouse || ""}
+                      onChange={handleWarehouseChange}
+                      label="Warehouse Code"
+                    >
+                      {warehouseList.map((warehouse) => (
+                        <MenuItem
+                          key={warehouse.WhsCode}
+                          value={warehouse.WhsCode}
+                        >
+                          {warehouse.WhsName}
+                        </MenuItem>
+                      ))}
+                    </Select>
+                  </FormControl>
+                </Grid>
+
+                {/* Second Row */}
+                {/* ------------------ DocType Type ------------------ */}
+                <Grid item xs={12} sm={4}>
+                  <FormControl variant="outlined" fullWidth>
+                    <InputLabel id="Doc-Type">Document Type</InputLabel>
+                    <Select
+                      labelId="Doc-Type"
+                      id="Doc-Type"
+                      value={doctype}
+                      onChange={handleDocChange}
+                      label="Document Type"
+                    >
+                      <MenuItem value="SalesOrder">Sales Order</MenuItem>
+                      <MenuItem value="SalesQoutation">
+                        Sales Quotation
+                      </MenuItem>
+                    </Select>
+                  </FormControl>
+                </Grid>
+                {/* ------------------ Type ------------------ */}
+                <Grid item xs={12} sm={4}>
+                  <FormControl variant="outlined" fullWidth>
+                    <InputLabel id="Type-label">Type</InputLabel>
+                    <Select
+                      labelId="Type-label"
+                      id="Type"
+                      value={type}
+                      onChange={handleTypeChange}
+                      label="Type"
+                    >
+                      <MenuItem value="Sequential">Sequential</MenuItem>
+                      <MenuItem value="Simultaneous">Simultaneous</MenuItem>
+                    </Select>
+                  </FormControl>
+                </Grid>
+                {/* ------------------ Number of Approver ------------------ */}
+                <Grid item xs={12} sm={4}>
+                  <TextField
+                    fullWidth
+                    id="NumApprover"
+                    name="NumApprover"
+                    label="Number of Approver"
+                    variant="outlined"
+                    type="number"
+                  />
+                </Grid>
+              </Grid>
+            </form>
+
+            <div className="tabssss">
+              <div>
+                <br />
+              </div>
+              <Tabs value={activeTab} onChange={handleTabChange} centered>
+                <Tab label="Originator" />
+                <Tab label="Approver" />
+              </Tabs>
+              <form>
+                <Box mt={3}>{renderTabContent(activeTab)}</Box>
+              </form>
+              <div className="pt-40"></div>
+
+              {/* Save button */}
+              <div className="flex justify-between items-center mb-6 pt-2 px-4">
+                <h2 className="text-lg font-semibold text-gray-800"></h2>
+                <button
+                  className="flex items-center px-4 py-2 button-custom-bg-color text-white rounded-md focus:outline-none focus:bg-blue-600"
+                  onClick={handleSave}
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="h-5 w-5 mr-2"
+                    viewBox="0 0 20 20"
+                    fill="currentColor"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M10 2a8 8 0 1 0 0 16 8 8 0 0 0 0-16zM9 9V5a1 1 0 0 1 2 0v4h4a1 1 0 0 1 0 2h-4v4a1 1 0 1 1-2 0v-4H5a1 1 0 1 1 0-2h4V9z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
+                  Save
+                </button>
+              </div>
+            </div>
+          </div>
+        </Draggable>
+      )}
     </Container>
   );
 };
