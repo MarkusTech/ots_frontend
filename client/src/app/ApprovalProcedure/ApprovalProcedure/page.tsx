@@ -20,6 +20,7 @@ import {
 } from "@mui/material";
 import axios from "axios";
 import Draggable from "react-draggable";
+import EditIcon from "@mui/icons-material/Edit";
 
 interface OriginatorData {
   id: number;
@@ -233,56 +234,92 @@ const Page: React.FC = () => {
 
   // Main form
   return (
-    <Container component="main" maxWidth="md">
-      <TableContainer component={Paper}>
-        <Table sx={{ minWidth: 650 }} aria-label="approval table">
-          <TableHead>
-            <TableRow>
-              <TableCell>Approval Procedure ID</TableCell>
-              <TableCell>Approval Type</TableCell>
-              <TableCell>Warehouse Code</TableCell>
-              <TableCell>Document Type</TableCell>
-              <TableCell>Type</TableCell>
-              <TableCell>Number of Approver</TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
+    <div className="container mx-auto">
+      <div className="tableHeigthView overflow-y-auto">
+        <table className="w-full divide-y divide-gray-200 shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
+          <thead className="bg-gray-50">
+            <tr className="bg-blue-100">
+              <th className="px-6 py-3 text-left text-xs font-semibold text-gray-700 uppercase">
+                Approval Procedure ID
+              </th>
+              <th className="px-6 py-3 text-left text-xs font-semibold text-gray-700 uppercase">
+                Approval Type
+              </th>
+              <th className="px-2 py-3 text-left text-xs font-semibold text-gray-700 uppercase">
+                Warehouse Code
+              </th>
+              <th className="px-2 py-3 text-left text-xs font-semibold text-gray-700 uppercase">
+                Document Type
+              </th>
+              <th className="px-2 py-3 text-left text-xs font-semibold text-gray-700 uppercase">
+                Type
+              </th>
+              <th className="px-2 py-3 text-left text-xs font-semibold text-gray-700 uppercase">
+                Number of Approver
+              </th>
+              <th className="px-2 py-3 text-left text-xs font-semibold text-gray-700 uppercase">
+                Action
+              </th>
+            </tr>
+          </thead>
+          <tbody className="bg-white divide-y divide-gray-200">
             {rows.map((row) => (
-              <TableRow key={row.approvalProcedureId}>
-                <TableCell>{row.approvalProcedureId}</TableCell>
-                <TableCell>{row.approvalType}</TableCell>
-                <TableCell>{row.warehouseCode}</TableCell>
-                <TableCell>{row.documentType}</TableCell>
-                <TableCell>{row.type}</TableCell>
-                <TableCell>{row.numberOfApprover}</TableCell>
-              </TableRow>
+              <tr
+                key={row.approvalProcedureId}
+                className="hover:bg-blue-100 cursor-pointer transition-colors"
+              >
+                <td className="px-6 py-2 whitespace-nowrap text-sm font-medium text-gray-900">
+                  {row.approvalProcedureId}
+                </td>
+                <td className="px-6 py-2 whitespace-nowrap text-sm text-gray-500">
+                  {row.approvalType}
+                </td>
+                <td className="px-6 py-2 whitespace-nowrap text-sm text-gray-500">
+                  {row.warehouseCode}
+                </td>
+                <td className="px-6 py-2 whitespace-nowrap text-sm text-gray-500">
+                  {row.documentType}
+                </td>
+                <td className="px-6 py-2 whitespace-nowrap text-sm text-gray-500">
+                  {row.type}
+                </td>
+                <td className="px-6 py-2 whitespace-nowrap text-sm text-gray-500">
+                  {row.numberOfApprover}
+                </td>
+                <td className="px-6 py-2 whitespace-nowrap text-right text-sm font-medium">
+                  <button
+                    className="text-indigo-600 hover:text-indigo-900"
+                    // onClick={editButton}
+                  >
+                    <EditIcon />
+                  </button>
+                </td>
+              </tr>
             ))}
-          </TableBody>
-        </Table>
-        <div className="pt-96"></div>
-        <div className="flex justify-between items-center mb-6 pt-2 px-4">
-          <h2 className="text-lg font-semibold text-gray-800"></h2>
-          <button
-            className="flex items-center px-4 py-2 button-custom-bg-color text-white rounded-md focus:outline-none focus:bg-blue-600"
-            onClick={showApprovalButton}
+          </tbody>
+        </table>
+      </div>
+      <div className="flex justify-between items-center mb-6 pt-2 px-4">
+        <h2 className="text-lg font-semibold text-gray-800"></h2>
+        <button
+          className="flex items-center px-4 py-2 button-custom-bg-color text-white rounded-md focus:outline-none focus:bg-blue-600"
+          onClick={showApprovalButton}
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="h-5 w-5 mr-2"
+            viewBox="0 0 20 20"
+            fill="currentColor"
           >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-5 w-5 mr-2"
-              viewBox="0 0 20 20"
-              fill="currentColor"
-            >
-              <path
-                fillRule="evenodd"
-                d="M10 2a8 8 0 1 0 0 16 8 8 0 0 0 0-16zM9 9V5a1 1 0 0 1 2 0v4h4a1 1 0 0 1 0 2h-4v4a1 1 0 1 1-2 0v-4H5a1 1 0 1 1 0-2h4V9z"
-                clipRule="evenodd"
-              />
-            </svg>
-            Create
-          </button>
-        </div>
-        <br />
-      </TableContainer>
+            <path
+              fillRule="evenodd"
+              d="M10 2a8 8 0 1 0 0 16 8 8 0 0 0 0-16zM9 9V5a1 1 0 0 1 2 0v4h4a1 1 0 0 1 0 2h-4v4a1 1 0 1 1-2 0v-4H5a1 1 0 1 1 0-2h4V9z"
+              clipRule="evenodd"
+            />
+          </svg>
+          Create
+        </button>
+      </div>
 
       {showCreateApproval && (
         <Draggable>
@@ -472,7 +509,7 @@ const Page: React.FC = () => {
           </div>
         </Draggable>
       )}
-    </Container>
+    </div>
   );
 };
 
