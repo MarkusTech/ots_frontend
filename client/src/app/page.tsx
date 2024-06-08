@@ -4,7 +4,6 @@ import React, { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Draggable from "react-draggable";
 import SalesOrder from "./Transaction/SalesOrder/SalesOrder";
-import Users from "./Setup/Users/page";
 import ViewUser from "./Setup/ViewUsers/page";
 import ApprovalType from "./ApprovalProcedure/approvalType/page";
 import ApprovalProcedure from "./ApprovalProcedure/ApprovalProcedure/page";
@@ -44,7 +43,6 @@ export default function Home() {
   const router = useRouter(); //Router
   const {
     showSalesOrder,
-    showUsers,
     viewUsers,
     showApprovalType,
     showApprovalProcedure,
@@ -554,39 +552,6 @@ export default function Home() {
             )}
 
             {/* Set Users Draggable*/}
-            {showUsers && (
-              <Draggable handle=".header">
-                <div
-                  className="container bg-white"
-                  style={{
-                    border: "1px solid #ccc",
-                    position: "absolute",
-                    zIndex: 2,
-                    top: "5%",
-                    left: "15%",
-                    transform: "translate(-50%, -50%)",
-                  }}
-                >
-                  <div
-                    className="header grid grid-cols-2 p-2 text-left windowheader"
-                    style={{ cursor: "move" }}
-                  >
-                    <div>SETUP USER</div>
-                    <div>
-                      {/* <span
-                        className="text-md text-red-600 cursor-pointer"
-                        onClick={() => toggleWindow("salesorder")}
-                      >
-                        ❌
-                      </span> */}
-                    </div>
-                  </div>
-                  <div className="content">
-                    <Users />
-                  </div>
-                </div>
-              </Draggable>
-            )}
             {viewUsers && (
               <Draggable handle=".header">
                 <div
