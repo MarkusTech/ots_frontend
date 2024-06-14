@@ -212,14 +212,14 @@ const Page: React.FC = () => {
                 </TableBody>
               </Table>
             </TableContainer>
-            <Button
-              variant="contained"
-              color="primary"
-              onClick={sshowOriginators}
-              style={{ marginTop: "16px" }}
-            >
-              Add
-            </Button>
+            <div className="pt-2">
+              <button
+                className="flex items-center px-4 py-2 button-custom-bg-color text-white rounded-md focus:outline-none focus:bg-blue-600"
+                onClick={sshowOriginators}
+              >
+                Add
+              </button>
+            </div>
           </div>
         );
       case 1:
@@ -247,14 +247,14 @@ const Page: React.FC = () => {
                 </TableBody>
               </Table>
             </TableContainer>
-            <Button
-              variant="contained"
-              color="primary"
-              onClick={sshowOriginators}
-              style={{ marginTop: "16px" }}
-            >
-              Add
-            </Button>
+            <div className="pt-2">
+              <button
+                className="flex items-center px-4 py-2 button-custom-bg-color text-white rounded-md focus:outline-none focus:bg-blue-600"
+                onClick={sshowOriginators}
+              >
+                Add
+              </button>
+            </div>
           </div>
         );
       default:
