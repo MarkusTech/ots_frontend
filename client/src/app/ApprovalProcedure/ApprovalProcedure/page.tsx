@@ -219,14 +219,14 @@ const Page: React.FC = () => {
                 </TableRow>
               </TableHead>
               <TableBody>
-                {approvers.map((approver) => (
+                {/* {approvers.map((approver) => (
                   <TableRow key={approver.id}>
                     <TableCell>{approver.id}</TableCell>
                     <TableCell>{approver.name}</TableCell>
                     <TableCell>{approver.position}</TableCell>
                     <TableCell>{approver.level}</TableCell>
                   </TableRow>
-                ))}
+                ))} */}
               </TableBody>
             </Table>
           </TableContainer>
