@@ -87,6 +87,7 @@ const Page: React.FC = () => {
   const [approvalTypeArr, setApprovalTypeArr] = useState<ApprovalType[]>([]);
   const [warehouseList, setWarehouseList] = useState<WarehouseList[]>([]);
   const [showCreateApproval, setShowCreateApproval] = useState(false);
+  const [originators, setOriginators] = useState<OriginatorData[]>([]);
 
   // for tab changing
   const handleTabChange = (event: React.ChangeEvent<{}>, newValue: number) => {
@@ -97,11 +98,13 @@ const Page: React.FC = () => {
     setShowCreateApproval(!showCreateApproval);
   };
 
-  const users: OriginatorData[] = [
-    { UserID: 1, EmployeeName: "John Doe", Position: "Developer" },
-    { UserID: 2, EmployeeName: "Jane Smith", Position: "Designer" },
-    { UserID: 3, EmployeeName: "Alice Johnson", Position: "Manager" },
-  ];
+  useEffect(() => {
+    axios
+      .get("http://172.16.10.169:5001/api/v1/originator")
+      .then((response: any) => {
+        setOriginators(response.data.data);
+      });
+  }, []);
 
   const approvers: ApproverData[] = [
     { id: 1, name: "John Doe", position: "Developer", level: "1" },
@@ -141,9 +144,10 @@ const Page: React.FC = () => {
   };
 
   const handleSave = () => {
-    console.log(lastApprovalID);
+    // console.log(lastApprovalID);
     setReload(!reload);
-    console.log(warehouseList);
+    // console.log(warehouseList);
+    console.log(originators);
   };
 
   useEffect(() => {
@@ -191,11 +195,11 @@ const Page: React.FC = () => {
                 </TableRow>
               </TableHead>
               <TableBody>
-                {users.map((user) => (
-                  <TableRow key={user.UserID}>
-                    <TableCell>{user.UserID}</TableCell>
-                    <TableCell>{user.EmployeeName}</TableCell>
-                    <TableCell>{user.Position}</TableCell>
+                {originators.map((originator) => (
+                  <TableRow key={originator.UserID}>
+                    <TableCell>{originator.UserID}</TableCell>
+                    <TableCell>{originator.EmployeeName}</TableCell>
+                    <TableCell>{originator.Position}</TableCell>
                   </TableRow>
                 ))}
               </TableBody>
