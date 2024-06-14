@@ -213,13 +213,15 @@ const Page: React.FC = () => {
                 </TableBody>
               </Table>
             </TableContainer>
-            <div className="pt-2">
+            <div
+              className="pt-2"
+              style={{ display: "flex", justifyContent: "flex-start" }}
+            >
               <Button
                 variant="contained"
                 onClick={showOriginatorList}
                 startIcon={<AddIcon />}
                 sx={{
-                  marginTop: "16px",
                   backgroundColor: "#f69629 !important", // Ensures the background color is applied
                   "&:hover": {
                     backgroundColor: "#e0851e !important", // Ensures the hover background color is applied
