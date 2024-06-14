@@ -17,6 +17,7 @@ import {
   TableHead,
   TableRow,
   Paper,
+  Button,
 } from "@mui/material";
 import axios from "axios";
 import Draggable from "react-draggable";
@@ -88,6 +89,7 @@ const Page: React.FC = () => {
   const [warehouseList, setWarehouseList] = useState<WarehouseList[]>([]);
   const [showCreateApproval, setShowCreateApproval] = useState(false);
   const [originators, setOriginators] = useState<OriginatorData[]>([]);
+  const [showOriginators, setShowOriginators] = useState(false);
 
   // for tab changing
   const handleTabChange = (event: React.ChangeEvent<{}>, newValue: number) => {
@@ -105,6 +107,10 @@ const Page: React.FC = () => {
         setOriginators(response.data.data);
       });
   }, []);
+
+  const sshowOriginators = () => {
+    setShowOriginators(!showOriginators);
+  };
 
   const approvers: ApproverData[] = [
     { id: 1, name: "John Doe", position: "Developer", level: "1" },
@@ -185,51 +191,71 @@ const Page: React.FC = () => {
     switch (index) {
       case 0:
         return (
-          <TableContainer component={Paper}>
-            <Table>
-              <TableHead>
-                <TableRow>
-                  <TableCell>User ID</TableCell>
-                  <TableCell>User Name</TableCell>
-                  <TableCell>Position</TableCell>
-                </TableRow>
-              </TableHead>
-              <TableBody>
-                {/* {originators.map((originator) => (
+          <div>
+            <TableContainer component={Paper}>
+              <Table>
+                <TableHead>
+                  <TableRow>
+                    <TableCell>User ID</TableCell>
+                    <TableCell>User Name</TableCell>
+                    <TableCell>Position</TableCell>
+                  </TableRow>
+                </TableHead>
+                <TableBody>
+                  {/* {originators.map((originator) => (
                   <TableRow key={originator.UserID}>
                     <TableCell>{originator.UserID}</TableCell>
                     <TableCell>{originator.EmployeeName}</TableCell>
                     <TableCell>{originator.Position}</TableCell>
                   </TableRow>
                 ))} */}
-              </TableBody>
-            </Table>
-          </TableContainer>
+                </TableBody>
+              </Table>
+            </TableContainer>
+            <Button
+              variant="contained"
+              color="primary"
+              onClick={sshowOriginators}
+              style={{ marginTop: "16px" }}
+            >
+              Add
+            </Button>
+          </div>
         );
       case 1:
         return (
-          <TableContainer component={Paper}>
-            <Table>
-              <TableHead>
-                <TableRow>
-                  <TableCell>User ID</TableCell>
-                  <TableCell>User Name</TableCell>
-                  <TableCell>Position</TableCell>
-                  <TableCell>Level</TableCell>
-                </TableRow>
-              </TableHead>
-              <TableBody>
-                {approvers.map((approver) => (
-                  <TableRow key={approver.id}>
-                    <TableCell>{approver.id}</TableCell>
-                    <TableCell>{approver.name}</TableCell>
-                    <TableCell>{approver.position}</TableCell>
-                    <TableCell>{approver.level}</TableCell>
+          <div>
+            <TableContainer component={Paper}>
+              <Table>
+                <TableHead>
+                  <TableRow>
+                    <TableCell>User ID</TableCell>
+                    <TableCell>User Name</TableCell>
+                    <TableCell>Position</TableCell>
+                    <TableCell>Level</TableCell>
                   </TableRow>
-                ))}
-              </TableBody>
-            </Table>
-          </TableContainer>
+                </TableHead>
+                <TableBody>
+                  {approvers.map((approver) => (
+                    <TableRow key={approver.id}>
+                      <TableCell>{approver.id}</TableCell>
+                      <TableCell>{approver.name}</TableCell>
+                      <TableCell>{approver.position}</TableCell>
+                      <TableCell>{approver.level}</TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            </TableContainer>
+            <Button
+              variant="contained"
+              color="primary"
+              onClick={sshowOriginators}
+              style={{ marginTop: "16px" }}
+            >
+              Add
+            </Button>
+          </div>
         );
       default:
         return null;
@@ -347,6 +373,195 @@ const Page: React.FC = () => {
               <div>Create Approval Procedure</div>
               <div className="text-right">
                 <span className="cursor-pointer" onClick={showApprovalButton}>
+                  ❌
+                </span>
+              </div>
+            </div>
+            <div className="content">
+              <div className="p-2">
+                <div>
+                  <br />
+                </div>
+                <form>
+                  <Grid container spacing={3}>
+                    {/* First Row */}
+                    <Grid item xs={12} sm={4}>
+                      <TextField
+                        fullWidth
+                        id="AppProcID"
+                        name="AppProcID"
+                        label="Approval Procedure ID"
+                        variant="outlined"
+                        value={lastApprovalID}
+                        InputProps={{
+                          readOnly: true,
+                        }}
+                        InputLabelProps={{
+                          shrink: true,
+                        }}
+                      />
+                    </Grid>
+                    {/* ------------------ Approval Type ------------------ */}
+                    <Grid item xs={12} sm={4}>
+                      <FormControl variant="outlined" fullWidth>
+                        <InputLabel id="Type-label">Approval Type</InputLabel>
+                        <Select
+                          labelId="Type-label"
+                          id="AppTypeID"
+                          value={
+                            selectedAppTypeID
+                              ? approvalTypeArr.find(
+                                  (type) => type.AppTypeID === selectedAppTypeID
+                                )?.AppType || ""
+                              : ""
+                          }
+                          onChange={handleApprovalTypeChange}
+                          label="Approval Type"
+                        >
+                          {approvalTypeArr.map((type) => (
+                            <MenuItem key={type.AppTypeID} value={type.AppType}>
+                              {type.AppType}
+                            </MenuItem>
+                          ))}
+                        </Select>
+                      </FormControl>
+                    </Grid>
+                    {/* ------------------ Warehouse Code ------------------ */}
+                    <Grid item xs={12} sm={4}>
+                      <FormControl variant="outlined" fullWidth>
+                        <InputLabel id="WhseCode">Warehouse Code</InputLabel>
+                        <Select
+                          labelId="WhseCode"
+                          id="WhseCode"
+                          value={selectedWarehouse || ""}
+                          onChange={handleWarehouseChange}
+                          label="Warehouse Code"
+                        >
+                          {warehouseList.map((warehouse) => (
+                            <MenuItem
+                              key={warehouse.WhsCode}
+                              value={warehouse.WhsCode}
+                            >
+                              {warehouse.WhsName}
+                            </MenuItem>
+                          ))}
+                        </Select>
+                      </FormControl>
+                    </Grid>
+
+                    {/* Second Row */}
+                    {/* ------------------ DocType Type ------------------ */}
+                    <Grid item xs={12} sm={4}>
+                      <FormControl variant="outlined" fullWidth>
+                        <InputLabel id="Doc-Type">Document Type</InputLabel>
+                        <Select
+                          labelId="Doc-Type"
+                          id="Doc-Type"
+                          value={doctype}
+                          onChange={handleDocChange}
+                          label="Document Type"
+                        >
+                          <MenuItem value="SalesOrder">Sales Order</MenuItem>
+                          <MenuItem value="SalesQoutation">
+                            Sales Quotation
+                          </MenuItem>
+                        </Select>
+                      </FormControl>
+                    </Grid>
+                    {/* ------------------ Type ------------------ */}
+                    <Grid item xs={12} sm={4}>
+                      <FormControl variant="outlined" fullWidth>
+                        <InputLabel id="Type-label">Type</InputLabel>
+                        <Select
+                          labelId="Type-label"
+                          id="Type"
+                          value={type}
+                          onChange={handleTypeChange}
+                          label="Type"
+                        >
+                          <MenuItem value="Sequential">Sequential</MenuItem>
+                          <MenuItem value="Simultaneous">Simultaneous</MenuItem>
+                        </Select>
+                      </FormControl>
+                    </Grid>
+                    {/* ------------------ Number of Approver ------------------ */}
+                    <Grid item xs={12} sm={4}>
+                      <TextField
+                        fullWidth
+                        id="NumApprover"
+                        name="NumApprover"
+                        label="Number of Approver"
+                        variant="outlined"
+                        type="number"
+                      />
+                    </Grid>
+                  </Grid>
+                </form>
+
+                <div className="tabssss">
+                  <div>
+                    <br />
+                  </div>
+                  <Tabs value={activeTab} onChange={handleTabChange} centered>
+                    <Tab label="Originator" />
+                    <Tab label="Approver" />
+                  </Tabs>
+                  <form>
+                    <Box mt={3}>{renderTabContent(activeTab)}</Box>
+                  </form>
+                  <div className="pt-28"></div>
+
+                  {/* Save button */}
+                  <div className="flex justify-between items-center mb-6 pt-2 px-4">
+                    <h2 className="text-lg font-semibold text-gray-800"></h2>
+                    <button
+                      className="flex items-center px-4 py-2 button-custom-bg-color text-white rounded-md focus:outline-none focus:bg-blue-600"
+                      onClick={handleSave}
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        className="h-5 w-5 mr-2"
+                        viewBox="0 0 20 20"
+                        fill="currentColor"
+                      >
+                        <path
+                          fillRule="evenodd"
+                          d="M10 2a8 8 0 1 0 0 16 8 8 0 0 0 0-16zM9 9V5a1 1 0 0 1 2 0v4h4a1 1 0 0 1 0 2h-4v4a1 1 0 1 1-2 0v-4H5a1 1 0 1 1 0-2h4V9z"
+                          clipRule="evenodd"
+                        />
+                      </svg>
+                      Save
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </Draggable>
+      )}
+
+      {showOriginators && (
+        <Draggable>
+          <div
+            className="bg-white shadow-lg"
+            style={{
+              border: "1px solid #ccc",
+              position: "absolute",
+              top: "20%",
+              left: "20%",
+              maxHeight: "740px",
+              overflowY: "auto",
+              background: "white",
+              zIndex: "9999",
+            }}
+          >
+            <div
+              className="grid grid-cols-2 p-2 text-left windowheader"
+              style={{ cursor: "move" }}
+            >
+              <div>Create Approval Procedure</div>
+              <div className="text-right">
+                <span className="cursor-pointer" onClick={sshowOriginators}>
                   ❌
                 </span>
               </div>
