@@ -22,6 +22,7 @@ import {
 import axios from "axios";
 import Draggable from "react-draggable";
 import EditIcon from "@mui/icons-material/Edit";
+import AddIcon from "@mui/icons-material/Add";
 
 interface OriginatorData {
   UserID: number;
@@ -89,7 +90,7 @@ const Page: React.FC = () => {
   const [warehouseList, setWarehouseList] = useState<WarehouseList[]>([]);
   const [showCreateApproval, setShowCreateApproval] = useState(false);
   const [originators, setOriginators] = useState<OriginatorData[]>([]);
-  const [showOriginators, setShowOriginators] = useState(false);
+  const [showOriginatorsList, setShowOriginatorsList] = useState(false);
 
   // for tab changing
   const handleTabChange = (event: React.ChangeEvent<{}>, newValue: number) => {
@@ -108,8 +109,8 @@ const Page: React.FC = () => {
       });
   }, []);
 
-  const sshowOriginators = () => {
-    setShowOriginators(!showOriginators);
+  const showOriginatorList = () => {
+    setShowOriginatorsList(!showOriginatorsList);
   };
 
   const approvers: ApproverData[] = [
@@ -213,12 +214,20 @@ const Page: React.FC = () => {
               </Table>
             </TableContainer>
             <div className="pt-2">
-              <button
-                className="flex items-center px-4 py-2 button-custom-bg-color text-white rounded-md focus:outline-none focus:bg-blue-600"
-                onClick={sshowOriginators}
+              <Button
+                variant="contained"
+                onClick={showOriginatorList}
+                startIcon={<AddIcon />}
+                sx={{
+                  marginTop: "16px",
+                  backgroundColor: "#f69629 !important", // Ensures the background color is applied
+                  "&:hover": {
+                    backgroundColor: "#e0851e !important", // Ensures the hover background color is applied
+                  },
+                }}
               >
                 Add
-              </button>
+              </Button>
             </div>
           </div>
         );
@@ -250,7 +259,7 @@ const Page: React.FC = () => {
             <div className="pt-2">
               <button
                 className="flex items-center px-4 py-2 button-custom-bg-color text-white rounded-md focus:outline-none focus:bg-blue-600"
-                onClick={sshowOriginators}
+                onClick={showOriginatorList}
               >
                 Add
               </button>
@@ -540,7 +549,7 @@ const Page: React.FC = () => {
         </Draggable>
       )}
 
-      {showOriginators && (
+      {showOriginatorsList && (
         <Draggable>
           <div
             className="bg-white shadow-lg"
@@ -561,7 +570,7 @@ const Page: React.FC = () => {
             >
               <div>Select Originator</div>
               <div className="text-right">
-                <span className="cursor-pointer" onClick={sshowOriginators}>
+                <span className="cursor-pointer" onClick={showOriginatorList}>
                   ❌
                 </span>
               </div>
