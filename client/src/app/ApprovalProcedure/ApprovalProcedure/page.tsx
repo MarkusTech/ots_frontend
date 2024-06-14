@@ -56,6 +56,19 @@ interface ApprovalData {
   numberOfApprover: number;
 }
 
+interface SelectedOrignator {
+  UserID: number;
+  EmployeeName: string;
+  Position: string;
+}
+
+interface SelectedApprover {
+  UserID: number;
+  EmployeeName: string;
+  Position: string;
+  Level: string;
+}
+
 const rows: ApprovalData[] = [
   {
     approvalProcedureId: "001",
@@ -93,6 +106,13 @@ const Page: React.FC = () => {
   const [showOriginatorsList, setShowOriginatorsList] = useState(false);
   const [showApproversList, setShowApproversList] = useState(false);
 
+  const [selectedOriginators, setSelectedOriginators] = useState<
+    SelectedOrignator[]
+  >([]);
+  const [selectedApprovers, setSelectedApprovers] = useState<
+    SelectedApprover[]
+  >([]);
+
   // for tab changing
   const handleTabChange = (event: React.ChangeEvent<{}>, newValue: number) => {
     setActiveTab(newValue);
@@ -104,6 +124,14 @@ const Page: React.FC = () => {
 
   const showApproversLists = () => {
     setShowApproversList(!showApproversList);
+    setSelectedApprovers([
+      {
+        UserID: 123,
+        EmployeeName: "!23",
+        Position: "!23",
+        Level: "!23",
+      },
+    ]);
   };
 
   useEffect(() => {
@@ -209,13 +237,13 @@ const Page: React.FC = () => {
                   </TableRow>
                 </TableHead>
                 <TableBody>
-                  {/* {originators.map((originator) => (
-                  <TableRow key={originator.UserID}>
-                    <TableCell>{originator.UserID}</TableCell>
-                    <TableCell>{originator.EmployeeName}</TableCell>
-                    <TableCell>{originator.Position}</TableCell>
-                  </TableRow>
-                ))} */}
+                  {selectedOriginators.map((selectedOriginator) => (
+                    <TableRow key={selectedOriginator.UserID}>
+                      <TableCell>{selectedOriginator.UserID}</TableCell>
+                      <TableCell>{selectedOriginator.EmployeeName}</TableCell>
+                      <TableCell>{selectedOriginator.Position}</TableCell>
+                    </TableRow>
+                  ))}
                 </TableBody>
               </Table>
             </TableContainer>
@@ -254,12 +282,12 @@ const Page: React.FC = () => {
                   </TableRow>
                 </TableHead>
                 <TableBody>
-                  {approvers.map((approver) => (
-                    <TableRow key={approver.id}>
-                      <TableCell>{approver.id}</TableCell>
-                      <TableCell>{approver.name}</TableCell>
-                      <TableCell>{approver.position}</TableCell>
-                      <TableCell>{approver.level}</TableCell>
+                  {selectedApprovers.map((approver) => (
+                    <TableRow key={approver.UserID}>
+                      <TableCell>{approver.UserID}</TableCell>
+                      <TableCell>{approver.EmployeeName}</TableCell>
+                      <TableCell>{approver.Position}</TableCell>
+                      <TableCell>{approver.Level}</TableCell>
                     </TableRow>
                   ))}
                 </TableBody>
