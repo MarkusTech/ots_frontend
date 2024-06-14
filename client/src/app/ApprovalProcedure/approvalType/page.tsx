@@ -43,10 +43,10 @@ const ApprovalTypePage: React.FC = () => {
 
   const editButton = () => {
     setShowEditApproval(!showEditApproval);
-    setEditFormData({
-      AppTypeID: 0,
-      AppType: "",
-    });
+    // setEditFormData({
+    //   AppTypeID: 0,
+    //   AppType: "",
+    // });
   };
 
   const handleSubmit = async (event: any) => {
