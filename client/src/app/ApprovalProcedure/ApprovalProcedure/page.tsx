@@ -559,7 +559,7 @@ const Page: React.FC = () => {
               className="grid grid-cols-2 p-2 text-left windowheader"
               style={{ cursor: "move" }}
             >
-              <div>Create Approval Procedure</div>
+              <div>Select Originator</div>
               <div className="text-right">
                 <span className="cursor-pointer" onClick={sshowOriginators}>
                   ❌
@@ -571,158 +571,26 @@ const Page: React.FC = () => {
                 <div>
                   <br />
                 </div>
-                <form>
-                  <Grid container spacing={3}>
-                    {/* First Row */}
-                    <Grid item xs={12} sm={4}>
-                      <TextField
-                        fullWidth
-                        id="AppProcID"
-                        name="AppProcID"
-                        label="Approval Procedure ID"
-                        variant="outlined"
-                        value={lastApprovalID}
-                        InputProps={{
-                          readOnly: true,
-                        }}
-                        InputLabelProps={{
-                          shrink: true,
-                        }}
-                      />
-                    </Grid>
-                    {/* ------------------ Approval Type ------------------ */}
-                    <Grid item xs={12} sm={4}>
-                      <FormControl variant="outlined" fullWidth>
-                        <InputLabel id="Type-label">Approval Type</InputLabel>
-                        <Select
-                          labelId="Type-label"
-                          id="AppTypeID"
-                          value={
-                            selectedAppTypeID
-                              ? approvalTypeArr.find(
-                                  (type) => type.AppTypeID === selectedAppTypeID
-                                )?.AppType || ""
-                              : ""
-                          }
-                          onChange={handleApprovalTypeChange}
-                          label="Approval Type"
-                        >
-                          {approvalTypeArr.map((type) => (
-                            <MenuItem key={type.AppTypeID} value={type.AppType}>
-                              {type.AppType}
-                            </MenuItem>
-                          ))}
-                        </Select>
-                      </FormControl>
-                    </Grid>
-                    {/* ------------------ Warehouse Code ------------------ */}
-                    <Grid item xs={12} sm={4}>
-                      <FormControl variant="outlined" fullWidth>
-                        <InputLabel id="WhseCode">Warehouse Code</InputLabel>
-                        <Select
-                          labelId="WhseCode"
-                          id="WhseCode"
-                          value={selectedWarehouse || ""}
-                          onChange={handleWarehouseChange}
-                          label="Warehouse Code"
-                        >
-                          {warehouseList.map((warehouse) => (
-                            <MenuItem
-                              key={warehouse.WhsCode}
-                              value={warehouse.WhsCode}
-                            >
-                              {warehouse.WhsName}
-                            </MenuItem>
-                          ))}
-                        </Select>
-                      </FormControl>
-                    </Grid>
-
-                    {/* Second Row */}
-                    {/* ------------------ DocType Type ------------------ */}
-                    <Grid item xs={12} sm={4}>
-                      <FormControl variant="outlined" fullWidth>
-                        <InputLabel id="Doc-Type">Document Type</InputLabel>
-                        <Select
-                          labelId="Doc-Type"
-                          id="Doc-Type"
-                          value={doctype}
-                          onChange={handleDocChange}
-                          label="Document Type"
-                        >
-                          <MenuItem value="SalesOrder">Sales Order</MenuItem>
-                          <MenuItem value="SalesQoutation">
-                            Sales Quotation
-                          </MenuItem>
-                        </Select>
-                      </FormControl>
-                    </Grid>
-                    {/* ------------------ Type ------------------ */}
-                    <Grid item xs={12} sm={4}>
-                      <FormControl variant="outlined" fullWidth>
-                        <InputLabel id="Type-label">Type</InputLabel>
-                        <Select
-                          labelId="Type-label"
-                          id="Type"
-                          value={type}
-                          onChange={handleTypeChange}
-                          label="Type"
-                        >
-                          <MenuItem value="Sequential">Sequential</MenuItem>
-                          <MenuItem value="Simultaneous">Simultaneous</MenuItem>
-                        </Select>
-                      </FormControl>
-                    </Grid>
-                    {/* ------------------ Number of Approver ------------------ */}
-                    <Grid item xs={12} sm={4}>
-                      <TextField
-                        fullWidth
-                        id="NumApprover"
-                        name="NumApprover"
-                        label="Number of Approver"
-                        variant="outlined"
-                        type="number"
-                      />
-                    </Grid>
-                  </Grid>
-                </form>
-
-                <div className="tabssss">
-                  <div>
-                    <br />
-                  </div>
-                  <Tabs value={activeTab} onChange={handleTabChange} centered>
-                    <Tab label="Originator" />
-                    <Tab label="Approver" />
-                  </Tabs>
-                  <form>
-                    <Box mt={3}>{renderTabContent(activeTab)}</Box>
-                  </form>
-                  <div className="pt-28"></div>
-
-                  {/* Save button */}
-                  <div className="flex justify-between items-center mb-6 pt-2 px-4">
-                    <h2 className="text-lg font-semibold text-gray-800"></h2>
-                    <button
-                      className="flex items-center px-4 py-2 button-custom-bg-color text-white rounded-md focus:outline-none focus:bg-blue-600"
-                      onClick={handleSave}
-                    >
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        className="h-5 w-5 mr-2"
-                        viewBox="0 0 20 20"
-                        fill="currentColor"
-                      >
-                        <path
-                          fillRule="evenodd"
-                          d="M10 2a8 8 0 1 0 0 16 8 8 0 0 0 0-16zM9 9V5a1 1 0 0 1 2 0v4h4a1 1 0 0 1 0 2h-4v4a1 1 0 1 1-2 0v-4H5a1 1 0 1 1 0-2h4V9z"
-                          clipRule="evenodd"
-                        />
-                      </svg>
-                      Save
-                    </button>
-                  </div>
-                </div>
+                <TableContainer component={Paper}>
+                  <Table>
+                    <TableHead>
+                      <TableRow>
+                        <TableCell>User ID</TableCell>
+                        <TableCell>User Name</TableCell>
+                        <TableCell>Position</TableCell>
+                      </TableRow>
+                    </TableHead>
+                    <TableBody>
+                      {originators.map((originator) => (
+                        <TableRow key={originator.UserID}>
+                          <TableCell>{originator.UserID}</TableCell>
+                          <TableCell>{originator.EmployeeName}</TableCell>
+                          <TableCell>{originator.Position}</TableCell>
+                        </TableRow>
+                      ))}
+                    </TableBody>
+                  </Table>
+                </TableContainer>
               </div>
             </div>
           </div>
