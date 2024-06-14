@@ -91,6 +91,7 @@ const Page: React.FC = () => {
   const [showCreateApproval, setShowCreateApproval] = useState(false);
   const [originators, setOriginators] = useState<OriginatorData[]>([]);
   const [showOriginatorsList, setShowOriginatorsList] = useState(false);
+  const [showApproversList, setShowApproversList] = useState(false);
 
   // for tab changing
   const handleTabChange = (event: React.ChangeEvent<{}>, newValue: number) => {
@@ -99,6 +100,10 @@ const Page: React.FC = () => {
 
   const showApprovalButton = () => {
     setShowCreateApproval(!showCreateApproval);
+  };
+
+  const showApproversLists = () => {
+    setShowApproversList(!showApproversList);
   };
 
   useEffect(() => {
@@ -260,13 +265,23 @@ const Page: React.FC = () => {
                 </TableBody>
               </Table>
             </TableContainer>
-            <div className="pt-2">
-              <button
-                className="flex items-center px-4 py-2 button-custom-bg-color text-white rounded-md focus:outline-none focus:bg-blue-600"
-                onClick={showOriginatorList}
+            <div
+              className="pt-2"
+              style={{ display: "flex", justifyContent: "flex-start" }}
+            >
+              <Button
+                variant="contained"
+                onClick={showApproversLists}
+                startIcon={<AddIcon />}
+                sx={{
+                  backgroundColor: "#f69629 !important", // Ensures the background color is applied
+                  "&:hover": {
+                    backgroundColor: "#e0851e !important", // Ensures the hover background color is applied
+                  },
+                }}
               >
                 Add
-              </button>
+              </Button>
             </div>
           </div>
         );
@@ -575,6 +590,63 @@ const Page: React.FC = () => {
               <div>Select Originator</div>
               <div className="text-right">
                 <span className="cursor-pointer" onClick={showOriginatorList}>
+                  ❌
+                </span>
+              </div>
+            </div>
+            <div className="content">
+              <div className="p-2">
+                <div>
+                  <br />
+                </div>
+                <TableContainer component={Paper}>
+                  <Table>
+                    <TableHead>
+                      <TableRow>
+                        <TableCell>User ID</TableCell>
+                        <TableCell>User Name</TableCell>
+                        <TableCell>Position</TableCell>
+                      </TableRow>
+                    </TableHead>
+                    <TableBody>
+                      {originators.map((originator) => (
+                        <TableRow key={originator.UserID}>
+                          <TableCell>{originator.UserID}</TableCell>
+                          <TableCell>{originator.EmployeeName}</TableCell>
+                          <TableCell>{originator.Position}</TableCell>
+                        </TableRow>
+                      ))}
+                    </TableBody>
+                  </Table>
+                </TableContainer>
+              </div>
+            </div>
+          </div>
+        </Draggable>
+      )}
+
+      {showApproversList && (
+        <Draggable>
+          <div
+            className="bg-white shadow-lg"
+            style={{
+              border: "1px solid #ccc",
+              position: "absolute",
+              top: "20%",
+              left: "20%",
+              maxHeight: "740px",
+              overflowY: "auto",
+              background: "white",
+              zIndex: "9999",
+            }}
+          >
+            <div
+              className="grid grid-cols-2 p-2 text-left windowheader"
+              style={{ cursor: "move" }}
+            >
+              <div>Select Approver</div>
+              <div className="text-right">
+                <span className="cursor-pointer" onClick={showApproversLists}>
                   ❌
                 </span>
               </div>
