@@ -190,6 +190,7 @@ const Page: React.FC = () => {
 
   const renderTabContent = (index: number) => {
     switch (index) {
+      // Originator
       case 0:
         return (
           <div>
@@ -233,6 +234,7 @@ const Page: React.FC = () => {
             </div>
           </div>
         );
+      // approver
       case 1:
         return (
           <div>
