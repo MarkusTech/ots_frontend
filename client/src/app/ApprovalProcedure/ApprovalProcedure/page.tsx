@@ -23,9 +23,9 @@ import Draggable from "react-draggable";
 import EditIcon from "@mui/icons-material/Edit";
 
 interface OriginatorData {
-  id: number;
-  name: string;
-  position: string;
+  UserID: number;
+  EmployeeName: string;
+  Position: string;
 }
 
 interface ApproverData {
@@ -98,9 +98,9 @@ const Page: React.FC = () => {
   };
 
   const users: OriginatorData[] = [
-    { id: 1, name: "John Doe", position: "Developer" },
-    { id: 2, name: "Jane Smith", position: "Designer" },
-    { id: 3, name: "Alice Johnson", position: "Manager" },
+    { UserID: 1, EmployeeName: "John Doe", Position: "Developer" },
+    { UserID: 2, EmployeeName: "Jane Smith", Position: "Designer" },
+    { UserID: 3, EmployeeName: "Alice Johnson", Position: "Manager" },
   ];
 
   const approvers: ApproverData[] = [
@@ -192,10 +192,10 @@ const Page: React.FC = () => {
               </TableHead>
               <TableBody>
                 {users.map((user) => (
-                  <TableRow key={user.id}>
-                    <TableCell>{user.id}</TableCell>
-                    <TableCell>{user.name}</TableCell>
-                    <TableCell>{user.position}</TableCell>
+                  <TableRow key={user.UserID}>
+                    <TableCell>{user.UserID}</TableCell>
+                    <TableCell>{user.EmployeeName}</TableCell>
+                    <TableCell>{user.Position}</TableCell>
                   </TableRow>
                 ))}
               </TableBody>
