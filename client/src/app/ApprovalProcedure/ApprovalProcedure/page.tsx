@@ -125,14 +125,6 @@ const Page: React.FC = () => {
 
   const showApproversLists = () => {
     setShowApproversList(!showApproversList);
-    setSelectedApprovers([
-      {
-        UserID: 123,
-        EmployeeName: "123",
-        Position: "123",
-        Level: "123",
-      },
-    ]);
   };
 
   useEffect(() => {
@@ -159,7 +151,18 @@ const Page: React.FC = () => {
     setShowOriginatorsList(!showOriginatorsList);
   };
 
-  const handleApproverChange = (approver: SelectedApprover) => {};
+  const handleApproverChanges = (originator: SelectedApprover) => {
+    setSelectedApprovers((prevApprovers) => [
+      ...prevApprovers,
+      {
+        UserID: originator.UserID,
+        EmployeeName: originator.EmployeeName,
+        Position: originator.Position,
+        Level: "1",
+      },
+    ]);
+    setShowApproversList(!showApproversList);
+  };
 
   const approvers: ApproverData[] = [
     { id: 1, name: "John Doe", position: "Developer", level: "1" },
@@ -709,29 +712,42 @@ const Page: React.FC = () => {
             </div>
             <div className="content">
               <div className="p-2">
-                <div>
-                  <br />
+                <div className="p-2">
+                  <div className="content">
+                    <div>
+                      Search:{" "}
+                      <input
+                        type="text"
+                        className="mb-1"
+                        // value={searchTerm}
+                        // onChange={handleSearchItem}
+                      />
+                    </div>
+                    <table>
+                      <thead className="tables">
+                        <tr>
+                          <th>User ID</th>
+                          <th>User Name</th>
+                          <th>Position</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {originators.map((originator: any) => (
+                          // eslint-disable-next-line react/jsx-key
+                          <tr
+                            className="tdcus cursor-pointer"
+                            key={originator.UserID}
+                            onClick={() => handleApproverChanges(originator)}
+                          >
+                            <td>{originator.UserID}</td>
+                            <td>{originator.EmployeeName}</td>
+                            <td>{originator.Position}</td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
                 </div>
-                <TableContainer component={Paper}>
-                  <Table>
-                    <TableHead>
-                      <TableRow>
-                        <TableCell>User ID</TableCell>
-                        <TableCell>User Name</TableCell>
-                        <TableCell>Position</TableCell>
-                      </TableRow>
-                    </TableHead>
-                    <TableBody>
-                      {originators.map((originator) => (
-                        <TableRow key={originator.UserID}>
-                          <TableCell>{originator.UserID}</TableCell>
-                          <TableCell>{originator.EmployeeName}</TableCell>
-                          <TableCell>{originator.Position}</TableCell>
-                        </TableRow>
-                      ))}
-                    </TableBody>
-                  </Table>
-                </TableContainer>
               </div>
             </div>
           </div>
