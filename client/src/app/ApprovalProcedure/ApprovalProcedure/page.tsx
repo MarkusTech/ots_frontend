@@ -127,7 +127,7 @@ const Page: React.FC = () => {
     setSelectedApprovers([
       {
         UserID: 123,
-        EmployeeName: "!23",
+        EmployeeName: "123",
         Position: "123",
         Level: "123",
       },
