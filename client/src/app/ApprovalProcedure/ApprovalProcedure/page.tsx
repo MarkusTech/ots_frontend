@@ -30,13 +30,6 @@ interface OriginatorData {
   Position: string;
 }
 
-interface ApproverData {
-  id: number;
-  name: string;
-  position: string;
-  level: string;
-}
-
 interface ApprovalType {
   AppTypeID: number;
   AppType: string;
@@ -163,12 +156,6 @@ const Page: React.FC = () => {
     ]);
     setShowApproversList(!showApproversList);
   };
-
-  const approvers: ApproverData[] = [
-    { id: 1, name: "John Doe", position: "Developer", level: "1" },
-    { id: 2, name: "Jane Smith", position: "Designer", level: "1" },
-    { id: 3, name: "Alice Johnson", position: "Manager", level: "1" },
-  ];
 
   const handleTypeChange = (event: any) => {
     setType(event.target.value);
