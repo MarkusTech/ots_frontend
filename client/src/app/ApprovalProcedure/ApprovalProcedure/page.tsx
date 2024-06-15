@@ -148,7 +148,6 @@ const Page: React.FC = () => {
   };
 
   const handleOriginatorChange = (originator: SelectedOriginator) => {
-    console.log(originator);
     setSelectedOriginators((prevSelectedOriginators) => [
       ...prevSelectedOriginators,
       {
@@ -159,6 +158,8 @@ const Page: React.FC = () => {
     ]);
     setShowOriginatorsList(!showOriginatorsList);
   };
+
+  const handleApproverChange = (approver: SelectedApprover) => {};
 
   const approvers: ApproverData[] = [
     { id: 1, name: "John Doe", position: "Developer", level: "1" },
