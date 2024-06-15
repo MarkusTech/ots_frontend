@@ -107,6 +107,8 @@ const Page: React.FC = () => {
     SelectedApprover[]
   >([]);
 
+  const [approvalData, setApprovalData] = useState<ApprovalData[]>([]);
+
   // for tab changing
   const handleTabChange = (event: React.ChangeEvent<{}>, newValue: number) => {
     setActiveTab(newValue);
