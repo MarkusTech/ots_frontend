@@ -128,7 +128,7 @@ const Page: React.FC = () => {
       {
         UserID: 123,
         EmployeeName: "!23",
-        Position: "!23",
+        Position: "123",
         Level: "123",
       },
     ]);
