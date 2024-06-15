@@ -56,7 +56,7 @@ interface ApprovalData {
   numberOfApprover: number;
 }
 
-interface SelectedOrignator {
+interface SelectedOriginator {
   UserID: number;
   EmployeeName: string;
   Position: string;
@@ -107,8 +107,9 @@ const Page: React.FC = () => {
   const [showApproversList, setShowApproversList] = useState(false);
 
   const [selectedOriginators, setSelectedOriginators] = useState<
-    SelectedOrignator[]
+    SelectedOriginator[]
   >([]);
+
   const [selectedApprovers, setSelectedApprovers] = useState<
     SelectedApprover[]
   >([]);
@@ -146,8 +147,17 @@ const Page: React.FC = () => {
     setShowOriginatorsList(!showOriginatorsList);
   };
 
-  const handleOriginatorChange = (originator: any) => {
+  const handleOriginatorChange = (originator: SelectedOriginator) => {
     console.log(originator);
+    setSelectedOriginators((prevSelectedOriginators) => [
+      ...prevSelectedOriginators,
+      {
+        UserID: originator.UserID,
+        EmployeeName: originator.EmployeeName,
+        Position: originator.Position,
+      },
+    ]);
+    setShowOriginatorsList(!showOriginatorsList);
   };
 
   const approvers: ApproverData[] = [
