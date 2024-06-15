@@ -179,10 +179,7 @@ const Page: React.FC = () => {
   };
 
   const handleSave = () => {
-    // console.log(lastApprovalID);
-    setReload(!reload);
-    // console.log(warehouseList);
-    console.log(approvalData);
+    // save logic here!
   };
 
   useEffect(() => {
