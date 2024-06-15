@@ -146,6 +146,10 @@ const Page: React.FC = () => {
     setShowOriginatorsList(!showOriginatorsList);
   };
 
+  const handleOriginatorChange = (originator: any) => {
+    console.log(originator);
+  };
+
   const approvers: ApproverData[] = [
     { id: 1, name: "John Doe", position: "Developer", level: "1" },
     { id: 2, name: "Jane Smith", position: "Designer", level: "1" },
@@ -624,29 +628,42 @@ const Page: React.FC = () => {
             </div>
             <div className="content">
               <div className="p-2">
-                <div>
-                  <br />
+                <div className="p-2">
+                  <div className="content">
+                    <div>
+                      Search:{" "}
+                      <input
+                        type="text"
+                        className="mb-1"
+                        // value={searchTerm}
+                        // onChange={handleSearchItem}
+                      />
+                    </div>
+                    <table>
+                      <thead className="tables">
+                        <tr>
+                          <th>User ID</th>
+                          <th>User Name</th>
+                          <th>Position</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {originators.map((originator: any) => (
+                          // eslint-disable-next-line react/jsx-key
+                          <tr
+                            className="tdcus cursor-pointer"
+                            key={originator.UserID}
+                            onClick={() => handleOriginatorChange(originator)}
+                          >
+                            <td>{originator.UserID}</td>
+                            <td>{originator.EmployeeName}</td>
+                            <td>{originator.Position}</td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
                 </div>
-                <TableContainer component={Paper}>
-                  <Table>
-                    <TableHead>
-                      <TableRow>
-                        <TableCell>User ID</TableCell>
-                        <TableCell>User Name</TableCell>
-                        <TableCell>Position</TableCell>
-                      </TableRow>
-                    </TableHead>
-                    <TableBody>
-                      {originators.map((originator) => (
-                        <TableRow key={originator.UserID}>
-                          <TableCell>{originator.UserID}</TableCell>
-                          <TableCell>{originator.EmployeeName}</TableCell>
-                          <TableCell>{originator.Position}</TableCell>
-                        </TableRow>
-                      ))}
-                    </TableBody>
-                  </Table>
-                </TableContainer>
               </div>
             </div>
           </div>
