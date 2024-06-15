@@ -41,12 +41,12 @@ interface WarehouseList {
 }
 
 interface ApprovalData {
-  approvalProcedureId: string;
-  approvalType: string;
-  warehouseCode: string;
-  documentType: string;
-  type: string;
-  numberOfApprover: number;
+  AppProcID: number;
+  AppTypeID: number;
+  WhseCode: string;
+  DocType: string;
+  Type: string;
+  NumApprover: number;
 }
 
 interface SelectedOriginator {
@@ -61,26 +61,6 @@ interface SelectedApprover {
   Position: string;
   Level: string;
 }
-
-const rows: ApprovalData[] = [
-  {
-    approvalProcedureId: "001",
-    approvalType: "Standard",
-    warehouseCode: "WH01",
-    documentType: "Invoice",
-    type: "Automatic",
-    numberOfApprover: 3,
-  },
-  {
-    approvalProcedureId: "002",
-    approvalType: "Express",
-    warehouseCode: "WH02",
-    documentType: "Purchase Order",
-    type: "Manual",
-    numberOfApprover: 2,
-  },
-  // Add more rows as needed
-];
 
 const Page: React.FC = () => {
   const [activeTab, setActiveTab] = useState<number>(0);
@@ -121,6 +101,14 @@ const Page: React.FC = () => {
   const showApproversLists = () => {
     setShowApproversList(!showApproversList);
   };
+
+  useEffect(() => {
+    axios
+      .get(`http://172.16.10.169:5000/api/v1/get-approval-main`)
+      .then((response) => {
+        setApprovalData(response.data.data);
+      });
+  }, []);
 
   useEffect(() => {
     axios
@@ -194,7 +182,7 @@ const Page: React.FC = () => {
     // console.log(lastApprovalID);
     setReload(!reload);
     // console.log(warehouseList);
-    console.log(originators);
+    console.log(approvalData);
   };
 
   useEffect(() => {
@@ -356,28 +344,28 @@ const Page: React.FC = () => {
             </tr>
           </thead>
           <tbody className="bg-white divide-y divide-gray-200">
-            {rows.map((row) => (
+            {approvalData.map((row) => (
               <tr
-                key={row.approvalProcedureId}
+                key={row.AppProcID}
                 className="hover:bg-blue-100 cursor-pointer transition-colors"
               >
                 <td className="px-6 py-2 whitespace-nowrap text-sm font-medium text-gray-900">
-                  {row.approvalProcedureId}
+                  {row.AppProcID}
                 </td>
                 <td className="px-6 py-2 whitespace-nowrap text-sm text-gray-500">
-                  {row.approvalType}
+                  {row.AppTypeID}
                 </td>
                 <td className="px-6 py-2 whitespace-nowrap text-sm text-gray-500">
-                  {row.warehouseCode}
+                  {row.WhseCode}
                 </td>
                 <td className="px-6 py-2 whitespace-nowrap text-sm text-gray-500">
-                  {row.documentType}
+                  {row.DocType}
                 </td>
                 <td className="px-6 py-2 whitespace-nowrap text-sm text-gray-500">
-                  {row.type}
+                  {row.Type}
                 </td>
                 <td className="px-6 py-2 whitespace-nowrap text-sm text-gray-500">
-                  {row.numberOfApprover}
+                  {row.NumApprover}
                 </td>
                 <td className="px-6 py-2 whitespace-nowrap text-right text-sm font-medium">
                   <button
