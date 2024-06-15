@@ -42,7 +42,7 @@ interface WarehouseList {
 
 interface ApprovalData {
   AppProcID: number;
-  AppTypeID: number;
+  AppType: string;
   WhseCode: string;
   DocType: string;
   Type: string;
@@ -178,8 +178,33 @@ const Page: React.FC = () => {
     });
   };
 
-  const handleSave = () => {
-    // save logic here!
+  const handleSave = async () => {
+    const payload = {
+      AppTypeID: selectedAppTypeID,
+      WhseCode: selectedWarehouse,
+      DocType: doctype,
+      Type: type,
+      NumApprover: 5,
+    };
+
+    try {
+      const response = await fetch(
+        "http://localhost:5000/api/v1/save-approval-header",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(payload),
+        }
+      );
+
+      if (response.ok) {
+        console.log("Success");
+      }
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   useEffect(() => {
@@ -350,7 +375,7 @@ const Page: React.FC = () => {
                   {row.AppProcID}
                 </td>
                 <td className="px-6 py-2 whitespace-nowrap text-sm text-gray-500">
-                  {row.AppTypeID}
+                  {row.AppType}
                 </td>
                 <td className="px-6 py-2 whitespace-nowrap text-sm text-gray-500">
                   {row.WhseCode}
@@ -732,3 +757,5 @@ const Page: React.FC = () => {
 };
 
 export default Page;
+
+// https://chatgpt.com/c/3e768ec8-1000-47f2-81ee-79d568d77617
