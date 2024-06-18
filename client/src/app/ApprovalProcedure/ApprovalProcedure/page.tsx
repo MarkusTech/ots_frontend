@@ -18,6 +18,7 @@ import {
   TableRow,
   Paper,
   Button,
+  SelectChangeEvent,
 } from "@mui/material";
 import axios from "axios";
 import Draggable from "react-draggable";
@@ -147,8 +148,9 @@ const Page: React.FC = () => {
     setShowApproversList(!showApproversList);
   };
 
-  const handleTypeChange = (event: any) => {
+  const handleChange = (event: any) => {
     setType(event.target.value);
+    console.log("Selected type:", event.target.value);
   };
 
   const handleDocChange = (event: any) => {
@@ -179,7 +181,7 @@ const Page: React.FC = () => {
   };
 
   const handleSave = async () => {
-    // fix this logic
+    // fix this logic here
     const payload = {
       AppTypeID: selectedAppTypeID,
       WhseCode: selectedWarehouse,
@@ -187,7 +189,6 @@ const Page: React.FC = () => {
       Type: type,
       NumApprover: 5,
     };
-
     try {
       const response = await fetch(
         "http://localhost:5000/api/v1/save-approval-header",
@@ -199,7 +200,6 @@ const Page: React.FC = () => {
           body: JSON.stringify(payload),
         }
       );
-
       if (response.ok) {
         console.log("Success");
       }
@@ -548,9 +548,9 @@ const Page: React.FC = () => {
                         <InputLabel id="Type-label">Type</InputLabel>
                         <Select
                           labelId="Type-label"
-                          id="Type"
+                          id="Type-label"
                           value={type}
-                          onChange={handleTypeChange}
+                          onChange={handleChange}
                           label="Type"
                         >
                           <MenuItem value="Sequential">Sequential</MenuItem>
