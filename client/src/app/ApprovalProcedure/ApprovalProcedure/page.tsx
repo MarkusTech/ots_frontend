@@ -79,6 +79,7 @@ const Page: React.FC = () => {
   const [originators, setOriginators] = useState<OriginatorData[]>([]);
   const [showOriginatorsList, setShowOriginatorsList] = useState(false);
   const [showApproversList, setShowApproversList] = useState(false);
+  const [fetchTrigger, setFetchTrigger] = useState(0); // State to trigger re-fetch
 
   const [selectedOriginators, setSelectedOriginators] = useState<
     SelectedOriginator[]
@@ -109,7 +110,7 @@ const Page: React.FC = () => {
       .then((response) => {
         setApprovalData(response.data.data);
       });
-  }, []);
+  }, [fetchTrigger]);
 
   useEffect(() => {
     axios
@@ -202,6 +203,7 @@ const Page: React.FC = () => {
       );
       if (response.ok) {
         console.log("Success");
+        setFetchTrigger((prev) => prev + 1);
       }
     } catch (error) {
       console.log(error);
