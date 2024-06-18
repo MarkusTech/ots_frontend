@@ -61,7 +61,7 @@ interface SelectedApprover {
   UserID: number;
   EmployeeName: string;
   Position: string;
-  Level: string;
+  Level: number;
 }
 
 const Page: React.FC = () => {
@@ -139,15 +139,27 @@ const Page: React.FC = () => {
   };
 
   const handleApproverChanges = (originator: SelectedApprover) => {
-    setSelectedApprovers((prevApprovers) => [
-      ...prevApprovers,
-      {
-        UserID: originator.UserID,
-        EmployeeName: originator.EmployeeName,
-        Position: originator.Position,
-        Level: "1",
-      },
-    ]);
+    if (type == "Simultaneous") {
+      setSelectedApprovers((prevApprovers) => [
+        ...prevApprovers,
+        {
+          UserID: originator.UserID,
+          EmployeeName: originator.EmployeeName,
+          Position: originator.Position,
+          Level: 1,
+        },
+      ]);
+    } else {
+      setSelectedApprovers((prevApprovers) => [
+        ...prevApprovers,
+        {
+          UserID: originator.UserID,
+          EmployeeName: originator.EmployeeName,
+          Position: originator.Position,
+          Level: prevApprovers.length + 1, // Calculate Level dynamically
+        },
+      ]);
+    }
     setShowApproversList(!showApproversList);
   };
 
