@@ -67,7 +67,7 @@ const Page: React.FC = () => {
   const [activeTab, setActiveTab] = useState<number>(0);
   const [type, setType] = useState<string>("");
   const [doctype, setDoctype] = useState<string>("");
-  const [reload, setReload] = useState(false);
+  const [numberValue, setNumberValue] = useState<number | null>(null);
   const [selectedAppTypeID, setSelectedAppTypeID] = useState<number | null>(
     null
   );
@@ -158,6 +158,13 @@ const Page: React.FC = () => {
     setDoctype(event.target.value);
   };
 
+  const handleNumberChange = (event: any) => {
+    const value = event.target.value;
+    // Check if the value is a valid number or null if empty
+    const parsedValue = value === "" ? null : parseInt(value, 10);
+    setNumberValue(parsedValue);
+  };
+
   const handleApprovalTypeChange = (event: any) => {
     const selectedType = approvalTypeArr.find(
       (type) => type.AppType === event.target.value
@@ -188,7 +195,7 @@ const Page: React.FC = () => {
       WhseCode: selectedWarehouse,
       DocType: doctype,
       Type: type,
-      NumApprover: 5,
+      NumApprover: numberValue,
     };
     try {
       const response = await fetch(
@@ -206,6 +213,13 @@ const Page: React.FC = () => {
         setFetchTrigger((prev) => prev + 1);
         await handleOriginatorSave();
         await handleSaveApprover();
+        setShowCreateApproval(!showCreateApproval);
+
+        setSelectedAppTypeID(null);
+        setSelectedWarehouse("");
+        setDoctype("");
+        setType("");
+        setNumberValue(null);
       }
     } catch (error) {
       console.log(error);
@@ -296,7 +310,7 @@ const Page: React.FC = () => {
         let approvalID = data + 1;
         setLastApprovalID(approvalID);
       });
-  }, [reload]);
+  }, [fetchTrigger]);
 
   useEffect(() => {
     axios
@@ -638,6 +652,8 @@ const Page: React.FC = () => {
                         label="Number of Approver"
                         variant="outlined"
                         type="number"
+                        value={numberValue === null ? "" : numberValue} // Handle null value
+                        onChange={handleNumberChange}
                       />
                     </Grid>
                   </Grid>
@@ -847,5 +863,3 @@ const Page: React.FC = () => {
 };
 
 export default Page;
-
-// https://chatgpt.com/c/3e768ec8-1000-47f2-81ee-79d568d77617
