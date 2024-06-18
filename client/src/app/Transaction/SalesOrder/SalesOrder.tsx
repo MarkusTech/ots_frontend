@@ -704,7 +704,7 @@ export default function SalesOrder() {
       }
     }
 
-    // -------------- BLOCKERS ----------------
+    // -------------- BLOCKERS -----------------
     if (formData.CustomerCode == "") {
       Swal.fire({
         icon: "error",
