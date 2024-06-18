@@ -225,6 +225,7 @@ const Page: React.FC = () => {
         setFetchTrigger((prev) => prev + 1);
         await handleOriginatorSave();
         await handleSaveApprover();
+        setActiveTab(0);
         setShowCreateApproval(!showCreateApproval);
 
         setSelectedAppTypeID(null);
