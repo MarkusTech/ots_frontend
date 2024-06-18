@@ -179,7 +179,7 @@ const Page: React.FC = () => {
   };
 
   const handleSave = async () => {
-    // fix this logic
+    // fix this logics
     const payload = {
       AppTypeID: selectedAppTypeID,
       WhseCode: selectedWarehouse,
