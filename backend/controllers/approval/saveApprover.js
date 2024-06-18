@@ -1,33 +1,42 @@
 import sqlConn from "../../config/db.js";
 
 const saveApprover = async (req, res) => {
-  const { AppProcID, UserID, AppLevel } = req.body;
+  const approvers = req.body; // Expecting an array of { AppProcID, UserID, AppLevel }
 
   try {
-    const data = await sqlConn.query(`INSERT INTO [dbo].[AppProc_DetApp]
-    ([AppProcID]
-    ,[UserID]
-    ,[AppLevel])
-      VALUES
-    (${AppProcID},${UserID},${AppLevel})`);
+    const transaction = sqlConn.transaction();
+    await transaction.begin();
 
-    if (!data) {
-      res.status(404).json({
-        success: false,
-        message: "Unable to save data",
+    try {
+      for (let approver of approvers) {
+        await transaction
+          .request()
+          .input("AppProcID", approver.AppProcID)
+          .input("UserID", approver.UserID)
+          .input("AppLevel", approver.AppLevel).query(`
+            INSERT INTO [dbo].[AppProc_DetApp] ([AppProcID], [UserID], [AppLevel])
+            VALUES (@AppProcID, @UserID, @AppLevel)
+          `);
+      }
+
+      await transaction.commit();
+
+      // Return success response
+      res.status(200).json({
+        success: true,
+        message: "Approvers Successfully Saved",
+        data: approvers,
       });
+    } catch (error) {
+      await transaction.rollback();
+      throw error; // Throw error to be caught in outer catch block
     }
-
-    res.status(200).json({
-      success: true,
-      message: "Data Save Successfully",
-      data: data.recordset,
-    });
   } catch (error) {
-    console.log(error);
+    console.error("Error saving approvers:", error);
     res.status(500).json({
       success: false,
-      message: error.message,
+      message: "Unable to save approvers",
+      error: error.message,
     });
   }
 };

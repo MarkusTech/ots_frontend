@@ -210,6 +210,73 @@ const Page: React.FC = () => {
     }
   };
 
+  const handleOriginatorSave = async () => {
+    if (selectedOriginators.length > 0) {
+      const payloads = selectedOriginators.map((originator) => ({
+        AppProcID: lastApprovalID,
+        UserID: originator.UserID,
+      }));
+
+      try {
+        const response = await fetch(
+          "http://localhost:5000/api/v1/save-originator",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(payloads),
+          }
+        );
+
+        if (response.ok) {
+          console.log("Originators saved successfully");
+        } else {
+          const errorData = await response.json();
+          console.error("Failed to save originators:", errorData.message);
+        }
+      } catch (error) {
+        console.error("Error saving originators:", error);
+      }
+    } else {
+      console.log("No originators selected");
+    }
+  };
+
+  const handleSaveApprover = async () => {
+    if (selectedApprovers.length > 0) {
+      const payloads = selectedApprovers.map((approver) => ({
+        AppProcID: lastApprovalID,
+        UserID: approver.UserID,
+        AppLevel: approver.Level,
+      }));
+
+      try {
+        const response = await fetch(
+          "http://localhost:5000/api/v1/save-approver",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(payloads),
+          }
+        );
+
+        if (response.ok) {
+          console.log("Approvers saved successfully");
+        } else {
+          const errorData = await response.json();
+          console.error("Failed to save Approvers:", errorData.message);
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    } else {
+      console.log("No Approvers selected");
+    }
+  };
+
   useEffect(() => {
     axios
       .get("http://localhost:5000/api/v2/list-warehouse")
@@ -607,6 +674,24 @@ const Page: React.FC = () => {
                         />
                       </svg>
                       Save
+                    </button>
+                    <button
+                      className="flex items-center px-4 py-2 button-custom-bg-color text-white rounded-md focus:outline-none focus:bg-blue-600"
+                      onClick={handleSaveApprover}
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        className="h-5 w-5 mr-2"
+                        viewBox="0 0 20 20"
+                        fill="currentColor"
+                      >
+                        <path
+                          fillRule="evenodd"
+                          d="M10 2a8 8 0 1 0 0 16 8 8 0 0 0 0-16zM9 9V5a1 1 0 0 1 2 0v4h4a1 1 0 0 1 0 2h-4v4a1 1 0 1 1-2 0v-4H5a1 1 0 1 1 0-2h4V9z"
+                          clipRule="evenodd"
+                        />
+                      </svg>
+                      asdasdasd
                     </button>
                   </div>
                 </div>
