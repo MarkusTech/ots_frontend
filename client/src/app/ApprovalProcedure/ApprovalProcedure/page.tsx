@@ -204,6 +204,8 @@ const Page: React.FC = () => {
       if (response.ok) {
         console.log("Success");
         setFetchTrigger((prev) => prev + 1);
+        await handleOriginatorSave();
+        await handleSaveApprover();
       }
     } catch (error) {
       console.log(error);
