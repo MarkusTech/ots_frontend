@@ -24,6 +24,7 @@ import axios from "axios";
 import Draggable from "react-draggable";
 import EditIcon from "@mui/icons-material/Edit";
 import AddIcon from "@mui/icons-material/Add";
+import Swal from "sweetalert2";
 
 interface OriginatorData {
   UserID: number;
@@ -98,6 +99,7 @@ const Page: React.FC = () => {
 
   const showApprovalButton = () => {
     setShowCreateApproval(!showCreateApproval);
+    removeFieldValue();
   };
 
   const showApproversLists = () => {
@@ -188,6 +190,16 @@ const Page: React.FC = () => {
     });
   };
 
+  const removeFieldValue = () => {
+    setSelectedAppTypeID(null);
+    setSelectedWarehouse("");
+    setDoctype("");
+    setType("");
+    setNumberValue(null);
+    setSelectedApprovers([]);
+    setSelectedOriginators([]);
+  };
+
   const handleSave = async () => {
     // fix this logic here
     const payload = {
@@ -220,6 +232,12 @@ const Page: React.FC = () => {
         setDoctype("");
         setType("");
         setNumberValue(null);
+
+        Swal.fire({
+          icon: "success",
+          title: "Success",
+          text: "Data Saved Successfully",
+        });
       }
     } catch (error) {
       console.log(error);
@@ -247,6 +265,7 @@ const Page: React.FC = () => {
 
         if (response.ok) {
           console.log("Originators saved successfully");
+          setSelectedOriginators([]);
         } else {
           const errorData = await response.json();
           console.error("Failed to save originators:", errorData.message);
@@ -281,6 +300,7 @@ const Page: React.FC = () => {
 
         if (response.ok) {
           console.log("Approvers saved successfully");
+          setSelectedApprovers([]);
         } else {
           const errorData = await response.json();
           console.error("Failed to save Approvers:", errorData.message);
