@@ -675,7 +675,7 @@ const Page: React.FC = () => {
                       </svg>
                       Save
                     </button>
-                    <button
+                    {/* <button
                       className="flex items-center px-4 py-2 button-custom-bg-color text-white rounded-md focus:outline-none focus:bg-blue-600"
                       onClick={handleSaveApprover}
                     >
@@ -692,7 +692,7 @@ const Page: React.FC = () => {
                         />
                       </svg>
                       asdasdasd
-                    </button>
+                    </button> */}
                   </div>
                 </div>
               </div>
