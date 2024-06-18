@@ -179,6 +179,7 @@ const Page: React.FC = () => {
   };
 
   const handleSave = async () => {
+    // fix this logic
     const payload = {
       AppTypeID: selectedAppTypeID,
       WhseCode: selectedWarehouse,
