@@ -726,24 +726,6 @@ const Page: React.FC = () => {
                       </svg>
                       Save
                     </button>
-                    {/* <button
-                      className="flex items-center px-4 py-2 button-custom-bg-color text-white rounded-md focus:outline-none focus:bg-blue-600"
-                      onClick={handleSaveApprover}
-                    >
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        className="h-5 w-5 mr-2"
-                        viewBox="0 0 20 20"
-                        fill="currentColor"
-                      >
-                        <path
-                          fillRule="evenodd"
-                          d="M10 2a8 8 0 1 0 0 16 8 8 0 0 0 0-16zM9 9V5a1 1 0 0 1 2 0v4h4a1 1 0 0 1 0 2h-4v4a1 1 0 1 1-2 0v-4H5a1 1 0 1 1 0-2h4V9z"
-                          clipRule="evenodd"
-                        />
-                      </svg>
-                      asdasdasd
-                    </button> */}
                   </div>
                 </div>
               </div>
