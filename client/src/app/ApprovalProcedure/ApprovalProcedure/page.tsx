@@ -19,12 +19,14 @@ import {
   Paper,
   Button,
   SelectChangeEvent,
+  IconButton,
 } from "@mui/material";
 import axios from "axios";
 import Draggable from "react-draggable";
 import EditIcon from "@mui/icons-material/Edit";
 import AddIcon from "@mui/icons-material/Add";
 import Swal from "sweetalert2";
+import DeleteIcon from "@mui/icons-material/Delete";
 
 interface OriginatorData {
   UserID: number;
@@ -357,6 +359,25 @@ const Page: React.FC = () => {
       });
   }, []);
 
+  const handleRemoveOriginator = (userId: any) => {
+    const updatedOriginators = selectedOriginators.filter(
+      (originator) => originator.UserID !== userId
+    );
+    setSelectedOriginators(updatedOriginators);
+  };
+  const handleRemoveApprover = (userId: any) => {
+    const updatedApprovers = selectedApprovers.filter(
+      (approver) => approver.UserID !== userId
+    );
+    setSelectedApprovers(updatedApprovers);
+  };
+
+  const cellStyle = {
+    height: "40px",
+    padding: "5px",
+    paddingLeft: "10px", // Corrected syntax for paddingLeft
+  };
+
   const renderTabContent = (index: number) => {
     switch (index) {
       // Originator
@@ -370,14 +391,61 @@ const Page: React.FC = () => {
                     <TableCell>User ID</TableCell>
                     <TableCell>User Name</TableCell>
                     <TableCell>Position</TableCell>
+                    <TableCell style={{ width: "80px" }}>Action</TableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>
                   {selectedOriginators.map((selectedOriginator) => (
                     <TableRow key={selectedOriginator.UserID}>
-                      <TableCell>{selectedOriginator.UserID}</TableCell>
-                      <TableCell>{selectedOriginator.EmployeeName}</TableCell>
-                      <TableCell>{selectedOriginator.Position}</TableCell>
+                      <TableCell sx={cellStyle}>
+                        <Box
+                          sx={{
+                            height: "40px",
+                            display: "flex",
+                            alignItems: "center",
+                          }}
+                        >
+                          {selectedOriginator.UserID}
+                        </Box>
+                      </TableCell>
+                      <TableCell sx={cellStyle}>
+                        <Box
+                          sx={{
+                            height: "40px",
+                            display: "flex",
+                            alignItems: "center",
+                          }}
+                        >
+                          {selectedOriginator.EmployeeName}
+                        </Box>
+                      </TableCell>
+                      <TableCell sx={cellStyle}>
+                        <Box
+                          sx={{
+                            height: "40px",
+                            display: "flex",
+                            alignItems: "center",
+                          }}
+                        >
+                          {selectedOriginator.Position}
+                        </Box>
+                      </TableCell>
+                      <TableCell sx={cellStyle} style={{ width: "100px" }}>
+                        <Box
+                          display="flex"
+                          justifyContent="center"
+                          alignItems="center"
+                          height="40px"
+                        >
+                          <IconButton
+                            onClick={() =>
+                              handleRemoveOriginator(selectedOriginator.UserID)
+                            }
+                          >
+                            <DeleteIcon style={{ color: "red" }} />
+                          </IconButton>
+                        </Box>
+                      </TableCell>
                     </TableRow>
                   ))}
                 </TableBody>
@@ -407,7 +475,7 @@ const Page: React.FC = () => {
       case 1:
         return (
           <div>
-            <TableContainer component={Paper}>
+            <TableContainer component={Paper} style={{ marginTop: "20px" }}>
               <Table>
                 <TableHead>
                   <TableRow>
@@ -415,15 +483,72 @@ const Page: React.FC = () => {
                     <TableCell>User Name</TableCell>
                     <TableCell>Position</TableCell>
                     <TableCell>Level</TableCell>
+                    <TableCell style={{ width: "80px" }}>Action</TableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>
                   {selectedApprovers.map((approver) => (
                     <TableRow key={approver.UserID}>
-                      <TableCell>{approver.UserID}</TableCell>
-                      <TableCell>{approver.EmployeeName}</TableCell>
-                      <TableCell>{approver.Position}</TableCell>
-                      <TableCell>{approver.Level}</TableCell>
+                      <TableCell sx={cellStyle}>
+                        <Box
+                          sx={{
+                            height: "40px",
+                            display: "flex",
+                            alignItems: "center",
+                          }}
+                        >
+                          {approver.UserID}
+                        </Box>
+                      </TableCell>
+                      <TableCell sx={cellStyle}>
+                        <Box
+                          sx={{
+                            height: "40px",
+                            display: "flex",
+                            alignItems: "center",
+                          }}
+                        >
+                          {approver.EmployeeName}
+                        </Box>
+                      </TableCell>
+                      <TableCell sx={cellStyle}>
+                        <Box
+                          sx={{
+                            height: "40px",
+                            display: "flex",
+                            alignItems: "center",
+                          }}
+                        >
+                          {approver.Position}
+                        </Box>
+                      </TableCell>
+                      <TableCell sx={cellStyle}>
+                        <Box
+                          sx={{
+                            height: "40px",
+                            display: "flex",
+                            alignItems: "center",
+                          }}
+                        >
+                          {approver.Level}
+                        </Box>
+                      </TableCell>
+                      <TableCell sx={cellStyle} style={{ width: "100px" }}>
+                        <Box
+                          display="flex"
+                          justifyContent="center"
+                          alignItems="center"
+                          height="40px"
+                        >
+                          <IconButton
+                            onClick={() =>
+                              handleRemoveApprover(approver.UserID)
+                            }
+                          >
+                            <DeleteIcon style={{ color: "red" }} />
+                          </IconButton>
+                        </Box>
+                      </TableCell>
                     </TableRow>
                   ))}
                 </TableBody>
