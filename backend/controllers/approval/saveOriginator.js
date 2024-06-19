@@ -73,4 +73,36 @@ const getOriginator = async (req, res) => {
   }
 };
 
-export { saveORiginator, getOriginator };
+const getSelectedOriginatorID = async (req, res) => {
+  try {
+    const { AppProcID } = req.params;
+
+    const result =
+      await sqlConn.query(`SELECT u.UserID, u.EmpName, u.Position, ap.AppProcID
+                                        FROM [OTS_DB].[dbo].[User] u
+                                        INNER JOIN [OTS_DB].[dbo].[AppProc_DetOrig] ap
+                                        ON u.UserID = ap.UserID WHERE ap.AppProcID = ${AppProcID}`);
+
+    if (!result) {
+      res.status(404).json({
+        success: false,
+        message: "Unable to find Selected Originators",
+      });
+    }
+
+    const originator = result.recordset;
+    res.status(200).json({
+      success: true,
+      message: "Originator found",
+      originator: originator,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({
+      success: false,
+      message: error.message,
+    });
+  }
+};
+
+export { saveORiginator, getOriginator, getSelectedOriginatorID };
