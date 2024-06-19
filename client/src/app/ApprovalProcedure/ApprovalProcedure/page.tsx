@@ -82,6 +82,9 @@ const Page: React.FC = () => {
   const [originators, setOriginators] = useState<OriginatorData[]>([]);
   const [showOriginatorsList, setShowOriginatorsList] = useState(false);
   const [showApproversList, setShowApproversList] = useState(false);
+  const [appProcIDSelected, setAppProcIDSelected] = useState<number | null>(
+    null
+  );
   const [fetchTrigger, setFetchTrigger] = useState(0); // State to trigger re-fetch
 
   const [selectedOriginators, setSelectedOriginators] = useState<
@@ -372,6 +375,11 @@ const Page: React.FC = () => {
     setSelectedApprovers(updatedApprovers);
   };
 
+  // assign AppProcID and show Edit Approval Procedure
+  const editApprovalProcedure = (row: any) => {
+    setAppProcIDSelected(row.AppProcID);
+  };
+
   const cellStyle = {
     height: "40px",
     padding: "5px",
@@ -614,6 +622,7 @@ const Page: React.FC = () => {
               <tr
                 key={row.AppProcID}
                 className="hover:bg-blue-100 cursor-pointer transition-colors"
+                onClick={() => editApprovalProcedure(row)}
               >
                 <td className="px-6 py-2 whitespace-nowrap text-sm font-medium text-gray-900">
                   {row.AppProcID}
@@ -636,7 +645,10 @@ const Page: React.FC = () => {
                 <td className="px-6 py-2 whitespace-nowrap text-right text-sm font-medium">
                   <button
                     className="text-indigo-600 hover:text-indigo-900"
-                    // onClick={editButton}
+                    onClick={(e) => {
+                      e.stopPropagation(); // Prevent row click when clicking button
+                      editApprovalProcedure(row);
+                    }}
                   >
                     <EditIcon />
                   </button>
