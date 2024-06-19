@@ -79,9 +79,9 @@ const getSelectedOriginatorID = async (req, res) => {
 
     const result =
       await sqlConn.query(`SELECT u.UserID, u.EmpName, u.Position, ap.AppProcID
-                                        FROM [OTS_DB].[dbo].[User] u
-                                        INNER JOIN [OTS_DB].[dbo].[AppProc_DetOrig] ap
-                                        ON u.UserID = ap.UserID WHERE ap.AppProcID = ${AppProcID}`);
+                            FROM [OTS_DB].[dbo].[User] u
+                            INNER JOIN [OTS_DB].[dbo].[AppProc_DetOrig] ap
+                            ON u.UserID = ap.UserID WHERE ap.AppProcID = ${AppProcID}`);
 
     if (!result) {
       res.status(404).json({
