@@ -82,6 +82,8 @@ const Page: React.FC = () => {
   const [originators, setOriginators] = useState<OriginatorData[]>([]);
   const [showOriginatorsList, setShowOriginatorsList] = useState(false);
   const [showApproversList, setShowApproversList] = useState(false);
+  const [showEditApprovalProc, setShowApprovalProc] = useState(false);
+  // AppProcID
   const [appProcIDSelected, setAppProcIDSelected] = useState<number | null>(
     null
   );
@@ -378,7 +380,63 @@ const Page: React.FC = () => {
   // assign AppProcID and show Edit Approval Procedure
   const editApprovalProcedure = (row: any) => {
     setAppProcIDSelected(row.AppProcID);
+    setShowApprovalProc(!showEditApprovalProc);
   };
+
+  // Show and hide Edit Approval Procedure
+  const showEditAppProc = () => {
+    setShowApprovalProc(!showEditApprovalProc);
+  };
+
+  // Fetched Selected Approval header and details
+  // useEffect(() => {
+  //   if (appProcIDSelected) {
+  //     axios
+  //       .get(
+  //         `http://172.16.10.169:5000/api/v1/get-selected-approval-main/${appProcIDSelected}`
+  //       )
+  //       .then((response) => {
+  //         console.log(response.data);
+  //         // setWarehouseList(response.data)
+  //       });
+  //   }
+  // });
+
+  // fetched Originator
+  useEffect(() => {
+    if (appProcIDSelected) {
+      axios
+        .get(`http://localhost:5000/api/v1/get-originator/${appProcIDSelected}`)
+        .then((response) => {
+          const { data } = response;
+          if (data.success) {
+            const originatorsFromApi = data.originator.map(
+              (originator: any) => ({
+                UserID: originator.UserID,
+                EmployeeName: originator.EmpName, // Adjusted to match your interface
+                Position: originator.Position,
+              })
+            );
+            setSelectedOriginators(originatorsFromApi);
+          } else {
+            // Handle error scenario where originator is not found or other API errors
+            console.error(data.message);
+          }
+        })
+        .catch((error) => {
+          // Handle network errors or any other Axios-related errors
+          console.error("Error fetching originators:", error);
+        });
+    }
+  }, [appProcIDSelected]);
+  // fetched Approver
+  useEffect(() => {
+    if (appProcIDSelected) {
+      axios.get(
+        `http://172.16.10.169:5000/api/v1/get-approver/${appProcIDSelected}`
+      );
+    }
+  });
 
   const cellStyle = {
     height: "40px",
@@ -871,6 +929,199 @@ const Page: React.FC = () => {
         </Draggable>
       )}
 
+      {/* Edit Approval Procedure */}
+      {showEditApprovalProc && (
+        <Draggable>
+          <div
+            className="bg-white shadow-lg"
+            style={{
+              border: "1px solid #ccc",
+              position: "absolute",
+              top: "20%",
+              left: "20%",
+              maxHeight: "740px",
+              overflowY: "auto",
+              background: "white",
+              zIndex: "9999",
+            }}
+          >
+            <div
+              className="grid grid-cols-2 p-2 text-left windowheader"
+              style={{ cursor: "move" }}
+            >
+              <div>Update Approval Procedure</div>
+              <div className="text-right">
+                <span className="cursor-pointer" onClick={showEditAppProc}>
+                  ❌
+                </span>
+              </div>
+            </div>
+            <div className="content">
+              <div className="p-2">
+                <div>
+                  <br />
+                </div>
+                <form>
+                  <Grid container spacing={3}>
+                    {/* First Row */}
+                    <Grid item xs={12} sm={4}>
+                      <TextField
+                        fullWidth
+                        id="AppProcID"
+                        name="AppProcID"
+                        label="Approval Procedure ID"
+                        variant="outlined"
+                        value={appProcIDSelected}
+                        InputProps={{
+                          readOnly: true,
+                        }}
+                        InputLabelProps={{
+                          shrink: true,
+                        }}
+                      />
+                    </Grid>
+                    {/* ------------------ Approval Type ------------------ */}
+                    <Grid item xs={12} sm={4}>
+                      <FormControl variant="outlined" fullWidth>
+                        <InputLabel id="Type-label">Approval Type</InputLabel>
+                        <Select
+                          labelId="Type-label"
+                          id="AppTypeID"
+                          value={
+                            selectedAppTypeID
+                              ? approvalTypeArr.find(
+                                  (type) => type.AppTypeID === selectedAppTypeID
+                                )?.AppType || ""
+                              : ""
+                          }
+                          onChange={handleApprovalTypeChange}
+                          label="Approval Type"
+                        >
+                          {approvalTypeArr.map((type) => (
+                            <MenuItem key={type.AppTypeID} value={type.AppType}>
+                              {type.AppType}
+                            </MenuItem>
+                          ))}
+                        </Select>
+                      </FormControl>
+                    </Grid>
+                    {/* ------------------ Warehouse Code ------------------ */}
+                    <Grid item xs={12} sm={4}>
+                      <FormControl variant="outlined" fullWidth>
+                        <InputLabel id="WhseCode">Warehouse Code</InputLabel>
+                        <Select
+                          labelId="WhseCode"
+                          id="WhseCode"
+                          value={selectedWarehouse || ""}
+                          onChange={handleWarehouseChange}
+                          label="Warehouse Code"
+                        >
+                          {warehouseList.map((warehouse) => (
+                            <MenuItem
+                              key={warehouse.WhsCode}
+                              value={warehouse.WhsCode}
+                            >
+                              {warehouse.WhsName}
+                            </MenuItem>
+                          ))}
+                        </Select>
+                      </FormControl>
+                    </Grid>
+
+                    {/* Second Row */}
+                    {/* ------------------ DocType Type ------------------ */}
+                    <Grid item xs={12} sm={4}>
+                      <FormControl variant="outlined" fullWidth>
+                        <InputLabel id="Doc-Type">Document Type</InputLabel>
+                        <Select
+                          labelId="Doc-Type"
+                          id="Doc-Type"
+                          value={doctype}
+                          onChange={handleDocChange}
+                          label="Document Type"
+                        >
+                          <MenuItem value="SalesOrder">Sales Order</MenuItem>
+                          <MenuItem value="SalesQoutation">
+                            Sales Quotation
+                          </MenuItem>
+                        </Select>
+                      </FormControl>
+                    </Grid>
+                    {/* ------------------ Type ------------------ */}
+                    <Grid item xs={12} sm={4}>
+                      <FormControl variant="outlined" fullWidth>
+                        <InputLabel id="Type-label">Type</InputLabel>
+                        <Select
+                          labelId="Type-label"
+                          id="Type-label"
+                          value={type}
+                          onChange={handleChange}
+                          label="Type"
+                        >
+                          <MenuItem value="Sequential">Sequential</MenuItem>
+                          <MenuItem value="Simultaneous">Simultaneous</MenuItem>
+                        </Select>
+                      </FormControl>
+                    </Grid>
+                    {/* ------------------ Number of Approver ------------------ */}
+                    <Grid item xs={12} sm={4}>
+                      <TextField
+                        fullWidth
+                        id="NumApprover"
+                        name="NumApprover"
+                        label="Number of Approver"
+                        variant="outlined"
+                        type="number"
+                        value={numberValue === null ? "" : numberValue} // Handle null value
+                        onChange={handleNumberChange}
+                      />
+                    </Grid>
+                  </Grid>
+                </form>
+
+                <div className="tabssss">
+                  <div>
+                    <br />
+                  </div>
+                  <Tabs value={activeTab} onChange={handleTabChange} centered>
+                    <Tab label="Originator" />
+                    <Tab label="Approver" />
+                  </Tabs>
+                  <form>
+                    <Box mt={3}>{renderTabContent(activeTab)}</Box>
+                  </form>
+                  <div className="pt-28"></div>
+
+                  {/* Save button */}
+                  <div className="flex justify-between items-center mb-6 pt-2 px-4">
+                    <h2 className="text-lg font-semibold text-gray-800"></h2>
+                    <button
+                      className="flex items-center px-4 py-2 button-custom-bg-color text-white rounded-md focus:outline-none focus:bg-blue-600"
+                      onClick={handleSave}
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        className="h-5 w-5 mr-2"
+                        viewBox="0 0 20 20"
+                        fill="currentColor"
+                      >
+                        <path
+                          fillRule="evenodd"
+                          d="M10 2a8 8 0 1 0 0 16 8 8 0 0 0 0-16zM9 9V5a1 1 0 0 1 2 0v4h4a1 1 0 0 1 0 2h-4v4a1 1 0 1 1-2 0v-4H5a1 1 0 1 1 0-2h4V9z"
+                          clipRule="evenodd"
+                        />
+                      </svg>
+                      Save
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </Draggable>
+      )}
+
+      {/* show Originators List */}
       {showOriginatorsList && (
         <Draggable>
           <div
