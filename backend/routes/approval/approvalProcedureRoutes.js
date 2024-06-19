@@ -11,6 +11,7 @@ import {
 import {
   saveApprover,
   getApprovers,
+  getApproversByApprovalID,
 } from "../../controllers/approval/saveApprover.js";
 import { getApprovalMain } from "../../controllers/approval/getApprovalMain.js";
 
@@ -23,6 +24,7 @@ router.post("/save-approver", saveApprover);
 router.get("/get-approval-header", getApprovalHeader);
 router.get("/get-originator", getOriginator);
 router.get("/get-approver", getApprovers);
+router.get("/get-approver/:AppProcID", getApproversByApprovalID);
 router.get("/get-approval-main", getApprovalMain);
 
 router.get("/get-selected-approval-main/:AppProcID", getSelectedApprovalMain);

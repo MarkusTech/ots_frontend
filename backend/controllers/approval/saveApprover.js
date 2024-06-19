@@ -68,4 +68,35 @@ const getApprovers = async (req, res) => {
   }
 };
 
-export { saveApprover, getApprovers };
+const getApproversByApprovalID = async (req, res) => {
+  try {
+    const { AppProcID } = req.params;
+
+    const result =
+      await sqlConn.query(`SELECT u.UserID, u.EmpName, u.Position, ap.AppLevel FROM [OTS_DB].[dbo].[User] u
+                            INNER JOIN [OTS_DB].[dbo].[AppProc_DetApp] ap
+                            ON u.UserID = ap.UserID WHERE ap.AppProcID = ${AppProcID}`);
+
+    if (!result) {
+      res.status(404).json({
+        success: false,
+        message: "Unable to find Selected Approver",
+      });
+    }
+
+    const approver = result.recordset;
+    res.status(200).json({
+      success: true,
+      message: "Approvers found!",
+      approver: approver,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({
+      success: false,
+      message: error.message,
+    });
+  }
+};
+
+export { saveApprover, getApprovers, getApproversByApprovalID };
