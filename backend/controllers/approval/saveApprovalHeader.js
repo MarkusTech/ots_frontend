@@ -54,4 +54,57 @@ const getApprovalHeader = async (req, res) => {
   }
 };
 
-export { saveApprovalHeader, getApprovalHeader };
+const getSelectedApprovalMain = async (req, res) => {
+  try {
+    const { AppProcID } = req.params;
+
+    const resultMain = await sqlConn.query(
+      `SELECT * FROM [OTS_DB].[dbo].[AppProc_Main] WHERE AppProcID = ${AppProcID}`
+    );
+    const resultOriginator = await sqlConn.query(
+      `SELECT * FROM [OTS_DB].[dbo].[AppProc_DetOrig] WHERE AppProcID = ${AppProcID}`
+    );
+    const resultApprover = await sqlConn.query(
+      `SELECT * FROM [OTS_DB].[dbo].[AppProc_DetApp] WHERE AppProcID = ${AppProcID}`
+    );
+
+    if (!resultMain) {
+      res.status(404).json({
+        success: false,
+        message: "Unable to find data based on Approval Procedure ID given",
+      });
+    }
+    if (!resultOriginator) {
+      res.status(404).json({
+        success: false,
+        message: "Unable to find data based on Approval Procedure ID given",
+      });
+    }
+    if (!resultApprover) {
+      res.status(404).json({
+        success: false,
+        message: "Unable to find data based on Approval Procedure ID given",
+      });
+    }
+
+    const main = resultMain.recordset;
+    const originator = resultOriginator.recordset;
+    const approver = resultApprover.recordset;
+
+    res.status(200).json({
+      success: true,
+      message: "Selected Approval found!",
+      main: main,
+      originator: originator,
+      approver: approver,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({
+      success: false,
+      message: error.message,
+    });
+  }
+};
+
+export { saveApprovalHeader, getApprovalHeader, getSelectedApprovalMain };
