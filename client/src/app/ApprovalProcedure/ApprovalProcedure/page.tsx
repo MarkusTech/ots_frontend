@@ -432,11 +432,31 @@ const Page: React.FC = () => {
   // fetched Approver
   useEffect(() => {
     if (appProcIDSelected) {
-      axios.get(
-        `http://172.16.10.169:5000/api/v1/get-approver/${appProcIDSelected}`
-      );
+      axios
+        .get(
+          `http://172.16.10.169:5000/api/v1/get-approver/${appProcIDSelected}`
+        )
+        .then((response) => {
+          const { data } = response;
+          if (data.success) {
+            const approversFromApi = data.approver.map((approver: any) => ({
+              UserID: approver.UserID,
+              EmployeeName: approver.EmpName,
+              Position: approver.Position,
+              Level: approver.Level,
+            }));
+            setSelectedApprovers(approversFromApi);
+          } else {
+            // Handle error scenario where originator is not found or other API errors
+            console.error(data.message);
+          }
+        })
+        .catch((error) => {
+          // Handle network errors or any other Axios-related errors
+          console.error("Error fetching originators:", error);
+        });
     }
-  });
+  }, [appProcIDSelected]);
 
   const cellStyle = {
     height: "40px",
@@ -1111,7 +1131,7 @@ const Page: React.FC = () => {
                           clipRule="evenodd"
                         />
                       </svg>
-                      Save
+                      Update
                     </button>
                   </div>
                 </div>
