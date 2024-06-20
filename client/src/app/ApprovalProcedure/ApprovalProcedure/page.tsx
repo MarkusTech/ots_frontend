@@ -487,16 +487,11 @@ const Page: React.FC = () => {
         setFetchTrigger((prev) => prev + 1);
         // after Updating it will hide the edit form
         setShowApprovalProc(!showEditApprovalProc);
+        // Setting the tab to originator
+        setActiveTab(0);
+
         // await handleOriginatorSave();
         // await handleSaveApprover();
-        // setActiveTab(0);
-        // setShowCreateApproval(!showCreateApproval);
-
-        // setSelectedAppTypeID(null);
-        // setSelectedWarehouse("");
-        // setDoctype("");
-        // setType("");
-        // setNumberValue(null);
 
         Swal.fire({
           icon: "success",
