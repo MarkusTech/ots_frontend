@@ -462,6 +462,9 @@ const Page: React.FC = () => {
     }
   }, [appProcIDSelected]);
 
+  const handleEditApprover = async () => {};
+  const handleEditOriginator = async () => {};
+
   const updateApprovalProBtn = async () => {
     const payload = {
       AppTypeID: selectedAppTypeID,
@@ -490,8 +493,8 @@ const Page: React.FC = () => {
         // Setting the tab to originator
         setActiveTab(0);
 
-        // await handleOriginatorSave();
-        // await handleSaveApprover();
+        await handleEditApprover();
+        await handleEditOriginator();
 
         Swal.fire({
           icon: "success",
