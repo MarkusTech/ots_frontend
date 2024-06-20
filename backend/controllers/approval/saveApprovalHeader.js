@@ -121,14 +121,18 @@ const updateApprovalHeader = async (req, res) => {
         Where AppProcID = ${AppProcID}`;
 
     // Check if any rows were affected
-    if (result.rowsAffected && result.rowsAffected[0] > 0) {
-      res.send({ message: "Record updated successfully." });
-    } else {
+    if (!result) {
       res.status(404).json({
         success: false,
         message: "Record not found or no rows affected.",
       });
     }
+
+    res.status(200).json({
+      success: true,
+      message: "Record updated successfully",
+      data: result.recordset,
+    });
   } catch (error) {
     console.error(error);
     res.status(500).json({

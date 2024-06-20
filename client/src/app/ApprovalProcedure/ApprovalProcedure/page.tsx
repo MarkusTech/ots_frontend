@@ -462,13 +462,7 @@ const Page: React.FC = () => {
     }
   }, [appProcIDSelected]);
 
-  const updateApprovalProBtn = () => {
-    // console.log(selectedWarehouse);
-    // console.log(doctype);
-    // console.log(type);
-    // console.log(numberValue);
-    // console.log(selectedAppTypeID);
-
+  const updateApprovalProBtn = async () => {
     const payload = {
       AppTypeID: selectedAppTypeID,
       WhseCode: selectedWarehouse,
@@ -478,6 +472,38 @@ const Page: React.FC = () => {
     };
 
     try {
+      const response = await fetch(
+        `http://localhost:5000/api/v1/update-approver/${appProcIDSelected}`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(payload),
+        }
+      );
+      if (response.ok) {
+        console.log("Success");
+        setFetchTrigger((prev) => prev + 1);
+        // after Updating it will hide the edit form
+        setShowApprovalProc(!showEditApprovalProc);
+        // await handleOriginatorSave();
+        // await handleSaveApprover();
+        // setActiveTab(0);
+        // setShowCreateApproval(!showCreateApproval);
+
+        // setSelectedAppTypeID(null);
+        // setSelectedWarehouse("");
+        // setDoctype("");
+        // setType("");
+        // setNumberValue(null);
+
+        Swal.fire({
+          icon: "success",
+          title: "Success",
+          text: "Data Updated Successfully",
+        });
+      }
     } catch (error) {
       console.log(error);
     }
