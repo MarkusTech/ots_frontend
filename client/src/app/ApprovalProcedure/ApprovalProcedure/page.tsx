@@ -389,18 +389,22 @@ const Page: React.FC = () => {
   };
 
   // Fetched Selected Approval header and details
-  // useEffect(() => {
-  //   if (appProcIDSelected) {
-  //     axios
-  //       .get(
-  //         `http://172.16.10.169:5000/api/v1/get-selected-approval-main/${appProcIDSelected}`
-  //       )
-  //       .then((response) => {
-  //         console.log(response.data);
-  //         // setWarehouseList(response.data)
-  //       });
-  //   }
-  // });
+  useEffect(() => {
+    if (appProcIDSelected) {
+      axios
+        .get(
+          `http://172.16.10.169:5000/api/v1/get-selected-approval-main/${appProcIDSelected}`
+        )
+        .then((response) => {
+          const data = response.data;
+          setSelectedWarehouse(data.main[0].WhseCode);
+          setDoctype(data.main[0].DocType);
+          setType(data.main[0].Type);
+          setNumberValue(data.main[0].NumApprover);
+          setSelectedAppTypeID(data.main[0].AppTypeID);
+        });
+    }
+  }, [appProcIDSelected]);
 
   // fetched Originator
   useEffect(() => {
@@ -457,6 +461,13 @@ const Page: React.FC = () => {
         });
     }
   }, [appProcIDSelected]);
+
+  const updateApprovalProBtn = () => {
+    // console.log(selectedWarehouse);
+    // console.log(doctype);
+    // console.log(type);
+    // console.log(numberValue);
+  };
 
   const cellStyle = {
     height: "40px",
@@ -1117,7 +1128,7 @@ const Page: React.FC = () => {
                     <h2 className="text-lg font-semibold text-gray-800"></h2>
                     <button
                       className="flex items-center px-4 py-2 button-custom-bg-color text-white rounded-md focus:outline-none focus:bg-blue-600"
-                      onClick={handleSave}
+                      onClick={updateApprovalProBtn}
                     >
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
