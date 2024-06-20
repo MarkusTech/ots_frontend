@@ -3,6 +3,7 @@ import {
   saveApprovalHeader,
   getApprovalHeader,
   getSelectedApprovalMain,
+  updateApprovalHeader,
 } from "../../controllers/approval/saveApprovalHeader.js";
 import {
   saveORiginator,
@@ -22,6 +23,7 @@ const router = express.Router();
 router.post("/save-approval-header", saveApprovalHeader);
 router.post("/save-originator", saveORiginator);
 router.post("/save-approver", saveApprover);
+router.put("/update-approver/:AppProcID", updateApprovalHeader);
 
 // Originator
 router.get("/get-approval-header", getApprovalHeader);

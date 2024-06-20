@@ -107,4 +107,40 @@ const getSelectedApprovalMain = async (req, res) => {
   }
 };
 
-export { saveApprovalHeader, getApprovalHeader, getSelectedApprovalMain };
+const updateApprovalHeader = async (req, res) => {
+  const { AppProcID } = req.params;
+  const { AppTypeID, WhseCode, DocType, Type, NumApprover } = req.body;
+
+  try {
+    const result = await sqlConn.query`UPDATE [OTS_DB].[dbo].[AppProc_Main]
+        SET [AppTypeID] = ${AppTypeID}
+            ,[WhseCode] = ${WhseCode}
+            ,[DocType] = ${DocType}
+            ,[Type] = ${Type}
+            ,[NumApprover] = ${NumApprover}
+        Where AppProcID = ${AppProcID}`;
+
+    // Check if any rows were affected
+    if (result.rowsAffected && result.rowsAffected[0] > 0) {
+      res.send({ message: "Record updated successfully." });
+    } else {
+      res.status(404).json({
+        success: false,
+        message: "Record not found or no rows affected.",
+      });
+    }
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({
+      success: false,
+      message: error.message,
+    });
+  }
+};
+
+export {
+  saveApprovalHeader,
+  getApprovalHeader,
+  getSelectedApprovalMain,
+  updateApprovalHeader,
+};
