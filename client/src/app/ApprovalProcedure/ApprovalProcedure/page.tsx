@@ -463,10 +463,11 @@ const Page: React.FC = () => {
   }, [appProcIDSelected]);
 
   const updateApprovalProBtn = () => {
-    // console.log(selectedWarehouse);
-    // console.log(doctype);
-    // console.log(type);
-    // console.log(numberValue);
+    console.log(selectedWarehouse);
+    console.log(doctype);
+    console.log(type);
+    console.log(numberValue);
+    console.log(selectedAppTypeID);
   };
 
   const cellStyle = {
