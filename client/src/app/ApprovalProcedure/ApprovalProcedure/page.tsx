@@ -333,6 +333,9 @@ const Page: React.FC = () => {
     }
   };
 
+  // -----------------------------------------------------------------------------
+
+  // Handle Delete Originator Details and then Save it
   const handleOriginatorSaveAfterDeleting = async () => {
     if (selectedOriginators.length > 0) {
       const payloads = selectedOriginators.map((originator) => ({
@@ -367,6 +370,7 @@ const Page: React.FC = () => {
     }
   };
 
+  // Handle Delete Originator Details and then Save it
   const handleDeleteAndSaveOriginator = async () => {
     if (appProcIDSelected) {
       try {
@@ -379,13 +383,74 @@ const Page: React.FC = () => {
 
         if (response.ok) {
           console.log("WennWorks");
-          await handleOriginatorSaveAfterDeleting();
+          await handleSaveApproverAfterDeleting();
         }
       } catch (error) {
         console.log(error);
       }
     }
   };
+
+  // -----------------------------------------------------------------------------
+
+  // Handle Delete Approver Details and then Save it
+  const handleSaveApproverAfterDeleting = async () => {
+    if (selectedApprovers.length > 0) {
+      const payloads = selectedApprovers.map((approver) => ({
+        AppProcID: appProcIDSelected,
+        UserID: approver.UserID,
+        AppLevel: approver.Level,
+      }));
+
+      try {
+        const response = await fetch(
+          "http://localhost:5000/api/v1/save-approver",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(payloads),
+          }
+        );
+
+        if (response.ok) {
+          console.log("Approvers saved successfully");
+          setSelectedApprovers([]);
+        } else {
+          const errorData = await response.json();
+          console.error("Failed to save Approvers:", errorData.message);
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    } else {
+      console.log("No Approvers selected");
+    }
+  };
+
+  // Handle Delete Approver Details and then Save it
+  const handleDeleteAndSaveApprover = async () => {
+    if (appProcIDSelected) {
+      try {
+        const response = await fetch(
+          `http://localhost:5000/api/v1/delete-originator/${appProcIDSelected}`,
+          {
+            method: "DELETE",
+          }
+        );
+
+        if (response.ok) {
+          console.log("WennWorks");
+          await handleSaveApproverAfterDeleting();
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    }
+  };
+
+  // -----------------------------------------------------------------------------
 
   useEffect(() => {
     axios
@@ -546,6 +611,9 @@ const Page: React.FC = () => {
 
         // Delete Originators and save
         await handleDeleteAndSaveOriginator();
+        // Delete Approvers and then Save the new record
+        await handleDeleteAndSaveApprover();
+
         Swal.fire({
           icon: "success",
           text: "Data Updated Successfully",
