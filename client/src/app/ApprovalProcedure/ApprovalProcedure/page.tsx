@@ -113,6 +113,7 @@ const Page: React.FC = () => {
     setShowApproversList(!showApproversList);
   };
 
+  // list of approval header
   useEffect(() => {
     axios
       .get(`http://172.16.10.169:5000/api/v1/get-approval-main`)
@@ -121,6 +122,7 @@ const Page: React.FC = () => {
       });
   }, [fetchTrigger]);
 
+  // feching originators
   useEffect(() => {
     axios
       .get("http://172.16.10.169:5001/api/v1/originator")
@@ -383,7 +385,8 @@ const Page: React.FC = () => {
 
         if (response.ok) {
           console.log("WennWorks");
-          await handleSaveApproverAfterDeleting();
+          await handleOriginatorSaveAfterDeleting();
+          setActiveTab(0);
         }
       } catch (error) {
         console.log(error);
@@ -434,7 +437,7 @@ const Page: React.FC = () => {
     if (appProcIDSelected) {
       try {
         const response = await fetch(
-          `http://localhost:5000/api/v1/delete-originator/${appProcIDSelected}`,
+          `http://localhost:5000/api/v1/delete-approver/${appProcIDSelected}`,
           {
             method: "DELETE",
           }
@@ -443,6 +446,7 @@ const Page: React.FC = () => {
         if (response.ok) {
           console.log("WennWorks");
           await handleSaveApproverAfterDeleting();
+          setActiveTab(0);
         }
       } catch (error) {
         console.log(error);
@@ -452,6 +456,7 @@ const Page: React.FC = () => {
 
   // -----------------------------------------------------------------------------
 
+  // Fetching list of warehouse
   useEffect(() => {
     axios
       .get("http://localhost:5000/api/v2/list-warehouse")
@@ -461,6 +466,7 @@ const Page: React.FC = () => {
       });
   }, []);
 
+  // Fetching Last Approval ID
   useEffect(() => {
     axios
       .get(`http://localhost:5000/api/v2/last-approval-id`)
@@ -471,6 +477,7 @@ const Page: React.FC = () => {
       });
   }, [fetchTrigger]);
 
+  // Fetching Approval Type
   useEffect(() => {
     axios
       .get("http://localhost:5000/api/v2/approval/type")
@@ -581,6 +588,7 @@ const Page: React.FC = () => {
     }
   }, [appProcIDSelected]);
 
+  // Handle Update
   const updateApprovalProBtn = async () => {
     const payload = {
       AppTypeID: selectedAppTypeID,
@@ -603,7 +611,6 @@ const Page: React.FC = () => {
       );
       if (response.ok) {
         console.log("Success");
-        setFetchTrigger((prev) => prev + 1);
         // after Updating it will hide the edit form
         setShowApprovalProc(!showEditApprovalProc);
         // Setting the tab to originator
@@ -613,6 +620,7 @@ const Page: React.FC = () => {
         await handleDeleteAndSaveOriginator();
         // Delete Approvers and then Save the new record
         await handleDeleteAndSaveApprover();
+        setFetchTrigger((prev) => prev + 1);
 
         Swal.fire({
           icon: "success",
