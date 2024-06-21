@@ -113,24 +113,6 @@ const Page: React.FC = () => {
     setShowApproversList(!showApproversList);
   };
 
-  // list of approval header
-  useEffect(() => {
-    axios
-      .get(`http://172.16.10.169:5000/api/v1/get-approval-main`)
-      .then((response) => {
-        setApprovalData(response.data.data);
-      });
-  }, [fetchTrigger]);
-
-  // feching originators
-  useEffect(() => {
-    axios
-      .get("http://172.16.10.169:5001/api/v1/originator")
-      .then((response: any) => {
-        setOriginators(response.data.data);
-      });
-  }, []);
-
   const showOriginatorList = () => {
     setShowOriginatorsList(!showOriginatorsList);
   };
@@ -221,8 +203,8 @@ const Page: React.FC = () => {
     setSelectedOriginators([]);
   };
 
+  // handle Save Header
   const handleSave = async () => {
-    // fix this logic here
     const payload = {
       AppTypeID: selectedAppTypeID,
       WhseCode: selectedWarehouse,
@@ -266,6 +248,7 @@ const Page: React.FC = () => {
     }
   };
 
+  // Handle Save Originator
   const handleOriginatorSave = async () => {
     if (selectedOriginators.length > 0) {
       const payloads = selectedOriginators.map((originator) => ({
@@ -300,6 +283,7 @@ const Page: React.FC = () => {
     }
   };
 
+  // Handle Save Approver
   const handleSaveApprover = async () => {
     if (selectedApprovers.length > 0) {
       const payloads = selectedApprovers.map((approver) => ({
@@ -359,7 +343,7 @@ const Page: React.FC = () => {
 
         if (response.ok) {
           console.log("Originators saved successfully");
-          setSelectedOriginators([]);
+          // setSelectedOriginators([]);
         } else {
           const errorData = await response.json();
           console.error("Failed to save originators:", errorData.message);
@@ -419,7 +403,7 @@ const Page: React.FC = () => {
 
         if (response.ok) {
           console.log("Approvers saved successfully");
-          setSelectedApprovers([]);
+          // setSelectedApprovers([]);
         } else {
           const errorData = await response.json();
           console.error("Failed to save Approvers:", errorData.message);
@@ -456,6 +440,32 @@ const Page: React.FC = () => {
 
   // -----------------------------------------------------------------------------
 
+  const handleRemoveOriginator = (userId: any) => {
+    const updatedOriginators = selectedOriginators.filter(
+      (originator) => originator.UserID !== userId
+    );
+    setSelectedOriginators(updatedOriginators);
+  };
+  const handleRemoveApprover = (userId: any) => {
+    const updatedApprovers = selectedApprovers.filter(
+      (approver) => approver.UserID !== userId
+    );
+    setSelectedApprovers(updatedApprovers);
+  };
+
+  // assign AppProcID and show Edit Approval Procedure
+  const editApprovalProcedure = (row: any) => {
+    setAppProcIDSelected(row.AppProcID);
+    setShowApprovalProc(!showEditApprovalProc);
+  };
+
+  // ---------- Fetching API Section --------------------
+
+  // Show and hide Edit Approval Procedure
+  const showEditAppProc = () => {
+    setShowApprovalProc(!showEditApprovalProc);
+  };
+
   // Fetching list of warehouse
   useEffect(() => {
     axios
@@ -490,29 +500,23 @@ const Page: React.FC = () => {
       });
   }, []);
 
-  const handleRemoveOriginator = (userId: any) => {
-    const updatedOriginators = selectedOriginators.filter(
-      (originator) => originator.UserID !== userId
-    );
-    setSelectedOriginators(updatedOriginators);
-  };
-  const handleRemoveApprover = (userId: any) => {
-    const updatedApprovers = selectedApprovers.filter(
-      (approver) => approver.UserID !== userId
-    );
-    setSelectedApprovers(updatedApprovers);
-  };
+  // list of approval header
+  useEffect(() => {
+    axios
+      .get(`http://172.16.10.169:5000/api/v1/get-approval-main`)
+      .then((response) => {
+        setApprovalData(response.data.data);
+      });
+  }, [fetchTrigger]);
 
-  // assign AppProcID and show Edit Approval Procedure
-  const editApprovalProcedure = (row: any) => {
-    setAppProcIDSelected(row.AppProcID);
-    setShowApprovalProc(!showEditApprovalProc);
-  };
-
-  // Show and hide Edit Approval Procedure
-  const showEditAppProc = () => {
-    setShowApprovalProc(!showEditApprovalProc);
-  };
+  // feching originators
+  useEffect(() => {
+    axios
+      .get("http://172.16.10.169:5001/api/v1/originator")
+      .then((response: any) => {
+        setOriginators(response.data.data);
+      });
+  }, []);
 
   // Fetched Selected Approval header and details
   useEffect(() => {
