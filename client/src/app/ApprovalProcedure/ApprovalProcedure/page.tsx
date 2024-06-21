@@ -333,6 +333,60 @@ const Page: React.FC = () => {
     }
   };
 
+  const handleOriginatorSaveAfterDeleting = async () => {
+    if (selectedOriginators.length > 0) {
+      const payloads = selectedOriginators.map((originator) => ({
+        AppProcID: appProcIDSelected,
+        UserID: originator.UserID,
+      }));
+
+      try {
+        const response = await fetch(
+          "http://localhost:5000/api/v1/save-originator",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(payloads),
+          }
+        );
+
+        if (response.ok) {
+          console.log("Originators saved successfully");
+          setSelectedOriginators([]);
+        } else {
+          const errorData = await response.json();
+          console.error("Failed to save originators:", errorData.message);
+        }
+      } catch (error) {
+        console.error("Error saving originators:", error);
+      }
+    } else {
+      console.log("No originators selected");
+    }
+  };
+
+  const handleDeleteAndSaveOriginator = async () => {
+    if (appProcIDSelected) {
+      try {
+        const response = await fetch(
+          `http://localhost:5000/api/v1/delete-originator/${appProcIDSelected}`,
+          {
+            method: "DELETE",
+          }
+        );
+
+        if (response.ok) {
+          console.log("WennWorks");
+          await handleOriginatorSaveAfterDeleting();
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    }
+  };
+
   useEffect(() => {
     axios
       .get("http://localhost:5000/api/v2/list-warehouse")
@@ -490,6 +544,8 @@ const Page: React.FC = () => {
         // Setting the tab to originator
         setActiveTab(0);
 
+        // Delete Originators and save
+        await handleDeleteAndSaveOriginator();
         Swal.fire({
           icon: "success",
           text: "Data Updated Successfully",
