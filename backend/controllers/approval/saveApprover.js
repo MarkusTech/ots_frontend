@@ -99,4 +99,35 @@ const getApproversByApprovalID = async (req, res) => {
   }
 };
 
-export { saveApprover, getApprovers, getApproversByApprovalID };
+const deleteApprover = async (req, res) => {
+  try {
+    const { AppProcID } = req.params;
+
+    const query = await sqlConn.query(
+      `  DELETE FROM [OTS_DB].[dbo].[AppProc_DetApp] WHERE AppProcID = ${AppProcID}`
+    );
+
+    if (!query) {
+      res.status(404).json({
+        success: false,
+        message: "Unable to find and delete data",
+      });
+    }
+
+    const result = query.recordset;
+
+    res.status(200).json({
+      success: true,
+      message: "Approvers Successfully Deleted",
+      data: result,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({
+      success: false,
+      message: error.message,
+    });
+  }
+};
+
+export { saveApprover, getApprovers, getApproversByApprovalID, deleteApprover };

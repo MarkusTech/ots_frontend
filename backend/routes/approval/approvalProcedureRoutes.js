@@ -15,6 +15,7 @@ import {
   saveApprover,
   getApprovers,
   getApproversByApprovalID,
+  deleteApprover,
 } from "../../controllers/approval/saveApprover.js";
 import { getApprovalMain } from "../../controllers/approval/getApprovalMain.js";
 
@@ -36,6 +37,7 @@ router.delete("/delete-originator/:AppProcID", deleteOriginator);
 router.get("/get-approver", getApprovers);
 router.get("/get-approver/:AppProcID", getApproversByApprovalID);
 router.get("/get-approval-main", getApprovalMain);
+router.delete("/delete-approver/:AppProcID", deleteApprover);
 
 // Get Main Approval Procedure
 router.get("/get-selected-approval-main/:AppProcID", getSelectedApprovalMain);
