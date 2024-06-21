@@ -492,7 +492,6 @@ const Page: React.FC = () => {
 
         Swal.fire({
           icon: "success",
-          title: "Success",
           text: "Data Updated Successfully",
         });
       }
