@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import {
   TextField,
   Grid,
-  Container,
   Tabs,
   Tab,
   Box,
@@ -18,7 +17,6 @@ import {
   TableRow,
   Paper,
   Button,
-  SelectChangeEvent,
   IconButton,
 } from "@mui/material";
 import axios from "axios";
@@ -88,15 +86,15 @@ const Page: React.FC = () => {
     null
   );
   const [fetchTrigger, setFetchTrigger] = useState(0); // State to trigger re-fetch
-
+  // Selected Originators Data Fetched here
   const [selectedOriginators, setSelectedOriginators] = useState<
     SelectedOriginator[]
   >([]);
-
+  // Selected Approvers Data Fetched here
   const [selectedApprovers, setSelectedApprovers] = useState<
     SelectedApprover[]
   >([]);
-
+  // list of approval type
   const [approvalData, setApprovalData] = useState<ApprovalData[]>([]);
 
   // for tab changing
@@ -156,7 +154,6 @@ const Page: React.FC = () => {
 
   const handleChange = (event: any) => {
     setType(event.target.value);
-    console.log("Selected type:", event.target.value);
   };
 
   const handleDocChange = (event: any) => {
@@ -176,7 +173,6 @@ const Page: React.FC = () => {
     );
     if (selectedType) {
       setSelectedAppTypeID(selectedType.AppTypeID);
-      console.log("Selected AppTypeID:", selectedType.AppTypeID);
     }
   };
 
@@ -187,7 +183,6 @@ const Page: React.FC = () => {
     warehouseList.map((warehouse) => {
       if (warehouse.WhsCode === selectedWhsCode) {
         setSelectedWarehouse(warehouse.WhsCode);
-        console.log("Selected Warehouse:", warehouse.WhsCode);
       }
       return null;
     });
@@ -224,7 +219,6 @@ const Page: React.FC = () => {
         }
       );
       if (response.ok) {
-        console.log("Success");
         setFetchTrigger((prev) => prev + 1);
         await handleOriginatorSave();
         await handleSaveApprover();
@@ -269,7 +263,7 @@ const Page: React.FC = () => {
         );
 
         if (response.ok) {
-          console.log("Originators saved successfully");
+          // console.log("Originators saved successfully");
           setSelectedOriginators([]);
         } else {
           const errorData = await response.json();
@@ -305,7 +299,7 @@ const Page: React.FC = () => {
         );
 
         if (response.ok) {
-          console.log("Approvers saved successfully");
+          // console.log("Approvers saved successfully");
           setSelectedApprovers([]);
         } else {
           const errorData = await response.json();
@@ -342,7 +336,7 @@ const Page: React.FC = () => {
         );
 
         if (response.ok) {
-          console.log("Originators saved successfully");
+          console.log("Originators Updated successfully");
           // setSelectedOriginators([]);
         } else {
           const errorData = await response.json();
@@ -368,7 +362,7 @@ const Page: React.FC = () => {
         );
 
         if (response.ok) {
-          console.log("WennWorks");
+          // console.log("WennWorks");
           await handleOriginatorSaveAfterDeleting();
           setActiveTab(0);
         }
@@ -402,7 +396,7 @@ const Page: React.FC = () => {
         );
 
         if (response.ok) {
-          console.log("Approvers saved successfully");
+          console.log("Approvers updated successfully");
           // setSelectedApprovers([]);
         } else {
           const errorData = await response.json();
@@ -428,7 +422,6 @@ const Page: React.FC = () => {
         );
 
         if (response.ok) {
-          console.log("WennWorks");
           await handleSaveApproverAfterDeleting();
           setActiveTab(0);
         }
@@ -614,7 +607,6 @@ const Page: React.FC = () => {
         }
       );
       if (response.ok) {
-        console.log("Success");
         // after Updating it will hide the edit form
         setShowApprovalProc(!showEditApprovalProc);
         // Setting the tab to originator
