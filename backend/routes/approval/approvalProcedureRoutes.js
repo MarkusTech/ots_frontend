@@ -9,6 +9,7 @@ import {
   saveORiginator,
   getOriginator,
   getSelectedOriginatorID,
+  deleteOriginator,
 } from "../../controllers/approval/saveOriginator.js";
 import {
   saveApprover,
@@ -29,6 +30,7 @@ router.put("/update-approver/:AppProcID", updateApprovalHeader);
 router.get("/get-approval-header", getApprovalHeader);
 router.get("/get-originator", getOriginator);
 router.get("/get-originator/:AppProcID", getSelectedOriginatorID);
+router.delete("/delete-originator/:AppProcID", deleteOriginator);
 
 // Approvert
 router.get("/get-approver", getApprovers);

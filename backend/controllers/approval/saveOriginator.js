@@ -105,4 +105,46 @@ const getSelectedOriginatorID = async (req, res) => {
   }
 };
 
-export { saveORiginator, getOriginator, getSelectedOriginatorID };
+const deleteOriginator = async (req, res) => {
+  try {
+    const { AppProcID } = req.params;
+
+    if (!AppProcID) {
+      return res.status(400).json({
+        success: false,
+        message: "AppProcID is required",
+      });
+    }
+
+    const query = await sqlConn.query(
+      `DELETE FROM [OTS_DB].[dbo].[AppProc_DetOrig] WHERE AppProcID = ${AppProcID}`
+    );
+
+    const result = query.recordset;
+
+    if (!query) {
+      return res.status(404).json({
+        success: false,
+        message: "Unable to find Data",
+      });
+    }
+
+    res.status(200).json({
+      success: true,
+      message: "Data Deleted Successfully",
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({
+      success: false,
+      message: error.message,
+    });
+  }
+};
+
+export {
+  saveORiginator,
+  getOriginator,
+  getSelectedOriginatorID,
+  deleteOriginator,
+};
