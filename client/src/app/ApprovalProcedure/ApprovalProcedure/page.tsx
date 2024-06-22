@@ -864,6 +864,9 @@ const Page: React.FC = () => {
                 Number of Approver
               </th>
               <th className="px-2 py-3 text-left text-xs font-semibold text-gray-700 uppercase">
+                Active/Inactive
+              </th>
+              <th className="px-2 py-3 text-left text-xs font-semibold text-gray-700 uppercase">
                 Action
               </th>
             </tr>
@@ -893,6 +896,7 @@ const Page: React.FC = () => {
                 <td className="px-6 py-2 whitespace-nowrap text-sm text-gray-500">
                   {row.NumApprover}
                 </td>
+                <td></td>
                 <td className="px-6 py-2 whitespace-nowrap text-right text-sm font-medium">
                   <button
                     className="text-indigo-600 hover:text-indigo-900"
