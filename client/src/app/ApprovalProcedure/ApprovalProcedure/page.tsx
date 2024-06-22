@@ -567,12 +567,15 @@ const Page: React.FC = () => {
           const { data } = response;
           if (data.success) {
             const approversFromApi = data.approver.map((approver: any) => ({
+              // Level: approver.Level,
               UserID: approver.UserID,
               EmployeeName: approver.EmpName,
               Position: approver.Position,
-              Level: approver.Level,
+              Level: approver.AppLevel,
             }));
             setSelectedApprovers(approversFromApi);
+            // console.log(approversFromApi);
+            console.log(data.approver);
           } else {
             // Handle error scenario where originator is not found or other API errors
             console.error(data.message);
