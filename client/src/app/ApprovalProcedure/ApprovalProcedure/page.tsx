@@ -188,6 +188,7 @@ const Page: React.FC = () => {
     });
   };
 
+  // Remove field valu function
   const removeFieldValue = () => {
     setSelectedAppTypeID(null);
     setSelectedWarehouse("");
