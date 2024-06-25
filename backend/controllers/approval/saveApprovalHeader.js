@@ -7,7 +7,7 @@ const saveApprovalHeader = async (req, res) => {
     // Check if a record with the same combination already exists
     const existingData = await sqlConn.query(`
       SELECT * FROM [dbo].[AppProc_Main]
-      WHERE [AppTypeID] = ${AppTypeID} AND [WhseCode] = '${WhseCode}' AND [DocType] = '${DocType}' AND [Type] = '${Type}'
+      WHERE [AppTypeID] = ${AppTypeID} AND [WhseCode] = '${WhseCode}' AND [DocType] = '${DocType}' AND [Type] = '${Type}' AND [Status] = 'Active'
     `);
 
     if (existingData.recordset.length > 0) {
