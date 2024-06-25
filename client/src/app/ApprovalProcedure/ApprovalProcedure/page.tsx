@@ -1296,6 +1296,22 @@ const Page: React.FC = () => {
                         onChange={handleNumberChange}
                       />
                     </Grid>
+                    {/* Status */}
+                    <Grid item xs={12} sm={4}>
+                      <FormControl variant="outlined" fullWidth>
+                        <InputLabel id="Status">Status</InputLabel>
+                        <Select
+                          labelId="Status"
+                          id="Status"
+                          value={doctype}
+                          onChange={handleDocChange}
+                          label="Status"
+                        >
+                          <MenuItem value="SalesOrder">Active</MenuItem>
+                          <MenuItem value="SalesQoutation">Inactive</MenuItem>
+                        </Select>
+                      </FormControl>
+                    </Grid>
                   </Grid>
                 </form>
 
