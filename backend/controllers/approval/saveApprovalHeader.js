@@ -1,7 +1,7 @@
 import sqlConn from "../../config/db.js";
 
 const saveApprovalHeader = async (req, res) => {
-  const { AppTypeID, WhseCode, DocType, Type, NumApprover } = req.body;
+  const { AppTypeID, WhseCode, DocType, Type, NumApprover, Status } = req.body;
 
   try {
     // Check if a record with the same combination already exists
@@ -26,9 +26,10 @@ const saveApprovalHeader = async (req, res) => {
              ,[WhseCode]
              ,[DocType]
              ,[Type]
-             ,[NumApprover])
+             ,[NumApprover]
+             ,[Status])
        VALUES
-             (${AppTypeID}, '${WhseCode}', '${DocType}', '${Type}', ${NumApprover})
+             (${AppTypeID}, '${WhseCode}', '${DocType}', '${Type}', ${NumApprover}, 'Active')
     `);
 
     res.status(201).json({
