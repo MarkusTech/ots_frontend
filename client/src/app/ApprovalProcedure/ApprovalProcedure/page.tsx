@@ -240,8 +240,19 @@ const Page: React.FC = () => {
           text: "Data Saved Successfully",
         });
       }
+      if (response.status === 409) {
+        // Conflict error
+        Swal.fire({
+          text: "Approval Header already exists",
+          icon: "error",
+        });
+        return;
+      }
     } catch (error) {
-      console.log(error);
+      Swal.fire({
+        text: "Contact MIS Incase of Server Error",
+        icon: "error",
+      });
     }
   };
 
