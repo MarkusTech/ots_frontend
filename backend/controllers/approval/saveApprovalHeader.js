@@ -4,23 +4,32 @@ const saveApprovalHeader = async (req, res) => {
   const { AppTypeID, WhseCode, DocType, Type, NumApprover } = req.body;
 
   try {
-    const data = await sqlConn.query(`
-    INSERT INTO [dbo].[AppProc_Main]
-           ([AppTypeID]
-           ,[WhseCode]
-           ,[DocType]
-           ,[Type]
-           ,[NumApprover])
-     VALUES
-           (${AppTypeID}, '${WhseCode}', '${DocType}', '${Type}', ${NumApprover})
-  `);
+    // Check if a record with the same combination already exists
+    const existingData = await sqlConn.query(`
+      SELECT * FROM [dbo].[AppProc_Main]
+      WHERE [AppTypeID] = ${AppTypeID} AND [WhseCode] = '${WhseCode}' AND [DocType] = '${DocType}' AND [Type] = '${Type}'
+    `);
 
-    if (!data) {
-      res.status(404).json({
+    if (existingData.recordset.length > 0) {
+      // Record already exists
+      res.status(409).json({
         success: false,
-        message: "Unable to save Approval Header",
+        message: "Approval Header already exists",
       });
+      return;
     }
+
+    // Insert new record
+    const data = await sqlConn.query(`
+      INSERT INTO [dbo].[AppProc_Main]
+             ([AppTypeID]
+             ,[WhseCode]
+             ,[DocType]
+             ,[Type]
+             ,[NumApprover])
+       VALUES
+             (${AppTypeID}, '${WhseCode}', '${DocType}', '${Type}', ${NumApprover})
+    `);
 
     res.status(201).json({
       success: true,
