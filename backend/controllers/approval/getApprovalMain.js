@@ -9,7 +9,8 @@ const getApprovalMain = async (req, res) => {
         AP.[WhseCode],
         AP.[DocType],
         AP.[Type],
-        AP.[NumApprover]
+        AP.[NumApprover],
+		    AP.Status
         FROM 
             [OTS_DB].[dbo].[AppProc_Main] AP
         INNER JOIN 
