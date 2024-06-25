@@ -30,6 +30,7 @@ interface OriginatorData {
   UserID: number;
   EmployeeName: string;
   Position: string;
+  Warehouse: string;
 }
 
 interface ApprovalType {
@@ -1364,6 +1365,7 @@ const Page: React.FC = () => {
                           <th>User ID</th>
                           <th>User Name</th>
                           <th>Position</th>
+                          <th>Warehouse</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -1377,6 +1379,7 @@ const Page: React.FC = () => {
                             <td>{originator.UserID}</td>
                             <td>{originator.EmployeeName}</td>
                             <td>{originator.Position}</td>
+                            <td>{originator.Warehouse}</td>
                           </tr>
                         ))}
                       </tbody>
