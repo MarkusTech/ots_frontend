@@ -209,6 +209,7 @@ const Page: React.FC = () => {
       DocType: doctype,
       Type: type,
       NumApprover: numberValue,
+      Status: "Active",
     };
     try {
       const response = await fetch(
