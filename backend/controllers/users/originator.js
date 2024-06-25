@@ -3,7 +3,7 @@ import sqlConn from "../../config/db.js";
 const getOriginator = async (req, res) => {
   try {
     const result = await sqlConn.query(
-      `Select UserID as UserID, EmpName as EmployeeName, Position as Position from [OTS_DB].[dbo].[User]`
+      `Select UserID as UserID, EmpName as EmployeeName, Position as Position, WhsCode as Warehouse from [OTS_DB].[dbo].[User]`
     );
 
     if (!result) {
