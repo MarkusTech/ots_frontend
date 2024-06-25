@@ -341,3 +341,19 @@ textarea {
 .button-custom-bg-color:hover {
   background-color: #f69629;
 }
+
+.status-indicator {
+  height: 10px;
+  width: 10px;
+  border-radius: 50%;
+  display: inline-block;
+  margin-right: 8px;
+}
+
+.green-circle {
+  background-color: green;
+}
+
+.red-circle {
+  background-color: red;
+}
