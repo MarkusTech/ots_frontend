@@ -1446,7 +1446,7 @@ const Page: React.FC = () => {
                           <tr
                             className="tdcus cursor-pointer"
                             key={originator.UserID}
-                            onClick={() => handleOriginatorChange(originator)}
+                            onClick={() => handleApproverChanges(originator)}
                           >
                             <td>{originator.UserID}</td>
                             <td>{originator.EmployeeName}</td>
