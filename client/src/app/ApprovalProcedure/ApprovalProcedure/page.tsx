@@ -1059,7 +1059,7 @@ const Page: React.FC = () => {
                         <InputLabel id="Type-label">Type</InputLabel>
                         <Select
                           labelId="Type-label"
-                          id="Type-label"
+                          id="Type"
                           value={type}
                           onChange={handleChange}
                           label="Type"
@@ -1069,6 +1069,7 @@ const Page: React.FC = () => {
                         </Select>
                       </FormControl>
                     </Grid>
+
                     {/* ------------------ Number of Approver ------------------ */}
                     <Grid item xs={12} sm={4}>
                       <TextField
@@ -1080,6 +1081,7 @@ const Page: React.FC = () => {
                         type="number"
                         value={numberValue === null ? "" : numberValue} // Handle null value
                         onChange={handleNumberChange}
+                        disabled={type === "Simultaneous"} // Disable when Simultaneous is selected
                       />
                     </Grid>
                   </Grid>
