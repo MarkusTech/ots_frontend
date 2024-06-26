@@ -217,70 +217,138 @@ const Page: React.FC = () => {
 
   // handle Save Header
   const handleSave = async () => {
-    const payload = {
-      AppTypeID: selectedAppTypeID,
-      WhseCode: selectedWarehouse,
-      DocType: doctype,
-      Type: type,
-      NumApprover: numberValue,
-    };
+    if (type == "Simultaneous") {
+      const payload = {
+        AppTypeID: selectedAppTypeID,
+        WhseCode: selectedWarehouse,
+        DocType: doctype,
+        Type: type,
+        NumApprover: numberValue,
+      };
 
-    if (selectedOriginators.length > 0 && selectedApprovers.length > 0) {
-      try {
-        const response = await fetch(
-          "http://localhost:5000/api/v1/save-approval-header",
-          {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify(payload),
+      if (selectedOriginators.length > 0 && selectedApprovers.length > 0) {
+        try {
+          const response = await fetch(
+            "http://localhost:5000/api/v1/save-approval-header",
+            {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify(payload),
+            }
+          );
+          if (response.ok) {
+            setFetchTrigger((prev) => prev + 1);
+            await handleOriginatorSave();
+            await handleSaveApprover();
+            setActiveTab(0);
+            setShowCreateApproval(!showCreateApproval);
+
+            setSelectedAppTypeID(null);
+            setSelectedWarehouse("");
+            setDoctype("");
+            setType("");
+            setNumberValue(null);
+
+            Swal.fire({
+              icon: "success",
+              title: "Success",
+              text: "Data Saved Successfully",
+            });
           }
-        );
-        if (response.ok) {
-          setFetchTrigger((prev) => prev + 1);
-          await handleOriginatorSave();
-          await handleSaveApprover();
-          setActiveTab(0);
-          setShowCreateApproval(!showCreateApproval);
-
-          setSelectedAppTypeID(null);
-          setSelectedWarehouse("");
-          setDoctype("");
-          setType("");
-          setNumberValue(null);
-
+          if (response.status === 409) {
+            // Conflict error
+            Swal.fire({
+              text: "Approval Header already exists",
+              icon: "error",
+            });
+            return;
+          }
+          if (response.status === 400) {
+            Swal.fire({
+              text: "All Fields on Approval Header must Fill",
+              icon: "error",
+            });
+          }
+        } catch (error) {
           Swal.fire({
-            icon: "success",
-            title: "Success",
-            text: "Data Saved Successfully",
-          });
-        }
-        if (response.status === 409) {
-          // Conflict error
-          Swal.fire({
-            text: "Approval Header already exists",
-            icon: "error",
-          });
-          return;
-        }
-        if (response.status === 400) {
-          Swal.fire({
-            text: "All Fields on Approval Header must Fill",
+            text: "Contact MIS Incase of Server Error",
             icon: "error",
           });
         }
-      } catch (error) {
+      } else {
         Swal.fire({
-          text: "Contact MIS Incase of Server Error",
+          text: "Originator and Approver need to fill",
           icon: "error",
         });
       }
     } else {
-      Swal.fire({
-        text: "Originator and Approver need to fill",
-        icon: "error",
-      });
+      const payload = {
+        AppTypeID: selectedAppTypeID,
+        WhseCode: selectedWarehouse,
+        DocType: doctype,
+        Type: type,
+        NumApprover: Sequentialcounter,
+      };
+
+      if (selectedOriginators.length > 0 && selectedApprovers.length > 0) {
+        try {
+          const response = await fetch(
+            "http://localhost:5000/api/v1/save-approval-header",
+            {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify(payload),
+            }
+          );
+          if (response.ok) {
+            setFetchTrigger((prev) => prev + 1);
+            await handleOriginatorSave();
+            await handleSaveApprover();
+            setActiveTab(0);
+            setShowCreateApproval(!showCreateApproval);
+
+            setSelectedAppTypeID(null);
+            setSelectedWarehouse("");
+            setDoctype("");
+            setType("");
+            setNumberValue(null);
+
+            Swal.fire({
+              icon: "success",
+              title: "Success",
+              text: "Data Saved Successfully",
+            });
+          }
+          if (response.status === 409) {
+            // Conflict error
+            Swal.fire({
+              text: "Approval Header already exists",
+              icon: "error",
+            });
+            return;
+          }
+          if (response.status === 400) {
+            Swal.fire({
+              text: "All Fields on Approval Header must Fill",
+              icon: "error",
+            });
+          }
+        } catch (error) {
+          Swal.fire({
+            text: "Contact MIS Incase of Server Error",
+            icon: "error",
+          });
+        }
+      } else {
+        Swal.fire({
+          text: "Originator and Approver need to fill",
+          icon: "error",
+        });
+      }
     }
   };
 
@@ -1325,7 +1393,11 @@ const Page: React.FC = () => {
                         label="Number of Approver"
                         variant="outlined"
                         type="number"
-                        value={numberValue === null ? "" : numberValue} // Handle null value
+                        value={
+                          type === "Sequential"
+                            ? Sequentialcounter
+                            : numberValue ?? ""
+                        } // Handle null value
                         onChange={handleNumberChange}
                       />
                     </Grid>
