@@ -107,6 +107,7 @@ const Page: React.FC = () => {
 
   const [Sequentialcounter, setSequentialcounter] = useState(0);
 
+  // Counting Approvers if Type is Sequential
   useEffect(() => {
     if (type === "Sequential") {
       setSequentialcounter(selectedApprovers.length);
@@ -635,6 +636,7 @@ const Page: React.FC = () => {
           setType(data.main[0].Type);
           setNumberValue(data.main[0].NumApprover);
           setSelectedAppTypeID(data.main[0].AppTypeID);
+          setStatus(data.main[0].Status);
         });
     }
   }, [appProcIDSelected]);
