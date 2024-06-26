@@ -216,47 +216,55 @@ const Page: React.FC = () => {
       Type: type,
       NumApprover: numberValue,
     };
-    try {
-      const response = await fetch(
-        "http://localhost:5000/api/v1/save-approval-header",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(payload),
+
+    if (selectedOriginators.length > 0 && selectedApprovers.length > 0) {
+      try {
+        const response = await fetch(
+          "http://localhost:5000/api/v1/save-approval-header",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(payload),
+          }
+        );
+        if (response.ok) {
+          setFetchTrigger((prev) => prev + 1);
+          await handleOriginatorSave();
+          await handleSaveApprover();
+          setActiveTab(0);
+          setShowCreateApproval(!showCreateApproval);
+
+          setSelectedAppTypeID(null);
+          setSelectedWarehouse("");
+          setDoctype("");
+          setType("");
+          setNumberValue(null);
+
+          Swal.fire({
+            icon: "success",
+            title: "Success",
+            text: "Data Saved Successfully",
+          });
         }
-      );
-      if (response.ok) {
-        setFetchTrigger((prev) => prev + 1);
-        await handleOriginatorSave();
-        await handleSaveApprover();
-        setActiveTab(0);
-        setShowCreateApproval(!showCreateApproval);
-
-        setSelectedAppTypeID(null);
-        setSelectedWarehouse("");
-        setDoctype("");
-        setType("");
-        setNumberValue(null);
-
+        if (response.status === 409) {
+          // Conflict error
+          Swal.fire({
+            text: "Approval Header already exists",
+            icon: "error",
+          });
+          return;
+        }
+      } catch (error) {
         Swal.fire({
-          icon: "success",
-          title: "Success",
-          text: "Data Saved Successfully",
-        });
-      }
-      if (response.status === 409) {
-        // Conflict error
-        Swal.fire({
-          text: "Approval Header already exists",
+          text: "Contact MIS Incase of Server Error",
           icon: "error",
         });
-        return;
       }
-    } catch (error) {
+    } else {
       Swal.fire({
-        text: "Contact MIS Incase of Server Error",
+        text: "Originator and Approver need to fill",
         icon: "error",
       });
     }
