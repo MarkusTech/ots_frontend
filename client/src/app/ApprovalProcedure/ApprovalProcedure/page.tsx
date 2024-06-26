@@ -256,6 +256,12 @@ const Page: React.FC = () => {
           });
           return;
         }
+        if (response.status === 400) {
+          Swal.fire({
+            text: "All Fields on Approval Header must Fill",
+            icon: "error",
+          });
+        }
       } catch (error) {
         Swal.fire({
           text: "Contact MIS Incase of Server Error",
