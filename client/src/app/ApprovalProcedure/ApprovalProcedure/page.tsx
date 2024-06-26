@@ -615,6 +615,7 @@ const Page: React.FC = () => {
       DocType: doctype,
       Type: type,
       NumApprover: numberValue,
+      Status: status,
     };
 
     try {
@@ -969,7 +970,7 @@ const Page: React.FC = () => {
             style={{
               border: "1px solid #ccc",
               position: "absolute",
-              top: "20%",
+              top: "5%",
               left: "20%",
               maxHeight: "740px",
               overflowY: "auto",
@@ -1163,9 +1164,9 @@ const Page: React.FC = () => {
             style={{
               border: "1px solid #ccc",
               position: "absolute",
-              top: "20%",
+              top: "5%",
               left: "20%",
-              maxHeight: "740px",
+              maxHeight: "800px",
               overflowY: "auto",
               background: "white",
               zIndex: "9999",

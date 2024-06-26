@@ -119,7 +119,7 @@ const getSelectedApprovalMain = async (req, res) => {
 
 const updateApprovalHeader = async (req, res) => {
   const { AppProcID } = req.params;
-  const { AppTypeID, WhseCode, DocType, Type, NumApprover } = req.body;
+  const { AppTypeID, WhseCode, DocType, Type, NumApprover, Status } = req.body;
 
   try {
     const result = await sqlConn.query`UPDATE [OTS_DB].[dbo].[AppProc_Main]
@@ -128,6 +128,7 @@ const updateApprovalHeader = async (req, res) => {
             ,[DocType] = ${DocType}
             ,[Type] = ${Type}
             ,[NumApprover] = ${NumApprover}
+            ,[Status] = ${Status}
         Where AppProcID = ${AppProcID}`;
 
     // Check if any rows were affected
