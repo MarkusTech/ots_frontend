@@ -3,6 +3,14 @@ import sqlConn from "../../config/db.js";
 const saveApprovalHeader = async (req, res) => {
   const { AppTypeID, WhseCode, DocType, Type, NumApprover, Status } = req.body;
 
+  // Validate required fields
+  if (!AppTypeID || !WhseCode || !DocType || !Type) {
+    return res.status(400).json({
+      success: false,
+      message: "AppTypeID, WhseCode, DocType, and Type fields are required",
+    });
+  }
+
   try {
     // Check if a record with the same combination already exists
     const existingData = await sqlConn.query(`
@@ -12,11 +20,10 @@ const saveApprovalHeader = async (req, res) => {
 
     if (existingData.recordset.length > 0) {
       // Record already exists
-      res.status(409).json({
+      return res.status(409).json({
         success: false,
         message: "Approval Header already exists",
       });
-      return;
     }
 
     // Insert new record
@@ -32,14 +39,14 @@ const saveApprovalHeader = async (req, res) => {
              (${AppTypeID}, '${WhseCode}', '${DocType}', '${Type}', ${NumApprover}, 'Active')
     `);
 
-    res.status(201).json({
+    return res.status(201).json({
       success: true,
       message: "Data inserted successfully",
       data: data.recordset,
     });
   } catch (error) {
     console.log(error);
-    res.status(500).json({
+    return res.status(500).json({
       success: false,
       message: error.message,
     });
