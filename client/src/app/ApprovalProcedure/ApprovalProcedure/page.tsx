@@ -83,6 +83,7 @@ const Page: React.FC = () => {
   const [showOriginatorsList, setShowOriginatorsList] = useState(false);
   const [showApproversList, setShowApproversList] = useState(false);
   const [showEditApprovalProc, setShowApprovalProc] = useState(false);
+  const [status, setStatus] = useState<string>("");
   // AppProcID
   const [appProcIDSelected, setAppProcIDSelected] = useState<number | null>(
     null
@@ -176,6 +177,11 @@ const Page: React.FC = () => {
     if (selectedType) {
       setSelectedAppTypeID(selectedType.AppTypeID);
     }
+  };
+
+  const handleStatus = (event: any) => {
+    setStatus(event.target.value);
+    console.log(event.target.value);
   };
 
   // handle warehouse change
@@ -1303,12 +1309,12 @@ const Page: React.FC = () => {
                         <Select
                           labelId="Status"
                           id="Status"
-                          value={doctype}
-                          onChange={handleDocChange}
+                          value={status}
+                          onChange={handleStatus}
                           label="Status"
                         >
-                          <MenuItem value="SalesOrder">Active</MenuItem>
-                          <MenuItem value="SalesQoutation">Inactive</MenuItem>
+                          <MenuItem value="Active">Active</MenuItem>
+                          <MenuItem value="Inactive">Inactive</MenuItem>
                         </Select>
                       </FormControl>
                     </Grid>
