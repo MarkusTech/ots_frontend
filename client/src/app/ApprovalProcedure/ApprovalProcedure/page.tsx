@@ -105,6 +105,14 @@ const Page: React.FC = () => {
     setActiveTab(newValue);
   };
 
+  const [Sequentialcounter, setSequentialcounter] = useState(0);
+
+  useEffect(() => {
+    if (type === "Sequential") {
+      setSequentialcounter(selectedApprovers.length);
+    }
+  }, [type, selectedApprovers]);
+
   const showApprovalButton = () => {
     setShowCreateApproval(!showCreateApproval);
     removeFieldValue();
@@ -1120,7 +1128,11 @@ const Page: React.FC = () => {
                         label="Number of Approver"
                         variant="outlined"
                         type="number"
-                        value={numberValue === null ? "" : numberValue} // Handle null value
+                        value={
+                          type === "Sequential"
+                            ? Sequentialcounter
+                            : numberValue ?? ""
+                        } // Handle null value
                         onChange={handleNumberChange}
                         disabled={type === "Sequential"} // Disable when Sequential is selected
                       />
