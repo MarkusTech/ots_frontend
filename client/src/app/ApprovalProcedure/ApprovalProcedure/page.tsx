@@ -1122,7 +1122,7 @@ const Page: React.FC = () => {
                         type="number"
                         value={numberValue === null ? "" : numberValue} // Handle null value
                         onChange={handleNumberChange}
-                        disabled={type === "Sequential"} // Disable when Simultaneous is selected
+                        disabled={type === "Sequential"} // Disable when Sequential is selected
                       />
                     </Grid>
                   </Grid>
