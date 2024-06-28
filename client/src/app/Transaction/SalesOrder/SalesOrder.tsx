@@ -323,6 +323,7 @@ const SalesOrder: React.FC<Props> = ({ userData }) => {
                   TaxCode: rowData["taxCode"],
                   TaxCodePerc: rowData["taxCodePercentage"],
                   TaxAmt: rowData["taxAmount"],
+                  // task
                   BelPriceDisc: rowData["belVolDisPrice"],
                   Cost: rowData["cost"],
                   BelCost: rowData["belCost"],
@@ -426,7 +427,8 @@ const SalesOrder: React.FC<Props> = ({ userData }) => {
       taxCodePercentage: 0,
       taxAmount: 0,
       volDisPrice: 0,
-      belVolDisPrice: 0,
+      // task
+      belVolDisPrice: "Y",
       cost: 0,
       belCost: "",
       modeOfReleasing: "",
@@ -1264,7 +1266,7 @@ const SalesOrder: React.FC<Props> = ({ userData }) => {
         taxCodePercentage: 0,
         taxAmount: 0,
         volDisPrice: 0,
-        belVolDisPrice: 0,
+        belVolDisPrice: "Y",
         cost: 0,
         belCost: "",
         modeOfReleasing: "",
@@ -1899,6 +1901,7 @@ const SalesOrder: React.FC<Props> = ({ userData }) => {
     idUOM?.setAttribute("value", sellingAfterDis.toString());
   };
 
+  // task
   const handleKeyPressSel = (
     event: { key: string },
     rowIndex: any,
@@ -1922,8 +1925,8 @@ const SalesOrder: React.FC<Props> = ({ userData }) => {
         updatedTableData[rowIndex] = {
           ...item,
           grossTotal: value * item.quantity,
-          // belVolDisPrice: "Y",
-          belVolDisPrice: 0,
+          belVolDisPrice: "Y",
+          // belVolDisPrice: 0,
           sellingPriceAfterDiscount: value,
           belCost: belCost,
         };
@@ -1933,8 +1936,8 @@ const SalesOrder: React.FC<Props> = ({ userData }) => {
         updatedTableData[rowIndex] = {
           ...item,
           grossTotal: value * item.quantity,
-          // belVolDisPrice: "N",
-          belVolDisPrice: 0,
+          belVolDisPrice: "N",
+          // belVolDisPrice: 0,
           sellingPriceAfterDiscount: value,
           belCost: belCost,
         };
@@ -3618,7 +3621,7 @@ const SalesOrder: React.FC<Props> = ({ userData }) => {
                   {/* Below Volume Discount Price */}
                   <td
                     className={
-                      rowData.belVolDisPrice == 0 // i change it from "Y" and then swap the color
+                      rowData.belVolDisPrice == "Y" // i change it from "Y" and then swap the color
                         ? "bg-green-200"
                         : "bg-red-200 "
                     }
