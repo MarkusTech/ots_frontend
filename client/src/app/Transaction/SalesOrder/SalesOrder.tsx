@@ -76,8 +76,6 @@ export default function SalesOrder() {
   const [SCPWDdata, setSCPWDdata] = useState("");
   const [totalAmoutDueData, settotalAmoutDueData] = useState("");
 
-  const [scpdwdID, setscpdwdID] = useState("");
-
   // Payment useState
   const [isCheckedCash, setIsCheckedCash] = useState(false);
   const [isCheckedCreditCard, setIsCheckedCreditCard] = useState(false);
@@ -1533,11 +1531,6 @@ export default function SalesOrder() {
   const handleShowSearchHeader = () => {
     setShowSearchHeader(!showSearchHeader);
     setSearchTerm("");
-  };
-
-  // show print
-  const handleShowPrint = () => {
-    setShowPrint(!showPrint);
   };
 
   // ---------------------------------------- Details API ------------------------------------------
