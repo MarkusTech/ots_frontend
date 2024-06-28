@@ -15,7 +15,6 @@ const SalesOrder: React.FC<Props> = ({ userData }) => {
 
   const [isSaved, setIsSaved] = useState(false); // to hide handle submit
   const [isCommited, setIsCommited] = useState(false); // to hide commit
-  const [showPrint, setShowPrint] = useState(false); // to hide print button
 
   const [customerList, setCustomerDataList] = useState([]);
   // Validate Customer Code to Disabled Walkin Customer field
