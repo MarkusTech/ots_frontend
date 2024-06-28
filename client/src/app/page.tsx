@@ -178,6 +178,7 @@ export default function Home() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [isShowButton, setIsShowButton] = useState(false);
+  const [loginUserData, setLoginUserData] = useState<string>("");
 
   let loginAttempts = 0;
 
@@ -194,6 +195,7 @@ export default function Home() {
       if (response.data.message == "User") {
         // Handle successful login (e.g., redirect to another page or store user info)
         const user = response.data.user;
+        setLoginUserData(user.UserName);
         setFormData({
           userID: user.UserID,
           fullName: user.EmpName,
@@ -221,6 +223,7 @@ export default function Home() {
         setPassword("");
       } else if (response.data.message == "Admin") {
         const user = response.data.user;
+        setLoginUserData(user.UserName);
         setFormData({
           userID: user.UserID,
           fullName: user.EmpName,
@@ -545,7 +548,7 @@ export default function Home() {
                     </div>
                   </div>
                   <div className="content">
-                    <SalesOrder />
+                    <SalesOrder userData={loginUserData} />
                   </div>
                 </div>
               </Draggable>

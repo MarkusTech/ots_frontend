@@ -5,9 +5,12 @@ import Draggable from "react-draggable";
 import axios from "axios";
 import { useRef } from "react";
 import Swal from "sweetalert2";
-import { useWindowState } from "./WindowsState";
 
-export default function SalesOrder() {
+interface Props {
+  userData: string;
+}
+
+const SalesOrder: React.FC<Props> = ({ userData }) => {
   const inputRef = useRef<HTMLInputElement | null>(null);
 
   const [isSaved, setIsSaved] = useState(false); // to hide handle submit
@@ -137,6 +140,10 @@ export default function SalesOrder() {
     },
   ]);
 
+  const handleWennWorks = () => {
+    console.log(userData);
+  };
+
   const [formData, setFormData] = useState({
     DraftNum: "",
     EntryNum: "",
@@ -173,7 +180,7 @@ export default function SalesOrder() {
     SCPWDDiscTotal: "",
     TotalAmtDue: "",
     Remarks: "",
-    CreatedBy: "Administrator",
+    CreatedBy: userData,
     DateCreated: todayDate,
     UpdatedBy: "",
     DateUpdated: "",
@@ -269,7 +276,7 @@ export default function SalesOrder() {
           SCPWDDiscTotal: finalSCPWDDiscTotal,
           TotalAmtDue: finalTotalAmtDue,
           Remarks: formData.Remarks,
-          CreatedBy: "administrator",
+          CreatedBy: userData,
           DateCreated: todayDate,
           UpdatedBy: 1,
           DateUpdated: "",
@@ -4408,6 +4415,13 @@ export default function SalesOrder() {
               >
                 Search
               </button>
+
+              <button
+                className="p-2 mt-2 mb-1 mr-2 text-[12px] bg-[#f69629] hover:bg-yellow-500 focus:outline-none focus:shadow-outline-yellow active:bg-yellow-600 rounded w-24"
+                onClick={handleWennWorks}
+              >
+                WennWorks
+              </button>
               {showSearchHeader && (
                 <Draggable>
                   <div
@@ -4588,4 +4602,6 @@ export default function SalesOrder() {
       </div>
     </>
   );
-}
+};
+
+export default SalesOrder;
