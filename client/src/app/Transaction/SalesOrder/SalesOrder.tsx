@@ -224,6 +224,8 @@ export default function SalesOrder() {
   const [finalTotalAmtAftTax, setFinalTotalAmtAftTax] = useState(0);
   const [finalSCPWDDiscTotal, setFinalSCPWDDiscTotal] = useState(0);
   const [finalTotalAmtDue, setFinalTotalAmtDue] = useState(0);
+
+  // task
   const sendToProductionAPI = () => {
     Swal.fire({
       title: "Do you want to save this Draft?",
@@ -3612,6 +3614,8 @@ export default function SalesOrder() {
                       ? ""
                       : localCurrency.format(rowData.taxAmount)}
                   </td>
+
+                  {/* task */}
                   {/* Below Volume Discount Price */}
                   <td
                     className={

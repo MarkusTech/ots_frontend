@@ -178,6 +178,7 @@ export default function Home() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [isShowButton, setIsShowButton] = useState(false);
+  const [userLogin, setUserLogin] = useState<string>("");
 
   let loginAttempts = 0;
 
@@ -206,6 +207,7 @@ export default function Home() {
           username: user.UserName,
           password: user.Password,
         });
+        setUserLogin(user.UserID);
         // Clear login attempts on successful login
         loginAttempts = 0;
 
