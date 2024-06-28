@@ -1953,6 +1953,7 @@ const SalesOrder: React.FC<Props> = ({ userData }) => {
     }
   };
 
+  // TASK
   const handleQuantityChange = async (rowIndex: any, quantity: any) => {
     const updatedTableData = [...tableData];
     const item = updatedTableData[rowIndex];
