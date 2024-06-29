@@ -139,4 +139,31 @@ const saveDetails = async (req, res) => {
   }
 };
 
-export { saveDetails };
+const deleteDetails = async (req, res) => {
+  const { DraftNum } = req.params;
+
+  try {
+    const result = await sqlConn.query(
+      `DELETE FROM [OTS_DB].[dbo].[SO_Details] WHERE DraftNum = '${DraftNum}';`
+    );
+
+    if (!result) {
+      res.status(400).json({
+        success: false,
+        message: "Cannot Find Data",
+      });
+    }
+
+    const data = result.recordset;
+    res.status(200).json({
+      success: true,
+      message: "Data successfully deleted",
+      data: data,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+};
+
+export { saveDetails, deleteDetails };
