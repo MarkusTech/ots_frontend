@@ -240,7 +240,7 @@ const SalesOrder: React.FC<Props> = ({ userData }) => {
       if (result.isConfirmed) {
         Swal.fire("Saved!", "", "success");
         const axiosInstance = axios.create({
-          baseURL: "http://172.16.10.169:5000/api/v1",
+          baseURL: `${backendAPI}/api/v1`,
           headers: {
             "Content-Type": "application/json",
           },
@@ -304,6 +304,8 @@ const SalesOrder: React.FC<Props> = ({ userData }) => {
             setTimeout(() => {
               // detailsOnSaveToAPI(); // production API
               const dataTable = [...tableData];
+
+              //Task = Just change the API done Backend
               const detailsPostAPI = "http://172.16.10.217:3002/so-details";
 
               dataTable.forEach((rowData) => {
@@ -388,7 +390,7 @@ const SalesOrder: React.FC<Props> = ({ userData }) => {
     const fetchEntryNumber = async () => {
       try {
         const response = await axios.get(
-          "http://172.16.10.169:5000/api/v1/generateUniqueId"
+          `${backendAPI}/api/v1/generateUniqueId`
         );
         const entryNumber = response.data.uniqueId;
 
@@ -784,11 +786,13 @@ const SalesOrder: React.FC<Props> = ({ userData }) => {
     }
   };
 
+  // Task
   const deleteDetailsThenSave = () => {
     const deleteId = draftNumber;
     axios.delete(`http://172.16.10.217:3002/so-details/${deleteId}`);
   };
 
+  // Task
   // Update Production API
   const updateProductionAPI = () => {
     Swal.fire({
@@ -1100,7 +1104,7 @@ const SalesOrder: React.FC<Props> = ({ userData }) => {
         const draftNum = draftNumber;
         try {
           axios
-            .put("http://172.16.10.169:5000/api/v1/final-commit", {
+            .put(`${backendAPI}/api/v1/final-commit`, {
               DraftNum: draftNum,
             })
             .then((response) => {
@@ -1594,7 +1598,7 @@ const SalesOrder: React.FC<Props> = ({ userData }) => {
   useEffect(() => {
     if (jsonDraftNum) {
       axios
-        .get(`http://172.16.10.169:5000/api/v1/receipt/${jsonDraftNum}`)
+        .get(`${backendAPI}/api/v1/receipt/${jsonDraftNum}`)
         .then((response) => {
           const extractedData = response.data[0];
           setMotherFuckingCode(extractedData);
