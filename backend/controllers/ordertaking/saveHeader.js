@@ -77,7 +77,6 @@ const saveHeader = async (req, res) => {
 
 const updateHeader = async (req, res) => {
   const {
-    DraftNum,
     EntryNum,
     DocNum,
     PostingDate,
@@ -105,13 +104,17 @@ const updateHeader = async (req, res) => {
     TotalAmtAftTax,
     SCPWDDiscTotal,
     TotalAmtDue,
-    ApprovalStat,
     Remarks,
+    CreatedBy,
+    DateCreated,
+    ApprovalStat,
     UpdatedBy,
     DateUpdated,
     SalesCrew,
     ForeignName,
   } = req.body;
+
+  const { DraftNum } = req.params;
 
   try {
     const isoPostingDate = new Date(PostingDate).toISOString();
@@ -121,7 +124,6 @@ const updateHeader = async (req, res) => {
     const result = await sqlConn.query(`UPDATE [dbo].[SO_Header]
    SET [EntryNum] = '${EntryNum}'
       ,[DocNum] = ${DocNum}
-      ,[DraftNum] = ${DraftNum}
       ,[PostingDate] = '${isoPostingDate}'
       ,[DocDate] = '${isoDocDate}'
       ,[CustomerCode] = '${CustomerCode}'
