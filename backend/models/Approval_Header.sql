@@ -73,3 +73,45 @@ INSERT INTO [dbo].[SO_Header]
             1,                 -- UpdatedBy (nvarchar(200))
             '2024-06-30 00:00:00'    -- DateUpdated (datetime)
            );
+
+select * From [OTS_DB].[dbo].[SO_Header]
+
+
+UPDATE [dbo].[SO_Header]
+   SET [EntryNum] = '12345'
+      ,[DocNum] = 67890
+      ,[DraftNum] = 10202
+      ,[PostingDate] = '2024-06-30'
+      ,[DocDate] = '2024-06-30'
+      ,[CustomerCode] = 'VIPMARKUS'
+      ,[CustomerName] = 'MarKusTech IT Solution Company'
+      ,[WalkInName] = 'Wenn Mark Recopelacion'
+      ,[ShippingAdd] = '123 Main St'
+      ,[TIN] = '123123'
+      ,[Reference] = '123123'
+      ,[SCPWDIdNo] = '123123'
+      ,[Branch] = '123123'
+      ,[DocStat] = '123123'
+      ,[BaseDoc] = 1
+      ,[Cash] = 'Y'
+      ,[CreditCard] = 'N'
+      ,[DebitCard] = 'N'
+      ,[ODC] = 'N'
+      ,[PDC] = 'N'
+      ,[OnlineTransfer] = 'N'
+      ,[OnAccount] = 'N'
+      ,[COD] = 'N'
+      ,[TotalAmtBefTax] =  800.00
+      ,[TotalTax] =  800.00
+      ,[TotalAmtAftTax] =  800.00
+      ,[SCPWDDiscTotal] =  800.00
+      ,[TotalAmtDue] =  800.00
+      ,[Remarks] = 'Wenn Mark Recopelacion'
+      ,[SalesCrew] = 'Wenn Mark Recopelacion'
+      ,[ForeignName] = 'Wenn Mark Recopelacion'
+      ,[ApprovalStat] = 1
+      ,[CreatedBy] = 'Wenn Mark Recopelacion'
+      ,[DateCreated] = '2024-06-30 00:00:00'
+      ,[UpdatedBy] = 1
+      ,[DateUpdated] = '2024-06-30 00:00:00'
+ WHERE DraftNum = 10202
