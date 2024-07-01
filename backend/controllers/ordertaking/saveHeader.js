@@ -119,7 +119,7 @@ const updateHeader = async (req, res) => {
     // Updating the header
     const updateHeaderValues = await sqlConn.query`UPDATE SO_Header
     SET
-      EntryNum = ${EntryNum},
+      EntryNum = '${EntryNum}',
       DocNum = ${DocNum},
       PostingDate = ${isoPostingDate},
       DocDate = ${isoDocDate},
@@ -151,7 +151,7 @@ const updateHeader = async (req, res) => {
       DateUpdated = ${DateUpdated},
       SalesCrew = ${SalesCrew},
       ForeignName = ${ForeignName}
-    WHERE DraftNum = '${DraftNum}'`;
+    WHERE DraftNum = ${DraftNum}`;
 
     if (updateHeaderValues.rowsAffected[0] === 0) {
       return res.status(404).json({ error: "Header not found" });
