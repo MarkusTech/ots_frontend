@@ -24,6 +24,7 @@ import loginRoutes from "./routes/auth/loginRoutes.js";
 import approvalProcedureRoutes from "./routes/approval/approvalProcedureRoutes.js";
 import originatorRoutes from "./routes/users/originatorRoutes.js";
 import saveDetailsRoutes from "./routes/ordertaking/saveDetails.js";
+import salesCrewRoutes from "./routes/ordertaking/getSalesCrewRoutes.js";
 
 // Routes v2
 import db2_paylocRoutes from "./routes/location/db2_paylocRoutes.js";
@@ -69,6 +70,7 @@ app.use("/api/v1", loginRoutes);
 app.use("/api/v1", approvalProcedureRoutes);
 app.use("/api/v1", originatorRoutes);
 app.use("/api/v1", saveDetailsRoutes);
+app.use("/api/v1", salesCrewRoutes);
 
 // API V2
 app.use("/api/v2", db2_paylocRoutes);

@@ -1613,6 +1613,7 @@ const SalesOrder: React.FC<Props> = ({ userData }) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
+        // Task done = Sales Crew API done. Documentation is on Ordertaking/Others
         const response = await axios.get("http://172.16.10.217:3001/salescrew");
         setSalesCrew(response.data);
       } catch (error) {
