@@ -1832,6 +1832,7 @@ const SalesOrder: React.FC<Props> = ({ userData }) => {
         taxCodeDataNow = e.TaxCode;
       });
 
+      // Task
       const lowerbound = await axios.get(
         `${fetchAPI}/lowerbound/${priceListNum}/${taxCodeDataNow}/${item.ItemCode}/${warehouseCode}/1`
       );
@@ -1840,6 +1841,7 @@ const SalesOrder: React.FC<Props> = ({ userData }) => {
 
       let SCDiscount = "";
 
+      // Task
       const scdiscount = await axios.get(
         `${fetchAPI}/sc-discount/${cardCodedata}/${item.ItemCode}`
       );
@@ -1847,6 +1849,7 @@ const SalesOrder: React.FC<Props> = ({ userData }) => {
 
       const itemCodex = item.ItemCode;
 
+      // Task
       if (item.itemCode != "") {
         axios
           .get(
@@ -1972,6 +1975,7 @@ const SalesOrder: React.FC<Props> = ({ userData }) => {
     const disLowerBound = item.lowerBound;
     const disTaxCode = item.taxCode;
 
+    // Task
     try {
       const disPrice = await axios.get(
         `${process.env.NEXT_PUBLIC_IP}/discount-price/${brandID}/${disPriceBefDis}/${disCardCode}/${disItemCode}/${quantity}/${disUOM}/${disLowerBound}/N/N/N/N/${disTaxCode}`
@@ -1984,6 +1988,7 @@ const SalesOrder: React.FC<Props> = ({ userData }) => {
       const disRateFor =
         ((disPriceBefDis - disAfterPrice) / disPriceBefDis) * 100;
 
+      // Task
       const cost = await axios.get(
         `${process.env.NEXT_PUBLIC_IP}/cost/${item.itemCode}/${warehouseCode}`
       );
@@ -1999,6 +2004,7 @@ const SalesOrder: React.FC<Props> = ({ userData }) => {
 
       const quantityXuomConversion = quantity * item.uomConversion;
 
+      // Task
       const stocksAvailability = await axios.get(
         `${process.env.NEXT_PUBLIC_IP}/stocks-availability/0/${disItemCode}/${item.location}/${quantityXuomConversion}/${item.excludeBO}`
       );
@@ -2044,6 +2050,7 @@ const SalesOrder: React.FC<Props> = ({ userData }) => {
     } catch (e) {}
   };
 
+  // Task
   const handleChangeExcludeBO = async (value: any, rowIndex: any) => {
     const updatedTableData = [...tableData];
     const item = updatedTableData[rowIndex];
@@ -2088,12 +2095,14 @@ const SalesOrder: React.FC<Props> = ({ userData }) => {
     const uomitemCode = item["itemCode"];
     const uomtaxAmout = item["taxAmount"];
 
+    // Task
     const lowerbound = await axios.get(
       `${process.env.NEXT_PUBLIC_IP}/lowerbound/${priceListNum}/${uomtaxCode}/${uomitemCode}/${warehouseCode}/${BaseQty}`
     );
     const lowerboundArr = lowerbound.data;
     const lowerBoundFinalItem = lowerboundArr[0]["LowerBound"];
 
+    // Task
     const srp = await axios.get(
       `${process.env.NEXT_PUBLIC_IP}/srp/${uomitemCode}/${BaseQty}/${UomCode}/${uomtaxCode}/${lowerBoundFinalItem}/${cardCodedata}/${priceListNum}`
     );
@@ -2109,12 +2118,14 @@ const SalesOrder: React.FC<Props> = ({ userData }) => {
       warehousecurrent = item.location;
     }
 
+    // Task
     const disPrice = await axios.get(
       `${process.env.NEXT_PUBLIC_IP}/discount-price/${brandID}/${item.sellingPriceAfterDiscount}/${cardCodedata}/${item.itemCode}/${item.quantity}/${UomCode}/${item.lowerBound}/N/N/N/N/${item.taxCode}`
     );
     const disPriceArr = disPrice.data;
     const disAfterPrice = disPriceArr[0]["DiscPrice"];
 
+    // Task
     const stocksAvailability = await axios.get(
       `${process.env.NEXT_PUBLIC_IP}/stocks-availability/0/${item.itemCode}/${item.location}/${quantityXuomConversion}/${item.excludeBO}`
     );
@@ -2215,11 +2226,13 @@ const SalesOrder: React.FC<Props> = ({ userData }) => {
 
     const quantityXuomConversion = item.quantity * item.uomConversion;
 
+    // Task
     const stocksAvailability = await axios.get(
       `${process.env.NEXT_PUBLIC_IP}/stocks-availability/0/${item.itemCode}/${itemdata}/${quantityXuomConversion}/${item.excludeBO}`
     );
     const stocksAvailabilityArr = stocksAvailability.data;
 
+    // Task
     const pickUpLocation = await axios.get(
       `http://172.16.10.217:3001/pickup-location/${itemCodeData}/1/${itemdata}`
     );
@@ -2314,6 +2327,7 @@ const SalesOrder: React.FC<Props> = ({ userData }) => {
 
         const item2 = updatedTableData[i];
 
+        // Task
         axios
           .get(
             `${process.env.NEXT_PUBLIC_IP}/discount-price/${brandID}/${item.sellingPriceBeforeDiscount}/${cardCodedata}/${item.itemCode}/${item.quantity}/${item.uom}/${item.lowerBound}/${item2.creditcard}/${item2.debit}/${item2.pdc}/${item2.po}/${item2.taxCode}`
@@ -2372,6 +2386,7 @@ const SalesOrder: React.FC<Props> = ({ userData }) => {
 
         const item2 = updatedTableData[i];
 
+        // Task
         axios
           .get(
             `${process.env.NEXT_PUBLIC_IP}/discount-price/${brandID}/${item.sellingPriceBeforeDiscount}/${cardCodedata}/${item.itemCode}/${item.quantity}/${item.uom}/${item.lowerBound}/${item2.creditcard}/${item2.debit}/${item2.pdc}/${item2.po}/${item2.taxCode}`
@@ -2435,6 +2450,7 @@ const SalesOrder: React.FC<Props> = ({ userData }) => {
 
         const item2 = updatedTableData[i];
 
+        // Task
         axios
           .get(
             `${process.env.NEXT_PUBLIC_IP}/discount-price/${brandID}/${item.sellingPriceBeforeDiscount}/${cardCodedata}/${item.itemCode}/${item.quantity}/${item.uom}/${item.lowerBound}/${item2.creditcard}/${item2.debit}/${item2.pdc}/${item2.po}/${item.taxCode}`
@@ -2493,6 +2509,7 @@ const SalesOrder: React.FC<Props> = ({ userData }) => {
 
         const item2 = updatedTableData[i];
 
+        // Task
         axios
           .get(
             `${fetchAPI}/discount-price/${brandID}/${item.sellingPriceBeforeDiscount}/${cardCodedata}/${item.itemCode}/${item.quantity}/${item.uom}/${item.lowerBound}/${item2.creditcard}/${item2.debit}/${item2.pdc}/${item2.po}/${item.taxCode}`
