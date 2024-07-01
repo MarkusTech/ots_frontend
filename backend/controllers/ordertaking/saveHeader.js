@@ -105,6 +105,7 @@ const updateHeader = async (req, res) => {
     TotalAmtAftTax,
     SCPWDDiscTotal,
     TotalAmtDue,
+    ApprovalStat,
     Remarks,
     UpdatedBy,
     DateUpdated,
@@ -116,44 +117,47 @@ const updateHeader = async (req, res) => {
     const isoPostingDate = new Date(PostingDate).toISOString();
     const isoDocDate = new Date(DocDate).toISOString();
 
-    // Updating the header
-    const updateHeaderValues = await sqlConn.query`UPDATE SO_Header
-    SET
-      EntryNum = '${EntryNum}',
-      DocNum = ${DocNum},
-      PostingDate = ${isoPostingDate},
-      DocDate = ${isoDocDate},
-      CustomerCode = '${CustomerCode}',
-      CustomerName = ${CustomerName},
-      WalkInName = ${WalkInName},
-      ShippingAdd = ${ShippingAdd},
-      TIN = ${TIN},
-      Reference = ${Reference},
-      SCPWDIdNo = ${SCPWDIdNo},
-      Branch = ${Branch},
-      DocStat = ${DocStat},
-      BaseDoc = ${BaseDoc},
-      Cash = ${Cash},
-      DebitCard = ${DebitCard},
-      CreditCard = ${CreditCard},
-      ODC = ${ODC},
-      PDC = ${PDC},
-      OnlineTransfer = ${OnlineTransfer},
-      OnAccount = ${OnAccount},
-      COD = ${COD},
-      TotalAmtBefTax = ${TotalAmtBefTax},
-      TotalTax = ${TotalTax},
-      TotalAmtAftTax = ${TotalAmtAftTax},
-      SCPWDDiscTotal = ${SCPWDDiscTotal},
-      TotalAmtDue = ${TotalAmtDue},
-      Remarks = ${Remarks},
-      UpdatedBy = ${UpdatedBy},
-      DateUpdated = ${DateUpdated},
-      SalesCrew = ${SalesCrew},
-      ForeignName = ${ForeignName}
-    WHERE DraftNum = ${DraftNum}`;
-
-    if (updateHeaderValues.rowsAffected[0] === 0) {
+    // Construct the SQL query with parameterized values
+    const result = await sqlConn.query(`UPDATE [dbo].[SO_Header]
+   SET [EntryNum] = '${EntryNum}'
+      ,[DocNum] = ${DocNum}
+      ,[DraftNum] = ${DraftNum}
+      ,[PostingDate] = '${isoPostingDate}'
+      ,[DocDate] = '${isoDocDate}'
+      ,[CustomerCode] = '${CustomerCode}'
+      ,[CustomerName] = '${CustomerName}'
+      ,[WalkInName] = '${WalkInName}'
+      ,[ShippingAdd] = '${ShippingAdd}'
+      ,[TIN] = '${TIN}'
+      ,[Reference] = '${Reference}'
+      ,[SCPWDIdNo] = '${SCPWDIdNo}'
+      ,[Branch] = '${Branch}'
+      ,[DocStat] = '${DocStat}'
+      ,[BaseDoc] = ${BaseDoc}
+      ,[Cash] = '${Cash}'
+      ,[CreditCard] = '${CreditCard}'
+      ,[DebitCard] = '${DebitCard}'
+      ,[ODC] = '${ODC}'
+      ,[PDC] = '${PDC}'
+      ,[OnlineTransfer] = '${OnlineTransfer}'
+      ,[OnAccount] = '${OnAccount}'
+      ,[COD] = '${COD}'
+      ,[TotalAmtBefTax] = ${TotalAmtBefTax}
+      ,[TotalTax] =  ${TotalTax}
+      ,[TotalAmtAftTax] =  ${TotalAmtAftTax}
+      ,[SCPWDDiscTotal] =  ${SCPWDDiscTotal}
+      ,[TotalAmtDue] =  ${TotalAmtDue}
+      ,[Remarks] = '${Remarks}'
+      ,[SalesCrew] = '${SalesCrew}'
+      ,[ForeignName] = '${ForeignName}'
+      ,[ApprovalStat] = ${ApprovalStat}
+      ,[CreatedBy] = '${CreatedBy}'
+      ,[DateCreated] = '${DateCreated}'
+      ,[UpdatedBy] = ${UpdatedBy}
+      ,[DateUpdated] = '${DateUpdated}'
+ WHERE DraftNum = ${DraftNum}`);
+    // Check if any rows were affected
+    if (result.rowsAffected[0] === 0) {
       return res.status(404).json({ error: "Header not found" });
     }
 
@@ -162,7 +166,7 @@ const updateHeader = async (req, res) => {
       message: "Header Successfully Updated",
     });
   } catch (error) {
-    console.log(error);
+    console.error("Error updating SO Header:", error);
     res.status(500).json({ error: "Internal Server Error" });
   }
 };
