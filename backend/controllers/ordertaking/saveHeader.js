@@ -123,7 +123,7 @@ const updateHeader = async (req, res) => {
       DocNum = ${DocNum},
       PostingDate = ${isoPostingDate},
       DocDate = ${isoDocDate},
-      CustomerCode = ${CustomerCode},
+      CustomerCode = '${CustomerCode}',
       CustomerName = ${CustomerName},
       WalkInName = ${WalkInName},
       ShippingAdd = ${ShippingAdd},
