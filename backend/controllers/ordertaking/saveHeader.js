@@ -75,4 +75,96 @@ const saveHeader = async (req, res) => {
   }
 };
 
-export { saveHeader };
+const updateHeader = async (req, res) => {
+  const {
+    DraftNum,
+    EntryNum,
+    DocNum,
+    PostingDate,
+    DocDate,
+    CustomerCode,
+    CustomerName,
+    WalkInName,
+    ShippingAdd,
+    TIN,
+    Reference,
+    SCPWDIdNo,
+    Branch,
+    DocStat,
+    BaseDoc,
+    Cash,
+    DebitCard,
+    CreditCard,
+    ODC,
+    PDC,
+    OnlineTransfer,
+    OnAccount,
+    COD,
+    TotalAmtBefTax,
+    TotalTax,
+    TotalAmtAftTax,
+    SCPWDDiscTotal,
+    TotalAmtDue,
+    Remarks,
+    UpdatedBy,
+    DateUpdated,
+    SalesCrew,
+    ForeignName,
+  } = req.body;
+
+  try {
+    const isoPostingDate = new Date(PostingDate).toISOString();
+    const isoDocDate = new Date(DocDate).toISOString();
+
+    // Updating the header
+    const updateHeaderValues = await sqlConn.query`UPDATE SO_Header
+    SET
+      EntryNum = ${EntryNum},
+      DocNum = ${DocNum},
+      PostingDate = ${isoPostingDate},
+      DocDate = ${isoDocDate},
+      CustomerCode = ${CustomerCode},
+      CustomerName = ${CustomerName},
+      WalkInName = ${WalkInName},
+      ShippingAdd = ${ShippingAdd},
+      TIN = ${TIN},
+      Reference = ${Reference},
+      SCPWDIdNo = ${SCPWDIdNo},
+      Branch = ${Branch},
+      DocStat = ${DocStat},
+      BaseDoc = ${BaseDoc},
+      Cash = ${Cash},
+      DebitCard = ${DebitCard},
+      CreditCard = ${CreditCard},
+      ODC = ${ODC},
+      PDC = ${PDC},
+      OnlineTransfer = ${OnlineTransfer},
+      OnAccount = ${OnAccount},
+      COD = ${COD},
+      TotalAmtBefTax = ${TotalAmtBefTax},
+      TotalTax = ${TotalTax},
+      TotalAmtAftTax = ${TotalAmtAftTax},
+      SCPWDDiscTotal = ${SCPWDDiscTotal},
+      TotalAmtDue = ${TotalAmtDue},
+      Remarks = ${Remarks},
+      UpdatedBy = ${UpdatedBy},
+      DateUpdated = ${DateUpdated},
+      SalesCrew = ${SalesCrew},
+      ForeignName = ${ForeignName}
+    WHERE DraftNum = ${DraftNum}`;
+
+    if (updateHeaderValues.rowsAffected[0] === 0) {
+      return res.status(404).json({ error: "Header not found" });
+    }
+
+    res.status(200).json({
+      success: true,
+      message: "Header Successfully Updated",
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+};
+
+export { saveHeader, updateHeader };
