@@ -804,7 +804,7 @@ const SalesOrder: React.FC<Props> = ({ userData }) => {
         // delete details upon saving
         deleteDetailsThenSave();
 
-        // Task
+        // Task - done backend API
         const draftNum = draftNumber;
         const axiosInstance = axios.create({
           baseURL: "http://172.16.10.217:3002",
