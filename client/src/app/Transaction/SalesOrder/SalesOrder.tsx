@@ -855,7 +855,7 @@ const SalesOrder: React.FC<Props> = ({ userData }) => {
             // detailsOnSaveToAPI(); // production API
             const dataTable = [...tableData];
 
-            // Task
+            // Task - done API
             const detailsPostAPI = "http://172.16.10.217:3002/so-details";
 
             dataTable.forEach((rowData) => {
@@ -1196,6 +1196,7 @@ const SalesOrder: React.FC<Props> = ({ userData }) => {
     },
   ]);
 
+  // Task
   const onAddHeader = async () => {
     const customers = await axios.get(`${fetchAPI}/customer`);
     setCustomerDataList(customers.data);
