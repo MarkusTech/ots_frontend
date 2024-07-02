@@ -1243,7 +1243,7 @@ const SalesOrder: React.FC<Props> = ({ userData }) => {
     settaxCodeData(taxcode.data);
   };
 
-  // Task
+  // Task - API Done
   const onAddHeaderRateCode = async (taxcode: any) => {
     const taxrate = await axios.get(`${fetchAPI}/tax-rate/${taxcode}`);
     settaxRateData(taxrate.data);
