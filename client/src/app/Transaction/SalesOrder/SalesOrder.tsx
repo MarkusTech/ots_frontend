@@ -854,6 +854,8 @@ const SalesOrder: React.FC<Props> = ({ userData }) => {
             console.log("Data sent successfully:", response.data);
             // detailsOnSaveToAPI(); // production API
             const dataTable = [...tableData];
+
+            // Task
             const detailsPostAPI = "http://172.16.10.217:3002/so-details";
 
             dataTable.forEach((rowData) => {
