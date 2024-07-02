@@ -7,6 +7,6 @@ const router = express.Router();
 router.get("/customer", getCustomers);
 
 // get OUM
-router.get("/oum/:itemCode", getOum);
+router.get("/uom/:itemCode", getOum);
 
 export default router;

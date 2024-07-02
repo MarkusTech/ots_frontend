@@ -4,11 +4,11 @@ const getOum = async (req, res) => {
   const { itemCode } = req.params;
   try {
     const result = await sqlConn2.query(
-      `SELECT * FROM TVF_GET_UOM ('0006697HWFAN')`
+      `SELECT * FROM [BCD_TEST_DB].[dbo].[TVF_GET_UOM] ('${itemCode}')`
     );
 
     if (!result) {
-      res.status(400).json({
+      res.status(404).json({
         success: false,
         message: "Unable to find Uom",
       });
