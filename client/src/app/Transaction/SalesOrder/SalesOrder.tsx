@@ -1203,6 +1203,7 @@ const SalesOrder: React.FC<Props> = ({ userData }) => {
     // setTodayDate(manilaDate);
   };
 
+  // Task
   const onAddheaderItems = async () => {
     const item = await axios.get(
       `${fetchAPI}/item/${priceListNum}/${warehouseCode}/C000174`
@@ -1210,6 +1211,7 @@ const SalesOrder: React.FC<Props> = ({ userData }) => {
     setItemDataList(item.data);
   };
 
+  // Task
   const onAddHeaderUOM = async (itemcode: any, rowIndex: any) => {
     const uom = await axios.get(`${fetchAPI}/uom/${itemcode}`);
     setUOMList(uom.data);
@@ -1217,6 +1219,7 @@ const SalesOrder: React.FC<Props> = ({ userData }) => {
   };
 
   // for Validating pick up location
+  // Task
   const [itemCodeData, setItemCodeData] = useState("");
   const onAddHeaderWareHouse = async (itemcode: any, name: any, uom: any) => {
     try {
@@ -1232,6 +1235,7 @@ const SalesOrder: React.FC<Props> = ({ userData }) => {
     }
   };
 
+  // Task
   const onAddHeaderTaxCode = async (cardCodex: any, whseCodex: any) => {
     const taxcode = await axios.get(
       `${fetchAPI}/tax-code/${cardCodex}/${whseCodex}`
@@ -1239,6 +1243,7 @@ const SalesOrder: React.FC<Props> = ({ userData }) => {
     settaxCodeData(taxcode.data);
   };
 
+  // Task
   const onAddHeaderRateCode = async (taxcode: any) => {
     const taxrate = await axios.get(`${fetchAPI}/tax-rate/${taxcode}`);
     settaxRateData(taxrate.data);
