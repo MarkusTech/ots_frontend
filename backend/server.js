@@ -32,6 +32,7 @@ import db2_UserRoutes from "./routes/users/db2_UsersRoutes.js";
 import arpprovalTypeRoutes from "./routes/approval/approvalTypeRoutes.js";
 import getLastApprovalIDRoutes from "./routes/approval/getLastApprovalIDRoutes.js";
 import getListWarehouseRoutes from "./routes/warehouse/gitListWarehouseRoutes.js";
+import retrievalAPIRoutes from "./routes/ordertaking/retrievalAPIRoutes.js";
 
 // dotenv config
 dotenv.config();
@@ -78,6 +79,7 @@ app.use("/api/v2", db2_UserRoutes);
 app.use("/api/v2", arpprovalTypeRoutes);
 app.use("/api/v2", getLastApprovalIDRoutes);
 app.use("/api/v2", getListWarehouseRoutes);
+app.use("/api/v2", retrievalAPIRoutes);
 
 sqlConn.connect((err) => {
   if (err) {
