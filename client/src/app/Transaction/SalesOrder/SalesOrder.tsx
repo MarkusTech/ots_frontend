@@ -1211,7 +1211,7 @@ const SalesOrder: React.FC<Props> = ({ userData }) => {
     setItemDataList(item.data);
   };
 
-  // Task
+  // Task - API Done
   const onAddHeaderUOM = async (itemcode: any, rowIndex: any) => {
     const uom = await axios.get(`${fetchAPI}/uom/${itemcode}`);
     setUOMList(uom.data);
