@@ -29,3 +29,5 @@ const getOum = async (req, res) => {
     });
   }
 };
+
+export { getOum };
