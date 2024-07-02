@@ -1196,7 +1196,7 @@ const SalesOrder: React.FC<Props> = ({ userData }) => {
     },
   ]);
 
-  // Task
+  // Task - API DONE
   const onAddHeader = async () => {
     const customers = await axios.get(`${fetchAPI}/customer`);
     setCustomerDataList(customers.data);
