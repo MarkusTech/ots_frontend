@@ -4,7 +4,7 @@ const getTaxCode = async (req, res) => {
   const { cardCode, warehouseCode } = req.params;
   try {
     const result = await sqlConn2.query(
-      `SELECT dbo.fn_GetTaxCode ('${cardCode}','${warehouseCode}') AS TaxCode`
+      `SELECT [BCD_TEST_DB].dbo.fn_GetTaxCode ('${cardCode}','${warehouseCode}') AS TaxCode`
     );
 
     if (!result) {
