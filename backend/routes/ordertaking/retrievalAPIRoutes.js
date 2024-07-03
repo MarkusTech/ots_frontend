@@ -4,6 +4,7 @@ import { getOum } from "../../controllers/ordertaking/retrieval/uom.js";
 import { getTaxRate } from "../../controllers/ordertaking/retrieval/tax-rate.js";
 import { getItemList } from "../../controllers/ordertaking/retrieval/item.js";
 import { getTaxCode } from "../../controllers/ordertaking/retrieval/tax-code.js";
+import { getLowerBound } from "../../controllers/ordertaking/retrieval/lowerbound.js";
 const router = express.Router();
 
 // get list of customers
@@ -20,5 +21,8 @@ router.get("/item/:priceListNum/:warehouseCode/:cardCode", getItemList);
 
 // tax-code
 router.get("/tax-code/:cardCode/:warehouseCode", getTaxCode);
+
+// lowerbound
+router.get("/lowerbound", getLowerBound);
 
 export default router;
