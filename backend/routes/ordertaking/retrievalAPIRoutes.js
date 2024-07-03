@@ -19,6 +19,6 @@ router.get("/tax-rate/:taxCode", getTaxRate);
 router.get("/item/:priceListNum/:warehouseCode/:cardCode", getItemList);
 
 // tax-code
-router.get("/tax-code", getTaxCode);
+router.get("/tax-code/:cardCode/:warehouseCode", getTaxCode);
 
 export default router;
