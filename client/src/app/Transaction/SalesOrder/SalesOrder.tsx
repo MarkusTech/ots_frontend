@@ -1203,7 +1203,7 @@ const SalesOrder: React.FC<Props> = ({ userData }) => {
     // setTodayDate(manilaDate);
   };
 
-  // Task
+  // Task - API done
   const onAddheaderItems = async () => {
     const item = await axios.get(
       `${fetchAPI}/item/${priceListNum}/${warehouseCode}/C000174`

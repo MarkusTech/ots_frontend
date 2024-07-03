@@ -1,10 +1,10 @@
 import sqlConn2 from "../../../config/db2.js";
 
 const getItemList = async (req, res) => {
-  const { priceListNum, warehouseCode } = req.params;
+  const { priceListNum, warehouseCode, cardCode } = req.params;
   try {
     const result = await sqlConn2.query(
-      `SELECT * FROM [BCD_TEST_DB].[dbo].[TVF_ITEM_DETAILS] (${priceListNum},'${warehouseCode}','C000174') ORDER BY ItemName`
+      `SELECT * FROM [BCD_TEST_DB].[dbo].[TVF_ITEM_DETAILS] (${priceListNum},'${warehouseCode}','${cardCode}') ORDER BY ItemName`
     );
 
     if (!result) {
