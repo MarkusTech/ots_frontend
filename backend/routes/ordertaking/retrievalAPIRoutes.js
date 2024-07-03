@@ -2,6 +2,7 @@ import express from "express";
 import { getCustomers } from "../../controllers/ordertaking/retrieval/listOfCustomer.js";
 import { getOum } from "../../controllers/ordertaking/retrieval/uom.js";
 import { getTaxRate } from "../../controllers/ordertaking/retrieval/tax-rate.js";
+import { getItemList } from "../../controllers/ordertaking/retrieval/item.js";
 const router = express.Router();
 
 // get list of customers
@@ -12,5 +13,8 @@ router.get("/uom/:itemCode", getOum);
 
 // tax-rate
 router.get("/tax-rate/:taxCode", getTaxRate);
+
+// item list
+router.get("/item", getItemList);
 
 export default router;
