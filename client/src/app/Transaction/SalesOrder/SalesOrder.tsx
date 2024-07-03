@@ -1219,7 +1219,7 @@ const SalesOrder: React.FC<Props> = ({ userData }) => {
   };
 
   // for Validating pick up location
-  // Task
+  // Task -
   const [itemCodeData, setItemCodeData] = useState("");
   const onAddHeaderWareHouse = async (itemcode: any, name: any, uom: any) => {
     try {
