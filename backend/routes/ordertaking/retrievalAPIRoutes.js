@@ -15,6 +15,6 @@ router.get("/uom/:itemCode", getOum);
 router.get("/tax-rate/:taxCode", getTaxRate);
 
 // item list
-router.get("/item", getItemList);
+router.get("/item/:priceListNum/:warehouseCode", getItemList);
 
 export default router;
