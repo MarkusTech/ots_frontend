@@ -1235,7 +1235,7 @@ const SalesOrder: React.FC<Props> = ({ userData }) => {
     }
   };
 
-  // Task
+  // Task - API done
   const onAddHeaderTaxCode = async (cardCodex: any, whseCodex: any) => {
     const taxcode = await axios.get(
       `${fetchAPI}/tax-code/${cardCodex}/${whseCodex}`
