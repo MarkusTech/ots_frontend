@@ -1,6 +1,7 @@
 import sqlConn2 from "../../config/db2.js";
 
 const stockAvailability = async (req, res) => {
+  const { docNum, itemCode, warehouseCode, ordrQty, ExcludeBO } = req.params;
   try {
     const result = await sqlConn2.query(
       `SELECT dbo.fn_GetAvailability (${docNum}, '${itemCode}', '${warehouseCode}', ${ordrQty}, '${ExcludeBO}') AS StockAvailable`
