@@ -1,6 +1,7 @@
 import sqlConn2 from "../../../config/db2.js";
 
 const cost = async (req, res) => {
+  const {} = req.params;
   try {
     const result = await sqlConn2.query(
       `SELECT [BCD_TEST_DB].dbo.fn_GetCost ('${itemCode}', '${warehouseCode}') AS Cost`
