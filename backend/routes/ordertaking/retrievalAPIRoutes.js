@@ -34,6 +34,9 @@ router.get(
 router.get("/sc-discount/:cardCode/:itemCode", getScDiscount);
 
 // discount-price
-router.get("/discount-price", discountPrice);
+router.get(
+  "/discount-price/:branchID/:beforeDiscount/:cardCode/:itemCode/:Qty/:UoM/:lowerBound/:creditCard/:debitCard/:PDC/:PO/:taxCode",
+  discountPrice
+);
 
 export default router;
