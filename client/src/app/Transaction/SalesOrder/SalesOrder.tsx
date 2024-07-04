@@ -1849,7 +1849,7 @@ const SalesOrder: React.FC<Props> = ({ userData }) => {
 
       let SCDiscount = "";
 
-      // Task
+      // Task - done but not tested
       const scdiscount = await axios.get(
         `${fetchAPI}/sc-discount/${cardCodedata}/${item.ItemCode}`
       );
