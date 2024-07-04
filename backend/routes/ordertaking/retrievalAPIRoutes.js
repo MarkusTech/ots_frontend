@@ -6,6 +6,7 @@ import { getItemList } from "../../controllers/ordertaking/retrieval/item.js";
 import { getTaxCode } from "../../controllers/ordertaking/retrieval/tax-code.js";
 import { getLowerBound } from "../../controllers/ordertaking/retrieval/lowerbound.js";
 import { getScDiscount } from "../../controllers/ordertaking/retrieval/sc-discount.js";
+import { discountPrice } from "../../controllers/ordertaking/retrieval/discount-price.js";
 const router = express.Router();
 
 // get list of customers
@@ -31,5 +32,8 @@ router.get(
 
 // sc-discount
 router.get("/sc-discount/:cardCode/:itemCode", getScDiscount);
+
+// discount-price
+router.get("/discount-price", discountPrice);
 
 export default router;
