@@ -41,6 +41,9 @@ router.get(
 );
 
 // stocks availability
-router.get("/stocks-availability", stockAvailability);
+router.get(
+  "/stocks-availability/:docNum/:itemCode/:warehouseCode/:ordrQty/:ExcludeBO",
+  stockAvailability
+);
 
 export default router;
