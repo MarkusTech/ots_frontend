@@ -53,7 +53,10 @@ router.get(
 );
 
 // srp
-router.get("/srp", srp);
+router.get(
+  "/srp/:itemCode/:ItemsPerUnit/:UoM/:taxCode/:lowerbound/:vendorCode/:PriceListNum",
+  srp
+);
 
 // employee
 router.get("/employee", employee);
