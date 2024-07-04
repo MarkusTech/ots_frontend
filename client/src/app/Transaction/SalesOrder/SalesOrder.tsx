@@ -1840,7 +1840,7 @@ const SalesOrder: React.FC<Props> = ({ userData }) => {
         taxCodeDataNow = e.TaxCode;
       });
 
-      // Task
+      // Task - done but not tested
       const lowerbound = await axios.get(
         `${fetchAPI}/lowerbound/${priceListNum}/${taxCodeDataNow}/${item.ItemCode}/${warehouseCode}/1`
       );
