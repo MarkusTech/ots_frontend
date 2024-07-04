@@ -59,7 +59,7 @@ router.get("/srp", srp);
 router.get("/employee", employee);
 
 // pick-up location
-router.get("/pickup-location", pickUpLocation);
+router.get("/pickup-location/:ItemCode/:Qty/:Whs", pickUpLocation);
 
 // salescrew
 router.get("/salescrew", salescrew);
