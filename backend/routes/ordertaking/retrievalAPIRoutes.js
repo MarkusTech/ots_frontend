@@ -7,8 +7,13 @@ import { getTaxCode } from "../../controllers/ordertaking/retrieval/tax-code.js"
 import { getLowerBound } from "../../controllers/ordertaking/retrieval/lowerbound.js";
 import { getScDiscount } from "../../controllers/ordertaking/retrieval/sc-discount.js";
 import { discountPrice } from "../../controllers/ordertaking/retrieval/discount-price.js";
-import { stockAvailability } from "./stocks-availability.js";
+import { stockAvailability } from "../../controllers/ordertaking/retrieval/stocks-availability.js";
 import { srp } from "../../controllers/ordertaking/retrieval/srp.js";
+import { employee } from "../../controllers/ordertaking/retrieval/employee.js";
+import { pickUpLocation } from "../../controllers/ordertaking/retrieval/pickup-location.js";
+import { salescrew } from "../../controllers/ordertaking/retrieval/salescrew.js";
+import { warehouseSoh } from "../../controllers/ordertaking/retrieval/warehouse-soh.js";
+
 const router = express.Router();
 
 // get list of customers
@@ -49,5 +54,17 @@ router.get(
 
 // srp
 router.get("/srp", srp);
+
+// employee
+router.get("/employee", employee);
+
+// pick-up location
+router.get("/pickup-location", pickUpLocation);
+
+// salescrew
+router.get("/salescrew", salescrew);
+
+// warehouse-soh
+router.get("/warehouse-soh", warehouseSoh);
 
 export default router;

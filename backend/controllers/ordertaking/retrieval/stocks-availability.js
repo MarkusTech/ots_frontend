@@ -1,4 +1,4 @@
-import sqlConn2 from "../../config/db2.js";
+import sqlConn2 from "../../../config/db2.js";
 
 const stockAvailability = async (req, res) => {
   const { docNum, itemCode, warehouseCode, ordrQty, ExcludeBO } = req.params;
