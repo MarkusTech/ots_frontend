@@ -7,6 +7,7 @@ import { getTaxCode } from "../../controllers/ordertaking/retrieval/tax-code.js"
 import { getLowerBound } from "../../controllers/ordertaking/retrieval/lowerbound.js";
 import { getScDiscount } from "../../controllers/ordertaking/retrieval/sc-discount.js";
 import { discountPrice } from "../../controllers/ordertaking/retrieval/discount-price.js";
+import { stockAvailability } from "./stocks-availability.js";
 const router = express.Router();
 
 // get list of customers
@@ -38,5 +39,8 @@ router.get(
   "/discount-price/:branchID/:beforeDiscount/:cardCode/:itemCode/:Qty/:UoM/:lowerBound/:creditCard/:debitCard/:PDC/:PO/:taxCode",
   discountPrice
 );
+
+// stocks availability
+router.get("/stocks-availability", stockAvailability);
 
 export default router;
