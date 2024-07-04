@@ -30,6 +30,6 @@ router.get(
 );
 
 // sc-discount
-router.get("/sc-discount", getScDiscount);
+router.get("/sc-discount/:cardCode/:itemCode", getScDiscount);
 
 export default router;
