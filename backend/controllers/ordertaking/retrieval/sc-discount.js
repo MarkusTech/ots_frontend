@@ -1,7 +1,7 @@
 import sqlConn2 from "../../../config/db2.js";
 
 const getScDiscount = async (req, res) => {
-  const {} = req.params;
+  const { cardCode, itemCode } = req.params;
   try {
     const result = await sqlConn2.query(
       `SELECT [BCD_TEST_DB].dbo.[fn_CheckIfSCPWD] ('${cardCode}','${itemCode}') AS SCDiscount`
