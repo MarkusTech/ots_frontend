@@ -23,6 +23,9 @@ router.get("/item/:priceListNum/:warehouseCode/:cardCode", getItemList);
 router.get("/tax-code/:cardCode/:warehouseCode", getTaxCode);
 
 // lowerbound
-router.get("/lowerbound", getLowerBound);
+router.get(
+  "/lowerbound/:PriceListNum/:taxCode/:itemCode/:warehouseCode/:UoMQty",
+  getLowerBound
+);
 
 export default router;
