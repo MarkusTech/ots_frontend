@@ -1,6 +1,20 @@
 import sqlConn2 from "../../../config/db2.js";
 
 const discountPrice = async (req, res) => {
+  const {
+    brachID,
+    beforeDiscount,
+    cardCode,
+    itemCode,
+    Qty,
+    UoM,
+    lowerBound,
+    creditCard,
+    debitCard,
+    PDC,
+    PO,
+    taxCode,
+  } = req.params;
   try {
     const result =
       await sqlConn2.query(`SELECT [BCD_TEST_DB].dbo.fn_GetDiscPrice (${brachID}, ${beforeDiscount},'${cardCode}', '${itemCode}',${Qty}, '${UoM}', '${lowerBound}','${creditCard}','${debitCard}',
