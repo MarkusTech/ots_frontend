@@ -1996,7 +1996,7 @@ const SalesOrder: React.FC<Props> = ({ userData }) => {
       const disRateFor =
         ((disPriceBefDis - disAfterPrice) / disPriceBefDis) * 100;
 
-      // Task
+      // Task - done but not tested
       const cost = await axios.get(
         `${process.env.NEXT_PUBLIC_IP}/cost/${item.itemCode}/${warehouseCode}`
       );
