@@ -9,10 +9,10 @@ import { getScDiscount } from "../../controllers/ordertaking/retrieval/sc-discou
 import { discountPrice } from "../../controllers/ordertaking/retrieval/discount-price.js";
 import { stockAvailability } from "../../controllers/ordertaking/retrieval/stocks-availability.js";
 import { srp } from "../../controllers/ordertaking/retrieval/srp.js";
-import { employee } from "../../controllers/ordertaking/retrieval/employee.js";
 import { pickUpLocation } from "../../controllers/ordertaking/retrieval/pickup-location.js";
 import { salescrew } from "../../controllers/ordertaking/retrieval/salescrew.js";
 import { warehouseSoh } from "../../controllers/ordertaking/retrieval/warehouse-soh.js";
+import { employee } from "../../controllers/ordertaking/retrieval/employee.js";
 
 const router = express.Router();
 
