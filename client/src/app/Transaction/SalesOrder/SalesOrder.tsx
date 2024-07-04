@@ -1983,7 +1983,7 @@ const SalesOrder: React.FC<Props> = ({ userData }) => {
     const disLowerBound = item.lowerBound;
     const disTaxCode = item.taxCode;
 
-    // Task
+    // Task - done but not tested
     try {
       const disPrice = await axios.get(
         `${process.env.NEXT_PUBLIC_IP}/discount-price/${brandID}/${disPriceBefDis}/${disCardCode}/${disItemCode}/${quantity}/${disUOM}/${disLowerBound}/N/N/N/N/${disTaxCode}`
