@@ -8,6 +8,7 @@ import { getLowerBound } from "../../controllers/ordertaking/retrieval/lowerboun
 import { getScDiscount } from "../../controllers/ordertaking/retrieval/sc-discount.js";
 import { discountPrice } from "../../controllers/ordertaking/retrieval/discount-price.js";
 import { stockAvailability } from "./stocks-availability.js";
+import { srp } from "../../controllers/ordertaking/retrieval/srp.js";
 const router = express.Router();
 
 // get list of customers
@@ -45,5 +46,8 @@ router.get(
   "/stocks-availability/:docNum/:itemCode/:warehouseCode/:ordrQty/:ExcludeBO",
   stockAvailability
 );
+
+// srp
+router.get("/srp", srp);
 
 export default router;
