@@ -2012,7 +2012,7 @@ const SalesOrder: React.FC<Props> = ({ userData }) => {
 
       const quantityXuomConversion = quantity * item.uomConversion;
 
-      // Task -
+      // Task - API done but not tested
       const stocksAvailability = await axios.get(
         `${process.env.NEXT_PUBLIC_IP}/stocks-availability/0/${disItemCode}/${item.location}/${quantityXuomConversion}/${item.excludeBO}`
       );
