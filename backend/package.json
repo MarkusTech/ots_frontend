@@ -22,6 +22,7 @@
     "mongoose": "^8.1.1",
     "morgan": "^1.10.0",
     "mssql": "^10.0.2",
+    "node-cache": "^5.1.2",
     "nodemon": "^3.0.3",
     "sequelize": "^6.37.1",
     "uuid": "^9.0.1"
