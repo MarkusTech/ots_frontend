@@ -1,6 +1,7 @@
 import sqlConn2 from "../../../config/db2.js";
 
 const warehouseSoh = async (req, res) => {
+  const { itemCode, UoM, branchID } = req.params;
   try {
     const result = await sqlConn2.query(
       `SELECT * FROM dbo.TVF_WHSE_SOH ('${itemCode}','${UoM}',${branchID})`
