@@ -177,6 +177,13 @@ const getAllCommitedDetails = async (req, res) => {
   try {
     const result = await sqlConn.query`Select * FROM [dbo].[SO_Details_Commit]`;
 
+    if (!result) {
+      res.status(400).json({
+        success: false,
+        message: "Unable to find Commited Details",
+      });
+    }
+
     const data = result.recordset;
     res.status(200).json({
       success: true,
