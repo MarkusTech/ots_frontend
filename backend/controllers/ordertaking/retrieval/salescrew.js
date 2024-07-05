@@ -13,7 +13,8 @@ const salescrew = async (req, res) => {
 
     if (!result) {
       res.status(400).json({
-        success: "Unable to find Sales Crew",
+        success: false,
+        message: "Unable to find Sales Crew",
       });
     }
 
