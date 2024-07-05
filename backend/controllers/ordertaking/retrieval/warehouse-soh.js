@@ -4,7 +4,7 @@ const warehouseSoh = async (req, res) => {
   const { itemCode, UoM, branchID } = req.params;
   try {
     const result = await sqlConn2.query(
-      `SELECT * FROM dbo.TVF_WHSE_SOH ('${itemCode}','${UoM}',${branchID})`
+      `SELECT * FROM [BCD_TEST_DB].dbo.TVF_WHSE_SOH ('${itemCode}','${UoM}',${branchID})`
     );
 
     if (!result) {
