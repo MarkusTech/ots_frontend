@@ -68,6 +68,6 @@ router.get("/pickup-location/:ItemCode/:Qty/:Whs", pickUpLocation);
 router.get("/salescrew", salescrew);
 
 // warehouse-soh
-router.get("/warehouse-soh", warehouseSoh);
+router.get("/warehouse-soh/:itemCode/:UoM/:branchID", warehouseSoh);
 
 export default router;
