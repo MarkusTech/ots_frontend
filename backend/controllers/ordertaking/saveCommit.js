@@ -154,6 +154,13 @@ const getAllCommitedHeader = async (req, res) => {
     const result =
       await sqlConn.query`Select * FROM [OTS_DB].[dbo].[SO_Header_Commit]`;
 
+    if (!result) {
+      res.status(400).json({
+        success: false,
+        message: "Unable to find Commited Header",
+      });
+    }
+
     const data = result.recordset;
     res.status(200).json({
       success: true,
