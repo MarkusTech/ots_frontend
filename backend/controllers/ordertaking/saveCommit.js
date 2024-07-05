@@ -61,6 +61,13 @@ const saveCommitHeader = async (req, res) => {
 
     const DocNumber = docNumResult.recordset[0].DocNum;
 
+    if (!result) {
+      res.status(400).json({
+        success: false,
+        message: "Data not been saved",
+      });
+    }
+
     res.status(200).json({
       DocNumber,
     });
