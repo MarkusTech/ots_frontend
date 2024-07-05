@@ -131,6 +131,13 @@ const saveCommitDetails = async (req, res) => {
      VALUES
             (${LineID},${DraftNum},${ItemCode},${ItemName},${Quantity},${UoM},${UoMConv},${Whse},${InvStat},${SellPriceBefDisc},${DiscRate},${SellPriceAftDisc},${LowerBound},${TaxCode},${TaxCodePerc},${TaxAmt},${BelPriceDisc},${Cost},${BelCost},${ModeReleasing},${SCPWDdisc},${GrossTotal})`;
 
+    if (!result) {
+      res.status(400).json({
+        success: false,
+        message: "Data not been saved",
+      });
+    }
+
     res.status(200).json({
       success: true,
       message: "Details Commited Successfully",
