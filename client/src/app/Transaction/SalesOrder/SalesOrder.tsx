@@ -1200,9 +1200,16 @@ const SalesOrder: React.FC<Props> = ({ userData }) => {
   // Task - API DONE
   const onAddHeader = async () => {
     const customers = await axios.get(`${fetchAPI}/customer`);
+    // const customers = await axios.get(
+    //   `http://172.16.10.169:5001/api/v2/customer`
+    // );
     setCustomerDataList(customers.data);
     // setTodayDate(manilaDate);
   };
+
+  useEffect(() => {
+    console.log(customerList);
+  });
 
   // Task - API done
   const onAddheaderItems = async () => {
