@@ -789,7 +789,8 @@ const SalesOrder: React.FC<Props> = ({ userData }) => {
   // Task - Done Backend API
   const deleteDetailsThenSave = () => {
     const deleteId = draftNumber;
-    axios.delete(`http://172.16.10.217:3002/so-details/${deleteId}`);
+    // axios.delete(`http://172.16.10.217:3002/so-details/${deleteId}`);
+    axios.delete(`http://localhost:5000/api/v1/details/${deleteId}`);
   };
 
   // Update Production API
