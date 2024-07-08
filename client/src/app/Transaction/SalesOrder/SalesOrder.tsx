@@ -1208,7 +1208,6 @@ const SalesOrder: React.FC<Props> = ({ userData }) => {
       `http://172.16.10.169:5001/api/v2/customer`
     );
     setCustomerDataList(customers.data.data);
-    // setTodayDate(manilaDate); //do not uncomment this
   };
 
   const handleWennWorks = () => {
