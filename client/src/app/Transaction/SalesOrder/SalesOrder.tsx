@@ -1274,14 +1274,16 @@ const SalesOrder: React.FC<Props> = ({ userData }) => {
     settaxCodeData(taxcode.data.data);
   };
 
-  // Task - API Done
+  // Task - API Done - DONE transfer API
   const onAddHeaderRateCode = async (taxcode: any) => {
-    const taxrate = await axios.get(`${fetchAPI}/tax-rate/${taxcode}`);
-    settaxRateData(taxrate.data);
+    const taxrate = await axios.get(
+      `http://172.16.10.169:5001/api/v2/tax-rate/${taxcode}`
+    );
+    settaxRateData(taxrate.data.data);
   };
 
   const handleWennWorks = () => {
-    console.log(taxCodeData);
+    console.log(taxRateData);
   };
 
   useEffect(() => {
