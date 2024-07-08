@@ -1244,7 +1244,7 @@ const SalesOrder: React.FC<Props> = ({ userData }) => {
     console.log(UOMList);
   };
 
-  // Task - API Done
+  // Task - API Done - DONE transfer API
   const onAddHeaderUOM = async (itemcode: any, rowIndex: any) => {
     const uom = await axios.get(
       `http://172.16.10.169:5001/api/v2/uom/${itemcode}`
