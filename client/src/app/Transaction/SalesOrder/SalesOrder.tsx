@@ -1258,12 +1258,15 @@ const SalesOrder: React.FC<Props> = ({ userData }) => {
         `${fetchAPI}/warehouse-soh/${itemcode}/${name}/${brandID}`
       );
       setWareHouseList(warehouse.data);
-      const wareCode = warehouse.data;
       // -----------------------------------
       setItemCodeData(itemcode);
     } catch (error) {
       console.log(error);
     }
+  };
+
+  const handleWennWorks = () => {
+    console.log(WareHouseList);
   };
 
   // Task - API done - DONE transfer API
@@ -1280,10 +1283,6 @@ const SalesOrder: React.FC<Props> = ({ userData }) => {
       `http://172.16.10.169:5001/api/v2/tax-rate/${taxcode}`
     );
     settaxRateData(taxrate.data.data);
-  };
-
-  const handleWennWorks = () => {
-    console.log(taxRateData);
   };
 
   useEffect(() => {
