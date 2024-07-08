@@ -49,9 +49,21 @@ const SalesOrder: React.FC<Props> = ({ userData }) => {
     LicTradNum: string;
     Address: string;
   }
+
+  interface ItemData {
+    ItemCode: string;
+    ItemName: string;
+    Availability: string;
+    UomCode: string;
+    NumInSale: string;
+    SRP: string;
+    ItmsGrpNam: string;
+    U_Category: string;
+  }
+
   const [customers, setCustomers] = useState<Customer[]>([]); // for the list of save as draft Customers
 
-  const [itemList, setItemDataList] = useState([]);
+  const [itemList, setItemDataList] = useState<ItemData[]>([]);
   const [UOMList, setUOMList] = useState([]);
   const [UOMListIndex, setUOMListIndex] = useState([]);
   const [WareHouseList, setWareHouseList] = useState([]);
@@ -1210,16 +1222,24 @@ const SalesOrder: React.FC<Props> = ({ userData }) => {
     setCustomerDataList(customers.data.data);
   };
 
-  const handleWennWorks = () => {
-    console.log(customerList);
-  };
-
   // Task - API done
   const onAddheaderItems = async () => {
     const item = await axios.get(
       `${fetchAPI}/item/${priceListNum}/${warehouseCode}/C000174`
     );
     setItemDataList(item.data);
+  };
+
+  // useEffect(() => {
+  //   axios
+  //     .get(`http://172.16.10.169:5001/api/v2/item/${proceListNum}/${warehouseCode}/C000174`)
+  //     .then((response) => {
+  //       setItemDataList(response.data.data);
+  //     });
+  // });
+
+  const handleWennWorks = () => {
+    console.log(itemList);
   };
 
   // Task - API Done
