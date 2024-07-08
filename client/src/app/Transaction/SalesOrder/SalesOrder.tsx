@@ -1232,7 +1232,9 @@ const SalesOrder: React.FC<Props> = ({ userData }) => {
 
   // useEffect(() => {
   //   axios
-  //     .get(`http://172.16.10.169:5001/api/v2/item/${proceListNum}/${warehouseCode}/C000174`)
+  //     .get(
+  //       `http://172.16.10.169:5001/api/v2/item/${priceListNum}/${warehouseCode}/C000174`
+  //     )
   //     .then((response) => {
   //       setItemDataList(response.data.data);
   //     });
