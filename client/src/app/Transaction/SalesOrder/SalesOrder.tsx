@@ -1250,14 +1250,14 @@ const SalesOrder: React.FC<Props> = ({ userData }) => {
   };
 
   // for Validating pick up location
-  // Task - API Done
+  // Task - API Done - DONE transfer API
   const [itemCodeData, setItemCodeData] = useState("");
   const onAddHeaderWareHouse = async (itemcode: any, name: any, uom: any) => {
     try {
       const warehouse = await axios.get(
-        `${fetchAPI}/warehouse-soh/${itemcode}/${name}/${brandID}`
+        `http://172.16.10.169:5001/api/v2/warehouse-soh/${itemcode}/${name}/${brandID}`
       );
-      setWareHouseList(warehouse.data);
+      setWareHouseList(warehouse.data.data);
       // -----------------------------------
       setItemCodeData(itemcode);
     } catch (error) {
