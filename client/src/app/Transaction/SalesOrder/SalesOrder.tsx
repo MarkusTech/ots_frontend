@@ -1265,10 +1265,6 @@ const SalesOrder: React.FC<Props> = ({ userData }) => {
     }
   };
 
-  const handleWennWorks = () => {
-    console.log(WareHouseList);
-  };
-
   // Task - API done - DONE transfer API
   const onAddHeaderTaxCode = async (cardCodex: any, whseCodex: any) => {
     const taxcode = await axios.get(
@@ -2007,6 +2003,9 @@ const SalesOrder: React.FC<Props> = ({ userData }) => {
     }
   };
 
+  const handleWennWorks = () => {
+    console.log(elemento);
+  };
   // TASK
   const handleQuantityChange = async (rowIndex: any, quantity: any) => {
     const updatedTableData = [...tableData];
@@ -2024,10 +2023,10 @@ const SalesOrder: React.FC<Props> = ({ userData }) => {
     // Task - done but not tested
     try {
       const disPrice = await axios.get(
-        `${process.env.NEXT_PUBLIC_IP}/discount-price/${brandID}/${disPriceBefDis}/${disCardCode}/${disItemCode}/${quantity}/${disUOM}/${disLowerBound}/N/N/N/N/${disTaxCode}`
+        `http://172.16.10.169:5001/api/v2/discount-price/${brandID}/${disPriceBefDis}/${disCardCode}/${disItemCode}/${quantity}/${disUOM}/${disLowerBound}/N/N/N/N/${disTaxCode}`
       );
 
-      const disPriceArr = disPrice.data;
+      const disPriceArr = disPrice.data.data;
 
       const disAfterPrice = disPriceArr[0]["DiscPrice"];
 
