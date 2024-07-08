@@ -16,7 +16,7 @@ const SalesOrder: React.FC<Props> = ({ userData }) => {
   const [isSaved, setIsSaved] = useState(false); // to hide handle submit
   const [isCommited, setIsCommited] = useState(false); // to hide commit
 
-  const [customerList, setCustomerDataList] = useState([]);
+  const [customerList, setCustomerDataList] = useState<CustomerData[]>([]);
   // Validate Customer Code to Disabled Walkin Customer field
   const [validateCustomerCode, setValidateCustomerCode] = useState("");
   const [todayDate, setTodayDate] = useState("");
@@ -40,6 +40,14 @@ const SalesOrder: React.FC<Props> = ({ userData }) => {
     DocDate: string;
     CreatedBy: string;
     // ... other properties
+  }
+
+  interface CustomerData {
+    CardCode: string;
+    CardName: string;
+    CardFName: string;
+    LicTradNum: string;
+    Address: string;
   }
   const [customers, setCustomers] = useState<Customer[]>([]); // for the list of save as draft Customers
 
@@ -139,10 +147,6 @@ const SalesOrder: React.FC<Props> = ({ userData }) => {
     },
   ]);
 
-  const handleWennWorks = () => {
-    console.log(userData);
-  };
-
   const [formData, setFormData] = useState({
     DraftNum: "",
     EntryNum: "",
@@ -196,31 +200,31 @@ const SalesOrder: React.FC<Props> = ({ userData }) => {
   const [setOnAccount, setIsPaymentOnAccount] = useState("N");
   const [isPaymentCOD, setIsPaymentCOD] = useState("N");
 
-  useEffect(() => {
-    setFormData({
-      ...formData,
-      // taxees
-      TotalAmtBefTax: totalAfterVat,
-      TotalTax: totalVat,
-      TotalAmtAftTax: totalBeforeVat,
-      SCPWDDiscTotal: SCPWDdata,
-      TotalAmtDue: totalAmoutDueData,
-      // end of taxees
-      WalkInName: walkInCustomer,
-      Reference: customerReference,
-      Remarks: remarksField,
-      SCPWDIdNo: scOrPwdField,
-      // Payment Method
-      Cash: isPaymentCash,
-      CreditCard: isPaymentCreditCard,
-      DebitCard: isPaymentDebitCard,
-      ODC: isPaymentODC,
-      PDC: isPaymentPDC,
-      OnlineTransfer: isPaymentOnlineTransfer,
-      OnAccount: setOnAccount,
-      COD: isPaymentCOD,
-    });
-  });
+  // useEffect(() => {
+  //   setFormData({
+  //     ...formData,
+  //     // taxees
+  //     TotalAmtBefTax: totalAfterVat,
+  //     TotalTax: totalVat,
+  //     TotalAmtAftTax: totalBeforeVat,
+  //     SCPWDDiscTotal: SCPWDdata,
+  //     TotalAmtDue: totalAmoutDueData,
+  //     // end of taxees
+  //     WalkInName: walkInCustomer,
+  //     Reference: customerReference,
+  //     Remarks: remarksField,
+  //     SCPWDIdNo: scOrPwdField,
+  //     // Payment Method
+  //     Cash: isPaymentCash,
+  //     CreditCard: isPaymentCreditCard,
+  //     DebitCard: isPaymentDebitCard,
+  //     ODC: isPaymentODC,
+  //     PDC: isPaymentPDC,
+  //     OnlineTransfer: isPaymentOnlineTransfer,
+  //     OnAccount: setOnAccount,
+  //     COD: isPaymentCOD,
+  //   });
+  // });
 
   // ----------------------------- Header POST API --------------------------------
   const [finalTotalAmtBefTax, setFinalTotalAmtBefTax] = useState(0);
@@ -1163,15 +1167,15 @@ const SalesOrder: React.FC<Props> = ({ userData }) => {
   const [searchTerm, setSearchTerm] = useState("");
   const fetchAPI = process.env.NEXT_PUBLIC_IP;
 
-  useEffect(() => {
-    if (cardCodedata == "C000112") {
-      setShowSCPWD(true);
-      setVarSCPWDdisc(0.05);
-    } else {
-      setShowSCPWD(false);
-      setVarSCPWDdisc(0);
-    }
-  });
+  // useEffect(() => {
+  //   if (cardCodedata == "C000112") {
+  //     setShowSCPWD(true);
+  //     setVarSCPWDdisc(0.05);
+  //   } else {
+  //     setShowSCPWD(false);
+  //     setVarSCPWDdisc(0);
+  //   }
+  // });
 
   const [finalTotalList, setfinalTotalList] = useState([
     {
@@ -1197,19 +1201,19 @@ const SalesOrder: React.FC<Props> = ({ userData }) => {
     },
   ]);
 
-  // Task - API DONE
+  // Task - API DONE - DONE transfer API
   const onAddHeader = async () => {
-    const customers = await axios.get(`${fetchAPI}/customer`);
-    // const customers = await axios.get(
-    //   `http://172.16.10.169:5001/api/v2/customer`
-    // );
-    setCustomerDataList(customers.data);
-    // setTodayDate(manilaDate);
+    // const customers = await axios.get(`${fetchAPI}/customer`);
+    const customers = await axios.get(
+      `http://172.16.10.169:5001/api/v2/customer`
+    );
+    setCustomerDataList(customers.data.data);
+    // setTodayDate(manilaDate); //do not uncomment this
   };
 
-  useEffect(() => {
+  const handleWennWorks = () => {
     console.log(customerList);
-  });
+  };
 
   // Task - API done
   const onAddheaderItems = async () => {
