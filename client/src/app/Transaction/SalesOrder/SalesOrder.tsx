@@ -1269,19 +1269,19 @@ const SalesOrder: React.FC<Props> = ({ userData }) => {
   // Task - API done
   const onAddHeaderTaxCode = async (cardCodex: any, whseCodex: any) => {
     const taxcode = await axios.get(
-      `${fetchAPI}/tax-code/${cardCodex}/${whseCodex}`
+      `http://172.16.10.169:5001/api/v2/tax-code/${cardCodex}/${whseCodex}`
     );
-    settaxCodeData(taxcode.data);
-  };
-
-  const handleWennWorks = () => {
-    console.log(taxCodeData);
+    settaxCodeData(taxcode.data.data);
   };
 
   // Task - API Done
   const onAddHeaderRateCode = async (taxcode: any) => {
     const taxrate = await axios.get(`${fetchAPI}/tax-rate/${taxcode}`);
     settaxRateData(taxrate.data);
+  };
+
+  const handleWennWorks = () => {
+    console.log(taxCodeData);
   };
 
   useEffect(() => {
