@@ -1241,13 +1241,15 @@ const SalesOrder: React.FC<Props> = ({ userData }) => {
   // });
 
   const handleWennWorks = () => {
-    console.log(itemList);
+    console.log(UOMList);
   };
 
   // Task - API Done
   const onAddHeaderUOM = async (itemcode: any, rowIndex: any) => {
-    const uom = await axios.get(`${fetchAPI}/uom/${itemcode}`);
-    setUOMList(uom.data);
+    const uom = await axios.get(
+      `http://172.16.10.169:5001/api/v2/uom/${itemcode}`
+    );
+    setUOMList(uom.data.data);
     setUOMListIndex(rowIndex);
   };
 
