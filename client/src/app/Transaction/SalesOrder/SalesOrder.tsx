@@ -1240,10 +1240,6 @@ const SalesOrder: React.FC<Props> = ({ userData }) => {
   //     });
   // });
 
-  const handleWennWorks = () => {
-    console.log(UOMList);
-  };
-
   // Task - API Done - DONE transfer API
   const onAddHeaderUOM = async (itemcode: any, rowIndex: any) => {
     const uom = await axios.get(
@@ -1276,6 +1272,10 @@ const SalesOrder: React.FC<Props> = ({ userData }) => {
       `${fetchAPI}/tax-code/${cardCodex}/${whseCodex}`
     );
     settaxCodeData(taxcode.data);
+  };
+
+  const handleWennWorks = () => {
+    console.log(taxCodeData);
   };
 
   // Task - API Done
