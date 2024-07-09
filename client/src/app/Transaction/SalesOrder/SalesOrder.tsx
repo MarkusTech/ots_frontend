@@ -138,6 +138,7 @@ const SalesOrder: React.FC<Props> = ({ userData }) => {
 
   // -------------------------------------- <WMR CODE> Header Insertion --------------------------------------
   const backendAPI = "http://172.16.10.169:5000";
+  const backendAPI2 = "http://172.16.10.169:5001";
 
   const [docNumber, setDocNumber] = useState("0");
   const isDocNumberGreaterThanZero = parseInt(docNumber) > 0; // if DocNum is Greater Than Zero the commit and update button will be disabled
@@ -806,7 +807,7 @@ const SalesOrder: React.FC<Props> = ({ userData }) => {
   const deleteDetailsThenSave = () => {
     const deleteId = draftNumber;
     // axios.delete(`http://172.16.10.217:3002/so-details/${deleteId}`);
-    axios.delete(`http://localhost:5000/api/v1/details/${deleteId}`);
+    axios.delete(`${backendAPI}/api/v1/details/${deleteId}`);
   };
 
   // Update Production API
@@ -1216,9 +1217,7 @@ const SalesOrder: React.FC<Props> = ({ userData }) => {
   // Task - API DONE - DONE transfer API
   const onAddHeader = async () => {
     // const customers = await axios.get(`${fetchAPI}/customer`);
-    const customers = await axios.get(
-      `http://172.16.10.169:5001/api/v2/customer`
-    );
+    const customers = await axios.get(`${backendAPI2}/api/v2/customer`);
     setCustomerDataList(customers.data.data);
   };
 
@@ -1242,9 +1241,7 @@ const SalesOrder: React.FC<Props> = ({ userData }) => {
 
   // Task - API Done - DONE transfer API
   const onAddHeaderUOM = async (itemcode: any, rowIndex: any) => {
-    const uom = await axios.get(
-      `http://172.16.10.169:5001/api/v2/uom/${itemcode}`
-    );
+    const uom = await axios.get(`${backendAPI2}/api/v2/uom/${itemcode}`);
     setUOMList(uom.data.data);
     setUOMListIndex(rowIndex);
   };
@@ -1255,7 +1252,7 @@ const SalesOrder: React.FC<Props> = ({ userData }) => {
   const onAddHeaderWareHouse = async (itemcode: any, name: any, uom: any) => {
     try {
       const warehouse = await axios.get(
-        `http://172.16.10.169:5001/api/v2/warehouse-soh/${itemcode}/${name}/${brandID}`
+        `${backendAPI2}/api/v2/warehouse-soh/${itemcode}/${name}/${brandID}`
       );
       setWareHouseList(warehouse.data.data);
       // -----------------------------------
@@ -1268,7 +1265,7 @@ const SalesOrder: React.FC<Props> = ({ userData }) => {
   // Task - API done - DONE transfer API
   const onAddHeaderTaxCode = async (cardCodex: any, whseCodex: any) => {
     const taxcode = await axios.get(
-      `http://172.16.10.169:5001/api/v2/tax-code/${cardCodex}/${whseCodex}`
+      `${backendAPI2}/api/v2/tax-code/${cardCodex}/${whseCodex}`
     );
     settaxCodeData(taxcode.data.data);
   };
@@ -1276,7 +1273,7 @@ const SalesOrder: React.FC<Props> = ({ userData }) => {
   // Task - API Done - DONE transfer API
   const onAddHeaderRateCode = async (taxcode: any) => {
     const taxrate = await axios.get(
-      `http://172.16.10.169:5001/api/v2/tax-rate/${taxcode}`
+      `${backendAPI2}/api/v2/tax-rate/${taxcode}`
     );
     settaxRateData(taxrate.data.data);
   };
@@ -1654,9 +1651,7 @@ const SalesOrder: React.FC<Props> = ({ userData }) => {
     const fetchData = async () => {
       try {
         // Task - API done - DONE transfer API
-        const response = await axios.get(
-          "http://172.16.10.169:5001/api/v2/salescrew"
-        );
+        const response = await axios.get(`${backendAPI2}/api/v2/salescrew`);
         setSalesCrew(response.data.data);
       } catch (error) {
         console.error("Error fetching data:", error);
