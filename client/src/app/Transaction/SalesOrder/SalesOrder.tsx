@@ -92,7 +92,7 @@ const SalesOrder: React.FC<Props> = ({ userData }) => {
 
   const [totalAfterVat, settotalAfterVat] = useState("");
   const [totalBeforeVat, setTotalBeforeVat] = useState("");
-  const [totalVat, setTotalVat] = useState(0);
+  const [totalVat, setTotalVat] = useState<string>("");
   const [showSCPDW, setShowSCPWD] = useState(false);
   const [varSCPWDdisc, setVarSCPWDdisc] = useState(0);
   const [SCPWDdata, setSCPWDdata] = useState("");
@@ -2004,8 +2004,9 @@ const SalesOrder: React.FC<Props> = ({ userData }) => {
   };
 
   const handleWennWorks = () => {
-    console.log(elemento);
+    // console.log(elemento);
   };
+
   // TASK
   const handleQuantityChange = async (rowIndex: any, quantity: any) => {
     const updatedTableData = [...tableData];
@@ -2020,7 +2021,7 @@ const SalesOrder: React.FC<Props> = ({ userData }) => {
     const disLowerBound = item.lowerBound;
     const disTaxCode = item.taxCode;
 
-    // Task - done but not tested
+    // Task - done but not tested - done transfer API
     try {
       const disPrice = await axios.get(
         `http://172.16.10.169:5001/api/v2/discount-price/${brandID}/${disPriceBefDis}/${disCardCode}/${disItemCode}/${quantity}/${disUOM}/${disLowerBound}/N/N/N/N/${disTaxCode}`
@@ -2058,7 +2059,7 @@ const SalesOrder: React.FC<Props> = ({ userData }) => {
       let unitprice = item.sellingPriceAfterDiscountTemp / (1 + 0.12);
       let taxAmountx = item.sellingPriceAfterDiscountTemp - unitprice;
 
-      setTotalVat(taxAmountx);
+      // setTotalVat(taxAmountx); temporary remove
 
       // Get The data and splice algorithm
       const getTableData = tableData[0]["location"];
