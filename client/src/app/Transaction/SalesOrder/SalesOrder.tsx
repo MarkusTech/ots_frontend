@@ -2375,13 +2375,13 @@ const SalesOrder: React.FC<Props> = ({ userData }) => {
 
         const item2 = updatedTableData[i];
 
-        // Task
+        // Task - ${fetchAPI} for discount-price
         axios
           .get(
-            `${process.env.NEXT_PUBLIC_IP}/discount-price/${brandID}/${item.sellingPriceBeforeDiscount}/${cardCodedata}/${item.itemCode}/${item.quantity}/${item.uom}/${item.lowerBound}/${item2.creditcard}/${item2.debit}/${item2.pdc}/${item2.po}/${item2.taxCode}`
+            `${backendAPI2}/api/v2/discount-price/${brandID}/${item.sellingPriceBeforeDiscount}/${cardCodedata}/${item.itemCode}/${item.quantity}/${item.uom}/${item.lowerBound}/${item2.creditcard}/${item2.debit}/${item2.pdc}/${item2.po}/${item2.taxCode}`
           )
           .then((response) => {
-            const disPriceArr = response.data;
+            const disPriceArr = response.data.data;
             const disAfterPrice = disPriceArr[0]["DiscPrice"];
             const disRateFor =
               ((item.sellingPriceBeforeDiscount - disAfterPrice) /
@@ -2434,13 +2434,13 @@ const SalesOrder: React.FC<Props> = ({ userData }) => {
 
         const item2 = updatedTableData[i];
 
-        // Task
+        // Task - ${fetchAPI}
         axios
           .get(
-            `${process.env.NEXT_PUBLIC_IP}/discount-price/${brandID}/${item.sellingPriceBeforeDiscount}/${cardCodedata}/${item.itemCode}/${item.quantity}/${item.uom}/${item.lowerBound}/${item2.creditcard}/${item2.debit}/${item2.pdc}/${item2.po}/${item2.taxCode}`
+            `${backendAPI2}/api/v2/discount-price/${brandID}/${item.sellingPriceBeforeDiscount}/${cardCodedata}/${item.itemCode}/${item.quantity}/${item.uom}/${item.lowerBound}/${item2.creditcard}/${item2.debit}/${item2.pdc}/${item2.po}/${item2.taxCode}`
           )
           .then((response) => {
-            const disPriceArr = response.data;
+            const disPriceArr = response.data.data;
             const disAfterPrice = disPriceArr[0]["DiscPrice"];
             const disRateFor =
               ((item.sellingPriceBeforeDiscount - disAfterPrice) /
@@ -2498,13 +2498,13 @@ const SalesOrder: React.FC<Props> = ({ userData }) => {
 
         const item2 = updatedTableData[i];
 
-        // Task
+        // Task - ${fetchAPI}
         axios
           .get(
-            `${process.env.NEXT_PUBLIC_IP}/discount-price/${brandID}/${item.sellingPriceBeforeDiscount}/${cardCodedata}/${item.itemCode}/${item.quantity}/${item.uom}/${item.lowerBound}/${item2.creditcard}/${item2.debit}/${item2.pdc}/${item2.po}/${item.taxCode}`
+            `${backendAPI2}/api/v2/discount-price/${brandID}/${item.sellingPriceBeforeDiscount}/${cardCodedata}/${item.itemCode}/${item.quantity}/${item.uom}/${item.lowerBound}/${item2.creditcard}/${item2.debit}/${item2.pdc}/${item2.po}/${item.taxCode}`
           )
           .then((response) => {
-            const disPriceArr = response.data;
+            const disPriceArr = response.data.data;
             const disAfterPrice = disPriceArr[0]["DiscPrice"];
             const disRateFor =
               ((item.sellingPriceBeforeDiscount - disAfterPrice) /
@@ -2557,13 +2557,13 @@ const SalesOrder: React.FC<Props> = ({ userData }) => {
 
         const item2 = updatedTableData[i];
 
-        // Task
+        // Task - ${fetchAPI}
         axios
           .get(
-            `${fetchAPI}/discount-price/${brandID}/${item.sellingPriceBeforeDiscount}/${cardCodedata}/${item.itemCode}/${item.quantity}/${item.uom}/${item.lowerBound}/${item2.creditcard}/${item2.debit}/${item2.pdc}/${item2.po}/${item.taxCode}`
+            `${backendAPI2}/api/v2/discount-price/${brandID}/${item.sellingPriceBeforeDiscount}/${cardCodedata}/${item.itemCode}/${item.quantity}/${item.uom}/${item.lowerBound}/${item2.creditcard}/${item2.debit}/${item2.pdc}/${item2.po}/${item.taxCode}`
           )
           .then((response) => {
-            const disPriceArr = response.data;
+            const disPriceArr = response.data.data;
             const disAfterPrice = disPriceArr[0]["DiscPrice"];
             const disRateFor =
               ((item.sellingPriceBeforeDiscount - disAfterPrice) /
