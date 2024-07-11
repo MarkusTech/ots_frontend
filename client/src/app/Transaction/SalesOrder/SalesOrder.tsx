@@ -2026,7 +2026,7 @@ const SalesOrder: React.FC<Props> = ({ userData }) => {
     // Task - done but not tested - done transfer API
     try {
       const disPrice = await axios.get(
-        `http://172.16.10.169:5001/api/v2/discount-price/${brandID}/${disPriceBefDis}/${disCardCode}/${disItemCode}/${quantity}/${disUOM}/${disLowerBound}/N/N/N/N/${disTaxCode}`
+        `${backendAPI2}/api/v2/discount-price/${brandID}/${disPriceBefDis}/${disCardCode}/${disItemCode}/${quantity}/${disUOM}/${disLowerBound}/N/N/N/N/${disTaxCode}`
       );
 
       const disPriceArr = disPrice.data.data;
@@ -2280,11 +2280,11 @@ const SalesOrder: React.FC<Props> = ({ userData }) => {
     );
     const stocksAvailabilityArr = stocksAvailability.data;
 
-    // Task
+    // Task - done transfer but not tested
     const pickUpLocation = await axios.get(
-      `http://172.16.10.217:3001/pickup-location/${itemCodeData}/1/${itemdata}`
+      `${backendAPI2}/api/v2/pickup-location/${itemCodeData}/1/${itemdata}`
     );
-    const pickUpLocationData = pickUpLocation.data;
+    const pickUpLocationData = pickUpLocation.data.data;
 
     // get the last 2 string algorithm
     const getTableData = itemdata;
