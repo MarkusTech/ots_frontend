@@ -1,5 +1,6 @@
 import express from "express";
 import { getCustomers } from "../../controllers/ordertaking/retrieval/listOfCustomer.js";
+import { cost } from "../../controllers/ordertaking/retrieval/cost.js";
 import { getOum } from "../../controllers/ordertaking/retrieval/uom.js";
 import { getTaxRate } from "../../controllers/ordertaking/retrieval/tax-rate.js";
 import { getItemList } from "../../controllers/ordertaking/retrieval/item.js";
@@ -15,6 +16,9 @@ import { warehouseSoh } from "../../controllers/ordertaking/retrieval/warehouse-
 import { employee } from "../../controllers/ordertaking/retrieval/employee.js";
 
 const router = express.Router();
+
+// cost
+router.get("/cost/:itemCode/:warehouseCode", cost);
 
 // get list of customers
 router.get("/customer", getCustomers);

@@ -1897,10 +1897,11 @@ const SalesOrder: React.FC<Props> = ({ userData }) => {
       if (item.itemCode != "") {
         axios
           .get(
-            `http://172.16.10.217:3001/pickup-location/${itemCodex}/1/${warehouseCode}`
+            `${backendAPI2}/api/v2/pickup-location/${itemCodex}/1/${warehouseCode}`
           )
           .then((response) => {
-            console.log(response.data);
+            console.log(response.data.data);
+            const responsePickUpLocationData = response.data.data["location"];
             updatedTableData[selectedRowIndex] = {
               ...updatedTableData[selectedRowIndex],
               entryNumber: formData.DraftNum, //sample
@@ -1923,7 +1924,7 @@ const SalesOrder: React.FC<Props> = ({ userData }) => {
               grossTotal: item.SRP,
               scPwdDiscount: SCDiscount,
               truckPanelORDropShip: "",
-              pickUpLocation: response.data,
+              pickUpLocation: responsePickUpLocationData,
             };
           });
       }
