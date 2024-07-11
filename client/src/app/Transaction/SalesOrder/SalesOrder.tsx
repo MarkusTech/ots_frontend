@@ -2038,9 +2038,9 @@ const SalesOrder: React.FC<Props> = ({ userData }) => {
 
       // Task - done but not tested
       const cost = await axios.get(
-        `${process.env.NEXT_PUBLIC_IP}/cost/${item.itemCode}/${warehouseCode}`
+        `${backendAPI2}/api/v2/cost/${item.itemCode}/${warehouseCode}`
       );
-      const costArr = cost.data;
+      const costArr = cost.data.data;
 
       let belowCostBool = "";
 
@@ -2054,9 +2054,9 @@ const SalesOrder: React.FC<Props> = ({ userData }) => {
 
       // Task - API done but not tested
       const stocksAvailability = await axios.get(
-        `${process.env.NEXT_PUBLIC_IP}/stocks-availability/0/${disItemCode}/${item.location}/${quantityXuomConversion}/${item.excludeBO}`
+        `${backendAPI2}/api/v2/stocks-availability/0/${disItemCode}/${item.location}/${quantityXuomConversion}/${item.excludeBO}`
       );
-      const stocksAvailabilityArr = stocksAvailability.data;
+      const stocksAvailabilityArr = stocksAvailability.data.data;
 
       let unitprice = item.sellingPriceAfterDiscountTemp / (1 + 0.12);
       let taxAmountx = item.sellingPriceAfterDiscountTemp - unitprice;
@@ -2103,9 +2103,9 @@ const SalesOrder: React.FC<Props> = ({ userData }) => {
     const updatedTableData = [...tableData];
     const item = updatedTableData[rowIndex];
     const stocksAvailability = await axios.get(
-      `${process.env.NEXT_PUBLIC_IP}/stocks-availability/0/${item.itemCode}/${item.location}/${item.quantity}/${value}`
+      `${backendAPI2}/api/v2/stocks-availability/0/${item.itemCode}/${item.location}/${item.quantity}/${value}`
     );
-    const stocksAvailabilityArr = stocksAvailability.data;
+    const stocksAvailabilityArr = stocksAvailability.data.data;
 
     updatedTableData[rowIndex] = {
       ...item,
@@ -2145,16 +2145,16 @@ const SalesOrder: React.FC<Props> = ({ userData }) => {
 
     // Task
     const lowerbound = await axios.get(
-      `${process.env.NEXT_PUBLIC_IP}/lowerbound/${priceListNum}/${uomtaxCode}/${uomitemCode}/${warehouseCode}/${BaseQty}`
+      `${backendAPI2}/api/v2/lowerbound/${priceListNum}/${uomtaxCode}/${uomitemCode}/${warehouseCode}/${BaseQty}`
     );
-    const lowerboundArr = lowerbound.data;
+    const lowerboundArr = lowerbound.data.data;
     const lowerBoundFinalItem = lowerboundArr[0]["LowerBound"];
 
     // Task
     const srp = await axios.get(
-      `${process.env.NEXT_PUBLIC_IP}/srp/${uomitemCode}/${BaseQty}/${UomCode}/${uomtaxCode}/${lowerBoundFinalItem}/${cardCodedata}/${priceListNum}`
+      `${backendAPI2}/api/v2/srp/${uomitemCode}/${BaseQty}/${UomCode}/${uomtaxCode}/${lowerBoundFinalItem}/${cardCodedata}/${priceListNum}`
     );
-    const srpdata = srp.data;
+    const srpdata = srp.data.data;
 
     const quantityXuomConversion = item.quantity * BaseQty;
 
@@ -2168,16 +2168,16 @@ const SalesOrder: React.FC<Props> = ({ userData }) => {
 
     // Task
     const disPrice = await axios.get(
-      `${process.env.NEXT_PUBLIC_IP}/discount-price/${brandID}/${item.sellingPriceAfterDiscount}/${cardCodedata}/${item.itemCode}/${item.quantity}/${UomCode}/${item.lowerBound}/N/N/N/N/${item.taxCode}`
+      `${backendAPI2}/api/v2/discount-price/${brandID}/${item.sellingPriceAfterDiscount}/${cardCodedata}/${item.itemCode}/${item.quantity}/${UomCode}/${item.lowerBound}/N/N/N/N/${item.taxCode}`
     );
-    const disPriceArr = disPrice.data;
+    const disPriceArr = disPrice.data.data;
     const disAfterPrice = disPriceArr[0]["DiscPrice"];
 
     // Task
     const stocksAvailability = await axios.get(
-      `${process.env.NEXT_PUBLIC_IP}/stocks-availability/0/${item.itemCode}/${item.location}/${quantityXuomConversion}/${item.excludeBO}`
+      `${backendAPI2}/api/v2/stocks-availability/0/${item.itemCode}/${item.location}/${quantityXuomConversion}/${item.excludeBO}`
     );
-    const stocksAvailabilityArr = stocksAvailability.data;
+    const stocksAvailabilityArr = stocksAvailability.data.data;
 
     updatedTableData[UOMListIndex] = {
       ...item,
@@ -2274,11 +2274,11 @@ const SalesOrder: React.FC<Props> = ({ userData }) => {
 
     const quantityXuomConversion = item.quantity * item.uomConversion;
 
-    // Task
+    // Task - ${process.env.NEXT_PUBLIC_IP}
     const stocksAvailability = await axios.get(
-      `${process.env.NEXT_PUBLIC_IP}/stocks-availability/0/${item.itemCode}/${itemdata}/${quantityXuomConversion}/${item.excludeBO}`
+      `${backendAPI2}/api/v2/stocks-availability/0/${item.itemCode}/${itemdata}/${quantityXuomConversion}/${item.excludeBO}`
     );
-    const stocksAvailabilityArr = stocksAvailability.data;
+    const stocksAvailabilityArr = stocksAvailability.data.data;
 
     // Task - done transfer but not tested
     const pickUpLocation = await axios.get(
