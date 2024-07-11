@@ -4,7 +4,7 @@ const pickUpLocation = async (req, res) => {
   const { ItemCode, Qty, Whs } = req.params;
   try {
     const result = await sqlConn2.query(
-      `SELECT dbo.fn_GetPickUpLocation('${ItemCode}', ${Qty}, '${Whs}') AS location`
+      `SELECT [BCD_TEST_DB].dbo.fn_GetPickUpLocation('${ItemCode}', ${Qty}, '${Whs}') AS location`
     );
 
     if (!result) {
