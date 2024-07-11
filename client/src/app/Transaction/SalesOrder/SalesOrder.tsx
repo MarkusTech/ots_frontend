@@ -191,7 +191,7 @@ const SalesOrder: React.FC<Props> = ({ userData }) => {
     COD: "",
     // taxees
     TotalAmtBefTax: "",
-    TotalTax: 0, //the use state is change from "" to 0
+    TotalTax: "", //the use state is change from "" to 0
     TotalAmtAftTax: "",
     SCPWDDiscTotal: "",
     TotalAmtDue: "",
@@ -213,31 +213,31 @@ const SalesOrder: React.FC<Props> = ({ userData }) => {
   const [setOnAccount, setIsPaymentOnAccount] = useState("N");
   const [isPaymentCOD, setIsPaymentCOD] = useState("N");
 
-  // useEffect(() => {
-  //   setFormData({
-  //     ...formData,
-  //     // taxees
-  //     TotalAmtBefTax: totalAfterVat,
-  //     TotalTax: totalVat,
-  //     TotalAmtAftTax: totalBeforeVat,
-  //     SCPWDDiscTotal: SCPWDdata,
-  //     TotalAmtDue: totalAmoutDueData,
-  //     // end of taxees
-  //     WalkInName: walkInCustomer,
-  //     Reference: customerReference,
-  //     Remarks: remarksField,
-  //     SCPWDIdNo: scOrPwdField,
-  //     // Payment Method
-  //     Cash: isPaymentCash,
-  //     CreditCard: isPaymentCreditCard,
-  //     DebitCard: isPaymentDebitCard,
-  //     ODC: isPaymentODC,
-  //     PDC: isPaymentPDC,
-  //     OnlineTransfer: isPaymentOnlineTransfer,
-  //     OnAccount: setOnAccount,
-  //     COD: isPaymentCOD,
-  //   });
-  // });
+  useEffect(() => {
+    setFormData({
+      ...formData,
+      // taxees
+      TotalAmtBefTax: totalAfterVat,
+      TotalTax: totalVat,
+      TotalAmtAftTax: totalBeforeVat,
+      SCPWDDiscTotal: SCPWDdata,
+      TotalAmtDue: totalAmoutDueData,
+      // end of taxees
+      WalkInName: walkInCustomer,
+      Reference: customerReference,
+      Remarks: remarksField,
+      SCPWDIdNo: scOrPwdField,
+      // Payment Method
+      Cash: isPaymentCash,
+      CreditCard: isPaymentCreditCard,
+      DebitCard: isPaymentDebitCard,
+      ODC: isPaymentODC,
+      PDC: isPaymentPDC,
+      OnlineTransfer: isPaymentOnlineTransfer,
+      OnAccount: setOnAccount,
+      COD: isPaymentCOD,
+    });
+  });
 
   // ----------------------------- Header POST API --------------------------------
   const [finalTotalAmtBefTax, setFinalTotalAmtBefTax] = useState(0);
@@ -1180,15 +1180,15 @@ const SalesOrder: React.FC<Props> = ({ userData }) => {
   const [searchTerm, setSearchTerm] = useState("");
   const fetchAPI = process.env.NEXT_PUBLIC_IP;
 
-  // useEffect(() => {
-  //   if (cardCodedata == "C000112") {
-  //     setShowSCPWD(true);
-  //     setVarSCPWDdisc(0.05);
-  //   } else {
-  //     setShowSCPWD(false);
-  //     setVarSCPWDdisc(0);
-  //   }
-  // });
+  useEffect(() => {
+    if (cardCodedata == "C000112") {
+      setShowSCPWD(true);
+      setVarSCPWDdisc(0.05);
+    } else {
+      setShowSCPWD(false);
+      setVarSCPWDdisc(0);
+    }
+  });
 
   const [finalTotalList, setfinalTotalList] = useState([
     {
@@ -1228,6 +1228,13 @@ const SalesOrder: React.FC<Props> = ({ userData }) => {
     );
     setItemDataList(item.data);
   };
+
+  // const onAddheaderItems = async () => {
+  //   const item = await axios.get(
+  //     `http://172.16.10.169:5001/api/v2/item/12/GSCNAPGS/C000174`
+  //   );
+  //   setItemDataList(item.data);
+  // };
 
   // useEffect(() => {
   //   axios
