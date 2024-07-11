@@ -12,7 +12,7 @@ const srp = async (req, res) => {
   } = req.params;
   try {
     const result = await sqlConn2.query(
-      `SELECT dbo.fn_GetSRP ('${itemCode}', ${ItemsPerUnit}, '${UoM}','${taxCode}', ${lowerbound}, '${vendorCode}',${PriceListNum}) AS SRP`
+      `SELECT [BCD_TEST_DB].dbo.fn_GetSRP ('${itemCode}', ${ItemsPerUnit}, '${UoM}','${taxCode}', ${lowerbound}, '${vendorCode}',${PriceListNum}) AS SRP`
     );
 
     if (!result) {
