@@ -1222,12 +1222,12 @@ const SalesOrder: React.FC<Props> = ({ userData }) => {
   };
 
   // Task - API done
-  const onAddheaderItems = async () => {
-    const item = await axios.get(
-      `${fetchAPI}/item/${priceListNum}/${warehouseCode}/C000174`
-    );
-    setItemDataList(item.data);
-  };
+  // const onAddheaderItems = async () => {
+  //   const item = await axios.get(
+  //     `${fetchAPI}/item/${priceListNum}/${warehouseCode}/C000174`
+  //   );
+  //   setItemDataList(item.data);
+  // };
 
   // const onAddheaderItems = async () => {
   //   const item = await axios.get(
@@ -1236,15 +1236,15 @@ const SalesOrder: React.FC<Props> = ({ userData }) => {
   //   setItemDataList(item.data);
   // };
 
-  // useEffect(() => {
-  //   axios
-  //     .get(
-  //       `http://172.16.10.169:5001/api/v2/item/${priceListNum}/${warehouseCode}/C000174`
-  //     )
-  //     .then((response) => {
-  //       setItemDataList(response.data.data);
-  //     });
-  // });
+  useEffect(() => {
+    axios
+      .get(
+        `http://172.16.10.169:5001/api/v2/item/${priceListNum}/${warehouseCode}/C000174`
+      )
+      .then((response) => {
+        setItemDataList(response.data.data);
+      });
+  }, []);
 
   // Task - API Done - DONE transfer API
   const onAddHeaderUOM = async (itemcode: any, rowIndex: any) => {
@@ -1287,7 +1287,7 @@ const SalesOrder: React.FC<Props> = ({ userData }) => {
 
   useEffect(() => {
     onAddHeader();
-    onAddheaderItems();
+    // onAddheaderItems();
   }, []);
 
   const handleAddRow = () => {
@@ -1344,7 +1344,7 @@ const SalesOrder: React.FC<Props> = ({ userData }) => {
     ]);
 
     onAddHeader();
-    onAddheaderItems();
+    // onAddheaderItems();
   };
 
   // handle search for draft data
@@ -1878,18 +1878,18 @@ const SalesOrder: React.FC<Props> = ({ userData }) => {
 
       // Task - done but not tested
       const lowerbound = await axios.get(
-        `${fetchAPI}/lowerbound/${priceListNum}/${taxCodeDataNow}/${item.ItemCode}/${warehouseCode}/1`
+        `${backendAPI2}/api/v2/lowerbound/${priceListNum}/${taxCodeDataNow}/${item.ItemCode}/${warehouseCode}/1`
       );
-      const lowerboundArr = lowerbound.data;
+      const lowerboundArr = lowerbound.data.data;
       const lowerBoundFinalItem = lowerboundArr[0]["LowerBound"];
 
       let SCDiscount = "";
 
       // Task - done but not tested
       const scdiscount = await axios.get(
-        `${fetchAPI}/sc-discount/${cardCodedata}/${item.ItemCode}`
+        `${backendAPI2}/api/v2/sc-discount/${cardCodedata}/${item.ItemCode}`
       );
-      SCDiscount = scdiscount.data[0]["SCDiscount"];
+      SCDiscount = scdiscount.data.data[0]["SCDiscount"];
 
       const itemCodex = item.ItemCode;
 
