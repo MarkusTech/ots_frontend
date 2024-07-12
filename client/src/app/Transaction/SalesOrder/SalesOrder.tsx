@@ -2138,8 +2138,7 @@ const SalesOrder: React.FC<Props> = ({ userData }) => {
 
   const handleUOM = async (rowindex: any, BaseQty: any, UomCode: any) => {
     const updatedTableData = [...tableData];
-    // const item = updatedTableData[UOMListIndex];
-    const item = updatedTableData[rowindex];
+    const item = updatedTableData[UOMListIndex];
 
     const uomtaxCode = item["taxCode"];
     const uomitemCode = item["itemCode"];
