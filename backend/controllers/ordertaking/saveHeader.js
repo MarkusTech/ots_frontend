@@ -7,6 +7,7 @@ const saveHeader = async (req, res) => {
     DocNum,
     PostingDate,
     DocDate,
+    DeliveryDate,
     CustomerCode,
     CustomerName,
     WalkInName,
@@ -37,11 +38,14 @@ const saveHeader = async (req, res) => {
     DateUpdated,
     SalesCrew,
     ForeignName,
+    ApprovalStat,
+    Synced,
   } = req.body;
 
   try {
     const isoPostingDate = new Date(PostingDate).toISOString();
     const isoDocDate = new Date(DocDate).toISOString();
+    const isDeliveryDate = new Date(DeliveryDate).toISOString();
     // validating the last number of draftNumber
     const draftNumResult =
       await sqlConn.query`SELECT MAX(DraftNum) AS maxDraftNum FROM SO_Header`;
@@ -52,17 +56,17 @@ const saveHeader = async (req, res) => {
 
     // inserting value to the header
     const saveHeaderValues = await sqlConn.query`INSERT INTO SO_Header
-    ([EntryNum], [DraftNum], [DocNum], [PostingDate], [DocDate], [CustomerCode], [CustomerName],
+    ([EntryNum], [DraftNum], [DocNum], [PostingDate], [DocDate], [DeliveryDate], [CustomerCode], [CustomerName],
     [WalkInName], [ShippingAdd], [TIN], [Reference], [SCPWDIdNo], [Branch], [DocStat], [BaseDoc],
     [Cash], [DebitCard], [CreditCard], [ODC], [PDC], [OnlineTransfer], [OnAccount], [COD],
     [TotalAmtBefTax], [TotalTax], [TotalAmtAftTax], [SCPWDDiscTotal], [TotalAmtDue], [Remarks],
-    [CreatedBy], [DateCreated], [UpdatedBy], [DateUpdated], [SalesCrew], [ForeignName])
+    [CreatedBy], [DateCreated], [UpdatedBy], [DateUpdated], [SalesCrew], [ForeignName], [ApprovalStat], [Synced])
     VALUES
-    (${EntryNum}, ${saveDraftNum},${DocNum}, ${isoPostingDate}, ${isoDocDate}, ${CustomerCode}, ${CustomerName},
+    (${EntryNum}, ${saveDraftNum},${DocNum}, ${isoPostingDate}, ${isoDocDate}, ${isDeliveryDate}, ${CustomerCode}, ${CustomerName},
     ${WalkInName}, ${ShippingAdd}, ${TIN}, ${Reference}, ${SCPWDIdNo}, ${Branch}, ${DocStat}, ${BaseDoc},
     ${Cash}, ${DebitCard}, ${CreditCard}, ${ODC}, ${PDC}, ${OnlineTransfer}, ${OnAccount}, ${COD},
     ${TotalAmtBefTax}, ${TotalTax}, ${TotalAmtAftTax}, ${SCPWDDiscTotal}, ${TotalAmtDue}, ${Remarks},
-    ${CreatedBy}, ${DateCreated}, ${UpdatedBy}, ${DateUpdated}, ${SalesCrew}, ${ForeignName})`;
+    ${CreatedBy}, ${DateCreated}, ${UpdatedBy}, ${DateUpdated}, ${SalesCrew}, ${ForeignName}, ${ApprovalStat}, 'N')`;
 
     res.status(200).json({
       success: true,
