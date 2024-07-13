@@ -7,7 +7,7 @@ const saveHeader = async (req, res) => {
     DocNum,
     PostingDate,
     DocDate,
-    DeliveryDate,
+    DeliveryDate, // recently added
     CustomerCode,
     CustomerName,
     WalkInName,
@@ -38,8 +38,8 @@ const saveHeader = async (req, res) => {
     DateUpdated,
     SalesCrew,
     ForeignName,
-    ApprovalStat,
-    Synced,
+    ApprovalStat, // recently added
+    Synced, // recently added
   } = req.body;
 
   try {
