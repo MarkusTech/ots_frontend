@@ -85,6 +85,7 @@ const updateHeader = async (req, res) => {
     DocNum,
     PostingDate,
     DocDate,
+    DeliveryDate, // recently added
     CustomerCode,
     CustomerName,
     WalkInName,
@@ -123,6 +124,7 @@ const updateHeader = async (req, res) => {
   try {
     const isoPostingDate = new Date(PostingDate).toISOString();
     const isoDocDate = new Date(DocDate).toISOString();
+    const isDeliveryDate = new Date(DeliveryDate).toISOString();
 
     // Construct the SQL query with parameterized values
     const result = await sqlConn.query(`UPDATE [dbo].[SO_Header]
@@ -130,6 +132,7 @@ const updateHeader = async (req, res) => {
       ,[DocNum] = ${DocNum}
       ,[PostingDate] = '${isoPostingDate}'
       ,[DocDate] = '${isoDocDate}'
+      ,[DeliveryDate] = '${isDeliveryDate}'
       ,[CustomerCode] = '${CustomerCode}'
       ,[CustomerName] = '${CustomerName}'
       ,[WalkInName] = '${WalkInName}'
