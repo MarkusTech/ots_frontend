@@ -16,8 +16,8 @@ const saveDetails = async (req, res) => {
           ItemCode,
           ItemName,
           Quantity,
-          Uom,
-          UomConv,
+          UoM,
+          UoMConv,
           Whse,
           InvStat,
           SellPriceBefDisc,
@@ -27,7 +27,7 @@ const saveDetails = async (req, res) => {
           TaxCode,
           TaxCodePerc,
           TaxAmt,
-          PriceDisc,
+          PriceDisc, //recently added
           BelPriceDisc,
           Cost,
           BelCost,
@@ -44,8 +44,8 @@ const saveDetails = async (req, res) => {
         request.input("ItemCode", sql.NVarChar, ItemCode);
         request.input("ItemName", sql.NVarChar, ItemName);
         request.input("Quantity", sql.Int, Quantity);
-        request.input("UoM", sql.NVarChar, Uom);
-        request.input("UoMConv", sql.Int, UomConv);
+        request.input("UoM", sql.NVarChar, UoM);
+        request.input("UoMConv", sql.Int, UoMConv);
         request.input("Whse", sql.NVarChar, Whse);
         request.input("InvStat", sql.NVarChar, InvStat);
         request.input("SellPriceBefDisc", sql.Decimal, SellPriceBefDisc);
