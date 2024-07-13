@@ -268,6 +268,7 @@ const SalesOrder: React.FC<Props> = ({ userData }) => {
           DocNum: 0,
           PostingDate: todayDate,
           DocDate: todayDate,
+          // DeliveryDate
           CustomerCode: formData.CustomerCode,
           CustomerName: formData.CustomerName,
           WalkInName: formData.WalkInName,
@@ -298,6 +299,7 @@ const SalesOrder: React.FC<Props> = ({ userData }) => {
           DateUpdated: "",
           SalesCrew: selectedSalesCrew,
           ForeignName: formData.ForeignName,
+          // ApprovalStat
         };
 
         axiosInstance
