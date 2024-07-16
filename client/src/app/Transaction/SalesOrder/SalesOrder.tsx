@@ -1336,7 +1336,6 @@ const SalesOrder: React.FC<Props> = ({ userData }) => {
     ]);
 
     onAddHeader();
-    // onAddheaderItems();
   };
 
   // handle search for draft data
