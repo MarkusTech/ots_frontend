@@ -1224,25 +1224,9 @@ const SalesOrder: React.FC<Props> = ({ userData }) => {
 
   // Task - API DONE - DONE transfer API
   const onAddHeader = async () => {
-    // const customers = await axios.get(`${fetchAPI}/customer`);
     const customers = await axios.get(`${backendAPI2}/api/v2/customer`);
     setCustomerDataList(customers.data.data);
   };
-
-  // Task - API done
-  // const onAddheaderItems = async () => {
-  //   const item = await axios.get(
-  //     `${fetchAPI}/item/${priceListNum}/${warehouseCode}/C000174`
-  //   );
-  //   setItemDataList(item.data);
-  // };
-
-  // const onAddheaderItems = async () => {
-  //   const item = await axios.get(
-  //     `http://172.16.10.169:5001/api/v2/item/12/GSCNAPGS/C000174`
-  //   );
-  //   setItemDataList(item.data);
-  // };
 
   useEffect(() => {
     axios
