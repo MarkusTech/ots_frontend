@@ -270,7 +270,7 @@ const SalesOrder: React.FC<Props> = ({ userData }) => {
           DocNum: 0,
           PostingDate: todayDate,
           DocDate: todayDate,
-          DeliveryDate: todayDate,
+          DeliveryDate: todayDate, // added
           CustomerCode: formData.CustomerCode,
           CustomerName: formData.CustomerName,
           WalkInName: formData.WalkInName,
@@ -324,7 +324,7 @@ const SalesOrder: React.FC<Props> = ({ userData }) => {
             setTimeout(() => {
               // save details function
               const detailsPostAPI = "http://localhost:5000/api/v1/details";
-              const dataTable = [...tableData]; // Assuming tableData is defined elsewhere
+              const dataTable = [...tableData];
 
               // Construct the data array
               const data = dataTable.map((rowData) => ({
@@ -830,7 +830,7 @@ const SalesOrder: React.FC<Props> = ({ userData }) => {
         // Task - done backend API
         const draftNum = draftNumber;
         const axiosInstance = axios.create({
-          baseURL: "http://172.16.10.217:3002",
+          baseURL: "http://localhost:5000/api/v1",
           headers: {
             "Content-Type": "application/json",
           },
@@ -840,6 +840,7 @@ const SalesOrder: React.FC<Props> = ({ userData }) => {
           DocNum: 0,
           PostingDate: todayDate,
           DocDate: todayDate,
+          DeliveryDate: todayDate,
           CustomerCode: formData.CustomerCode,
           CustomerName: formData.CustomerName,
           WalkInName: formData.WalkInName,
@@ -864,59 +865,66 @@ const SalesOrder: React.FC<Props> = ({ userData }) => {
           SCPWDDiscTotal: finalSCPWDDiscTotal,
           TotalAmtDue: finalTotalAmtDue,
           Remarks: formData.Remarks,
-          CreatedBy: "administrator",
+          CreatedBy: userData,
           DateCreated: todayDate,
           UpdatedBy: 1,
-          DateUpdated: "",
+          DateUpdated: todayDate,
           SalesCrew: selectedSalesCrew,
+          ApprovalStat: 1,
         };
 
         axiosInstance
-          .patch(`/so-header/${draftNum}`, saveOnUpdateHeaderDetails)
+          .put(`/header/${draftNum}`, saveOnUpdateHeaderDetails)
           .then((response) => {
             console.log("Data sent successfully:", response.data);
             // detailsOnSaveToAPI(); // production API
+            const detailsPostAPI = "http://localhost:5000/api/v1/details";
             const dataTable = [...tableData];
 
-            // Task - done API
-            const detailsPostAPI = "http://172.16.10.217:3002/so-details";
+            // Construct the data array
+            const data = dataTable.map((rowData) => ({
+              DraftNum: draftNum,
+              ItemCode: rowData["itemCode"],
+              ItemName: rowData["itemName"],
+              Quantity: rowData["quantity"],
+              UoM: rowData["uom"],
+              UoMConv: rowData["uomConversion"],
+              Whse: rowData["location"],
+              InvStat: rowData["inventoryStatus"],
+              SellPriceBefDisc: rowData["sellingPriceBeforeDiscount"],
+              DiscRate: rowData["discountRate"],
+              SellPriceAftDisc: rowData["sellingPriceAfterDiscount"],
+              LowerBound: rowData["lowerBound"],
+              TaxCode: rowData["taxCode"],
+              TaxCodePerc: rowData["taxCodePercentage"],
+              TaxAmt: rowData["taxAmount"],
+              PriceDisc: 123,
+              BelPriceDisc: rowData["belVolDisPrice"],
+              Cost: rowData["cost"],
+              BelCost: rowData["belCost"],
+              ModeReleasing: rowData["modeOfReleasing"],
+              SCPWDdisc: rowData["scPwdDiscount"],
+              GrossTotal: rowData["grossTotal"],
+              TruckerForDropShipOrBackOrder: rowData["truckPanelORDropShip"],
+              PickUpLocation: rowData["pickUpLocation"],
+            }));
 
-            dataTable.forEach((rowData) => {
-              const saveDetails = {
-                DraftNum: draftNum,
-                ItemCode: rowData["itemCode"],
-                ItemName: rowData["itemName"],
-                Quantity: rowData["quantity"],
-                UoM: rowData["uom"],
-                UoMConv: rowData["uomConversion"],
-                Whse: rowData["location"],
-                InvStat: rowData["inventoryStatus"],
-                SellPriceBefDisc: rowData["sellingPriceBeforeDiscount"],
-                DiscRate: rowData["discountRate"],
-                SellPriceAftDisc: rowData["sellingPriceAfterDiscount"],
-                LowerBound: rowData["lowerBound"],
-                TaxCode: rowData["taxCode"],
-                TaxCodePerc: rowData["taxCodePercentage"],
-                TaxAmt: rowData["taxAmount"],
-                BelPriceDisc: rowData["belVolDisPrice"],
-                Cost: rowData["cost"],
-                BelCost: rowData["belCost"],
-                ModeReleasing: rowData["modeOfReleasing"],
-                SCPWDdisc: rowData["scPwdDiscount"],
-                GrossTotal: rowData["grossTotal"],
-                TruckerForDropShipOrBackOrder: rowData["truckPanelORDropShip"],
-                PickUpLocation: rowData["pickUpLocation"],
-              };
+            // Send each item to the API
+            // Log the payload
+            console.log("Sending details:", data);
 
-              // Send each item to the API
-              axios
-                .post(detailsPostAPI, saveDetails)
-                .then((response) => {
-                  console.log("Data sent successfully:", response.data);
-                })
-                .catch((error) => {
-                  console.error("Error sending data:", error);
-                });
+            // Send the entire data array to the API
+            axios
+              .post(detailsPostAPI, data)
+              .then((response) => {
+                console.log("Data sent successfully:", response.data);
+              })
+              .catch((error) => {
+                console.error("Error sending data:", error);
+              });
+            Swal.fire({
+              icon: "success",
+              text: "Successfully Save to Draft",
             });
 
             // Show success message
