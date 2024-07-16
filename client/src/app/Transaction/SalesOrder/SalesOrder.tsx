@@ -1880,6 +1880,7 @@ const SalesOrder: React.FC<Props> = ({ userData }) => {
       const itemCodex = item.ItemCode;
 
       // Item code
+      // task
       if (item.itemCode != "") {
         axios
           .get(
