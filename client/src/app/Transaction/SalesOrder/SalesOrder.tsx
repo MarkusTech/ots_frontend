@@ -908,10 +908,6 @@ const SalesOrder: React.FC<Props> = ({ userData }) => {
               PickUpLocation: rowData["pickUpLocation"],
             }));
 
-            // Send each item to the API
-            // Log the payload
-            console.log("Sending details:", data);
-
             // Send the entire data array to the API
             axios
               .post(detailsPostAPI, data)
