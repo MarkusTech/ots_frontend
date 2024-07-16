@@ -121,7 +121,6 @@ const SalesOrder: React.FC<Props> = ({ userData }) => {
   const [motherFuckingCode, setMotherFuckingCode] = useState<
     MotherFuckingItem[]
   >([]);
-  // const [motherFuckingCode, setMotherFuckingCode] = useState([]);
 
   const [ccstatus, setccstatus] = useState(false);
   // End of Payment useState
@@ -248,7 +247,6 @@ const SalesOrder: React.FC<Props> = ({ userData }) => {
   const [finalSCPWDDiscTotal, setFinalSCPWDDiscTotal] = useState(0);
   const [finalTotalAmtDue, setFinalTotalAmtDue] = useState(0);
 
-  // task
   const sendToProductionAPI = () => {
     Swal.fire({
       title: "Do you want to save this Draft?",
@@ -808,7 +806,6 @@ const SalesOrder: React.FC<Props> = ({ userData }) => {
     }
   };
 
-  // Task - Done Backend API
   const deleteDetailsThenSave = () => {
     const deleteId = draftNumber;
     axios.delete(`${backendAPI}/api/v1/details/${deleteId}`);
@@ -826,7 +823,6 @@ const SalesOrder: React.FC<Props> = ({ userData }) => {
         // delete details upon saving
         deleteDetailsThenSave();
 
-        // Task - done backend API
         const draftNum = draftNumber;
         const axiosInstance = axios.create({
           baseURL: "http://localhost:5000/api/v1",
@@ -876,7 +872,6 @@ const SalesOrder: React.FC<Props> = ({ userData }) => {
           .put(`/header/${draftNum}`, saveOnUpdateHeaderDetails)
           .then((response) => {
             console.log("Data sent successfully:", response.data);
-            // detailsOnSaveToAPI(); // production API
             const detailsPostAPI = "http://localhost:5000/api/v1/details";
             const dataTable = [...tableData];
 
@@ -1186,7 +1181,6 @@ const SalesOrder: React.FC<Props> = ({ userData }) => {
   ]);
 
   const [searchTerm, setSearchTerm] = useState("");
-  const fetchAPI = process.env.NEXT_PUBLIC_IP;
 
   useEffect(() => {
     if (cardCodedata == "C000112") {
@@ -1222,12 +1216,13 @@ const SalesOrder: React.FC<Props> = ({ userData }) => {
     },
   ]);
 
-  // Task - API DONE - DONE transfer API
+  // On add Header
   const onAddHeader = async () => {
     const customers = await axios.get(`${backendAPI2}/api/v2/customer`);
     setCustomerDataList(customers.data.data);
   };
 
+  // Fetched Item Data List
   useEffect(() => {
     axios
       .get(
@@ -1238,7 +1233,7 @@ const SalesOrder: React.FC<Props> = ({ userData }) => {
       });
   }, []);
 
-  // Task - API Done - DONE transfer API
+  // On add header UOM
   const onAddHeaderUOM = async (itemcode: any, rowIndex: any) => {
     const uom = await axios.get(`${backendAPI2}/api/v2/uom/${itemcode}`);
     setUOMList(uom.data.data);
@@ -1246,7 +1241,6 @@ const SalesOrder: React.FC<Props> = ({ userData }) => {
   };
 
   // for Validating pick up location
-  // Task - API Done - DONE transfer API
   const [itemCodeData, setItemCodeData] = useState("");
   const onAddHeaderWareHouse = async (itemcode: any, name: any, uom: any) => {
     try {
@@ -1261,7 +1255,7 @@ const SalesOrder: React.FC<Props> = ({ userData }) => {
     }
   };
 
-  // Task - API done - DONE transfer API
+  // tax code
   const onAddHeaderTaxCode = async (cardCodex: any, whseCodex: any) => {
     const taxcode = await axios.get(
       `${backendAPI2}/api/v2/tax-code/${cardCodex}/${whseCodex}`
@@ -1269,7 +1263,7 @@ const SalesOrder: React.FC<Props> = ({ userData }) => {
     settaxCodeData(taxcode.data.data);
   };
 
-  // Task - API Done - DONE transfer API
+  // Rate Code
   const onAddHeaderRateCode = async (taxcode: any) => {
     const taxrate = await axios.get(
       `${backendAPI2}/api/v2/tax-rate/${taxcode}`
@@ -1868,7 +1862,7 @@ const SalesOrder: React.FC<Props> = ({ userData }) => {
         taxCodeDataNow = e.TaxCode;
       });
 
-      // Task - done but not tested
+      // Lowerbound
       const lowerbound = await axios.get(
         `${backendAPI2}/api/v2/lowerbound/${priceListNum}/${taxCodeDataNow}/${item.ItemCode}/${warehouseCode}/1`
       );
@@ -1877,7 +1871,7 @@ const SalesOrder: React.FC<Props> = ({ userData }) => {
 
       let SCDiscount = "";
 
-      // Task - done but not tested
+      // SCDiscount
       const scdiscount = await axios.get(
         `${backendAPI2}/api/v2/sc-discount/${cardCodedata}/${item.ItemCode}`
       );
@@ -1885,7 +1879,7 @@ const SalesOrder: React.FC<Props> = ({ userData }) => {
 
       const itemCodex = item.ItemCode;
 
-      // Task
+      // Item code
       if (item.itemCode != "") {
         axios
           .get(
@@ -1946,7 +1940,6 @@ const SalesOrder: React.FC<Props> = ({ userData }) => {
     idUOM?.setAttribute("value", sellingAfterDis.toString());
   };
 
-  // task
   const handleKeyPressSel = (
     event: { key: string },
     rowIndex: any,
@@ -2002,7 +1995,6 @@ const SalesOrder: React.FC<Props> = ({ userData }) => {
     // handleSaveDetailsToAPI();
   };
 
-  // TASK
   const handleQuantityChange = async (rowIndex: any, quantity: any) => {
     const updatedTableData = [...tableData];
     const item = updatedTableData[rowIndex];
@@ -2016,7 +2008,7 @@ const SalesOrder: React.FC<Props> = ({ userData }) => {
     const disLowerBound = item.lowerBound;
     const disTaxCode = item.taxCode;
 
-    // Task - done but not tested - done transfer API
+    // Discount Price
     try {
       const disPrice = await axios.get(
         `${backendAPI2}/api/v2/discount-price/${brandID}/${disPriceBefDis}/${disCardCode}/${disItemCode}/${quantity}/${disUOM}/${disLowerBound}/N/N/N/N/${disTaxCode}`
@@ -2029,7 +2021,7 @@ const SalesOrder: React.FC<Props> = ({ userData }) => {
       const disRateFor =
         ((disPriceBefDis - disAfterPrice) / disPriceBefDis) * 100;
 
-      // Task - done but not tested
+      // Cost
       const cost = await axios.get(
         `${backendAPI2}/api/v2/cost/${item.itemCode}/${warehouseCode}`
       );
@@ -2045,7 +2037,7 @@ const SalesOrder: React.FC<Props> = ({ userData }) => {
 
       const quantityXuomConversion = quantity * item.uomConversion;
 
-      // Task - API done but not tested
+      // Stocks Availability
       const stocksAvailability = await axios.get(
         `${backendAPI2}/api/v2/stocks-availability/0/${disItemCode}/${item.location}/${quantityXuomConversion}/${item.excludeBO}`
       );
@@ -2053,8 +2045,6 @@ const SalesOrder: React.FC<Props> = ({ userData }) => {
 
       let unitprice = item.sellingPriceAfterDiscountTemp / (1 + 0.12);
       let taxAmountx = item.sellingPriceAfterDiscountTemp - unitprice;
-
-      // setTotalVat(taxAmountx); temporary remove
 
       // Get The data and splice algorithm
       const getTableData = tableData[0]["location"];
@@ -2091,7 +2081,6 @@ const SalesOrder: React.FC<Props> = ({ userData }) => {
     } catch (e) {}
   };
 
-  // Task
   const handleChangeExcludeBO = async (value: any, rowIndex: any) => {
     const updatedTableData = [...tableData];
     const item = updatedTableData[rowIndex];
@@ -2136,14 +2125,13 @@ const SalesOrder: React.FC<Props> = ({ userData }) => {
     const uomitemCode = item["itemCode"];
     const uomtaxAmout = item["taxAmount"];
 
-    // Task
     const lowerbound = await axios.get(
       `${backendAPI2}/api/v2/lowerbound/${priceListNum}/${uomtaxCode}/${uomitemCode}/${warehouseCode}/${BaseQty}`
     );
     const lowerboundArr = lowerbound.data.data;
     const lowerBoundFinalItem = lowerboundArr[0]["LowerBound"];
 
-    // Task
+    // SRP
     const srp = await axios.get(
       `${backendAPI2}/api/v2/srp/${uomitemCode}/${BaseQty}/${UomCode}/${uomtaxCode}/${lowerBoundFinalItem}/${cardCodedata}/${priceListNum}`
     );
@@ -2159,14 +2147,12 @@ const SalesOrder: React.FC<Props> = ({ userData }) => {
       warehousecurrent = item.location;
     }
 
-    // Task
     const disPrice = await axios.get(
       `${backendAPI2}/api/v2/discount-price/${brandID}/${item.sellingPriceAfterDiscount}/${cardCodedata}/${item.itemCode}/${item.quantity}/${UomCode}/${item.lowerBound}/N/N/N/N/${item.taxCode}`
     );
     const disPriceArr = disPrice.data.data;
     const disAfterPrice = disPriceArr[0]["DiscPrice"];
 
-    // Task
     const stocksAvailability = await axios.get(
       `${backendAPI2}/api/v2/stocks-availability/0/${item.itemCode}/${item.location}/${quantityXuomConversion}/${item.excludeBO}`
     );
@@ -2267,13 +2253,12 @@ const SalesOrder: React.FC<Props> = ({ userData }) => {
 
     const quantityXuomConversion = item.quantity * item.uomConversion;
 
-    // Task - ${process.env.NEXT_PUBLIC_IP}
     const stocksAvailability = await axios.get(
       `${backendAPI2}/api/v2/stocks-availability/0/${item.itemCode}/${itemdata}/${quantityXuomConversion}/${item.excludeBO}`
     );
     const stocksAvailabilityArr = stocksAvailability.data.data;
 
-    // Task - done transfer but not tested
+    // Pick Up Location
     const pickUpLocation = await axios.get(
       `${backendAPI2}/api/v2/pickup-location/${itemCodeData}/1/${itemdata}`
     );
@@ -2368,7 +2353,6 @@ const SalesOrder: React.FC<Props> = ({ userData }) => {
 
         const item2 = updatedTableData[i];
 
-        // Task - ${fetchAPI} for discount-price
         axios
           .get(
             `${backendAPI2}/api/v2/discount-price/${brandID}/${item.sellingPriceBeforeDiscount}/${cardCodedata}/${item.itemCode}/${item.quantity}/${item.uom}/${item.lowerBound}/${item2.creditcard}/${item2.debit}/${item2.pdc}/${item2.po}/${item2.taxCode}`
@@ -2427,7 +2411,6 @@ const SalesOrder: React.FC<Props> = ({ userData }) => {
 
         const item2 = updatedTableData[i];
 
-        // Task - ${fetchAPI}
         axios
           .get(
             `${backendAPI2}/api/v2/discount-price/${brandID}/${item.sellingPriceBeforeDiscount}/${cardCodedata}/${item.itemCode}/${item.quantity}/${item.uom}/${item.lowerBound}/${item2.creditcard}/${item2.debit}/${item2.pdc}/${item2.po}/${item2.taxCode}`
@@ -2491,7 +2474,6 @@ const SalesOrder: React.FC<Props> = ({ userData }) => {
 
         const item2 = updatedTableData[i];
 
-        // Task - ${fetchAPI}
         axios
           .get(
             `${backendAPI2}/api/v2/discount-price/${brandID}/${item.sellingPriceBeforeDiscount}/${cardCodedata}/${item.itemCode}/${item.quantity}/${item.uom}/${item.lowerBound}/${item2.creditcard}/${item2.debit}/${item2.pdc}/${item2.po}/${item.taxCode}`
@@ -2550,7 +2532,6 @@ const SalesOrder: React.FC<Props> = ({ userData }) => {
 
         const item2 = updatedTableData[i];
 
-        // Task - ${fetchAPI}
         axios
           .get(
             `${backendAPI2}/api/v2/discount-price/${brandID}/${item.sellingPriceBeforeDiscount}/${cardCodedata}/${item.itemCode}/${item.quantity}/${item.uom}/${item.lowerBound}/${item2.creditcard}/${item2.debit}/${item2.pdc}/${item2.po}/${item.taxCode}`
@@ -3050,7 +3031,6 @@ const SalesOrder: React.FC<Props> = ({ userData }) => {
       }, 1000); // Adjust the timeout as needed
     }
   };
-  // <p>${modeOfReleasingPrint}: ${pickUpLocationDataPrint}</p>
 
   // --------------------------- End Windows Print ------------------------------
   return (
