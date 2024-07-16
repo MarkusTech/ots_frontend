@@ -474,52 +474,6 @@ const SalesOrder: React.FC<Props> = ({ userData }) => {
     },
   ]);
 
-  const handleSaveDetailsToAPI = () => {
-    const detailsPostAPI = "http://localhost:5000/api/v1/details";
-    const dataTable = [...tableData]; // Assuming tableData is defined elsewhere
-
-    // Construct the data array
-    const data = dataTable.map((rowData) => ({
-      DraftNum: draftNumber,
-      ItemCode: rowData["itemCode"],
-      ItemName: rowData["itemName"],
-      Quantity: rowData["quantity"],
-      UoM: rowData["uom"],
-      UoMConv: rowData["uomConversion"],
-      Whse: rowData["location"],
-      InvStat: rowData["inventoryStatus"],
-      SellPriceBefDisc: rowData["sellingPriceBeforeDiscount"],
-      DiscRate: rowData["discountRate"],
-      SellPriceAftDisc: rowData["sellingPriceAfterDiscount"],
-      LowerBound: rowData["lowerBound"],
-      TaxCode: rowData["taxCode"],
-      TaxCodePerc: rowData["taxCodePercentage"],
-      TaxAmt: rowData["taxAmount"],
-      PriceDisc: 123,
-      BelPriceDisc: rowData["belVolDisPrice"],
-      Cost: rowData["cost"],
-      BelCost: rowData["belCost"],
-      ModeReleasing: rowData["modeOfReleasing"],
-      SCPWDdisc: rowData["scPwdDiscount"],
-      GrossTotal: rowData["grossTotal"],
-      TruckerForDropShipOrBackOrder: rowData["truckPanelORDropShip"],
-      PickUpLocation: rowData["pickUpLocation"],
-    }));
-
-    // Log the payload
-    console.log("Sending details:", data);
-
-    // Send the entire data array to the API
-    axios
-      .post(detailsPostAPI, data)
-      .then((response) => {
-        console.log("Data sent successfully:", response.data);
-      })
-      .catch((error) => {
-        console.error("Error sending data:", error);
-      });
-  };
-
   // Handle Draft Submit && Handle Payment Validation
   const handleSubmit = () => {
     const validateTable = [...tableData];
@@ -2060,7 +2014,7 @@ const SalesOrder: React.FC<Props> = ({ userData }) => {
   };
 
   const handleWennWorks = () => {
-    handleSaveDetailsToAPI();
+    // handleSaveDetailsToAPI();
   };
 
   // TASK
