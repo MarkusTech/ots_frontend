@@ -319,7 +319,6 @@ const SalesOrder: React.FC<Props> = ({ userData }) => {
               DraftNum: headerValue.toString(),
             }));
             setDraftNumber(headerValue);
-            // setJsonDraftNum(headerValue);
             const detailsDraftNumber = headerValue;
             setIsSaved(true);
             setTimeout(() => {
