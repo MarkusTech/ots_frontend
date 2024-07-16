@@ -108,6 +108,7 @@ const SalesOrder: React.FC<Props> = ({ userData }) => {
   const [isCheckedOnlineTransfer, setIsCheckedOnlineTransfer] = useState(false);
   const [isCheckedOnAccount, setIsCheckedOnAccount] = useState(false);
   const [isCheckedCashOnDel, setIsCheckedCashOnDel] = useState(false);
+  const [deliveryDate, setDeliveryDate] = useState<string>("");
 
   // print mode of releasing and payment
   const [modeOfPaymentPrint, setModeOfPaymentPrint] = useState("");
@@ -200,6 +201,7 @@ const SalesOrder: React.FC<Props> = ({ userData }) => {
     DateCreated: todayDate,
     UpdatedBy: "",
     DateUpdated: "",
+    ApprovalStat: 0,
   });
 
   // wmr code
@@ -268,7 +270,7 @@ const SalesOrder: React.FC<Props> = ({ userData }) => {
           DocNum: 0,
           PostingDate: todayDate,
           DocDate: todayDate,
-          // DeliveryDate
+          DeliveryDate: todayDate,
           CustomerCode: formData.CustomerCode,
           CustomerName: formData.CustomerName,
           WalkInName: formData.WalkInName,
@@ -299,7 +301,7 @@ const SalesOrder: React.FC<Props> = ({ userData }) => {
           DateUpdated: "",
           SalesCrew: selectedSalesCrew,
           ForeignName: formData.ForeignName,
-          // ApprovalStat
+          ApprovalStat: 1,
         };
 
         axiosInstance
@@ -325,11 +327,12 @@ const SalesOrder: React.FC<Props> = ({ userData }) => {
               const dataTable = [...tableData];
 
               //Task = Just change the API done Backend
-              const detailsPostAPI = "http://172.16.10.217:3002/so-details";
+              const detailsPostAPI = "http://localhost:5000/api/v1/details";
 
               dataTable.forEach((rowData) => {
                 const saveDetails = {
-                  DraftNum: idiotDraftNumber,
+                  // DraftNum: idiotDraftNumber,
+                  DraftNum: 123444,
                   ItemCode: rowData["itemCode"],
                   ItemName: rowData["itemName"],
                   Quantity: rowData["quantity"],
@@ -402,6 +405,10 @@ const SalesOrder: React.FC<Props> = ({ userData }) => {
 
   const handleScOrPwd = (event: any) => {
     setScOrPwdField(event.target.value);
+  };
+
+  const handleDateChange = (e: any) => {
+    setDeliveryDate(e.target.value);
   };
 
   // UUID
@@ -809,7 +816,7 @@ const SalesOrder: React.FC<Props> = ({ userData }) => {
   const deleteDetailsThenSave = () => {
     const deleteId = draftNumber;
     // axios.delete(`http://172.16.10.217:3002/so-details/${deleteId}`);
-    axios.delete(`${backendAPI}/api/v1/details/${deleteId}`);
+    // axios.delete(`${backendAPI}/api/v1/details/${deleteId}`);
   };
 
   // Update Production API
@@ -2010,7 +2017,7 @@ const SalesOrder: React.FC<Props> = ({ userData }) => {
   };
 
   const handleWennWorks = () => {
-    // console.log(elemento);
+    console.log(deliveryDate);
   };
 
   // TASK
@@ -3403,7 +3410,12 @@ const SalesOrder: React.FC<Props> = ({ userData }) => {
           <div className="grid grid-cols-2">
             <label htmlFor="deliveryDate">Delivery Date</label>
             <div>
-              <input type="date" />
+              <input
+                type="date"
+                id="deliveryDate"
+                value={deliveryDate}
+                onChange={handleDateChange}
+              />
             </div>
           </div>
         </div>
