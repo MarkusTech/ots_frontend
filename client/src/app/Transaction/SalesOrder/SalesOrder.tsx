@@ -320,56 +320,53 @@ const SalesOrder: React.FC<Props> = ({ userData }) => {
             }));
             setDraftNumber(headerValue);
             // setJsonDraftNum(headerValue);
-            const idiotDraftNumber = headerValue;
+            const detailsDraftNumber = headerValue;
             setIsSaved(true);
             setTimeout(() => {
-              // detailsOnSaveToAPI(); // production API
-              const dataTable = [...tableData];
-
-              //Task = Just change the API done Backend
+              // save details function
               const detailsPostAPI = "http://localhost:5000/api/v1/details";
+              const dataTable = [...tableData]; // Assuming tableData is defined elsewhere
 
-              dataTable.forEach((rowData) => {
-                const saveDetails = {
-                  // DraftNum: idiotDraftNumber,
-                  DraftNum: 123444,
-                  ItemCode: rowData["itemCode"],
-                  ItemName: rowData["itemName"],
-                  Quantity: rowData["quantity"],
-                  UoM: rowData["uom"],
-                  UoMConv: rowData["uomConversion"],
-                  Whse: rowData["location"],
-                  InvStat: rowData["inventoryStatus"],
-                  SellPriceBefDisc: rowData["sellingPriceBeforeDiscount"],
-                  DiscRate: rowData["discountRate"],
-                  SellPriceAftDisc: rowData["sellingPriceAfterDiscount"],
-                  LowerBound: rowData["lowerBound"],
-                  TaxCode: rowData["taxCode"],
-                  TaxCodePerc: rowData["taxCodePercentage"],
-                  TaxAmt: rowData["taxAmount"],
-                  // task PriceDisc
-                  BelPriceDisc: rowData["belVolDisPrice"],
-                  Cost: rowData["cost"],
-                  BelCost: rowData["belCost"],
-                  ModeReleasing: rowData["modeOfReleasing"],
-                  SCPWDdisc: rowData["scPwdDiscount"],
-                  GrossTotal: rowData["grossTotal"],
-                  TruckerForDropShipOrBackOrder:
-                    rowData["truckPanelORDropShip"],
-                  PickUpLocation: rowData["pickUpLocation"],
-                };
+              // Construct the data array
+              const data = dataTable.map((rowData) => ({
+                DraftNum: detailsDraftNumber,
+                ItemCode: rowData["itemCode"],
+                ItemName: rowData["itemName"],
+                Quantity: rowData["quantity"],
+                UoM: rowData["uom"],
+                UoMConv: rowData["uomConversion"],
+                Whse: rowData["location"],
+                InvStat: rowData["inventoryStatus"],
+                SellPriceBefDisc: rowData["sellingPriceBeforeDiscount"],
+                DiscRate: rowData["discountRate"],
+                SellPriceAftDisc: rowData["sellingPriceAfterDiscount"],
+                LowerBound: rowData["lowerBound"],
+                TaxCode: rowData["taxCode"],
+                TaxCodePerc: rowData["taxCodePercentage"],
+                TaxAmt: rowData["taxAmount"],
+                PriceDisc: 123,
+                BelPriceDisc: rowData["belVolDisPrice"],
+                Cost: rowData["cost"],
+                BelCost: rowData["belCost"],
+                ModeReleasing: rowData["modeOfReleasing"],
+                SCPWDdisc: rowData["scPwdDiscount"],
+                GrossTotal: rowData["grossTotal"],
+                TruckerForDropShipOrBackOrder: rowData["truckPanelORDropShip"],
+                PickUpLocation: rowData["pickUpLocation"],
+              }));
 
-                // Send each item to the API
-                axios
-                  .post(detailsPostAPI, saveDetails)
-                  .then((response) => {
-                    console.log("Data sent successfully:", response.data);
-                  })
-                  .catch((error) => {
-                    console.error("Error sending data:", error);
-                  });
-              });
+              // Log the payload
+              console.log("Sending details:", data);
 
+              // Send the entire data array to the API
+              axios
+                .post(detailsPostAPI, data)
+                .then((response) => {
+                  console.log("Data sent successfully:", response.data);
+                })
+                .catch((error) => {
+                  console.error("Error sending data:", error);
+                });
               Swal.fire({
                 icon: "success",
                 text: "Successfully Save to Draft",
@@ -476,6 +473,52 @@ const SalesOrder: React.FC<Props> = ({ userData }) => {
       pickUpLocation: "",
     },
   ]);
+
+  const handleSaveDetailsToAPI = () => {
+    const detailsPostAPI = "http://localhost:5000/api/v1/details";
+    const dataTable = [...tableData]; // Assuming tableData is defined elsewhere
+
+    // Construct the data array
+    const data = dataTable.map((rowData) => ({
+      DraftNum: draftNumber,
+      ItemCode: rowData["itemCode"],
+      ItemName: rowData["itemName"],
+      Quantity: rowData["quantity"],
+      UoM: rowData["uom"],
+      UoMConv: rowData["uomConversion"],
+      Whse: rowData["location"],
+      InvStat: rowData["inventoryStatus"],
+      SellPriceBefDisc: rowData["sellingPriceBeforeDiscount"],
+      DiscRate: rowData["discountRate"],
+      SellPriceAftDisc: rowData["sellingPriceAfterDiscount"],
+      LowerBound: rowData["lowerBound"],
+      TaxCode: rowData["taxCode"],
+      TaxCodePerc: rowData["taxCodePercentage"],
+      TaxAmt: rowData["taxAmount"],
+      PriceDisc: 123,
+      BelPriceDisc: rowData["belVolDisPrice"],
+      Cost: rowData["cost"],
+      BelCost: rowData["belCost"],
+      ModeReleasing: rowData["modeOfReleasing"],
+      SCPWDdisc: rowData["scPwdDiscount"],
+      GrossTotal: rowData["grossTotal"],
+      TruckerForDropShipOrBackOrder: rowData["truckPanelORDropShip"],
+      PickUpLocation: rowData["pickUpLocation"],
+    }));
+
+    // Log the payload
+    console.log("Sending details:", data);
+
+    // Send the entire data array to the API
+    axios
+      .post(detailsPostAPI, data)
+      .then((response) => {
+        console.log("Data sent successfully:", response.data);
+      })
+      .catch((error) => {
+        console.error("Error sending data:", error);
+      });
+  };
 
   // Handle Draft Submit && Handle Payment Validation
   const handleSubmit = () => {
@@ -2017,7 +2060,7 @@ const SalesOrder: React.FC<Props> = ({ userData }) => {
   };
 
   const handleWennWorks = () => {
-    console.log(deliveryDate);
+    handleSaveDetailsToAPI();
   };
 
   // TASK
