@@ -140,7 +140,7 @@ import sql from "mssql";
 // };
 
 const saveDetails = async (req, res) => {
-  const details = req.body; // Assuming req.body is an array of objects
+  const details = req.body;
 
   if (!Array.isArray(details)) {
     return res.status(400).json({
