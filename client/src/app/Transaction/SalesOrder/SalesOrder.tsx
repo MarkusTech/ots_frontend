@@ -212,7 +212,7 @@ const SalesOrder: React.FC<Props> = ({ userData }) => {
   const [isPaymentPO, setIsPaymentPO] = useState<string>("N");
   const [isPaymentOnlineTransfer, setIsPaymentOnlineTransfer] =
     useState<string>("N");
-  const [setOnAccount, setIsPaymentOnAccount] = useState("N");
+  const [setOnAccount, setIsPaymentOnAccount] = useState<string>("N");
   const [isPaymentCOD, setIsPaymentCOD] = useState("N");
 
   useEffect(() => {
