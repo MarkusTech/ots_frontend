@@ -147,7 +147,7 @@ const SalesOrder: React.FC<Props> = ({ userData }) => {
   const [walkInCustomer, setWalkingCustomer] = useState<string>("");
   const [customerReference, setCustomerReference] = useState<string>("");
   const [remarksField, setRemarksField] = useState<string>("");
-  const [scOrPwdField, setScOrPwdField] = useState("");
+  const [scOrPwdField, setScOrPwdField] = useState<string>("");
   const [draftNumber, setDraftNumber] = useState(null); // no value
   const [entryNumbers, setEntryNumbers] = useState(null);
   const [customerData, setCustomerData] = useState([
