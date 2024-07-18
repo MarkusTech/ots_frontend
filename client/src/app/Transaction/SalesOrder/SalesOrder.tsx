@@ -213,7 +213,7 @@ const SalesOrder: React.FC<Props> = ({ userData }) => {
   const [isPaymentOnlineTransfer, setIsPaymentOnlineTransfer] =
     useState<string>("N");
   const [setOnAccount, setIsPaymentOnAccount] = useState<string>("N");
-  const [isPaymentCOD, setIsPaymentCOD] = useState("N");
+  const [isPaymentCOD, setIsPaymentCOD] = useState<string>("N");
 
   useEffect(() => {
     setFormData({
