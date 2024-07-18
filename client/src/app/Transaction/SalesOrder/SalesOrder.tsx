@@ -112,7 +112,7 @@ const SalesOrder: React.FC<Props> = ({ userData }) => {
 
   // print mode of releasing and payment
   const [modeOfPaymentPrint, setModeOfPaymentPrint] = useState<string>("");
-  const [customerPrint, setCustomerPrint] = useState("");
+  const [customerPrint, setCustomerPrint] = useState<string>("");
 
   interface MotherFuckingItem {
     ModeReleasing: string;
