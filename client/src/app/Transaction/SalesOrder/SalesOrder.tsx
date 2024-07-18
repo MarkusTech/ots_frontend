@@ -145,7 +145,7 @@ const SalesOrder: React.FC<Props> = ({ userData }) => {
   const printButtonDisabled = parseInt(docNumber) == 0;
 
   const [walkInCustomer, setWalkingCustomer] = useState<string>("");
-  const [customerReference, setCustomerReference] = useState("");
+  const [customerReference, setCustomerReference] = useState<string>("");
   const [remarksField, setRemarksField] = useState("");
   const [scOrPwdField, setScOrPwdField] = useState("");
   const [draftNumber, setDraftNumber] = useState(null); // no value
