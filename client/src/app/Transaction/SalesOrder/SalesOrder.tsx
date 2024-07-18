@@ -111,7 +111,7 @@ const SalesOrder: React.FC<Props> = ({ userData }) => {
   const [deliveryDate, setDeliveryDate] = useState<string>("");
 
   // print mode of releasing and payment
-  const [modeOfPaymentPrint, setModeOfPaymentPrint] = useState("");
+  const [modeOfPaymentPrint, setModeOfPaymentPrint] = useState<string>("");
   const [customerPrint, setCustomerPrint] = useState("");
 
   interface MotherFuckingItem {
