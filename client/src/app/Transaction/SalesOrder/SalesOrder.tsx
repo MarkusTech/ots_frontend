@@ -341,7 +341,7 @@ const SalesOrder: React.FC<Props> = ({ userData }) => {
                 TaxCode: rowData["taxCode"],
                 TaxCodePerc: rowData["taxCodePercentage"],
                 TaxAmt: rowData["taxAmount"],
-                PriceDisc: 123,
+                PriceDisc: 123, // need to change this data
                 BelPriceDisc: rowData["belVolDisPrice"],
                 Cost: rowData["cost"],
                 BelCost: rowData["belCost"],
