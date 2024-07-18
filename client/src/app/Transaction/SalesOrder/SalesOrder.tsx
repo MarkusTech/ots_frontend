@@ -73,9 +73,9 @@ const SalesOrder: React.FC<Props> = ({ userData }) => {
   const [taxCodeData, settaxCodeData] = useState([]);
   const [taxRateData, settaxRateData] = useState([]);
 
-  const [itemcodewh, setitemcodewh] = useState("");
-  const [itemnamews, setitemnamews] = useState("");
-  const [itemuomws, setitemuomws] = useState("");
+  const [itemcodewh, setitemcodewh] = useState<string>("");
+  const [itemnamews, setitemnamews] = useState<string>("");
+  const [itemuomws, setitemuomws] = useState<string>("");
 
   const [showWindow, setShowWindow] = useState(false);
   const [showDoc, setShowDoc] = useState(false);
