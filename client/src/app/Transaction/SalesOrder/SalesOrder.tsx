@@ -69,7 +69,7 @@ const SalesOrder: React.FC<Props> = ({ userData }) => {
   const [WareHouseList, setWareHouseList] = useState([]);
   const [selectedRowIndex, setSelectedRowIndex] = useState(null);
 
-  const [cardCodedata, setcardCodedata] = useState("");
+  const [cardCodedata, setcardCodedata] = useState<string>("");
   const [taxCodeData, settaxCodeData] = useState([]);
   const [taxRateData, settaxRateData] = useState([]);
 
