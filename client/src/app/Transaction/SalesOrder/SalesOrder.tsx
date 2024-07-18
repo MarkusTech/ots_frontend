@@ -96,7 +96,7 @@ const SalesOrder: React.FC<Props> = ({ userData }) => {
   const [showSCPDW, setShowSCPWD] = useState(false);
   const [varSCPWDdisc, setVarSCPWDdisc] = useState(0);
   const [SCPWDdata, setSCPWDdata] = useState<string>("");
-  const [totalAmoutDueData, settotalAmoutDueData] = useState("");
+  const [totalAmoutDueData, settotalAmoutDueData] = useState<string>("");
 
   // Payment useState
   const [isCheckedCash, setIsCheckedCash] = useState(false);
