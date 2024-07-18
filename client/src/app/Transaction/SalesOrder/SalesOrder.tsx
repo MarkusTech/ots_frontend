@@ -206,7 +206,7 @@ const SalesOrder: React.FC<Props> = ({ userData }) => {
   // wmr code
   const [isPaymentCash, setIsPaymentCash] = useState<string>("N");
   const [isPaymentCreditCard, setIsPaymentCreditCard] = useState<string>("N");
-  const [isPaymentDebitCard, setIsPaymentDebitCard] = useState("N");
+  const [isPaymentDebitCard, setIsPaymentDebitCard] = useState<string>("N");
   const [isPaymentODC, setIsPaymentODC] = useState("N");
   const [isPaymentPDC, setIsPaymentPDC] = useState("N");
   const [isPaymentPO, setIsPaymentPO] = useState("N");
