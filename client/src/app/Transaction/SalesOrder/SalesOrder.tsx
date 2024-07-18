@@ -144,7 +144,7 @@ const SalesOrder: React.FC<Props> = ({ userData }) => {
   const isDocNumberGreaterThanZero = parseInt(docNumber) > 0; // if DocNum is Greater Than Zero the commit and update button will be disabled
   const printButtonDisabled = parseInt(docNumber) == 0;
 
-  const [walkInCustomer, setWalkingCustomer] = useState("");
+  const [walkInCustomer, setWalkingCustomer] = useState<string>("");
   const [customerReference, setCustomerReference] = useState("");
   const [remarksField, setRemarksField] = useState("");
   const [scOrPwdField, setScOrPwdField] = useState("");
