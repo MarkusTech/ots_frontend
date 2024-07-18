@@ -91,7 +91,7 @@ const SalesOrder: React.FC<Props> = ({ userData }) => {
   const [sellingPriceAfterDiscountData, setSellingPriceAfterDis] = useState(0);
 
   const [totalAfterVat, settotalAfterVat] = useState<string>("");
-  const [totalBeforeVat, setTotalBeforeVat] = useState("");
+  const [totalBeforeVat, setTotalBeforeVat] = useState<string>("");
   const [totalVat, setTotalVat] = useState<string>("");
   const [showSCPDW, setShowSCPWD] = useState(false);
   const [varSCPWDdisc, setVarSCPWDdisc] = useState(0);
