@@ -1748,7 +1748,7 @@ const SalesOrder: React.FC<Props> = ({ userData }) => {
 
   sum();
 
-  const [itemCodeForUOM, setItemCodeForUOM] = useState("");
+  const [itemCodeForUOM, setItemCodeForUOM] = useState<string>("");
 
   const openItemTable = (rowIndex: any) => {
     setOpenItemTablePanel(!openItemTablePanel);
