@@ -451,6 +451,7 @@ const SalesOrder: React.FC<Props> = ({ userData }) => {
       taxAmount: 0,
       volDisPrice: 0,
       // task
+      priceDisc: 0,
       belVolDisPrice: "Y",
       cost: 0,
       belCost: "",
@@ -1302,6 +1303,7 @@ const SalesOrder: React.FC<Props> = ({ userData }) => {
         taxAmount: 0,
         volDisPrice: 0,
         belVolDisPrice: "Y",
+        priceDisc: 0,
         cost: 0,
         belCost: "",
         modeOfReleasing: "",
@@ -3656,7 +3658,7 @@ const SalesOrder: React.FC<Props> = ({ userData }) => {
                   </td>
                   {/* Stardar Price Discount */}
                   <td>
-                    <div>₱{rowData.sellingPriceAfterDiscount}</div>
+                    <div>₱{rowData.sellingPriceBeforeDiscount}</div>
                   </td>
                   {/* Lower Bound */}
                   <td>
