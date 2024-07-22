@@ -1835,6 +1835,7 @@ const SalesOrder: React.FC<Props> = ({ userData }) => {
 
   let countAllItem = 0;
 
+  // task
   const handleItemClick = async (item: any) => {
     countAllItem = countAllItem + 1;
 
