@@ -1644,7 +1644,6 @@ const SalesOrder: React.FC<Props> = ({ userData }) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        // Task - API done - DONE transfer API
         const response = await axios.get(`${backendAPI2}/api/v2/salescrew`);
         setSalesCrew(response.data.data);
       } catch (error) {
@@ -3409,6 +3408,7 @@ const SalesOrder: React.FC<Props> = ({ userData }) => {
                 <th>Trucker for Dropship/Back-order</th>
                 <th>Pick up Location</th>
                 <th>Selling Price after Discount</th>
+                <th>Standard Price Discount</th>
                 <th>Lower Bound</th>
                 <th>Tax Code</th>
                 <th>Tax Rate %</th>
@@ -3636,22 +3636,27 @@ const SalesOrder: React.FC<Props> = ({ userData }) => {
                     {rowData.quantity == 0 ? (
                       ""
                     ) : (
-                      <div className="flex gap-2">
-                        <div>
-                          <input
-                            className="w-[100px] border-l-white border-t-white border-r-white"
-                            type="number"
-                            id={rowData.itemCode}
-                            onClick={(e) => changeTextBoxValue(rowIndex)}
-                            onKeyPress={(e: any) =>
-                              handleKeyPressSel(e, rowIndex, e.target.value)
-                            }
-                          />
-                        </div>
-                        {/* <div>{rowData.sellingPriceAfterDiscountTemp}</div> */}
-                        <div>{rowData.sellingPriceAfterDiscount}</div>
-                      </div>
+                      <input
+                        className="w-[100%] border-l-white border-t-white border-r-white"
+                        type="number"
+                        id={rowData.itemCode}
+                        onClick={(e) => changeTextBoxValue(rowIndex)}
+                        onKeyPress={(e: any) =>
+                          handleKeyPressSel(e, rowIndex, e.target.value)
+                        }
+                      />
+                      // <div className="flex gap-2">
+                      //   <div>
+
+                      //   </div>
+                      //   {/* <div>{rowData.sellingPriceAfterDiscountTemp}</div> */}
+                      //   {/* <div>{rowData.sellingPriceAfterDiscount}</div> */}
+                      // </div>
                     )}
+                  </td>
+                  {/* Stardar Price Discount */}
+                  <td>
+                    <div>₱{rowData.sellingPriceAfterDiscount}</div>
                   </td>
                   {/* Lower Bound */}
                   <td>
