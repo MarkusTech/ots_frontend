@@ -1944,48 +1944,91 @@ const SalesOrder: React.FC<Props> = ({ userData }) => {
     idUOM?.setAttribute("value", sellingAfterDis.toString());
   };
 
-  const handleKeyPressSel = (
-    event: { key: string },
-    rowIndex: any,
-    value: any
+  const handleInputChange = (
+    event: React.ChangeEvent<HTMLInputElement>,
+    rowIndex: number
   ) => {
+    const value = event.target.value;
     const updatedTableData = [...tableData];
     const item = updatedTableData[rowIndex];
     const sellingAfterDis = item.sellingPriceAfterDiscount;
     const sellingAfterDisTemp = item.sellingPriceAfterDiscountTemp;
+    const itemCost = item.cost;
 
-    if (event.key === "Enter") {
-      let belCost = "";
+    let belCost = "";
 
-      if (parseFloat(sellingAfterDis.toString()) < item.cost) {
-        belCost = "Y";
-      } else {
-        belCost = "N";
-      }
-
-      if (parseFloat(value) < parseFloat(sellingAfterDisTemp.toString())) {
-        updatedTableData[rowIndex] = {
-          ...item,
-          grossTotal: value * item.quantity,
-          belVolDisPrice: "Y",
-          sellingPriceAfterDiscount: value,
-          belCost: belCost,
-        };
-
-        setTableData(updatedTableData);
-      } else {
-        updatedTableData[rowIndex] = {
-          ...item,
-          grossTotal: value * item.quantity,
-          belVolDisPrice: "N",
-          sellingPriceAfterDiscount: value,
-          belCost: belCost,
-        };
-        setTableData(updatedTableData);
-      }
+    if (sellingAfterDis < itemCost) {
+      belCost = "Y";
     } else {
+      belCost = "N";
     }
+
+    if (parseFloat(value) < parseFloat(sellingAfterDisTemp.toString())) {
+      updatedTableData[rowIndex] = {
+        ...item,
+        grossTotal: parseFloat(value) * item.quantity,
+        belVolDisPrice: "Y",
+        sellingPriceAfterDiscount: parseFloat(value),
+        belCost: belCost,
+      };
+
+      setTableData(updatedTableData);
+    } else {
+      updatedTableData[rowIndex] = {
+        ...item,
+        grossTotal: parseFloat(value) * item.quantity,
+        belVolDisPrice: "N",
+        sellingPriceAfterDiscount: parseFloat(value),
+        belCost: belCost,
+      };
+      setTableData(updatedTableData);
+    }
+
+    setTableData(updatedTableData);
   };
+
+  // const handleKeyPressSel = (
+  //   event: { key: string },
+  //   rowIndex: any,
+  //   value: any
+  // ) => {
+  //   const updatedTableData = [...tableData];
+  //   const item = updatedTableData[rowIndex];
+  //   const sellingAfterDis = item.sellingPriceAfterDiscount;
+  //   const sellingAfterDisTemp = item.sellingPriceAfterDiscountTemp;
+
+  //   if (event.key === "Enter") {
+  //     let belCost = "";
+
+  //     if (parseFloat(sellingAfterDis.toString()) < item.cost) {
+  //       belCost = "Y";
+  //     } else {
+  //       belCost = "N";
+  //     }
+
+  //     if (parseFloat(value) < parseFloat(sellingAfterDisTemp.toString())) {
+  //       updatedTableData[rowIndex] = {
+  //         ...item,
+  //         grossTotal: value * item.quantity,
+  //         belVolDisPrice: "Y",
+  //         sellingPriceAfterDiscount: value,
+  //         belCost: belCost,
+  //       };
+
+  //       setTableData(updatedTableData);
+  //     } else {
+  //       updatedTableData[rowIndex] = {
+  //         ...item,
+  //         grossTotal: value * item.quantity,
+  //         belVolDisPrice: "N",
+  //         sellingPriceAfterDiscount: value,
+  //         belCost: belCost,
+  //       };
+  //       setTableData(updatedTableData);
+  //     }
+  //   } else {
+  //   }
+  // };
 
   const handleSelectAll = () => {
     if (inputRef.current) {
@@ -3641,10 +3684,17 @@ const SalesOrder: React.FC<Props> = ({ userData }) => {
                         type="number"
                         id={rowData.itemCode}
                         onClick={(e) => changeTextBoxValue(rowIndex)}
-                        onKeyPress={(e: any) =>
-                          handleKeyPressSel(e, rowIndex, e.target.value)
-                        }
+                        onChange={(e) => handleInputChange(e, rowIndex)}
                       />
+                      // <input
+                      //   className="w-[100%] border-l-white border-t-white border-r-white"
+                      //   type="number"
+                      //   id={rowData.itemCode}
+                      //   onClick={(e) => changeTextBoxValue(rowIndex)}
+                      //   onKeyPress={(e: any) =>
+                      //     handleKeyPressSel(e, rowIndex, e.target.value)
+                      //   }
+                      // />
                       // <div className="flex gap-2">
                       //   <div>
 
