@@ -1979,7 +1979,6 @@ const SalesOrder: React.FC<Props> = ({ userData }) => {
           ...item,
           grossTotal: value * item.quantity,
           belVolDisPrice: "N",
-          // belVolDisPrice: 0,
           sellingPriceAfterDiscount: value,
           belCost: belCost,
         };
