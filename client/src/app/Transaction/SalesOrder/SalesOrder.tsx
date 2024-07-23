@@ -215,16 +215,42 @@ const SalesOrder: React.FC<Props> = ({ userData }) => {
   const [setOnAccount, setIsPaymentOnAccount] = useState<string>("N");
   const [isPaymentCOD, setIsPaymentCOD] = useState<string>("N");
 
+  // useEffect(() => {
+  //   setFormData({
+  //     ...formData,
+  //     // taxees
+  //     TotalAmtBefTax: totalAfterVat,
+  //     TotalTax: totalVat,
+  //     TotalAmtAftTax: totalBeforeVat,
+  //     SCPWDDiscTotal: SCPWDdata,
+  //     TotalAmtDue: totalAmoutDueData,
+  //     // end of taxees
+  //     WalkInName: walkInCustomer,
+  //     Reference: customerReference,
+  //     Remarks: remarksField,
+  //     SCPWDIdNo: scOrPwdField,
+  //     // Payment Method
+  //     Cash: isPaymentCash,
+  //     CreditCard: isPaymentCreditCard,
+  //     DebitCard: isPaymentDebitCard,
+  //     ODC: isPaymentODC,
+  //     PDC: isPaymentPDC,
+  //     OnlineTransfer: isPaymentOnlineTransfer,
+  //     OnAccount: setOnAccount,
+  //     COD: isPaymentCOD,
+  //   });
+  // });
+
   useEffect(() => {
     setFormData({
       ...formData,
-      // taxees
+      // taxes
       TotalAmtBefTax: totalAfterVat,
       TotalTax: totalVat,
       TotalAmtAftTax: totalBeforeVat,
       SCPWDDiscTotal: SCPWDdata,
       TotalAmtDue: totalAmoutDueData,
-      // end of taxees
+      // end of taxes
       WalkInName: walkInCustomer,
       Reference: customerReference,
       Remarks: remarksField,
@@ -239,7 +265,26 @@ const SalesOrder: React.FC<Props> = ({ userData }) => {
       OnAccount: setOnAccount,
       COD: isPaymentCOD,
     });
-  });
+  }, [
+    formData,
+    totalAfterVat,
+    totalVat,
+    totalBeforeVat,
+    SCPWDdata,
+    totalAmoutDueData,
+    walkInCustomer,
+    customerReference,
+    remarksField,
+    scOrPwdField,
+    isPaymentCash,
+    isPaymentCreditCard,
+    isPaymentDebitCard,
+    isPaymentODC,
+    isPaymentPDC,
+    isPaymentOnlineTransfer,
+    setOnAccount,
+    isPaymentCOD,
+  ]);
 
   // ----------------------------- Header POST API --------------------------------
   const [finalTotalAmtBefTax, setFinalTotalAmtBefTax] = useState(0);
