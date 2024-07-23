@@ -3035,18 +3035,37 @@ const SalesOrder: React.FC<Props> = ({ userData }) => {
     let countAllreleasing = 0;
 
     for (let i = 0; i < allItemsArrLen; i++) {
-      if (allItemsArr[i]["modeOfReleasing"] == "") {
-      } else {
+      if (allItemsArr[i]["modeOfReleasing"] !== "") {
         countAllreleasing++;
       }
     }
 
-    if (countAllreleasing == allItemsArrLen) {
+    if (countAllreleasing === allItemsArrLen) {
       setDisplayModeDrop(false);
     } else {
       setDisplayModeDrop(true);
     }
-  });
+  }, [tableData]);
+
+  // useEffect(() => {
+  //   const allItemsArr = [...tableData];
+  //   const allItemsArrLen = allItemsArr.length;
+
+  //   let countAllreleasing = 0;
+
+  //   for (let i = 0; i < allItemsArrLen; i++) {
+  //     if (allItemsArr[i]["modeOfReleasing"] == "") {
+  //     } else {
+  //       countAllreleasing++;
+  //     }
+  //   }
+
+  //   if (countAllreleasing == allItemsArrLen) {
+  //     setDisplayModeDrop(false);
+  //   } else {
+  //     setDisplayModeDrop(true);
+  //   }
+  // });
 
   // ------------------------------ Windows Print -------------------------------
   const PrintReceipt = () => {
