@@ -1229,15 +1229,25 @@ const SalesOrder: React.FC<Props> = ({ userData }) => {
 
   const [searchTerm, setSearchTerm] = useState("");
 
+  // useEffect(() => {
+  //   if (cardCodedata == "C000112") {
+  //     setShowSCPWD(true);
+  //     setVarSCPWDdisc(0.05);
+  //   } else {
+  //     setShowSCPWD(false);
+  //     setVarSCPWDdisc(0);
+  //   }
+  // });
+
   useEffect(() => {
-    if (cardCodedata == "C000112") {
+    if (cardCodedata === "C000112") {
       setShowSCPWD(true);
       setVarSCPWDdisc(0.05);
     } else {
       setShowSCPWD(false);
       setVarSCPWDdisc(0);
     }
-  });
+  }, [cardCodedata]);
 
   const [finalTotalList, setfinalTotalList] = useState([
     {
