@@ -4,17 +4,13 @@ import colors from "colors";
 dotenv.config();
 
 const config = {
-  database: process.env.MSSQL_DATABASE2,
-  server: process.env.MSSQL_SERVER2, // Use the hostname or domain name here
-  user: process.env.MSSQL_USERNAME2,
-  password: process.env.MSSQL_PASSWORD2,
+  database: process.env.MSSQL_DATABASE_MAIN,
+  server: process.env.MSSQL_SERVER_MAIN,
+  user: process.env.MSSQL_USERNAME_MAIN,
+  password: process.env.MSSQL_PASSWORD_MAIN,
   options: {
-    trustedConnection: true,
-    trustServerCertificate: true,
-    cryptoCredentialsDetails: {
-      minVersion: "TLSv1",
-      servername: process.env.MSSQL_SERVER, // Use the hostname or domain name here
-    },
+    encrypt: true,
+    trustServerCertificate: true, // Change to false if you have a valid certificate
   },
 };
 

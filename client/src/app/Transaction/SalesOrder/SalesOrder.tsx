@@ -1279,6 +1279,12 @@ const SalesOrder: React.FC<Props> = ({ userData }) => {
     setCustomerDataList(customers.data.data);
   };
 
+  useEffect(() => {
+    axios.get(`${backendAPI2}/api/v2/customer`).then((response) => {
+      console.log(response.data.data);
+    });
+  }, []);
+
   // Fetched Item Data List
   useEffect(() => {
     axios
@@ -2114,6 +2120,8 @@ const SalesOrder: React.FC<Props> = ({ userData }) => {
       const disPrice = await axios.get(
         `${backendAPI2}/api/v2/discount-price/${brandID}/${disPriceBefDis}/${disCardCode}/${disItemCode}/${quantity}/${disUOM}/${disLowerBound}/N/N/N/N/${disTaxCode}`
       );
+
+      alert(disPriceBefDis);
 
       const disPriceArr = disPrice.data.data;
 
@@ -3771,7 +3779,7 @@ const SalesOrder: React.FC<Props> = ({ userData }) => {
                       // />
                       // <div className="flex gap-2">
                       //   <div>
-
+                      // remove
                       //   </div>
                       //   {/* <div>{rowData.sellingPriceAfterDiscountTemp}</div> */}
                       //   {/* <div>{rowData.sellingPriceAfterDiscount}</div> */}
