@@ -1279,12 +1279,6 @@ const SalesOrder: React.FC<Props> = ({ userData }) => {
     setCustomerDataList(customers.data.data);
   };
 
-  // useEffect(() => {
-  //   axios.get(`${backendAPI2}/api/v2/customer`).then((response) => {
-  //     console.log(response.data.data);
-  //   });
-  // }, []);
-
   // Fetched Item Data List
   useEffect(() => {
     axios
