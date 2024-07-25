@@ -34,24 +34,3 @@ const getCustomers = async (req, res) => {
 };
 
 export { getCustomers };
-
-// import sql from "mssql";
-// import config from "../../../config/databaseCon.js";
-
-// // Create connection pool using configuration
-// const poolPromise1 = sql.connect(config.db2);
-
-// export const getCustomers = async (req, res) => {
-//   try {
-//     // Verify connection and context
-//     const pool = await poolPromise1;
-//     const contextCheck = await pool
-//       .request()
-//       .query(
-//         "SELECT CardCode, CardName, CardFName, LicTradNum, Address FROM [BCD_TEST_DB].[dbo].[OCRD] WHERE frozenFor='N' AND CardType='C' ORDER BY CardName"
-//       );
-//     console.log("Databasessss:", contextCheck.recordset);
-//   } catch (err) {
-//     res.status(500).send(err.message);
-//   }
-// };
