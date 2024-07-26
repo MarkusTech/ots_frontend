@@ -18,51 +18,51 @@ router.get(
 );
 
 // get list of customers
-router.get("/customer", getCustomers);
+// router.get("/customer", getCustomers);
 
 // get OUM
-router.get("/uom/:itemCode", getOum);
+// router.get("/uom/:itemCode", getOum);
 
 // tax-rate
-router.get("/tax-rate/:taxCode", getTaxRate);
+// router.get("/tax-rate/:taxCode", getTaxRate);
 
 // item list = line 1216
-router.get("/item/:priceListNum/:warehouseCode/:cardCode", getItemList);
+// router.get("/item/:priceListNum/:warehouseCode/:cardCode", getItemList);
 
 // tax-code
-router.get("/tax-code/:cardCode/:warehouseCode", getTaxCode);
+// router.get("/tax-code/:cardCode/:warehouseCode", getTaxCode);
 
 // lowerbound
-router.get(
-  "/lowerbound/:PriceListNum/:taxCode/:itemCode/:warehouseCode/:UoMQty",
-  getLowerBound
-);
+// router.get(
+//   "/lowerbound/:PriceListNum/:taxCode/:itemCode/:warehouseCode/:UoMQty",
+//   getLowerBound
+// );
 
 // sc-discount
-router.get("/sc-discount/:cardCode/:itemCode", getScDiscount);
+// router.get("/sc-discount/:cardCode/:itemCode", getScDiscount);
 
 // stocks availability
-router.get(
-  "/stocks-availability/:docNum/:itemCode/:warehouseCode/:ordrQty/:ExcludeBO",
-  stockAvailability
-);
+// router.get(
+//   "/stocks-availability/:docNum/:itemCode/:warehouseCode/:ordrQty/:ExcludeBO",
+//   stockAvailability
+// );
 
 // srp
-router.get(
-  "/srp/:itemCode/:ItemsPerUnit/:UoM/:taxCode/:lowerbound/:vendorCode/:PriceListNum",
-  srp
-);
+// router.get(
+//   "/srp/:itemCode/:ItemsPerUnit/:UoM/:taxCode/:lowerbound/:vendorCode/:PriceListNum",
+//   srp
+// );
 
 // employee
-router.get("/employee", employee);
+// router.get("/employee", employee);
 
 // pick-up location
-router.get("/pickup-location/:ItemCode/:Qty/:Whs", pickUpLocation);
+// router.get("/pickup-location/:ItemCode/:Qty/:Whs", pickUpLocation);
 
 // salescrew
-router.get("/salescrew", salescrew);
+// router.get("/salescrew", salescrew);
 
 // warehouse-soh
-router.get("/warehouse-soh/:itemCode/:UoM/:branchID", warehouseSoh);
+// router.get("/warehouse-soh/:itemCode/:UoM/:branchID", warehouseSoh);
 
 export default router;
