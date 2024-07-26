@@ -216,32 +216,6 @@ const SalesOrder: React.FC<Props> = ({ userData }) => {
   const [setOnAccount, setIsPaymentOnAccount] = useState<string>("N");
   const [isPaymentCOD, setIsPaymentCOD] = useState<string>("N");
 
-  // useEffect(() => {
-  //   setFormData({
-  //     ...formData,
-  //     // taxees
-  //     TotalAmtBefTax: totalAfterVat,
-  //     TotalTax: totalVat,
-  //     TotalAmtAftTax: totalBeforeVat,
-  //     SCPWDDiscTotal: SCPWDdata,
-  //     TotalAmtDue: totalAmoutDueData,
-  //     // end of taxees
-  //     WalkInName: walkInCustomer,
-  //     Reference: customerReference,
-  //     Remarks: remarksField,
-  //     SCPWDIdNo: scOrPwdField,
-  //     // Payment Method
-  //     Cash: isPaymentCash,
-  //     CreditCard: isPaymentCreditCard,
-  //     DebitCard: isPaymentDebitCard,
-  //     ODC: isPaymentODC,
-  //     PDC: isPaymentPDC,
-  //     OnlineTransfer: isPaymentOnlineTransfer,
-  //     OnAccount: setOnAccount,
-  //     COD: isPaymentCOD,
-  //   });
-  // });
-
   useEffect(() => {
     setFormData({
       ...formData,
@@ -1230,16 +1204,6 @@ const SalesOrder: React.FC<Props> = ({ userData }) => {
 
   const [searchTerm, setSearchTerm] = useState("");
 
-  // useEffect(() => {
-  //   if (cardCodedata == "C000112") {
-  //     setShowSCPWD(true);
-  //     setVarSCPWDdisc(0.05);
-  //   } else {
-  //     setShowSCPWD(false);
-  //     setVarSCPWDdisc(0);
-  //   }
-  // });
-
   useEffect(() => {
     if (cardCodedata === "C000112") {
       setShowSCPWD(true);
@@ -2012,14 +1976,18 @@ const SalesOrder: React.FC<Props> = ({ userData }) => {
     const itemCost = item.cost;
 
     let belCost = "";
+    const sellingAfterDisValue = parseFloat(value);
 
-    if (sellingAfterDis < itemCost) {
+    if (sellingAfterDisValue < itemCost) {
       belCost = "Y";
     } else {
       belCost = "N";
     }
 
-    if (parseFloat(value) < parseFloat(sellingAfterDisTemp.toString())) {
+    if (
+      sellingAfterDisValue < item.priceDisc &&
+      sellingAfterDisValue > itemCost
+    ) {
       updatedTableData[rowIndex] = {
         ...item,
         grossTotal: parseFloat(value) * item.quantity,
@@ -2039,6 +2007,27 @@ const SalesOrder: React.FC<Props> = ({ userData }) => {
       };
       setTableData(updatedTableData);
     }
+
+    // if (parseFloat(value) < parseFloat(sellingAfterDisTemp.toString())) {
+    //   updatedTableData[rowIndex] = {
+    //     ...item,
+    //     grossTotal: parseFloat(value) * item.quantity,
+    //     belVolDisPrice: "Y",
+    //     sellingPriceAfterDiscount: parseFloat(value),
+    //     belCost: belCost,
+    //   };
+
+    //   setTableData(updatedTableData);
+    // } else {
+    //   updatedTableData[rowIndex] = {
+    //     ...item,
+    //     grossTotal: parseFloat(value) * item.quantity,
+    //     belVolDisPrice: "N",
+    //     sellingPriceAfterDiscount: parseFloat(value),
+    //     belCost: belCost,
+    //   };
+    //   setTableData(updatedTableData);
+    // }
 
     setTableData(updatedTableData);
   };
@@ -3733,7 +3722,7 @@ const SalesOrder: React.FC<Props> = ({ userData }) => {
                       : localCurrency.format(rowData.lowerBound)}
                   </td>
                   {/* tax code */}
-                  <td>{rowData.taxCode}</td>
+                  <td>{rowData.taxCode} </td>
                   {/* Tax rate */}
                   <td>{rowData.taxCodePercentage}%</td>
                   {/* Tax Amount */}
@@ -3765,6 +3754,7 @@ const SalesOrder: React.FC<Props> = ({ userData }) => {
                     {rowData.belCost}
                   </td>
                   {/* ---------------------------------------- */}
+
                   {/* SC/PWD Discount */}
                   <td
                     className={
