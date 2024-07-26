@@ -3720,27 +3720,10 @@ const SalesOrder: React.FC<Props> = ({ userData }) => {
                         onClick={(e) => changeTextBoxValue(rowIndex)}
                         onChange={(e) => handleInputChange(e, rowIndex)}
                       />
-                      // <input
-                      //   className="w-[100%] border-l-white border-t-white border-r-white"
-                      //   type="number"
-                      //   id={rowData.itemCode}
-                      //   onClick={(e) => changeTextBoxValue(rowIndex)}
-                      //   onKeyPress={(e: any) =>
-                      //     handleKeyPressSel(e, rowIndex, e.target.value)
-                      //   }
-                      // />
-                      // <div className="flex gap-2">
-                      //   <div>
-                      // remove
-                      //   </div>
-                      //   {/* <div>{rowData.sellingPriceAfterDiscountTemp}</div> */}
-                      //   {/* <div>{rowData.sellingPriceAfterDiscount}</div> */}
-                      // </div>
                     )}
                   </td>
                   {/* Stardar Price Discount */}
                   <td>
-                    {/* <div>₱{rowData.sellingPriceBeforeDiscount}</div> */}
                     <div>₱{rowData.priceDisc}</div>
                   </td>
                   {/* Lower Bound */}
