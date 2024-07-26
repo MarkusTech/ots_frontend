@@ -3713,7 +3713,7 @@ const SalesOrder: React.FC<Props> = ({ userData }) => {
                   </td>
                   {/* Stardar Price Discount */}
                   <td>
-                    <div>₱{rowData.priceDisc}</div>
+                    <div>{localCurrency.format(rowData.priceDisc)}</div>
                   </td>
                   {/* Lower Bound */}
                   <td>
