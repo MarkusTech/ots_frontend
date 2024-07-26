@@ -91,12 +91,12 @@ sqlConn.connect((err) => {
   }
 });
 
-sqlConn2.connect((err) => {
-  if (err) {
-    console.error("Error connecting to MSSQL:", err);
-  } else {
-    app.listen(port2, () => {
-      console.log(`Server2 is running on http://localhost:${port2}`.bgCyan);
-    });
-  }
-});
+// sqlConn2.connect((err) => {
+//   if (err) {
+//     console.error("Error connecting to MSSQL:", err);
+//   } else {
+//     app.listen(port2, () => {
+//       console.log(`Server2 is running on http://localhost:${port2}`.bgCyan);
+//     });
+//   }
+// });
