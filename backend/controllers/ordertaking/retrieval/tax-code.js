@@ -16,7 +16,7 @@ const getTaxCode = async (req, res) => {
 
     const data = result.recordset;
     res.status(200).json({
-      success: false,
+      success: true,
       message: "Tax-Code Found",
       data: data,
     });
