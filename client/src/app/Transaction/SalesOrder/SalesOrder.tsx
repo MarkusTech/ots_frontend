@@ -2116,8 +2116,6 @@ const SalesOrder: React.FC<Props> = ({ userData }) => {
         `${backendAPI2}/api/v2/discount-price/${brandID}/${disPriceBefDis}/${disCardCode}/${disItemCode}/${quantity}/${disUOM}/${disLowerBound}/N/N/N/N/${disTaxCode}`
       );
 
-      alert(disPriceBefDis);
-
       const disPriceArr = disPrice.data.data;
 
       const disAfterPrice = disPriceArr[0]["DiscPrice"];
@@ -2165,6 +2163,7 @@ const SalesOrder: React.FC<Props> = ({ userData }) => {
           grossTotal: quantity * item.sellingPriceAfterDiscount,
           taxAmount: taxAmountx * quantity,
           inventoryStatus: "Available",
+          priceDisc: disAfterPrice,
         };
         setTableData(updatedTableData);
       } else {
@@ -2178,6 +2177,7 @@ const SalesOrder: React.FC<Props> = ({ userData }) => {
           grossTotal: quantity * item.sellingPriceAfterDiscount,
           taxAmount: taxAmountx * quantity,
           inventoryStatus: stocksAvailabilityArr[0]["StockAvailable"],
+          priceDisc: disAfterPrice,
         };
         setTableData(updatedTableData);
       }
