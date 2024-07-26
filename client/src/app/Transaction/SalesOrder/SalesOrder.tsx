@@ -3782,7 +3782,8 @@ const SalesOrder: React.FC<Props> = ({ userData }) => {
                   </td>
                   {/* Stardar Price Discount */}
                   <td>
-                    <div>₱{rowData.sellingPriceBeforeDiscount}</div>
+                    {/* <div>₱{rowData.sellingPriceBeforeDiscount}</div> */}
+                    <div>₱{rowData.priceDisc}</div>
                   </td>
                   {/* Lower Bound */}
                   <td>

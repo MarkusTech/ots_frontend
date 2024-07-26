@@ -9,17 +9,21 @@ const config = {
   user: process.env.MSSQL_USERNAME_MAIN,
   password: process.env.MSSQL_PASSWORD_MAIN,
   options: {
-    trustedConnection: true,
-    trustServerCertificate: true,
+    encrypt: false, // Set to false to match the default behavior in VB.NET
+    trustServerCertificate: true, // Ensure this is true if self-signed certificates are used
     cryptoCredentialsDetails: {
       minVersion: "TLSv1",
       servername: process.env.MSSQL_SERVER_MAIN, // Use the hostname or domain name here
     },
   },
 };
+
 const sqlConn2 = sql.connect(config, (err) => {
-  if (err) console.log(err);
-  console.log("MSSQL2 Database Connected".bgGreen);
+  if (err) {
+    console.error("Database Connection Failed! Error: ", err);
+  } else {
+    console.log("MSSQL2 Database Connected".bgGreen);
+  }
 });
 
 export default sqlConn2;
