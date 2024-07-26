@@ -2043,49 +2043,6 @@ const SalesOrder: React.FC<Props> = ({ userData }) => {
     setTableData(updatedTableData);
   };
 
-  // const handleKeyPressSel = (
-  //   event: { key: string },
-  //   rowIndex: any,
-  //   value: any
-  // ) => {
-  //   const updatedTableData = [...tableData];
-  //   const item = updatedTableData[rowIndex];
-  //   const sellingAfterDis = item.sellingPriceAfterDiscount;
-  //   const sellingAfterDisTemp = item.sellingPriceAfterDiscountTemp;
-
-  //   if (event.key === "Enter") {
-  //     let belCost = "";
-
-  //     if (parseFloat(sellingAfterDis.toString()) < item.cost) {
-  //       belCost = "Y";
-  //     } else {
-  //       belCost = "N";
-  //     }
-
-  //     if (parseFloat(value) < parseFloat(sellingAfterDisTemp.toString())) {
-  //       updatedTableData[rowIndex] = {
-  //         ...item,
-  //         grossTotal: value * item.quantity,
-  //         belVolDisPrice: "Y",
-  //         sellingPriceAfterDiscount: value,
-  //         belCost: belCost,
-  //       };
-
-  //       setTableData(updatedTableData);
-  //     } else {
-  //       updatedTableData[rowIndex] = {
-  //         ...item,
-  //         grossTotal: value * item.quantity,
-  //         belVolDisPrice: "N",
-  //         sellingPriceAfterDiscount: value,
-  //         belCost: belCost,
-  //       };
-  //       setTableData(updatedTableData);
-  //     }
-  //   } else {
-  //   }
-  // };
-
   const handleSelectAll = () => {
     if (inputRef.current) {
       inputRef.current.select();
