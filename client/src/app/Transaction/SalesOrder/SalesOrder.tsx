@@ -3736,23 +3736,31 @@ const SalesOrder: React.FC<Props> = ({ userData }) => {
                   {/* Below Volume Discount Price */}
                   <td
                     className={
-                      rowData.belVolDisPrice == "Y" // i change it from "Y" and then swap the color
+                      rowData.belVolDisPrice === "Y"
+                        ? "bg-red-200"
+                        : rowData.belVolDisPrice === "N"
                         ? "bg-green-200"
-                        : "bg-red-200 "
+                        : "" // No background color if neither "Y" nor "N"
                     }
                   >
-                    {rowData.quantity == 0 ? "" : rowData.belVolDisPrice}
+                    {rowData.quantity === 0 ? "" : rowData.belVolDisPrice}
                   </td>
+
                   {/* Cost */}
                   <td>{Math.floor(rowData.cost).toFixed(2)}</td>
                   {/* Below Cost */}
                   <td
                     className={
-                      rowData.belCost == "Y" ? "bg-red-200" : "bg-green-200"
+                      rowData.belCost === "Y"
+                        ? "bg-red-200"
+                        : rowData.belCost === "N"
+                        ? "bg-green-200"
+                        : "" // No background color if neither "Y" nor "N"
                     }
                   >
                     {rowData.belCost}
                   </td>
+
                   {/* ---------------------------------------- */}
 
                   {/* SC/PWD Discount */}
