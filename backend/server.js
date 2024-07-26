@@ -34,9 +34,6 @@ import getLastApprovalIDRoutes from "./routes/approval/getLastApprovalIDRoutes.j
 import getListWarehouseRoutes from "./routes/warehouse/gitListWarehouseRoutes.js";
 import retrievalAPIRoutes from "./routes/ordertaking/retrievalAPIRoutes.js";
 
-// Test Connection
-import connectionRoutes from "./routes/connection/connectionRoutes.js";
-
 // dotenv config
 dotenv.config();
 const port = process.env.PORT || 5000;
@@ -56,7 +53,6 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.get("/", (req, res) => {
   res.send("Server is running");
 });
-app.use("/test/connection", connectionRoutes);
 
 // uuid API
 app.get("/api/v1/generateUniqueId", (req, res) => {

@@ -16,6 +16,9 @@ const discountPrice = async (req, res) => {
     taxCode,
   } = req.params;
   try {
+    const contextCheck = await sqlConn2.query(`SELECT name FROM sys.databases`);
+    console.log("Databases:", contextCheck.recordset);
+
     const result =
       await sqlConn2.query(`SELECT [BCD_TEST_DB].dbo.fn_GetDiscPrice (${brachID}, ${beforeDiscount},'${cardCode}', '${itemCode}',${Qty}, '${UoM}', '${lowerBound}','${creditCard}','${debitCard}',
       '${PDC}', '${PO}','${taxCode}') AS DiscPrice`);
