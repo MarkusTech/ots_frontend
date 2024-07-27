@@ -138,8 +138,8 @@ const SalesOrder: React.FC<Props> = ({ userData }) => {
 
   // -------------------------------------- <WMR CODE> Header Insertion --------------------------------------
   const backendAPI = "http://172.16.10.169:5000";
-  // const backendAPI2 = "http://172.16.10.169:5001";
-  const backendAPI2 = "http://172.16.10.169:5002";
+  const backendAPI2 = "http://172.16.10.169:5001";
+  // const backendAPI2 = "http://172.16.10.169:5002";
 
   const [docNumber, setDocNumber] = useState("0");
   const isDocNumberGreaterThanZero = parseInt(docNumber) > 0; // if DocNum is Greater Than Zero the commit and update button will be disabled
@@ -1903,7 +1903,6 @@ const SalesOrder: React.FC<Props> = ({ userData }) => {
       const itemCodex = item.ItemCode;
 
       // Item code
-      // task
       if (item.itemCode != "") {
         axios
           .get(
@@ -2007,27 +2006,6 @@ const SalesOrder: React.FC<Props> = ({ userData }) => {
       };
       setTableData(updatedTableData);
     }
-
-    // if (parseFloat(value) < parseFloat(sellingAfterDisTemp.toString())) {
-    //   updatedTableData[rowIndex] = {
-    //     ...item,
-    //     grossTotal: parseFloat(value) * item.quantity,
-    //     belVolDisPrice: "Y",
-    //     sellingPriceAfterDiscount: parseFloat(value),
-    //     belCost: belCost,
-    //   };
-
-    //   setTableData(updatedTableData);
-    // } else {
-    //   updatedTableData[rowIndex] = {
-    //     ...item,
-    //     grossTotal: parseFloat(value) * item.quantity,
-    //     belVolDisPrice: "N",
-    //     sellingPriceAfterDiscount: parseFloat(value),
-    //     belCost: belCost,
-    //   };
-    //   setTableData(updatedTableData);
-    // }
 
     setTableData(updatedTableData);
   };
