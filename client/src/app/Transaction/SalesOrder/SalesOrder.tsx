@@ -2275,45 +2275,58 @@ const SalesOrder: React.FC<Props> = ({ userData }) => {
     setOpenPickUpLocations(!openPickUpLocations);
   };
 
-  const handleWarehoueChange = async (rowIndex: any, itemdata: any) => {
+  const handleWarehoueChange = async (itemdata: any) => {
     const updatedTableData = [...tableData];
     const item = updatedTableData[selectedRowIndex];
 
-    const quantityXuomConversion = item.quantity * item.uomConversion;
-
-    const stocksAvailability = await axios.get(
-      `${backendAPI2}/api/v2/stocks-availability/0/${item.itemCode}/${itemdata}/${quantityXuomConversion}/${item.excludeBO}`
-    );
-    const stocksAvailabilityArr = stocksAvailability.data.data;
-
-    // Pick Up Location
-    const pickUpLocation = await axios.get(
-      `${backendAPI2}/api/v2/pickup-location/${itemCodeData}/1/${itemdata}`
-    );
-    const pickUpLocationData = pickUpLocation.data.data;
-
-    // get the last 2 string algorithm
-    const getTableData = itemdata;
-    const lastTwo = getTableData.substring(getTableData.length - 2);
-    if (lastTwo == "DS") {
-      updatedTableData[selectedRowIndex] = {
-        ...item,
-        location: itemdata,
-        inventoryStatus: "Available",
-        pickUpLocation: pickUpLocationData,
-      };
-      setTableData(updatedTableData);
-    } else {
-      updatedTableData[selectedRowIndex] = {
-        ...item,
-        location: itemdata,
-        inventoryStatus: stocksAvailabilityArr[0]["StockAvailable"],
-        pickUpLocation: pickUpLocationData,
-      };
-      setTableData(updatedTableData);
-    }
-    setOpenLocationPanel(!openLocationPanel);
+    updatedTableData[selectedRowIndex] = {
+      ...item,
+      location: itemdata,
+      inventoryStatus: "Available",
+    };
+    setTableData(updatedTableData);
+    alert(itemdata);
   };
+
+  // const handleWarehoueChange = async (itemdata: any) => {
+  //   const updatedTableData = [...tableData];
+  //   const item = updatedTableData[selectedRowIndex];
+
+  //   const quantityXuomConversion = item.quantity * item.uomConversion;
+
+  //   const stocksAvailability = await axios.get(
+  //     `${backendAPI2}/api/v2/stocks-availability/0/${item.itemCode}/${itemdata}/${quantityXuomConversion}/${item.excludeBO}`
+  //   );
+  //   const stocksAvailabilityArr = stocksAvailability.data.data;
+
+  //   // Pick Up Location
+  //   const pickUpLocation = await axios.get(
+  //     `${backendAPI2}/api/v2/pickup-location/${itemCodeData}/1/${itemdata}`
+  //   );
+  //   const pickUpLocationData = pickUpLocation.data.data;
+
+  //   // get the last 2 string algorithm
+  //   const getTableData = itemdata;
+  //   const lastTwo = getTableData.substring(getTableData.length - 2);
+  //   if (lastTwo == "DS") {
+  //     updatedTableData[selectedRowIndex] = {
+  //       ...item,
+  //       location: itemdata,
+  //       inventoryStatus: "Available",
+  //       pickUpLocation: pickUpLocationData,
+  //     };
+  //     setTableData(updatedTableData);
+  //   } else {
+  //     updatedTableData[selectedRowIndex] = {
+  //       ...item,
+  //       location: itemdata,
+  //       inventoryStatus: stocksAvailabilityArr[0]["StockAvailable"],
+  //       pickUpLocation: pickUpLocationData,
+  //     };
+  //     setTableData(updatedTableData);
+  //   }
+  //   setOpenLocationPanel(!openLocationPanel);
+  // };
 
   // Payment section
 
@@ -4165,7 +4178,7 @@ const SalesOrder: React.FC<Props> = ({ userData }) => {
                             <td
                               key={index}
                               onClick={(e) =>
-                                handleWarehoueChange(index, item.WhsCode)
+                                handleWarehoueChange(item.WhsCode)
                               }
                             >
                               {item.WhsCode}
@@ -4173,7 +4186,7 @@ const SalesOrder: React.FC<Props> = ({ userData }) => {
                             <td
                               key={index}
                               onClick={(e) =>
-                                handleWarehoueChange(index, item.WhsCode)
+                                handleWarehoueChange(item.WhsCode)
                               }
                             >
                               {item.WhsName}
@@ -4181,7 +4194,7 @@ const SalesOrder: React.FC<Props> = ({ userData }) => {
                             <td
                               key={index}
                               onClick={(e) =>
-                                handleWarehoueChange(index, item.WhsCode)
+                                handleWarehoueChange(item.WhsCode)
                               }
                             >
                               {item.Availability}
@@ -4189,7 +4202,7 @@ const SalesOrder: React.FC<Props> = ({ userData }) => {
                             <td
                               key={index}
                               onClick={(e) =>
-                                handleWarehoueChange(index, item.WhsCode)
+                                handleWarehoueChange(item.WhsCode)
                               }
                             >
                               {item.OnHand}
@@ -4197,7 +4210,7 @@ const SalesOrder: React.FC<Props> = ({ userData }) => {
                             <td
                               key={index}
                               onClick={(e) =>
-                                handleWarehoueChange(index, item.WhsCode)
+                                handleWarehoueChange(item.WhsCode)
                               }
                             >
                               {item.Committed}
