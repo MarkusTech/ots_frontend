@@ -2010,12 +2010,6 @@ const SalesOrder: React.FC<Props> = ({ userData }) => {
     setTableData(updatedTableData);
   };
 
-  const handleSelectAll = () => {
-    if (inputRef.current) {
-      inputRef.current.select();
-    }
-  };
-
   const handleWennWorks = () => {
     // handleSaveDetailsToAPI();
   };
