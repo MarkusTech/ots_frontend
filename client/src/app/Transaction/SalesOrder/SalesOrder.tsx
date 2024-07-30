@@ -1621,7 +1621,7 @@ const SalesOrder: React.FC<Props> = ({ userData }) => {
             taxCode: item.TaxCode,
             taxCodePercentage: item.TaxCodePerc,
             taxAmount: item.TaxAmt,
-            // PriceDisc
+            priceDisc: item.PriceDisc,
             belVolDisPrice: item.BelPriceDisc,
             cost: item.Cost,
             belCost: item.BelCost,
