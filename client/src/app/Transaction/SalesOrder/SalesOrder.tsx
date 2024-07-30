@@ -2010,10 +2010,6 @@ const SalesOrder: React.FC<Props> = ({ userData }) => {
     setTableData(updatedTableData);
   };
 
-  const handleWennWorks = () => {
-    // handleSaveDetailsToAPI();
-  };
-
   // task
   const handleQuantityChange = async (rowIndex: any, quantity: any) => {
     const updatedTableData = [...tableData];
@@ -4515,12 +4511,6 @@ const SalesOrder: React.FC<Props> = ({ userData }) => {
                 Search
               </button>
 
-              <button
-                className="p-2 mt-2 mb-1 mr-2 text-[12px] bg-[#f69629] hover:bg-yellow-500 focus:outline-none focus:shadow-outline-yellow active:bg-yellow-600 rounded w-24"
-                onClick={handleWennWorks}
-              >
-                WennWorks
-              </button>
               {showSearchHeader && (
                 <Draggable>
                   <div
