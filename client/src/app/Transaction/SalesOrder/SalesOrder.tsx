@@ -2685,9 +2685,6 @@ const SalesOrder: React.FC<Props> = ({
         };
 
         setTableData(updatedTableData);
-
-        const item2 = updatedTableData[i];
-
         setccstatus(false);
       }
     }
