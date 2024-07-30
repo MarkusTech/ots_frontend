@@ -8,9 +8,17 @@ import Swal from "sweetalert2";
 
 interface Props {
   userData: string;
+  userBranchID: string;
+  userWarehouseData: string;
+  userPriceListNumData: string;
 }
 
-const SalesOrder: React.FC<Props> = ({ userData }) => {
+const SalesOrder: React.FC<Props> = ({
+  userData,
+  userBranchID,
+  userWarehouseData,
+  userPriceListNumData,
+}) => {
   const inputRef = useRef<HTMLInputElement | null>(null);
 
   const [isSaved, setIsSaved] = useState(false); // to hide handle submit
@@ -125,10 +133,21 @@ const SalesOrder: React.FC<Props> = ({ userData }) => {
   const [ccstatus, setccstatus] = useState(false);
   // End of Payment useState
 
-  const warehouseCode = "GSCNAPGS";
-  const brandID = 4;
-  const priceListNum = 14;
-  const user = "Administrator";
+  // const warehouseCode = "GSCNAPGS";
+  // const brandID = 4; // wrong spelling it must be branch id
+  // const priceListNum = 14;
+  // const user = "Administrator";
+
+  const warehouseCode = userWarehouseData;
+  const brandID = userBranchID; // wrong spelling it must be branch id
+  const priceListNum = userPriceListNumData;
+  const user = userData;
+
+  const handleWennWorks = () => {
+    console.log(`Branch ID: ${userBranchID}`);
+    console.log(`Warehouse: ${userWarehouseData}`);
+    console.log(`PriceListNum: ${userPriceListNumData}`);
+  };
 
   const now = new Date();
   // Date Now()
@@ -197,7 +216,7 @@ const SalesOrder: React.FC<Props> = ({ userData }) => {
     SCPWDDiscTotal: "",
     TotalAmtDue: "",
     Remarks: "",
-    CreatedBy: userData,
+    CreatedBy: user,
     DateCreated: todayDate,
     UpdatedBy: "",
     DateUpdated: "",
@@ -314,7 +333,7 @@ const SalesOrder: React.FC<Props> = ({ userData }) => {
           SCPWDDiscTotal: finalSCPWDDiscTotal,
           TotalAmtDue: finalTotalAmtDue,
           Remarks: formData.Remarks,
-          CreatedBy: userData,
+          CreatedBy: user,
           DateCreated: todayDate,
           UpdatedBy: 1,
           DateUpdated: "",
@@ -882,7 +901,7 @@ const SalesOrder: React.FC<Props> = ({ userData }) => {
           SCPWDDiscTotal: finalSCPWDDiscTotal,
           TotalAmtDue: finalTotalAmtDue,
           Remarks: formData.Remarks,
-          CreatedBy: userData,
+          CreatedBy: user,
           DateCreated: todayDate,
           UpdatedBy: 1,
           DateUpdated: todayDate,
@@ -4509,6 +4528,13 @@ const SalesOrder: React.FC<Props> = ({ userData }) => {
                 onClick={handleShowSearchHeader}
               >
                 Search
+              </button>
+
+              <button
+                className="p-2 mt-2 mb-1 mr-2 text-[12px] bg-[#f69629] hover:bg-yellow-500 focus:outline-none focus:shadow-outline-yellow active:bg-yellow-600 rounded w-24"
+                onClick={handleWennWorks}
+              >
+                Alert
               </button>
 
               {showSearchHeader && (

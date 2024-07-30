@@ -179,6 +179,9 @@ export default function Home() {
   const [password, setPassword] = useState("");
   const [isShowButton, setIsShowButton] = useState(false);
   const [loginUserData, setLoginUserData] = useState<string>("");
+  const [branchIdData, setBranchIdData] = useState<string>("");
+  const [warehouseCodeData, setWarehouseCodeData] = useState<string>("");
+  const [priceListNumData, setPriceListNumData] = useState<string>("");
 
   let loginAttempts = 0;
 
@@ -196,6 +199,9 @@ export default function Home() {
         // Handle successful login (e.g., redirect to another page or store user info)
         const user = response.data.user;
         setLoginUserData(user.UserName);
+        setBranchIdData(user.BranchID);
+        setWarehouseCodeData(user.WhsCode);
+        setPriceListNumData(user.PriceListNum);
         setFormData({
           userID: user.UserID,
           fullName: user.EmpName,
@@ -224,6 +230,9 @@ export default function Home() {
       } else if (response.data.message == "Admin") {
         const user = response.data.user;
         setLoginUserData(user.UserName);
+        setBranchIdData(user.BranchID);
+        setWarehouseCodeData(user.WhsCode);
+        setPriceListNumData(user.PriceListNum);
         setFormData({
           userID: user.UserID,
           fullName: user.EmpName,
@@ -548,7 +557,12 @@ export default function Home() {
                     </div>
                   </div>
                   <div className="content">
-                    <SalesOrder userData={loginUserData} />
+                    <SalesOrder
+                      userData={loginUserData}
+                      userBranchID={branchIdData}
+                      userWarehouseData={warehouseCodeData}
+                      userPriceListNumData={priceListNumData}
+                    />
                   </div>
                 </div>
               </Draggable>
