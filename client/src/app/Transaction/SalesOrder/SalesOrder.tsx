@@ -133,11 +133,6 @@ const SalesOrder: React.FC<Props> = ({
   const [ccstatus, setccstatus] = useState(false);
   // End of Payment useState
 
-  // const warehouseCode = "GSCNAPGS";
-  // const brandID = 4; // wrong spelling it must be branch id
-  // const priceListNum = 14;
-  // const user = userData;
-
   const warehouseCode = userWarehouseData;
   const brandID = userBranchID; // wrong spelling it must be branch id
   const priceListNum = userPriceListNumData;
