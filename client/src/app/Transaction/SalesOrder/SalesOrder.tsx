@@ -2652,8 +2652,6 @@ const SalesOrder: React.FC<Props> = ({
   const handlePO = async (event: any) => {
     setIsCheckedPO(event.target.checked);
 
-    const finalArr = [...finalTotalList];
-
     if (isCheckedPO != true) {
       setccstatus(true);
 
