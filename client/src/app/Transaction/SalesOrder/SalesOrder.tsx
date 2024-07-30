@@ -2279,54 +2279,41 @@ const SalesOrder: React.FC<Props> = ({ userData }) => {
     const updatedTableData = [...tableData];
     const item = updatedTableData[selectedRowIndex];
 
-    updatedTableData[selectedRowIndex] = {
-      ...item,
-      location: itemdata,
-      inventoryStatus: "Available",
-    };
-    setTableData(updatedTableData);
-    alert(itemdata);
+    const quantityXuomConversion = item.quantity * item.uomConversion;
+
+    const stocksAvailability = await axios.get(
+      `${backendAPI2}/api/v2/stocks-availability/0/${item.itemCode}/${itemdata}/${quantityXuomConversion}/${item.excludeBO}`
+    );
+    const stocksAvailabilityArr = stocksAvailability.data.data;
+
+    // Pick Up Location
+    const pickUpLocation = await axios.get(
+      `${backendAPI2}/api/v2/pickup-location/${itemCodeData}/1/${itemdata}`
+    );
+    const pickUpLocationData = pickUpLocation.data.data[0].location;
+
+    // get the last 2 string algorithm
+    const getTableData = itemdata;
+    const lastTwo = getTableData.substring(getTableData.length - 2);
+    if (lastTwo == "DS") {
+      updatedTableData[selectedRowIndex] = {
+        ...item,
+        location: itemdata,
+        inventoryStatus: "Available",
+        pickUpLocation: pickUpLocationData,
+      };
+      setTableData(updatedTableData);
+    } else {
+      updatedTableData[selectedRowIndex] = {
+        ...item,
+        location: itemdata,
+        inventoryStatus: stocksAvailabilityArr[0]["StockAvailable"],
+        pickUpLocation: pickUpLocationData,
+      };
+      setTableData(updatedTableData);
+    }
+    setOpenLocationPanel(!openLocationPanel);
   };
-
-  // const handleWarehoueChange = async (itemdata: any) => {
-  //   const updatedTableData = [...tableData];
-  //   const item = updatedTableData[selectedRowIndex];
-
-  //   const quantityXuomConversion = item.quantity * item.uomConversion;
-
-  //   const stocksAvailability = await axios.get(
-  //     `${backendAPI2}/api/v2/stocks-availability/0/${item.itemCode}/${itemdata}/${quantityXuomConversion}/${item.excludeBO}`
-  //   );
-  //   const stocksAvailabilityArr = stocksAvailability.data.data;
-
-  //   // Pick Up Location
-  //   const pickUpLocation = await axios.get(
-  //     `${backendAPI2}/api/v2/pickup-location/${itemCodeData}/1/${itemdata}`
-  //   );
-  //   const pickUpLocationData = pickUpLocation.data.data;
-
-  //   // get the last 2 string algorithm
-  //   const getTableData = itemdata;
-  //   const lastTwo = getTableData.substring(getTableData.length - 2);
-  //   if (lastTwo == "DS") {
-  //     updatedTableData[selectedRowIndex] = {
-  //       ...item,
-  //       location: itemdata,
-  //       inventoryStatus: "Available",
-  //       pickUpLocation: pickUpLocationData,
-  //     };
-  //     setTableData(updatedTableData);
-  //   } else {
-  //     updatedTableData[selectedRowIndex] = {
-  //       ...item,
-  //       location: itemdata,
-  //       inventoryStatus: stocksAvailabilityArr[0]["StockAvailable"],
-  //       pickUpLocation: pickUpLocationData,
-  //     };
-  //     setTableData(updatedTableData);
-  //   }
-  //   setOpenLocationPanel(!openLocationPanel);
-  // };
 
   // Payment section
 
