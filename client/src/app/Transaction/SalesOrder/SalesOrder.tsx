@@ -2265,7 +2265,7 @@ const SalesOrder: React.FC<Props> = ({ userData }) => {
     setOpenPickUpLocations(!openPickUpLocations);
   };
 
-  const handleWarehoueChange = async (itemdata: any) => {
+  const handleWarehouseChange = async (itemdata: any) => {
     const updatedTableData = [...tableData];
     const item = updatedTableData[selectedRowIndex];
 
@@ -4156,7 +4156,7 @@ const SalesOrder: React.FC<Props> = ({ userData }) => {
                             <td
                               key={index}
                               onClick={(e) =>
-                                handleWarehoueChange(item.WhsCode)
+                                handleWarehouseChange(item.WhsCode)
                               }
                             >
                               {item.WhsCode}
@@ -4164,7 +4164,7 @@ const SalesOrder: React.FC<Props> = ({ userData }) => {
                             <td
                               key={index}
                               onClick={(e) =>
-                                handleWarehoueChange(item.WhsCode)
+                                handleWarehouseChange(item.WhsCode)
                               }
                             >
                               {item.WhsName}
@@ -4172,7 +4172,7 @@ const SalesOrder: React.FC<Props> = ({ userData }) => {
                             <td
                               key={index}
                               onClick={(e) =>
-                                handleWarehoueChange(item.WhsCode)
+                                handleWarehouseChange(item.WhsCode)
                               }
                             >
                               {item.Availability}
@@ -4180,7 +4180,7 @@ const SalesOrder: React.FC<Props> = ({ userData }) => {
                             <td
                               key={index}
                               onClick={(e) =>
-                                handleWarehoueChange(item.WhsCode)
+                                handleWarehouseChange(item.WhsCode)
                               }
                             >
                               {item.OnHand}
@@ -4188,7 +4188,7 @@ const SalesOrder: React.FC<Props> = ({ userData }) => {
                             <td
                               key={index}
                               onClick={(e) =>
-                                handleWarehoueChange(item.WhsCode)
+                                handleWarehouseChange(item.WhsCode)
                               }
                             >
                               {item.Committed}
