@@ -84,8 +84,6 @@ const SalesOrder: React.FC<Props> = ({
   const [itemcodewh, setitemcodewh] = useState<string>("");
   const [itemnamews, setitemnamews] = useState<string>("");
   const [itemuomws, setitemuomws] = useState<string>("");
-
-  const [showWindow, setShowWindow] = useState(false);
   const [showDoc, setShowDoc] = useState(false);
   const [showCustomer, setShowCustomer] = useState(false);
   const [showSearchHeader, setShowSearchHeader] = useState(false);
@@ -1566,10 +1564,6 @@ const SalesOrder: React.FC<Props> = ({
     setShowCustomer(!showCustomer);
   };
 
-  const toggleShowWindow = () => {
-    setShowWindow(!showWindow);
-  };
-
   const handleRemoveRow = (rowIndex: any, Itemcodex: any) => {
     countAllItem = countAllItem - 1;
 
@@ -1707,7 +1701,6 @@ const SalesOrder: React.FC<Props> = ({
     let tempSum = 0;
     let tempSum2 = 0;
     let taxAmountSum = 0;
-    let salescrewfinal = varSCPWDdisc;
 
     const updatedTableData = [...tableData];
 
@@ -1783,8 +1776,6 @@ const SalesOrder: React.FC<Props> = ({
 
   sum();
 
-  const [itemCodeForUOM, setItemCodeForUOM] = useState<string>("");
-
   const openItemTable = (rowIndex: any) => {
     setOpenItemTablePanel(!openItemTablePanel);
     setSelectedRowIndex(rowIndex);
@@ -1812,7 +1803,6 @@ const SalesOrder: React.FC<Props> = ({
   const openOUMTable = (rowIndex: any, itemCode: any) => {
     setOpenOUMPanel(!openOUMPanel);
     setSelectedRowIndex(rowIndex);
-    setItemCodeForUOM(itemCode);
     onAddHeaderUOM(itemCode, rowIndex);
   };
 
@@ -1963,8 +1953,6 @@ const SalesOrder: React.FC<Props> = ({
   };
 
   const changeTextBoxValue = (rowIndex: any) => {
-    let sellingAfDis = document.getElementById("sellingAfDis");
-
     const updatedTableData = [...tableData];
     const item = updatedTableData[rowIndex];
 
@@ -1984,8 +1972,6 @@ const SalesOrder: React.FC<Props> = ({
     const value = event.target.value;
     const updatedTableData = [...tableData];
     const item = updatedTableData[rowIndex];
-    const sellingAfterDis = item.sellingPriceAfterDiscount;
-    const sellingAfterDisTemp = item.sellingPriceAfterDiscountTemp;
     const itemCost = item.cost;
 
     let belCost = "";
@@ -2028,8 +2014,6 @@ const SalesOrder: React.FC<Props> = ({
   const handleQuantityChange = async (rowIndex: any, quantity: any) => {
     const updatedTableData = [...tableData];
     const item = updatedTableData[rowIndex];
-    const discount = item.discountRate;
-    const amount = quantity * item.sellingPriceBeforeDiscount;
 
     const disPriceBefDis = item.sellingPriceBeforeDiscount;
     const disCardCode = cardCodedata;
@@ -2155,7 +2139,6 @@ const SalesOrder: React.FC<Props> = ({
 
     const uomtaxCode = item["taxCode"];
     const uomitemCode = item["itemCode"];
-    const uomtaxAmout = item["taxAmount"];
 
     const lowerbound = await axios.get(
       `${backendAPI2}/api/v2/lowerbound/${priceListNum}/${uomtaxCode}/${uomitemCode}/${warehouseCode}/${BaseQty}`
@@ -2183,7 +2166,6 @@ const SalesOrder: React.FC<Props> = ({
       `${backendAPI2}/api/v2/discount-price/${brandID}/${item.sellingPriceAfterDiscount}/${cardCodedata}/${item.itemCode}/${item.quantity}/${UomCode}/${item.lowerBound}/N/N/N/N/${item.taxCode}`
     );
     const disPriceArr = disPrice.data.data;
-    const disAfterPrice = disPriceArr[0]["DiscPrice"];
 
     const stocksAvailability = await axios.get(
       `${backendAPI2}/api/v2/stocks-availability/0/${item.itemCode}/${item.location}/${quantityXuomConversion}/${item.excludeBO}`
