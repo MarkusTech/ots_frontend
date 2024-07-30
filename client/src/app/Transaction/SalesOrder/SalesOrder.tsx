@@ -362,7 +362,7 @@ const SalesOrder: React.FC<Props> = ({ userData }) => {
                 TaxCode: rowData["taxCode"],
                 TaxCodePerc: rowData["taxCodePercentage"],
                 TaxAmt: rowData["taxAmount"],
-                PriceDisc: 123, // need to change this data
+                PriceDisc: rowData["priceDisc"], // need to change this data
                 BelPriceDisc: rowData["belVolDisPrice"],
                 Cost: rowData["cost"],
                 BelCost: rowData["belCost"],
@@ -1916,7 +1916,7 @@ const SalesOrder: React.FC<Props> = ({ userData }) => {
               entryNumber: formData.DraftNum, //sample
               itemCode: item.ItemCode,
               itemName: item.ItemName,
-              quantity: 1,
+              quantity: 0,
               discountRate: 0,
               uom: item.UomCode,
               location: "GSCNAPGS",
@@ -3567,20 +3567,20 @@ const SalesOrder: React.FC<Props> = ({ userData }) => {
                   {/* Quantity */}
                   <td>
                     <input
-                      className=" border-l-white border-t-white border-r-white"
+                      className="border-l-white border-t-white border-r-white"
                       type="text"
-                      placeholder={
-                        rowData.quantity === 0
-                          ? ""
-                          : rowData.quantity.toString()
+                      id="quantityInput"
+                      value={
+                        !isNaN(rowData.quantity) && rowData.quantity !== 0
+                          ? rowData.quantity.toString()
+                          : ""
                       }
                       onChange={(e) =>
                         handleQuantityChange(rowIndex, e.target.value)
                       }
-                      id="quantityInput"
-                      onClick={handleSelectAll}
                     />
                   </td>
+
                   {/* Inventory Status */}
                   <td
                     className={
@@ -3686,6 +3686,7 @@ const SalesOrder: React.FC<Props> = ({ userData }) => {
                         id={rowData.itemCode}
                         onClick={(e) => changeTextBoxValue(rowIndex)}
                         onChange={(e) => handleInputChange(e, rowIndex)}
+                        value={rowData.sellingPriceAfterDiscount}
                       />
                     )}
                   </td>
