@@ -136,7 +136,7 @@ const SalesOrder: React.FC<Props> = ({
   // const warehouseCode = "GSCNAPGS";
   // const brandID = 4; // wrong spelling it must be branch id
   // const priceListNum = 14;
-  // const user = "Administrator";
+  // const user = userData;
 
   const warehouseCode = userWarehouseData;
   const brandID = userBranchID; // wrong spelling it must be branch id
