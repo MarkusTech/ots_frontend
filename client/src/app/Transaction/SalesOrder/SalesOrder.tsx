@@ -228,50 +228,50 @@ const SalesOrder: React.FC<Props> = ({
   const [setOnAccount, setIsPaymentOnAccount] = useState<string>("N");
   const [isPaymentCOD, setIsPaymentCOD] = useState<string>("N");
 
-  useEffect(() => {
-    setFormData({
-      ...formData,
-      // taxes
-      TotalAmtBefTax: totalAfterVat,
-      TotalTax: totalVat,
-      TotalAmtAftTax: totalBeforeVat,
-      SCPWDDiscTotal: SCPWDdata,
-      TotalAmtDue: totalAmoutDueData,
-      // end of taxes
-      WalkInName: walkInCustomer,
-      Reference: customerReference,
-      Remarks: remarksField,
-      SCPWDIdNo: scOrPwdField,
-      // Payment Method
-      Cash: isPaymentCash,
-      CreditCard: isPaymentCreditCard,
-      DebitCard: isPaymentDebitCard,
-      ODC: isPaymentODC,
-      PDC: isPaymentPDC,
-      OnlineTransfer: isPaymentOnlineTransfer,
-      OnAccount: setOnAccount,
-      COD: isPaymentCOD,
-    });
-  }, [
-    formData,
-    totalAfterVat,
-    totalVat,
-    totalBeforeVat,
-    SCPWDdata,
-    totalAmoutDueData,
-    walkInCustomer,
-    customerReference,
-    remarksField,
-    scOrPwdField,
-    isPaymentCash,
-    isPaymentCreditCard,
-    isPaymentDebitCard,
-    isPaymentODC,
-    isPaymentPDC,
-    isPaymentOnlineTransfer,
-    setOnAccount,
-    isPaymentCOD,
-  ]);
+  // useEffect(() => {
+  //   setFormData({
+  //     ...formData,
+  //     // taxes
+  //     TotalAmtBefTax: totalAfterVat,
+  //     TotalTax: totalVat,
+  //     TotalAmtAftTax: totalBeforeVat,
+  //     SCPWDDiscTotal: SCPWDdata,
+  //     TotalAmtDue: totalAmoutDueData,
+  //     // end of taxes
+  //     WalkInName: walkInCustomer,
+  //     Reference: customerReference,
+  //     Remarks: remarksField,
+  //     SCPWDIdNo: scOrPwdField,
+  //     // Payment Method
+  //     Cash: isPaymentCash,
+  //     CreditCard: isPaymentCreditCard,
+  //     DebitCard: isPaymentDebitCard,
+  //     ODC: isPaymentODC,
+  //     PDC: isPaymentPDC,
+  //     OnlineTransfer: isPaymentOnlineTransfer,
+  //     OnAccount: setOnAccount,
+  //     COD: isPaymentCOD,
+  //   });
+  // }, [
+  //   formData,
+  //   totalAfterVat,
+  //   totalVat,
+  //   totalBeforeVat,
+  //   SCPWDdata,
+  //   totalAmoutDueData,
+  //   walkInCustomer,
+  //   customerReference,
+  //   remarksField,
+  //   scOrPwdField,
+  //   isPaymentCash,
+  //   isPaymentCreditCard,
+  //   isPaymentDebitCard,
+  //   isPaymentODC,
+  //   isPaymentPDC,
+  //   isPaymentOnlineTransfer,
+  //   setOnAccount,
+  //   isPaymentCOD,
+  // ]);
 
   // ----------------------------- Header POST API --------------------------------
   const [finalTotalAmtBefTax, setFinalTotalAmtBefTax] = useState(0);
@@ -304,28 +304,28 @@ const SalesOrder: React.FC<Props> = ({
           DeliveryDate: todayDate, // added
           CustomerCode: formData.CustomerCode,
           CustomerName: formData.CustomerName,
-          WalkInName: formData.WalkInName,
+          WalkInName: walkInCustomer,
           ShippingAdd: formData.ShippingAdd,
           TIN: formData.TIN,
-          Reference: formData.Reference,
-          SCPWDIdNo: formData.SCPWDIdNo,
+          Reference: customerReference,
+          SCPWDIdNo: scOrPwdField,
           Branch: formData.Branch,
           DocStat: formData.DocStat,
           BaseDoc: 1,
-          Cash: formData.Cash,
-          CreditCard: formData.CreditCard,
-          DebitCard: formData.DebitCard,
-          ODC: formData.ODC,
-          PDC: formData.PDC,
-          OnlineTransfer: formData.OnlineTransfer,
-          OnAccount: formData.OnAccount,
-          COD: formData.COD,
+          Cash: isPaymentCash,
+          CreditCard: isPaymentCreditCard,
+          DebitCard: isPaymentDebitCard,
+          ODC: isPaymentODC,
+          PDC: isPaymentPDC,
+          OnlineTransfer: isPaymentOnlineTransfer,
+          OnAccount: setOnAccount,
+          COD: isPaymentCOD,
           TotalAmtBefTax: finalTotalAmtBefTax,
           TotalTax: finalTotalTax,
           TotalAmtAftTax: finalTotalAmtAftTax,
           SCPWDDiscTotal: finalSCPWDDiscTotal,
           TotalAmtDue: finalTotalAmtDue,
-          Remarks: formData.Remarks,
+          Remarks: remarksField,
           CreatedBy: user,
           DateCreated: todayDate,
           UpdatedBy: 1,
@@ -384,9 +384,6 @@ const SalesOrder: React.FC<Props> = ({
                 TruckerForDropShipOrBackOrder: rowData["truckPanelORDropShip"],
                 PickUpLocation: rowData["pickUpLocation"],
               }));
-
-              // Log the payload
-              console.log("Sending details:", data);
 
               // Send the entire data array to the API
               axios
