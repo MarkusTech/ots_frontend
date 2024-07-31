@@ -1865,7 +1865,6 @@ const SalesOrder: React.FC<Props> = ({
             `${backendAPI2}/api/v2/pickup-location/${itemCodex}/1/${warehouseCode}`
           )
           .then((response) => {
-            console.log(response.data.data);
             const responsePickUpLocationData = response.data.data["location"];
             updatedTableData[selectedRowIndex] = {
               ...updatedTableData[selectedRowIndex],
