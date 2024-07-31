@@ -1217,7 +1217,7 @@ const SalesOrder: React.FC<Props> = ({
       .then((response) => {
         setItemDataList(response.data.data);
       });
-  }, []);
+  }, [priceListNum, warehouseCode]);
 
   // On add header UOM
   const onAddHeaderUOM = async (itemcode: any, rowIndex: any) => {
