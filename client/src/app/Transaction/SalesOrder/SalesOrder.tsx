@@ -436,7 +436,7 @@ const SalesOrder: React.FC<Props> = ({
       volDisPrice: 0,
       // task
       priceDisc: 0,
-      belVolDisPrice: "Y",
+      belVolDisPrice: "",
       cost: 0,
       belCost: "",
       modeOfReleasing: "",
@@ -1286,7 +1286,7 @@ const SalesOrder: React.FC<Props> = ({
         taxCodePercentage: 0,
         taxAmount: 0,
         volDisPrice: 0,
-        belVolDisPrice: "Y",
+        belVolDisPrice: "",
         priceDisc: 0,
         cost: 0,
         belCost: "",
@@ -1871,7 +1871,7 @@ const SalesOrder: React.FC<Props> = ({
               entryNumber: formData.DraftNum, //sample
               itemCode: item.ItemCode,
               itemName: item.ItemName,
-              quantity: 0,
+              quantity: 1,
               discountRate: 0,
               uom: item.UomCode,
               location: "GSCNAPGS",
@@ -1881,6 +1881,7 @@ const SalesOrder: React.FC<Props> = ({
               uomConversion: item.NumInSale,
               taxCodePercentage: taxRateDataNow,
               belCost: "N",
+              belVolDisPrice: "N",
               sellingPriceBeforeDiscount: item.SRP,
               sellingPriceAfterDiscount: item.SRP,
               sellingPriceAfterDiscountTemp: item.SRP,
@@ -2027,6 +2028,7 @@ const SalesOrder: React.FC<Props> = ({
           taxAmount: taxAmountx * quantity,
           inventoryStatus: "Available",
           priceDisc: disAfterPrice,
+          belVolDisPrice: "N",
         };
         setTableData(updatedTableData);
       } else {
@@ -2041,6 +2043,7 @@ const SalesOrder: React.FC<Props> = ({
           taxAmount: taxAmountx * quantity,
           inventoryStatus: stocksAvailabilityArr[0]["StockAvailable"],
           priceDisc: disAfterPrice,
+          belVolDisPrice: "N",
         };
         setTableData(updatedTableData);
       }
