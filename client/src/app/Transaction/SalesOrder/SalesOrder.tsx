@@ -236,7 +236,7 @@ const SalesOrder: React.FC<Props> = ({
   const [finalTotalAmtDue, setFinalTotalAmtDue] = useState(0);
 
   // task
-  const saveApprovalProcedureSummary = () => {
+  const saveApprovalProcedureSummary = async () => {
     const payload = {
       AppProcID: 1,
       ReqDate: "2024-01-04",
@@ -247,6 +247,14 @@ const SalesOrder: React.FC<Props> = ({
       Remarks: "123123",
       Status: "Pending",
     };
+
+    try {
+      const response = await axios.post(
+        `http://172.16.10.169:5000/api/v1/approval-summary`
+      );
+    } catch (error) {
+      console.log(`Hello World`);
+    }
   };
 
   const sendToProductionAPI = () => {
