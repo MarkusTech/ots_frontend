@@ -235,6 +235,19 @@ const SalesOrder: React.FC<Props> = ({
   const [finalSCPWDDiscTotal, setFinalSCPWDDiscTotal] = useState(0);
   const [finalTotalAmtDue, setFinalTotalAmtDue] = useState(0);
 
+  const saveApprovalProcedureSummary = () => {
+    const payload = {
+      AppProcID: 1,
+      ReqDate: "2024-01-04",
+      DocType: "1",
+      DraftNum: 1,
+      Approver: 1,
+      Originator: 1,
+      Remarks: "123123",
+      Status: "Pending",
+    };
+  };
+
   const sendToProductionAPI = () => {
     Swal.fire({
       title: "Do you want to save this Draft?",
