@@ -13,6 +13,30 @@ const saveApprovalSummary = async (req, res) => {
   } = req.body;
 
   try {
+    const saveSummary = await sqlConn.query`INSERT INTO [dbo].[AppProc_Summary]
+           ([AppProcID]
+           ,[ReqDate]
+           ,[DocType]
+           ,[DraftNum]
+           ,[Approver]
+           ,[Originator]
+           ,[Remarks]
+           ,[Status])
+     VALUES
+           (${AppProcID}
+           ,${ReqDate}
+           ,${DocType}
+           ,${DraftNum}
+           ,${Approver}
+           ,${Originator}
+           ,${Remarks}
+           ,${Status})`;
+
+    res.status(200).json({
+      success: true,
+      message: "Approval Procedure Summary Successfully Save",
+      saveSummary,
+    });
   } catch (error) {
     console.log(error);
     res.status(500).json({ error: "Internal Server Error" });
