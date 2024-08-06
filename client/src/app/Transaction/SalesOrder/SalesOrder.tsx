@@ -447,7 +447,6 @@ const SalesOrder: React.FC<Props> = ({
       taxCodePercentage: 0,
       taxAmount: 0,
       volDisPrice: 0,
-      // task
       priceDisc: 0,
       belVolDisPrice: "",
       cost: 0,
@@ -1825,7 +1824,6 @@ const SalesOrder: React.FC<Props> = ({
 
   let countAllItem = 0;
 
-  // task
   const handleItemClick = async (item: any) => {
     countAllItem = countAllItem + 1;
 
@@ -1975,7 +1973,6 @@ const SalesOrder: React.FC<Props> = ({
     setTableData(updatedTableData);
   };
 
-  // task
   const handleQuantityChange = async (rowIndex: any, quantity: any) => {
     const updatedTableData = [...tableData];
     const item = updatedTableData[rowIndex];
@@ -3636,7 +3633,6 @@ const SalesOrder: React.FC<Props> = ({
                       : localCurrency.format(rowData.taxAmount)}
                   </td>
 
-                  {/* task */}
                   {/* Below Volume Discount Price */}
                   <td
                     className={
