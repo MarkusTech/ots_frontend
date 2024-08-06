@@ -1871,7 +1871,7 @@ const SalesOrder: React.FC<Props> = ({
               entryNumber: formData.DraftNum, //sample
               itemCode: item.ItemCode,
               itemName: item.ItemName,
-              quantity: 1,
+              quantity: 0,
               discountRate: 0,
               uom: item.UomCode,
               location: "GSCNAPGS",
@@ -2016,6 +2016,8 @@ const SalesOrder: React.FC<Props> = ({
       const getTableData = tableData[0]["location"];
       const lastTwo = getTableData.substring(getTableData.length - 2);
 
+      const grossFinalTotal = quantity * disAfterPrice;
+
       if (lastTwo == "DS") {
         updatedTableData[rowIndex] = {
           ...item,
@@ -2024,7 +2026,7 @@ const SalesOrder: React.FC<Props> = ({
           cost: costArr[0]["Cost"] * item.uomConversion,
           sellingPriceAfterDiscount: disPriceArr[0]["DiscPrice"],
           sellingPriceAfterDiscountTemp: disPriceArr[0]["DiscPrice"],
-          grossTotal: quantity * item.sellingPriceAfterDiscount,
+          grossTotal: grossFinalTotal,
           taxAmount: taxAmountx * quantity,
           inventoryStatus: "Available",
           priceDisc: disAfterPrice,
@@ -2039,7 +2041,7 @@ const SalesOrder: React.FC<Props> = ({
           cost: costArr[0]["Cost"] * item.uomConversion,
           sellingPriceAfterDiscount: disPriceArr[0]["DiscPrice"],
           sellingPriceAfterDiscountTemp: disPriceArr[0]["DiscPrice"],
-          grossTotal: quantity * item.sellingPriceAfterDiscount,
+          grossTotal: grossFinalTotal,
           taxAmount: taxAmountx * quantity,
           inventoryStatus: stocksAvailabilityArr[0]["StockAvailable"],
           priceDisc: disAfterPrice,
