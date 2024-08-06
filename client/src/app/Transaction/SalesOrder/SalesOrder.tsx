@@ -235,6 +235,7 @@ const SalesOrder: React.FC<Props> = ({
   const [finalSCPWDDiscTotal, setFinalSCPWDDiscTotal] = useState(0);
   const [finalTotalAmtDue, setFinalTotalAmtDue] = useState(0);
 
+  // task
   const saveApprovalProcedureSummary = () => {
     const payload = {
       AppProcID: 1,
