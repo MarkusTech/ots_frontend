@@ -250,6 +250,10 @@ const SalesOrder: React.FC<Props> = ({
       .post(`http://172.16.10.169:5000/api/v1/approval-summary`, payload)
       .then((response) => {
         console.log(response);
+
+        if (response.statusText == "OK") {
+          console.log(`wew`);
+        }
       });
   };
 
