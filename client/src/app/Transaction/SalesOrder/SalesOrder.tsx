@@ -137,9 +137,7 @@ const SalesOrder: React.FC<Props> = ({
   const user = userData;
 
   const handleWennWorks = () => {
-    console.log(`Branch ID: ${userBranchID}`);
-    console.log(`Warehouse: ${userWarehouseData}`);
-    console.log(`PriceListNum: ${userPriceListNumData}`);
+    saveApprovalProcedureSummary();
   };
 
   const now = new Date();
@@ -238,24 +236,21 @@ const SalesOrder: React.FC<Props> = ({
   // task
   const saveApprovalProcedureSummary = async () => {
     const payload = {
-      AppProcID: 1,
+      AppProcID: 12,
       ReqDate: "2024-01-04",
-      DocType: "1",
-      DraftNum: 1,
-      Approver: 1,
-      Originator: 1,
+      DocType: "12",
+      DraftNum: 12,
+      Approver: 12,
+      Originator: 12,
       Remarks: "123123",
       Status: "Pending",
     };
 
-    try {
-      const response = await axios.post(
-        `http://172.16.10.169:5000/api/v1/approval-summary`,
-        payload
-      );
-    } catch (error) {
-      console.log(`Hello World`);
-    }
+    await axios
+      .post(`http://172.16.10.169:5000/api/v1/approval-summary`, payload)
+      .then((response) => {
+        console.log(response);
+      });
   };
 
   const sendToProductionAPI = () => {
