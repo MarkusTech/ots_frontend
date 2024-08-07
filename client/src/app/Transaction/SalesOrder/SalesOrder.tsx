@@ -250,7 +250,8 @@ const SalesOrder: React.FC<Props> = ({
 
     try {
       const response = await axios.post(
-        `http://172.16.10.169:5000/api/v1/approval-summary`
+        `http://172.16.10.169:5000/api/v1/approval-summary`,
+        payload
       );
     } catch (error) {
       console.log(`Hello World`);
