@@ -1806,6 +1806,10 @@ const SalesOrder: React.FC<Props> = ({
     setOpenLocationPanel(!openLocationPanel);
   };
 
+  const closeAppProcSummary = () => {
+    setAppProcSummary(!appProcSummary);
+  };
+
   const openModRelTable = (rowIndex: any) => {
     setOpenModRelTablePanel(!openModRelTablePanel);
     setSelectedRowIndex(rowIndex);
@@ -4166,7 +4170,7 @@ const SalesOrder: React.FC<Props> = ({
                 <div>Approval Procedure Summary</div>
                 <div className="text-right">
                   <span
-                    onClick={() => closeLocationTable()}
+                    onClick={() => closeAppProcSummary()}
                     className="cursor-pointer"
                   >
                     ❌
