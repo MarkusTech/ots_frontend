@@ -237,12 +237,12 @@ const SalesOrder: React.FC<Props> = ({
   const saveApprovalProcedureSummary = async () => {
     const payload = {
       AppProcID: 12,
-      ReqDate: "2024-01-04",
+      ReqDate: todayDate,
       DocType: "SalesOrder",
       DraftNum: draftNumber,
       Approver: 12,
       Originator: 12,
-      Remarks: "123123",
+      Remarks: "",
       Status: "Pending",
     };
 
