@@ -115,6 +115,7 @@ const SalesOrder: React.FC<Props> = ({
   const [isCheckedOnAccount, setIsCheckedOnAccount] = useState(false);
   const [isCheckedCashOnDel, setIsCheckedCashOnDel] = useState(false);
   const [deliveryDate, setDeliveryDate] = useState<string>("");
+  const [appProcSummary, setAppProcSummary] = useState(false);
 
   // print mode of releasing and payment
   const [modeOfPaymentPrint, setModeOfPaymentPrint] = useState<string>("");
@@ -265,7 +266,7 @@ const SalesOrder: React.FC<Props> = ({
       denyButtonText: `No`,
     }).then((result) => {
       if (result.isConfirmed) {
-        Swal.fire("Saved!", "", "success");
+        // Swal.fire("Saved!", "", "success");
         const axiosInstance = axios.create({
           baseURL: `${backendAPI}/api/v1`,
           headers: {
@@ -367,6 +368,7 @@ const SalesOrder: React.FC<Props> = ({
                 .post(detailsPostAPI, data)
                 .then((response) => {
                   console.log("Data sent successfully:", response.data);
+                  setAppProcSummary(true);
                 })
                 .catch((error) => {
                   console.error("Error sending data:", error);
@@ -4139,6 +4141,115 @@ const SalesOrder: React.FC<Props> = ({
                     </table>
                   </div>
                 </div>
+              </div>
+            </div>
+          </Draggable>
+        )}
+
+        {/* Approval Procedure Summary */}
+        {appProcSummary && (
+          <Draggable>
+            <div
+              className="fields overflow-x-auto bg-white shadow-lg"
+              style={{
+                border: "1px solid #ccc",
+                position: "absolute",
+                top: "40%",
+                left: "20%",
+                height: "300px",
+              }}
+            >
+              <div
+                className="grid grid-cols-2 p-2 text-left windowheader"
+                style={{ cursor: "move" }}
+              >
+                <div>Approval Procedure Summary</div>
+                <div className="text-right">
+                  <span
+                    onClick={() => closeLocationTable()}
+                    className="cursor-pointer"
+                  >
+                    ❌
+                  </span>
+                </div>
+              </div>
+              <div className="p-2">
+                <div>Hello World</div>
+                {/* <div className="content">
+                <div>
+                  <div className="mb-2 text-[13px] flex gap-5">
+                    <div>
+                      Item Code:{" "}
+                      <span className="underline">{itemcodewh}</span>
+                    </div>
+                    <div>
+                      Item Name:{" "}
+                      <span className="underline">{itemnamews}</span>
+                    </div>
+                    <div>
+                      UOM: <span className="underline">{itemuomws}</span>
+                    </div>
+                  </div>
+                  <table>
+                    <thead className="tables">
+                      <tr>
+                        <th>Warehouse Code</th>
+                        <th>Warehouse Name</th>
+                        <th>Availability</th>
+                        <th>On-hand</th>
+                        <th>Commited</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {WareHouseList.map((item: any, index) => (
+                        // eslint-disable-next-line react/jsx-key
+                        <tr className="tdcus">
+                          <td
+                            key={index}
+                            onClick={(e) =>
+                              handleWarehouseChange(item.WhsCode)
+                            }
+                          >
+                            {item.WhsCode}
+                          </td>
+                          <td
+                            key={index}
+                            onClick={(e) =>
+                              handleWarehouseChange(item.WhsCode)
+                            }
+                          >
+                            {item.WhsName}
+                          </td>
+                          <td
+                            key={index}
+                            onClick={(e) =>
+                              handleWarehouseChange(item.WhsCode)
+                            }
+                          >
+                            {item.Availability}
+                          </td>
+                          <td
+                            key={index}
+                            onClick={(e) =>
+                              handleWarehouseChange(item.WhsCode)
+                            }
+                          >
+                            {item.OnHand}
+                          </td>
+                          <td
+                            key={index}
+                            onClick={(e) =>
+                              handleWarehouseChange(item.WhsCode)
+                            }
+                          >
+                            {item.Committed}
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </div> */}
               </div>
             </div>
           </Draggable>
