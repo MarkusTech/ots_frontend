@@ -238,8 +238,8 @@ const SalesOrder: React.FC<Props> = ({
     const payload = {
       AppProcID: 12,
       ReqDate: "2024-01-04",
-      DocType: "12",
-      DraftNum: 12,
+      DocType: "SalesOrder",
+      DraftNum: draftNumber,
       Approver: 12,
       Originator: 12,
       Remarks: "123123",
