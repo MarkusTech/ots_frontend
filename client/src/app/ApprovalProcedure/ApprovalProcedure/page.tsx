@@ -363,7 +363,7 @@ const Page: React.FC = () => {
 
       try {
         const response = await fetch(
-          "http://localhost:5000/api/v1/save-originator",
+          "http://172.16.10.169:5000/api/v1/save-originator",
           {
             method: "POST",
             headers: {
