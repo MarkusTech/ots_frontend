@@ -578,7 +578,7 @@ const Page: React.FC = () => {
   // Fetching Last Approval ID
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/api/v2/last-approval-id`)
+      .get(`http://172.16.10.169:5000/api/v2/last-approval-id`)
       .then((response) => {
         const data = response.data.data.LastAppProcID;
         let approvalID = data + 1;
