@@ -409,7 +409,6 @@ const Page: React.FC = () => {
         );
 
         if (response.ok) {
-          // console.log("Approvers saved successfully");
           setSelectedApprovers([]);
         } else {
           const errorData = await response.json();
