@@ -653,7 +653,6 @@ const Page: React.FC = () => {
             );
             setSelectedOriginators(originatorsFromApi);
           } else {
-            // Handle error scenario where originator is not found or other API errors
             console.error(data.message);
           }
         })
