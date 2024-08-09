@@ -521,7 +521,7 @@ const Page: React.FC = () => {
     if (appProcIDSelected) {
       try {
         const response = await fetch(
-          `http://localhost:5000/api/v1/delete-approver/${appProcIDSelected}`,
+          `http://172.16.10.169:5000/api/v1/delete-approver/${appProcIDSelected}`,
           {
             method: "DELETE",
           }
