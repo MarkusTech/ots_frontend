@@ -568,7 +568,7 @@ const Page: React.FC = () => {
   // Fetching list of warehouse
   useEffect(() => {
     axios
-      .get("http://localhost:5000/api/v2/list-warehouse")
+      .get("http://172.16.10.169:5000/api/v2/list-warehouse")
       .then((response) => {
         const data = response.data.data;
         setWarehouseList(data);
