@@ -261,6 +261,10 @@ const SalesOrder: React.FC<Props> = ({
       });
   };
 
+  const handleSubmitAppProSum = () => {
+    saveApprovalProcedureSummary();
+  };
+
   const sendToProductionAPI = () => {
     Swal.fire({
       title: "Do you want to save this Draft?",
@@ -4198,6 +4202,7 @@ const SalesOrder: React.FC<Props> = ({
                   <button
                     type="submit"
                     className="p-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+                    onClick={handleSubmitAppProSum}
                   >
                     Submit
                   </button>
