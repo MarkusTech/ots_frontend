@@ -138,7 +138,8 @@ const SalesOrder: React.FC<Props> = ({
   const user = userData;
 
   const handleWennWorks = () => {
-    saveApprovalProcedureSummary();
+    setAppProcSummary(true);
+    // saveApprovalProcedureSummary();
   };
 
   const now = new Date();
@@ -256,7 +257,7 @@ const SalesOrder: React.FC<Props> = ({
         if (response.statusText == "OK") {
           console.log(`wew`);
           setApprovalTitle(`Approval Titles`); // title in approval you must set here!
-          setAppProcSummary(true);
+          // setAppProcSummary(true);
         }
       });
   };
@@ -4500,7 +4501,7 @@ const SalesOrder: React.FC<Props> = ({
               <button
                 className={`p-2 mt-2 mb-1 mr-2 text-[12px] ${
                   printButtonDisabled
-                    ? "bg-red-300 cursor-not-allowed"
+                    ? "bg-gray-300 cursor-not-allowed"
                     : "bg-[#f69629] hover:bg-yellow-500 focus:outline-none focus:shadow-outline-yellow active:bg-yellow-600"
                 } rounded w-24`}
                 disabled={printButtonDisabled}
