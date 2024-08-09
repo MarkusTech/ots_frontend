@@ -680,7 +680,6 @@ const Page: React.FC = () => {
           const { data } = response;
           if (data.success) {
             const approversFromApi = data.approver.map((approver: any) => ({
-              // Level: approver.Level,
               UserID: approver.UserID,
               EmployeeName: approver.EmpName,
               Position: approver.Position,
