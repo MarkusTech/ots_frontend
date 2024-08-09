@@ -657,7 +657,6 @@ const Page: React.FC = () => {
           }
         })
         .catch((error) => {
-          // Handle network errors or any other Axios-related errors
           console.error("Error fetching originators:", error);
         });
     }
