@@ -704,7 +704,7 @@ const Page: React.FC = () => {
 
     try {
       const response = await fetch(
-        `http://localhost:5000/api/v1/update-approver/${appProcIDSelected}`,
+        `http://172.16.10.169:5000/api/v1/update-approver/${appProcIDSelected}`,
         {
           method: "PUT",
           headers: {
