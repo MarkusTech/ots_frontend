@@ -374,7 +374,6 @@ const Page: React.FC = () => {
         );
 
         if (response.ok) {
-          // console.log("Originators saved successfully");
           setSelectedOriginators([]);
         } else {
           const errorData = await response.json();
