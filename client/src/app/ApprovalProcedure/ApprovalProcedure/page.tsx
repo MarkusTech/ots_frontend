@@ -504,7 +504,6 @@ const Page: React.FC = () => {
 
         if (response.ok) {
           console.log("Approvers updated successfully");
-          // setSelectedApprovers([]);
         } else {
           const errorData = await response.json();
           console.error("Failed to save Approvers:", errorData.message);
