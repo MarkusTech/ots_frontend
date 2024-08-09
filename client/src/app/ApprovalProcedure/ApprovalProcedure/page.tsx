@@ -470,7 +470,6 @@ const Page: React.FC = () => {
         );
 
         if (response.ok) {
-          // console.log("WennWorks");
           await handleOriginatorSaveAfterDeleting();
           setActiveTab(0);
         }
