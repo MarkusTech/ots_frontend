@@ -446,7 +446,6 @@ const Page: React.FC = () => {
 
         if (response.ok) {
           console.log("Originators Updated successfully");
-          // setSelectedOriginators([]);
         } else {
           const errorData = await response.json();
           console.error("Failed to save originators:", errorData.message);
