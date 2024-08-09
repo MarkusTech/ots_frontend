@@ -233,6 +233,7 @@ const SalesOrder: React.FC<Props> = ({
   const [finalTotalAmtAftTax, setFinalTotalAmtAftTax] = useState(0);
   const [finalSCPWDDiscTotal, setFinalSCPWDDiscTotal] = useState(0);
   const [finalTotalAmtDue, setFinalTotalAmtDue] = useState(0);
+  const [approvalTitle, setApprovalTitle] = useState<string>("");
 
   // task
   const saveApprovalProcedureSummary = async () => {
@@ -254,6 +255,7 @@ const SalesOrder: React.FC<Props> = ({
 
         if (response.statusText == "OK") {
           console.log(`wew`);
+          setApprovalTitle(`Approval Title`);
         }
       });
   };
@@ -4167,7 +4169,7 @@ const SalesOrder: React.FC<Props> = ({
                 className="grid grid-cols-2 p-2 text-left windowheader"
                 style={{ cursor: "move" }}
               >
-                <div>Approval Procedure Summary</div>
+                <div>{approvalTitle}</div>
                 <div className="text-right">
                   <span
                     onClick={() => closeAppProcSummary()}
