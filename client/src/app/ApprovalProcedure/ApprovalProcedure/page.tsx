@@ -230,7 +230,7 @@ const Page: React.FC = () => {
       if (selectedOriginators.length > 0 && selectedApprovers.length > 0) {
         try {
           const response = await fetch(
-            "http://localhost:5000/api/v1/save-approval-header",
+            "http://172.16.10.169:5000/api/v1/save-approval-header",
             {
               method: "POST",
               headers: {
