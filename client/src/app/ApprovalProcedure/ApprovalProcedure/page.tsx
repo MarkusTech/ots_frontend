@@ -640,7 +640,9 @@ const Page: React.FC = () => {
   useEffect(() => {
     if (appProcIDSelected) {
       axios
-        .get(`http://localhost:5000/api/v1/get-originator/${appProcIDSelected}`)
+        .get(
+          `http://172.16.10.169:5000/api/v1/get-originator/${appProcIDSelected}`
+        )
         .then((response) => {
           const { data } = response;
           if (data.success) {
