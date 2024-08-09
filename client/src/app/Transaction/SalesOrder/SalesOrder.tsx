@@ -139,7 +139,6 @@ const SalesOrder: React.FC<Props> = ({
 
   const handleWennWorks = () => {
     setAppProcSummary(true);
-    // saveApprovalProcedureSummary();
   };
 
   const now = new Date();
