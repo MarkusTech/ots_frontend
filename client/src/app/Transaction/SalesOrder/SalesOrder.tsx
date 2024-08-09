@@ -4181,7 +4181,27 @@ const SalesOrder: React.FC<Props> = ({
                 </div>
               </div>
               <div className="p-2">
-                <div>Hello World</div>
+                <div>
+                  <label htmlFor="remarks" className="block mb-2">
+                    Remarks:
+                  </label>
+                  <textarea
+                    id="remarks"
+                    name="remarks"
+                    className="p-2 border rounded w-full"
+                    placeholder="Enter your remarks here"
+                    rows={4}
+                    style={{ minHeight: "80px" }} // Adjust the height as needed
+                  />
+                </div>
+                <div className="mt-4 flex justify-center">
+                  <button
+                    type="submit"
+                    className="p-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+                  >
+                    Submit
+                  </button>
+                </div>
               </div>
             </div>
           </Draggable>
