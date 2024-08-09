@@ -589,7 +589,7 @@ const Page: React.FC = () => {
   // Fetching Approval Type
   useEffect(() => {
     axios
-      .get("http://localhost:5000/api/v2/approval/type")
+      .get("http://172.16.10.169:5000/api/v2/approval/type")
       .then((response) => {
         const data = response.data.data;
         setApprovalTypeArr(data);
