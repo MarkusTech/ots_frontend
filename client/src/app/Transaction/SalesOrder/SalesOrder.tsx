@@ -261,17 +261,16 @@ const SalesOrder: React.FC<Props> = ({
       });
   };
 
-  // task
+  // ------------ task ---------------
   const handleSubmitAppProSum = () => {
     let countBelVolDisPrice = 0;
 
     for (let i = 0; i < tableData.length; i++) {
-      if (tableData[i]["belVolDisPrice"]) {
-        countBelVolDisPrice++;
+      if (tableData[i]["belVolDisPrice"] == "Y") {
+        alert("Yes");
+        saveApprovalProcedureSummary();
       }
     }
-
-    saveApprovalProcedureSummary();
   };
 
   const sendToProductionAPI = () => {
