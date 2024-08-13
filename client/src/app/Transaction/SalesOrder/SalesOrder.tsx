@@ -264,11 +264,18 @@ const SalesOrder: React.FC<Props> = ({
   // --------------- task ---------------
   const handleSubmitAppProSum = () => {
     let countBelVolDisPrice = 0;
+    let countBelowCost = 0;
 
     for (let i = 0; i < tableData.length; i++) {
       if (tableData[i]["belVolDisPrice"] == "Y") {
         countBelVolDisPrice++;
         // saveApprovalProcedureSummary();
+      }
+    }
+
+    for (let i = 0; i < tableData.length; i++) {
+      if (tableData[i]["belCost"] == "Y") {
+        countBelowCost++;
       }
     }
 
