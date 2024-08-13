@@ -273,7 +273,7 @@ const SalesOrder: React.FC<Props> = ({
     }
 
     if (countBelVolDisPrice > 0) {
-      alert(`Wennworks`);
+      alert(countBelVolDisPrice);
     }
   };
 
