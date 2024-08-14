@@ -138,7 +138,7 @@ const SalesOrder: React.FC<Props> = ({
   const user = userData;
 
   const handleWennWorks = () => {
-    setAppProcSummary(true);
+    setAppProcSummary(true); // to display remarks
   };
 
   const now = new Date();
