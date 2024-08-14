@@ -293,7 +293,6 @@ const SalesOrder: React.FC<Props> = ({
       denyButtonText: `No`,
     }).then((result) => {
       if (result.isConfirmed) {
-        // Swal.fire("Saved!", "", "success");
         const axiosInstance = axios.create({
           baseURL: `${backendAPI}/api/v1`,
           headers: {
