@@ -1,9 +1,5 @@
 import sqlConn from "../../config/db.js";
 
-const getApprovalProcedureSummaryDetails = async (req, res) => {
-  console.log("Approval Procedure Summary Details");
-};
-
 const getBelowStandarDiscounting = async (req, res) => {
   try {
     const result = await sqlConn.query(
@@ -49,4 +45,4 @@ const getBelowStandarDiscounting = async (req, res) => {
   }
 };
 
-export { getApprovalProcedureSummaryDetails, getBelowStandarDiscounting };
+export { getBelowStandarDiscounting };
