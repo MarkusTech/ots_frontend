@@ -1,22 +1,22 @@
 /****** Script for SelectTopNRows command from SSMS  ******/
-SELECT TOP (1000) [AppID]
+  SELECT TOP (1000) [AppID]
       ,[AppProcID]
       ,[UserID]
       ,[AppLevel]
   FROM [OTS_DB].[dbo].[AppProc_DetApp]
 
 
-  select * from [OTS_DB].[dbo].[AppProc_DetApp]
+  SELECT * from [OTS_DB].[dbo].[AppProc_DetApp]
 
-  select * from [OTS_DB].[dbo].[AppProc_DetOrig]
+  SELECT * from [OTS_DB].[dbo].[AppProc_DetOrig]
 
-  select * from [OTS_DB].[dbo].[AppProc_Main]
+  SELECT * from [OTS_DB].[dbo].[AppProc_Main]
 
-  select * from [OTS_DB].[dbo].[AppProc_Summary]
+  SELECT * from [OTS_DB].[dbo].[AppProc_Summary]
 
-  select AppTypeID from [OTS_DB].[dbo].[AppType]
+  SELECT AppTypeID from [OTS_DB].[dbo].[AppType]
 
-  select AppTypeID from [OTS_DB].[dbo].[AppType] where  AppType like '%Below Standard Discounting%'
+  SELECT AppTypeID from [OTS_DB].[dbo].[AppType] where  AppType like '%Below Standard Discounting%'
 
 
   DELETE FROM [OTS_DB].[dbo].[AppProc_DetApp]
@@ -29,7 +29,7 @@ SELECT TOP (1000) [AppID]
 	WHERE t.AppType LIKE '%Below Standard Discounting%';
 
   
-  select AppTypeID from [OTS_DB].[dbo].[AppType] where  AppType like '%Below Standard Discounting%'
+  SELECT AppTypeID from [OTS_DB].[dbo].[AppType] where  AppType like '%Below Standard Discounting%'
 
   SELECT m.AppProcID
 	FROM [OTS_DB].[dbo].[AppProc_Main] m
