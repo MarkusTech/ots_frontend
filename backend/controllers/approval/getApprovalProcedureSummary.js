@@ -25,6 +25,7 @@ const getBelowStandarDiscounting = async (req, res) => {
           `SELECT * from [OTS_DB].[dbo].[AppProc_DetOrig] Where AppProcID = ${appProcID}`
         );
         res.status(200).json({
+          approvalProcedureID: appProcID,
           approver: approverList,
           originator: originatorList,
         });
