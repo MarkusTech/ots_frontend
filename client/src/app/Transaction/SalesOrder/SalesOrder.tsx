@@ -247,7 +247,7 @@ const SalesOrder: React.FC<Props> = ({
       ReqDate: todayDate,
       DocType: "SalesOrder",
       DraftNum: draftNumber,
-      Approver: 71, // Approve ID
+      Approver: 102, // Approve ID
       Originator: userIDData, // this must be the userID
       Remarks: approvalSummaryRemarks,
       Status: "Pending",
