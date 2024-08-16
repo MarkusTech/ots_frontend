@@ -141,6 +141,7 @@ const SalesOrder: React.FC<Props> = ({
 
   const handleWennWorks = () => {
     setAppProcSummary(true); // to display remarks
+    console.log(approvalSummaryRemarks);
   };
 
   const now = new Date();
@@ -236,6 +237,8 @@ const SalesOrder: React.FC<Props> = ({
   const [finalSCPWDDiscTotal, setFinalSCPWDDiscTotal] = useState(0);
   const [finalTotalAmtDue, setFinalTotalAmtDue] = useState(0);
   const [approvalTitle, setApprovalTitle] = useState<string>("");
+  const [approvalSummaryRemarks, setApprovalSummaryRemarks] =
+    useState<string>("");
 
   // task
   const saveApprovalProcedureSummary = async () => {
@@ -4219,6 +4222,8 @@ const SalesOrder: React.FC<Props> = ({
                     placeholder="Enter your remarks here"
                     rows={4}
                     style={{ minHeight: "80px" }} // Adjust the height as needed
+                    value={approvalSummaryRemarks} // Bind the textarea value to the state
+                    onChange={(e) => setApprovalSummaryRemarks(e.target.value)} // Update the state on change
                   />
                 </div>
                 <div className="mt-4 flex justify-center">
