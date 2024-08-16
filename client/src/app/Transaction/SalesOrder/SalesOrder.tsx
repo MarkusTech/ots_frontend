@@ -272,7 +272,7 @@ const SalesOrder: React.FC<Props> = ({
       if (tableData[i]["belVolDisPrice"] == "Y") {
         countBelVolDisPrice++;
         // saveApprovalProcedureSummary();
-        setAppProcSummary(true);
+        setAppProcSummary(false);
       }
     }
 
@@ -1836,7 +1836,7 @@ const SalesOrder: React.FC<Props> = ({
   };
 
   const closeAppProcSummary = () => {
-    setAppProcSummary(!appProcSummary);
+    setAppProcSummary(false);
   };
 
   const openModRelTable = (rowIndex: any) => {
@@ -4208,6 +4208,7 @@ const SalesOrder: React.FC<Props> = ({
               </div>
               <div className="p-2">
                 <div>
+                  {/* remarks */}
                   <label htmlFor="remarks" className="block mb-2">
                     Remarks:
                   </label>
