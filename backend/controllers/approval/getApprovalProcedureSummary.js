@@ -7,15 +7,26 @@ const getApprovalProcedureSummaryDetails = async (req, res) => {
 const getBelowStandarDiscounting = async (req, res) => {
   try {
     const result = await sqlConn.query(
-      `SELECT AppTypeID from [OTS_DB].[dbo].[AppType] where  AppType like '%Below Standard Discounting%'`
+      `SELECT AppTypeID FROM [OTS_DB].[dbo].[AppType] WHERE AppType LIKE '%Below Standard Discounting%'`
     );
 
-    const data = result.recordset;
+    // Assuming there's always at least one result, get the first AppTypeID
+    const appTypeID = result.recordset[0]?.AppTypeID;
 
-    res.status(200).json({
-      success: true,
-      data: data,
-    });
+    if (appTypeID !== undefined) {
+      // You can now use the appTypeID variable in your backend
+      console.log("AppTypeID:", appTypeID);
+
+      res.status(200).json({
+        success: true,
+        data: appTypeID, // or send it as part of an object, e.g., { appTypeID }
+      });
+    } else {
+      res.status(404).json({
+        success: false,
+        message: "No matching AppTypeID found",
+      });
+    }
   } catch (error) {
     console.log(error);
     res.status(500).json({
