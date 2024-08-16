@@ -19,8 +19,10 @@ const getBelowStandarDiscounting = async (req, res) => {
         ON m.AppTypeID = t.AppTypeID
         WHERE t.AppTypeID = ${appTypeID};`);
 
+      const appProcID = approvalProcedureID.recordset[0]?.AppProcID;
+
       res.status(200).json({
-        data: approvalProcedureID,
+        data: appProcID,
       });
     } else {
       res.status(404).json({
