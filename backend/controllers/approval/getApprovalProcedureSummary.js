@@ -18,6 +18,10 @@ const getBelowStandarDiscounting = async (req, res) => {
         INNER JOIN [OTS_DB].[dbo].[AppType] t
         ON m.AppTypeID = t.AppTypeID
         WHERE t.AppTypeID = ${appTypeID};`);
+
+      res.status(200).json({
+        data: approvalProcedureID,
+      });
     } else {
       res.status(404).json({
         success: false,
