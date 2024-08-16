@@ -21,8 +21,12 @@ const getBelowStandarDiscounting = async (req, res) => {
         const approverList = await sqlConn.query(
           `SELECT * from [OTS_DB].[dbo].[AppProc_DetApp] Where AppProcID = ${appProcID}`
         );
+        const originatorList = await sqlConn.query(
+          `SELECT * from [OTS_DB].[dbo].[AppProc_DetOrig] Where AppProcID = ${appProcID}`
+        );
         res.status(200).json({
-          data: approverList,
+          approver: approverList,
+          originator: originatorList,
         });
       } else {
         res.status(404).json({
