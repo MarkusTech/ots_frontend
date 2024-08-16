@@ -203,7 +203,7 @@ export default function Home() {
         setBranchIdData(user.BranchID);
         setWarehouseCodeData(user.WhsCode);
         setPriceListNumData(user.PriceListNum);
-        setLoginUserIDData(user.UserID);
+        setLoginUserIDData(user.UserID); //new changes
         setFormData({
           userID: user.UserID,
           fullName: user.EmpName,
@@ -564,6 +564,7 @@ export default function Home() {
                       userBranchID={branchIdData}
                       userWarehouseData={warehouseCodeData}
                       userPriceListNumData={priceListNumData}
+                      userIDData={loginUserIDData}
                     />
                   </div>
                 </div>

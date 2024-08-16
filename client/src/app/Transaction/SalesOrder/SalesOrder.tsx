@@ -11,6 +11,7 @@ interface Props {
   userBranchID: string;
   userWarehouseData: string;
   userPriceListNumData: string;
+  userIDData: string;
 }
 
 const SalesOrder: React.FC<Props> = ({
@@ -18,6 +19,7 @@ const SalesOrder: React.FC<Props> = ({
   userBranchID,
   userWarehouseData,
   userPriceListNumData,
+  userIDData,
 }) => {
   const inputRef = useRef<HTMLInputElement | null>(null);
 
@@ -243,7 +245,7 @@ const SalesOrder: React.FC<Props> = ({
       DocType: "SalesOrder",
       DraftNum: draftNumber,
       Approver: 71, // Approve ID
-      Originator: 12, // this must be the userID
+      Originator: userIDData, // this must be the userID
       Remarks: "",
       Status: "Pending",
     };
