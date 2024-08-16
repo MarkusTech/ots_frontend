@@ -13,16 +13,11 @@ const getBelowStandarDiscounting = async (req, res) => {
     const appTypeID = result.recordset[0]?.AppTypeID;
 
     if (appTypeID !== undefined) {
-      const approvalProcedureID = await sqlConn.query(`SELECT m.AppProcID
-                                                      FROM [OTS_DB].[dbo].[AppProc_Main] m
-                                                      INNER JOIN [OTS_DB].[dbo].[AppType] t
-                                                        ON m.AppTypeID = t.AppTypeID
-                                                      WHERE t.AppTypeID = ${appTypeID};`);
-
-      res.status(200).json({
-        success: true,
-        data: appTypeID,
-      });
+      const approvalProcedureID = await sqlConn.query(`
+        SELECT m.AppProcID FROM [OTS_DB].[dbo].[AppProc_Main] m
+        INNER JOIN [OTS_DB].[dbo].[AppType] t
+        ON m.AppTypeID = t.AppTypeID
+        WHERE t.AppTypeID = ${appTypeID};`);
     } else {
       res.status(404).json({
         success: false,
