@@ -21,19 +21,25 @@ const getBelowStandarDiscounting = async (req, res) => {
 
       const appProcID = approvalProcedureID.recordset[0]?.AppProcID;
 
-      res.status(200).json({
-        data: appProcID,
-      });
+      if (appProcID !== undefined) {
+        const approverList = await sqlConn.query(
+          `SELECT * from [OTS_DB].[dbo].[AppProc_DetApp] Where AppProcID = ${appProcID}`
+        );
+        res.status(200).json({
+          data: approverList,
+        });
+      } else {
+        res.status(404).json({
+          success: false,
+          message: "Approval Procedure ID not found!",
+        });
+      }
     } else {
       res.status(404).json({
         success: false,
         message: "No matching AppTypeID found",
       });
     }
-
-    const approverList = await sqlConn.query(
-      `SELECT * from [OTS_DB].[dbo].[AppProc_DetApp] Where AppProcID = 1038`
-    );
   } catch (error) {
     console.log(error);
     res.status(500).json({
