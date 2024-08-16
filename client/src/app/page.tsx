@@ -182,6 +182,7 @@ export default function Home() {
   const [branchIdData, setBranchIdData] = useState<string>("");
   const [warehouseCodeData, setWarehouseCodeData] = useState<string>("");
   const [priceListNumData, setPriceListNumData] = useState<string>("");
+  const [loginUserIDData, setLoginUserIDData] = useState<string>("");
 
   let loginAttempts = 0;
 
@@ -202,6 +203,7 @@ export default function Home() {
         setBranchIdData(user.BranchID);
         setWarehouseCodeData(user.WhsCode);
         setPriceListNumData(user.PriceListNum);
+        setLoginUserIDData(user.UserID);
         setFormData({
           userID: user.UserID,
           fullName: user.EmpName,
