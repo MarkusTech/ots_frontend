@@ -9,6 +9,13 @@ const getBelowStandarDiscounting = async (req, res) => {
     const result = await sqlConn.query(
       `SELECT AppTypeID from [OTS_DB].[dbo].[AppType] where  AppType like '%Below Standard Discounting%'`
     );
+
+    const data = result.recordset;
+
+    res.status(200).json({
+      success: true,
+      data: data,
+    });
   } catch (error) {
     console.log(error);
     res.status(500).json({
