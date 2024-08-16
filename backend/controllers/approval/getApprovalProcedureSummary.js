@@ -1,7 +1,21 @@
 import sqlConn from "../../config/db.js";
 
 const getApprovalProcedureSummaryDetails = async (req, res) => {
-  res.send("Details");
+  console.log("Approval Procedure Summary Details");
 };
 
-export { getApprovalProcedureSummaryDetails };
+const getBelowStandarDiscounting = async (req, res) => {
+  try {
+    const result = await sqlConn.query(
+      `SELECT AppTypeID from [OTS_DB].[dbo].[AppType] where  AppType like '%Below Standard Discounting%'`
+    );
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({
+      success: false,
+      message: error.message,
+    });
+  }
+};
+
+export { getApprovalProcedureSummaryDetails, getBelowStandarDiscounting };
