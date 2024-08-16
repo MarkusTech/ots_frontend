@@ -10,16 +10,18 @@ const getBelowStandarDiscounting = async (req, res) => {
       `SELECT AppTypeID FROM [OTS_DB].[dbo].[AppType] WHERE AppType LIKE '%Below Standard Discounting%'`
     );
 
-    // Assuming there's always at least one result, get the first AppTypeID
     const appTypeID = result.recordset[0]?.AppTypeID;
 
     if (appTypeID !== undefined) {
-      // You can now use the appTypeID variable in your backend
-      console.log("AppTypeID:", appTypeID);
+      const approvalProcedureID = await sqlConn.query(`SELECT m.AppProcID
+                                                      FROM [OTS_DB].[dbo].[AppProc_Main] m
+                                                      INNER JOIN [OTS_DB].[dbo].[AppType] t
+                                                        ON m.AppTypeID = t.AppTypeID
+                                                      WHERE t.AppTypeID = ${appTypeID};`);
 
       res.status(200).json({
         success: true,
-        data: appTypeID, // or send it as part of an object, e.g., { appTypeID }
+        data: appTypeID,
       });
     } else {
       res.status(404).json({
@@ -27,6 +29,10 @@ const getBelowStandarDiscounting = async (req, res) => {
         message: "No matching AppTypeID found",
       });
     }
+
+    const approverList = await sqlConn.query(
+      `SELECT * from [OTS_DB].[dbo].[AppProc_DetApp] Where AppProcID = 1038`
+    );
   } catch (error) {
     console.log(error);
     res.status(500).json({
