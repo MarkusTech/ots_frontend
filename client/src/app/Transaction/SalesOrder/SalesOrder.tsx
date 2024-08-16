@@ -259,7 +259,6 @@ const SalesOrder: React.FC<Props> = ({
         console.log(response);
 
         if (response.statusText == "OK") {
-          console.log(`wew`);
           setApprovalTitle(`Approval Titles`); // title in approval you must set here!
           // setAppProcSummary(true);
         }
