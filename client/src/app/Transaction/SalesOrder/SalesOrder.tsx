@@ -266,7 +266,7 @@ const SalesOrder: React.FC<Props> = ({
   };
 
   // --------------- task ---------------
-  const handleSubmitAppProSum = () => {
+  const handleSubmitAppProSum = async () => {
     let countBelVolDisPrice = 0;
     let countBelowCost = 0;
 
@@ -284,7 +284,15 @@ const SalesOrder: React.FC<Props> = ({
     }
 
     if (countBelVolDisPrice > 0) {
-      alert(countBelVolDisPrice);
+      await axios
+        .get(`http://localhost:5000/api/v1/get-below-standard-discounting`)
+        .then((response) => {
+          console.log(response);
+          const AppProcID = response.data.approvalProcedureID;
+          const approver = response.data.approver;
+          const originator = response.data.originator;
+        });
+      // alert(countBelVolDisPrice);
       saveApprovalProcedureSummary();
     }
   };
