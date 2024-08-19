@@ -287,10 +287,10 @@ const SalesOrder: React.FC<Props> = ({
       await axios
         .get(`http://localhost:5000/api/v1/get-below-standard-discounting`)
         .then((response) => {
-          console.log(response);
           const AppProcID = response.data.approvalProcedureID;
           const approver = response.data.approver;
           const originator = response.data.originator;
+          console.log(`${AppProcID} ${approver} ${originator}`);
         });
       // alert(countBelVolDisPrice);
       saveApprovalProcedureSummary();
