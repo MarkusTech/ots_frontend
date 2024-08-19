@@ -18,6 +18,9 @@ const getBelowStandarDiscounting = async (req, res) => {
       const appProcID = approvalProcedureID.recordset[0]?.AppProcID;
 
       if (appProcID !== undefined) {
+        const approverCount = await sqlConn.query(
+          `select COUNT(AppID) from [OTS_DB].[dbo].[AppProc_DetApp] where AppProcID = ${appProcID}`
+        );
         const approverList = await sqlConn.query(
           `SELECT * from [OTS_DB].[dbo].[AppProc_DetApp] Where AppProcID = ${appProcID}`
         );
@@ -28,6 +31,7 @@ const getBelowStandarDiscounting = async (req, res) => {
           approvalProcedureID: appProcID,
           approver: approverList,
           originator: originatorList,
+          approverCount: approverCount,
         });
       } else {
         res.status(404).json({
