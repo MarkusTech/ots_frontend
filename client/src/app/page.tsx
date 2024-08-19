@@ -74,6 +74,7 @@ export default function Home() {
   const [showLogin, setShowLogin] = useState(false);
   const [formData, setFormData] = useState<FormData>(initialFormData);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoggedInFloater, setIsLoggedInFloater] = useState(false);
   const [isAdminLoggedIn, setIsAdminLoggedIn] = useState(false);
 
   const logoutUser = () => {
@@ -90,6 +91,7 @@ export default function Home() {
         // Handle the logout process
         setFormData(initialFormData);
         setIsLoggedIn(!isLoggedIn);
+        setIsLoggedInFloater(!isLoggedInFloater);
         Swal.fire(
           "Logged Out!",
           "You have been logged out successfully.",
@@ -219,6 +221,7 @@ export default function Home() {
         // Clear login attempts on successful login
         loginAttempts = 0;
 
+        setIsLoggedInFloater(true);
         setIsLoggedIn(!isLoggedIn);
         setShowLogin(!showLogin);
         setIsShowButton(!isShowButton);
@@ -249,6 +252,7 @@ export default function Home() {
         });
         // Clear login attempts on successful login
         loginAttempts = 0;
+        setIsLoggedInFloater(true);
         setIsAdminLoggedIn(!isAdminLoggedIn);
         setShowLogin(!showLogin);
         setIsShowButton(!isShowButton);
@@ -755,30 +759,30 @@ export default function Home() {
               </Draggable>
             )}
 
-            {/* FLOATER */}
-            <div className="absolute bottom-2 right-2 rounded-lg bg-white flex gap-3 shadow-xl text-[13px]">
-              {/* <FloatingPanel /> */}
-              <div className="flex gap-2 p-2 transition-all hover:text-[#F0AB00]">
-                <div className="">User:</div>
-                <span className="underline">{formData.username}</span>
+            {isLoggedInFloater && (
+              <div className="absolute bottom-2 right-2 rounded-lg bg-white flex gap-3 shadow-xl text-[13px]">
+                <div className="flex gap-2 p-2 transition-all hover:text-[#F0AB00]">
+                  <div className="">User:</div>
+                  <span className="underline">{formData.username}</span>
+                </div>
+                <div className="flex gap-2 p-2">
+                  <div>Branch ID:</div>
+                  <span className="underline">{formData.branchID}</span>
+                </div>
+                <div className="flex gap-2 p-2">
+                  <div>Branch:</div>
+                  <span className="underline">{formData.branchName}</span>
+                </div>
+                <div className="flex gap-2 p-2">
+                  <div>WHS Code:</div>
+                  <span className="underline">{formData.warehouseCode}</span>
+                </div>
+                <div className="flex gap-2 p-2">
+                  <div>Pricelist Num:</div>
+                  <span className="underline">{formData.priceListNumber}</span>
+                </div>
               </div>
-              <div className="flex gap-2 p-2">
-                <div>Branch ID:</div>
-                <span className="underline">{formData.branchID}</span>
-              </div>
-              <div className="flex gap-2 p-2">
-                <div>Branch:</div>
-                <span className="underline">{formData.branchName}</span>
-              </div>
-              <div className="flex gap-2 p-2">
-                <div>WHS Code:</div>
-                <span className="underline">{formData.warehouseCode}</span>
-              </div>
-              <div className="flex gap-2 p-2">
-                <div>Pricelist Num:</div>
-                <span className="underline">{formData.priceListNumber}</span>
-              </div>
-            </div>
+            )}
           </div>
         </div>
       </div>
