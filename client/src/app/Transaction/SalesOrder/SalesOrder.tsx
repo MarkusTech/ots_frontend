@@ -239,11 +239,12 @@ const SalesOrder: React.FC<Props> = ({
   const [approvalTitle, setApprovalTitle] = useState<string>("");
   const [approvalSummaryRemarks, setApprovalSummaryRemarks] =
     useState<string>("");
+  const [appProcIDData, setAppProcIDData] = useState<number>(0);
 
   // task
   const saveApprovalProcedureSummary = async () => {
     const payload = {
-      AppProcID: 12,
+      AppProcID: appProcIDData,
       ReqDate: todayDate,
       DocType: "SalesOrder",
       DraftNum: draftNumber,
@@ -291,6 +292,7 @@ const SalesOrder: React.FC<Props> = ({
           const approver = response.data.approver;
           const originator = response.data.originator;
           console.log(`${AppProcID} ${approver} ${originator}`);
+          setAppProcIDData(AppProcID);
         });
       // alert(countBelVolDisPrice);
       saveApprovalProcedureSummary();
