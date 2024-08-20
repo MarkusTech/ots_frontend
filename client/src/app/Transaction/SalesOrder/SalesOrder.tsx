@@ -266,6 +266,7 @@ const SalesOrder: React.FC<Props> = ({
       }
     }
 
+    // This code will execute if there is Y in Below Volume Discount Price
     if (countBelVolDisPrice > 0) {
       await axios
         .get(`http://localhost:5000/api/v1/get-below-standard-discounting`)
@@ -339,6 +340,9 @@ const SalesOrder: React.FC<Props> = ({
               });
           }
         });
+    } else if (countBelowCost > 0) {
+      // Below Cost
+      console.log(`Below Cost`);
     }
   };
 
