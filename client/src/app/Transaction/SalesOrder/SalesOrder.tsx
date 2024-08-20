@@ -71,6 +71,13 @@ const SalesOrder: React.FC<Props> = ({
     U_Category: string;
   }
 
+  interface ApproverData {
+    AppID: number;
+    AppProcID: number;
+    UserID: number;
+    AppLevel: number;
+  }
+
   const [customers, setCustomers] = useState<Customer[]>([]); // for the list of save as draft Customers
 
   const [itemList, setItemDataList] = useState<ItemData[]>([]);
@@ -240,8 +247,7 @@ const SalesOrder: React.FC<Props> = ({
   const [approvalTitle, setApprovalTitle] = useState<string>("");
   const [approvalSummaryRemarks, setApprovalSummaryRemarks] =
     useState<string>("");
-  const [appProcIDData, setAppProcIDData] = useState<number>(0);
-  const [approverID, setApproverID] = useState<number>(0);
+  const [approverArray, setApproverArray] = useState<ApproverData[]>([]);
 
   // task
   // const saveApprovalProcedureSummary = async () => {
@@ -321,6 +327,28 @@ const SalesOrder: React.FC<Props> = ({
               });
           } else {
             // if approver count is greater than 1 it must save multiple approver ID
+            axios
+              .get(
+                `http://localhost:5000/api/v1/get-below-standard-discounting`
+              )
+              .then((response) => {
+                // Extract the approver data from the response
+                const approverData: ApproverData[] =
+                  response.data.approver.recordset.map((item: any) => ({
+                    AppID: item.AppID,
+                    AppProcID: item.AppProcID,
+                    UserID: item.UserID,
+                    AppLevel: item.AppLevel,
+                  }));
+
+                // Set the extracted data to the state
+                setApproverArray(approverData);
+
+                console.log(approverData[0].AppID);
+              })
+              .catch((error) => {
+                console.error("Error fetching data:", error);
+              });
           }
         });
     }
