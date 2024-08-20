@@ -247,31 +247,6 @@ const SalesOrder: React.FC<Props> = ({
   const [approvalTitle, setApprovalTitle] = useState<string>("");
   const [approvalSummaryRemarks, setApprovalSummaryRemarks] =
     useState<string>("");
-  const [approverArray, setApproverArray] = useState<ApproverData[]>([]);
-
-  // task
-  // const saveApprovalProcedureSummary = async () => {
-  //   const payload = {
-  //     AppProcID: appProcIDData,
-  //     ReqDate: todayDate,
-  //     DocType: "SalesOrder",
-  //     DraftNum: draftNumber,
-  //     Approver: approverID, // Approver ID
-  //     Originator: userIDData, // this must be the userID
-  //     Remarks: approvalSummaryRemarks,
-  //     Status: "Pending",
-  //   };
-
-  //   await axios
-  //     .post(`http://172.16.10.169:5000/api/v1/approval-summary`, payload)
-  //     .then((response) => {
-  //       console.log(response);
-
-  //       if (response.statusText == "OK") {
-  //         setApprovalTitle(`Below Standard Discounting`); // title in approval you must set here!
-  //       }
-  //     });
-  // };
 
   // --------------- task ---------------
   const handleSubmitAppProSum = async () => {
@@ -308,9 +283,6 @@ const SalesOrder: React.FC<Props> = ({
               AppLevel: item.AppLevel,
             }));
 
-          // Set the extracted data to the state
-          setApproverArray(approverData);
-
           // if approver count is equal to 1
           if (approverCount == 1) {
             const payload = {
@@ -340,6 +312,31 @@ const SalesOrder: React.FC<Props> = ({
           } else {
             // if approver count is greater than 1 it must save multiple approver ID
             console.log(approverData);
+
+            const payload = {
+              AppProcID: AppProcID,
+              ReqDate: todayDate,
+              DocType: "SalesOrder",
+              DraftNum: draftNumber,
+              Approver: approver, // Approver ID
+              Originator: userIDData, // this must be the userID
+              Remarks: approvalSummaryRemarks,
+              Status: "Pending",
+            };
+
+            axios
+              .post(
+                `http://172.16.10.169:5000/api/v1/approval-summary`,
+                payload
+              )
+              .then((response) => {
+                if (response.statusText == "OK") {
+                  Swal.fire({
+                    icon: "success",
+                    text: "Successfully Save",
+                  });
+                }
+              });
           }
         });
     }
