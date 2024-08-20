@@ -299,6 +299,18 @@ const SalesOrder: React.FC<Props> = ({
           const approver = response.data.approver.recordset[0].UserID;
           const approverCount =
             response.data.approverCount.recordset[0].ApproverCount;
+
+          const approverData: ApproverData[] =
+            response.data.approver.recordset.map((item: any) => ({
+              AppID: item.AppID,
+              AppProcID: item.AppProcID,
+              UserID: item.UserID,
+              AppLevel: item.AppLevel,
+            }));
+
+          // Set the extracted data to the state
+          setApproverArray(approverData);
+
           // if approver count is equal to 1
           if (approverCount == 1) {
             const payload = {
@@ -327,28 +339,7 @@ const SalesOrder: React.FC<Props> = ({
               });
           } else {
             // if approver count is greater than 1 it must save multiple approver ID
-            axios
-              .get(
-                `http://172.16.10.169:5000/api/v1/get-below-standard-discounting`
-              )
-              .then((response) => {
-                // Extract the approver data from the response
-                const approverData: ApproverData[] =
-                  response.data.approver.recordset.map((item: any) => ({
-                    AppID: item.AppID,
-                    AppProcID: item.AppProcID,
-                    UserID: item.UserID,
-                    AppLevel: item.AppLevel,
-                  }));
-
-                // Set the extracted data to the state
-                setApproverArray(approverData);
-
-                console.log(approverData[0].AppID);
-              })
-              .catch((error) => {
-                console.error("Error fetching data:", error);
-              });
+            console.log(approverData);
           }
         });
     }
