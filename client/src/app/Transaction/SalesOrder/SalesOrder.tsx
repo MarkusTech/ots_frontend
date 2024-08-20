@@ -329,7 +329,7 @@ const SalesOrder: React.FC<Props> = ({
             // if approver count is greater than 1 it must save multiple approver ID
             axios
               .get(
-                `http://localhost:5000/api/v1/get-below-standard-discounting`
+                `http://172.16.10.169:5000/api/v1/get-below-standard-discounting`
               )
               .then((response) => {
                 // Extract the approver data from the response
