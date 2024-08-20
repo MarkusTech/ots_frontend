@@ -291,11 +291,12 @@ const SalesOrder: React.FC<Props> = ({
           const AppProcID = response.data.approvalProcedureID;
           const approver = response.data.approver;
           const originator = response.data.originator;
-          console.log(`${AppProcID} ${approver} ${originator}`);
+          const approverCount =
+            response.data.approverCount.recordset[0].ApproverCount;
+          console.log(`${AppProcID} ${approverCount}`);
           setAppProcIDData(AppProcID);
         });
-      // alert(countBelVolDisPrice);
-      saveApprovalProcedureSummary();
+      // saveApprovalProcedureSummary();
     }
   };
 

@@ -19,7 +19,7 @@ const getBelowStandarDiscounting = async (req, res) => {
 
       if (appProcID !== undefined) {
         const approverCount = await sqlConn.query(
-          `select COUNT(AppID) from [OTS_DB].[dbo].[AppProc_DetApp] where AppProcID = ${appProcID}`
+          `select COUNT(AppID) as ApproverCount from [OTS_DB].[dbo].[AppProc_DetApp] where AppProcID = ${appProcID}`
         );
         const approverList = await sqlConn.query(
           `SELECT * from [OTS_DB].[dbo].[AppProc_DetApp] Where AppProcID = ${appProcID}`
