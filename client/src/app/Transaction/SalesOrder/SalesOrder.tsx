@@ -292,10 +292,34 @@ const SalesOrder: React.FC<Props> = ({
           const approver = response.data.approver.recordset[0].UserID;
           const approverCount =
             response.data.approverCount.recordset[0].ApproverCount;
-          setAppProcIDData(AppProcID);
-          setApproverID(approver);
           if (approverCount == 1) {
-            saveApprovalProcedureSummary();
+            const payload = {
+              AppProcID: AppProcID,
+              ReqDate: todayDate,
+              DocType: "SalesOrder",
+              DraftNum: draftNumber,
+              Approver: approver, // Approver ID
+              Originator: userIDData, // this must be the userID
+              Remarks: approvalSummaryRemarks,
+              Status: "Pending",
+            };
+
+            axios
+              .post(
+                `http://172.16.10.169:5000/api/v1/approval-summary`,
+                payload
+              )
+              .then((response) => {
+                console.log(response);
+
+                if (response.statusText == "OK") {
+                  setApprovalTitle(`Below Standard Discounting`); // title in approval you must set here!
+                  Swal.fire({
+                    icon: "success",
+                    text: "Successfully Save",
+                  });
+                }
+              });
           }
         });
     }
