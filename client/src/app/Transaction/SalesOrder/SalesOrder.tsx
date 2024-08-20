@@ -293,6 +293,7 @@ const SalesOrder: React.FC<Props> = ({
           const approver = response.data.approver.recordset[0].UserID;
           const approverCount =
             response.data.approverCount.recordset[0].ApproverCount;
+          // if approver count is equal to 1
           if (approverCount == 1) {
             const payload = {
               AppProcID: AppProcID,
@@ -311,8 +312,6 @@ const SalesOrder: React.FC<Props> = ({
                 payload
               )
               .then((response) => {
-                console.log(response);
-
                 if (response.statusText == "OK") {
                   Swal.fire({
                     icon: "success",
@@ -320,6 +319,8 @@ const SalesOrder: React.FC<Props> = ({
                   });
                 }
               });
+          } else {
+            // if approver count is greater than 1 it must save multiple approver ID
           }
         });
     }
