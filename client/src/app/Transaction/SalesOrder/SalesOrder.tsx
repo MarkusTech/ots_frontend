@@ -140,6 +140,7 @@ const SalesOrder: React.FC<Props> = ({
   const user = userData;
 
   const handleWennWorks = () => {
+    setApprovalTitle(`Below Standard Discounting`); // title in approval you must set here!
     setAppProcSummary(true); // to display remarks
     console.log(approvalSummaryRemarks);
   };
@@ -313,7 +314,6 @@ const SalesOrder: React.FC<Props> = ({
                 console.log(response);
 
                 if (response.statusText == "OK") {
-                  setApprovalTitle(`Below Standard Discounting`); // title in approval you must set here!
                   Swal.fire({
                     icon: "success",
                     text: "Successfully Save",
