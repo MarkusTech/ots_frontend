@@ -243,28 +243,28 @@ const SalesOrder: React.FC<Props> = ({
   const [approverID, setApproverID] = useState<number>(0);
 
   // task
-  const saveApprovalProcedureSummary = async () => {
-    const payload = {
-      AppProcID: appProcIDData,
-      ReqDate: todayDate,
-      DocType: "SalesOrder",
-      DraftNum: draftNumber,
-      Approver: approverID, // Approver ID
-      Originator: userIDData, // this must be the userID
-      Remarks: approvalSummaryRemarks,
-      Status: "Pending",
-    };
+  // const saveApprovalProcedureSummary = async () => {
+  //   const payload = {
+  //     AppProcID: appProcIDData,
+  //     ReqDate: todayDate,
+  //     DocType: "SalesOrder",
+  //     DraftNum: draftNumber,
+  //     Approver: approverID, // Approver ID
+  //     Originator: userIDData, // this must be the userID
+  //     Remarks: approvalSummaryRemarks,
+  //     Status: "Pending",
+  //   };
 
-    await axios
-      .post(`http://172.16.10.169:5000/api/v1/approval-summary`, payload)
-      .then((response) => {
-        console.log(response);
+  //   await axios
+  //     .post(`http://172.16.10.169:5000/api/v1/approval-summary`, payload)
+  //     .then((response) => {
+  //       console.log(response);
 
-        if (response.statusText == "OK") {
-          setApprovalTitle(`Below Standard Discounting`); // title in approval you must set here!
-        }
-      });
-  };
+  //       if (response.statusText == "OK") {
+  //         setApprovalTitle(`Below Standard Discounting`); // title in approval you must set here!
+  //       }
+  //     });
+  // };
 
   // --------------- task ---------------
   const handleSubmitAppProSum = async () => {
