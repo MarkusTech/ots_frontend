@@ -240,6 +240,7 @@ const SalesOrder: React.FC<Props> = ({
   const [approvalSummaryRemarks, setApprovalSummaryRemarks] =
     useState<string>("");
   const [appProcIDData, setAppProcIDData] = useState<number>(0);
+  const [approverID, setApproverID] = useState<number>(0);
 
   // task
   const saveApprovalProcedureSummary = async () => {
@@ -248,7 +249,7 @@ const SalesOrder: React.FC<Props> = ({
       ReqDate: todayDate,
       DocType: "SalesOrder",
       DraftNum: draftNumber,
-      Approver: 102, // Approver ID
+      Approver: approverID, // Approver ID
       Originator: userIDData, // this must be the userID
       Remarks: approvalSummaryRemarks,
       Status: "Pending",
@@ -260,8 +261,7 @@ const SalesOrder: React.FC<Props> = ({
         console.log(response);
 
         if (response.statusText == "OK") {
-          setApprovalTitle(`Approval Titles`); // title in approval you must set here!
-          // setAppProcSummary(true);
+          setApprovalTitle(`Below Standard Discounting`); // title in approval you must set here!
         }
       });
   };
@@ -289,17 +289,15 @@ const SalesOrder: React.FC<Props> = ({
         .get(`http://localhost:5000/api/v1/get-below-standard-discounting`)
         .then((response) => {
           const AppProcID = response.data.approvalProcedureID;
-          const approver = response.data.approver;
+          const approver = response.data.approver.recordset[0].UserID;
           const approverCount =
             response.data.approverCount.recordset[0].ApproverCount;
           setAppProcIDData(AppProcID);
-
+          setApproverID(approver);
           if (approverCount == 1) {
+            saveApprovalProcedureSummary();
           }
-
-          console.log(`${AppProcID} ${approverCount}`);
         });
-      // saveApprovalProcedureSummary();
     }
   };
 
