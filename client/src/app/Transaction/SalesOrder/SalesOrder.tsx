@@ -921,7 +921,7 @@ const SalesOrder: React.FC<Props> = ({
 
         const draftNum = draftNumber;
         const axiosInstance = axios.create({
-          baseURL: "http://localhost:5000/api/v1",
+          baseURL: "http://172.16.10.169:5000/api/v1",
           headers: {
             "Content-Type": "application/json",
           },
