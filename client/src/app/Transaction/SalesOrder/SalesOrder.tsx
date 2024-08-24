@@ -257,9 +257,6 @@ const SalesOrder: React.FC<Props> = ({
         countBelVolDisPrice++;
         setAppProcSummary(false);
       }
-    }
-
-    for (let i = 0; i < tableData.length; i++) {
       if (tableData[i]["belCost"] == "Y") {
         countBelowCost++;
       }
