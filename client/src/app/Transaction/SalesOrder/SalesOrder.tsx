@@ -149,7 +149,6 @@ const SalesOrder: React.FC<Props> = ({
   const handleWennWorks = () => {
     setApprovalTitle(`Below Standard Discounting`); // title in approval you must set here!
     setAppProcSummary(true); // to display remarks
-    console.log(approvalSummaryRemarks);
   };
 
   const now = new Date();
@@ -314,30 +313,40 @@ const SalesOrder: React.FC<Props> = ({
             // if approver count is greater than 1 it must save multiple approver ID
             console.log(approverData);
 
-            const payload = {
-              AppProcID: AppProcID,
-              ReqDate: todayDate,
-              DocType: "SalesOrder",
-              DraftNum: draftNumber,
-              Approver: approver, // Approver ID
-              Originator: userIDData, // this must be the userID
-              Remarks: approvalSummaryRemarks,
-              Status: "Pending",
-            };
+            approverData.forEach((approverObj) => {
+              const approver = approverObj.UserID; // Extract UserID to use as approver
 
-            axios
-              .post(
-                `http://172.16.10.169:5000/api/v1/approval-summary`,
-                payload
-              )
-              .then((response) => {
-                if (response.statusText == "OK") {
+              const payload = {
+                AppProcID: AppProcID,
+                ReqDate: todayDate,
+                DocType: "SalesOrder",
+                DraftNum: draftNumber,
+                Approver: approver, // Approver ID
+                Originator: userIDData, // this must be the userID
+                Remarks: approvalSummaryRemarks,
+                Status: "Pending",
+              };
+
+              axios
+                .post(
+                  `http://172.16.10.169:5000/api/v1/approval-summary`,
+                  payload
+                )
+                .then((response) => {
+                  if (response.statusText === "OK") {
+                    Swal.fire({
+                      icon: "success",
+                      text: `Successfully saved for approver ${approver}`,
+                    });
+                  }
+                })
+                .catch((error) => {
                   Swal.fire({
-                    icon: "success",
-                    text: "Successfully Save",
+                    icon: "error",
+                    text: `Failed to save for approver ${approver}`,
                   });
-                }
-              });
+                });
+            });
           }
         });
     } else if (countBelowCost > 0) {
