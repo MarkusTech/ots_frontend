@@ -271,10 +271,6 @@ const SalesOrder: React.FC<Props> = ({
         .get(`http://localhost:5000/api/v1/get-below-standard-discounting`)
         .then((response) => {
           const AppProcID = response.data.approvalProcedureID;
-          const approver = response.data.approver.recordset[0].UserID;
-          const approverCount =
-            response.data.approverCount.recordset[0].ApproverCount;
-
           const approverData: ApproverData[] =
             response.data.approver.recordset.map((item: any) => ({
               AppID: item.AppID,
@@ -284,7 +280,9 @@ const SalesOrder: React.FC<Props> = ({
             }));
 
           // if approver count is equal to 1
-          if (approverCount == 1) {
+          approverData.forEach((approverObj) => {
+            const approver = approverObj.UserID; // Extract UserID to use as approver
+
             const payload = {
               AppProcID: AppProcID,
               ReqDate: todayDate,
@@ -302,52 +300,20 @@ const SalesOrder: React.FC<Props> = ({
                 payload
               )
               .then((response) => {
-                if (response.statusText == "OK") {
+                if (response.statusText === "OK") {
                   Swal.fire({
                     icon: "success",
-                    text: "Successfully Save",
+                    text: `Successfully saved for approver ${approver}`,
                   });
                 }
-              });
-          } else {
-            // if approver count is greater than 1 it must save multiple approver ID
-            console.log(approverData);
-
-            approverData.forEach((approverObj) => {
-              const approver = approverObj.UserID; // Extract UserID to use as approver
-
-              const payload = {
-                AppProcID: AppProcID,
-                ReqDate: todayDate,
-                DocType: "SalesOrder",
-                DraftNum: draftNumber,
-                Approver: approver, // Approver ID
-                Originator: userIDData, // this must be the userID
-                Remarks: approvalSummaryRemarks,
-                Status: "Pending",
-              };
-
-              axios
-                .post(
-                  `http://172.16.10.169:5000/api/v1/approval-summary`,
-                  payload
-                )
-                .then((response) => {
-                  if (response.statusText === "OK") {
-                    Swal.fire({
-                      icon: "success",
-                      text: `Successfully saved for approver ${approver}`,
-                    });
-                  }
-                })
-                .catch((error) => {
-                  Swal.fire({
-                    icon: "error",
-                    text: `Failed to save for approver ${approver}`,
-                  });
+              })
+              .catch((error) => {
+                Swal.fire({
+                  icon: "error",
+                  text: `Failed to save for approver ${approver}`,
                 });
-            });
-          }
+              });
+          });
         });
     } else if (countBelowCost > 0) {
       // Below Cost
