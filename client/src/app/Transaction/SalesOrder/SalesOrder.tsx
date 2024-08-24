@@ -310,7 +310,7 @@ const SalesOrder: React.FC<Props> = ({
               .catch((error) => {
                 Swal.fire({
                   icon: "error",
-                  text: `Failed to save for approver ${approver}`,
+                  text: `Failed to save for approver`,
                 });
               });
           });
