@@ -279,10 +279,8 @@ const SalesOrder: React.FC<Props> = ({
               AppLevel: item.AppLevel,
             }));
 
-          // if approver count is equal to 1
           approverData.forEach((approverObj) => {
             const approver = approverObj.UserID; // Extract UserID to use as approver
-
             const payload = {
               AppProcID: AppProcID,
               ReqDate: todayDate,
