@@ -426,6 +426,74 @@ const SalesOrder: React.FC<Props> = ({
                 .then((response) => {
                   console.log("Data sent successfully:", response.data);
                   setAppProcSummary(true);
+
+                  let countBelVolDisPrice = 0;
+                  let countBelowCost = 0;
+
+                  for (let i = 0; i < tableData.length; i++) {
+                    if (tableData[i]["belVolDisPrice"] == "Y") {
+                      countBelVolDisPrice++;
+                      setAppProcSummary(false);
+                    }
+                    if (tableData[i]["belCost"] == "Y") {
+                      countBelowCost++;
+                    }
+                  }
+
+                  // This code will execute if there is Y in Below Volume Discount Price
+                  if (countBelVolDisPrice > 0) {
+                    axios
+                      .get(
+                        `http://localhost:5000/api/v1/get-below-standard-discounting`
+                      )
+                      .then((response) => {
+                        const AppProcID = response.data.approvalProcedureID;
+                        const approverData: ApproverData[] =
+                          response.data.approver.recordset.map((item: any) => ({
+                            AppID: item.AppID,
+                            AppProcID: item.AppProcID,
+                            UserID: item.UserID,
+                            AppLevel: item.AppLevel,
+                          }));
+
+                        approverData.forEach((approverObj) => {
+                          const approver = approverObj.UserID; // Extract UserID to use as approver
+                          const payload = {
+                            AppProcID: AppProcID,
+                            ReqDate: todayDate,
+                            DocType: "SalesOrder",
+                            DraftNum: detailsDraftNumber,
+                            Approver: approver, // Approver ID
+                            Originator: userIDData, // this must be the userID
+                            Remarks: approvalSummaryRemarks,
+                            Status: "Pending",
+                          };
+
+                          axios
+                            .post(
+                              `http://172.16.10.169:5000/api/v1/approval-summary`,
+                              payload
+                            )
+                            .then((response) => {
+                              if (response.statusText === "OK") {
+                                Swal.fire({
+                                  icon: "success",
+                                  text: `Successfully saved for approver ${approver}`,
+                                });
+                              }
+                            })
+                            .catch((error) => {
+                              Swal.fire({
+                                icon: "error",
+                                text: `Failed to save for approver`,
+                              });
+                            });
+                        });
+                      });
+                  } else if (countBelowCost > 0) {
+                    // Below Cost
+                    console.log(`Below Cost`);
+                  }
                 })
                 .catch((error) => {
                   console.error("Error sending data:", error);
