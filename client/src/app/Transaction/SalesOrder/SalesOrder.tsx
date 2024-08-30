@@ -316,6 +316,7 @@ const SalesOrder: React.FC<Props> = ({
     }
   };
 
+  // For saving order into database
   const sendToProductionAPI = () => {
     Swal.fire({
       title: "Do you want to save this Draft?",
