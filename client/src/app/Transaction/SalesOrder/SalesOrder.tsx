@@ -427,6 +427,7 @@ const SalesOrder: React.FC<Props> = ({
                   console.log("Data sent successfully:", response.data);
                   setAppProcSummary(true);
 
+                  // Approval Procedure
                   let countBelVolDisPrice = 0;
                   let countBelowCost = 0;
 
