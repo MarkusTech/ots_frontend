@@ -426,7 +426,6 @@ const SalesOrder: React.FC<Props> = ({
                 .post(detailsPostAPI, data)
                 .then((response) => {
                   console.log("Data sent successfully:", response.data);
-                  // setAppProcSummary(true);
 
                   setApprovalTitle(`Below Standard Discounting`); // title in approval you must set here!
                   setAppProcSummary(true); // to display remarks
