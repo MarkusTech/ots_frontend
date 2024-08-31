@@ -432,16 +432,17 @@ const SalesOrder: React.FC<Props> = ({
                     if (rowData.belVolDisPrice == "Y") {
                       setApprovalTitle(`Approval - Below Standard Discounting`); // title in approval you must set here!
                       setAppProcSummary(true); // to display remarks
+                    } else {
+                      Swal.fire({
+                        icon: "success",
+                        text: "Successfully Save to Draft",
+                      });
                     }
                   });
                 })
                 .catch((error) => {
                   console.error("Error sending data:", error);
                 });
-              // Swal.fire({
-              //   icon: "success",
-              //   text: "Successfully Save to Draft",
-              // });
             }, 1000);
           })
           .catch((error) => {
