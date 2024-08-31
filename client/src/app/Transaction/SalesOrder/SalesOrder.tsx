@@ -298,7 +298,7 @@ const SalesOrder: React.FC<Props> = ({
                 if (response.statusText === "OK") {
                   Swal.fire({
                     icon: "success",
-                    text: `Successfully saved for approver ${approver}`,
+                    text: `Successfully sent for approval`,
                   });
                 }
               })
