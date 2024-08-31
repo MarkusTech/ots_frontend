@@ -427,16 +427,16 @@ const SalesOrder: React.FC<Props> = ({
                 .then((response) => {
                   console.log("Data sent successfully:", response.data);
 
-                  setApprovalTitle(`Below Standard Discounting`); // title in approval you must set here!
+                  setApprovalTitle(`Approval - Below Standard Discounting`); // title in approval you must set here!
                   setAppProcSummary(true); // to display remarks
                 })
                 .catch((error) => {
                   console.error("Error sending data:", error);
                 });
-              Swal.fire({
-                icon: "success",
-                text: "Successfully Save to Draft",
-              });
+              // Swal.fire({
+              //   icon: "success",
+              //   text: "Successfully Save to Draft",
+              // });
             }, 2000);
           })
           .catch((error) => {
