@@ -437,7 +437,7 @@ const SalesOrder: React.FC<Props> = ({
               //   icon: "success",
               //   text: "Successfully Save to Draft",
               // });
-            }, 2000);
+            }, 1000);
           })
           .catch((error) => {
             console.error("Error sending data:", error);
