@@ -427,8 +427,13 @@ const SalesOrder: React.FC<Props> = ({
                 .then((response) => {
                   console.log("Data sent successfully:", response.data);
 
-                  setApprovalTitle(`Approval - Below Standard Discounting`); // title in approval you must set here!
-                  setAppProcSummary(true); // to display remarks
+                  // identifying the type of approval
+                  dataTable.map((rowData) => {
+                    if (rowData.belVolDisPrice == "Y") {
+                      setApprovalTitle(`Approval - Below Standard Discounting`); // title in approval you must set here!
+                      setAppProcSummary(true); // to display remarks
+                    }
+                  });
                 })
                 .catch((error) => {
                   console.error("Error sending data:", error);
