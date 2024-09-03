@@ -52,8 +52,7 @@ export default function Home() {
   } = useWindowState(); // Use the state and functions
 
   // task
-  // const unseenCount = useNotifications();
-  const unseenCount = 5;
+  const unseenCount = useNotifications();
 
   const [rounterName, setRounterName] = React.useState("");
 
