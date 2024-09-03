@@ -767,9 +767,12 @@ export default function Home() {
             {isLoggedInFloater && (
               <div>
                 {/* task */}
-                <div className="notification">
-                  <NotificationBell unseenCount={unseenCount} />
+                <div className="notification-container">
+                  <div className="notification">
+                    <NotificationBell unseenCount={unseenCount} />
+                  </div>
                 </div>
+
                 <div className="absolute bottom-2 right-2 rounded-lg bg-white flex gap-3 shadow-xl text-[13px]">
                   <div className="flex gap-2 p-2 transition-all hover:text-[#F0AB00]">
                     <div className="">User:</div>

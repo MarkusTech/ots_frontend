@@ -357,3 +357,13 @@ textarea {
 .red-circle {
   background-color: red;
 }
+
+.notification-container {
+  display: flex;
+  justify-content: flex-end; /* Aligns the notification to the right */
+  width: 100%; /* Ensures the container takes the full width */
+}
+
+.notification {
+  display: flex;
+}
