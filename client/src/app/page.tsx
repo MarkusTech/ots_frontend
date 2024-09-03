@@ -51,7 +51,7 @@ export default function Home() {
     toggleWindow,
   } = useWindowState(); // Use the state and functions
 
-  // task
+  // Notification Count
   const unseenCount = useNotifications();
 
   const [rounterName, setRounterName] = React.useState("");
