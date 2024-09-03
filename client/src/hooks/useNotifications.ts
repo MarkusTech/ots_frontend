@@ -1,10 +1,9 @@
 // hooks/useNotifications.ts
 import { useState, useEffect } from "react";
 
-type Notification = {
-  id: string;
-  message: string;
-  seen: boolean;
+type NotificationResponse = {
+  success: boolean;
+  approverCount: number;
 };
 
 const useNotifications = () => {
@@ -12,14 +11,18 @@ const useNotifications = () => {
 
   useEffect(() => {
     const fetchNotifications = async () => {
-      // Replace with your API endpoint
-      const response = await fetch("/api/notifications");
-      const data: Notification[] = await response.json();
+      try {
+        const response = await fetch(
+          "http://localhost:5000/api/v1/approval-notification"
+        );
+        const data: NotificationResponse = await response.json();
 
-      const unseenNotifications = data.filter(
-        (notification) => !notification.seen
-      );
-      setUnseenCount(unseenNotifications.length);
+        if (data.success) {
+          setUnseenCount(data.approverCount);
+        }
+      } catch (error) {
+        console.error("Error fetching notifications:", error);
+      }
     };
 
     fetchNotifications();
