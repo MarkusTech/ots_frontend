@@ -6,9 +6,11 @@ const approvalNotification = async (req, res) => {
       `select count(AppProcID) from [OTS_DB].[dbo].[AppProc_Summary] Where AppProcID = 1038`
     );
 
+    const notificationCount = result.recordset[0];
+
     res.status(200).json({
       success: true,
-      data: result.recordset[0],
+      data: notificationCount,
     });
   } catch (error) {
     console.log(error);
