@@ -51,6 +51,9 @@ export default function Home() {
     toggleWindow,
   } = useWindowState(); // Use the state and functions
 
+  // const unseenCount = useNotifications();
+  const unseenCount = 5;
+
   const [rounterName, setRounterName] = React.useState("");
 
   // For submenu states
@@ -304,6 +307,9 @@ export default function Home() {
                 width={500}
                 height={500}
               />
+            </div>
+            <div className="p-5">
+              <NotificationBell unseenCount={unseenCount} />
             </div>
             {/* If credentials are correct and the user is Admin */}
             {isAdminLoggedIn && (
