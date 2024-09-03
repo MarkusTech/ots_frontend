@@ -51,6 +51,7 @@ export default function Home() {
     toggleWindow,
   } = useWindowState(); // Use the state and functions
 
+  // task
   // const unseenCount = useNotifications();
   const unseenCount = 5;
 
@@ -308,9 +309,12 @@ export default function Home() {
                 height={500}
               />
             </div>
+
+            {/* task */}
             <div className="p-5">
               <NotificationBell unseenCount={unseenCount} />
             </div>
+
             {/* If credentials are correct and the user is Admin */}
             {isAdminLoggedIn && (
               <div className="flex items-center justify-center">
