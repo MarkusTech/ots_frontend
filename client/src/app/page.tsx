@@ -766,7 +766,7 @@ export default function Home() {
 
             {isLoggedInFloater && (
               <div>
-                {/* task */}
+                {/* Notification Bell */}
                 {isAdminLoggedIn && (
                   <div className="notification-container">
                     <div className="notification">
