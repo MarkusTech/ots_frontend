@@ -308,12 +308,6 @@ export default function Home() {
                 height={500}
               />
             </div>
-
-            {/* task */}
-            <div className="p-5">
-              <NotificationBell unseenCount={unseenCount} />
-            </div>
-
             {/* If credentials are correct and the user is Admin */}
             {isAdminLoggedIn && (
               <div className="flex items-center justify-center">
@@ -771,26 +765,34 @@ export default function Home() {
             )}
 
             {isLoggedInFloater && (
-              <div className="absolute bottom-2 right-2 rounded-lg bg-white flex gap-3 shadow-xl text-[13px]">
-                <div className="flex gap-2 p-2 transition-all hover:text-[#F0AB00]">
-                  <div className="">User:</div>
-                  <span className="underline">{formData.username}</span>
+              <div>
+                {/* task */}
+                <div className="notification">
+                  <NotificationBell unseenCount={unseenCount} />
                 </div>
-                <div className="flex gap-2 p-2">
-                  <div>Branch ID:</div>
-                  <span className="underline">{formData.branchID}</span>
-                </div>
-                <div className="flex gap-2 p-2">
-                  <div>Branch:</div>
-                  <span className="underline">{formData.branchName}</span>
-                </div>
-                <div className="flex gap-2 p-2">
-                  <div>WHS Code:</div>
-                  <span className="underline">{formData.warehouseCode}</span>
-                </div>
-                <div className="flex gap-2 p-2">
-                  <div>Pricelist Num:</div>
-                  <span className="underline">{formData.priceListNumber}</span>
+                <div className="absolute bottom-2 right-2 rounded-lg bg-white flex gap-3 shadow-xl text-[13px]">
+                  <div className="flex gap-2 p-2 transition-all hover:text-[#F0AB00]">
+                    <div className="">User:</div>
+                    <span className="underline">{formData.username}</span>
+                  </div>
+                  <div className="flex gap-2 p-2">
+                    <div>Branch ID:</div>
+                    <span className="underline">{formData.branchID}</span>
+                  </div>
+                  <div className="flex gap-2 p-2">
+                    <div>Branch:</div>
+                    <span className="underline">{formData.branchName}</span>
+                  </div>
+                  <div className="flex gap-2 p-2">
+                    <div>WHS Code:</div>
+                    <span className="underline">{formData.warehouseCode}</span>
+                  </div>
+                  <div className="flex gap-2 p-2">
+                    <div>Pricelist Num:</div>
+                    <span className="underline">
+                      {formData.priceListNumber}
+                    </span>
+                  </div>
                 </div>
               </div>
             )}
