@@ -13,7 +13,7 @@ const useNotifications = () => {
     const fetchNotifications = async () => {
       try {
         const response = await fetch(
-          "http://localhost:5000/api/v1/approval-notification"
+          "http://172.16.10.169:5000/api/v1/approval-notification"
         );
         const data: NotificationResponse = await response.json();
 
