@@ -2160,10 +2160,8 @@ const SalesOrder: React.FC<Props> = ({
   const handleUOM = async (rowindex: any, BaseQty: any, UomCode: any) => {
     const updatedTableData = [...tableData];
     const item = updatedTableData[UOMListIndex];
-
     const uomtaxCode = item["taxCode"];
     const uomitemCode = item["itemCode"];
-
     const lowerbound = await axios.get(
       `${backendAPI2}/api/v2/lowerbound/${priceListNum}/${uomtaxCode}/${uomitemCode}/${warehouseCode}/${BaseQty}`
     );
@@ -2175,9 +2173,7 @@ const SalesOrder: React.FC<Props> = ({
       `${backendAPI2}/api/v2/srp/${uomitemCode}/${BaseQty}/${UomCode}/${uomtaxCode}/${lowerBoundFinalItem}/${cardCodedata}/${priceListNum}`
     );
     const srpdata = srp.data.data;
-
     const quantityXuomConversion = item.quantity * BaseQty;
-
     let warehousecurrent = "";
 
     if (item.location == "") {
@@ -2189,8 +2185,6 @@ const SalesOrder: React.FC<Props> = ({
     const disPrice = await axios.get(
       `${backendAPI2}/api/v2/discount-price/${brandID}/${item.sellingPriceAfterDiscount}/${cardCodedata}/${item.itemCode}/${item.quantity}/${UomCode}/${item.lowerBound}/N/N/N/N/${item.taxCode}`
     );
-    const disPriceArr = disPrice.data.data;
-
     const stocksAvailability = await axios.get(
       `${backendAPI2}/api/v2/stocks-availability/0/${item.itemCode}/${item.location}/${quantityXuomConversion}/${item.excludeBO}`
     );
@@ -2217,7 +2211,6 @@ const SalesOrder: React.FC<Props> = ({
   // Mode of Releasing Function
   const modeReleasing = (value: any) => {
     const updatedTableData = [...tableData];
-
     const listArryLen = updatedTableData.length;
 
     for (let i = 0; i < listArryLen; i++) {
@@ -2233,7 +2226,6 @@ const SalesOrder: React.FC<Props> = ({
 
   const changeManualModRel = (moderel: any) => {
     const updatedTableData = [...tableData];
-
     const item = updatedTableData[selectedRowIndex];
     const getData = moderel;
     const parts = getData.split("-");
@@ -2259,7 +2251,6 @@ const SalesOrder: React.FC<Props> = ({
 
   const changeManualTruckPanel = (trucker: any) => {
     const updatedTableData = [...tableData];
-
     const item = updatedTableData[selectedRowIndex];
 
     updatedTableData[selectedRowIndex] = {
@@ -2273,7 +2264,6 @@ const SalesOrder: React.FC<Props> = ({
 
   const changeManualPickUpLocation = (location: any) => {
     const updatedTableData = [...tableData];
-
     const item = updatedTableData[selectedRowIndex];
 
     updatedTableData[selectedRowIndex] = {
@@ -2288,23 +2278,21 @@ const SalesOrder: React.FC<Props> = ({
   const handleWarehouseChange = async (itemdata: any) => {
     const updatedTableData = [...tableData];
     const item = updatedTableData[selectedRowIndex];
-
     const quantityXuomConversion = item.quantity * item.uomConversion;
 
     const stocksAvailability = await axios.get(
       `${backendAPI2}/api/v2/stocks-availability/0/${item.itemCode}/${itemdata}/${quantityXuomConversion}/${item.excludeBO}`
     );
     const stocksAvailabilityArr = stocksAvailability.data.data;
-
     // Pick Up Location
     const pickUpLocation = await axios.get(
       `${backendAPI2}/api/v2/pickup-location/${itemCodeData}/1/${itemdata}`
     );
     const pickUpLocationData = pickUpLocation.data.data[0].location;
-
     // get the last 2 string algorithm
     const getTableData = itemdata;
     const lastTwo = getTableData.substring(getTableData.length - 2);
+
     if (lastTwo == "DS") {
       updatedTableData[selectedRowIndex] = {
         ...item,
@@ -2332,7 +2320,6 @@ const SalesOrder: React.FC<Props> = ({
 
     if (isCheckedCash != true) {
       setccstatus(true);
-
       const updatedTableData = [...tableData];
       const tableDatalen = tableData.length;
 
@@ -2355,7 +2342,6 @@ const SalesOrder: React.FC<Props> = ({
 
       for (let i = 0; i < tableDatalen; i++) {
         setccstatus(true);
-
         const item = updatedTableData[i];
 
         updatedTableData[i] = {
@@ -2364,7 +2350,6 @@ const SalesOrder: React.FC<Props> = ({
         };
 
         setTableData(updatedTableData);
-
         setccstatus(false);
       }
     }
@@ -2388,7 +2373,6 @@ const SalesOrder: React.FC<Props> = ({
         };
 
         setTableData(updatedTableData);
-
         const item2 = updatedTableData[i];
 
         axios
@@ -2402,7 +2386,6 @@ const SalesOrder: React.FC<Props> = ({
               ((item.sellingPriceBeforeDiscount - disAfterPrice) /
                 item.sellingPriceBeforeDiscount) *
               100;
-
             const newupdatedTableData = [...tableData];
             const itemnew = newupdatedTableData[i];
 
@@ -2414,7 +2397,6 @@ const SalesOrder: React.FC<Props> = ({
               sellingPriceAfterDiscountTemp: itemnew.sellingPriceBeforeDiscount,
             };
             setTableData(updatedTableData);
-
             setccstatus(false);
           })
           .catch((e) => {
