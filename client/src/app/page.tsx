@@ -57,7 +57,6 @@ export default function Home() {
   const [rounterName, setRounterName] = React.useState("");
 
   // For submenu states
-  const [subsubmenuOpen, setSubsubmenuOpen] = useState(false);
   const [submenuOpen, setSubmenuOpen] = useState(false);
   const [submenuOpenInq, setSubmenuOpenInq] = useState(false);
   const [submenuOpenReports, setSubmenuOpenReports] = useState(false);
