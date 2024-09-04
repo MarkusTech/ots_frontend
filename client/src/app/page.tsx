@@ -460,7 +460,7 @@ export default function Home() {
                             <li onClick={handleSubmenuClick}>
                               <a
                                 onClick={() => toggleWindow("salesqoutation")}
-                                className={`${subsubmenuOpen1}`}
+                                // className={`${subsubmenuOpen1}`}
                               >
                                 Sales Quotation
                               </a>
@@ -468,7 +468,7 @@ export default function Home() {
                             <li onClick={handleSubmenuClick}>
                               <a
                                 onClick={() => toggleWindow("salesorder")}
-                                className={`${subsubmenuOpen2}`}
+                                // className={`${subsubmenuOpen2}`}
                               >
                                 Sales Order
                               </a>
