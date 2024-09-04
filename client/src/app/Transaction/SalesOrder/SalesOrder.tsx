@@ -2908,26 +2908,6 @@ const SalesOrder: React.FC<Props> = ({
   };
 
   // END of Payment function
-  // const [displayModeDrop, setDisplayModeDrop] = useState(false);
-
-  // useEffect(() => {
-  //   const allItemsArr = [...tableData];
-  //   const allItemsArrLen = allItemsArr.length;
-
-  //   let countAllreleasing = 0;
-
-  //   for (let i = 0; i < allItemsArrLen; i++) {
-  //     if (allItemsArr[i]["modeOfReleasing"] !== "") {
-  //       countAllreleasing++;
-  //     }
-  //   }
-
-  //   if (countAllreleasing === allItemsArrLen) {
-  //     setDisplayModeDrop(false);
-  //   } else {
-  //     setDisplayModeDrop(true);
-  //   }
-  // }, [tableData]);
   // ------------------------------ Windows Print -------------------------------
   const PrintReceipt = () => {
     const printWindow = window.open("", "_blank");
