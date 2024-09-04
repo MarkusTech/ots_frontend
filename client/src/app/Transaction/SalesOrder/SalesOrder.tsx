@@ -1909,7 +1909,6 @@ const SalesOrder: React.FC<Props> = ({
 
       let taxRateDataNow = 0;
       let taxCodeDataNow = "";
-      let lowerBoundNow = 0;
 
       taxRateData.map((e: any) => {
         taxRateDataNow = e.Rate;
@@ -2054,43 +2053,32 @@ const SalesOrder: React.FC<Props> = ({
       const disPrice = await axios.get(
         `${backendAPI2}/api/v2/discount-price/${brandID}/${disPriceBefDis}/${disCardCode}/${disItemCode}/${quantity}/${disUOM}/${disLowerBound}/N/N/N/N/${disTaxCode}`
       );
-
       const disPriceArr = disPrice.data.data;
-
       const disAfterPrice = disPriceArr[0]["DiscPrice"];
-
       const disRateFor =
         ((disPriceBefDis - disAfterPrice) / disPriceBefDis) * 100;
-
       // Cost
       const cost = await axios.get(
         `${backendAPI2}/api/v2/cost/${item.itemCode}/${warehouseCode}`
       );
       const costArr = cost.data.data;
-
       let belowCostBool = "";
-
       if (item.sellingPriceAfterDiscount < costArr[0]["Cost"]) {
         belowCostBool = "N";
       } else {
         belowCostBool = "Y";
       }
-
       const quantityXuomConversion = quantity * item.uomConversion;
-
       // Stocks Availability
       const stocksAvailability = await axios.get(
         `${backendAPI2}/api/v2/stocks-availability/0/${disItemCode}/${item.location}/${quantityXuomConversion}/${item.excludeBO}`
       );
       const stocksAvailabilityArr = stocksAvailability.data.data;
-
       let unitprice = item.sellingPriceAfterDiscountTemp / (1 + 0.12);
       let taxAmountx = item.sellingPriceAfterDiscountTemp - unitprice;
-
       // Get The data and splice algorithm
       const getTableData = tableData[0]["location"];
       const lastTwo = getTableData.substring(getTableData.length - 2);
-
       const grossFinalTotal = quantity * disAfterPrice;
 
       if (lastTwo == "DS") {
