@@ -1236,10 +1236,7 @@ const SalesOrder: React.FC<Props> = ({
   };
 
   // ------------------------ End Filter Date --------------------------
-
-  let customerData2 = [{}];
   let currentCustomerData = customerList;
-  const arrayCustomer = [customerList];
 
   const [modeOfrelisingArr, setmodeOfrelisingArr] = useState([
     {
@@ -1341,7 +1338,6 @@ const SalesOrder: React.FC<Props> = ({
 
   useEffect(() => {
     onAddHeader();
-    // onAddheaderItems();
   }, []);
 
   const handleAddRow = () => {
@@ -1581,12 +1577,9 @@ const SalesOrder: React.FC<Props> = ({
     };
 
     setcardCodedata(id);
-
     setCustomerData([newArray]);
-
     // to clear search input history
     setSearchTerm("");
-
     setFormData({
       ...formData,
       CustomerCode: id,
