@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Draggable from "react-draggable";
 import SalesOrder from "./Transaction/SalesOrder/SalesOrder";
 import ViewUser from "./Setup/ViewUsers/page";
