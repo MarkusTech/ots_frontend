@@ -1008,7 +1008,6 @@ const SalesOrder: React.FC<Props> = ({
                 "error"
               );
             }
-
             // Show error message
             Swal.fire(
               "Internal Server Error, Contact MIS Department",
@@ -1025,10 +1024,6 @@ const SalesOrder: React.FC<Props> = ({
 
   const handleSaveCommit = async () => {
     const validateTable = [...tableData];
-
-    const finalTotalListArr = [...finalTotalList];
-    const arrList = finalTotalListArr[0];
-
     const allItemsArr = [...tableData];
     const allItemsArrLen = allItemsArr.length;
 
