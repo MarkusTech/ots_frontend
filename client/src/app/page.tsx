@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { useRouter } from "next/navigation";
 import Draggable from "react-draggable";
 import SalesOrder from "./Transaction/SalesOrder/SalesOrder";
 import ViewUser from "./Setup/ViewUsers/page";
@@ -42,7 +41,6 @@ const initialFormData: FormData = {
 };
 
 export default function Home() {
-  const router = useRouter(); //Router
   const {
     showSalesOrder,
     viewUsers,
@@ -65,8 +63,8 @@ export default function Home() {
   const [routerName, setRouterName] = useState("");
 
   // submenu transaction
-  const [subsubmenuOpen1, setSubsubmenuOpen1] = useState("");
-  const [subsubmenuOpen2, setSubsubmenuOpen2] = useState("");
+  // const [subsubmenuOpen1, setSubsubmenuOpen1] = useState("");
+  // const [subsubmenuOpen2, setSubsubmenuOpen2] = useState("");
 
   // For span active
   const [spanName1, setSpanName1] = useState("");
@@ -394,7 +392,7 @@ export default function Home() {
                             <li onClick={handleSubmenuClick}>
                               <a
                                 onClick={() => toggleWindow("approvalType")}
-                                className={`${subsubmenuOpen1}`}
+                                // className={`${subsubmenuOpen1}`}
                               >
                                 Approval Type
                               </a>
@@ -404,7 +402,7 @@ export default function Home() {
                                 onClick={() =>
                                   toggleWindow("approvalProcedure")
                                 }
-                                className={`${subsubmenuOpen2}`}
+                                // className={`${subsubmenuOpen2}`}
                               >
                                 Approval Procedure
                               </a>
@@ -427,7 +425,7 @@ export default function Home() {
                             <li onClick={handleSubmenuClick}>
                               <a
                                 onClick={() => toggleWindow("view")}
-                                className={`${subsubmenuOpen2}`}
+                                // className={`${subsubmenuOpen2}`}
                               >
                                 Users
                               </a>
