@@ -551,10 +551,8 @@ const SalesOrder: React.FC<Props> = ({
   // Handle Draft Submit && Handle Payment Validation
   const handleSubmit = () => {
     const validateTable = [...tableData];
-
     const allItemsArr = [...tableData];
     const allItemsArrLen = allItemsArr.length;
-
     let countAllreleasing = 0;
 
     // mode of realeasing
@@ -718,7 +716,6 @@ const SalesOrder: React.FC<Props> = ({
     const validateTable = [...tableData];
     const allItemsArr = [...tableData];
     const allItemsArrLen = allItemsArr.length;
-
     let countAllreleasing = 0;
 
     // mode of realeasing
