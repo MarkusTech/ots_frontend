@@ -52,18 +52,12 @@ export default function Home() {
   // Notification Count
   const unseenCount = useNotifications();
 
-  // const [rounterName, setRounterName] = React.useState("");
-
   // For submenu states
   const [submenuOpen, setSubmenuOpen] = useState(false);
   const [submenuOpenInq, setSubmenuOpenInq] = useState(false);
   const [submenuOpenReports, setSubmenuOpenReports] = useState(false);
   const [submenuOpenSetUp, setSubmenuOpenSetUp] = useState(false);
   const [submenuOpenApproval, setSubmenuOpenApproval] = useState(false);
-
-  // submenu transaction
-  // const [subsubmenuOpen1, setSubsubmenuOpen1] = useState("");
-  // const [subsubmenuOpen2, setSubsubmenuOpen2] = useState("");
 
   // For span active
   const [spanName1, setSpanName1] = useState("");
@@ -107,7 +101,6 @@ export default function Home() {
 
   function handleRounter(page: React.SetStateAction<string>) {
     if (page === "transaction") {
-      // setRounterName(page);
       setSubmenuOpen(!submenuOpen);
       setSubmenuOpenInq(false);
       setSubmenuOpenReports(false);
@@ -120,7 +113,6 @@ export default function Home() {
       setSpanName4("");
       setSpanName5("");
     } else if (page === "inquiry") {
-      // setRounterName(page);
       setSubmenuOpenInq(!submenuOpenInq);
       setSubmenuOpen(false);
       setSubmenuOpenReports(false);
@@ -133,7 +125,6 @@ export default function Home() {
       setSpanName4("");
       setSpanName5("");
     } else if (page === "reports") {
-      // setRounterName(page);
       setSubmenuOpenReports(!submenuOpenReports);
       setSubmenuOpen(false);
       setSubmenuOpenInq(false);
@@ -146,7 +137,6 @@ export default function Home() {
       setSpanName4("");
       setSpanName5("");
     } else if (page === "approval") {
-      // setRounterName(page);
       setSubmenuOpenSetUp(false);
       setSubmenuOpen(false);
       setSubmenuOpenInq(false);
@@ -159,7 +149,6 @@ export default function Home() {
       setSpanName4("active");
       setSpanName5("");
     } else if (page === "setup") {
-      // setRounterName(page);
       setSubmenuOpenSetUp(!submenuOpenSetUp);
       setSubmenuOpen(false);
       setSubmenuOpenInq(false);
@@ -319,18 +308,12 @@ export default function Home() {
                         {submenuOpen && (
                           <ul className="submenu p-2">
                             <li onClick={handleSubmenuClick}>
-                              <a
-                                onClick={() => toggleWindow("salesqoutation")}
-                                // className={`${subsubmenuOpen1}`}
-                              >
+                              <a onClick={() => toggleWindow("salesqoutation")}>
                                 Sales Quotation
                               </a>
                             </li>
                             <li onClick={handleSubmenuClick}>
-                              <a
-                                onClick={() => toggleWindow("salesorder")}
-                                // className={`${subsubmenuOpen2}`}
-                              >
+                              <a onClick={() => toggleWindow("salesorder")}>
                                 Sales Order
                               </a>
                             </li>
@@ -381,10 +364,7 @@ export default function Home() {
                           <ul className="submenu p-2">
                             {/* Add more submenu items as needed */}
                             <li onClick={handleSubmenuClick}>
-                              <a
-                                onClick={() => toggleWindow("approvalType")}
-                                // className={`${subsubmenuOpen1}`}
-                              >
+                              <a onClick={() => toggleWindow("approvalType")}>
                                 Approval Type
                               </a>
                             </li>
@@ -393,7 +373,6 @@ export default function Home() {
                                 onClick={() =>
                                   toggleWindow("approvalProcedure")
                                 }
-                                // className={`${subsubmenuOpen2}`}
                               >
                                 Approval Procedure
                               </a>
@@ -412,12 +391,7 @@ export default function Home() {
                           <ul className="submenu p-2">
                             {/* Add more submenu items as needed */}
                             <li onClick={handleSubmenuClick}>
-                              <a
-                                onClick={() => toggleWindow("view")}
-                                // className={`${subsubmenuOpen2}`}
-                              >
-                                Users
-                              </a>
+                              <a onClick={() => toggleWindow("view")}>Users</a>
                             </li>
                           </ul>
                         )}
@@ -443,18 +417,12 @@ export default function Home() {
                         {submenuOpen && (
                           <ul className="submenu p-2">
                             <li onClick={handleSubmenuClick}>
-                              <a
-                                onClick={() => toggleWindow("salesqoutation")}
-                                // className={`${subsubmenuOpen1}`}
-                              >
+                              <a onClick={() => toggleWindow("salesqoutation")}>
                                 Sales Quotation
                               </a>
                             </li>
                             <li onClick={handleSubmenuClick}>
-                              <a
-                                onClick={() => toggleWindow("salesorder")}
-                                // className={`${subsubmenuOpen2}`}
-                              >
+                              <a onClick={() => toggleWindow("salesorder")}>
                                 Sales Order
                               </a>
                             </li>
@@ -473,7 +441,6 @@ export default function Home() {
                           <ul className="submenu p-2">
                             <li>Price list & Stocks Inquiry</li>
                             <li>Credit Line Monitoring</li>
-                            {/* Add more submenu items as needed */}
                           </ul>
                         )}
                       </li>
@@ -488,7 +455,6 @@ export default function Home() {
                           <ul className="submenu p-2">
                             <li>Price list & Stocks Inquiry</li>
                             <li>Credit Line Monitoring</li>
-                            {/* Add more submenu items as needed */}
                           </ul>
                         )}
                       </li>
@@ -516,7 +482,6 @@ export default function Home() {
         <div className="w-full overflow-auto">
           <div className="body w-[100%] bg-red-50 h-screen overflow-auto">
             {showSalesOrder && (
-              // onDrag={handleDrag}
               <Draggable handle=".header">
                 <div
                   className="container bg-white"
