@@ -54,7 +54,7 @@ export default function Home() {
   // Notification Count
   const unseenCount = useNotifications();
 
-  const [rounterName, setRounterName] = React.useState("");
+  // const [rounterName, setRounterName] = React.useState("");
 
   // For submenu states
   const [submenuOpen, setSubmenuOpen] = useState(false);
@@ -110,7 +110,7 @@ export default function Home() {
 
   function handleRounter(page: React.SetStateAction<string>) {
     if (page === "transaction") {
-      setRounterName(page);
+      // setRounterName(page);
       setSubmenuOpen(!submenuOpen);
       setSubmenuOpenInq(false);
       setSubmenuOpenReports(false);
@@ -123,7 +123,7 @@ export default function Home() {
       setSpanName4("");
       setSpanName5("");
     } else if (page === "inquiry") {
-      setRounterName(page);
+      // setRounterName(page);
       setSubmenuOpenInq(!submenuOpenInq);
       setSubmenuOpen(false);
       setSubmenuOpenReports(false);
@@ -136,7 +136,7 @@ export default function Home() {
       setSpanName4("");
       setSpanName5("");
     } else if (page === "reports") {
-      setRounterName(page);
+      // setRounterName(page);
       setSubmenuOpenReports(!submenuOpenReports);
       setSubmenuOpen(false);
       setSubmenuOpenInq(false);
@@ -149,7 +149,7 @@ export default function Home() {
       setSpanName4("");
       setSpanName5("");
     } else if (page === "approval") {
-      setRounterName(page);
+      // setRounterName(page);
       setSubmenuOpenSetUp(false);
       setSubmenuOpen(false);
       setSubmenuOpenInq(false);
@@ -162,7 +162,7 @@ export default function Home() {
       setSpanName4("active");
       setSpanName5("");
     } else if (page === "setup") {
-      setRounterName(page);
+      // setRounterName(page);
       setSubmenuOpenSetUp(!submenuOpenSetUp);
       setSubmenuOpen(false);
       setSubmenuOpenInq(false);
@@ -326,7 +326,7 @@ export default function Home() {
                             <li onClick={handleSubmenuClick}>
                               <a
                                 onClick={() => toggleWindow("salesqoutation")}
-                                className={`${subsubmenuOpen1}`}
+                                // className={`${subsubmenuOpen1}`}
                               >
                                 Sales Quotation
                               </a>
@@ -334,7 +334,7 @@ export default function Home() {
                             <li onClick={handleSubmenuClick}>
                               <a
                                 onClick={() => toggleWindow("salesorder")}
-                                className={`${subsubmenuOpen2}`}
+                                // className={`${subsubmenuOpen2}`}
                               >
                                 Sales Order
                               </a>
