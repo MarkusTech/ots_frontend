@@ -60,7 +60,6 @@ export default function Home() {
   const [submenuOpenReports, setSubmenuOpenReports] = useState(false);
   const [submenuOpenSetUp, setSubmenuOpenSetUp] = useState(false);
   const [submenuOpenApproval, setSubmenuOpenApproval] = useState(false);
-  const [routerName, setRouterName] = useState("");
 
   // submenu transaction
   // const [subsubmenuOpen1, setSubsubmenuOpen1] = useState("");
@@ -313,9 +312,7 @@ export default function Home() {
                     <ul>
                       {/* ----------------------------- TRANSACTION ------------------------------- */}
                       <li
-                        className={`p-2 linav ${
-                          routerName === "transaction" ? "active" : ""
-                        }`}
+                        className={`p-2 linav`}
                         onClick={() => handleRounter("transaction")}
                       >
                         <span className={`${spanName1}`}>Transaction</span>
@@ -344,9 +341,7 @@ export default function Home() {
 
                       {/* ----------------------------- INQUIRY ------------------------------- */}
                       <li
-                        className={`p-2 linav ${
-                          routerName === "inquiry" ? "active" : ""
-                        }`}
+                        className={`p-2 linav`}
                         onClick={() => handleRounter("inquiry")}
                       >
                         <span className={`${spanName2}`}>Inquiry</span>
@@ -361,9 +356,7 @@ export default function Home() {
 
                       {/* ----------------------------- REPORTS ------------------------------- */}
                       <li
-                        className={`p-2 linav ${
-                          routerName === "reports" ? "active" : ""
-                        }`}
+                        className={`p-2 linav`}
                         onClick={() => handleRounter("reports")}
                       >
                         <span className={`${spanName3}`}>Reports</span>
@@ -378,9 +371,7 @@ export default function Home() {
 
                       {/* ----------------------------- Approval Procedure ------------------------------- */}
                       <li
-                        className={`p-2 linav ${
-                          routerName === "approval" ? "active" : ""
-                        }`}
+                        className={`p-2 linav`}
                         onClick={() => handleRounter("approval")}
                       >
                         <span className={`${spanName4}`}>
@@ -413,9 +404,7 @@ export default function Home() {
 
                       {/* ----------------------------- SETUP ------------------------------- */}
                       <li
-                        className={`p-2 linav ${
-                          routerName === "setup" ? "active" : ""
-                        }`}
+                        className={`p-2 linav`}
                         onClick={() => handleRounter("setup")}
                       >
                         <span className={`${spanName5}`}>Set Up</span>
@@ -447,9 +436,7 @@ export default function Home() {
                     <ul>
                       {/* ----------------------------- TRANSACTION ------------------------------- */}
                       <li
-                        className={`p-2 linav ${
-                          routerName === "transaction" ? "active" : ""
-                        }`}
+                        className={`p-2 linav`}
                         onClick={() => handleRounter("transaction")}
                       >
                         <span className={`${spanName1}`}>Transaction</span>
@@ -478,9 +465,7 @@ export default function Home() {
 
                       {/* ----------------------------- INQUIRY ------------------------------- */}
                       <li
-                        className={`p-2 linav ${
-                          routerName === "inquiry" ? "active" : ""
-                        }`}
+                        className={`p-2 linav `}
                         onClick={() => handleRounter("inquiry")}
                       >
                         <span className={`${spanName2}`}>Inquiry</span>
@@ -495,9 +480,7 @@ export default function Home() {
 
                       {/* ----------------------------- REPORTS ------------------------------- */}
                       <li
-                        className={`p-2 linav ${
-                          routerName === "reports" ? "active" : ""
-                        }`}
+                        className={`p-2 linav`}
                         onClick={() => handleRounter("reports")}
                       >
                         <span className={`${spanName3}`}>Reports</span>
