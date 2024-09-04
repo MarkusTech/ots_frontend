@@ -3,7 +3,6 @@
 import React, { useEffect, useState } from "react";
 import Draggable from "react-draggable";
 import axios from "axios";
-import { useRef } from "react";
 import Swal from "sweetalert2";
 
 interface Props {
@@ -21,8 +20,6 @@ const SalesOrder: React.FC<Props> = ({
   userPriceListNumData,
   userIDData,
 }) => {
-  const inputRef = useRef<HTMLInputElement | null>(null);
-
   const [isSaved, setIsSaved] = useState(false); // to hide handle submit
   const [isCommited, setIsCommited] = useState(false); // to hide commit
 
