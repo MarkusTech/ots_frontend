@@ -1,6 +1,6 @@
 "use client";
 
-import React, { use, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import Draggable from "react-draggable";
 import axios from "axios";
 import { useRef } from "react";
