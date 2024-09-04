@@ -555,9 +555,6 @@ const SalesOrder: React.FC<Props> = ({
   const handleSubmit = () => {
     const validateTable = [...tableData];
 
-    const finalTotalListArr = [...finalTotalList];
-    const arrList = finalTotalListArr[0];
-
     const allItemsArr = [...tableData];
     const allItemsArrLen = allItemsArr.length;
 
