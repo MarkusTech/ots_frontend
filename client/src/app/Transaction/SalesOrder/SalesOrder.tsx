@@ -2419,7 +2419,6 @@ const SalesOrder: React.FC<Props> = ({
 
       for (let i = 0; i < tableDatalen; i++) {
         setccstatus(true);
-
         const item = updatedTableData[i];
 
         updatedTableData[i] = {
@@ -2428,7 +2427,6 @@ const SalesOrder: React.FC<Props> = ({
         };
 
         setTableData(updatedTableData);
-
         const item2 = updatedTableData[i];
 
         axios
@@ -2454,7 +2452,6 @@ const SalesOrder: React.FC<Props> = ({
               sellingPriceAfterDiscountTemp: disAfterPrice,
             };
             setTableData(updatedTableData);
-
             setccstatus(false);
           })
           .catch((e) => {
@@ -2491,7 +2488,6 @@ const SalesOrder: React.FC<Props> = ({
         };
 
         setTableData(updatedTableData);
-
         const item2 = updatedTableData[i];
 
         axios
@@ -2517,7 +2513,6 @@ const SalesOrder: React.FC<Props> = ({
               sellingPriceAfterDiscountTemp: itemnew.sellingPriceBeforeDiscount,
             };
             setTableData(updatedTableData);
-
             setccstatus(false);
           })
           .catch((e) => {
@@ -2549,9 +2544,7 @@ const SalesOrder: React.FC<Props> = ({
         };
 
         setTableData(updatedTableData);
-
         const item2 = updatedTableData[i];
-
         axios
           .get(
             `${backendAPI2}/api/v2/discount-price/${brandID}/${item.sellingPriceBeforeDiscount}/${cardCodedata}/${item.itemCode}/${item.quantity}/${item.uom}/${item.lowerBound}/${item2.creditcard}/${item2.debit}/${item2.pdc}/${item2.po}/${item.taxCode}`
@@ -2563,7 +2556,6 @@ const SalesOrder: React.FC<Props> = ({
               ((item.sellingPriceBeforeDiscount - disAfterPrice) /
                 item.sellingPriceBeforeDiscount) *
               100;
-
             const newupdatedTableData = [...tableData];
             const itemnew = newupdatedTableData[i];
 
@@ -2575,7 +2567,6 @@ const SalesOrder: React.FC<Props> = ({
               sellingPriceAfterDiscountTemp: disAfterPrice,
             };
             setTableData(updatedTableData);
-
             setccstatus(false);
           })
           .catch((e) => {
@@ -2599,7 +2590,6 @@ const SalesOrder: React.FC<Props> = ({
 
     if (isCheckedPDC != true) {
       setccstatus(true);
-
       const updatedTableData = [...tableData];
       const tableDatalen = tableData.length;
 
@@ -2612,7 +2602,6 @@ const SalesOrder: React.FC<Props> = ({
         };
 
         setTableData(updatedTableData);
-
         const finalArr = [...finalTotalList];
 
         finalArr[0] = {
@@ -2621,7 +2610,6 @@ const SalesOrder: React.FC<Props> = ({
         };
 
         setfinalTotalList(finalArr);
-
         setccstatus(false);
         setIsPaymentPDC("Y");
       }
@@ -2640,7 +2628,6 @@ const SalesOrder: React.FC<Props> = ({
         };
 
         setTableData(updatedTableData);
-
         const finalArr = [...finalTotalList];
 
         finalArr[0] = {
@@ -2649,7 +2636,6 @@ const SalesOrder: React.FC<Props> = ({
         };
 
         setfinalTotalList(finalArr);
-
         setccstatus(false);
       }
     }
@@ -2660,7 +2646,6 @@ const SalesOrder: React.FC<Props> = ({
 
     if (isCheckedPO != true) {
       setccstatus(true);
-
       const updatedTableData = [...tableData];
       const tableDatalen = tableData.length;
 
@@ -2703,7 +2688,6 @@ const SalesOrder: React.FC<Props> = ({
 
     if (isCheckedDatedCheck != true) {
       setccstatus(true);
-
       const updatedTableData = [...tableData];
       const tableDatalen = tableData.length;
 
@@ -2733,7 +2717,6 @@ const SalesOrder: React.FC<Props> = ({
 
       for (let i = 0; i < tableDatalen; i++) {
         setccstatus(true);
-
         const item = updatedTableData[i];
 
         updatedTableData[i] = {
@@ -2749,7 +2732,6 @@ const SalesOrder: React.FC<Props> = ({
         };
 
         setfinalTotalList(finalArr);
-
         setccstatus(false);
       }
     }
@@ -2792,7 +2774,6 @@ const SalesOrder: React.FC<Props> = ({
 
       for (let i = 0; i < tableDatalen; i++) {
         setccstatus(true);
-
         const item = updatedTableData[i];
 
         updatedTableData[i] = {
@@ -2808,7 +2789,6 @@ const SalesOrder: React.FC<Props> = ({
         };
 
         setfinalTotalList(finalArr);
-
         setccstatus(false);
       }
     }
@@ -2831,7 +2811,6 @@ const SalesOrder: React.FC<Props> = ({
         };
 
         setTableData(updatedTableData);
-
         const finalArr = [...finalTotalList];
 
         finalArr[0] = {
@@ -2850,7 +2829,6 @@ const SalesOrder: React.FC<Props> = ({
 
       for (let i = 0; i < tableDatalen; i++) {
         setccstatus(true);
-
         const item = updatedTableData[i];
 
         updatedTableData[i] = {
@@ -2859,7 +2837,6 @@ const SalesOrder: React.FC<Props> = ({
         };
 
         setTableData(updatedTableData);
-
         const finalArr = [...finalTotalList];
 
         finalArr[0] = {
@@ -2868,7 +2845,6 @@ const SalesOrder: React.FC<Props> = ({
         };
 
         setfinalTotalList(finalArr);
-
         setccstatus(false);
       }
     }
@@ -2892,7 +2868,6 @@ const SalesOrder: React.FC<Props> = ({
         };
 
         setTableData(updatedTableData);
-
         const finalArr = [...finalTotalList];
 
         finalArr[0] = {
@@ -2911,7 +2886,6 @@ const SalesOrder: React.FC<Props> = ({
 
       for (let i = 0; i < tableDatalen; i++) {
         setccstatus(true);
-
         const item = updatedTableData[i];
 
         updatedTableData[i] = {
@@ -2920,7 +2894,6 @@ const SalesOrder: React.FC<Props> = ({
         };
 
         setTableData(updatedTableData);
-
         const finalArr = [...finalTotalList];
 
         finalArr[0] = {
@@ -2929,7 +2902,6 @@ const SalesOrder: React.FC<Props> = ({
         };
 
         setfinalTotalList(finalArr);
-
         setccstatus(false);
       }
     }
