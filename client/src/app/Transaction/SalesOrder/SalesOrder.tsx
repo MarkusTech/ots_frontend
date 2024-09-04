@@ -2112,7 +2112,13 @@ const SalesOrder: React.FC<Props> = ({
         };
         setTableData(updatedTableData);
       }
-    } catch (e) {}
+    } catch (e) {
+      console.error("An error occurred while processing the request:", e);
+      Swal.fire({
+        icon: "error",
+        text: "Something went wrong while processing the data. Please try again.",
+      });
+    }
   };
 
   const handleChangeExcludeBO = async (value: any, rowIndex: any) => {
