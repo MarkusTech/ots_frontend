@@ -101,9 +101,6 @@ const SalesOrder: React.FC<Props> = ({
   const [openOUMPanel, setOpenOUMPanel] = useState(false);
   const [openModRelTablePanel, setOpenModRelTablePanel] = useState(false);
   const [openLocationPanel, setOpenLocationPanel] = useState(false);
-  const [showItems, setShowItems] = useState(false);
-
-  const [sellingPriceAfterDiscountData, setSellingPriceAfterDis] = useState(0);
 
   const [totalAfterVat, settotalAfterVat] = useState<string>("");
   const [totalBeforeVat, setTotalBeforeVat] = useState<string>("");
@@ -1995,10 +1992,8 @@ const SalesOrder: React.FC<Props> = ({
       }
 
       setTableData(updatedTableData);
-      setShowItems(false);
       setSelectedRowIndex(null);
       setOpenItemTablePanel(!openItemTablePanel);
-      setSellingPriceAfterDis(item.Price);
     }
     // to clear search input history
     setSearchTerm("");
@@ -2148,7 +2143,6 @@ const SalesOrder: React.FC<Props> = ({
         };
         setTableData(updatedTableData);
       }
-      setSellingPriceAfterDis(item.sellingPriceAfterDiscount);
     } catch (e) {}
   };
 
