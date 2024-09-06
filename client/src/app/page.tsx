@@ -717,39 +717,8 @@ export default function Home() {
 
             {/* Notification list */}
             {showNotificationList && (
-              <Draggable handle=".header">
-                <div
-                  className="container bg-white"
-                  style={{
-                    border: "1px solid #ccc",
-                    position: "absolute",
-                    zIndex: 2,
-                    top: "5%",
-                    left: "15%",
-                    transform: "translate(-50%, -50%)",
-                    width: "1300px",
-                  }}
-                >
-                  <div
-                    className="header grid grid-cols-1 p-2 text-left windowheader"
-                    style={{ cursor: "move" }}
-                  >
-                    <div className="flex justify-between items-center">
-                      <div>Notification List</div>
-                      <div>
-                        <span
-                          className="text-md text-red-600 cursor-pointer"
-                          onClick={() => setShowNotificationList(false)}
-                        >
-                          ❌
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="content">
-                    <NotificationList />
-                  </div>
-                </div>
+              <Draggable>
+                <NotificationList />
               </Draggable>
             )}
 
