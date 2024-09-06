@@ -25,7 +25,7 @@ import approvalProcedureRoutes from "./routes/approval/approvalProcedureRoutes.j
 import originatorRoutes from "./routes/users/originatorRoutes.js";
 import saveDetailsRoutes from "./routes/ordertaking/saveDetails.js";
 import salesCrewRoutes from "./routes/ordertaking/getSalesCrewRoutes.js";
-import saveApprovalSummaryRoutes from "./routes/ordertaking/saveAppProcSummaryRoutes.js";
+import approvalSummaryRoutes from "./routes/ordertaking/appProcSummaryRoutes.js";
 import getApprovalProcedureSummaryRoutes from "./routes/approval/getApprovalProcedureSummaryRoutes.js";
 import approvalNotificationRoutes from "./routes/approval/approvalNotificationRoutes.js";
 
@@ -75,7 +75,7 @@ app.use("/api/v1", approvalProcedureRoutes);
 app.use("/api/v1", originatorRoutes);
 app.use("/api/v1", saveDetailsRoutes);
 app.use("/api/v1", salesCrewRoutes);
-app.use("/api/v1", saveApprovalSummaryRoutes);
+app.use("/api/v1", approvalSummaryRoutes);
 app.use("/api/v1", getApprovalProcedureSummaryRoutes);
 app.use("/api/v1", approvalNotificationRoutes);
 

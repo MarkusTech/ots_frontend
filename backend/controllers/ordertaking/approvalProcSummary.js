@@ -43,4 +43,8 @@ const saveApprovalSummary = async (req, res) => {
   }
 };
 
-export { saveApprovalSummary };
+const getApprovalProcedureSummary = async (req, res) => {
+  res.send("");
+};
+
+export { saveApprovalSummary, getApprovalProcedureSummary };
