@@ -1,4 +1,5 @@
 import React from "react";
+import { useEffect, useState } from "react";
 import Draggable from "react-draggable";
 
 const NotificationList = () => {
