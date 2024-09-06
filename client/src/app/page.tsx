@@ -71,6 +71,7 @@ export default function Home() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isLoggedInFloater, setIsLoggedInFloater] = useState(false);
   const [isAdminLoggedIn, setIsAdminLoggedIn] = useState(false);
+  const [notificationList, setNotificationList] = useState(false);
 
   const logoutUser = () => {
     Swal.fire({
@@ -709,6 +710,45 @@ export default function Home() {
               </Draggable>
             )}
 
+            {/* Notification list */}
+            {notificationList && (
+              <Draggable handle=".header">
+                <div
+                  className="container bg-white"
+                  style={{
+                    border: "1px solid #ccc",
+                    position: "absolute",
+                    zIndex: 2,
+                    top: "5%",
+                    left: "15%",
+                    transform: "translate(-50%, -50%)",
+                    width: "1300px", // Add this line to set the width
+                  }}
+                >
+                  <div
+                    className="header grid grid-cols-1 p-2 text-left windowheader"
+                    style={{ cursor: "move" }}
+                  >
+                    <div className="flex justify-between items-center">
+                      <div>Approval Procedure</div>
+                      <div>
+                        <span
+                          className="text-md text-red-600 cursor-pointer"
+                          onClick={() => toggleWindow("approvalProcedure")}
+                        >
+                          ❌
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="content">
+                    <ApprovalProcedure />
+                  </div>
+                </div>
+              </Draggable>
+            )}
+
+            {/* Login Floater */}
             {isLoggedInFloater && (
               <div>
                 {/* Notification Bell */}
