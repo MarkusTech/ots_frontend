@@ -24,7 +24,6 @@ const NotificationBell: React.FC<NotificationBellProps> = ({
   return (
     <StyledBadge badgeContent={unseenCount} color="error">
       <NotificationsIcon fontSize="large" onClick={onClick} />{" "}
-      {/* Attach onClick */}
     </StyledBadge>
   );
 };
