@@ -13,6 +13,7 @@ import axios from "axios";
 import Swal from "sweetalert2";
 import useNotifications from "@/hooks/useNotifications";
 import NotificationBell from "@/components/NotificationBell";
+import NotificationList from "./Transaction/SalesOrder/NotificationList";
 
 interface FormData {
   userID: string;
@@ -71,7 +72,7 @@ export default function Home() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isLoggedInFloater, setIsLoggedInFloater] = useState(false);
   const [isAdminLoggedIn, setIsAdminLoggedIn] = useState(false);
-  const [notificationList, setNotificationList] = useState(false);
+  const [showNotificationList, setShowNotificationList] = useState(false);
 
   const logoutUser = () => {
     Swal.fire({
@@ -278,6 +279,10 @@ export default function Home() {
         return;
       }
     }
+  };
+
+  const toggleNotificationList = () => {
+    setShowNotificationList(!showNotificationList);
   };
 
   return (
@@ -711,7 +716,7 @@ export default function Home() {
             )}
 
             {/* Notification list */}
-            {notificationList && (
+            {showNotificationList && (
               <Draggable handle=".header">
                 <div
                   className="container bg-white"
@@ -722,7 +727,7 @@ export default function Home() {
                     top: "5%",
                     left: "15%",
                     transform: "translate(-50%, -50%)",
-                    width: "1300px", // Add this line to set the width
+                    width: "1300px",
                   }}
                 >
                   <div
@@ -730,11 +735,11 @@ export default function Home() {
                     style={{ cursor: "move" }}
                   >
                     <div className="flex justify-between items-center">
-                      <div>Approval Procedure</div>
+                      <div>Notification List</div>
                       <div>
                         <span
                           className="text-md text-red-600 cursor-pointer"
-                          onClick={() => toggleWindow("approvalProcedure")}
+                          onClick={() => setShowNotificationList(false)}
                         >
                           ❌
                         </span>
@@ -742,7 +747,7 @@ export default function Home() {
                     </div>
                   </div>
                   <div className="content">
-                    <ApprovalProcedure />
+                    <NotificationList />
                   </div>
                 </div>
               </Draggable>
@@ -755,7 +760,10 @@ export default function Home() {
                 {isAdminLoggedIn && (
                   <div className="notification-container">
                     <div className="notification">
-                      <NotificationBell unseenCount={unseenCount} />
+                      <NotificationBell
+                        unseenCount={unseenCount}
+                        onClick={toggleNotificationList}
+                      />
                     </div>
                   </div>
                 )}

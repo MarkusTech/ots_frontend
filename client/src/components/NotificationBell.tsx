@@ -1,4 +1,3 @@
-// components/NotificationBell.tsx
 import React from "react";
 import Badge from "@mui/material/Badge";
 import NotificationsIcon from "@mui/icons-material/Notifications";
@@ -6,6 +5,7 @@ import { styled } from "@mui/material/styles";
 
 type NotificationBellProps = {
   unseenCount: number;
+  onClick: () => void; // Add onClick prop
 };
 
 const StyledBadge = styled(Badge)(({ theme }) => ({
@@ -17,10 +17,14 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
   },
 }));
 
-const NotificationBell: React.FC<NotificationBellProps> = ({ unseenCount }) => {
+const NotificationBell: React.FC<NotificationBellProps> = ({
+  unseenCount,
+  onClick,
+}) => {
   return (
     <StyledBadge badgeContent={unseenCount} color="error">
-      <NotificationsIcon fontSize="large" />
+      <NotificationsIcon fontSize="large" onClick={onClick} />{" "}
+      {/* Attach onClick */}
     </StyledBadge>
   );
 };
