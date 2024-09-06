@@ -1214,7 +1214,7 @@ const SalesOrder: React.FC<Props> = ({
     Swal.fire("Need To Save as a Draft first!", "", "info");
   };
 
-  // --------------------------------------- End of Product Details insertion ------------------------------
+  // --------------------------------------- End of Product Details insertion -----------------------------
 
   // -------------------------------------- End of <WMR CODE> header insertion --------------------------------------
 
