@@ -26,37 +26,6 @@ const NotificationList = () => {
         </div>
         <div className="content">
           <div className="p-2">
-            <div className="flex items-center">
-              <div>
-                Search:{" "}
-                <input
-                  type="text"
-                  className="mb-1"
-                  // value={searchTerm}
-                  // onChange={handleSearchForDraft}
-                />
-              </div>
-              <div className="flex-grow"></div>
-              <div className="flex items-center">
-                <label htmlFor="fromDate" className="mr-2">
-                  Filter By Date:
-                </label>
-                <input
-                  id="fromDate"
-                  type="date"
-                  className="w-24 md:w-32 px-2 py-1 border rounded"
-                  // onChange={(e) => setFromDate(e.target.value)}
-                />
-                <p>:&nbsp;</p>
-                <button
-                  className="p-1 mt-2 mb-1 mr-2 text-xs bg-[#f69629] hover:bg-yellow-500 focus:outline-none focus:shadow-outline-yellow active:bg-yellow-600 rounded w-24"
-                  // onClick={handleFilter}
-                >
-                  Filter
-                </button>
-              </div>
-            </div>
-
             <div className="table-container">
               <table className="w-full">
                 <thead className="tables">
