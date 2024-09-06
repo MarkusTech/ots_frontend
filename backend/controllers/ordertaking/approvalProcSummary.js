@@ -44,7 +44,27 @@ const saveApprovalSummary = async (req, res) => {
 };
 
 const getApprovalProcedureSummary = async (req, res) => {
-  res.send("");
+  try {
+    const result = await sqlConn.query(
+      `SELECT * FROM [OTS_DB].[dbo].[AppProc_Summary] WHERE STATUS = 'pending'`
+    );
+
+    if (!result) {
+      res.status(404).json({
+        success: false,
+        message: "Unable to find List of Approval Summary",
+      });
+    }
+
+    const data = result.recordset;
+    res.status(200).json({
+      success: true,
+      data: data,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
 };
 
 export { saveApprovalSummary, getApprovalProcedureSummary };
