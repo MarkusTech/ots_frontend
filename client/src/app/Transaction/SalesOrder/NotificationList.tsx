@@ -61,12 +61,16 @@ const NotificationList = () => {
               <table className="w-full">
                 <thead className="tables">
                   <tr>
+                    <th>Approval Summary ID</th>
+                    <th>Approval Type</th>
+                    <th>Request Date</th>
                     <th>Draft Number</th>
-                    <th>Customer Code</th>
-                    <th>Customer Name</th>
-                    <th>Walk-in Customer Name</th>
                     <th>Document Date</th>
-                    <th>Sales Crew</th>
+                    <th>Customer Name</th>
+                    <th>Total Amount</th>
+                    <th>Remarks</th>
+                    <th>Status</th>
+                    <th>Action</th>
                   </tr>
                 </thead>
                 <tbody></tbody>
