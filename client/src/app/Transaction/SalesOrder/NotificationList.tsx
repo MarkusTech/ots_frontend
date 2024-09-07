@@ -2,6 +2,19 @@ import React from "react";
 import { useEffect, useState } from "react";
 import Draggable from "react-draggable";
 
+interface NotificationArr {
+  AppSummID: number;
+  AppType: string;
+  ReqDate: string;
+  DraftNum: number;
+  DocDate: string;
+  DocType: string;
+  CustomerName: string;
+  TotalAmtDue: number;
+  Remarks: string;
+  Status: string;
+}
+
 const NotificationList = () => {
   return (
     <Draggable>
