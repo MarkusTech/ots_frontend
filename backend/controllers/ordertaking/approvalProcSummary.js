@@ -53,7 +53,7 @@ const getApprovalProcedureSummary = async (req, res) => {
 
     // If cache is empty, fetch from the database
     const result = await sqlConn.query(
-      `SELECT APS.AppSummID, AM.AppProcID, AM.AppTypeID, AT.AppType, APS.ReqDate, APS.DraftNum, APS.DocType, APS.Remarks, APS.Status from [OTS_DB].[dbo].[AppProc_Summary] APS
+      `SELECT APS.AppSummID,AT.AppType, APS.ReqDate, APS.DraftNum, APS.DocType, APS.Remarks, APS.Status, AM.AppProcID, AM.AppTypeID from [OTS_DB].[dbo].[AppProc_Summary] APS
         INNER JOIN [OTS_DB].[dbo].[AppProc_Main] AM
         ON APS.AppProcID = AM.AppProcID
         INNER JOIN [OTS_DB].[dbo].[AppType] AT
