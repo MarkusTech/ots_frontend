@@ -36,6 +36,7 @@ const NotificationList = () => {
                     <th>Request Date</th>
                     <th>Draft Number</th>
                     <th>Document Date</th>
+                    <th>Document Type</th>
                     <th>Customer Name</th>
                     <th>Total Amount</th>
                     <th>Remarks</th>
