@@ -1,5 +1,6 @@
 import React from "react";
 import { useEffect, useState } from "react";
+import axios from "axios";
 import Draggable from "react-draggable";
 
 interface NotificationArr {
@@ -16,6 +17,24 @@ interface NotificationArr {
 }
 
 const NotificationList = () => {
+  const [notifications, setNotifications] = useState<NotificationArr[]>([]);
+
+  // Fetch the API data using useEffect and axios
+  useEffect(() => {
+    const fetchNotifications = async () => {
+      try {
+        const response = await axios.get(
+          "http://172.16.10.169:5000/api/v1/approval-summary"
+        );
+        setNotifications(response.data.data); // Assuming the data is inside the 'data' property
+      } catch (error) {
+        console.error("Error fetching notifications:", error);
+      }
+    };
+
+    fetchNotifications();
+  }, []);
+
   return (
     <Draggable>
       <div
@@ -33,7 +52,7 @@ const NotificationList = () => {
           className="grid grid-cols-2 p-2 text-left windowheader"
           style={{ cursor: "move" }}
         >
-          <div>Notification List List</div>
+          <div>Notification List</div>
           <div className="text-right">
             <span className="cursor-pointer">❌</span>
           </div>
@@ -51,13 +70,35 @@ const NotificationList = () => {
                     <th>Document Date</th>
                     <th>Document Type</th>
                     <th>Customer Name</th>
-                    <th>Total Amount</th>
+                    <th>Total Amount Due</th>
                     <th>Remarks</th>
                     <th>Status</th>
                     <th>Action</th>
                   </tr>
                 </thead>
-                <tbody></tbody>
+                <tbody>
+                  {notifications.map((notification) => (
+                    <tr key={notification.AppSummID}>
+                      <td>{notification.AppSummID}</td>
+                      <td>{notification.AppType}</td>
+                      <td>
+                        {new Date(notification.ReqDate).toLocaleDateString()}
+                      </td>
+                      <td>{notification.DraftNum}</td>
+                      <td>
+                        {new Date(notification.DocDate).toLocaleDateString()}
+                      </td>
+                      <td>{notification.DocType}</td>
+                      <td>{notification.CustomerName}</td>
+                      <td>{notification.TotalAmtDue}</td>
+                      <td>{notification.Remarks}</td>
+                      <td>{notification.Status}</td>
+                      <td>
+                        <button className="text-blue-500">Approve</button>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
               </table>
             </div>
           </div>
