@@ -88,7 +88,8 @@ const getApprovalProcedureSummary = async (req, res) => {
 
 // Update Approval Summary Status and invalidate cache
 const updateApprovalSummaryStatus = async (req, res) => {
-  const { AppSummID, Status } = req.body;
+  const { Status } = req.body;
+  const { AppSummID } = req.params;
 
   if (!AppSummID || !Status) {
     return res.status(400).json({
