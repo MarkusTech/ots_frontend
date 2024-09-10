@@ -52,7 +52,7 @@ const NotificationList = () => {
           className="grid grid-cols-2 p-2 text-left windowheader"
           style={{ cursor: "move" }}
         >
-          <div>Notification List</div>
+          <div>Approval List</div>
           <div className="text-right">
             <span className="cursor-pointer">❌</span>
           </div>
