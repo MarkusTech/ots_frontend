@@ -92,15 +92,25 @@ const NotificationList = () => {
                       <td>{notification.CustomerName}</td>
                       <td>{notification.TotalAmtDue}</td>
                       <td>{notification.Remarks}</td>
-                      <td>{notification.Status}</td>
                       <td>
-                        <select className="text-blue-500">
+                        <select
+                          value={notification.Status} // Pre-select the current status
+                          // onChange={(e) =>
+                          //   handleStatusChange(e, notification.id)
+                          // } // Handle status change
+                          className="text-blue-500"
+                        >
                           <option value="pending">Pending</option>
                           <option value="approve">Approve</option>
                           <option value="decline">Decline</option>
                         </select>
-                        <button className="ml-4 bg-blue-500 text-white px-2 py-1 rounded hover:bg-blue-600">
+                      </td>
+                      <td>
+                        <button className="bg-blue-500 text-white px-2 py-1 rounded hover:bg-blue-600">
                           Update
+                        </button>
+                        <button className="ml-4 bg-blue-500 text-white px-2 py-1 rounded hover:bg-blue-600">
+                          View
                         </button>
                       </td>
                     </tr>
