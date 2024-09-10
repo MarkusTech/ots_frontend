@@ -86,4 +86,39 @@ const getApprovalProcedureSummary = async (req, res) => {
   }
 };
 
-export { saveApprovalSummary, getApprovalProcedureSummary };
+// Update Approval Summary Status and invalidate cache
+const updateApprovalSummaryStatus = async (req, res) => {
+  const { AppSummID, Status } = req.body;
+
+  if (!AppSummID || !Status) {
+    return res.status(400).json({
+      success: false,
+      message: "AppSummID and Status are required",
+    });
+  }
+
+  try {
+    const updateSummary = await sqlConn.query`
+      UPDATE [dbo].[AppProc_Summary]
+      SET [Status] = ${Status}
+      WHERE [AppSummID] = ${AppSummID}`;
+
+    // Invalidate the cache after updating the status
+    cache.del(cacheKey);
+
+    res.status(200).json({
+      success: true,
+      message: "Approval Procedure Status successfully updated",
+      updateSummary,
+    });
+  } catch (error) {
+    console.error("Error updating Approval Procedure Status:", error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+};
+
+export {
+  saveApprovalSummary,
+  getApprovalProcedureSummary,
+  updateApprovalSummaryStatus,
+};
