@@ -94,7 +94,14 @@ const NotificationList = () => {
                       <td>{notification.Remarks}</td>
                       <td>{notification.Status}</td>
                       <td>
-                        <button className="text-blue-500">Approve</button>
+                        <select className="text-blue-500">
+                          <option value="pending">Pending</option>
+                          <option value="approve">Approve</option>
+                          <option value="decline">Decline</option>
+                        </select>
+                        <button className="ml-4 bg-blue-500 text-white px-2 py-1 rounded hover:bg-blue-600">
+                          Update
+                        </button>
                       </td>
                     </tr>
                   ))}
