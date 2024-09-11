@@ -102,7 +102,7 @@ const NotificationList = () => {
                         >
                           <option value="pending">Pending</option>
                           <option value="approve">Approve</option>
-                          <option value="decline">Decline</option>
+                          <option value="decline">Reject</option>
                         </select>
                       </td>
                       <td>
