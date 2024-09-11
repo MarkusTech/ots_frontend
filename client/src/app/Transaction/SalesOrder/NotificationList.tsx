@@ -18,6 +18,7 @@ interface NotificationArr {
 
 const NotificationList = () => {
   const [notifications, setNotifications] = useState<NotificationArr[]>([]);
+  const [status, setStatus] = useState<string>("");
 
   // Fetch the API data using useEffect and axios
   useEffect(() => {
@@ -34,6 +35,11 @@ const NotificationList = () => {
 
     fetchNotifications();
   }, []);
+
+  const handleStatusChange = (e: any) => {
+    setStatus(e.target.value); // Update the state when the option changes
+    alert(e.target.value);
+  };
 
   return (
     <Draggable>
@@ -95,9 +101,7 @@ const NotificationList = () => {
                       <td>
                         <select
                           value={notification.Status} // Pre-select the current status
-                          // onChange={(e) =>
-                          //   handleStatusChange(e, notification.id)
-                          // } // Handle status change
+                          onChange={handleStatusChange} // Handle the status change
                           className="text-blue-500"
                         >
                           <option value="pending">Pending</option>
