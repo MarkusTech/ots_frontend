@@ -41,6 +41,8 @@ const NotificationList = () => {
     alert(e.target.value);
   };
 
+  const handleUpdate = () => {};
+
   return (
     <Draggable>
       <div
@@ -110,7 +112,10 @@ const NotificationList = () => {
                         </select>
                       </td>
                       <td>
-                        <button className="bg-blue-500 text-white px-2 py-1 rounded hover:bg-blue-600">
+                        <button
+                          className="bg-blue-500 text-white px-2 py-1 rounded hover:bg-blue-600"
+                          onClick={handleUpdate}
+                        >
                           Update
                         </button>
                         <button className="ml-4 bg-blue-500 text-white px-2 py-1 rounded hover:bg-blue-600">
