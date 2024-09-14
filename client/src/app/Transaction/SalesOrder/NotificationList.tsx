@@ -2,6 +2,7 @@ import React from "react";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import Draggable from "react-draggable";
+import Swal from "sweetalert2";
 
 interface NotificationArr {
   AppSummID: number;
@@ -76,7 +77,10 @@ const NotificationList = () => {
         throw new Error(`Error: ${response.statusText}`);
       }
 
-      alert("Update successful!");
+      Swal.fire({
+        icon: "success",
+        title: "Updated Successfully",
+      });
     } catch (error) {
       console.error("Error updating notification:", error);
       alert("Failed to update the notification.");
