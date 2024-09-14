@@ -67,11 +67,11 @@ const NotificationList = () => {
       const response = await fetch(
         `http://172.16.10.169:5000/api/v1/approval-summary/${appSummID}`,
         {
-          method: "PUT", // or 'POST' based on the API specification
+          method: "PUT",
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify(notificationToUpdate), // Send updated notification
+          body: JSON.stringify(notificationToUpdate),
         }
       );
 
