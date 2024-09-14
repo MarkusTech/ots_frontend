@@ -36,9 +36,18 @@ const NotificationList = () => {
     fetchNotifications();
   }, []);
 
-  const handleStatusChange = (e: any) => {
-    setStatus(e.target.value); // Update the state when the option changes
-    alert(e.target.value);
+  const handleStatusChange = (e: any, appSummID: number) => {
+    const newStatus = e.target.value;
+
+    setNotifications((prevNotifications) =>
+      prevNotifications.map((notification) =>
+        notification.AppSummID === appSummID
+          ? { ...notification, Status: newStatus }
+          : notification
+      )
+    );
+
+    alert(newStatus); // Notify the user about the updated status
   };
 
   const handleUpdate = () => {};
@@ -103,7 +112,9 @@ const NotificationList = () => {
                       <td>
                         <select
                           value={notification.Status} // Pre-select the current status
-                          onChange={handleStatusChange} // Handle the status change
+                          onChange={(e) =>
+                            handleStatusChange(e, notification.AppSummID)
+                          } // Pass AppSummID here
                           className="text-blue-500"
                         >
                           <option value="pending">Pending</option>
