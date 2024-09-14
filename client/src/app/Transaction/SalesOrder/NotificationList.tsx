@@ -59,7 +59,10 @@ const NotificationList = () => {
     );
 
     if (!notificationToUpdate) {
-      alert("No notification found to update");
+      Swal.fire({
+        icon: "error",
+        title: "No notification found to update",
+      });
       return;
     }
 
