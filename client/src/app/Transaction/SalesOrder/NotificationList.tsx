@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import Draggable from "react-draggable";
 import Swal from "sweetalert2";
+import SalesOrder from "./SalesOrder";
 
 interface NotificationArr {
   AppSummID: number;
@@ -20,6 +21,7 @@ interface NotificationArr {
 const NotificationList = () => {
   const [notifications, setNotifications] = useState<NotificationArr[]>([]);
   const [status, setStatus] = useState<string>("");
+  const [showSalesOrder, setShowSalesOrder] = useState(false);
 
   // Fetch the API data using useEffect and axios
   useEffect(() => {
@@ -85,6 +87,10 @@ const NotificationList = () => {
       console.error("Error updating notification:", error);
       alert("Failed to update the notification.");
     }
+  };
+
+  const handleShowView = () => {
+    setShowSalesOrder(true); // Set to true to show SalesOrder
   };
 
   return (
@@ -165,13 +171,18 @@ const NotificationList = () => {
                           Update
                         </button>
 
-                        <button className="ml-4 bg-blue-500 text-white px-2 py-1 rounded hover:bg-blue-600">
+                        <button
+                          className="ml-4 bg-blue-500 text-white px-2 py-1 rounded hover:bg-blue-600"
+                          onClick={handleShowView}
+                        >
                           View
                         </button>
                       </td>
                     </tr>
                   ))}
                 </tbody>
+                {/* Conditionally render SalesOrder */}
+                {showSalesOrder && <SalesOrder />}
               </table>
             </div>
           </div>
