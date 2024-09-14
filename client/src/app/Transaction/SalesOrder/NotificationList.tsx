@@ -30,7 +30,7 @@ const NotificationList = () => {
         const response = await axios.get(
           "http://172.16.10.169:5000/api/v1/approval-summary"
         );
-        setNotifications(response.data.data); // Assuming the data is inside the 'data' property
+        setNotifications(response.data.data);
       } catch (error) {
         console.error("Error fetching notifications:", error);
       }
