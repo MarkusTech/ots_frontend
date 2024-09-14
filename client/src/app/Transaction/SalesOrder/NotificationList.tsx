@@ -50,7 +50,48 @@ const NotificationList = () => {
     setStatus(newStatus);
   };
 
-  const handleUpdate = () => {};
+  const handleUpdate = async (appSummID: number) => {
+    const notificationToUpdate = notifications.find(
+      (notification) => notification.AppSummID === appSummID
+    );
+
+    if (!notificationToUpdate) {
+      alert("No notification found to update");
+      return;
+    }
+
+    try {
+      const response = await fetch(
+        `http://172.16.10.169:5000/api/v1/approval-summary/${appSummID}`,
+        {
+          method: "PUT", // or 'POST' based on the API specification
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(notificationToUpdate), // Send updated notification
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error(`Error: ${response.statusText}`);
+      }
+
+      const updatedNotification = await response.json();
+      alert("Update successful!");
+
+      // Optionally update local state with updated data from server
+      setNotifications((prevNotifications) =>
+        prevNotifications.map((notification) =>
+          notification.AppSummID === appSummID
+            ? updatedNotification
+            : notification
+        )
+      );
+    } catch (error) {
+      console.error("Error updating notification:", error);
+      alert("Failed to update the notification.");
+    }
+  };
 
   return (
     <Draggable>
@@ -125,10 +166,11 @@ const NotificationList = () => {
                       <td>
                         <button
                           className="bg-blue-500 text-white px-2 py-1 rounded hover:bg-blue-600"
-                          onClick={handleUpdate}
+                          onClick={() => handleUpdate(notification.AppSummID)} // Pass AppSummID here
                         >
                           Update
                         </button>
+
                         <button className="ml-4 bg-blue-500 text-white px-2 py-1 rounded hover:bg-blue-600">
                           View
                         </button>
