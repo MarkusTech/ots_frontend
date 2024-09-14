@@ -23,7 +23,6 @@ const NotificationList = () => {
   const [status, setStatus] = useState<string>("");
   const [showSalesOrder, setShowSalesOrder] = useState(false);
 
-  // Fetch the API data using useEffect and axios
   useEffect(() => {
     const fetchNotifications = async () => {
       try {
