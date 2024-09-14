@@ -47,7 +47,7 @@ const NotificationList = () => {
       )
     );
 
-    alert(newStatus); // Notify the user about the updated status
+    setStatus(newStatus);
   };
 
   const handleUpdate = () => {};
