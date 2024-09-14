@@ -182,7 +182,7 @@ const NotificationList = () => {
                   ))}
                 </tbody>
                 {/* Conditionally render SalesOrder */}
-                {showSalesOrder && <SalesOrder />}
+                {/* {showSalesOrder && <SalesOrder />} */}
               </table>
             </div>
           </div>
