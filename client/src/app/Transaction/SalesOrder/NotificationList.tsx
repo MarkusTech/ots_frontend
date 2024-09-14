@@ -76,17 +76,7 @@ const NotificationList = () => {
         throw new Error(`Error: ${response.statusText}`);
       }
 
-      const updatedNotification = await response.json();
       alert("Update successful!");
-
-      // Optionally update local state with updated data from server
-      setNotifications((prevNotifications) =>
-        prevNotifications.map((notification) =>
-          notification.AppSummID === appSummID
-            ? updatedNotification
-            : notification
-        )
-      );
     } catch (error) {
       console.error("Error updating notification:", error);
       alert("Failed to update the notification.");
