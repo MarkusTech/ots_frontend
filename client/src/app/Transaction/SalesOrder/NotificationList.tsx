@@ -88,7 +88,10 @@ const NotificationList = () => {
       });
     } catch (error) {
       console.error("Error updating notification:", error);
-      alert("Failed to update the notification.");
+      Swal.fire({
+        icon: "error",
+        title: "Failed to update the notification.",
+      });
     }
   };
 
