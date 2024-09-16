@@ -49,8 +49,6 @@ const NotificationList = () => {
           : notification
       )
     );
-
-    setStatus(newStatus);
   };
 
   const handleUpdate = async (appSummID: number) => {
