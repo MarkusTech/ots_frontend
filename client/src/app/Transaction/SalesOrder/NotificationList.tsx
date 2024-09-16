@@ -157,7 +157,7 @@ const NotificationList = () => {
                       <td>{notification.Remarks}</td>
                       <td>
                         <select
-                          value={notification.Status} // Pre-select the current status
+                          value={notification.Status}
                           onChange={(e) =>
                             handleStatusChange(e, notification.AppSummID)
                           } // Pass AppSummID here
