@@ -160,7 +160,7 @@ const NotificationList = () => {
                           value={notification.Status}
                           onChange={(e) =>
                             handleStatusChange(e, notification.AppSummID)
-                          } // Pass AppSummID here
+                          }
                           className="text-blue-500"
                         >
                           <option value="pending">Pending</option>
