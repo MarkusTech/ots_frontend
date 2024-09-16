@@ -20,9 +20,9 @@ interface NotificationArr {
 
 const NotificationList = () => {
   const [notifications, setNotifications] = useState<NotificationArr[]>([]);
+  const [isVisible, setIsVisible] = useState(true);
   const [status, setStatus] = useState<string>("");
   const [showSalesOrder, setShowSalesOrder] = useState(false);
-  const [isVisible, setIsVisible] = useState(true);
 
   useEffect(() => {
     const fetchNotifications = async () => {
