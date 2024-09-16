@@ -171,7 +171,7 @@ const NotificationList = () => {
                       <td>
                         <button
                           className="bg-blue-500 text-white px-2 py-1 rounded hover:bg-blue-600"
-                          onClick={() => handleUpdate(notification.AppSummID)} // Pass AppSummID here
+                          onClick={() => handleUpdate(notification.AppSummID)}
                         >
                           Update
                         </button>
