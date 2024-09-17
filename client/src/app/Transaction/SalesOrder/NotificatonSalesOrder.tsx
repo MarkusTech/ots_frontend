@@ -45,10 +45,7 @@ const NotificatonSalesOrder = () => {
                 Customer TIN
               </label>
               <div>
-                <input
-                  type="text"
-                  value={customerData.map((e) => e.cusLicTradNum)}
-                />
+                <input type="text" />
               </div>
             </div>
           </div>
@@ -58,11 +55,7 @@ const NotificatonSalesOrder = () => {
                 Customer Reference
               </label>
               <div>
-                <input
-                  type="text"
-                  value={customerReference}
-                  onChange={handleCustomerChange}
-                />
+                <input type="text" />
               </div>
             </div>
 
@@ -92,95 +85,43 @@ const NotificatonSalesOrder = () => {
                 <input type="text" readOnly />
               </div>
             </div>
-
-            {showSCPDW && (
-              <div className="grid grid-cols-2">
-                <label className="" htmlFor="entrynumber">
-                  SC/PWD ID
-                </label>
-                <div>
-                  <input onChange={handleScOrPwd} type="text" />
-                </div>
-              </div>
-            )}
           </div>
         </div>
         <div className="w-[] col1">
           <div className="grid grid-cols-2">
             <label htmlFor="documentnumber">Document Number</label>
             <div>
-              <input value={docNumber !== "0" ? docNumber : 0} type="text" />
+              <input type="text" />
             </div>
-            {/*  */}
-            {/* Document Number */}
-            {showDoc && (
-              <Draggable>
-                <div
-                  className="w-[400px] h-[100px] bg-white shadow-lg"
-                  style={{
-                    border: "1px solid #ccc",
-                    position: "absolute",
-                    top: "12%",
-                    left: "68.3%",
-                  }}
-                >
-                  <div
-                    className="grid grid-cols-2 p-2 text-left windowheader"
-                    style={{ cursor: "move" }}
-                  >
-                    <div>Document Number</div>
-                    <div className="text-right">
-                      <span onClick={handleShowDoc} className="cursor-pointer">
-                        ❌
-                      </span>
-                    </div>
-                  </div>
-                  <div className="content"></div>
-                </div>
-              </Draggable>
-            )}
           </div>
           <div className="grid grid-cols-2">
             <label htmlFor="draftNumber">Draft Number</label>
             <div>
-              <input
-                type="text"
-                readOnly
-                value={draftNumber !== null ? draftNumber : ""}
-              />
+              <input type="text" readOnly />
             </div>
           </div>
           <div className="grid grid-cols-2">
             <label htmlFor="entrynumber">Entry Number</label>
             <div>
-              <input
-                type="text"
-                readOnly
-                value={entryNumbers !== null ? entryNumbers : ""}
-              />
+              <input type="text" readOnly />
             </div>
           </div>
           <div className="grid grid-cols-2">
             <label htmlFor="docdate">Document Date</label>
             <div>
-              <input type="text" value={todayDate} readOnly />
+              <input type="text" readOnly />
             </div>
           </div>
           <div className="grid grid-cols-2">
             <label htmlFor="postDate">Posting Date</label>
             <div>
-              <input type="text" value={todayDate} readOnly />
+              <input type="text" readOnly />
             </div>
           </div>
           <div className="grid grid-cols-2">
             <label htmlFor="deliveryDate">Delivery Date</label>
             <div>
-              <input
-                type="date"
-                id="deliveryDate"
-                value={deliveryDate}
-                onChange={handleDateChange}
-              />
+              <input type="date" id="deliveryDate" />
             </div>
           </div>
         </div>
