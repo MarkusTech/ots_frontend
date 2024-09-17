@@ -120,8 +120,21 @@ const updateApprovalSummaryStatus = async (req, res) => {
 
 const getSalesOrderBasedOnApprovalDraftNum = async (req, res) => {
   const { DraftNum } = req.params;
+  const cacheKey = `salesOrder_${DraftNum}`; // Define a cache key
 
   try {
+    // Check if the sales order data is in the cache
+    let cachedData = cache.get(cacheKey);
+    if (cachedData) {
+      return res.status(200).json({
+        success: true,
+        message: `Sales Order Data based on ${DraftNum} (from cache)`,
+        headerResult: cachedData.headerResult,
+        detailsResult: cachedData.detailsResult,
+      });
+    }
+
+    // Query database if cache is not available
     const headerResult = await sqlConn.query(
       `SELECT * FROM [OTS_DB].[dbo].[SO_Header] WHERE DraftNum = ${DraftNum}`
     );
@@ -130,28 +143,31 @@ const getSalesOrderBasedOnApprovalDraftNum = async (req, res) => {
     );
 
     if (!headerResult) {
-      res.status(400).json({
+      return res.status(400).json({
         success: false,
         message: `Unable to find header based on ${DraftNum}`,
       });
     }
 
     if (!detailsResult) {
-      res.status(400).json({
+      return res.status(400).json({
         success: false,
         message: `Unable to find details based on ${DraftNum}`,
       });
     }
 
-    res.status(200).json({
+    // Save the result to the cache for future requests
+    cache.set(cacheKey, { headerResult, detailsResult });
+
+    return res.status(200).json({
       success: true,
       message: `Sales Order Data based on ${DraftNum}`,
       headerResult,
       detailsResult,
     });
   } catch (error) {
-    console.log(error);
-    res.status(500).json({ error: "Internal Server Error" });
+    console.error("Error fetching Sales Order data:", error);
+    return res.status(500).json({ error: "Internal Server Error" });
   }
 };
 
