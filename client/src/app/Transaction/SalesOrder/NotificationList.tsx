@@ -94,7 +94,7 @@ const NotificationList = () => {
   };
 
   const handleShowView = () => {
-    setShowSalesOrder(true);
+    setShowSalesOrder(!showSalesOrder);
   };
 
   const handleClose = () => {
