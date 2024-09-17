@@ -118,8 +118,13 @@ const updateApprovalSummaryStatus = async (req, res) => {
   }
 };
 
+const getSalesOrderBasedOnApprovalDraftNum = async (req, res) => {
+  res.send("Notificaion SalesOrder");
+};
+
 export {
   saveApprovalSummary,
   getApprovalProcedureSummary,
   updateApprovalSummaryStatus,
+  getSalesOrderBasedOnApprovalDraftNum,
 };
