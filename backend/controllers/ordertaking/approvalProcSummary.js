@@ -119,7 +119,40 @@ const updateApprovalSummaryStatus = async (req, res) => {
 };
 
 const getSalesOrderBasedOnApprovalDraftNum = async (req, res) => {
-  res.send("Notificaion SalesOrder");
+  const { DraftNum } = req.params;
+
+  try {
+    const headerResult = await sqlConn.query(
+      `SELECT * FROM [OTS_DB].[dbo].[SO_Header] WHERE DraftNum = ${DraftNum}`
+    );
+    const detailsResult = await sqlConn.query(
+      `SELECT * FROM [OTS_DB].[dbo].[SO_Details] WHERE DraftNum = '${DraftNum}'`
+    );
+
+    if (!headerResult) {
+      res.status(400).json({
+        success: false,
+        message: `Unable to find header based on ${DraftNum}`,
+      });
+    }
+
+    if (!detailsResult) {
+      res.status(400).json({
+        success: false,
+        message: `Unable to find details based on ${DraftNum}`,
+      });
+    }
+
+    res.status(200).json({
+      success: true,
+      message: `Sales Order Data based on ${DraftNum}`,
+      headerResult,
+      detailsResult,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
 };
 
 export {
