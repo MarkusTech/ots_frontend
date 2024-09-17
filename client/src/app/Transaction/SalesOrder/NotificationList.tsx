@@ -208,9 +208,34 @@ const NotificationList = () => {
       )}
       {/* Conditionally render SalesOrder */}
       {showSalesOrder && (
-        <div>
-          <NotificationSalesOrder />
-        </div>
+        <Draggable>
+          <div
+            className="bg-white shadow-lg"
+            style={{
+              border: "1px solid #ccc",
+              position: "absolute",
+              top: "20%",
+              left: "20%",
+              maxHeight: "700px",
+              overflowY: "auto",
+            }}
+          >
+            <div
+              className="grid grid-cols-2 p-2 text-left windowheader"
+              style={{ cursor: "move" }}
+            >
+              <div>Sales Order</div>
+              <div className="text-right">
+                <span className="cursor-pointer" onClick={handleShowView}>
+                  ❌
+                </span>
+              </div>
+            </div>
+            <div>
+              <NotificationSalesOrder />
+            </div>
+          </div>
+        </Draggable>
       )}
     </>
   );
