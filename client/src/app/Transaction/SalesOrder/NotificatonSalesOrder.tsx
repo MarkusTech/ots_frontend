@@ -1,121 +1,116 @@
 import React from "react";
 
-const NotificatonSalesOrder = () => {
+const NotificationSalesOrder = () => {
   return (
-    <div>
-      <div className="salesbody p-2 text-sm rounded-md flex gap-40  container overflow-x-auto shadow-lg">
-        <div className="w-[] flex flex-wrap gap-5 col1 mr-3">
+    <>
+      <div className="salesbody p-2 text-sm rounded-md flex gap-40 container overflow-x-auto shadow-lg">
+        <div className="flex flex-wrap gap-5 col1 mr-3">
+          {/* First Column */}
           <div>
             <div className="grid grid-cols-2">
               <label htmlFor="CustomerCode">Customer Code</label>
               <div>
-                <input type="text" className="bg-slate-200" readOnly />
+                <input
+                  type="text"
+                  className="bg-slate-200"
+                  readOnly
+                  value="12345"
+                />
               </div>
             </div>
             <div className="grid grid-cols-2">
               <label htmlFor="CustomerName">Customer Name</label>
               <div>
-                <input type="text" className="bg-slate-200" readOnly />
+                <input
+                  type="text"
+                  className="bg-slate-200"
+                  readOnly
+                  value="John Doe"
+                />
               </div>
             </div>
             <div className="grid grid-cols-2">
-              <label className="" htmlFor="foreignName">
-                Foreign Name
-              </label>
+              <label htmlFor="foreignName">Foreign Name</label>
               <div>
-                <input type="text" readOnly />
+                <input type="text" readOnly value="Juan Pérez" />
               </div>
             </div>
-
             <div className="grid grid-cols-2">
               <label htmlFor="WalkInName">Walk-in Customer Name</label>
             </div>
-
             <div className="grid grid-cols-2">
-              <label className="" htmlFor="ShippingAdd">
-                Customer Shipping Address
-              </label>
+              <label htmlFor="ShippingAdd">Customer Shipping Address</label>
               <div>
-                <input type="text" />
+                <input type="text" value="123 Main St." />
               </div>
             </div>
-
             <div className="grid grid-cols-2">
-              <label className="" htmlFor="TIN">
-                Customer TIN
-              </label>
+              <label htmlFor="TIN">Customer TIN</label>
               <div>
-                <input type="text" />
+                <input type="text" value="123-456-789" />
               </div>
             </div>
           </div>
+
+          {/* Second Column */}
           <div>
             <div className="grid grid-cols-2">
-              <label className="" htmlFor="Reference">
-                Customer Reference
-              </label>
+              <label htmlFor="Reference">Customer Reference</label>
               <div>
-                <input type="text" />
+                <input type="text" value="Ref123" />
               </div>
             </div>
-
             <div className="grid grid-cols-2">
-              <label className="" htmlFor="entrynumber">
-                Branch
-              </label>
+              <label htmlFor="entrynumber">Branch</label>
               <div>
-                <input type="text" readOnly />
+                <input type="text" readOnly value="Main Branch" />
               </div>
             </div>
-
             <div className="grid grid-cols-2">
-              <label className="" htmlFor="entrynumber">
-                Document Status
-              </label>
+              <label htmlFor="entrynumber">Document Status</label>
               <div>
-                <input type="text" readOnly />
+                <input type="text" readOnly value="Approved" />
               </div>
             </div>
-
             <div className="grid grid-cols-2">
-              <label className="" htmlFor="entrynumber">
-                Base Document
-              </label>
+              <label htmlFor="entrynumber">Base Document</label>
               <div>
-                <input type="text" readOnly />
+                <input type="text" readOnly value="Base123" />
               </div>
             </div>
           </div>
         </div>
-        <div className="w-[] col1">
+
+        {/* Third Column */}
+        <div className="col1">
           <div className="grid grid-cols-2">
             <label htmlFor="documentnumber">Document Number</label>
             <div>
-              <input type="text" />
+              <input type="text" value="DOC123" />
             </div>
           </div>
           <div className="grid grid-cols-2">
             <label htmlFor="draftNumber">Draft Number</label>
             <div>
-              <input type="text" readOnly />
+              <input type="text" readOnly value="DRFT001" />
             </div>
           </div>
           <div className="grid grid-cols-2">
             <label htmlFor="entrynumber">Entry Number</label>
             <div>
-              <input type="text" readOnly />
+              <input type="text" readOnly value="ENT789" />
             </div>
           </div>
           <div className="grid grid-cols-2">
             <label htmlFor="docdate">Document Date</label>
             <div>
-              <input type="text" readOnly />
+              <input type="text" readOnly value="2024-09-17" />
             </div>
           </div>
           <div className="grid grid-cols-2">
             <label htmlFor="postDate">Posting Date</label>
             <div>
-              <input type="text" readOnly />
+              <input type="text" readOnly value="2024-09-18" />
             </div>
           </div>
           <div className="grid grid-cols-2">
@@ -127,9 +122,9 @@ const NotificatonSalesOrder = () => {
         </div>
       </div>
 
-      {/* ----------------------- TABLE --------------------------------------- */}
+      {/* Table Section */}
       <div className="fields mt-2 rounded-md text-left container bg-white overflow-x-auto shadow-xl p-2 max-h-[200px]">
-        <div className="">
+        <div>
           <table>
             <thead className="tables">
               <tr>
@@ -161,178 +156,81 @@ const NotificatonSalesOrder = () => {
                 <th>Gross Total</th>
               </tr>
             </thead>
-            <tbody>
-             
-            </tbody>
+            <tbody>{/* Table rows go here */}</tbody>
           </table>
         </div>
-      {/* --------------------------------------------------- Bottom Form-------------------------------------------------------- */}
+      </div>
+
+      {/* Bottom Form */}
       <div className="text-left p-2 grid grid-cols-2 col1 text-[14px] mt-5">
-        <div className="w-[300px] ">
+        <div className="w-[300px]">
           <div className="grid grid-cols-2">
-            {/* ------------------------ Mode of Payment! ------------------------- */}
             <label htmlFor="modeofpayment">Mode of Payment:</label>
-            <div className="">
-              <div className="flex justify-start gap-2 w-[100px]">
-                <input
-                  className="w-[20px]"
-                  type="checkbox"
-                />
+            <div>
+              <div className="flex justify-start gap-2">
+                <input type="checkbox" className="w-[20px]" />
                 Cash
               </div>
               <div className="flex justify-start gap-2">
-                <input
-                  className="w-[20px]"
-                  type="checkbox"
-                />
+                <input type="checkbox" className="w-[20px]" />
                 Credit Card
               </div>
               <div className="flex justify-start gap-2">
-                <input
-                  className="w-[20px]"
-                  type="checkbox"
-                />
+                <input type="checkbox" className="w-[20px]" />
                 Debit Card
               </div>
               <div className="flex justify-start gap-2">
-                <input
-                  className="w-[20px]"
-                  type="checkbox"
-                />
+                <input type="checkbox" className="w-[20px]" />
                 PDC
               </div>
               <div className="flex justify-start gap-2">
-                <input
-                  className="w-[20px]"
-                  type="checkbox"
-                />
+                <input type="checkbox" className="w-[20px]" />
                 PO
               </div>
-              <div className="flex justify-start gap-2 w-[200px]">
-                <input
-                  className="w-[20px]"
-                  type="checkbox"
-                />
+              <div className="flex justify-start gap-2">
+                <input type="checkbox" className="w-[20px]" />
                 Dated Check
               </div>
               <div className="flex justify-start gap-2">
-                <input
-                  className="w-[20px]"
-                  type="checkbox"
-                />
+                <input type="checkbox" className="w-[20px]" />
                 Online Transfer
               </div>
               <div className="flex justify-start gap-2">
-                <input
-                  className="w-[20px]"
-                  type="checkbox"
-                />
+                <input type="checkbox" className="w-[20px]" />
                 On Account
               </div>
               <div className="flex justify-start gap-2">
-                <input
-                  className="w-[20px]"
-                  type="checkbox"
-                />
+                <input type="checkbox" className="w-[20px]" />
                 Cash on Delivery
               </div>
             </div>
           </div>
-          {/* End of mode of payment */}
-
+          {/* Mode of Releasing */}
           <div className="grid grid-cols-2">
             <label htmlFor="moderel">Mode of Releasing</label>
             <div>
-              <select
-                className="selections"
-                name=""
-                id=""
-              >
+              <select className="selections">
                 <option value="" disabled selected>
                   Please Select
                 </option>
                 <option value="Standard-Pick-up">Standard-Pick-up</option>
                 <option value="Standard-Delivery">Standard-Delivery</option>
-                <option value="Standard-Pick-up to Other Store">
-                  Standard-Pick-up to Other Store
-                </option>
                 <option value="Back Order-Pick-up">Back Order-Pick-up</option>
-                <option value="Back Order-Delivery">Back Order-Delivery</option>
-                <option value="Back Order-Pick-up to Other Store">
-                  Back Order-Pick-up to Other Store
-                </option>
-                <option value="Drop-Ship-Pick-up to DC">
-                  Drop-Ship-Pick-up to DC
-                </option>
-                <option value="Drop-Ship-Pick-up to Vendor">
-                  Drop-Ship-Pick-up to Vendor
-                </option>
-                <option value="Drop-Ship-Delivery from DC">
-                  Drop-Ship-Delivery from DC
-                </option>
-                <option value="Drop-Ship-Delivery from Vendor">
-                  Drop-Ship-Delivery from Vendor
-                </option>
+                {/* Add other options */}
               </select>
             </div>
           </div>
+          {/* Other Fields */}
           <div className="grid grid-cols-2">
-            <label htmlFor="salescrew">Sales Crew</label>
+            <label htmlFor="contactnumber">Contact Person Number:</label>
             <div>
-            </div>
-          </div>
-          <div className="grid grid-cols-2">
-            <label htmlFor="remarks">Remarks</label>
-            <div>
-              <textarea
-                name="remarks"
-                id="remarks"
-              ></textarea>
+              <input type="text" />
             </div>
           </div>
         </div>
-
-        {/* ----------------------------- Calculation ------------------------- */}
-        <div className="text-right w-full grid justify-end">
-          <div className="w-[440px] ">
-            <div className="grid grid-cols-2 text-right">
-              <label htmlFor="totAmountBefVat" className="text-right">
-                Total Amount Before VAT
-              </label>
-              <div>
-                {/* <input value={totalAfterVat} type="text" readOnly /> */}
-              </div>
-            </div>
-            <div className="grid grid-cols-2">
-              <label htmlFor="totalVat">Total VAT</label>
-              <div>
-                {/* <input value={totalVat} type="text" readOnly /> */}
-              </div>
-            </div>
-            <div className="grid grid-cols-2">
-              <label htmlFor="totalAftVat">Total After VAT</label>
-              <div>
-                {/* <input value={totalBeforeVat} type="text" readOnly /> */}
-              </div>
-            </div>
-            <div className="grid grid-cols-2">
-              <label htmlFor="PwdDisTotal">SC/PWD Discount Total</label>
-              <div>
-                {/* <input value={SCPWDdata} type="text" readOnly /> */}
-              </div>
-            </div>
-            <div className="grid grid-cols-2">
-              <label htmlFor="totAmtDue">Total Amount Due</label>
-              <div>
-                {/* <input value={totalAmoutDueData} type="text" readOnly /> */}
-              </div>
-            </div>
-          </div>
-        </div>
-        {/* ----------------------------- End Calculation ------------------------- */}
       </div>
-    </div>
+    </>
   );
 };
 
-export default NotificatonSalesOrder;
+export default NotificationSalesOrder;
