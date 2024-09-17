@@ -199,18 +199,18 @@ const NotificationList = () => {
                         </tr>
                       ))}
                     </tbody>
-                    {/* Conditionally render SalesOrder */}
-                    {showSalesOrder && (
-                      <Draggable>
-                        <NotificationSalesOrder />
-                      </Draggable>
-                    )}
                   </table>
                 </div>
               </div>
             </div>
           </div>
         </Draggable>
+      )}
+      {/* Conditionally render SalesOrder */}
+      {showSalesOrder && (
+        <div>
+          <NotificationSalesOrder />
+        </div>
       )}
     </>
   );
