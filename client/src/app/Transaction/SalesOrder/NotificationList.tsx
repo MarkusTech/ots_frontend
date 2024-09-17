@@ -4,6 +4,7 @@ import axios from "axios";
 import Draggable from "react-draggable";
 import Swal from "sweetalert2";
 import SalesOrder from "./SalesOrder";
+import NotificationSalesOrder from "./NotificatonSalesOrder";
 
 interface NotificationArr {
   AppSummID: number;
@@ -199,7 +200,11 @@ const NotificationList = () => {
                       ))}
                     </tbody>
                     {/* Conditionally render SalesOrder */}
-                    {/* {showSalesOrder && <SalesOrder />} */}
+                    {showSalesOrder && (
+                      <Draggable>
+                        <NotificationSalesOrder />
+                      </Draggable>
+                    )}
                   </table>
                 </div>
               </div>
