@@ -120,7 +120,7 @@ const updateApprovalSummaryStatus = async (req, res) => {
 
 const getSalesOrderBasedOnApprovalDraftNum = async (req, res) => {
   const { DraftNum } = req.params;
-  const cacheKey = `salesOrder_${DraftNum}`; // Define a cache key
+  const cacheKey = `salesOrder_${DraftNum}`;
 
   try {
     // Check if the sales order data is in the cache
