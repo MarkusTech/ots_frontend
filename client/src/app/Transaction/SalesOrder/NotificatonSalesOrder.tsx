@@ -76,8 +76,8 @@ interface DeatilsData {
 }
 
 const NotificationSalesOrder: React.FC<Props> = ({ DraftNumber }) => {
-  const [headerData, setHeaderData] = useState("");
-  const [detailsData, setDetailsData] = useState("");
+  const [headerData, setHeaderData] = useState<HeaderData[]>([]);
+  const [detailsData, setDetailsData] = useState<DeatilsData[]>([]);
 
   useEffect(() => {
     if (DraftNumber) {
