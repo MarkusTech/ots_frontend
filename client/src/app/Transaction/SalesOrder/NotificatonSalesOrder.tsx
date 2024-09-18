@@ -6,7 +6,46 @@ interface Props {
   DraftNumber: number;
 }
 
-interface HeaderData {}
+interface HeaderData {
+  EntryNum: string;
+  DocNum: number;
+  DraftNum: number;
+  PostingDate: Date;
+  DocDate: Date;
+  DeliveryDate: Date;
+  CustomerCode: string;
+  CustomerName: string;
+  WalkInName: string;
+  ShippingAdd: string;
+  TIN: string;
+  Reference: string;
+  SCPWDIdNo: string;
+  Branch: number;
+  DocStat: string;
+  BaseDoc: number;
+  Cash: string;
+  CreditCard: string;
+  DebitCard: string;
+  ODC: string;
+  PDC: string;
+  OnlineTransfer: string;
+  OnAccount: string;
+  COD: string;
+  TotalAmtBefTax: number;
+  TotalTax: number;
+  TotalAmtAftTax: number;
+  SCPWDDiscTotal: number;
+  TotalAmtDue: number;
+  Remarks: string;
+  SalesCrew: string;
+  ForeignName: string;
+  ApprovalStat: number;
+  CreatedBy: string;
+  DateCreated: Date;
+  UpdatedBy: number;
+  DateUpdated: Date;
+  Synced: string;
+}
 
 interface DeatilsData {}
 
