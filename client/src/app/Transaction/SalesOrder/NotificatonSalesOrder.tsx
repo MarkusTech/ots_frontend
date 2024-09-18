@@ -86,10 +86,16 @@ const NotificationSalesOrder: React.FC<Props> = ({ DraftNumber }) => {
           `http://172.16.10.169:5000/api/v1/approval-summary/sales-order/${DraftNumber}`
         )
         .then((response) => {
-          response.data.data;
+          // Assuming the response structure from your Postman output
+          const { headerData, detailsData } = response.data;
+          setHeaderData(headerData); // Save header data
+          setDetailsData(detailsData); // Save details data
+        })
+        .catch((error) => {
+          console.error("Error fetching data:", error);
         });
     }
-  });
+  }, [DraftNumber]);
 
   const sampleButton = () => {
     console.log(DraftNumber);
