@@ -5,6 +5,9 @@ interface Props {
 }
 
 const NotificationSalesOrder: React.FC<Props> = ({ DraftNumber }) => {
+  const sampleButton = () => {
+    alert(DraftNumber);
+  };
   return (
     <>
       <div className="salesbody p-2 text-sm rounded-md flex gap-40 container overflow-x-auto shadow-lg">
@@ -231,6 +234,7 @@ const NotificationSalesOrder: React.FC<Props> = ({ DraftNumber }) => {
               <input type="text" />
             </div>
           </div>
+          <button onClick={sampleButton}>ALERT</button>
         </div>
       </div>
     </>
