@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import Draggable from "react-draggable";
 import Swal from "sweetalert2";
-import SalesOrder from "./SalesOrder";
 import NotificationSalesOrder from "./NotificatonSalesOrder";
 
 interface NotificationArr {
