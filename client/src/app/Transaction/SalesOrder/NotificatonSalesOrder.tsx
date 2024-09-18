@@ -47,7 +47,33 @@ interface HeaderData {
   Synced: string;
 }
 
-interface DeatilsData {}
+interface DeatilsData {
+  LineID: number;
+  DraftNum: string;
+  ItemCode: string;
+  ItemName: string;
+  Quantity: number;
+  UoM: string;
+  UoMConv: number;
+  Whse: string;
+  InvStat: string;
+  SellPriceBefDisc: number;
+  DiscRate: number;
+  SellPriceAftDisc: number;
+  LowerBound: number;
+  TaxCode: string;
+  TaxCodePerc: number;
+  TaxAmt: number;
+  PriceDisc: number;
+  BelPriceDisc: string;
+  Cost: number;
+  BelCost: string;
+  ModeReleasing: string;
+  SCPWDdisc: string;
+  GrossTotal: number;
+  TruckerForDropShipOrBackOrder: string;
+  PickUpLocation: string;
+}
 
 const NotificationSalesOrder: React.FC<Props> = ({ DraftNumber }) => {
   const [headerData, setHeaderData] = useState("");
