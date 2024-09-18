@@ -98,7 +98,7 @@ const NotificationSalesOrder: React.FC<Props> = ({ DraftNumber }) => {
   }, [DraftNumber]);
 
   const sampleButton = () => {
-    console.log(headerData);
+    console.log(DraftNumber);
   };
 
   return (
