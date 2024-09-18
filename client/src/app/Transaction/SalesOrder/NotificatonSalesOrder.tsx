@@ -1,14 +1,35 @@
-import React from "react";
+import React, { useState } from "react";
 import { useEffect } from "react";
+import axios from "axios";
 
 interface Props {
   DraftNumber: number;
 }
 
+interface HeaderData {}
+
+interface DeatilsData {}
+
 const NotificationSalesOrder: React.FC<Props> = ({ DraftNumber }) => {
+  const [headerData, setHeaderData] = useState("");
+  const [detailsData, setDetailsData] = useState("");
+
+  useEffect(() => {
+    if (DraftNumber) {
+      axios
+        .get(
+          `http://172.16.10.169:5000/api/v1/approval-summary/sales-order/${DraftNumber}`
+        )
+        .then((response) => {
+          response.data.data;
+        });
+    }
+  });
+
   const sampleButton = () => {
-    alert(DraftNumber);
+    console.log(DraftNumber);
   };
+
   return (
     <>
       <div className="salesbody p-2 text-sm rounded-md flex gap-40 container overflow-x-auto shadow-lg">
