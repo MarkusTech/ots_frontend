@@ -1,6 +1,10 @@
 import React from "react";
 
-const NotificationSalesOrder = () => {
+interface Props {
+  DraftNumber: number;
+}
+
+const NotificationSalesOrder: React.FC<Props> = ({ DraftNumber }) => {
   return (
     <>
       <div className="salesbody p-2 text-sm rounded-md flex gap-40 container overflow-x-auto shadow-lg">

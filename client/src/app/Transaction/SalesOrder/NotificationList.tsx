@@ -23,6 +23,7 @@ const NotificationList = () => {
   const [notifications, setNotifications] = useState<NotificationArr[]>([]);
   const [isVisible, setIsVisible] = useState(true);
   const [showSalesOrder, setShowSalesOrder] = useState(false);
+  const [draftNum, setDraftNum] = useState<number>(0);
 
   useEffect(() => {
     const fetchNotifications = async () => {
@@ -232,7 +233,7 @@ const NotificationList = () => {
               </div>
             </div>
             <div>
-              <NotificationSalesOrder />
+              <NotificationSalesOrder DraftNumber={draftNum} />
             </div>
           </div>
         </Draggable>
