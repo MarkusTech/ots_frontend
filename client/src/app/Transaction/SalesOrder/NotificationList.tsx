@@ -94,8 +94,20 @@ const NotificationList = () => {
     }
   };
 
-  const handleShowView = () => {
+  const handleShowView = (AppSummID: number) => {
+    const selectedNotification = notifications.find(
+      (notification) => notification.AppSummID === AppSummID
+    );
+
+    if (selectedNotification) {
+      setDraftNum(selectedNotification.DraftNum); // Set the DraftNum in the state
+    }
+
     setShowSalesOrder(!showSalesOrder);
+  };
+
+  const handleHideView = () => {
+    setShowSalesOrder(false);
   };
 
   const handleClose = () => {
@@ -192,7 +204,9 @@ const NotificationList = () => {
 
                             <button
                               className="ml-4 bg-blue-500 text-white px-2 py-1 rounded hover:bg-blue-600"
-                              onClick={handleShowView}
+                              onClick={() =>
+                                handleShowView(notification.AppSummID)
+                              } // Pass AppSummID here
                             >
                               View
                             </button>
@@ -227,7 +241,7 @@ const NotificationList = () => {
             >
               <div>Sales Order</div>
               <div className="text-right">
-                <span className="cursor-pointer" onClick={handleShowView}>
+                <span className="cursor-pointer" onClick={handleHideView}>
                   ❌
                 </span>
               </div>
