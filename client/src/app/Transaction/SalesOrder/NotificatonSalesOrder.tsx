@@ -86,10 +86,11 @@ const NotificationSalesOrder: React.FC<Props> = ({ DraftNumber }) => {
           `http://172.16.10.169:5000/api/v1/approval-summary/sales-order/${DraftNumber}`
         )
         .then((response) => {
-          // Assuming the response structure from your Postman output
-          const headerResponse = response.data.headerResult[0];
+          // Accessing the recordsets[0] since that's where your data is stored
+          const headerResponse = response.data.recordsets[0];
           const detailsResponse = response.data.detailsData;
-          setHeaderData(headerResponse); // Save header data
+
+          setHeaderData(headerResponse); // Save header data from recordset
           setDetailsData(detailsResponse); // Save details data
         })
         .catch((error) => {
@@ -99,7 +100,7 @@ const NotificationSalesOrder: React.FC<Props> = ({ DraftNumber }) => {
   }, [DraftNumber]);
 
   const sampleButton = () => {
-    alert(headerData);
+    console.log(headerData);
   };
 
   return (
