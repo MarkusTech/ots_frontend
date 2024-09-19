@@ -97,8 +97,8 @@ const NotificationSalesOrder: React.FC<Props> = ({ DraftNumber }) => {
 
   if (headerData.length === 0) return <div>Loading...</div>;
 
-  // Access the first item in headerData array
-  const [HeaderDataSelected] = headerData;
+  // Access the Seleted item in headerData array
+  const [headerItem] = headerData;
 
   const sampleButton = () => {
     console.log(headerData);
@@ -117,7 +117,7 @@ const NotificationSalesOrder: React.FC<Props> = ({ DraftNumber }) => {
                   type="text"
                   className="bg-slate-200"
                   readOnly
-                  value={HeaderDataSelected.CustomerCode || ""}
+                  value={headerItem.CustomerCode || ""}
                 />
               </div>
             </div>
@@ -128,14 +128,18 @@ const NotificationSalesOrder: React.FC<Props> = ({ DraftNumber }) => {
                   type="text"
                   className="bg-slate-200"
                   readOnly
-                  value="John Doe"
+                  value={headerItem.CustomerName || ""}
                 />
               </div>
             </div>
             <div className="grid grid-cols-2">
               <label htmlFor="foreignName">Foreign Name</label>
               <div>
-                <input type="text" readOnly value="Juan Pérez" />
+                <input
+                  type="text"
+                  readOnly
+                  value={headerItem.ForeignName || ""}
+                />
               </div>
             </div>
             <div className="grid grid-cols-2">
