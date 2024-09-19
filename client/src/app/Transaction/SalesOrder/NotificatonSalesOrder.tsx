@@ -243,7 +243,7 @@ const NotificationSalesOrder: React.FC<Props> = ({ DraftNumber }) => {
             <label htmlFor="deliveryDate">Delivery Date</label>
             <div>
               <input
-                type="date"
+                type="text"
                 id="deliveryDate"
                 readOnly
                 value={headerItem.DeliveryDate || ""}
