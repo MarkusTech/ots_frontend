@@ -47,8 +47,8 @@ interface HeaderData {
   Synced: string;
 }
 
-interface DeatilsData {
-  LineID: number;
+interface DetailData {
+  LineID: string;
   DraftNum: string;
   ItemCode: string;
   ItemName: string;
@@ -72,12 +72,12 @@ interface DeatilsData {
   SCPWDdisc: string;
   GrossTotal: number;
   TruckerForDropShipOrBackOrder: string;
-  PickUpLocation: string;
+  PickUpLocation: string | null;
 }
 
 const NotificationSalesOrder: React.FC<Props> = ({ DraftNumber }) => {
   const [headerData, setHeaderData] = useState<HeaderData[]>([]);
-  const [detailsData, setDetailsData] = useState<DeatilsData[]>([]);
+  const [detailsData, setDetailsData] = useState<DetailData[]>([]);
 
   useEffect(() => {
     if (DraftNumber) {
@@ -289,7 +289,37 @@ const NotificationSalesOrder: React.FC<Props> = ({ DraftNumber }) => {
                 <th>Gross Total</th>
               </tr>
             </thead>
-            <tbody>{/* Table rows go here */}</tbody>
+            <tbody>
+              {detailsData.map((item) => (
+                <tr key={item.LineID}>
+                  <td></td>
+                  <td>{item.ItemCode}</td>
+                  <td>{item.ItemName}</td>
+                  <td>{item.UoM}</td>
+                  <td>{item.UoMConv}</td>
+                  <td>{item.BelPriceDisc}</td>
+                  <td>{item.Whse}</td>
+                  <td>{item.Quantity}</td>
+                  <td>{item.InvStat}</td>
+                  <td>{item.SellPriceBefDisc}</td>
+                  <td>{item.PriceDisc}</td>
+                  <td>{item.DiscRate}</td>
+                  <td>{item.ModeReleasing}</td>
+                  <td>{item.TruckerForDropShipOrBackOrder}</td>
+                  <td>{item.PickUpLocation}</td>
+                  <td>{item.SellPriceAftDisc}</td>
+                  <td>{item.LowerBound}</td>
+                  <td>{item.TaxCode}</td>
+                  <td>{item.TaxCodePerc}</td>
+                  <td>{item.TaxAmt}</td>
+                  <td>{item.PriceDisc}</td>
+                  <td>{item.Cost}</td>
+                  <td>{item.BelCost}</td>
+                  <td>{item.SCPWDdisc}</td>
+                  <td>{item.GrossTotal}</td>
+                </tr>
+              ))}
+            </tbody>
           </table>
         </div>
       </div>
