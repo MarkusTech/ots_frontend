@@ -183,13 +183,13 @@ const NotificationSalesOrder: React.FC<Props> = ({ DraftNumber }) => {
             <div className="grid grid-cols-2">
               <label htmlFor="entrynumber">Document Status</label>
               <div>
-                <input type="text" value={headerItem.Reference || ""} />
+                <input type="text" value={headerItem.DocStat || ""} />
               </div>
             </div>
             <div className="grid grid-cols-2">
               <label htmlFor="entrynumber">Base Document</label>
               <div>
-                <input type="text" value={headerItem.Reference || ""} />
+                <input type="text" value={headerItem.BaseDoc || ""} />
               </div>
             </div>
           </div>
