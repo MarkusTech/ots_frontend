@@ -177,19 +177,19 @@ const NotificationSalesOrder: React.FC<Props> = ({ DraftNumber }) => {
             <div className="grid grid-cols-2">
               <label htmlFor="entrynumber">Branch</label>
               <div>
-                <input type="text" readOnly value="Main Branch" />
+                <input type="text" value={headerItem.Branch || ""} />
               </div>
             </div>
             <div className="grid grid-cols-2">
               <label htmlFor="entrynumber">Document Status</label>
               <div>
-                <input type="text" readOnly value="Approved" />
+                <input type="text" value={headerItem.Reference || ""} />
               </div>
             </div>
             <div className="grid grid-cols-2">
               <label htmlFor="entrynumber">Base Document</label>
               <div>
-                <input type="text" readOnly value="Base123" />
+                <input type="text" value={headerItem.Reference || ""} />
               </div>
             </div>
           </div>
