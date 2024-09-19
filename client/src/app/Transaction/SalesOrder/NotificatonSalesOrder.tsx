@@ -10,9 +10,9 @@ interface HeaderData {
   EntryNum: string;
   DocNum: number;
   DraftNum: number;
-  PostingDate: Date;
-  DocDate: Date;
-  DeliveryDate: Date;
+  PostingDate: string;
+  DocDate: string;
+  DeliveryDate: string;
   CustomerCode: string;
   CustomerName: string;
   WalkInName: string;
@@ -41,7 +41,7 @@ interface HeaderData {
   ForeignName: string;
   ApprovalStat: number;
   CreatedBy: string;
-  DateCreated: Date;
+  DateCreated: string;
   UpdatedBy: number;
   DateUpdated: Date;
   Synced: string;
@@ -200,37 +200,45 @@ const NotificationSalesOrder: React.FC<Props> = ({ DraftNumber }) => {
           <div className="grid grid-cols-2">
             <label htmlFor="documentnumber">Document Number</label>
             <div>
-              <input type="text" value="DOC123" />
+              <input type="text" value={headerItem.DocNum || ""} />
             </div>
           </div>
           <div className="grid grid-cols-2">
             <label htmlFor="draftNumber">Draft Number</label>
             <div>
-              <input type="text" readOnly value="DRFT001" />
+              <input type="text" value={headerItem.DraftNum || ""} />
             </div>
           </div>
           <div className="grid grid-cols-2">
             <label htmlFor="entrynumber">Entry Number</label>
             <div>
-              <input type="text" readOnly value="ENT789" />
+              <input type="text" value={headerItem.EntryNum || ""} />
             </div>
           </div>
           <div className="grid grid-cols-2">
             <label htmlFor="docdate">Document Date</label>
             <div>
-              <input type="text" readOnly value="2024-09-17" />
+              <input type="text" value={headerItem.DocDate || ""} />
             </div>
           </div>
           <div className="grid grid-cols-2">
             <label htmlFor="postDate">Posting Date</label>
             <div>
-              <input type="text" readOnly value="2024-09-18" />
+              <input
+                type="text"
+                readOnly
+                value={headerItem.PostingDate || ""}
+              />
             </div>
           </div>
           <div className="grid grid-cols-2">
             <label htmlFor="deliveryDate">Delivery Date</label>
             <div>
-              <input type="date" id="deliveryDate" />
+              <input
+                type="date"
+                id="deliveryDate"
+                value={headerItem.DeliveryDate || ""}
+              />
             </div>
           </div>
         </div>
