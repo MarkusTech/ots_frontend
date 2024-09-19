@@ -156,17 +156,14 @@ const getSalesOrderBasedOnApprovalDraftNum = async (req, res) => {
       });
     }
 
-    const headerData = headerResult.recordset[0];
-    const detailsData = detailsResult.recordset;
-
     // Save the result to the cache for future requests
     cache.set(cacheKey, { headerResult, detailsResult });
 
     return res.status(200).json({
       success: true,
       message: `Sales Order Data based on ${DraftNum}`,
-      headerData,
-      detailsData,
+      headerData: headerResult.recordset[0],
+      detailsData: detailsResult.recordset,
     });
   } catch (error) {
     console.error("Error fetching Sales Order data:", error);
