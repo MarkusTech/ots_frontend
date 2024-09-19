@@ -178,8 +178,10 @@ const getSalesOrderBasedOnApprovalDraftNum = async (req, res) => {
       detailsData,
     });
   } catch (error) {
-    console.error("Error fetching Sales Order data:", error);
-    return res.status(500).json({ error: "Internal Server Error" });
+    console.error("Error fetching Sales Order data:", error.message);
+    return res
+      .status(500)
+      .json({ error: "Internal Server Error", details: error.message });
   }
 };
 
