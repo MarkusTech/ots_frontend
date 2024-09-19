@@ -144,6 +144,13 @@ const NotificationSalesOrder: React.FC<Props> = ({ DraftNumber }) => {
             </div>
             <div className="grid grid-cols-2">
               <label htmlFor="WalkInName">Walk-in Customer Name</label>
+              <div>
+                <input
+                  type="text"
+                  readOnly
+                  value={headerItem.WalkInName || ""}
+                />
+              </div>
             </div>
             <div className="grid grid-cols-2">
               <label htmlFor="ShippingAdd">Customer Shipping Address</label>
