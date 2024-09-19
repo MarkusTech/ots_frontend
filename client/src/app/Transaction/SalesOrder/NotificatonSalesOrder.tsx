@@ -87,7 +87,9 @@ const NotificationSalesOrder: React.FC<Props> = ({ DraftNumber }) => {
         )
         .then((response) => {
           const headerResult = response.data.headerResult.recordset;
+          const detailsResult = response.data.detailsResult.recordset;
           setHeaderData(headerResult);
+          setDetailsData(detailsResult);
         })
         .catch((error) => {
           console.error("Error fetching data:", error);
@@ -101,7 +103,7 @@ const NotificationSalesOrder: React.FC<Props> = ({ DraftNumber }) => {
   const [headerItem] = headerData;
 
   const sampleButton = () => {
-    console.log(headerData);
+    console.log(detailsData);
   };
 
   return (
