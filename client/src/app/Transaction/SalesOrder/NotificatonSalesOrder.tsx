@@ -87,9 +87,10 @@ const NotificationSalesOrder: React.FC<Props> = ({ DraftNumber }) => {
         )
         .then((response) => {
           // Assuming the response structure from your Postman output
-          const { headerData, detailsData } = response.data;
-          setHeaderData(headerData); // Save header data
-          setDetailsData(detailsData); // Save details data
+          const headerResponse = response.data.headerResult.recordset;
+          const detailsResponse = response.data.detailsData;
+          setHeaderData(headerResponse); // Save header data
+          setDetailsData(detailsResponse); // Save details data
         })
         .catch((error) => {
           console.error("Error fetching data:", error);
@@ -98,7 +99,7 @@ const NotificationSalesOrder: React.FC<Props> = ({ DraftNumber }) => {
   }, [DraftNumber]);
 
   const sampleButton = () => {
-    console.log(DraftNumber);
+    console.log(headerData);
   };
 
   return (
