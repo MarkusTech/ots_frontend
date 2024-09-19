@@ -171,7 +171,7 @@ const NotificationSalesOrder: React.FC<Props> = ({ DraftNumber }) => {
             <div className="grid grid-cols-2">
               <label htmlFor="Reference">Customer Reference</label>
               <div>
-                <input type="text" value={headerItem.ShippingAdd || ""} />
+                <input type="text" value={headerItem.Reference || ""} />
               </div>
             </div>
             <div className="grid grid-cols-2">
