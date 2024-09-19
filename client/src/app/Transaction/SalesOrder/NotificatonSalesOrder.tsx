@@ -86,17 +86,19 @@ const NotificationSalesOrder: React.FC<Props> = ({ DraftNumber }) => {
           `http://172.16.10.169:5000/api/v1/approval-summary/sales-order/${DraftNumber}`
         )
         .then((response) => {
-          const { headerData, detailsData } = response.data;
-
-          // Set the data to the state
-          setHeaderData(headerData);
-          setDetailsData(detailsData);
+          const headerResult = response.data.headerResult.recordset;
+          setHeaderData(headerResult);
         })
         .catch((error) => {
           console.error("Error fetching data:", error);
         });
     }
   }, [DraftNumber]);
+
+  if (headerData.length === 0) return <div>Loading...</div>;
+
+  // Access the first item in headerData array
+  const [HeaderDataSelected] = headerData;
 
   const sampleButton = () => {
     console.log(headerData);
@@ -115,7 +117,7 @@ const NotificationSalesOrder: React.FC<Props> = ({ DraftNumber }) => {
                   type="text"
                   className="bg-slate-200"
                   readOnly
-                  value="12345"
+                  value={HeaderDataSelected.CustomerCode || ""}
                 />
               </div>
             </div>
