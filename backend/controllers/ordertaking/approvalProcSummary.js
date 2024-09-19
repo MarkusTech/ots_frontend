@@ -129,33 +129,27 @@ const getSalesOrderBasedOnApprovalDraftNum = async (req, res) => {
       return res.status(200).json({
         success: true,
         message: `Sales Order Data based on ${DraftNum} (from cache)`,
-        headerData: cachedData.headerResult,
-        detailsData: cachedData.detailsResult,
+        headerResult: cachedData.headerResult,
+        detailsResult: cachedData.detailsResult,
       });
     }
 
     // Query database if cache is not available
-    const headerQuery = `SELECT * FROM [OTS_DB].[dbo].[SO_Header] WHERE DraftNum = @DraftNum`;
-    const detailsQuery = `SELECT * FROM [OTS_DB].[dbo].[SO_Details] WHERE DraftNum = @DraftNum`;
+    const headerResult = await sqlConn.query(
+      `SELECT * FROM [OTS_DB].[dbo].[SO_Header] WHERE DraftNum = ${DraftNum}`
+    );
+    const detailsResult = await sqlConn.query(
+      `SELECT * FROM [OTS_DB].[dbo].[SO_Details] WHERE DraftNum = '${DraftNum}'`
+    );
 
-    // Use parameterized queries
-    const headerResult = await sqlConn
-      .request()
-      .input("DraftNum", sql.VarChar, DraftNum)
-      .query(headerQuery);
-    const detailsResult = await sqlConn
-      .request()
-      .input("DraftNum", sql.VarChar, DraftNum)
-      .query(detailsQuery);
-
-    if (headerResult.recordset.length === 0) {
+    if (!headerResult) {
       return res.status(400).json({
         success: false,
         message: `Unable to find header based on ${DraftNum}`,
       });
     }
 
-    if (detailsResult.recordset.length === 0) {
+    if (!detailsResult) {
       return res.status(400).json({
         success: false,
         message: `Unable to find details based on ${DraftNum}`,
@@ -166,10 +160,7 @@ const getSalesOrderBasedOnApprovalDraftNum = async (req, res) => {
     const detailsData = detailsResult.recordset;
 
     // Save the result to the cache for future requests
-    cache.set(cacheKey, {
-      headerResult: headerData,
-      detailsResult: detailsData,
-    });
+    cache.set(cacheKey, { headerResult, detailsResult });
 
     return res.status(200).json({
       success: true,
@@ -178,10 +169,8 @@ const getSalesOrderBasedOnApprovalDraftNum = async (req, res) => {
       detailsData,
     });
   } catch (error) {
-    console.error("Error fetching Sales Order data:", error.message);
-    return res
-      .status(500)
-      .json({ error: "Internal Server Error", details: error.message });
+    console.error("Error fetching Sales Order data:", error);
+    return res.status(500).json({ error: "Internal Server Error" });
   }
 };
 
