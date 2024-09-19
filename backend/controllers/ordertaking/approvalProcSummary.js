@@ -129,27 +129,33 @@ const getSalesOrderBasedOnApprovalDraftNum = async (req, res) => {
       return res.status(200).json({
         success: true,
         message: `Sales Order Data based on ${DraftNum} (from cache)`,
-        headerResult: cachedData.headerResult,
-        detailsResult: cachedData.detailsResult,
+        headerData: cachedData.headerResult,
+        detailsData: cachedData.detailsResult,
       });
     }
 
     // Query database if cache is not available
-    const headerResult = await sqlConn.query(
-      `SELECT * FROM [OTS_DB].[dbo].[SO_Header] WHERE DraftNum = ${DraftNum}`
-    );
-    const detailsResult = await sqlConn.query(
-      `SELECT * FROM [OTS_DB].[dbo].[SO_Details] WHERE DraftNum = '${DraftNum}'`
-    );
+    const headerQuery = `SELECT * FROM [OTS_DB].[dbo].[SO_Header] WHERE DraftNum = @DraftNum`;
+    const detailsQuery = `SELECT * FROM [OTS_DB].[dbo].[SO_Details] WHERE DraftNum = @DraftNum`;
 
-    if (!headerResult) {
+    // Use parameterized queries
+    const headerResult = await sqlConn
+      .request()
+      .input("DraftNum", sql.VarChar, DraftNum)
+      .query(headerQuery);
+    const detailsResult = await sqlConn
+      .request()
+      .input("DraftNum", sql.VarChar, DraftNum)
+      .query(detailsQuery);
+
+    if (headerResult.recordset.length === 0) {
       return res.status(400).json({
         success: false,
         message: `Unable to find header based on ${DraftNum}`,
       });
     }
 
-    if (!detailsResult) {
+    if (detailsResult.recordset.length === 0) {
       return res.status(400).json({
         success: false,
         message: `Unable to find details based on ${DraftNum}`,
@@ -160,7 +166,10 @@ const getSalesOrderBasedOnApprovalDraftNum = async (req, res) => {
     const detailsData = detailsResult.recordset;
 
     // Save the result to the cache for future requests
-    cache.set(cacheKey, { headerResult, detailsResult });
+    cache.set(cacheKey, {
+      headerResult: headerData,
+      detailsResult: detailsData,
+    });
 
     return res.status(200).json({
       success: true,
