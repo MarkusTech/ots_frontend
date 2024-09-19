@@ -155,13 +155,17 @@ const NotificationSalesOrder: React.FC<Props> = ({ DraftNumber }) => {
             <div className="grid grid-cols-2">
               <label htmlFor="ShippingAdd">Customer Shipping Address</label>
               <div>
-                <input type="text" value={headerItem.ShippingAdd || ""} />
+                <input
+                  type="text"
+                  readOnly
+                  value={headerItem.ShippingAdd || ""}
+                />
               </div>
             </div>
             <div className="grid grid-cols-2">
               <label htmlFor="TIN">Customer TIN</label>
               <div>
-                <input type="text" value={headerItem.TIN || ""} />
+                <input type="text" readOnly value={headerItem.TIN || ""} />
               </div>
             </div>
           </div>
@@ -171,25 +175,29 @@ const NotificationSalesOrder: React.FC<Props> = ({ DraftNumber }) => {
             <div className="grid grid-cols-2">
               <label htmlFor="Reference">Customer Reference</label>
               <div>
-                <input type="text" value={headerItem.Reference || ""} />
+                <input
+                  type="text"
+                  readOnly
+                  value={headerItem.Reference || ""}
+                />
               </div>
             </div>
             <div className="grid grid-cols-2">
               <label htmlFor="entrynumber">Branch</label>
               <div>
-                <input type="text" value={headerItem.Branch || ""} />
+                <input type="text" readOnly value={headerItem.Branch || ""} />
               </div>
             </div>
             <div className="grid grid-cols-2">
               <label htmlFor="entrynumber">Document Status</label>
               <div>
-                <input type="text" value={headerItem.DocStat || ""} />
+                <input type="text" readOnly value={headerItem.DocStat || ""} />
               </div>
             </div>
             <div className="grid grid-cols-2">
               <label htmlFor="entrynumber">Base Document</label>
               <div>
-                <input type="text" value={headerItem.BaseDoc || ""} />
+                <input type="text" readOnly value={headerItem.BaseDoc || ""} />
               </div>
             </div>
           </div>
@@ -200,25 +208,25 @@ const NotificationSalesOrder: React.FC<Props> = ({ DraftNumber }) => {
           <div className="grid grid-cols-2">
             <label htmlFor="documentnumber">Document Number</label>
             <div>
-              <input type="text" value={headerItem.DocNum || ""} />
+              <input type="text" readOnly value={headerItem.DocNum || ""} />
             </div>
           </div>
           <div className="grid grid-cols-2">
             <label htmlFor="draftNumber">Draft Number</label>
             <div>
-              <input type="text" value={headerItem.DraftNum || ""} />
+              <input type="text" readOnly value={headerItem.DraftNum || ""} />
             </div>
           </div>
           <div className="grid grid-cols-2">
             <label htmlFor="entrynumber">Entry Number</label>
             <div>
-              <input type="text" value={headerItem.EntryNum || ""} />
+              <input type="text" readOnly value={headerItem.EntryNum || ""} />
             </div>
           </div>
           <div className="grid grid-cols-2">
             <label htmlFor="docdate">Document Date</label>
             <div>
-              <input type="text" value={headerItem.DocDate || ""} />
+              <input type="text" readOnly value={headerItem.DocDate || ""} />
             </div>
           </div>
           <div className="grid grid-cols-2">
@@ -237,6 +245,7 @@ const NotificationSalesOrder: React.FC<Props> = ({ DraftNumber }) => {
               <input
                 type="date"
                 id="deliveryDate"
+                readOnly
                 value={headerItem.DeliveryDate || ""}
               />
             </div>
