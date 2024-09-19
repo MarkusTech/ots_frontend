@@ -156,7 +156,7 @@ const getSalesOrderBasedOnApprovalDraftNum = async (req, res) => {
       });
     }
 
-    const headerData = headerResult.recordset;
+    const headerData = headerResult.recordset[0];
     const detailsData = detailsResult.recordset;
 
     // Save the result to the cache for future requests
