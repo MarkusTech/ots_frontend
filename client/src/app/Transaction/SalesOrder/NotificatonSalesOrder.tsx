@@ -155,13 +155,13 @@ const NotificationSalesOrder: React.FC<Props> = ({ DraftNumber }) => {
             <div className="grid grid-cols-2">
               <label htmlFor="ShippingAdd">Customer Shipping Address</label>
               <div>
-                <input type="text" value="123 Main St." />
+                <input type="text" value={headerItem.ShippingAdd || ""} />
               </div>
             </div>
             <div className="grid grid-cols-2">
               <label htmlFor="TIN">Customer TIN</label>
               <div>
-                <input type="text" value="123-456-789" />
+                <input type="text" value={headerItem.TIN || ""} />
               </div>
             </div>
           </div>
@@ -171,7 +171,7 @@ const NotificationSalesOrder: React.FC<Props> = ({ DraftNumber }) => {
             <div className="grid grid-cols-2">
               <label htmlFor="Reference">Customer Reference</label>
               <div>
-                <input type="text" value="Ref123" />
+                <input type="text" value={headerItem.ShippingAdd || ""} />
               </div>
             </div>
             <div className="grid grid-cols-2">
