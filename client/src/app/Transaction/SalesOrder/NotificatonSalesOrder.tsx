@@ -87,7 +87,7 @@ const NotificationSalesOrder: React.FC<Props> = ({ DraftNumber }) => {
         )
         .then((response) => {
           // Assuming the response structure from your Postman output
-          const headerResponse = response.data.headerResult.recordset;
+          const headerResponse = response.data;
           const detailsResponse = response.data.detailsData;
           setHeaderData(headerResponse); // Save header data
           setDetailsData(detailsResponse); // Save details data
@@ -99,7 +99,7 @@ const NotificationSalesOrder: React.FC<Props> = ({ DraftNumber }) => {
   }, [DraftNumber]);
 
   const sampleButton = () => {
-    console.log(headerData);
+    alert(headerData);
   };
 
   return (
