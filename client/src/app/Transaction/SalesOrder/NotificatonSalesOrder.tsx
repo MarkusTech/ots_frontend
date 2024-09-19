@@ -86,12 +86,11 @@ const NotificationSalesOrder: React.FC<Props> = ({ DraftNumber }) => {
           `http://172.16.10.169:5000/api/v1/approval-summary/sales-order/${DraftNumber}`
         )
         .then((response) => {
-          // Accessing the recordsets[0] since that's where your data is stored
-          const headerResponse = response.data.recordsets[0];
-          const detailsResponse = response.data.detailsData;
+          const { headerData, detailsData } = response.data;
 
-          setHeaderData(headerResponse); // Save header data from recordset
-          setDetailsData(detailsResponse); // Save details data
+          // Set the data to the state
+          setHeaderData(headerData);
+          setDetailsData(detailsData);
         })
         .catch((error) => {
           console.error("Error fetching data:", error);
