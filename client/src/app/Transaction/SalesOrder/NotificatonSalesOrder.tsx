@@ -382,13 +382,17 @@ const NotificationSalesOrder: React.FC<Props> = ({ DraftNumber }) => {
           <div className="grid grid-cols-2">
             <label htmlFor="salescrew">Sales Crew</label>
             <div>
-              <input type="text" />
+              <input type="text" readOnly value={headerItem.SalesCrew} />
             </div>
           </div>
           <div className="grid grid-cols-2">
             <label htmlFor="remarks">Remarks</label>
             <div>
-              <textarea name="remarks" id="remarks"></textarea>
+              <textarea
+                name="remarks"
+                id="remarks"
+                value={headerItem.Remarks}
+              ></textarea>
             </div>
           </div>
         </div>
