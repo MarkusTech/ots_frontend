@@ -248,7 +248,13 @@ const NotificationSalesOrder: React.FC<Props> = ({ DraftNumber }) => {
                 type="text"
                 id="deliveryDate"
                 readOnly
-                value={headerItem.DeliveryDate || ""}
+                value={
+                  headerItem.DeliveryDate
+                    ? new Date(headerItem.DeliveryDate).toLocaleDateString(
+                        "en-US"
+                      )
+                    : ""
+                }
               />
             </div>
           </div>
