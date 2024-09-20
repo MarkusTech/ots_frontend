@@ -301,24 +301,23 @@ const NotificationSalesOrder: React.FC<Props> = ({ DraftNumber }) => {
                   <td>{item.Whse}</td>
                   <td>{item.Quantity}</td>
                   <td>{item.InvStat}</td>
-                  <td>{item.PriceDisc}</td>
-                  <td>{item.SellPriceBefDisc}</td>
+                  <td>{`₱${item.PriceDisc}`}</td>
+                  <td>{`₱${item.SellPriceBefDisc}`}</td>
                   <td>{item.DiscRate}</td>
                   <td>{item.ModeReleasing}</td>
                   <td>{item.TruckerForDropShipOrBackOrder}</td>
                   <td>{item.PickUpLocation}</td>
-                  <td>{item.SellPriceAftDisc}</td>
-                  {/* Standard Price Discount */}
-                  <td>{item.SellPriceAftDisc}</td>
-                  <td>{item.LowerBound}</td>
+                  <td>{`₱${item.SellPriceAftDisc}`}</td>
+                  <td>{`₱${item.SellPriceAftDisc}`}</td>
+                  <td>{`₱${item.LowerBound}`}</td>
                   <td>{item.TaxCode}</td>
                   <td>{item.TaxCodePerc}</td>
-                  <td>{item.TaxAmt}</td>
-                  <td>{item.PriceDisc}</td>
-                  <td>{item.Cost}</td>
+                  <td>{`₱${item.TaxAmt}`}</td>
+                  <td>{`₱${item.PriceDisc}`}</td>
+                  <td>{`₱${item.Cost}`}</td>
                   <td>{item.BelCost}</td>
                   <td>{item.SCPWDdisc}</td>
-                  <td>{item.GrossTotal}</td>
+                  <td>{`₱${item.GrossTotal}`}</td>
                 </tr>
               ))}
             </tbody>
