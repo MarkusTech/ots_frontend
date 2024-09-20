@@ -334,93 +334,39 @@ const NotificationSalesOrder: React.FC<Props> = ({ DraftNumber }) => {
             <label htmlFor="modeofpayment">Mode of Payment:</label>
             <div className="">
               <div className="flex justify-start gap-2 w-[100px]">
-                <input
-                  className="w-[20px]"
-                  type="checkbox"
-                  // checked={isCheckedCash}
-                  // onChange={handCash}
-                  // disabled={ccstatus}
-                />
+                <input className="w-[20px]" type="checkbox" />
                 Cash
               </div>
               <div className="flex justify-start gap-2">
-                <input
-                  className="w-[20px]"
-                  type="checkbox"
-                  // checked={isCheckedCreditCard}
-                  // onChange={handleCreditCard}
-                  // disabled={ccstatus}
-                />
+                <input className="w-[20px]" type="checkbox" />
                 Credit Card
               </div>
               <div className="flex justify-start gap-2">
-                <input
-                  className="w-[20px]"
-                  type="checkbox"
-                  // checked={isCheckedDebit}
-                  // onChange={handleDebit}
-                  // disabled={ccstatus}
-                />
+                <input className="w-[20px]" type="checkbox" />
                 Debit Card
               </div>
               <div className="flex justify-start gap-2">
-                <input
-                  className="w-[20px]"
-                  type="checkbox"
-                  // checked={isCheckedPDC}
-                  // onChange={handlePDC}
-                  // disabled={ccstatus}
-                />
+                <input className="w-[20px]" type="checkbox" />
                 PDC
               </div>
               <div className="flex justify-start gap-2">
-                <input
-                  className="w-[20px]"
-                  type="checkbox"
-                  // checked={isCheckedPO}
-                  // onChange={handlePO}
-                  // disabled={ccstatus}
-                />
+                <input className="w-[20px]" type="checkbox" />
                 PO
               </div>
               <div className="flex justify-start gap-2 w-[200px]">
-                <input
-                  className="w-[20px]"
-                  type="checkbox"
-                  // checked={isCheckedDatedCheck}
-                  // onChange={handleDatedCheck}
-                  // disabled={ccstatus}
-                />
+                <input className="w-[20px]" type="checkbox" />
                 Dated Check
               </div>
               <div className="flex justify-start gap-2">
-                <input
-                  className="w-[20px]"
-                  type="checkbox"
-                  // checked={isCheckedOnlineTransfer}
-                  // onChange={handlOnlineTransfer}
-                  // disabled={ccstatus}
-                />
+                <input className="w-[20px]" type="checkbox" />
                 Online Transfer
               </div>
               <div className="flex justify-start gap-2">
-                <input
-                  className="w-[20px]"
-                  type="checkbox"
-                  // checked={isCheckedOnAccount}
-                  // onChange={handleOnAccount}
-                  // disabled={ccstatus}
-                />
+                <input className="w-[20px]" type="checkbox" />
                 On Account
               </div>
               <div className="flex justify-start gap-2">
-                <input
-                  className="w-[20px]"
-                  type="checkbox"
-                  // checked={isCheckedCashOnDel}
-                  // onChange={handleCashOnDel}
-                  // disabled={ccstatus}
-                />
+                <input className="w-[20px]" type="checkbox" />
                 Cash on Delivery
               </div>
             </div>
