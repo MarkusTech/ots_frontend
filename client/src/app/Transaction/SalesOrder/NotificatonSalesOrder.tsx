@@ -102,6 +102,14 @@ const NotificationSalesOrder: React.FC<Props> = ({ DraftNumber }) => {
   // Access the Seleted item in headerData array
   const [headerItem] = headerData;
 
+  // validation for mode of releasing
+  let cash = 0;
+  for (let i = 1; i < detailsData.length; i++) {
+    if (detailsData) {
+      console.log(`asdasd`);
+    }
+  }
+
   return (
     <>
       <div className="salesbody p-2 text-sm rounded-md flex gap-40 container overflow-x-auto shadow-lg">
