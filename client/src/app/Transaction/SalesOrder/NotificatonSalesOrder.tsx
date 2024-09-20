@@ -401,31 +401,47 @@ const NotificationSalesOrder: React.FC<Props> = ({ DraftNumber }) => {
                 Total Amount Before VAT
               </label>
               <div>
-                <input type="text" readOnly />
+                <input
+                  type="text"
+                  readOnly
+                  value={`₱${headerItem.TotalAmtBefTax}`}
+                />
               </div>
             </div>
             <div className="grid grid-cols-2">
               <label htmlFor="totalVat">Total VAT</label>
               <div>
-                <input type="text" readOnly />
+                <input type="text" readOnly value={`₱${headerItem.TotalTax}`} />
               </div>
             </div>
             <div className="grid grid-cols-2">
               <label htmlFor="totalAftVat">Total After VAT</label>
               <div>
-                <input type="text" readOnly />
+                <input
+                  type="text"
+                  readOnly
+                  value={`₱${headerItem.TotalAmtAftTax}`}
+                />
               </div>
             </div>
             <div className="grid grid-cols-2">
               <label htmlFor="PwdDisTotal">SC/PWD Discount Total</label>
               <div>
-                <input type="text" readOnly />
+                <input
+                  type="text"
+                  readOnly
+                  value={`₱${headerItem.SCPWDDiscTotal}`}
+                />
               </div>
             </div>
             <div className="grid grid-cols-2">
               <label htmlFor="totAmtDue">Total Amount Due</label>
               <div>
-                <input type="text" readOnly />
+                <input
+                  type="text"
+                  readOnly
+                  value={`₱${headerItem.TotalAmtDue}`}
+                />
               </div>
             </div>
           </div>
