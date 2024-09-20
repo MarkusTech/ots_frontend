@@ -228,16 +228,31 @@ const NotificationSalesOrder: React.FC<Props> = ({ DraftNumber }) => {
           <div className="grid grid-cols-2">
             <label htmlFor="docdate">Document Date</label>
             <div>
-              <input type="text" readOnly value={headerItem.DocDate || ""} />
+              <input
+                type="text"
+                readOnly
+                value={
+                  headerItem.DocDate
+                    ? new Date(headerItem.DocDate).toLocaleDateString("en-US")
+                    : ""
+                }
+              />
             </div>
           </div>
+
           <div className="grid grid-cols-2">
             <label htmlFor="postDate">Posting Date</label>
             <div>
               <input
                 type="text"
                 readOnly
-                value={headerItem.PostingDate || ""}
+                value={
+                  headerItem.PostingDate
+                    ? new Date(headerItem.PostingDate).toLocaleDateString(
+                        "en-US"
+                      )
+                    : ""
+                }
               />
             </div>
           </div>
