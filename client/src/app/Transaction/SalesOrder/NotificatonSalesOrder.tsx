@@ -497,7 +497,7 @@ const NotificationSalesOrder: React.FC<Props> = ({ DraftNumber }) => {
                             maximumFractionDigits: 2,
                           }
                         )}`
-                      : ""
+                      : "₱0.00"
                   }
                 />
               </div>
