@@ -402,28 +402,33 @@ const NotificationSalesOrder: React.FC<Props> = ({ DraftNumber }) => {
               </label>
               <div>
                 {/* <input value={totalAfterVat} type="text" readOnly /> */}
+                <input type="text" />
               </div>
             </div>
             <div className="grid grid-cols-2">
               <label htmlFor="totalVat">Total VAT</label>
               <div>{/* <input value={totalVat} type="text" readOnly /> */}</div>
+              <input type="text" />
             </div>
             <div className="grid grid-cols-2">
               <label htmlFor="totalAftVat">Total After VAT</label>
               <div>
                 {/* <input value={totalBeforeVat} type="text" readOnly /> */}
+                <input type="text" />
               </div>
             </div>
             <div className="grid grid-cols-2">
               <label htmlFor="PwdDisTotal">SC/PWD Discount Total</label>
               <div>
                 {/* <input value={SCPWDdata} type="text" readOnly /> */}
+                <input type="text" />
               </div>
             </div>
             <div className="grid grid-cols-2">
               <label htmlFor="totAmtDue">Total Amount Due</label>
               <div>
                 {/* <input value={totalAmoutDueData} type="text" readOnly /> */}
+                <input type="text" />
               </div>
             </div>
           </div>
