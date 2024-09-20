@@ -428,14 +428,38 @@ const NotificationSalesOrder: React.FC<Props> = ({ DraftNumber }) => {
                 <input
                   type="text"
                   readOnly
-                  value={`₱${headerItem.TotalAmtBefTax}`}
+                  value={
+                    headerItem.TotalAmtBefTax
+                      ? `₱${Number(headerItem.TotalAmtBefTax).toLocaleString(
+                          "en-PH",
+                          {
+                            minimumFractionDigits: 2,
+                            maximumFractionDigits: 2,
+                          }
+                        )}`
+                      : ""
+                  }
                 />
               </div>
             </div>
             <div className="grid grid-cols-2">
               <label htmlFor="totalVat">Total VAT</label>
               <div>
-                <input type="text" readOnly value={`₱${headerItem.TotalTax}`} />
+                <input
+                  type="text"
+                  readOnly
+                  value={
+                    headerItem.TotalTax
+                      ? `₱${Number(headerItem.TotalTax).toLocaleString(
+                          "en-PH",
+                          {
+                            minimumFractionDigits: 2,
+                            maximumFractionDigits: 2,
+                          }
+                        )}`
+                      : ""
+                  }
+                />
               </div>
             </div>
             <div className="grid grid-cols-2">
@@ -444,7 +468,17 @@ const NotificationSalesOrder: React.FC<Props> = ({ DraftNumber }) => {
                 <input
                   type="text"
                   readOnly
-                  value={`₱${headerItem.TotalAmtAftTax}`}
+                  value={
+                    headerItem.TotalAmtAftTax
+                      ? `₱${Number(headerItem.TotalAmtAftTax).toLocaleString(
+                          "en-PH",
+                          {
+                            minimumFractionDigits: 2,
+                            maximumFractionDigits: 2,
+                          }
+                        )}`
+                      : ""
+                  }
                 />
               </div>
             </div>
@@ -454,7 +488,17 @@ const NotificationSalesOrder: React.FC<Props> = ({ DraftNumber }) => {
                 <input
                   type="text"
                   readOnly
-                  value={`₱${headerItem.SCPWDDiscTotal}`}
+                  value={
+                    headerItem.SCPWDDiscTotal
+                      ? `₱${Number(headerItem.SCPWDDiscTotal).toLocaleString(
+                          "en-PH",
+                          {
+                            minimumFractionDigits: 2,
+                            maximumFractionDigits: 2,
+                          }
+                        )}`
+                      : ""
+                  }
                 />
               </div>
             </div>
@@ -464,12 +508,23 @@ const NotificationSalesOrder: React.FC<Props> = ({ DraftNumber }) => {
                 <input
                   type="text"
                   readOnly
-                  value={`₱${headerItem.TotalAmtDue}`}
+                  value={
+                    headerItem.TotalAmtDue
+                      ? `₱${Number(headerItem.TotalAmtDue).toLocaleString(
+                          "en-PH",
+                          {
+                            minimumFractionDigits: 2,
+                            maximumFractionDigits: 2,
+                          }
+                        )}`
+                      : ""
+                  }
                 />
               </div>
             </div>
           </div>
         </div>
+
         {/* ----------------------------- End Calculation ------------------------- */}
       </div>
     </>
