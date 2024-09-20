@@ -102,10 +102,6 @@ const NotificationSalesOrder: React.FC<Props> = ({ DraftNumber }) => {
   // Access the Seleted item in headerData array
   const [headerItem] = headerData;
 
-  const sampleButton = () => {
-    console.log(detailsData);
-  };
-
   return (
     <>
       <div className="salesbody p-2 text-sm rounded-md flex gap-40 container overflow-x-auto shadow-lg">
