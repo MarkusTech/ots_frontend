@@ -328,72 +328,161 @@ const NotificationSalesOrder: React.FC<Props> = ({ DraftNumber }) => {
 
       {/* Bottom Form */}
       <div className="text-left p-2 grid grid-cols-2 col1 text-[14px] mt-5">
-        <div className="w-[300px]">
+        <div className="w-[300px] ">
           <div className="grid grid-cols-2">
+            {/* ------------------------ Mode of Payment! ------------------------- */}
             <label htmlFor="modeofpayment">Mode of Payment:</label>
-            <div>
-              <div className="flex justify-start gap-2">
-                <input type="checkbox" className="w-[20px]" />
+            <div className="">
+              <div className="flex justify-start gap-2 w-[100px]">
+                <input
+                  className="w-[20px]"
+                  type="checkbox"
+                  // checked={isCheckedCash}
+                  // onChange={handCash}
+                  // disabled={ccstatus}
+                />
                 Cash
               </div>
               <div className="flex justify-start gap-2">
-                <input type="checkbox" className="w-[20px]" />
+                <input
+                  className="w-[20px]"
+                  type="checkbox"
+                  // checked={isCheckedCreditCard}
+                  // onChange={handleCreditCard}
+                  // disabled={ccstatus}
+                />
                 Credit Card
               </div>
               <div className="flex justify-start gap-2">
-                <input type="checkbox" className="w-[20px]" />
+                <input
+                  className="w-[20px]"
+                  type="checkbox"
+                  // checked={isCheckedDebit}
+                  // onChange={handleDebit}
+                  // disabled={ccstatus}
+                />
                 Debit Card
               </div>
               <div className="flex justify-start gap-2">
-                <input type="checkbox" className="w-[20px]" />
+                <input
+                  className="w-[20px]"
+                  type="checkbox"
+                  // checked={isCheckedPDC}
+                  // onChange={handlePDC}
+                  // disabled={ccstatus}
+                />
                 PDC
               </div>
               <div className="flex justify-start gap-2">
-                <input type="checkbox" className="w-[20px]" />
+                <input
+                  className="w-[20px]"
+                  type="checkbox"
+                  // checked={isCheckedPO}
+                  // onChange={handlePO}
+                  // disabled={ccstatus}
+                />
                 PO
               </div>
-              <div className="flex justify-start gap-2">
-                <input type="checkbox" className="w-[20px]" />
+              <div className="flex justify-start gap-2 w-[200px]">
+                <input
+                  className="w-[20px]"
+                  type="checkbox"
+                  // checked={isCheckedDatedCheck}
+                  // onChange={handleDatedCheck}
+                  // disabled={ccstatus}
+                />
                 Dated Check
               </div>
               <div className="flex justify-start gap-2">
-                <input type="checkbox" className="w-[20px]" />
+                <input
+                  className="w-[20px]"
+                  type="checkbox"
+                  // checked={isCheckedOnlineTransfer}
+                  // onChange={handlOnlineTransfer}
+                  // disabled={ccstatus}
+                />
                 Online Transfer
               </div>
               <div className="flex justify-start gap-2">
-                <input type="checkbox" className="w-[20px]" />
+                <input
+                  className="w-[20px]"
+                  type="checkbox"
+                  // checked={isCheckedOnAccount}
+                  // onChange={handleOnAccount}
+                  // disabled={ccstatus}
+                />
                 On Account
               </div>
               <div className="flex justify-start gap-2">
-                <input type="checkbox" className="w-[20px]" />
+                <input
+                  className="w-[20px]"
+                  type="checkbox"
+                  // checked={isCheckedCashOnDel}
+                  // onChange={handleCashOnDel}
+                  // disabled={ccstatus}
+                />
                 Cash on Delivery
               </div>
             </div>
           </div>
-          {/* Mode of Releasing */}
+          {/* End of mode of payment */}
+
           <div className="grid grid-cols-2">
             <label htmlFor="moderel">Mode of Releasing</label>
-            <div>
-              <select className="selections">
-                <option value="" disabled selected>
-                  Please Select
-                </option>
-                <option value="Standard-Pick-up">Standard-Pick-up</option>
-                <option value="Standard-Delivery">Standard-Delivery</option>
-                <option value="Back Order-Pick-up">Back Order-Pick-up</option>
-                {/* Add other options */}
-              </select>
-            </div>
-          </div>
-          {/* Other Fields */}
-          <div className="grid grid-cols-2">
-            <label htmlFor="contactnumber">Contact Person Number:</label>
             <div>
               <input type="text" />
             </div>
           </div>
-          <button onClick={sampleButton}>ALERT</button>
+          <div className="grid grid-cols-2">
+            <label htmlFor="salescrew">Sales Crew</label>
+            <div>
+              <input type="text" />
+            </div>
+          </div>
+          <div className="grid grid-cols-2">
+            <label htmlFor="remarks">Remarks</label>
+            <div>
+              <textarea name="remarks" id="remarks"></textarea>
+            </div>
+          </div>
         </div>
+
+        {/* ----------------------------- Calculation ------------------------- */}
+        <div className="text-right w-full grid justify-end">
+          <div className="w-[440px] ">
+            <div className="grid grid-cols-2 text-right">
+              <label htmlFor="totAmountBefVat" className="text-right">
+                Total Amount Before VAT
+              </label>
+              <div>
+                {/* <input value={totalAfterVat} type="text" readOnly /> */}
+              </div>
+            </div>
+            <div className="grid grid-cols-2">
+              <label htmlFor="totalVat">Total VAT</label>
+              <div>{/* <input value={totalVat} type="text" readOnly /> */}</div>
+            </div>
+            <div className="grid grid-cols-2">
+              <label htmlFor="totalAftVat">Total After VAT</label>
+              <div>
+                {/* <input value={totalBeforeVat} type="text" readOnly /> */}
+              </div>
+            </div>
+            <div className="grid grid-cols-2">
+              <label htmlFor="PwdDisTotal">SC/PWD Discount Total</label>
+              <div>
+                {/* <input value={SCPWDdata} type="text" readOnly /> */}
+              </div>
+            </div>
+            <div className="grid grid-cols-2">
+              <label htmlFor="totAmtDue">Total Amount Due</label>
+              <div>
+                {/* <input value={totalAmoutDueData} type="text" readOnly /> */}
+              </div>
+            </div>
+          </div>
+        </div>
+        {/* ----------------------------- End Calculation ------------------------- */}
       </div>
     </>
   );
