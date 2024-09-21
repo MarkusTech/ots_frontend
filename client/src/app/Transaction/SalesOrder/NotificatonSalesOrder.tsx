@@ -117,8 +117,16 @@ const NotificationSalesOrder: React.FC<Props> = ({ DraftNumber }) => {
             } else if (validation[i].OnAccount) {
               setIsOnAccount(true);
             } else if (validation[i].COD) {
-              setIsCashOnDelivery;
+              setIsCashOnDelivery(true);
             } else {
+              setIsCash(false);
+              setIsCreditCard(false);
+              setIsDebitCard(false);
+              setIsPo(false);
+              setIsPdc(false);
+              setIsOnlineTransfer(false);
+              setIsOnAccount(false);
+              setIsCashOnDelivery(false);
             }
           }
         })
