@@ -85,6 +85,8 @@ const NotificationSalesOrder: React.FC<Props> = ({ DraftNumber }) => {
   const [isPo, setIsPo] = useState<boolean>(false);
   const [isDatedCheck, setIsDatedCheck] = useState<boolean>(false);
   const [isOnlineTransfer, setIsOnlineTransfer] = useState<boolean>(false);
+  const [isOnAccount, setIsOnAccount] = useState<boolean>(false);
+  const [isCashOnDelivery, setIsCashDelivery] = useState<boolean>(false);
 
   useEffect(() => {
     if (DraftNumber) {
