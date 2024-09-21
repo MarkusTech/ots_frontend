@@ -174,6 +174,7 @@ const NotificationSalesOrder: React.FC<Props> = ({ DraftNumber }) => {
               <div>
                 <input
                   type="text"
+                  className="bg-slate-200"
                   readOnly
                   value={headerItem.ForeignName || ""}
                 />
@@ -184,6 +185,7 @@ const NotificationSalesOrder: React.FC<Props> = ({ DraftNumber }) => {
               <div>
                 <input
                   type="text"
+                  className="bg-slate-200"
                   readOnly
                   value={headerItem.WalkInName || ""}
                 />
@@ -194,6 +196,7 @@ const NotificationSalesOrder: React.FC<Props> = ({ DraftNumber }) => {
               <div>
                 <input
                   type="text"
+                  className="bg-slate-200"
                   readOnly
                   value={headerItem.ShippingAdd || ""}
                 />
@@ -202,7 +205,12 @@ const NotificationSalesOrder: React.FC<Props> = ({ DraftNumber }) => {
             <div className="grid grid-cols-2">
               <label htmlFor="TIN">Customer TIN</label>
               <div>
-                <input type="text" readOnly value={headerItem.TIN || ""} />
+                <input
+                  type="text"
+                  className="bg-slate-200"
+                  readOnly
+                  value={headerItem.TIN || ""}
+                />
               </div>
             </div>
           </div>
@@ -215,6 +223,7 @@ const NotificationSalesOrder: React.FC<Props> = ({ DraftNumber }) => {
                 <input
                   type="text"
                   readOnly
+                  className="bg-slate-200"
                   value={headerItem.Reference || ""}
                 />
               </div>
@@ -222,19 +231,34 @@ const NotificationSalesOrder: React.FC<Props> = ({ DraftNumber }) => {
             <div className="grid grid-cols-2">
               <label htmlFor="entrynumber">Branch</label>
               <div>
-                <input type="text" readOnly value={headerItem.Branch || ""} />
+                <input
+                  type="text"
+                  className="bg-slate-200"
+                  readOnly
+                  value={headerItem.Branch || ""}
+                />
               </div>
             </div>
             <div className="grid grid-cols-2">
               <label htmlFor="entrynumber">Document Status</label>
               <div>
-                <input type="text" readOnly value={headerItem.DocStat || ""} />
+                <input
+                  type="text"
+                  className="bg-slate-200"
+                  readOnly
+                  value={headerItem.DocStat || ""}
+                />
               </div>
             </div>
             <div className="grid grid-cols-2">
               <label htmlFor="entrynumber">Base Document</label>
               <div>
-                <input type="text" readOnly value={headerItem.BaseDoc || ""} />
+                <input
+                  type="text"
+                  className="bg-slate-200"
+                  readOnly
+                  value={headerItem.BaseDoc || ""}
+                />
               </div>
             </div>
           </div>
@@ -245,19 +269,34 @@ const NotificationSalesOrder: React.FC<Props> = ({ DraftNumber }) => {
           <div className="grid grid-cols-2">
             <label htmlFor="documentnumber">Document Number</label>
             <div>
-              <input type="text" readOnly value={headerItem.DocNum || ""} />
+              <input
+                type="text"
+                className="bg-slate-200"
+                readOnly
+                value={headerItem.DocNum || ""}
+              />
             </div>
           </div>
           <div className="grid grid-cols-2">
             <label htmlFor="draftNumber">Draft Number</label>
             <div>
-              <input type="text" readOnly value={headerItem.DraftNum || ""} />
+              <input
+                type="text"
+                className="bg-slate-200"
+                readOnly
+                value={headerItem.DraftNum || ""}
+              />
             </div>
           </div>
           <div className="grid grid-cols-2">
             <label htmlFor="entrynumber">Entry Number</label>
             <div>
-              <input type="text" readOnly value={headerItem.EntryNum || ""} />
+              <input
+                type="text"
+                className="bg-slate-200"
+                readOnly
+                value={headerItem.EntryNum || ""}
+              />
             </div>
           </div>
           <div className="grid grid-cols-2">
@@ -265,6 +304,7 @@ const NotificationSalesOrder: React.FC<Props> = ({ DraftNumber }) => {
             <div>
               <input
                 type="text"
+                className="bg-slate-200"
                 readOnly
                 value={
                   headerItem.DocDate
@@ -280,6 +320,7 @@ const NotificationSalesOrder: React.FC<Props> = ({ DraftNumber }) => {
             <div>
               <input
                 type="text"
+                className="bg-slate-200"
                 readOnly
                 value={
                   headerItem.PostingDate
@@ -296,6 +337,7 @@ const NotificationSalesOrder: React.FC<Props> = ({ DraftNumber }) => {
             <div>
               <input
                 type="text"
+                className="bg-slate-200"
                 id="deliveryDate"
                 readOnly
                 value={
@@ -546,7 +588,12 @@ const NotificationSalesOrder: React.FC<Props> = ({ DraftNumber }) => {
           <div className="grid grid-cols-2">
             <label htmlFor="salescrew">Sales Crew</label>
             <div>
-              <input type="text" readOnly value={headerItem.SalesCrew} />
+              <input
+                type="text"
+                className="bg-slate-200"
+                readOnly
+                value={headerItem.SalesCrew}
+              />
             </div>
           </div>
           <div className="grid grid-cols-2">
@@ -554,6 +601,7 @@ const NotificationSalesOrder: React.FC<Props> = ({ DraftNumber }) => {
             <div>
               <textarea
                 name="remarks"
+                className="bg-slate-200"
                 id="remarks"
                 value={headerItem.Remarks}
               ></textarea>
@@ -571,6 +619,7 @@ const NotificationSalesOrder: React.FC<Props> = ({ DraftNumber }) => {
               <div>
                 <input
                   type="text"
+                  className="bg-slate-200"
                   readOnly
                   value={
                     headerItem.TotalAmtBefTax
@@ -591,6 +640,7 @@ const NotificationSalesOrder: React.FC<Props> = ({ DraftNumber }) => {
               <div>
                 <input
                   type="text"
+                  className="bg-slate-200"
                   readOnly
                   value={
                     headerItem.TotalTax
@@ -611,6 +661,7 @@ const NotificationSalesOrder: React.FC<Props> = ({ DraftNumber }) => {
               <div>
                 <input
                   type="text"
+                  className="bg-slate-200"
                   readOnly
                   value={
                     headerItem.TotalAmtAftTax
@@ -631,6 +682,7 @@ const NotificationSalesOrder: React.FC<Props> = ({ DraftNumber }) => {
               <div>
                 <input
                   type="text"
+                  className="bg-slate-200"
                   readOnly
                   value={
                     headerItem.SCPWDDiscTotal
@@ -651,6 +703,7 @@ const NotificationSalesOrder: React.FC<Props> = ({ DraftNumber }) => {
               <div>
                 <input
                   type="text"
+                  className="bg-slate-200"
                   readOnly
                   value={
                     headerItem.TotalAmtDue
