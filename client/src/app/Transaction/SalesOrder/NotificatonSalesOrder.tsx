@@ -78,6 +78,7 @@ interface DetailData {
 const NotificationSalesOrder: React.FC<Props> = ({ DraftNumber }) => {
   const [headerData, setHeaderData] = useState<HeaderData[]>([]);
   const [detailsData, setDetailsData] = useState<DetailData[]>([]);
+  const [isCash, setIsCash] = useState<boolean>(false);
 
   useEffect(() => {
     if (DraftNumber) {
@@ -90,6 +91,14 @@ const NotificationSalesOrder: React.FC<Props> = ({ DraftNumber }) => {
           const detailsResult = response.data.detailsResult.recordset;
           setHeaderData(headerResult);
           setDetailsData(detailsResult);
+
+          const validation = response.data.headerResult.recordset;
+
+          for (let i = 0; i < validation.length; i++) {
+            if (validation[i].Cash === "Y") {
+              setIsCash(true);
+            }
+          }
         })
         .catch((error) => {
           console.error("Error fetching data:", error);
@@ -101,13 +110,6 @@ const NotificationSalesOrder: React.FC<Props> = ({ DraftNumber }) => {
 
   // Access the Seleted item in headerData array
   const [headerItem] = headerData;
-
-  // validation for mode of releasing
-  for (let i = 1; i < headerData.length; i++) {
-    if (detailsData[i]["ModeReleasing"] == "Standard-Pick-upss") {
-      alert("Wenn Mark Cute");
-    }
-  }
 
   return (
     <>
@@ -432,7 +434,7 @@ const NotificationSalesOrder: React.FC<Props> = ({ DraftNumber }) => {
             <label htmlFor="modeofpayment">Mode of Payment:</label>
             <div className="">
               <div className="flex justify-start gap-2 w-[100px]">
-                <input className="w-[20px]" type="checkbox" />
+                <input className="w-[20px]" type="checkbox" checked={isCash} />
                 Cash
               </div>
               <div className="flex justify-start gap-2">
