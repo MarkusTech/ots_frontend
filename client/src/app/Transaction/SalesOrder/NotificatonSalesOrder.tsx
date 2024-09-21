@@ -464,39 +464,44 @@ const NotificationSalesOrder: React.FC<Props> = ({ DraftNumber }) => {
             <label htmlFor="modeofpayment">Mode of Payment:</label>
             <div className="">
               <div className="flex justify-start gap-2 w-[100px]">
-                <input className="w-[20px]" type="checkbox" checked={isCash} />
+                <input
+                  className="w-[20px]"
+                  type="checkbox"
+                  readOnly
+                  checked={isCash}
+                />
                 Cash
               </div>
               <div className="flex justify-start gap-2">
-                <input className="w-[20px]" type="checkbox" />
+                <input className="w-[20px]" type="checkbox" readOnly />
                 Credit Card
               </div>
               <div className="flex justify-start gap-2">
-                <input className="w-[20px]" type="checkbox" />
+                <input className="w-[20px]" type="checkbox" readOnly />
                 Debit Card
               </div>
               <div className="flex justify-start gap-2">
-                <input className="w-[20px]" type="checkbox" />
+                <input className="w-[20px]" type="checkbox" readOnly />
                 PDC
               </div>
               <div className="flex justify-start gap-2">
-                <input className="w-[20px]" type="checkbox" />
+                <input className="w-[20px]" type="checkbox" readOnly />
                 PO
               </div>
               <div className="flex justify-start gap-2 w-[200px]">
-                <input className="w-[20px]" type="checkbox" />
+                <input className="w-[20px]" type="checkbox" readOnly />
                 Dated Check
               </div>
               <div className="flex justify-start gap-2">
-                <input className="w-[20px]" type="checkbox" />
+                <input className="w-[20px]" type="checkbox" readOnly />
                 Online Transfer
               </div>
               <div className="flex justify-start gap-2">
-                <input className="w-[20px]" type="checkbox" />
+                <input className="w-[20px]" type="checkbox" readOnly />
                 On Account
               </div>
               <div className="flex justify-start gap-2">
-                <input className="w-[20px]" type="checkbox" />
+                <input className="w-[20px]" type="checkbox" readOnly />
                 Cash on Delivery
               </div>
             </div>
