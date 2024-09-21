@@ -103,8 +103,8 @@ const NotificationSalesOrder: React.FC<Props> = ({ DraftNumber }) => {
   const [headerItem] = headerData;
 
   // validation for mode of releasing
-  for (let i = 1; i < detailsData.length; i++) {
-    if (detailsData[i]["ModeReleasing"] == "Standard-Pick-upss") {
+  for (let i = 1; i < headerData.length; i++) {
+    if (headerItem.Cash == "Y") {
       alert("Wenn Mark Cute");
     }
   }
