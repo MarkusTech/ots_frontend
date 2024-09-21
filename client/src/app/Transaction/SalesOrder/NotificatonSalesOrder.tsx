@@ -544,12 +544,6 @@ const NotificationSalesOrder: React.FC<Props> = ({ DraftNumber }) => {
           {/* End of mode of payment */}
 
           <div className="grid grid-cols-2">
-            <label htmlFor="moderel">Mode of Releasing</label>
-            <div>
-              <input type="text" />
-            </div>
-          </div>
-          <div className="grid grid-cols-2">
             <label htmlFor="salescrew">Sales Crew</label>
             <div>
               <input type="text" readOnly value={headerItem.SalesCrew} />
