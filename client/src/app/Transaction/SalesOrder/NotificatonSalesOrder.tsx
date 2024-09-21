@@ -83,10 +83,9 @@ const NotificationSalesOrder: React.FC<Props> = ({ DraftNumber }) => {
   const [isDebitCard, setIsDebitCard] = useState<boolean>(false);
   const [isPdc, setIsPdc] = useState<boolean>(false);
   const [isPo, setIsPo] = useState<boolean>(false);
-  const [isDatedCheck, setIsDatedCheck] = useState<boolean>(false);
   const [isOnlineTransfer, setIsOnlineTransfer] = useState<boolean>(false);
   const [isOnAccount, setIsOnAccount] = useState<boolean>(false);
-  const [isCashOnDelivery, setIsCashDelivery] = useState<boolean>(false);
+  const [isCashOnDelivery, setIsCashOnDelivery] = useState<boolean>(false);
 
   useEffect(() => {
     if (DraftNumber) {
@@ -105,6 +104,21 @@ const NotificationSalesOrder: React.FC<Props> = ({ DraftNumber }) => {
           for (let i = 0; i < validation.length; i++) {
             if (validation[i].Cash === "Y") {
               setIsCash(true);
+            } else if (validation[i].CreditCard) {
+              setIsCreditCard(true);
+            } else if (validation[i].DebitCard) {
+              setIsDebitCard(true);
+            } else if (validation[i].ODC) {
+              setIsPo(true);
+            } else if (validation[i].PDC) {
+              setIsPdc(true);
+            } else if (validation[i].OnlineTransfer) {
+              setIsOnlineTransfer(true);
+            } else if (validation[i].OnAccount) {
+              setIsOnAccount(true);
+            } else if (validation[i].COD) {
+              setIsCashOnDelivery;
+            } else {
             }
           }
         })
