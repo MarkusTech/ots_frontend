@@ -61,11 +61,11 @@ export default function Home() {
   const [submenuOpenApproval, setSubmenuOpenApproval] = useState(false);
 
   // For span active
-  const [spanName1, setSpanName1] = useState("");
-  const [spanName2, setSpanName2] = useState("");
-  const [spanName3, setSpanName3] = useState("");
-  const [spanName4, setSpanName4] = useState("");
-  const [spanName5, setSpanName5] = useState("");
+  const [spanName1, setSpanName1] = useState<string>("");
+  const [spanName2, setSpanName2] = useState<string>("");
+  const [spanName3, setSpanName3] = useState<string>("");
+  const [spanName4, setSpanName4] = useState<string>("");
+  const [spanName5, setSpanName5] = useState<string>("");
 
   const [showLogin, setShowLogin] = useState(false);
   const [formData, setFormData] = useState<FormData>(initialFormData);
