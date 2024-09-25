@@ -255,7 +255,6 @@ export default function Home() {
         setUsername("");
         setPassword("");
       } else {
-        // Handle login failure (e.g., display an error message)
         alert(response.data.message);
         loginAttempts++;
       }
