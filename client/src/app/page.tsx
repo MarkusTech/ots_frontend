@@ -190,7 +190,10 @@ export default function Home() {
         }
       );
 
-      if (response.data.message == "Sales Clerk") {
+      if (
+        response.data.message == "Sales Clerk" ||
+        response.data.message === "Store Supervisor"
+      ) {
         const user = response.data.user;
         setLoginUserData(user.UserName);
         setBranchIdData(user.BranchID);
