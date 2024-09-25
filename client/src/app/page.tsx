@@ -169,8 +169,8 @@ export default function Home() {
     e.stopPropagation(); // Prevent the event from reaching the parent li
   };
 
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
+  const [username, setUsername] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
   const [isShowButton, setIsShowButton] = useState(false);
   const [loginUserData, setLoginUserData] = useState<string>("");
   const [branchIdData, setBranchIdData] = useState<string>("");
