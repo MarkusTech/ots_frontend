@@ -67,12 +67,13 @@ export default function Home() {
   const [spanName4, setSpanName4] = useState<string>("");
   const [spanName5, setSpanName5] = useState<string>("");
 
-  const [showLogin, setShowLogin] = useState(false);
+  const [showLogin, setShowLogin] = useState<boolean>(false);
   const [formData, setFormData] = useState<FormData>(initialFormData);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [isLoggedInFloater, setIsLoggedInFloater] = useState(false);
-  const [isAdminLoggedIn, setIsAdminLoggedIn] = useState(false);
-  const [showNotificationList, setShowNotificationList] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
+  const [isLoggedInFloater, setIsLoggedInFloater] = useState<boolean>(false);
+  const [isAdminLoggedIn, setIsAdminLoggedIn] = useState<boolean>(false);
+  const [showNotificationList, setShowNotificationList] =
+    useState<boolean>(false);
 
   const logoutUser = () => {
     Swal.fire({
