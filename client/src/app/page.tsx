@@ -171,7 +171,7 @@ export default function Home() {
 
   const [username, setUsername] = useState<string>("");
   const [password, setPassword] = useState<string>("");
-  const [isShowButton, setIsShowButton] = useState(false);
+  const [isShowButton, setIsShowButton] = useState<boolean>(false);
   const [loginUserData, setLoginUserData] = useState<string>("");
   const [branchIdData, setBranchIdData] = useState<string>("");
   const [warehouseCodeData, setWarehouseCodeData] = useState<string>("");
