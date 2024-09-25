@@ -36,8 +36,8 @@ const login = async (req, res) => {
       // If credentials are correct but the user is not an admin
       return res.status(200).json({
         success: true,
-        // message: user.Position,
-        message: "User",
+        message: user.Position,
+        // message: "User",
         userId: user.id,
         userName: user.UserName,
         user,
