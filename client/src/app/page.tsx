@@ -192,7 +192,8 @@ export default function Home() {
 
       if (
         response.data.message == "Sales Clerk" ||
-        response.data.message === "Store Supervisor"
+        response.data.message === "Store Supervisor" ||
+        response.data.message === "Store Supervisor2"
       ) {
         const user = response.data.user;
         setLoginUserData(user.UserName);
