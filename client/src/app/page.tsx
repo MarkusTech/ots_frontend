@@ -54,11 +54,12 @@ export default function Home() {
   const unseenCount = useNotifications();
 
   // For submenu states
-  const [submenuOpen, setSubmenuOpen] = useState(false);
-  const [submenuOpenInq, setSubmenuOpenInq] = useState(false);
-  const [submenuOpenReports, setSubmenuOpenReports] = useState(false);
-  const [submenuOpenSetUp, setSubmenuOpenSetUp] = useState(false);
-  const [submenuOpenApproval, setSubmenuOpenApproval] = useState(false);
+  const [submenuOpen, setSubmenuOpen] = useState<boolean>(false);
+  const [submenuOpenInq, setSubmenuOpenInq] = useState<boolean>(false);
+  const [submenuOpenReports, setSubmenuOpenReports] = useState<boolean>(false);
+  const [submenuOpenSetUp, setSubmenuOpenSetUp] = useState<boolean>(false);
+  const [submenuOpenApproval, setSubmenuOpenApproval] =
+    useState<boolean>(false);
 
   // For span active
   const [spanName1, setSpanName1] = useState<string>("");
