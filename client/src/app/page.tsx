@@ -191,7 +191,6 @@ export default function Home() {
       );
 
       if (response.data.message == "User") {
-        // Handle successful login (e.g., redirect to another page or store user info)
         const user = response.data.user;
         setLoginUserData(user.UserName);
         setBranchIdData(user.BranchID);
