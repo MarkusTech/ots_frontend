@@ -359,7 +359,6 @@ const NotificationSalesOrder: React.FC<Props> = ({ DraftNumber }) => {
           <table>
             <thead className="tables">
               <tr>
-                <th></th>
                 <th>Item Codes</th>
                 <th>Item Name</th>
                 <th>Unit of Measure (UOM)</th>
@@ -390,7 +389,6 @@ const NotificationSalesOrder: React.FC<Props> = ({ DraftNumber }) => {
             <tbody>
               {detailsData.map((item) => (
                 <tr key={item.LineID}>
-                  <td></td>
                   <td>{item.ItemCode}</td>
                   <td>{item.ItemName}</td>
                   <td>{item.UoM}</td>
