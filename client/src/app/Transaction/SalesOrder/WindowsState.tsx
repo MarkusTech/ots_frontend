@@ -1,13 +1,12 @@
-// WindowState.tsx
-
 import { useState } from "react";
 
 export const useWindowState = () => {
-  const [showSalesOrder, setShowSalesOrder] = useState(false);
-  const [showUsers, setShowUsers] = useState(false);
-  const [viewUsers, setViewUsers] = useState(false);
-  const [showApprovalType, setShowApprovalType] = useState(false);
-  const [showApprovalProcedure, setShowApprovalProcedure] = useState(false);
+  const [showSalesOrder, setShowSalesOrder] = useState<boolean>(false);
+  const [showUsers, setShowUsers] = useState<boolean>(false);
+  const [viewUsers, setViewUsers] = useState<boolean>(false);
+  const [showApprovalType, setShowApprovalType] = useState<boolean>(false);
+  const [showApprovalProcedure, setShowApprovalProcedure] =
+    useState<boolean>(false);
 
   const toggleWindow = (e: any) => {
     if (e === "salesorder") {
