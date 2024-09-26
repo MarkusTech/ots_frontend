@@ -205,6 +205,8 @@ export default function Home() {
         setWarehouseCodeData(user.WhsCode);
         setPriceListNumData(user.PriceListNum);
         setLoginUserIDData(user.UserID); //new changes
+        // Originator Login show notification
+        setIsOriginatorLogin(!isOriginatorLogin);
         setFormData({
           userID: user.UserID,
           fullName: user.EmpName,
@@ -733,8 +735,20 @@ export default function Home() {
             {/* Login Floater */}
             {isLoggedInFloater && (
               <div>
-                {/* Notification Bell */}
+                {/* Approver Notification Bell */}
                 {isApproverLogin && (
+                  <div className="notification-container">
+                    <div className="notification">
+                      <NotificationBell
+                        unseenCount={unseenCount}
+                        onClick={toggleNotificationList}
+                      />
+                    </div>
+                  </div>
+                )}
+
+                {/* Originator Notification Bell */}
+                {isOriginatorLogin && (
                   <div className="notification-container">
                     <div className="notification">
                       <NotificationBell
