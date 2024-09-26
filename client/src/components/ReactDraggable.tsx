@@ -1,4 +1,3 @@
-// components/DraggableComponent.tsx
 import React, { ReactNode } from "react";
 import Draggable from "react-draggable";
 
