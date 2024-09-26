@@ -1,4 +1,3 @@
-// hooks/useNotifications.ts
 import { useState, useEffect } from "react";
 
 type NotificationResponse = {
