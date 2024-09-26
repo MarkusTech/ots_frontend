@@ -75,6 +75,8 @@ export default function Home() {
   const [isAdminLoggedIn, setIsAdminLoggedIn] = useState<boolean>(false);
   const [showNotificationList, setShowNotificationList] =
     useState<boolean>(false);
+  const [isOriginatorLogin, setIsOriginatorLogin] = useState<boolean>(false);
+  const [isApproverLogin, setIsApproverLogin] = useState<boolean>(false);
 
   const logoutUser = () => {
     Swal.fire({
@@ -251,6 +253,8 @@ export default function Home() {
         loginAttempts = 0;
         setIsLoggedInFloater(true);
         setIsAdminLoggedIn(!isAdminLoggedIn);
+        // Approver Login
+        setIsApproverLogin(!isApproverLogin);
         setShowLogin(!showLogin);
         setIsShowButton(!isShowButton);
         Swal.fire({
@@ -730,7 +734,7 @@ export default function Home() {
             {isLoggedInFloater && (
               <div>
                 {/* Notification Bell */}
-                {isAdminLoggedIn && (
+                {isApproverLogin && (
                   <div className="notification-container">
                     <div className="notification">
                       <NotificationBell
