@@ -1333,7 +1333,7 @@ const SalesOrder: React.FC<Props> = ({
       ...prevData,
       {
         draftNumber: "",
-        entryNumber: "", // sample
+        entryNumber: "",
         itemCode: "",
         itemName: "",
         quantity: 0,
