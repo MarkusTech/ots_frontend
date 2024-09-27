@@ -331,7 +331,7 @@ const SalesOrder: React.FC<Props> = ({
           DocNum: 0,
           PostingDate: todayDate,
           DocDate: todayDate,
-          DeliveryDate: todayDate, // added
+          DeliveryDate: todayDate,
           CustomerCode: formData.CustomerCode,
           CustomerName: formData.CustomerName,
           WalkInName: walkInCustomer,
