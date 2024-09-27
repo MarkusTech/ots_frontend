@@ -507,7 +507,7 @@ const SalesOrder: React.FC<Props> = ({
   const [tableData, setTableData] = useState([
     {
       draftNumber: "",
-      entryNumber: "", // sample
+      entryNumber: "",
       itemCode: "",
       itemName: "",
       quantity: 0,
