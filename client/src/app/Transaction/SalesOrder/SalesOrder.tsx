@@ -3357,7 +3357,6 @@ const SalesOrder: React.FC<Props> = ({
                 <th>Tax Code</th>
                 <th>Tax Rate %</th>
                 <th>Tax Amount</th>
-                {/* <th>Vol. Disc. Price</th> */}
                 <th>Below Vol. Disc. Price</th>
                 <th>Cost</th>
                 <th>Below Cost</th>
