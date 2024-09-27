@@ -3256,7 +3256,6 @@ const SalesOrder: React.FC<Props> = ({
             <div>
               <input value={docNumber !== "0" ? docNumber : 0} type="text" />
             </div>
-            {/*  */}
             {/* Document Number */}
             {showDoc && (
               <Draggable>
