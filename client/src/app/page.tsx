@@ -737,7 +737,7 @@ export default function Home() {
               <div>
                 {/* Approver Notification Bell */}
                 {isApproverLogin && (
-                  <div className="notification-container">
+                  <div className="notification-container cursor-pointer">
                     <div className="notification">
                       <NotificationBell
                         unseenCount={unseenCount}
@@ -749,7 +749,7 @@ export default function Home() {
 
                 {/* Originator Notification Bell */}
                 {isOriginatorLogin && (
-                  <div className="notification-container">
+                  <div className="notification-container cursor-pointer">
                     <div className="notification">
                       <NotificationBell
                         unseenCount={unseenCount}
