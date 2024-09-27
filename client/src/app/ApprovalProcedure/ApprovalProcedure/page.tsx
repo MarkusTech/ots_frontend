@@ -259,7 +259,6 @@ const Page: React.FC = () => {
             });
           }
           if (response.status === 409) {
-            // Conflict error
             Swal.fire({
               text: "Approval Header already exists",
               icon: "error",
