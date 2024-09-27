@@ -110,7 +110,7 @@ const NotificationList = () => {
   };
 
   const handleClose = () => {
-    setIsVisible(false); // Hide the draggable component
+    setIsVisible(false);
   };
 
   return (
