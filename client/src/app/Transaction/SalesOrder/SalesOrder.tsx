@@ -1006,7 +1006,6 @@ const SalesOrder: React.FC<Props> = ({
             );
           });
       } else if (result.isDenied) {
-        // Show info message
         Swal.fire("Draft is not Updated", "", "info");
       }
     });
