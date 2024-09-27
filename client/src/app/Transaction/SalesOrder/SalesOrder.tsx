@@ -1199,7 +1199,6 @@ const SalesOrder: React.FC<Props> = ({
           Swal.fire("Error!", "Failed to update draft", "error");
         }
       } else if (result.isDenied) {
-        // Show info message
         Swal.fire("Not Commited", "", "info");
       }
     });
