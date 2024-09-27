@@ -992,7 +992,6 @@ const SalesOrder: React.FC<Props> = ({
             console.error("Error sending data:", error);
 
             if (error.response) {
-              // Log the full error response
               console.error("Full error response:", error.response.data);
               Swal.fire(
                 "Internal Server Error, Contact MIS Department",
@@ -1000,7 +999,6 @@ const SalesOrder: React.FC<Props> = ({
                 "error"
               );
             }
-            // Show error message
             Swal.fire(
               "Internal Server Error, Contact MIS Department",
               "",
