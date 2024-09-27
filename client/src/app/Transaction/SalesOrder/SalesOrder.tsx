@@ -970,7 +970,6 @@ const SalesOrder: React.FC<Props> = ({
               PickUpLocation: rowData["pickUpLocation"],
             }));
 
-            // Send the entire data array to the API
             axios
               .post(detailsPostAPI, data)
               .then((response) => {
@@ -984,7 +983,6 @@ const SalesOrder: React.FC<Props> = ({
               text: "Successfully Save to Draft",
             });
 
-            // Show success message
             Swal.fire({
               icon: "success",
               text: "Updated Successfully",
