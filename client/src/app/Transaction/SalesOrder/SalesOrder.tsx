@@ -2977,7 +2977,7 @@ const SalesOrder: React.FC<Props> = ({
       // Close the print window after printing
       setTimeout(() => {
         printWindow.close();
-      }, 1000); // Adjust the timeout as needed
+      }, 1000);
     }
   };
 
