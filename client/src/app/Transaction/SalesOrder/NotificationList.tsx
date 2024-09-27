@@ -205,7 +205,7 @@ const NotificationList = () => {
                               className="ml-4 bg-blue-500 text-white px-2 py-1 rounded hover:bg-blue-600"
                               onClick={() =>
                                 handleShowView(notification.AppSummID)
-                              } // Pass AppSummID here
+                              }
                             >
                               View
                             </button>
