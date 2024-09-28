@@ -3,7 +3,6 @@ import { cache } from "../../utils/cache.js"; // Import the cache utility
 
 const cacheKey = "approvalProcedureSummary"; // Set a common cache key
 
-// Save Approval Summary and update the cache
 const saveApprovalSummary = async (req, res) => {
   const {
     AppProcID,
