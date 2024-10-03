@@ -22,7 +22,7 @@ GROUP BY
     APS.DraftNum,
     APS.DocType
 ORDER BY 
-    APS.DraftNum; -- Optional: order by DraftNum
+    APS.DraftNum;
 
 
 WITH SummaryData AS (
