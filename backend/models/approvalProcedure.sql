@@ -68,11 +68,11 @@ WITH SummaryData AS (
         MAX(APS.ReqDate) AS ReqDate,             -- Get the latest Request Date
         APS.DraftNum,                             -- Draft Number (this is the unique key for grouping)
         MAX(SH.DocDate) AS DocDate,              -- Get the latest Document Date
-		APS.DocType,
+        APS.DocType,
         MAX(SH.CustomerName) AS CustomerName,    -- Get the latest Customer Name
         MAX(SH.TotalAmtDue) AS TotalAmtDue,      -- Get the maximum Total Amount Due
-        STRING_AGG(APS.Remarks, ', ') AS Remarks,  -- Concatenate Remarks into a single string
-        MAX(APS.Status) AS Status                 -- Get the highest Status
+        MIN(APS.Remarks) AS Remarks,             -- Get the Remarks (assuming they're the same for the group)
+        MAX(APS.Status) AS Status                -- Get the highest Status
     FROM 
         [OTS_DB].[dbo].[AppProc_Summary] APS
     INNER JOIN 
@@ -93,7 +93,8 @@ SELECT
 FROM 
     SummaryData
 ORDER BY 
-    DraftNum; 
+    DraftNum;
+
 
 
 SELECT APS.AppSummID,AT.AppType, APS.ReqDate, APS.DraftNum, SH.DocDate, APS.DocType, SH.CustomerName, SH.TotalAmtDue, APS.Remarks, APS.Status
