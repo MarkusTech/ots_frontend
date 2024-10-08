@@ -1,5 +1,5 @@
 import sqlConn from "../../config/db.js";
-import { cache } from "../../utils/cache.js"; // Import the cache utility
+import { cache } from "../../utils/cache.js";
 
 const approvalNotification = async (req, res) => {
   try {
