@@ -150,11 +150,11 @@ const originatorList = async (req, res) => {
 
     res.status(200).json({
       success: true,
-      message: "Approver List",
+      message: "Originator List",
       data: result.recordset,
     });
   } catch (error) {
-    console.error("Error fetching approver list:", error);
+    console.error("Error fetching Originator list:", error);
     res.status(500).json({
       success: false,
       message: "Internal Server Error",
