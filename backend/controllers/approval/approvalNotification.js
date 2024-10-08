@@ -79,8 +79,7 @@ const originatorList = async (req, res) => {
                 )
 
                 SELECT 
-                    * ,
-                    (SELECT COUNT(*) FROM SummaryData) AS TotalRecordCount
+                    * 
                 FROM 
                     SummaryData
                 ORDER BY 
