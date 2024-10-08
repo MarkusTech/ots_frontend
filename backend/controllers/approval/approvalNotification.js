@@ -60,4 +60,4 @@ const originatorList = async (req, res) => {
   }
 };
 
-export { approvalNotification };
+export { approvalNotification, orignatorNotificationCount, originatorList };
