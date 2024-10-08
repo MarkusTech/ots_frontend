@@ -106,7 +106,7 @@ const originatorList = async (req, res) => {
     if (cachedData) {
       return res.status(200).json({
         success: true,
-        message: "Approver List (from cache)",
+        message: "Originator List (from cache)",
         data: cachedData,
       });
     }
