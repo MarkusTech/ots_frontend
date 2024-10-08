@@ -6,7 +6,7 @@ type NotificationResponse = {
 };
 
 const originatorNotification = () => {
-  const [unseenCount, setUnseenCount] = useState<number>(0);
+  const [unseenCountOriginator, setUnseenCountOriginator] = useState<number>(0);
 
   useEffect(() => {
     const fetchNotifications = async () => {
@@ -17,7 +17,7 @@ const originatorNotification = () => {
         const data: NotificationResponse = await response.json();
 
         if (data.success) {
-          setUnseenCount(data.approverCount);
+          setUnseenCountOriginator(data.approverCount);
         }
       } catch (error) {
         console.error("Error fetching notifications:", error);
@@ -27,7 +27,7 @@ const originatorNotification = () => {
     fetchNotifications();
   }, []);
 
-  return unseenCount;
+  return unseenCountOriginator;
 };
 
 export default originatorNotification;
