@@ -79,19 +79,19 @@ const originatorList = async (req, res) => {
                 )
 
                 SELECT 
-                    *,
-                    (SELECT COUNT(*) FROM SummaryData) AS TotalRecordCount  -- Count of all output rows
+                    * ,
+                    (SELECT COUNT(*) FROM SummaryData) AS TotalRecordCount
                 FROM 
                     SummaryData
                 ORDER BY 
                     DraftNum;`;
 
-    const data = query.recordset;
+    const result = await sqlConn.request().query(query);
 
     res.status(200).json({
       success: true,
       message: "Approver List",
-      data: query.recordset,
+      data: result.recordset,
     });
   } catch (error) {
     console.error("Error fetching approver count:", error);
