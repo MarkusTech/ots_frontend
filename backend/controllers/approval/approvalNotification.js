@@ -38,4 +38,26 @@ const approvalNotification = async (req, res) => {
   }
 };
 
+const orignatorNotificationCount = async (req, res) => {
+  try {
+  } catch (error) {
+    console.error("Error fetching approver count:", error);
+    res.status(500).json({
+      success: false,
+      message: "Internal Server Error",
+    });
+  }
+};
+
+const originatorList = async (req, res) => {
+  try {
+  } catch (error) {
+    console.error("Error fetching approver count:", error);
+    res.status(500).json({
+      success: false,
+      message: "Internal Server Error",
+    });
+  }
+};
+
 export { approvalNotification };
