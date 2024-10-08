@@ -91,7 +91,7 @@ const originatorList = async (req, res) => {
     res.status(200).json({
       success: true,
       message: "Approver List",
-      data: data,
+      data: query.recordset,
     });
   } catch (error) {
     console.error("Error fetching approver count:", error);
