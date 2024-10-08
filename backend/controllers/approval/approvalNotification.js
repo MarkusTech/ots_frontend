@@ -40,6 +40,16 @@ const approvalNotification = async (req, res) => {
 
 const orignatorNotificationCount = async (req, res) => {
   try {
+    const cacheKey = "orignatorNotification:totalRecordCount";
+    const cachedCount = cache.get(cacheKey);
+
+    if (cachedCount !== undefined) {
+      return res.status(200).json({
+        success: true,
+        totalRecordCount: cachedCount,
+      });
+    }
+
     const query = `WITH SummaryData AS (
                     SELECT 
                         MIN(APS.AppSummID) AS AppSummID,
@@ -73,13 +83,14 @@ const orignatorNotificationCount = async (req, res) => {
 
     const totalRecordCount = result.recordset[0].TotalRecordCount;
 
+    cache.set(cacheKey, totalRecordCount);
+
     res.status(200).json({
       success: true,
-      message: "Originator Notification Count",
-      totalRecordCount: totalRecordCount,
+      totalRecordCount,
     });
   } catch (error) {
-    console.error("Error fetching approver count:", error);
+    console.error("Error fetching total record count:", error);
     res.status(500).json({
       success: false,
       message: "Internal Server Error",
