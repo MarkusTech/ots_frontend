@@ -53,11 +53,11 @@ const orignatorNotificationCount = async (req, res) => {
 const originatorList = async (req, res) => {
   try {
     const query = `WITH SummaryData AS (
-                    SELECT 
+                    SELECT
                         MIN(APS.AppSummID) AS AppSummID,
-                        AT.AppType,         
-                        MAX(APS.ReqDate) AS ReqDate,          
-                        APS.DraftNum,   
+                        AT.AppType,
+                        MAX(APS.ReqDate) AS ReqDate,    
+                        APS.DraftNum, 
                         MAX(SH.DocDate) AS DocDate,
                         APS.DocType,
                         MAX(SH.CustomerName) AS CustomerName,
