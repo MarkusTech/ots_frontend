@@ -100,6 +100,19 @@ const orignatorNotificationCount = async (req, res) => {
 
 const originatorList = async (req, res) => {
   try {
+    const cacheKey = "originatorList:data"; // Define a cache key
+    const cachedData = cache.get(cacheKey); // Check cache for data
+
+    // If cache is available, return the cached data
+    if (cachedData) {
+      return res.status(200).json({
+        success: true,
+        message: "Approver List (from cache)",
+        data: cachedData,
+      });
+    }
+
+    // SQL Query for originator list
     const query = `WITH SummaryData AS (
                     SELECT
                         MIN(APS.AppSummID) AS AppSummID,
@@ -133,15 +146,20 @@ const originatorList = async (req, res) => {
                 ORDER BY 
                     DraftNum;`;
 
+    // Execute the query
     const result = await sqlConn.request().query(query);
 
+    // Cache the result
+    cache.set(cacheKey, result.recordset);
+
+    // Respond with the data
     res.status(200).json({
       success: true,
       message: "Approver List",
       data: result.recordset,
     });
   } catch (error) {
-    console.error("Error fetching approver count:", error);
+    console.error("Error fetching approver list:", error); // Log the detailed error
     res.status(500).json({
       success: false,
       message: "Internal Server Error",
