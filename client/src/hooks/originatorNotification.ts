@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 
 type NotificationResponse = {
   success: boolean;
-  approverCount: number;
+  totalRecordCount: number;
 };
 
 const originatorNotification = () => {
@@ -12,12 +12,12 @@ const originatorNotification = () => {
     const fetchNotifications = async () => {
       try {
         const response = await fetch(
-          "http://172.16.10.169:5000/api/v1/approval-notification"
+          "http://localhost:5000/api/v1/originator-notification"
         );
         const data: NotificationResponse = await response.json();
 
         if (data.success) {
-          setUnseenCountOriginator(data.approverCount);
+          setUnseenCountOriginator(data.totalRecordCount);
         }
       } catch (error) {
         console.error("Error fetching notifications:", error);
