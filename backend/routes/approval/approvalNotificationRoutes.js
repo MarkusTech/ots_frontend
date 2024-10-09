@@ -4,6 +4,7 @@ import {
   originatorList,
   orignatorNotificationCount,
   approverList,
+  approverNotification,
 } from "../../controllers/approval/approvalNotification.js";
 const router = express.Router();
 
@@ -14,5 +15,6 @@ router.get("/originator-notification", orignatorNotificationCount);
 // Approver Notification
 router.get("/approver-list/:approverID", approverList);
 router.get("/approval-notification", approvalNotification);
+router.get("/approver-notification/:approverID", approverNotification);
 
 export default router;

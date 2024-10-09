@@ -43,7 +43,7 @@ const initialFormData: FormData = {
   password: "",
 };
 
-export default function Home() {
+export default function Home({ approverID }: { approverID: number }) {
   const {
     showSalesOrder,
     viewUsers,
@@ -53,7 +53,7 @@ export default function Home() {
   } = useWindowState(); // Use the state and functions
 
   // Notification Count
-  const unseenCount = useNotifications();
+  const unseenCount = useNotifications(approverID);
   const unseenCountOriginator = useOriginatorNotification();
 
   // For submenu states
