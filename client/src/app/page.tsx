@@ -238,7 +238,11 @@ export default function Home() {
         });
         setUsername("");
         setPassword("");
-      } else if (response.data.message == "Admin") {
+      } else if (
+        response.data.message == "Admin" ||
+        response.data.message == "Managing Director" ||
+        response.data.message == "Store Supervisor"
+      ) {
         const user = response.data.user;
         setLoginUserData(user.UserName);
         setBranchIdData(user.BranchID);
