@@ -6,6 +6,9 @@ import Draggable from "react-draggable";
 import Swal from "sweetalert2";
 import NotificationSalesOrder from "./NotificatonSalesOrder";
 
+interface Props {
+  userIDData: number;
+}
 interface NotificationArr {
   AppSummID: number;
   AppType: string;
@@ -19,7 +22,7 @@ interface NotificationArr {
   Status: string;
 }
 
-const NotificationList = () => {
+const NotificationList: React.FC<Props> = ({ userIDData }) => {
   const [notifications, setNotifications] = useState<NotificationArr[]>([]);
   const [isVisible, setIsVisible] = useState<boolean>(true);
   const [showSalesOrder, setShowSalesOrder] = useState<boolean>(false);
@@ -29,16 +32,15 @@ const NotificationList = () => {
     const fetchNotifications = async () => {
       try {
         const response = await axios.get(
-          "http://172.16.10.169:5000/api/v1/approval-summary"
+          `http://172.16.10.169:5000/api/v1/approver-list/${userIDData}`
         );
         setNotifications(response.data.data);
       } catch (error) {
         console.error("Error fetching notifications:", error);
       }
     };
-
     fetchNotifications();
-  }, []);
+  }, [userIDData]);
 
   const handleStatusChange = (e: any, appSummID: number) => {
     const newStatus = e.target.value;

@@ -186,6 +186,8 @@ export default function Home() {
   const [warehouseCodeData, setWarehouseCodeData] = useState<string>("");
   const [priceListNumData, setPriceListNumData] = useState<string>("");
   const [loginUserIDData, setLoginUserIDData] = useState<string>("");
+  const [loginIDForNotification, setLoginIDForNotification] =
+    useState<number>(0);
 
   let loginAttempts = 0;
 
@@ -245,6 +247,7 @@ export default function Home() {
         setBranchIdData(user.BranchID);
         setWarehouseCodeData(user.WhsCode);
         setPriceListNumData(user.PriceListNum);
+        setLoginIDForNotification(user.UserID);
         setFormData({
           userID: user.UserID,
           fullName: user.EmpName,
@@ -738,7 +741,7 @@ export default function Home() {
             {/* Notification list */}
             {showNotificationList && (
               <Draggable>
-                <NotificationList />
+                <NotificationList userIDData={loginIDForNotification} />
               </Draggable>
             )}
 
