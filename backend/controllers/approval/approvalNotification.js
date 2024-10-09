@@ -142,7 +142,7 @@ const originatorList = async (req, res) => {
                 FROM 
                     SummaryData
                 ORDER BY 
-                    DraftNum;`;
+                    DraftNum Desc;`;
 
     const result = await sqlConn.request().query(query);
 
