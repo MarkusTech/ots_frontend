@@ -60,7 +60,7 @@ const getApprovalProcedureSummary = async (req, res) => {
         INNER JOIN [OTS_DB].[dbo].[AppType] AT
         ON AT.AppTypeID = AM.AppTypeID
         INNER JOIN [OTS_DB].[dbo].[SO_Header] SH
-        ON APS.DraftNum = SH.DraftNum`
+        ON APS.DraftNum = SH.DraftNum Order by Aps.AppSummID Desc`
     );
 
     if (!result.recordset.length) {
