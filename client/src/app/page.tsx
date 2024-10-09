@@ -14,7 +14,7 @@ import Swal from "sweetalert2";
 import useNotifications from "@/hooks/useNotifications";
 import NotificationBell from "@/components/NotificationBell";
 import NotificationList from "./Transaction/SalesOrder/NotificationList";
-import originatorNotification from "@/hooks/originatorNotification";
+import useOriginatorNotification from "@/hooks/originatorNotification";
 
 interface FormData {
   userID: string;
@@ -53,7 +53,7 @@ export default function Home() {
 
   // Notification Count
   const unseenCount = useNotifications();
-  const unseenCountOriginator = originatorNotification();
+  const unseenCountOriginator = useOriginatorNotification();
 
   // For submenu states
   const [submenuOpen, setSubmenuOpen] = useState<boolean>(false);
