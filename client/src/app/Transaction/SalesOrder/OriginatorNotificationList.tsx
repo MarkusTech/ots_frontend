@@ -132,7 +132,7 @@ const OriginatorNotificationList = () => {
               className="grid grid-cols-2 p-2 text-left windowheader"
               style={{ cursor: "move" }}
             >
-              <div>Approval List</div>
+              <div>Originator Approval List</div>
               <div className="text-right">
                 <span className="cursor-pointer" onClick={handleClose}>
                   ❌
@@ -178,29 +178,8 @@ const OriginatorNotificationList = () => {
                           <td>{notification.CustomerName}</td>
                           <td>{notification.TotalAmtDue}</td>
                           <td>{notification.Remarks}</td>
+                          <td>{notification.Status}</td>
                           <td>
-                            <select
-                              value={notification.Status}
-                              onChange={(e) =>
-                                handleStatusChange(e, notification.AppSummID)
-                              }
-                              className="text-blue-500"
-                            >
-                              <option value="pending">Pending</option>
-                              <option value="approve">Approve</option>
-                              <option value="decline">Reject</option>
-                            </select>
-                          </td>
-                          <td>
-                            <button
-                              className="bg-blue-500 text-white px-2 py-1 rounded hover:bg-blue-600"
-                              onClick={() =>
-                                handleUpdate(notification.AppSummID)
-                              }
-                            >
-                              Update
-                            </button>
-
                             <button
                               className="ml-4 bg-blue-500 text-white px-2 py-1 rounded hover:bg-blue-600"
                               onClick={() =>
