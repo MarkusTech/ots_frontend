@@ -15,6 +15,7 @@ import useNotifications from "@/hooks/useNotifications";
 import NotificationBell from "@/components/NotificationBell";
 import NotificationList from "./Transaction/SalesOrder/NotificationList";
 import useOriginatorNotification from "@/hooks/originatorNotification";
+import OriginatorNotificationList from "./Transaction/SalesOrder/OriginatorNotificationList";
 
 interface FormData {
   userID: string;
@@ -76,6 +77,8 @@ export default function Home() {
   const [isLoggedInFloater, setIsLoggedInFloater] = useState<boolean>(false);
   const [isAdminLoggedIn, setIsAdminLoggedIn] = useState<boolean>(false);
   const [showNotificationList, setShowNotificationList] =
+    useState<boolean>(false);
+  const [showOriginatorNotificationList, setShowOriginatorNotificationList] =
     useState<boolean>(false);
   const [isOriginatorLogin, setIsOriginatorLogin] = useState<boolean>(false);
   const [isApproverLogin, setIsApproverLogin] = useState<boolean>(false);
@@ -295,6 +298,10 @@ export default function Home() {
 
   const toggleNotificationList = () => {
     setShowNotificationList(!showNotificationList);
+  };
+
+  const originatorNotificationList = () => {
+    setShowOriginatorNotificationList(!showOriginatorNotificationList);
   };
 
   return (
@@ -734,6 +741,13 @@ export default function Home() {
               </Draggable>
             )}
 
+            {/* Orignator Notification List */}
+            {showOriginatorNotificationList && (
+              <Draggable>
+                <OriginatorNotificationList />
+              </Draggable>
+            )}
+
             {/* Login Floater */}
             {isLoggedInFloater && (
               <div>
@@ -755,7 +769,7 @@ export default function Home() {
                     <div className="notification">
                       <NotificationBell
                         unseenCount={unseenCountOriginator}
-                        onClick={toggleNotificationList}
+                        onClick={originatorNotificationList}
                       />
                     </div>
                   </div>
