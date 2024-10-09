@@ -56,9 +56,8 @@ const approverList = async (req, res) => {
     }
 
     // Use sqlConn to execute the SQL query
-    const request = new sqlConn.Request();
     const result =
-      await request.query`SELECT APS.AppSummID, APS.Approver, AT.AppType, APS.ReqDate, APS.DraftNum, SH.DocDate, APS.DocType, SH.CustomerName, SH.TotalAmtDue, APS.Remarks, APS.Status
+      await sqlConn.query`SELECT APS.AppSummID, APS.Approver, AT.AppType, APS.ReqDate, APS.DraftNum, SH.DocDate, APS.DocType, SH.CustomerName, SH.TotalAmtDue, APS.Remarks, APS.Status
       FROM [OTS_DB].[dbo].[AppProc_Summary] APS
       INNER JOIN [OTS_DB].[dbo].[AppProc_Main] AM ON APS.AppProcID = AM.AppProcID
       INNER JOIN [OTS_DB].[dbo].[AppType] AT ON AT.AppTypeID = AM.AppTypeID
