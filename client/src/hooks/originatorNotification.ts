@@ -5,7 +5,6 @@ type NotificationResponse = {
   totalRecordCount: number;
 };
 
-// This is now a custom hook
 const useOriginatorNotification = () => {
   const [unseenCountOriginator, setUnseenCountOriginator] = useState<number>(0);
 
@@ -28,7 +27,6 @@ const useOriginatorNotification = () => {
     fetchNotifications();
   }, []);
 
-  // Custom hooks should return the necessary data
   return unseenCountOriginator;
 };
 
