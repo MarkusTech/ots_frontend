@@ -754,7 +754,7 @@ export default function Home() {
                   <div className="notification-container cursor-pointer">
                     <div className="notification">
                       <NotificationBell
-                        unseenCount={unseenCount}
+                        unseenCount={unseenCountOriginator}
                         onClick={toggleNotificationList}
                       />
                     </div>
