@@ -12,7 +12,8 @@ const useNotifications = (approverID: number) => {
     const fetchNotifications = async () => {
       try {
         const response = await fetch(
-          `http://localhost:5000/api/v1/approver-notification/${approverID}`
+          // `http://localhost:5000/api/v1/approver-notification/${approverID}`
+          "http://localhost:5000/api/v1/approval-notification"
         );
         const data: NotificationResponse = await response.json();
 
