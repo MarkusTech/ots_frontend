@@ -199,11 +199,7 @@ export default function Home() {
         }
       );
 
-      if (
-        response.data.message == "Sales Clerk" ||
-        response.data.message === "Store Supervisor" ||
-        response.data.message === "Store Supervisor2"
-      ) {
+      if (response.data.message == "Sales Clerk") {
         const user = response.data.user;
         setLoginUserData(user.UserName);
         setBranchIdData(user.BranchID);
@@ -241,7 +237,8 @@ export default function Home() {
       } else if (
         response.data.message == "Admin" ||
         response.data.message == "Managing Director" ||
-        response.data.message == "Store Supervisor"
+        response.data.message == "Store Supervisor" ||
+        response.data.message === "Store Supervisor2"
       ) {
         const user = response.data.user;
         setLoginUserData(user.UserName);
