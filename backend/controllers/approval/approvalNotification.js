@@ -22,7 +22,6 @@ const approvalNotification = async (req, res) => {
 
     const approverCount = recordset[0]?.approverCount || 0;
 
-    // Cache the result
     cache.set(cacheKey, approverCount);
 
     res.status(200).json({
@@ -42,10 +41,8 @@ const approverList = async (req, res) => {
   try {
     const { approverID } = req.params;
 
-    // Define cache key
     const cacheKey = `approverList_${approverID}`;
 
-    // Check if data is already cached
     const cachedData = cache.get(cacheKey);
     if (cachedData) {
       return res.status(200).json({
@@ -55,7 +52,6 @@ const approverList = async (req, res) => {
       });
     }
 
-    // Use sqlConn to execute the SQL query
     const result =
       await sqlConn.query`SELECT APS.AppSummID, APS.Approver, AT.AppType, APS.ReqDate, APS.DraftNum, SH.DocDate, APS.DocType, SH.CustomerName, SH.TotalAmtDue, APS.Remarks, APS.Status
       FROM [OTS_DB].[dbo].[AppProc_Summary] APS
@@ -74,7 +70,6 @@ const approverList = async (req, res) => {
 
     const data = result.recordset;
 
-    // Store the fetched data in the cache
     cache.set(cacheKey, data);
 
     res.status(200).json({
