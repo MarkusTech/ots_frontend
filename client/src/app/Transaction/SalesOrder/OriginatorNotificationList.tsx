@@ -52,7 +52,7 @@ const OriginatorNotificationList = () => {
           className="grid grid-cols-2 p-2 text-left windowheader"
           style={{ cursor: "move" }}
         >
-          <div>Approval List</div>
+          <div>Originator Approval List</div>
           <div className="text-right">
             {/* <span className="cursor-pointer" onClick={handleClose}>
               ❌
