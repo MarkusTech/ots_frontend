@@ -41,14 +41,30 @@ const approvalNotification = async (req, res) => {
 const approverList = async (req, res) => {
   try {
     const { approverID } = req.params;
-    const result = `SELECT APS.AppSummID,APS.Approver ,AT.AppType, APS.ReqDate, APS.DraftNum, SH.DocDate, APS.DocType, SH.CustomerName, SH.TotalAmtDue, APS.Remarks, APS.Status
-        from [OTS_DB].[dbo].[AppProc_Summary] APS
-        INNER JOIN [OTS_DB].[dbo].[AppProc_Main] AM
-        ON APS.AppProcID = AM.AppProcID
-        INNER JOIN [OTS_DB].[dbo].[AppType] AT
-        ON AT.AppTypeID = AM.AppTypeID
-        INNER JOIN [OTS_DB].[dbo].[SO_Header] SH
-        ON APS.DraftNum = SH.DraftNum WHERE APS.Approver = ${approverID} Order by Aps.AppSummID Desc`;
+
+    // Define cache key
+    const cacheKey = `approverList_${approverID}`;
+
+    // Check if data is already cached
+    const cachedData = cache.get(cacheKey);
+    if (cachedData) {
+      return res.status(200).json({
+        success: true,
+        data: cachedData,
+        message: "Approval Procedure Summary fetched from cache",
+      });
+    }
+
+    // Use sqlConn to execute the SQL query
+    const request = new sqlConn.Request();
+    const result =
+      await request.query`SELECT APS.AppSummID, APS.Approver, AT.AppType, APS.ReqDate, APS.DraftNum, SH.DocDate, APS.DocType, SH.CustomerName, SH.TotalAmtDue, APS.Remarks, APS.Status
+      FROM [OTS_DB].[dbo].[AppProc_Summary] APS
+      INNER JOIN [OTS_DB].[dbo].[AppProc_Main] AM ON APS.AppProcID = AM.AppProcID
+      INNER JOIN [OTS_DB].[dbo].[AppType] AT ON AT.AppTypeID = AM.AppTypeID
+      INNER JOIN [OTS_DB].[dbo].[SO_Header] SH ON APS.DraftNum = SH.DraftNum
+      WHERE APS.Approver = ${approverID}
+      ORDER BY APS.AppSummID DESC`;
 
     if (!result.recordset.length) {
       return res.status(404).json({
