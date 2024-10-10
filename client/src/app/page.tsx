@@ -759,7 +759,9 @@ export default function Home(
             {/* Orignator Notification List */}
             {showOriginatorNotificationList && (
               <Draggable>
-                <OriginatorNotificationList />
+                <OriginatorNotificationList
+                  originatorUserID={loginIDForOriginatorNotification}
+                />
               </Draggable>
             )}
 
