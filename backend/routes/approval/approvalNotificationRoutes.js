@@ -10,7 +10,10 @@ const router = express.Router();
 
 // Originator Notification
 router.get("/originator-list", originatorList);
-router.get("/originator-notification", orignatorNotificationCount);
+router.get(
+  "/originator-notification/:originatorID",
+  orignatorNotificationCount
+);
 
 // Approver Notification
 router.get("/approver-list/:approverID", approverList);
