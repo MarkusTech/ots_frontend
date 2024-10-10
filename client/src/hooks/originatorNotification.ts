@@ -12,7 +12,7 @@ const useOriginatorNotification = (originatorID: number | null) => {
     const fetchNotifications = async () => {
       try {
         const response = await fetch(
-          `http://localhost:5000/api/v1/originator-notification/${originatorID}`
+          `http://172.16.10.169:5000/api/v1/originator-notification/${originatorID}`
         );
         const data: NotificationResponse = await response.json();
 

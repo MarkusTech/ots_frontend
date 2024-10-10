@@ -32,7 +32,7 @@ const OriginatorNotificationList: React.FC<Props> = ({ originatorUserID }) => {
     const fetchNotifications = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:5000/api/v1/originator-list/${originatorUserID}`
+          `http://172.16.10.169:5000/api/v1/originator-list/${originatorUserID}`
         );
         setNotifications(response.data.data);
       } catch (error) {
