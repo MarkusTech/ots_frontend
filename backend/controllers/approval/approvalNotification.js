@@ -147,16 +147,7 @@ const orignatorNotificationCount = async (req, res) => {
 
 const originatorList = async (req, res) => {
   try {
-    const cacheKey = "originatorList:data";
-    const cachedData = cache.get(cacheKey);
-
-    if (cachedData) {
-      return res.status(200).json({
-        success: true,
-        message: "Originator List (from cache)",
-        data: cachedData,
-      });
-    }
+    const { originatorID } = req.params;
 
     const query = `WITH SummaryData AS (
                     SELECT
@@ -169,7 +160,8 @@ const originatorList = async (req, res) => {
                         MAX(SH.CustomerName) AS CustomerName,
                         MAX(SH.TotalAmtDue) AS TotalAmtDue,
                         MIN(APS.Remarks) AS Remarks,
-                        MAX(APS.Status) AS Status
+                        MAX(APS.Status) AS Status,
+                        APS.Originator
                     FROM 
                         [OTS_DB].[dbo].[AppProc_Summary] APS
                     INNER JOIN 
@@ -181,19 +173,21 @@ const originatorList = async (req, res) => {
                     GROUP BY 
                         AT.AppType,
                         APS.DraftNum,
-                        APS.DocType
+                        APS.DocType,
+                        APS.Originator
                 )
 
                 SELECT 
                     * 
                 FROM 
                     SummaryData
+                WHERE 
+                    Originator = ${originatorID}
                 ORDER BY 
-                    DraftNum Desc;`;
+                    DraftNum DESC;
+                `;
 
     const result = await sqlConn.request().query(query);
-
-    cache.set(cacheKey, result.recordset);
 
     res.status(200).json({
       success: true,
