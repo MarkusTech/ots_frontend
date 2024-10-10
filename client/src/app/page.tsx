@@ -43,7 +43,7 @@ const initialFormData: FormData = {
   password: "",
 };
 
-export default function Home({ approverID }: { approverID: number }) {
+export default function Home({ approverIDD }: { approverIDD: number }) {
   const {
     showSalesOrder,
     viewUsers,
@@ -51,10 +51,6 @@ export default function Home({ approverID }: { approverID: number }) {
     showApprovalProcedure,
     toggleWindow,
   } = useWindowState(); // Use the state and functions
-
-  // Notification Count
-  const unseenCount = useNotifications(approverID);
-  const unseenCountOriginator = useOriginatorNotification();
 
   // For submenu states
   const [submenuOpen, setSubmenuOpen] = useState<boolean>(false);
@@ -299,6 +295,11 @@ export default function Home({ approverID }: { approverID: number }) {
       }
     }
   };
+
+  // Notification Count
+  approverIDD = loginIDForNotification;
+  const unseenCount = useNotifications(approverIDD);
+  const unseenCountOriginator = useOriginatorNotification();
 
   const toggleNotificationList = () => {
     setShowNotificationList(!showNotificationList);
