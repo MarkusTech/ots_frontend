@@ -94,6 +94,7 @@ export default function Home({ approverIDD }: { approverIDD: number }) {
         setFormData(initialFormData);
         setIsLoggedIn(!isLoggedIn);
         setIsLoggedInFloater(!isLoggedInFloater);
+        setLoginIDForNotification(0);
         Swal.fire(
           "Logged Out!",
           "You have been logged out successfully.",

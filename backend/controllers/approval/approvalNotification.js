@@ -41,25 +41,11 @@ const approverNotification = async (req, res) => {
   try {
     const { approverID } = req.params;
 
-    const cacheKey = "approvalNotification:pendingCount";
-
-    const cachedCount = cache.get(cacheKey);
-
-    if (cachedCount !== undefined) {
-      return res.status(200).json({
-        success: true,
-        approverCount: cachedCount,
-      });
-    }
-
     const query = `
       SELECT COUNT(*) AS approverCount
-      FROM [OTS_DB].[dbo].[AppProc_Summary] APS
-      INNER JOIN [OTS_DB].[dbo].[AppProc_Main] AM ON APS.AppProcID = AM.AppProcID
-      INNER JOIN [OTS_DB].[dbo].[AppType] AT ON AT.AppTypeID = AM.AppTypeID
-      INNER JOIN [OTS_DB].[dbo].[SO_Header] SH ON APS.DraftNum = SH.DraftNum
-      WHERE APS.Approver = ${approverID}
-        AND APS.Status = 'pending';
+      FROM [OTS_DB].[dbo].[AppProc_Summary]
+      WHERE [Status] = 'pending'
+        AND [Approver] = ${approverID}
     `;
 
     const { recordset } = await sqlConn.query(query, {
@@ -68,9 +54,6 @@ const approverNotification = async (req, res) => {
     });
 
     const approverCount = recordset[0]?.approverCount || 0;
-
-    cache.set(cacheKey, approverCount);
-
     res.status(200).json({
       success: true,
       approverCount,

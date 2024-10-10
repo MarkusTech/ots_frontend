@@ -5,27 +5,29 @@ type NotificationResponse = {
   approverCount: number;
 };
 
-const useNotifications = (approverIDD: number) => {
-  const [unseenCount, setUnseenCount] = useState<number>(0);
+const useNotifications = (approverIDD: number | null) => {
+  const [unseenCount, setUnseenCount] = useState<number>(0); // default to 0
 
   useEffect(() => {
-    const fetchNotifications = async () => {
-      try {
-        const response = await fetch(
-          `http://localhost:5000/api/v1/approver-notification/${approverIDD}`
-          // "http://localhost:5000/api/v1/approval-notification"
-        );
-        const data: NotificationResponse = await response.json();
+    if (approverIDD !== 0) {
+      // Check for valid approverIDD
+      const fetchNotifications = async () => {
+        try {
+          const response = await fetch(
+            `http://localhost:5000/api/v1/approver-notification/${approverIDD}`
+          );
+          const data: NotificationResponse = await response.json();
 
-        if (data.success) {
-          setUnseenCount(data.approverCount);
+          if (data.success) {
+            setUnseenCount(data.approverCount);
+          }
+        } catch (error) {
+          console.error("Error fetching notifications:", error);
         }
-      } catch (error) {
-        console.error("Error fetching notifications:", error);
-      }
-    };
+      };
 
-    fetchNotifications();
+      fetchNotifications();
+    }
   }, [approverIDD]);
 
   return unseenCount;
