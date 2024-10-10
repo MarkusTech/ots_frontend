@@ -43,7 +43,10 @@ const initialFormData: FormData = {
   password: "",
 };
 
-export default function Home({ approverIDD }: { approverIDD: number }) {
+export default function Home(
+  { approverIDD }: { approverIDD: number },
+  { originatorID }: { originatorID: number }
+) {
   const {
     showSalesOrder,
     viewUsers,
@@ -185,6 +188,10 @@ export default function Home({ approverIDD }: { approverIDD: number }) {
   const [loginUserIDData, setLoginUserIDData] = useState<string>("");
   const [loginIDForNotification, setLoginIDForNotification] =
     useState<number>(0);
+  const [
+    loginIDForOriginatorNotification,
+    setLoginIDForOriginatorNotification,
+  ] = useState<number>(0);
 
   let loginAttempts = 0;
 
@@ -207,6 +214,7 @@ export default function Home({ approverIDD }: { approverIDD: number }) {
         setLoginUserIDData(user.UserID); //new changes
         // Originator Login show notification
         setIsOriginatorLogin(!isOriginatorLogin);
+        setLoginIDForOriginatorNotification(user.UserID);
         setFormData({
           userID: user.UserID,
           fullName: user.EmpName,
@@ -299,8 +307,9 @@ export default function Home({ approverIDD }: { approverIDD: number }) {
 
   // Notification Count
   approverIDD = loginIDForNotification;
+  originatorID = loginIDForOriginatorNotification;
   const unseenCount = useNotifications(approverIDD);
-  const unseenCountOriginator = useOriginatorNotification();
+  const unseenCountOriginator = useOriginatorNotification(originatorID);
 
   const toggleNotificationList = () => {
     setShowNotificationList(!showNotificationList);

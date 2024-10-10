@@ -5,14 +5,14 @@ type NotificationResponse = {
   totalRecordCount: number;
 };
 
-const useOriginatorNotification = () => {
+const useOriginatorNotification = (originatorID: number | null) => {
   const [unseenCountOriginator, setUnseenCountOriginator] = useState<number>(0);
 
   useEffect(() => {
     const fetchNotifications = async () => {
       try {
         const response = await fetch(
-          "http://localhost:5000/api/v1/originator-notification"
+          `http://localhost:5000/api/v1/originator-notification/${originatorID}`
         );
         const data: NotificationResponse = await response.json();
 
@@ -25,7 +25,7 @@ const useOriginatorNotification = () => {
     };
 
     fetchNotifications();
-  }, []);
+  }, [originatorID]);
 
   return unseenCountOriginator;
 };
