@@ -203,6 +203,18 @@ const originatorList = async (req, res) => {
   }
 };
 
+const approverNotificationSequential = async (req, res) => {
+  try {
+    const appProcID = await sqlConn.query``;
+  } catch (error) {
+    console.error("Error fetching Approver Notification Sequential:", error);
+    res.status(500).json({
+      success: false,
+      message: "Internal Server Error",
+    });
+  }
+};
+
 export {
   approvalNotification,
   orignatorNotificationCount,
