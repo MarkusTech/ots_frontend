@@ -5,14 +5,14 @@ type NotificationResponse = {
   approverCount: number;
 };
 
-const useNotifications = (approverID: number) => {
+const useNotifications = (approverIDD: number) => {
   const [unseenCount, setUnseenCount] = useState<number>(0);
 
   useEffect(() => {
     const fetchNotifications = async () => {
       try {
         const response = await fetch(
-          `http://localhost:5000/api/v1/approver-notification/${approverID}`
+          `http://localhost:5000/api/v1/approver-notification/${approverIDD}`
           // "http://localhost:5000/api/v1/approval-notification"
         );
         const data: NotificationResponse = await response.json();
@@ -26,7 +26,7 @@ const useNotifications = (approverID: number) => {
     };
 
     fetchNotifications();
-  }, [approverID]);
+  }, [approverIDD]);
 
   return unseenCount;
 };
