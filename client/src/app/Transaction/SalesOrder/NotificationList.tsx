@@ -67,31 +67,50 @@ const NotificationList: React.FC<Props> = ({ userIDData }) => {
       return;
     }
 
-    try {
-      const response = await fetch(
-        `http://172.16.10.169:5000/api/v1/approval-summary/${appSummID}`,
-        {
-          method: "PUT",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(notificationToUpdate),
+    // Add confirmation step before proceeding with the update
+    const confirmResult = await Swal.fire({
+      title: "Are you sure?",
+      text: "Do you want to update this notification?",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, update it!",
+    });
+
+    if (confirmResult.isConfirmed) {
+      try {
+        const response = await fetch(
+          `http://172.16.10.169:5000/api/v1/approval-summary/${appSummID}`,
+          {
+            method: "PUT",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(notificationToUpdate),
+          }
+        );
+
+        if (!response.ok) {
+          throw new Error(`Error: ${response.statusText}`);
         }
-      );
 
-      if (!response.ok) {
-        throw new Error(`Error: ${response.statusText}`);
+        Swal.fire({
+          icon: "success",
+          title: "Updated Successfully",
+        });
+      } catch (error) {
+        console.error("Error updating notification:", error);
+        Swal.fire({
+          icon: "error",
+          title: "Failed to update the notification.",
+        });
       }
-
+    } else {
+      // If the user cancels the update
       Swal.fire({
-        icon: "success",
-        title: "Updated Successfully",
-      });
-    } catch (error) {
-      console.error("Error updating notification:", error);
-      Swal.fire({
-        icon: "error",
-        title: "Failed to update the notification.",
+        icon: "info",
+        title: "Update Cancelled",
       });
     }
   };
