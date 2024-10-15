@@ -55,48 +55,6 @@ const OriginatorNotificationList: React.FC<Props> = ({ originatorUserID }) => {
     );
   };
 
-  const handleUpdate = async (appSummID: number) => {
-    const notificationToUpdate = notifications.find(
-      (notification) => notification.AppSummID === appSummID
-    );
-
-    if (!notificationToUpdate) {
-      Swal.fire({
-        icon: "error",
-        title: "No notification found to update",
-      });
-      return;
-    }
-
-    try {
-      const response = await fetch(
-        `http://172.16.10.169:5000/api/v1/approval-summary/${appSummID}`,
-        {
-          method: "PUT",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(notificationToUpdate),
-        }
-      );
-
-      if (!response.ok) {
-        throw new Error(`Error: ${response.statusText}`);
-      }
-
-      Swal.fire({
-        icon: "success",
-        title: "Updated Successfully",
-      });
-    } catch (error) {
-      console.error("Error updating notification:", error);
-      Swal.fire({
-        icon: "error",
-        title: "Failed to update the notification.",
-      });
-    }
-  };
-
   const handleShowView = (AppSummID: number) => {
     const selectedNotification = notifications.find(
       (notification) => notification.AppSummID === AppSummID
