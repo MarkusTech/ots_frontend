@@ -119,4 +119,4 @@ WHERE APS.Approver = 71
 ORDER BY APS.AppSummID DESC;
 
 
-
+EXEC [OTS_DB].[dbo].[GetAppProcSummary] @Approver = 102, @UserID = 102;
