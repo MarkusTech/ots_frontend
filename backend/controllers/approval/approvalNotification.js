@@ -126,6 +126,10 @@ const approverListV2 = async (req, res) => {
 
     const data = query.recordset;
 
+    if (data[0].AppLevel == 1) {
+      console.log(data);
+    }
+
     res.status(200).json({
       success: true,
       data: data,
