@@ -128,13 +128,11 @@ const approverListV2 = async (req, res) => {
 
     // Give me some logic here!
     if (data[0].AppLevel == 1) {
-      console.log(data);
+      res.status(200).json({
+        success: true,
+        data: data,
+      });
     }
-
-    res.status(200).json({
-      success: true,
-      data: data,
-    });
   } catch (error) {
     console.error("Error fetching approver list:", error);
     res.status(500).json({
