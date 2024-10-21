@@ -116,6 +116,29 @@ const approverList = async (req, res) => {
   }
 };
 
+const approverListV2 = async (req, res) => {
+  try {
+    const { approverID } = req.params;
+
+    const query = await sqlConn.query(
+      `EXEC [OTS_DB].[dbo].[GetAppProcSummary] @Approver = ${approverID}, @UserID = ${approverID}`
+    );
+
+    const data = query.recordset;
+
+    res.status(200).json({
+      success: true,
+      data: data,
+    });
+  } catch (error) {
+    console.error("Error fetching approver list:", error);
+    res.status(500).json({
+      success: false,
+      message: "Internal Server Error",
+    });
+  }
+};
+
 const orignatorNotificationCount = async (req, res) => {
   try {
     const { originatorID } = req.params;
@@ -220,5 +243,6 @@ export {
   orignatorNotificationCount,
   originatorList,
   approverList,
+  approverListV2,
   approverNotification,
 };
