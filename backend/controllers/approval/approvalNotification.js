@@ -124,19 +124,18 @@ const approverListV2 = async (req, res) => {
       `EXEC [OTS_DB].[dbo].[GetAppProcSummary] @Approver = ${approverID}, @UserID = ${approverID}`
     );
 
-    const data = query.recordset;
-
     // Give me some logic here!
-    if (data[0].AppLevel > 1) {
+    const data = query.recordset;
+    const AppLevel = data[0].AppLevel;
+
+    if (AppLevel == 1) {
       res.status(200).json({
         success: true,
         data: data,
       });
+    } else if (AppLevel == 2) {
     } else {
-      res.status(200).json({
-        success: true,
-        data: data,
-      });
+      console.log("error");
     }
   } catch (error) {
     console.error("Error fetching approver list:", error);
