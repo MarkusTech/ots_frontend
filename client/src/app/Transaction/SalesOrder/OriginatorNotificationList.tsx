@@ -49,7 +49,7 @@ const OriginatorNotificationList: React.FC<Props> = ({ originatorUserID }) => {
     );
 
     if (selectedNotification) {
-      setDraftNum(selectedNotification.DraftNum); // Set the DraftNum in the state
+      setDraftNum(selectedNotification.DraftNum);
     }
 
     setShowSalesOrder(!showSalesOrder);
