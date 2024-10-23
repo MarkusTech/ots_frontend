@@ -43,18 +43,6 @@ const OriginatorNotificationList: React.FC<Props> = ({ originatorUserID }) => {
     fetchNotifications();
   }, [originatorUserID]);
 
-  const handleStatusChange = (e: any, appSummID: number) => {
-    const newStatus = e.target.value;
-
-    setNotifications((prevNotifications) =>
-      prevNotifications.map((notification) =>
-        notification.AppSummID === appSummID
-          ? { ...notification, Status: newStatus }
-          : notification
-      )
-    );
-  };
-
   const handleShowView = (AppSummID: number) => {
     const selectedNotification = notifications.find(
       (notification) => notification.AppSummID === AppSummID
