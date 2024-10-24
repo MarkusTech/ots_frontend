@@ -195,3 +195,6 @@ BEGIN
         ORDER BY APS.AppSummID DESC
     END
 END
+
+
+-- EXEC [dbo].[GetAppProcSummary] @Approver = 71;
