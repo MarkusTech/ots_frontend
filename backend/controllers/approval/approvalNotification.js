@@ -82,14 +82,17 @@ const approverList = async (req, res) => {
       });
     }
 
+    // const result =
+    //   await sqlConn.query`SELECT APS.AppSummID, APS.Approver, AT.AppType, APS.ReqDate, APS.DraftNum, SH.DocDate, APS.DocType, SH.CustomerName, SH.TotalAmtDue, APS.Remarks, APS.Status
+    //   FROM [OTS_DB].[dbo].[AppProc_Summary] APS
+    //   INNER JOIN [OTS_DB].[dbo].[AppProc_Main] AM ON APS.AppProcID = AM.AppProcID
+    //   INNER JOIN [OTS_DB].[dbo].[AppType] AT ON AT.AppTypeID = AM.AppTypeID
+    //   INNER JOIN [OTS_DB].[dbo].[SO_Header] SH ON APS.DraftNum = SH.DraftNum
+    //   WHERE APS.Approver = ${approverID}
+    //   ORDER BY APS.AppSummID DESC`;
+
     const result =
-      await sqlConn.query`SELECT APS.AppSummID, APS.Approver, AT.AppType, APS.ReqDate, APS.DraftNum, SH.DocDate, APS.DocType, SH.CustomerName, SH.TotalAmtDue, APS.Remarks, APS.Status
-      FROM [OTS_DB].[dbo].[AppProc_Summary] APS
-      INNER JOIN [OTS_DB].[dbo].[AppProc_Main] AM ON APS.AppProcID = AM.AppProcID
-      INNER JOIN [OTS_DB].[dbo].[AppType] AT ON AT.AppTypeID = AM.AppTypeID
-      INNER JOIN [OTS_DB].[dbo].[SO_Header] SH ON APS.DraftNum = SH.DraftNum
-      WHERE APS.Approver = ${approverID}
-      ORDER BY APS.AppSummID DESC`;
+      await sqlConn.query`EXEC [OTS_DB].[dbo].[GetAppProcSummary] @Approver = ${approverID}`;
 
     if (!result.recordset.length) {
       return res.status(404).json({
