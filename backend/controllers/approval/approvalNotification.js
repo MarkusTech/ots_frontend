@@ -82,15 +82,6 @@ const approverList = async (req, res) => {
       });
     }
 
-    // const result =
-    //   await sqlConn.query`SELECT APS.AppSummID, APS.Approver, AT.AppType, APS.ReqDate, APS.DraftNum, SH.DocDate, APS.DocType, SH.CustomerName, SH.TotalAmtDue, APS.Remarks, APS.Status
-    //   FROM [OTS_DB].[dbo].[AppProc_Summary] APS
-    //   INNER JOIN [OTS_DB].[dbo].[AppProc_Main] AM ON APS.AppProcID = AM.AppProcID
-    //   INNER JOIN [OTS_DB].[dbo].[AppType] AT ON AT.AppTypeID = AM.AppTypeID
-    //   INNER JOIN [OTS_DB].[dbo].[SO_Header] SH ON APS.DraftNum = SH.DraftNum
-    //   WHERE APS.Approver = ${approverID}
-    //   ORDER BY APS.AppSummID DESC`;
-
     const result =
       await sqlConn.query`EXEC [OTS_DB].[dbo].[GetAppProcSummary] @Approver = ${approverID}`;
 
@@ -123,24 +114,31 @@ const approverListV2 = async (req, res) => {
   try {
     const { approverID } = req.params;
 
-    const query = await sqlConn.query(
-      `EXEC [OTS_DB].[dbo].[GetAppProcSummary] @Approver = ${approverID}, @UserID = ${approverID}`
-    );
+    const result =
+      await sqlConn.query`SELECT APS.AppSummID, APS.Approver, AT.AppType, APS.ReqDate, APS.DraftNum, SH.DocDate, APS.DocType, SH.CustomerName, SH.TotalAmtDue, APS.Remarks, APS.Status
+      FROM [OTS_DB].[dbo].[AppProc_Summary] APS
+      INNER JOIN [OTS_DB].[dbo].[AppProc_Main] AM ON APS.AppProcID = AM.AppProcID
+      INNER JOIN [OTS_DB].[dbo].[AppType] AT ON AT.AppTypeID = AM.AppTypeID
+      INNER JOIN [OTS_DB].[dbo].[SO_Header] SH ON APS.DraftNum = SH.DraftNum
+      WHERE APS.Approver = ${approverID}
+      ORDER BY APS.AppSummID DESC`;
 
-    // Give me some logic here!
-    const data = query.recordset;
-    const AppLevel = data[0].AppLevel;
-
-    if (AppLevel == 1) {
-      res.status(200).json({
-        success: true,
-        data: data,
+    if (!result.recordset.length) {
+      return res.status(404).json({
+        success: false,
+        message: "Unable to find List of Approval Summary",
       });
-    } else if (AppLevel == 2) {
-      console.log("WennWorks");
-    } else {
-      console.log("error");
     }
+
+    const data = result.recordset;
+
+    cache.set(cacheKey, data);
+
+    res.status(200).json({
+      success: true,
+      data: data,
+      message: "Approval Procedure Summary fetched successfully",
+    });
   } catch (error) {
     console.error("Error fetching approver list:", error);
     res.status(500).json({
