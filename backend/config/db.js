@@ -9,12 +9,8 @@ const config = {
   user: process.env.MSSQL_USERNAME,
   password: process.env.MSSQL_PASSWORD,
   options: {
-    trustedConnection: true,
-    trustServerCertificate: true,
-    cryptoCredentialsDetails: {
-      minVersion: "TLSv1",
-      servername: process.env.MSSQL_SERVER, // Use the hostname or domain name here
-    },
+    encrypt: false, // Set to false to match the default behavior in VB.NET
+    trustServerCertificate: true, // Ensure this is true if self-signed certificates are used
   },
 };
 
