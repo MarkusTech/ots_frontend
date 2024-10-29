@@ -152,10 +152,12 @@ const orignatorNotificationCount = async (req, res) => {
   try {
     const { originatorID } = req.params;
 
-    const query = `SELECT COUNT(*) AS totalRecordCount
-        FROM [OTS_DB].[dbo].[AppProc_Summary]
-        WHERE [Status] = 'pending'
-          AND [Originator] = ${originatorID}`;
+    // const query = `SELECT COUNT(*) AS totalRecordCount
+    //     FROM [OTS_DB].[dbo].[AppProc_Summary]
+    //     WHERE [Status] = 'pending'
+    //       AND [Originator] = ${originatorID}`;
+
+    const query = `EXEC GetPendingRecordsCount @Originator = ${originatorID}`;
 
     const { recordset } = await sqlConn.query(query, {
       approverID: 71,
