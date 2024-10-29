@@ -43,10 +43,13 @@ const initialFormData: FormData = {
   password: "",
 };
 
-export default function Home(
-  { approverIDD }: { approverIDD: number },
-  { originatorID }: { originatorID: number }
-) {
+export default function Home({
+  approverIDD = 0,
+  originatorID = 0,
+}: {
+  approverIDD?: number;
+  originatorID?: number;
+}) {
   const {
     showSalesOrder,
     viewUsers,
