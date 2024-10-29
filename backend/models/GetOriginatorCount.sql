@@ -41,5 +41,11 @@ BEGIN
 END;
 
 
+
+    -- // const query = `SELECT COUNT(*) AS totalRecordCount
+    -- //     FROM [OTS_DB].[dbo].[AppProc_Summary]
+    -- //     WHERE [Status] = 'pending'
+    -- //       AND [Originator] = ${originatorID}`;
+
 ---------------------------------------------------------------------------------
 EXEC GetPendingRecordsCount @Originator = 70
