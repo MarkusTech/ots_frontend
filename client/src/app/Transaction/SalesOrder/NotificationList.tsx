@@ -206,13 +206,24 @@ const NotificationList: React.FC<Props> = ({ userIDData }) => {
                               onChange={(e) =>
                                 handleStatusChange(e, notification.AppSummID)
                               }
-                              className="text-blue-500"
+                              className={`text-blue-500 ${
+                                notification.Status === "Pending"
+                                  ? "bg-orange-200"
+                                  : notification.Status === "pending"
+                                  ? "bg-orange-200"
+                                  : notification.Status === "Approved"
+                                  ? "bg-green-200"
+                                  : notification.Status === "Decline"
+                                  ? "bg-red-200"
+                                  : ""
+                              }`}
                             >
                               <option value="Pending">Pending</option>
                               <option value="Approved">Approve</option>
                               <option value="Decline">Reject</option>
                             </select>
                           </td>
+
                           <td>
                             <button
                               className="bg-blue-500 text-white px-2 py-1 rounded hover:bg-blue-600"
