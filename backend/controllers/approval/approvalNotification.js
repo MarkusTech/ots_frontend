@@ -71,17 +71,6 @@ const approverList = async (req, res) => {
   try {
     const { approverID } = req.params;
 
-    const cacheKey = `approverList_${approverID}`;
-
-    const cachedData = cache.get(cacheKey);
-    if (cachedData) {
-      return res.status(200).json({
-        success: true,
-        data: cachedData,
-        message: "Approval Procedure Summary fetched from cache",
-      });
-    }
-
     const result =
       await sqlConn.query`EXEC [OTS_DB].[dbo].[GetAppProcSummary] @Approver = ${approverID}`;
 
@@ -93,8 +82,6 @@ const approverList = async (req, res) => {
     }
 
     const data = result.recordset;
-
-    cache.set(cacheKey, data);
 
     res.status(200).json({
       success: true,
