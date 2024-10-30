@@ -128,7 +128,20 @@ const OriginatorNotificationList: React.FC<Props> = ({ originatorUserID }) => {
                           <td>{notification.CustomerName}</td>
                           <td>{notification.TotalAmtDue}</td>
                           <td>{notification.Remarks}</td>
-                          <td>{notification.Status}</td>
+                          <td
+                            className={
+                              notification.Status === "Pending"
+                                ? "bg-orange-200"
+                                : notification.Status === "Approved"
+                                ? "bg-green-200"
+                                : notification.Status === "Decline"
+                                ? "bg-red-200"
+                                : ""
+                            }
+                          >
+                            {notification.Status}
+                          </td>
+
                           <td>
                             <button
                               className="ml-4 bg-blue-500 text-white px-2 py-1 rounded hover:bg-blue-600"
