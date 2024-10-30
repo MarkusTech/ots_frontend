@@ -208,9 +208,9 @@ const NotificationList: React.FC<Props> = ({ userIDData }) => {
                               }
                               className="text-blue-500"
                             >
-                              <option value="pending">Pending</option>
-                              <option value="approve">Approve</option>
-                              <option value="decline">Reject</option>
+                              <option value="Pending">Pending</option>
+                              <option value="Approved">Approve</option>
+                              <option value="Decline">Reject</option>
                             </select>
                           </td>
                           <td>
