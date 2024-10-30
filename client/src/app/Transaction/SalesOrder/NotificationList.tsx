@@ -27,6 +27,7 @@ const NotificationList: React.FC<Props> = ({ userIDData }) => {
   const [isVisible, setIsVisible] = useState<boolean>(true);
   const [showSalesOrder, setShowSalesOrder] = useState<boolean>(false);
   const [draftNum, setDraftNum] = useState<number>(0);
+  const [status, setStatus] = useState<string>("");
 
   useEffect(() => {
     const fetchNotifications = async () => {
@@ -121,7 +122,8 @@ const NotificationList: React.FC<Props> = ({ userIDData }) => {
     );
 
     if (selectedNotification) {
-      setDraftNum(selectedNotification.DraftNum); // Set the DraftNum in the state
+      setDraftNum(selectedNotification.DraftNum);
+      setStatus(selectedNotification.Status);
     }
 
     setShowSalesOrder(!showSalesOrder);
@@ -271,7 +273,7 @@ const NotificationList: React.FC<Props> = ({ userIDData }) => {
               className="grid grid-cols-2 p-2 text-left windowheader"
               style={{ cursor: "move" }}
             >
-              <div>Sales Order</div>
+              <div>Sales Order ({status})</div>
               <div className="text-right">
                 <span className="cursor-pointer" onClick={handleHideView}>
                   ❌
