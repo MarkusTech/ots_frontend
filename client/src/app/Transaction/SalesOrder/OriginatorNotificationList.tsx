@@ -27,6 +27,7 @@ const OriginatorNotificationList: React.FC<Props> = ({ originatorUserID }) => {
   const [isVisible, setIsVisible] = useState<boolean>(true);
   const [showSalesOrder, setShowSalesOrder] = useState<boolean>(false);
   const [draftNum, setDraftNum] = useState<number>(0);
+  const [status, setStatus] = useState<string>("");
 
   useEffect(() => {
     const fetchNotifications = async () => {
@@ -50,6 +51,7 @@ const OriginatorNotificationList: React.FC<Props> = ({ originatorUserID }) => {
 
     if (selectedNotification) {
       setDraftNum(selectedNotification.DraftNum);
+      setStatus(selectedNotification.Status);
     }
 
     setShowSalesOrder(!showSalesOrder);
@@ -180,7 +182,7 @@ const OriginatorNotificationList: React.FC<Props> = ({ originatorUserID }) => {
               className="grid grid-cols-2 p-2 text-left windowheader"
               style={{ cursor: "move" }}
             >
-              <div>Sales Order</div>
+              <div>Sales Order ({status})</div>
               <div className="text-right">
                 <span className="cursor-pointer" onClick={handleHideView}>
                   ❌
