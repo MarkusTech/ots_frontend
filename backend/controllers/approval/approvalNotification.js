@@ -33,8 +33,7 @@ const approverNotification = async (req, res) => {
       SELECT COUNT(*) AS approverCount
       FROM [OTS_DB].[dbo].[AppProc_Summary]
       WHERE [Status] = 'pending'
-        AND [Approver] = ${approverID}
-    `;
+        AND [Approver] = ${approverID}`;
 
     const { recordset } = await sqlConn.query(query, {
       approverID: 71,
