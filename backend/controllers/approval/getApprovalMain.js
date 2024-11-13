@@ -1,5 +1,4 @@
 import sqlConn from "../../config/db.js";
-import { cache } from "../../utils/cache.js"; // Import the cache utility
 
 const getApprovalMain = async (req, res) => {
   try {
@@ -7,17 +6,6 @@ const getApprovalMain = async (req, res) => {
     const page = parseInt(req.query.page, 10) || 1;
     const pageSize = parseInt(req.query.pageSize, 10) || 10;
     const offset = (page - 1) * pageSize;
-
-    const cacheKey = `approvalMain:${page}:${pageSize}`;
-    const cachedData = cache.get(cacheKey);
-
-    if (cachedData) {
-      return res.status(200).json({
-        success: true,
-        message: "Approval Main fetched from cache!",
-        data: cachedData,
-      });
-    }
 
     // Fetch data with pagination
     const query = `
@@ -50,9 +38,6 @@ const getApprovalMain = async (req, res) => {
       });
     }
 
-    // Cache the result
-    cache.set(cacheKey, recordset);
-
     res.status(200).json({
       success: true,
       message: "Approval Main fetched successfully!",
@@ -60,7 +45,7 @@ const getApprovalMain = async (req, res) => {
       pagination: {
         page,
         pageSize,
-        total: recordset.length, // You might want to query the total count separately for better pagination
+        total: recordset.length,
       },
     });
   } catch (error) {
