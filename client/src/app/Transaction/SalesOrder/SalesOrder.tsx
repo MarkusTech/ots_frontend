@@ -430,10 +430,10 @@ const SalesOrder: React.FC<Props> = ({
                       rowData.belCost != "Y" &&
                       rowData.belVolDisPrice != "Y"
                     ) {
-                      Swal.fire({
-                        icon: "success",
-                        text: "Successfully Save to Draft",
-                      });
+                      // Swal.fire({
+                      //   icon: "success",
+                      //   text: "Successfully Save to Draft",
+                      // });
                     } else {
                       // Swal.fire({
                       //   icon: "success",
