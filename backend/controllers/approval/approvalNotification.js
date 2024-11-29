@@ -122,6 +122,36 @@ const approverListV2 = async (req, res) => {
   }
 };
 
+const approverListV3 = async (req, res) => {
+  try {
+    const { approverID } = req.params;
+
+    const result =
+      await sqlConn.query`EXEC [OTS_DB].[dbo].[GetAppProcSummaryV2] @Approver = ${approverID}`;
+
+    if (!result.recordset.length) {
+      return res.status(404).json({
+        success: false,
+        message: "Unable to find List of Approval Summary",
+      });
+    }
+
+    const data = result.recordset;
+
+    res.status(200).json({
+      success: true,
+      data: data,
+      message: "Approval Procedure Summary fetched successfully",
+    });
+  } catch (error) {
+    console.error("Error fetching approver list:", error);
+    res.status(500).json({
+      success: false,
+      message: "Internal Server Error",
+    });
+  }
+};
+
 const orignatorNotificationCount = async (req, res) => {
   try {
     const { originatorID } = req.params;
@@ -212,5 +242,6 @@ export {
   originatorList,
   approverList,
   approverListV2,
+  approverListV3,
   approverNotification,
 };
