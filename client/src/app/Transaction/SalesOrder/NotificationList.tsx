@@ -33,7 +33,7 @@ const NotificationList: React.FC<Props> = ({ userIDData }) => {
     const fetchNotifications = async () => {
       try {
         const response = await axios.get(
-          `http://172.16.10.169:5000/api/v1/approver-list/${userIDData}`
+          `http://172.16.10.169:5000/api/v1/approver-list/v3/${userIDData}`
         );
         setNotifications(response.data.data);
       } catch (error) {
