@@ -9,7 +9,10 @@ const router = express.Router();
 
 router.post("/approval-summary", saveApprovalSummary);
 router.get("/approval-summary", getApprovalProcedureSummary);
-router.put("/approval-summary/:AppSummID", updateApprovalSummaryStatus);
+router.put(
+  "/approval-summary/:UserID/:DraftNum/:AppSummID",
+  updateApprovalSummaryStatus
+);
 // to get the data for sales order
 router.get(
   "/approval-summary/sales-order/:DraftNum",

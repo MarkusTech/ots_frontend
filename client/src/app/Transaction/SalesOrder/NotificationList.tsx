@@ -55,7 +55,7 @@ const NotificationList: React.FC<Props> = ({ userIDData }) => {
     );
   };
 
-  const handleUpdate = async (appSummID: number) => {
+  const handleUpdate = async (appSummID: number, draftNum: number) => {
     const notificationToUpdate = notifications.find(
       (notification) => notification.AppSummID === appSummID
     );
@@ -82,7 +82,7 @@ const NotificationList: React.FC<Props> = ({ userIDData }) => {
     if (confirmResult.isConfirmed) {
       try {
         const response = await fetch(
-          `http://172.16.10.169:5000/api/v1/approval-summary/${appSummID}`,
+          `http://172.16.10.169:5000/api/v1/approval-summary/${userIDData}/${draftNum}/${appSummID}`,
           {
             method: "PUT",
             headers: {
@@ -92,19 +92,32 @@ const NotificationList: React.FC<Props> = ({ userIDData }) => {
           }
         );
 
+        const result = await response.json(); // Parse the JSON response
+
         if (!response.ok) {
-          throw new Error(`Error: ${response.statusText}`);
+          // Handle API error messages
+          if (result.message === "Already approved by another approver.") {
+            Swal.fire({
+              icon: "error",
+              text: result.message,
+            });
+          } else {
+            throw new Error(result.message || "Something went wrong.");
+          }
+          return;
         }
 
+        // Success response
         Swal.fire({
           icon: "success",
           title: "Updated Successfully",
         });
-      } catch (error) {
+      } catch (error: any) {
         console.error("Error updating notification:", error);
         Swal.fire({
           icon: "error",
           title: "Failed to update the notification.",
+          text: error.message || "An unknown error occurred.",
         });
       }
     } else {
@@ -230,7 +243,10 @@ const NotificationList: React.FC<Props> = ({ userIDData }) => {
                             <button
                               className="bg-blue-500 text-white px-2 py-1 rounded hover:bg-blue-600"
                               onClick={() =>
-                                handleUpdate(notification.AppSummID)
+                                handleUpdate(
+                                  notification.AppSummID,
+                                  notification.DraftNum
+                                )
                               }
                             >
                               Update

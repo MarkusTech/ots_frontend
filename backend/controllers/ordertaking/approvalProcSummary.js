@@ -89,7 +89,7 @@ const getApprovalProcedureSummary = async (req, res) => {
 // Update Approval Summary Status and invalidate cache
 const updateApprovalSummaryStatus = async (req, res) => {
   const { Status } = req.body;
-  const { AppSummID } = req.params;
+  const { AppSummID, UserID, DraftNum } = req.params;
 
   if (!AppSummID || !Status) {
     return res.status(400).json({
@@ -99,13 +99,46 @@ const updateApprovalSummaryStatus = async (req, res) => {
   }
 
   try {
+    // Retrieve NumApprover, Status, and PreviousStatus using the stored procedure
+    const result = await sqlConn.query`
+      EXEC [dbo].[approverListAndUpdatev2] @Approver = ${UserID}, @DraftNum = ${DraftNum};`;
+
+    if (!result.recordset.length) {
+      return res.status(404).json({
+        success: false,
+        message: "Approval Summary not found",
+      });
+    }
+
+    const approvalType = result.recordset[0].Type;
+    const numApprover = result.recordset[0].NumApprover;
+    const currentStatus = result.recordset[0].Status;
+    const prevStatus = result.recordset[0].PrevStatus;
+
+    // Log the extracted values for debugging purposes
+    console.log({
+      numApprover,
+      currentStatus,
+      prevStatus,
+    });
+
+    // Check if NumApprover = 1 and either Status or PreviousStatus is "Approved"
+    if (
+      numApprover === 1 &&
+      approvalType === "Simultaneous" &&
+      (currentStatus === "Approved" || prevStatus === "Approved")
+    ) {
+      return res.status(400).json({
+        success: false,
+        message: "Already approved by another approver.",
+      });
+    }
+
+    // Perform the update if conditions are not met
     const updateSummary = await sqlConn.query`
       UPDATE [dbo].[AppProc_Summary]
       SET [Status] = ${Status}
       WHERE [AppSummID] = ${AppSummID}`;
-
-    // Invalidate the cache after updating the status
-    cache.del(cacheKey);
 
     res.status(200).json({
       success: true,
@@ -114,7 +147,10 @@ const updateApprovalSummaryStatus = async (req, res) => {
     });
   } catch (error) {
     console.error("Error updating Approval Procedure Status:", error);
-    res.status(500).json({ error: "Internal Server Error" });
+    res.status(500).json({
+      success: false,
+      message: "Internal Server Error",
+    });
   }
 };
 
