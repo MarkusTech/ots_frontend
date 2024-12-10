@@ -142,7 +142,8 @@ const approverListV3 = async (req, res) => {
     const { approverID } = req.params;
 
     const result =
-      await sqlConn.query`EXEC [OTS_DB].[dbo].[GetAppProcSummaryV2] @Approver = ${approverID}`;
+      // await sqlConn.query`EXEC [OTS_DB].[dbo].[GetAppProcSummaryV2] @Approver = ${approverID}`;
+      await sqlConn.query`EXEC [OTS_DB].[dbo].[GetAppProcSummaryBaseOnApprover] @Approver = ${approverID}`;
 
     if (!result.recordset.length) {
       return res.status(404).json({
