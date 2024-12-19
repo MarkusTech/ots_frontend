@@ -142,7 +142,6 @@ const approverListV3 = async (req, res) => {
     const { approverID } = req.params;
 
     const result =
-      // await sqlConn.query`EXEC [OTS_DB].[dbo].[GetAppProcSummaryV2] @Approver = ${approverID}`;
       await sqlConn.query`EXEC [OTS_DB].[dbo].[GetAppProcSummaryBaseOnApprover] @Approver = ${approverID}`;
 
     if (!result.recordset.length) {
@@ -274,6 +273,28 @@ const originatorList = async (req, res) => {
   }
 };
 
+const originatorOTSStatus = async (req, res) => {
+  try {
+    const { DraftNum } = req.params;
+
+    const result =
+      await sqlConn.query`select DocStat FROM [OTS_DB].[dbo].[SO_Header] WHERE DraftNum = ${DraftNum}`;
+
+    const data = result.recordset[0];
+    res.status(200).json({
+      success: true,
+      message: "Originator Status Found",
+      data,
+    });
+  } catch (error) {
+    console.error("Error fetching Originator Status:", error);
+    res.status(500).json({
+      success: false,
+      message: "Internal Server Error",
+    });
+  }
+};
+
 export {
   approvalNotification,
   orignatorNotificationCount,
@@ -282,4 +303,5 @@ export {
   approverListV2,
   approverListV3,
   approverNotification,
+  originatorOTSStatus,
 };

@@ -135,15 +135,13 @@ const updateApprovalSummaryStatus = async (req, res) => {
     }
 
     // Perform the update if conditions are not met
-    const updateSummary = await sqlConn.query`
-      UPDATE [dbo].[AppProc_Summary]
-      SET [Status] = ${Status}
-      WHERE [AppSummID] = ${AppSummID}`;
+    const updateDocStat = await sqlConn.query`
+      UPDATE [OTS_DB].[dbo].[SO_Header] SET DocStat = 'Approved' WHERE DraftNum = ${DraftNum}`;
 
     res.status(200).json({
       success: true,
       message: "Approval Procedure Status successfully updated",
-      updateSummary,
+      updateDocStat,
     });
   } catch (error) {
     console.error("Error updating Approval Procedure Status:", error);

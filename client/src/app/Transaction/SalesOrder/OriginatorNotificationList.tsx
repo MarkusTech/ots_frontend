@@ -44,7 +44,7 @@ const OriginatorNotificationList: React.FC<Props> = ({ originatorUserID }) => {
     fetchNotifications();
   }, [originatorUserID]);
 
-  const handleShowView = (AppSummID: number) => {
+  const handleShowView = async (AppSummID: number, DraftNum: number) => {
     const selectedNotification = notifications.find(
       (notification) => notification.AppSummID === AppSummID
     );
@@ -52,6 +52,22 @@ const OriginatorNotificationList: React.FC<Props> = ({ originatorUserID }) => {
     if (selectedNotification) {
       setDraftNum(selectedNotification.DraftNum);
       setStatus(selectedNotification.Status);
+    }
+
+    try {
+      const response = await axios.get(
+        `http://localhost:5000/api/v1/originator/status/${DraftNum}`
+      );
+
+      const status =
+        response.data.success && response.data.data.DocStat !== ""
+          ? response.data.data.DocStat
+          : "Pending";
+
+      setStatus(status);
+    } catch (error) {
+      console.error("Error fetching status:", error);
+      setStatus("Pending");
     }
 
     setShowSalesOrder(!showSalesOrder);
@@ -106,7 +122,7 @@ const OriginatorNotificationList: React.FC<Props> = ({ originatorUserID }) => {
                         <th>Customer Name</th>
                         <th>Total Amount Due</th>
                         <th>Remarks</th>
-                        <th>Status</th>
+                        {/* <th>Status</th> */}
                         <th>Action</th>
                       </tr>
                     </thead>
@@ -130,7 +146,7 @@ const OriginatorNotificationList: React.FC<Props> = ({ originatorUserID }) => {
                           <td>{notification.CustomerName}</td>
                           <td>{notification.TotalAmtDue}</td>
                           <td>{notification.Remarks}</td>
-                          <td
+                          {/* <td
                             className={
                               notification.Status === "Pending"
                                 ? "bg-orange-200"
@@ -142,13 +158,16 @@ const OriginatorNotificationList: React.FC<Props> = ({ originatorUserID }) => {
                             }
                           >
                             {notification.Status}
-                          </td>
+                          </td> */}
 
                           <td>
                             <button
                               className="ml-4 bg-blue-500 text-white px-2 py-1 rounded hover:bg-blue-600"
                               onClick={() =>
-                                handleShowView(notification.AppSummID)
+                                handleShowView(
+                                  notification.AppSummID,
+                                  notification.DraftNum
+                                )
                               }
                             >
                               View
