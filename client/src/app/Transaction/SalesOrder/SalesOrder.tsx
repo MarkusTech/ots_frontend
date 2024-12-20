@@ -290,10 +290,34 @@ const SalesOrder: React.FC<Props> = ({
               )
               .then((response) => {
                 if (response.statusText === "OK") {
+                  // Success notification
                   Swal.fire({
                     icon: "success",
                     text: `Successfully sent for approval`,
                   });
+
+                  // Add the PUT API call here
+                  axios
+                    .put(
+                      `http://localhost:5000/api/v1/header-status/${draftNumber}`
+                    )
+                    .then((putResponse) => {
+                      if (putResponse.statusText === "OK") {
+                        console.log(
+                          `Header status updated successfully for Draft Number: ${draftNumber}`
+                        );
+                      }
+                    })
+                    .catch((putError) => {
+                      console.error(
+                        `Failed to update header status: `,
+                        putError
+                      );
+                      Swal.fire({
+                        icon: "error",
+                        text: `Failed to update header status`,
+                      });
+                    });
                 }
               })
               .catch((error) => {
@@ -302,6 +326,16 @@ const SalesOrder: React.FC<Props> = ({
                   text: `Failed to save for approver`,
                 });
               });
+          });
+        })
+        .catch((error) => {
+          console.error(
+            `Failed to fetch below standard discounting data: `,
+            error
+          );
+          Swal.fire({
+            icon: "error",
+            text: `Error fetching approval procedure`,
           });
         });
     } else if (countBelowCost > 0) {

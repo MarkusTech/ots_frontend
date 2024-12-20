@@ -88,9 +88,10 @@ const getApprovalProcedureSummary = async (req, res) => {
 
 // Update Approval Summary Status and invalidate cache
 const updateApprovalSummaryStatus = async (req, res) => {
-  const { Status } = req.body;
-  const { AppSummID, UserID, DraftNum } = req.params;
+  const { Status } = req.body; // Extract the status from the request body
+  const { AppSummID, UserID, DraftNum } = req.params; // Extract parameters from the route
 
+  // Validate required fields
   if (!AppSummID || !Status) {
     return res.status(400).json({
       success: false,
@@ -99,10 +100,11 @@ const updateApprovalSummaryStatus = async (req, res) => {
   }
 
   try {
-    // Retrieve NumApprover, Status, and PreviousStatus using the stored procedure
+    // Retrieve data using the stored procedure
     const result = await sqlConn.query`
       EXEC [dbo].[approverListAndUpdatev2] @Approver = ${UserID}, @DraftNum = ${DraftNum};`;
 
+    // Check if the stored procedure returned any data
     if (!result.recordset.length) {
       return res.status(404).json({
         success: false,
@@ -110,21 +112,16 @@ const updateApprovalSummaryStatus = async (req, res) => {
       });
     }
 
-    const approvalType = result.recordset[0].Type;
-    const numApprover = result.recordset[0].NumApprover;
-    const currentStatus = result.recordset[0].Status;
-    const prevStatus = result.recordset[0].PrevStatus;
+    const {
+      NumApprover,
+      Type: approvalType,
+      Status: currentStatus,
+      PrevStatus: prevStatus,
+    } = result.recordset[0];
 
-    // Log the extracted values for debugging purposes
-    console.log({
-      numApprover,
-      currentStatus,
-      prevStatus,
-    });
-
-    // Check if NumApprover = 1 and either Status or PreviousStatus is "Approved"
+    // Check if the approval conditions prevent updating
     if (
-      numApprover === 1 &&
+      NumApprover === 1 &&
       approvalType === "Simultaneous" &&
       (currentStatus === "Approved" || prevStatus === "Approved")
     ) {
@@ -134,17 +131,38 @@ const updateApprovalSummaryStatus = async (req, res) => {
       });
     }
 
-    // Perform the update if conditions are not met
-    const updateDocStat = await sqlConn.query`
-      UPDATE [OTS_DB].[dbo].[SO_Header] SET DocStat = 'Approved' WHERE DraftNum = ${DraftNum}`;
+    // Perform the status update in `AppProc_Summary`
+    const updateSummaryResult = await sqlConn.query`
+      UPDATE [dbo].[AppProc_Summary]
+      SET [Status] = ${Status}
+      WHERE [AppSummID] = ${AppSummID};`;
 
+    // Check if rows were affected (confirmation the update occurred)
+    if (updateSummaryResult.rowsAffected[0] === 0) {
+      return res.status(404).json({
+        success: false,
+        message: "Failed to update AppProc_Summary. No rows were affected.",
+      });
+    }
+
+    // Update the `DocStat` in `SO_Header`
+    const updateDocStatResult = await sqlConn.query`
+      UPDATE [OTS_DB].[dbo].[SO_Header]
+      SET DocStat = 'Approved'
+      WHERE DraftNum = ${DraftNum};`;
+
+    // Send a success response
     res.status(200).json({
       success: true,
       message: "Approval Procedure Status successfully updated",
-      updateDocStat,
+      updateSummary: updateSummaryResult,
+      updateDocStatHeader: updateDocStatResult,
     });
   } catch (error) {
+    // Log the error for debugging
     console.error("Error updating Approval Procedure Status:", error);
+
+    // Return a generic error response
     res.status(500).json({
       success: false,
       message: "Internal Server Error",

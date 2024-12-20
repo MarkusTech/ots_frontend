@@ -295,6 +295,25 @@ const originatorOTSStatus = async (req, res) => {
   }
 };
 
+const setHeaderStatusToPendingInBelowDiscountPrice = async (req, res) => {
+  try {
+    const { DraftNum } = req.params;
+
+    await sqlConn.query`UPDATE [OTS_DB].[dbo].[SO_Header] SET DocStat = 'Pending' WHERE DraftNum = ${DraftNum}`;
+
+    res.status(200).json({
+      success: true,
+      message: "Header Status Set To Pending",
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({
+      success: false,
+      message: "Internal Server Error",
+    });
+  }
+};
+
 export {
   approvalNotification,
   orignatorNotificationCount,
@@ -304,4 +323,5 @@ export {
   approverListV3,
   approverNotification,
   originatorOTSStatus,
+  setHeaderStatusToPendingInBelowDiscountPrice,
 };
