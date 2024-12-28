@@ -86,10 +86,9 @@ const getApprovalProcedureSummary = async (req, res) => {
   }
 };
 
-// Update Approval Summary Status and invalidate cache
 const updateApprovalSummaryStatus = async (req, res) => {
-  const { Status } = req.body; // Extract the status from the request body
-  const { AppSummID, UserID, DraftNum } = req.params; // Extract parameters from the route
+  const { Status } = req.body;
+  const { AppSummID, UserID, DraftNum } = req.params;
 
   // Validate required fields
   if (!AppSummID || !Status) {
@@ -100,11 +99,9 @@ const updateApprovalSummaryStatus = async (req, res) => {
   }
 
   try {
-    // Retrieve data using the stored procedure
     const result = await sqlConn.query`
       EXEC [dbo].[approverListAndUpdatev2] @Approver = ${UserID}, @DraftNum = ${DraftNum};`;
 
-    // Check if the stored procedure returned any data
     if (!result.recordset.length) {
       return res.status(404).json({
         success: false,
@@ -119,7 +116,6 @@ const updateApprovalSummaryStatus = async (req, res) => {
 
     console.log(NumApprover, approvalType, currentStatus, prevStatus);
 
-    // Check if the approval conditions prevent updating
     if (NumApprover === 1 && approvalType === "Simultaneous") {
       if (currentStatus === "Approved" || prevStatus === "Approved") {
         return res.status(400).json({
@@ -127,13 +123,11 @@ const updateApprovalSummaryStatus = async (req, res) => {
           message: "Already approved by another approver.",
         });
       } else if (currentStatus === "Pending" || prevStatus === "Pending") {
-        // Perform the status update in `AppProc_Summary`
         const updateSummaryResult = await sqlConn.query`
           UPDATE [dbo].[AppProc_Summary]
           SET [Status] = ${Status}
           WHERE [AppSummID] = ${AppSummID};`;
 
-        // Check if rows were affected (confirmation the update occurred)
         if (updateSummaryResult.rowsAffected[0] === 0) {
           return res.status(404).json({
             success: false,
@@ -141,13 +135,11 @@ const updateApprovalSummaryStatus = async (req, res) => {
           });
         }
 
-        // Update the `DocStat` in `SO_Header`
         const updateDocStatResult = await sqlConn.query`
           UPDATE [OTS_DB].[dbo].[SO_Header]
           SET DocStat = 'Approved'
           WHERE DraftNum = ${DraftNum};`;
 
-        // Send a success response
         res.status(200).json({
           success: true,
           message: "Approval Procedure Status successfully updated",
@@ -162,7 +154,6 @@ const updateApprovalSummaryStatus = async (req, res) => {
         SET [Status] = ${Status}
         WHERE [AppSummID] = ${AppSummID};`;
 
-        // Check if rows were affected (confirmation the update occurred)
         if (updateSummaryResult.rowsAffected[0] === 0) {
           return res.status(404).json({
             success: false,
@@ -181,7 +172,6 @@ const updateApprovalSummaryStatus = async (req, res) => {
           SET [Status] = ${Status}
           WHERE [AppSummID] = ${AppSummID};`;
 
-        // Check if rows were affected (confirmation the update occurred)
         if (updateSummaryResult.rowsAffected[0] === 0) {
           return res.status(404).json({
             success: false,
@@ -189,13 +179,11 @@ const updateApprovalSummaryStatus = async (req, res) => {
           });
         }
 
-        // Update the `DocStat` in `SO_Header`
         const updateDocStatResult = await sqlConn.query`
         UPDATE [OTS_DB].[dbo].[SO_Header]
         SET DocStat = 'Approved'
         WHERE DraftNum = ${DraftNum};`;
 
-        // Send a success response
         res.status(200).json({
           success: true,
           message: "Approval Procedure Status successfully updated",
@@ -208,7 +196,6 @@ const updateApprovalSummaryStatus = async (req, res) => {
         SET [Status] = ${Status}
         WHERE [AppSummID] = ${AppSummID};`;
 
-        // Check if rows were affected (confirmation the update occurred)
         if (updateSummaryResult.rowsAffected[0] === 0) {
           return res.status(404).json({
             success: false,
@@ -216,7 +203,6 @@ const updateApprovalSummaryStatus = async (req, res) => {
           });
         }
 
-        // Update the `DocStat` in `SO_Header`
         const updateDocStatResult = await sqlConn.query`
           UPDATE [OTS_DB].[dbo].[SO_Header]
           SET DocStat = 'Approved'
