@@ -147,76 +147,169 @@ const updateApprovalSummaryStatus = async (req, res) => {
           updateDocStatHeader: updateDocStatResult,
         });
       }
-    } else if (NumApprover === 2 && approvalType === "Simultaneous") {
-      if (currentStatus === "Pending" || prevStatus === "Pending") {
-        const updateSummaryResult = await sqlConn.query`
+    } else if (
+      NumApprover === 2 &&
+      approvalType === "Simultaneous" &&
+      currentStatus === "Pending" &&
+      prevStatus === "Pending"
+    ) {
+      console.log(`first approver`);
+
+      const updateSummaryResult = await sqlConn.query`
+      UPDATE [dbo].[AppProc_Summary]
+      SET [Status] = ${Status}
+      WHERE [AppSummID] = ${AppSummID};`;
+
+      if (updateSummaryResult.rowsAffected[0] === 0) {
+        return res.status(404).json({
+          success: false,
+          message: "Failed to update AppProc_Summary. No rows were affected.",
+        });
+      }
+
+      res.status(200).json({
+        success: true,
+        message: "Approval Procedure Status successfully updated",
+        updateSummary: updateSummaryResult,
+      });
+    } else if (
+      NumApprover === 2 &&
+      approvalType === "Simultaneous" &&
+      currentStatus === "Pending" &&
+      prevStatus === "Approved"
+    ) {
+      console.log(`Pending Approved`);
+      const updateSummaryResult = await sqlConn.query`
         UPDATE [dbo].[AppProc_Summary]
         SET [Status] = ${Status}
         WHERE [AppSummID] = ${AppSummID};`;
 
-        if (updateSummaryResult.rowsAffected[0] === 0) {
-          return res.status(404).json({
-            success: false,
-            message: "Failed to update AppProc_Summary. No rows were affected.",
-          });
-        }
-
-        res.status(200).json({
-          success: true,
-          message: "Approval Procedure Status successfully updated",
-          updateSummary: updateSummaryResult,
+      if (updateSummaryResult.rowsAffected[0] === 0) {
+        return res.status(404).json({
+          success: false,
+          message: "Failed to update AppProc_Summary. No rows were affected.",
         });
-      } else if (currentStatus === "Approved" || prevStatus === "Pending") {
-        const updateSummaryResult = await sqlConn.query`
-          UPDATE [dbo].[AppProc_Summary]
-          SET [Status] = ${Status}
-          WHERE [AppSummID] = ${AppSummID};`;
+      }
 
-        if (updateSummaryResult.rowsAffected[0] === 0) {
-          return res.status(404).json({
-            success: false,
-            message: "Failed to update AppProc_Summary. No rows were affected.",
-          });
-        }
-
-        const updateDocStatResult = await sqlConn.query`
-        UPDATE [OTS_DB].[dbo].[SO_Header]
-        SET DocStat = 'Approved'
-        WHERE DraftNum = ${DraftNum};`;
-
-        res.status(200).json({
-          success: true,
-          message: "Approval Procedure Status successfully updated",
-          updateSummary: updateSummaryResult,
-          updateDocStatHeader: updateDocStatResult,
-        });
-      } else if (currentStatus === "Pending" || prevStatus === "Approved") {
-        const updateSummaryResult = await sqlConn.query`
-        UPDATE [dbo].[AppProc_Summary]
-        SET [Status] = ${Status}
-        WHERE [AppSummID] = ${AppSummID};`;
-
-        if (updateSummaryResult.rowsAffected[0] === 0) {
-          return res.status(404).json({
-            success: false,
-            message: "Failed to update AppProc_Summary. No rows were affected.",
-          });
-        }
-
-        const updateDocStatResult = await sqlConn.query`
+      const updateDocStatResult = await sqlConn.query`
           UPDATE [OTS_DB].[dbo].[SO_Header]
           SET DocStat = 'Approved'
           WHERE DraftNum = ${DraftNum};`;
 
-        // Send a success response
-        res.status(200).json({
-          success: true,
-          message: "Approval Procedure Status successfully updated",
-          updateSummary: updateSummaryResult,
-          updateDocStatHeader: updateDocStatResult,
+      // Send a success response
+      res.status(200).json({
+        success: true,
+        message: "Approval Procedure Status successfully updated",
+        updateSummary: updateSummaryResult,
+        updateDocStatHeader: updateDocStatResult,
+      });
+    } else if (
+      NumApprover === 2 &&
+      approvalType === "Simultaneous" &&
+      currentStatus === "Approved" &&
+      prevStatus === "Pending"
+    ) {
+      console.log(`Approved Pending`);
+      const updateSummaryResult = await sqlConn.query`
+          UPDATE [dbo].[AppProc_Summary]
+          SET [Status] = ${Status}
+          WHERE [AppSummID] = ${AppSummID};`;
+
+      if (updateSummaryResult.rowsAffected[0] === 0) {
+        return res.status(404).json({
+          success: false,
+          message: "Failed to update AppProc_Summary. No rows were affected.",
         });
       }
-    } // ---------------------- Sequential ----------------------
+
+      const updateDocStatResult = await sqlConn.query`
+        UPDATE [OTS_DB].[dbo].[SO_Header]
+        SET DocStat = 'Approved'
+        WHERE DraftNum = ${DraftNum};`;
+
+      res.status(200).json({
+        success: true,
+        message: "Approval Procedure Status successfully updated",
+        updateSummary: updateSummaryResult,
+        updateDocStatHeader: updateDocStatResult,
+      });
+    }
+    // ---------------------- Simultaneous ----------------------
+    // else if (NumApprover === 2 && approvalType === "Simultaneous") {
+    //   if (currentStatus === "Pending" || prevStatus === "Pending") {
+    //     console.log(`first approver`);
+
+    //     const updateSummaryResult = await sqlConn.query`
+    //     UPDATE [dbo].[AppProc_Summary]
+    //     SET [Status] = ${Status}
+    //     WHERE [AppSummID] = ${AppSummID};`;
+
+    //     if (updateSummaryResult.rowsAffected[0] === 0) {
+    //       return res.status(404).json({
+    //         success: false,
+    //         message: "Failed to update AppProc_Summary. No rows were affected.",
+    //       });
+    //     }
+
+    //     res.status(200).json({
+    //       success: true,
+    //       message: "Approval Procedure Status successfully updated",
+    //       updateSummary: updateSummaryResult,
+    //     });
+    //   } else if (currentStatus === "Approved" || prevStatus === "Pending") {
+    //     console.log(`Approved Pending`);
+    //     const updateSummaryResult = await sqlConn.query`
+    //       UPDATE [dbo].[AppProc_Summary]
+    //       SET [Status] = ${Status}
+    //       WHERE [AppSummID] = ${AppSummID};`;
+
+    //     if (updateSummaryResult.rowsAffected[0] === 0) {
+    //       return res.status(404).json({
+    //         success: false,
+    //         message: "Failed to update AppProc_Summary. No rows were affected.",
+    //       });
+    //     }
+
+    //     const updateDocStatResult = await sqlConn.query`
+    //     UPDATE [OTS_DB].[dbo].[SO_Header]
+    //     SET DocStat = 'Approved'
+    //     WHERE DraftNum = ${DraftNum};`;
+
+    //     res.status(200).json({
+    //       success: true,
+    //       message: "Approval Procedure Status successfully updated",
+    //       updateSummary: updateSummaryResult,
+    //       updateDocStatHeader: updateDocStatResult,
+    //     });
+    //   } else if (currentStatus === "Pending" || prevStatus === "Approved") {
+    //     console.log(`Pending Approved`);
+    //     const updateSummaryResult = await sqlConn.query`
+    //     UPDATE [dbo].[AppProc_Summary]
+    //     SET [Status] = ${Status}
+    //     WHERE [AppSummID] = ${AppSummID};`;
+
+    //     if (updateSummaryResult.rowsAffected[0] === 0) {
+    //       return res.status(404).json({
+    //         success: false,
+    //         message: "Failed to update AppProc_Summary. No rows were affected.",
+    //       });
+    //     }
+
+    //     const updateDocStatResult = await sqlConn.query`
+    //       UPDATE [OTS_DB].[dbo].[SO_Header]
+    //       SET DocStat = 'Approved'
+    //       WHERE DraftNum = ${DraftNum};`;
+
+    //     // Send a success response
+    //     res.status(200).json({
+    //       success: true,
+    //       message: "Approval Procedure Status successfully updated",
+    //       updateSummary: updateSummaryResult,
+    //       updateDocStatHeader: updateDocStatResult,
+    //     });
+    //   }
+    // }
+    //  // ---------------------- Sequential ----------------------
     else if (NumApprover === 1 && approvalType === "Sequential") {
       if (currentStatus === "Pending" || prevStatus === "Pending") {
         const updateSummaryResult = await sqlConn.query`
