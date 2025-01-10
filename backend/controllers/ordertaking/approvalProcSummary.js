@@ -319,6 +319,44 @@ const getSalesOrderBasedOnApprovalDraftNum = async (req, res) => {
   }
 };
 
+// const getSalesOrderBasedOnApprovalDraftNum = async (req, res) => {
+//   const { DraftNum } = req.params;
+
+//   try {
+//     // Query database for Sales Order header and details
+//     const headerResult = await sqlConn.query(
+//       `SELECT * FROM [OTS_DB].[dbo].[SO_Header] WHERE DraftNum = ${DraftNum}`
+//     );
+//     const detailsResult = await sqlConn.query(
+//       `SELECT * FROM [OTS_DB].[dbo].[SO_Details] WHERE DraftNum = '${DraftNum}'`
+//     );
+
+//     if (!headerResult || headerResult.recordset.length === 0) {
+//       return res.status(400).json({
+//         success: false,
+//         message: `Unable to find header based on ${DraftNum}`,
+//       });
+//     }
+
+//     if (!detailsResult || detailsResult.recordset.length === 0) {
+//       return res.status(400).json({
+//         success: false,
+//         message: `Unable to find details based on ${DraftNum}`,
+//       });
+//     }
+
+//     return res.status(200).json({
+//       success: true,
+//       message: `Sales Order Data based on ${DraftNum}`,
+//       headerData: headerResult.recordset[0],
+//       detailsData: detailsResult.recordset,
+//     });
+//   } catch (error) {
+//     console.error("Error fetching Sales Order data:", error);
+//     return res.status(500).json({ error: "Internal Server Error" });
+//   }
+// };
+
 export {
   saveApprovalSummary,
   getApprovalProcedureSummary,
