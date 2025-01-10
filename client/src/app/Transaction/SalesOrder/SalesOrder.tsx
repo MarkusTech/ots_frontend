@@ -140,10 +140,10 @@ const SalesOrder: React.FC<Props> = ({
   const priceListNum = userPriceListNumData;
   const user = userData;
 
-  const handleWennWorks = () => {
-    setApprovalTitle(`Below Standard Discounting`); // title in approval you must set here!
-    setAppProcSummary(true); // to display remarks
-  };
+  // const handleWennWorks = () => {
+  //   setApprovalTitle(`Below Standard Discounting`); // title in approval you must set here!
+  //   setAppProcSummary(true); // to display remarks
+  // };
 
   const now = new Date();
   // Date Now()
@@ -4511,12 +4511,12 @@ const SalesOrder: React.FC<Props> = ({
                 Search
               </button>
 
-              <button
+              {/* <button
                 className="p-2 mt-2 mb-1 mr-2 text-[12px] bg-[#f69629] hover:bg-yellow-500 focus:outline-none focus:shadow-outline-yellow active:bg-yellow-600 rounded w-24"
                 onClick={handleWennWorks}
               >
                 Alert
-              </button>
+              </button> */}
 
               {showSearchHeader && (
                 <Draggable>
