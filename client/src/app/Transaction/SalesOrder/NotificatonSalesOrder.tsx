@@ -94,40 +94,27 @@ const NotificationSalesOrder: React.FC<Props> = ({ DraftNumber }) => {
           `http://172.16.10.169:5000/api/v1/approval-summary/sales-order/${DraftNumber}`
         )
         .then((response) => {
-          const headerResult = response.data.headerResult.recordset;
-          const detailsResult = response.data.detailsResult.recordset;
-          setHeaderData(headerResult);
-          setDetailsData(detailsResult);
+          console.log(response.data.headerData);
 
-          const validation = response.data.headerResult.recordset;
+          // Ensure the data exists before setting state
+          const headerResult = response.data.headerData;
+          const detailsResult = response.data.detailsData;
 
-          for (let i = 0; i < validation.length; i++) {
-            if (validation[i].Cash === "Y") {
-              setIsCash(true);
-            } else if (validation[i].CreditCard) {
-              setIsCreditCard(true);
-            } else if (validation[i].DebitCard) {
-              setIsDebitCard(true);
-            } else if (validation[i].ODC) {
-              setIsPo(true);
-            } else if (validation[i].PDC) {
-              setIsPdc(true);
-            } else if (validation[i].OnlineTransfer) {
-              setIsOnlineTransfer(true);
-            } else if (validation[i].OnAccount) {
-              setIsOnAccount(true);
-            } else if (validation[i].COD) {
-              setIsCashOnDelivery(true);
-            } else {
-              setIsCash(false);
-              setIsCreditCard(false);
-              setIsDebitCard(false);
-              setIsPo(false);
-              setIsPdc(false);
-              setIsOnlineTransfer(false);
-              setIsOnAccount(false);
-              setIsCashOnDelivery(false);
-            }
+          if (headerResult && detailsResult) {
+            setHeaderData([headerResult]); // set headerData as an array
+            setDetailsData(detailsResult);
+
+            const validation = headerResult;
+
+            // Validation for different payment types
+            setIsCash(validation.Cash === "Y");
+            setIsCreditCard(validation.CreditCard === "Y");
+            setIsDebitCard(validation.DebitCard === "Y");
+            setIsPo(validation.ODC === "Y");
+            setIsPdc(validation.PDC === "Y");
+            setIsOnlineTransfer(validation.OnlineTransfer === "Y");
+            setIsOnAccount(validation.OnAccount === "Y");
+            setIsCashOnDelivery(validation.COD === "Y");
           }
         })
         .catch((error) => {
@@ -136,9 +123,9 @@ const NotificationSalesOrder: React.FC<Props> = ({ DraftNumber }) => {
     }
   }, [DraftNumber]);
 
-  if (headerData.length === 0) return <div>Loading...</div>;
+  if (!headerData || headerData.length === 0) return <div>Loading...</div>;
 
-  // Access the Seleted item in headerData array
+  // Access the selected item in headerData array
   const [headerItem] = headerData;
 
   return (
@@ -282,7 +269,7 @@ const NotificationSalesOrder: React.FC<Props> = ({ DraftNumber }) => {
             <div>
               <input
                 type="text"
-                className="bg-slate-200"
+                style={{ backgroundColor: "#F69629" }}
                 readOnly
                 value={headerItem.DraftNum || ""}
               />
