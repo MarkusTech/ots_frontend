@@ -2,8 +2,8 @@ import React from "react";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import Draggable from "react-draggable";
-import Swal from "sweetalert2";
 import NotificationSalesOrder from "./NotificatonSalesOrder";
+// import SalesOrder from "./SalesOrder";
 
 interface Props {
   originatorUserID: number;
@@ -28,6 +28,8 @@ const OriginatorNotificationList: React.FC<Props> = ({ originatorUserID }) => {
   const [showSalesOrder, setShowSalesOrder] = useState<boolean>(false);
   const [draftNum, setDraftNum] = useState<number>(0);
   const [status, setStatus] = useState<string>("");
+  const [showSalesOrderFromDraftNum, setShowSalesOrderFromDraftNum] =
+    useState<boolean>(false);
 
   useEffect(() => {
     const fetchNotifications = async () => {
@@ -163,17 +165,28 @@ const OriginatorNotificationList: React.FC<Props> = ({ originatorUserID }) => {
                           </td>
 
                           <td>
-                            <button
-                              className="ml-4 bg-blue-500 text-white px-2 py-1 rounded hover:bg-blue-600"
-                              onClick={() =>
-                                handleShowView(
-                                  notification.AppSummID,
-                                  notification.DraftNum
-                                )
-                              }
-                            >
-                              View
-                            </button>
+                            {notification.Status === "Approved" ? (
+                              <button
+                                className="ml-4 bg-blue-500 text-white px-2 py-1 rounded hover:bg-blue-600"
+                                onClick={() =>
+                                  setShowSalesOrderFromDraftNum(true)
+                                }
+                              >
+                                View Sales Order
+                              </button>
+                            ) : (
+                              <button
+                                className="ml-4 bg-blue-500 text-white px-2 py-1 rounded hover:bg-blue-600"
+                                onClick={() =>
+                                  handleShowView(
+                                    notification.AppSummID,
+                                    notification.DraftNum
+                                  )
+                                }
+                              >
+                                View
+                              </button>
+                            )}
                           </td>
                         </tr>
                       ))}
@@ -215,6 +228,9 @@ const OriginatorNotificationList: React.FC<Props> = ({ originatorUserID }) => {
             </div>
           </div>
         </Draggable>
+      )}
+      {showSalesOrderFromDraftNum && (
+        <div>Sales Order{/* <SalesOrder /> */}</div>
       )}
     </>
   );
