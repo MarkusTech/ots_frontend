@@ -136,7 +136,9 @@ const OriginatorNotificationList: React.FC<Props> = ({ originatorUserID }) => {
                               notification.ReqDate
                             ).toLocaleDateString()}
                           </td>
-                          <td>{notification.DraftNum}</td>
+                          <td className="text-red-500 font-bold">
+                            {notification.DraftNum}
+                          </td>
                           <td>
                             {new Date(
                               notification.DocDate

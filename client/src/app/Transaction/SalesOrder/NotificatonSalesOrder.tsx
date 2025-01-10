@@ -269,7 +269,7 @@ const NotificationSalesOrder: React.FC<Props> = ({ DraftNumber }) => {
             <div>
               <input
                 type="text"
-                style={{ backgroundColor: "#F69629" }}
+                className="bg-slate-200"
                 readOnly
                 value={headerItem.DraftNum || ""}
               />
