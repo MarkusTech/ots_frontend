@@ -122,7 +122,7 @@ const OriginatorNotificationList: React.FC<Props> = ({ originatorUserID }) => {
                         <th>Customer Name</th>
                         <th>Total Amount Due</th>
                         <th>Remarks</th>
-                        {/* <th>Status</th> */}
+                        <th>Status</th>
                         <th>Action</th>
                       </tr>
                     </thead>
@@ -148,7 +148,7 @@ const OriginatorNotificationList: React.FC<Props> = ({ originatorUserID }) => {
                           <td>{notification.CustomerName}</td>
                           <td>{notification.TotalAmtDue}</td>
                           <td>{notification.Remarks}</td>
-                          {/* <td
+                          <td
                             className={
                               notification.Status === "Pending"
                                 ? "bg-orange-200"
@@ -160,7 +160,7 @@ const OriginatorNotificationList: React.FC<Props> = ({ originatorUserID }) => {
                             }
                           >
                             {notification.Status}
-                          </td> */}
+                          </td>
 
                           <td>
                             <button
