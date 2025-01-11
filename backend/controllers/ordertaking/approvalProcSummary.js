@@ -114,7 +114,7 @@ const updateApprovalSummaryStatus = async (req, res) => {
     const currentStatus = result.recordset[0].Status;
     const prevStatus = result.recordset[0].PrevStatus;
 
-    console.log(NumApprover, approvalType, currentStatus, prevStatus);
+    // console.log(NumApprover, approvalType, currentStatus, prevStatus);
 
     const updateDatabase = async () => {
       const updateSummaryResult = await sqlConn.query`
