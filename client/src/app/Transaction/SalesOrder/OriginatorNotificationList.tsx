@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import Draggable from "react-draggable";
 import NotificationSalesOrder from "./NotificatonSalesOrder";
-// import SalesOrder from "./SalesOrder";
+import SalesOrderOriginator from "./salesOrderOriginator";
 
 interface Props {
   originatorUserID: number;
@@ -230,7 +230,9 @@ const OriginatorNotificationList: React.FC<Props> = ({ originatorUserID }) => {
         </Draggable>
       )}
       {showSalesOrderFromDraftNum && (
-        <div>Sales Order{/* <SalesOrder /> */}</div>
+        <div>
+          <SalesOrderOriginator />
+        </div>
       )}
     </>
   );
