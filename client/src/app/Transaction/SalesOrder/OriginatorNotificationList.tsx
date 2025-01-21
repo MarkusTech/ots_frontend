@@ -194,7 +194,7 @@ const OriginatorNotificationList: React.FC<Props> = ({
                                   setShowSalesOrderFromDraftNum(true);
                                 }}
                               >
-                                View Sales Order
+                                View
                               </button>
                             ) : (
                               <button
