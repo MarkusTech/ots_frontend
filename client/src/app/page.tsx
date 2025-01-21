@@ -764,6 +764,11 @@ export default function Home({
               <Draggable>
                 <OriginatorNotificationList
                   originatorUserID={loginIDForOriginatorNotification}
+                  userData={loginUserData}
+                  userBranchID={branchIdData}
+                  userWarehouseData={warehouseCodeData}
+                  userPriceListNumData={priceListNumData}
+                  userIDData={loginUserIDData}
                 />
               </Draggable>
             )}

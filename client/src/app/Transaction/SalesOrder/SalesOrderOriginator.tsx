@@ -1,12 +1,25 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useMemo } from "react";
 import Draggable from "react-draggable";
 import axios from "axios";
 import Swal from "sweetalert2";
-import { Props } from "next/script";
 
-const SalesOrderOriginator: React.FC<Props> = () => {
+interface Props {
+  userData: string;
+  userBranchID: string;
+  userWarehouseData: string;
+  userPriceListNumData: string;
+  userIDData: string;
+}
+
+const SalesOrderOriginator: React.FC<Props> = ({
+  userData,
+  userBranchID,
+  userWarehouseData,
+  userPriceListNumData,
+  userIDData,
+}) => {
   const [isSaved, setIsSaved] = useState(false); // to hide handle submit
   const [isCommited, setIsCommited] = useState(false); // to hide commit
 
@@ -62,13 +75,13 @@ const SalesOrderOriginator: React.FC<Props> = () => {
     AppLevel: number;
   }
 
-  const [customers, setCustomers] = useState<Customer[]>([]); // for the list of save as draft Customers
+  const [customers, setCustomers] = useState<Customer[]>([]);
 
   const [itemList, setItemDataList] = useState<ItemData[]>([]);
   const [UOMList, setUOMList] = useState([]);
-  const [UOMListIndex, setUOMListIndex] = useState([]);
+  const [UOMListIndex, setUOMListIndex] = useState(0); // revert this if not working
   const [WareHouseList, setWareHouseList] = useState([]);
-  const [selectedRowIndex, setSelectedRowIndex] = useState(null);
+  const [selectedRowIndex, setSelectedRowIndex] = useState(0); // revert this if not working
 
   const [cardCodedata, setcardCodedata] = useState<string>("");
   const [taxCodeData, settaxCodeData] = useState([]);
@@ -122,15 +135,10 @@ const SalesOrderOriginator: React.FC<Props> = () => {
   const [ccstatus, setccstatus] = useState(false);
   // End of Payment useState
 
-  const warehouseCode = 0;
-  const brandID = 0; // wrong spelling it must be branch id
-  const priceListNum = 0;
-  const user = 0;
-
-  // const handleWennWorks = () => {
-  //   setApprovalTitle(`Below Standard Discounting`); // title in approval you must set here!
-  //   setAppProcSummary(true); // to display remarks
-  // };
+  const warehouseCode = userWarehouseData;
+  const brandID = userBranchID;
+  const priceListNum = userPriceListNumData;
+  const user = userData;
 
   const now = new Date();
   // Date Now()
@@ -1676,20 +1684,17 @@ const SalesOrderOriginator: React.FC<Props> = () => {
             pickUpLocation: item.PickUpLocation,
           }));
 
-          // add the data from selected details
-          setTableData([...tableData, ...newData]);
+          // Add new data to existing table data using functional update
+          setTableData((prevData) => [...prevData, ...newData]);
 
-          // to remove 1 row on adding the details
-          setTableData((prevData) => prevData.filter((_, index) => index));
-          setmodeOfrelisingArr((prevData) =>
-            prevData.filter((_, index) => index)
-          );
+          // Clear modeOfrelisingArr (if intended)
+          setmodeOfrelisingArr([]); // If you want to clear the existing modeOfrelisingArr
         })
         .catch((error) => {
           console.error("Error fetching data:", error);
         });
     }
-  }, [jsonDraftNum]);
+  }, [jsonDraftNum]); // jsonDraftNum as dependency, no need to add tableData
 
   // ----------------------- Printing Reciept -----------------------------
   useEffect(() => {
@@ -1732,6 +1737,15 @@ const SalesOrderOriginator: React.FC<Props> = () => {
       });
   }, []);
 
+  // Declare localCurrency
+  const localCurrency = useMemo(
+    () =>
+      new Intl.NumberFormat("en-PH", {
+        style: "currency",
+        currency: "PHP", // Philippine Peso
+      }),
+    []
+  );
   // UseEffect start
   useEffect(() => {
     let tempSum = 0;
@@ -1739,62 +1753,60 @@ const SalesOrderOriginator: React.FC<Props> = () => {
     let taxAmountSum = 0;
 
     const updatedTableData = [...tableData];
+    const updatedModeOfReleasingArr = [...modeOfrelisingArr];
 
-    let arrayLen = updatedTableData.length;
+    // Calculate totals and update mode of releasing
+    updatedTableData.forEach((item, index) => {
+      tempSum += item["sellingPriceBeforeDiscount"] * Number(item["quantity"]);
+      tempSum2 += item["grossTotal"];
+      taxAmountSum += item["taxAmount"];
 
-    const setmodeOfrelisingArrx = [...modeOfrelisingArr];
-
-    for (let i = 0; i < arrayLen; i++) {
-      tempSum =
-        tempSum +
-        updatedTableData[i]["sellingPriceBeforeDiscount"] *
-          Number(updatedTableData[i]["quantity"]);
-      tempSum2 = tempSum2 + updatedTableData[i]["grossTotal"];
-      taxAmountSum = taxAmountSum + updatedTableData[i]["taxAmount"];
-      setmodeOfrelisingArrx[i] = {
-        ...setmodeOfrelisingArrx[i],
-        itemCode: updatedTableData[i]["itemCode"],
-        modeReleasing: updatedTableData[i]["modeOfReleasing"],
+      updatedModeOfReleasingArr[index] = {
+        ...updatedModeOfReleasingArr[index],
+        itemCode: item["itemCode"],
+        modeReleasing: item["modeOfReleasing"],
       };
-      setmodeOfrelisingArr(setmodeOfrelisingArrx);
-    }
+    });
 
+    // Update modeOfrelisingArr state
+    setmodeOfrelisingArr(updatedModeOfReleasingArr);
+
+    // Formatted calculations
     const calculationAfterVat = localCurrency.format(tempSum2);
     const calculationBeforeVat = localCurrency.format(tempSum2 - taxAmountSum);
     const calculationTotalVat = localCurrency.format(taxAmountSum);
-    const calculationForScORPwd = localCurrency.format(
+    const calculationForScOrPwd = localCurrency.format(
       (tempSum2 - taxAmountSum) * varSCPWDdisc
     );
-    const calculationTotalAmoutDue = localCurrency.format(
+    const calculationTotalAmountDue = localCurrency.format(
       tempSum2 - (tempSum2 - taxAmountSum) * varSCPWDdisc
     );
 
+    // Update formatted values
     setTotalBeforeVat(calculationAfterVat);
     settotalAfterVat(calculationBeforeVat);
     setTotalVat(calculationTotalVat);
-    setSCPWDdata(calculationForScORPwd);
-    settotalAmoutDueData(calculationTotalAmoutDue);
+    setSCPWDdata(calculationForScOrPwd);
+    settotalAmoutDueData(calculationTotalAmountDue);
 
-    // WMR Code
-    const calcAfterVat = tempSum2;
-    const calcBeforeVat = tempSum2 - taxAmountSum;
-    const calcTotalVat = taxAmountSum;
-    const calcForScORPwd = (tempSum2 - taxAmountSum) * varSCPWDdisc;
-    const calcTotalAmoutDue =
-      tempSum2 - (tempSum2 - taxAmountSum) * varSCPWDdisc;
+    // Rounded calculations for final totals
+    const roundedBeforeVat = Number((tempSum2 - taxAmountSum).toFixed(2));
+    const roundedTotalVat = Number(taxAmountSum.toFixed(2));
+    const roundedAfterVat = Number(tempSum2.toFixed(2));
+    const roundedForScOrPwd = Number(
+      ((tempSum2 - taxAmountSum) * varSCPWDdisc).toFixed(2)
+    );
+    const roundedTotalAmountDue = Number(
+      (tempSum2 - (tempSum2 - taxAmountSum) * varSCPWDdisc).toFixed(2)
+    );
 
-    const roundedAfterVat = Number(calcAfterVat.toFixed(2));
-    const roundedBeforeVat = Number(calcBeforeVat.toFixed(2));
-    const roundedTotalVat = Number(calcTotalVat.toFixed(2));
-    const roundedForScORPwd = Number(calcForScORPwd.toFixed(2));
-    const roundedTotalAmoutDue = Number(calcTotalAmoutDue.toFixed(2));
-
+    // Update final rounded totals
     setFinalTotalAmtBefTax(roundedBeforeVat);
     setFinalTotalTax(roundedTotalVat);
     setFinalTotalAmtAftTax(roundedAfterVat);
-    setFinalSCPWDDiscTotal(roundedForScORPwd);
-    setFinalTotalAmtDue(roundedTotalAmoutDue);
-  });
+    setFinalSCPWDDiscTotal(roundedForScOrPwd);
+    setFinalTotalAmtDue(roundedTotalAmountDue);
+  }, [tableData, modeOfrelisingArr, varSCPWDdisc, localCurrency]);
 
   // End UseEffect start
 
@@ -1981,7 +1993,7 @@ const SalesOrderOriginator: React.FC<Props> = () => {
       }
 
       setTableData(updatedTableData);
-      setSelectedRowIndex(null);
+      setSelectedRowIndex(0); // revert this to null value if not working
       setOpenItemTablePanel(!openItemTablePanel);
     }
     // to clear search input history
@@ -2147,11 +2159,6 @@ const SalesOrderOriginator: React.FC<Props> = () => {
     setTableData(updatedTableData);
   };
 
-  let localCurrency = new Intl.NumberFormat("en-PH", {
-    style: "currency",
-    currency: "PHP", // Philippines currency code for Philippine Peso
-  });
-
   const handleSearchItem = (event: any) => {
     setSearchTerm(event.target.value);
   };
@@ -2207,7 +2214,7 @@ const SalesOrderOriginator: React.FC<Props> = () => {
       sellingPriceBeforeDiscount: srpdata[0]["SRP"],
       grossTotal: item.price * BaseQty * item.quantity,
       quantity: 0,
-      setSellingPriceAfterDis: item.sellingPriceAfterDiscountTemp * BaseQty,
+      sellingPriceAfterDiscount: item.sellingPriceAfterDiscountTemp * BaseQty, // Correct property
       inventoryStatus: stocksAvailabilityArr[0]["StockAvailable"],
     };
     setTableData(updatedTableData);

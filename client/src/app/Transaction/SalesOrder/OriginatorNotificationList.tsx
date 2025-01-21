@@ -7,6 +7,11 @@ import SalesOrderOriginator from "./SalesOrderOriginator";
 
 interface Props {
   originatorUserID: number;
+  userData: string;
+  userBranchID: string;
+  userWarehouseData: string;
+  userPriceListNumData: string;
+  userIDData: string;
 }
 
 interface NotificationArr {
@@ -22,7 +27,14 @@ interface NotificationArr {
   Status: string;
 }
 
-const OriginatorNotificationList: React.FC<Props> = ({ originatorUserID }) => {
+const OriginatorNotificationList: React.FC<Props> = ({
+  originatorUserID,
+  userData,
+  userBranchID,
+  userWarehouseData,
+  userPriceListNumData,
+  userIDData,
+}) => {
   const [notifications, setNotifications] = useState<NotificationArr[]>([]);
   const [isVisible, setIsVisible] = useState<boolean>(true);
   const [showSalesOrder, setShowSalesOrder] = useState<boolean>(false);
@@ -30,6 +42,12 @@ const OriginatorNotificationList: React.FC<Props> = ({ originatorUserID }) => {
   const [status, setStatus] = useState<string>("");
   const [showSalesOrderFromDraftNum, setShowSalesOrderFromDraftNum] =
     useState<boolean>(false);
+
+  const userData_props = userData;
+  const userBranchID_props = userBranchID;
+  const userWarehouseData_props = userWarehouseData;
+  const userPriceListNumData_props = userPriceListNumData;
+  const userIDData_props = userIDData;
 
   useEffect(() => {
     const fetchNotifications = async () => {
@@ -230,9 +248,47 @@ const OriginatorNotificationList: React.FC<Props> = ({ originatorUserID }) => {
         </Draggable>
       )}
       {showSalesOrderFromDraftNum && (
-        <div>
-          <SalesOrderOriginator />
-        </div>
+        <Draggable handle=".header">
+          <div
+            className="container bg-white"
+            style={{
+              border: "1px solid #ccc",
+              position: "absolute",
+              zIndex: 2,
+              top: "5%",
+              left: "15%",
+              transform: "translate(-50%, -50%)",
+              borderBottom: "solid 2px #F0AB00",
+            }}
+          >
+            <div
+              className="header grid grid-cols-2 p-2 text-left windowheader"
+              style={{
+                cursor: "move",
+                borderBottom: "solid 2px #F0AB00",
+              }}
+            >
+              <div className="">Sales Order Header</div>
+              <div className="text-right">
+                {/* <span
+                  className="text-md text-red-600 cursor-pointer"
+                  onClick={() => toggleWindow("salesorder")}
+                >
+                  ❌
+                </span> */}
+              </div>
+            </div>
+            <div className="content">
+              <SalesOrderOriginator
+                userData={userData_props}
+                userBranchID={userBranchID_props}
+                userWarehouseData={userWarehouseData_props}
+                userPriceListNumData={userPriceListNumData_props}
+                userIDData={userIDData_props}
+              />
+            </div>
+          </div>
+        </Draggable>
       )}
     </>
   );
