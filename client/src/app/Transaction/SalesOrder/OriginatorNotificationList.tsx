@@ -39,6 +39,7 @@ const OriginatorNotificationList: React.FC<Props> = ({
   const [isVisible, setIsVisible] = useState<boolean>(true);
   const [showSalesOrder, setShowSalesOrder] = useState<boolean>(false);
   const [draftNum, setDraftNum] = useState<number>(0);
+  const [draftNumString, setDraftNumString] = useState<string>("");
   const [status, setStatus] = useState<string>("");
   const [showSalesOrderFromDraftNum, setShowSalesOrderFromDraftNum] =
     useState<boolean>(false);
@@ -186,9 +187,12 @@ const OriginatorNotificationList: React.FC<Props> = ({
                             {notification.Status === "Approved" ? (
                               <button
                                 className="ml-4 bg-blue-500 text-white px-2 py-1 rounded hover:bg-blue-600"
-                                onClick={() =>
-                                  setShowSalesOrderFromDraftNum(true)
-                                }
+                                onClick={() => {
+                                  setDraftNumString(
+                                    notification.DraftNum.toString()
+                                  );
+                                  setShowSalesOrderFromDraftNum(true);
+                                }}
                               >
                                 View Sales Order
                               </button>
@@ -285,6 +289,7 @@ const OriginatorNotificationList: React.FC<Props> = ({
                 userWarehouseData={userWarehouseData_props}
                 userPriceListNumData={userPriceListNumData_props}
                 userIDData={userIDData_props}
+                DraftNumber_props={draftNumString}
               />
             </div>
           </div>

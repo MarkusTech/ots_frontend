@@ -11,6 +11,7 @@ interface Props {
   userWarehouseData: string;
   userPriceListNumData: string;
   userIDData: string;
+  DraftNumber_props: string;
 }
 
 const SalesOrderOriginator: React.FC<Props> = ({
@@ -19,6 +20,7 @@ const SalesOrderOriginator: React.FC<Props> = ({
   userWarehouseData,
   userPriceListNumData,
   userIDData,
+  DraftNumber_props,
 }) => {
   const [isSaved, setIsSaved] = useState(false); // to hide handle submit
   const [isCommited, setIsCommited] = useState(false); // to hide commit
@@ -1651,6 +1653,13 @@ const SalesOrderOriginator: React.FC<Props> = ({
 
   // ---------------------------------------- Details API ------------------------------------------
   const [jsonDraftNum, setJsonDraftNum] = useState("");
+
+  useEffect(() => {
+    if (DraftNumber_props.length > 0) {
+      setJsonDraftNum(DraftNumber_props);
+    }
+  }, [DraftNumber_props]);
+
   useEffect(() => {
     if (jsonDraftNum) {
       axios
