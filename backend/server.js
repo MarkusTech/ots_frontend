@@ -28,6 +28,7 @@ import salesCrewRoutes from "./routes/ordertaking/getSalesCrewRoutes.js";
 import approvalSummaryRoutes from "./routes/ordertaking/appProcSummaryRoutes.js";
 import getApprovalProcedureSummaryRoutes from "./routes/approval/getApprovalProcedureSummaryRoutes.js";
 import approvalNotificationRoutes from "./routes/approval/approvalNotificationRoutes.js";
+import getHeaderFromOriginatorDraftNumRoutes from "./routes/approval/getHeaderFromOriginatorDraftNum.js";
 
 // Routes v2
 import db2_paylocRoutes from "./routes/location/db2_paylocRoutes.js";
@@ -78,6 +79,7 @@ app.use("/api/v1", salesCrewRoutes);
 app.use("/api/v1", approvalSummaryRoutes);
 app.use("/api/v1", getApprovalProcedureSummaryRoutes);
 app.use("/api/v1", approvalNotificationRoutes);
+app.use("/api/v1", getHeaderFromOriginatorDraftNumRoutes);
 
 // API V2
 app.use("/api/v2", db2_paylocRoutes);
