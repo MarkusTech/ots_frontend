@@ -1654,6 +1654,7 @@ const SalesOrderOriginator: React.FC<Props> = ({
   // ---------------------------------------- Details API ------------------------------------------
   const [jsonDraftNum, setJsonDraftNum] = useState("");
 
+  // task
   useEffect(() => {
     if (DraftNumber_props.length > 0) {
       setJsonDraftNum(DraftNumber_props);
