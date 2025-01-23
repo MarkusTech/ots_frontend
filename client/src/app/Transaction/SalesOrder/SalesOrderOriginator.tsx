@@ -1451,6 +1451,7 @@ const SalesOrderOriginator: React.FC<Props> = ({
   // ---------------------------------------- IMPORTANT! --------------------------
   // Add Draft Save Data
 
+  // task
   const addDraftData = async (
     draftNum: any,
     customerCode: any,
@@ -1653,13 +1654,20 @@ const SalesOrderOriginator: React.FC<Props> = ({
 
   // ---------------------------------------- Details API ------------------------------------------
   const [jsonDraftNum, setJsonDraftNum] = useState("");
+  const [originatorDraftNum, setOriginatorDraftNum] = useState("");
 
   // task
   useEffect(() => {
     if (DraftNumber_props.length > 0) {
-      setJsonDraftNum(DraftNumber_props);
+      setOriginatorDraftNum(DraftNumber_props);
     }
   }, [DraftNumber_props]);
+
+  useEffect(() => {
+    if (originatorDraftNum) {
+      axios.get(`/backend api`);
+    }
+  });
 
   useEffect(() => {
     if (jsonDraftNum) {
