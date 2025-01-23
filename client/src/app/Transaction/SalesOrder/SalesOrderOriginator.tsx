@@ -4,6 +4,7 @@ import React, { useEffect, useState, useMemo } from "react";
 import Draggable from "react-draggable";
 import axios from "axios";
 import Swal from "sweetalert2";
+import { set } from "date-fns";
 
 interface Props {
   userData: string;
@@ -1665,9 +1666,108 @@ const SalesOrderOriginator: React.FC<Props> = ({
 
   useEffect(() => {
     if (originatorDraftNum) {
-      axios.get(`/backend api`);
+      axios
+        .get(`${backendAPI}/api/v1/get-draft/${originatorDraftNum}`)
+        .then((response) => {
+          const responseHeaderData = response.data;
+
+          // set form data from backend API
+          setFormData({
+            ...formData,
+            CustomerCode: responseHeaderData.CustomerCode,
+            CustomerName: responseHeaderData.CustomerName,
+            WalkInName: responseHeaderData.WalkInName,
+            DocDate: responseHeaderData.DocDate,
+            CreatedBy: responseHeaderData.CreatedBy,
+            DocStat: responseHeaderData.DocStat,
+          });
+          // Set Customer data from header
+          setCustomerData([
+            {
+              customerCode: responseHeaderData.CustomerCode,
+              customerName: responseHeaderData.CustomerName,
+              customerCardFName: responseHeaderData.ForeignName,
+              cusShipAddress: responseHeaderData.ShippingAdd,
+              cusLicTradNum: responseHeaderData.TIN,
+            },
+          ]);
+
+          setCustomerPrint(responseHeaderData.CustomerName);
+          setIsCommited(true);
+          setJsonDraftNum(originatorDraftNum);
+          setWalkingCustomer(responseHeaderData.WalkInName); // walkin customer
+          setCustomerReference(responseHeaderData.Reference); // Customer Reference
+          setScOrPwdField(responseHeaderData.SCPWDIdNo); // SC/PWD ID
+          setDraftNumber(responseHeaderData.DraftNum); // Draft Number
+          setSelectedSalesCrew(responseHeaderData.SalesCrew); // Sales Crew
+          setRemarksField(responseHeaderData.Remarks); // Remarks
+          // DocStat
+
+          // Payment Method
+          setIsPaymentCash(responseHeaderData.Cash);
+          setIsPaymentCreditCard(responseHeaderData.CreditCard);
+          setIsPaymentDebitCard(responseHeaderData.DebitCard);
+          setIsPaymentODC(responseHeaderData.ODC);
+          setIsPaymentPDC(responseHeaderData.PDC);
+          setIsPaymentOnlineTransfer(responseHeaderData.OnlineTransfer);
+          setIsPaymentOnAccount(responseHeaderData.OnAccount);
+          setIsPaymentCOD(responseHeaderData.COD);
+
+          // -------------- date ----------------
+          const dateString = responseHeaderData.PostingDate;
+          const date = new Date(dateString);
+          const formattedDate = date.toLocaleDateString("en-US", {
+            month: "numeric",
+            day: "numeric",
+            year: "numeric",
+          });
+          setTodayDate(formattedDate);
+          // ----------- End Date --------------
+
+          // payment method
+          const Yes = "Y";
+          if (responseHeaderData.Cash == Yes) {
+            setIsCheckedCash(true);
+            setModeOfPaymentPrint("Cash");
+          } else if (responseHeaderData.CreditCard == Yes) {
+            setIsCheckedCreditCard(true);
+            setModeOfPaymentPrint("CreditCard");
+          } else if (responseHeaderData.DebitCard == Yes) {
+            setIsCheckedDebit(true);
+            setModeOfPaymentPrint("DebitCard");
+            // draftData;
+          } else if (responseHeaderData.ODC == Yes) {
+            setIsCheckedDatedCheck(true);
+            setModeOfPaymentPrint("ODC");
+          } else if (responseHeaderData.PDC == Yes) {
+            setIsCheckedPDC(true);
+            setModeOfPaymentPrint("PDC");
+          } else if (responseHeaderData.OnlineTransfer == Yes) {
+            setIsCheckedOnlineTransfer(true);
+            setModeOfPaymentPrint("OnlineTransfer");
+          } else if (responseHeaderData.OnAccount == Yes) {
+            setIsCheckedOnAccount(true);
+            setModeOfPaymentPrint("OnAccount");
+          } else if (responseHeaderData.COD) {
+            setIsCheckedCashOnDel(true);
+            setModeOfPaymentPrint("COD");
+          } else {
+            Swal.fire("Please Select Payment Method!", "", "info");
+          }
+
+          // To addrow if you select draft item
+          setcardCodedata(responseHeaderData.CustomerCode);
+          onAddHeaderTaxCode(responseHeaderData.CustomerCode, "GSCNAPGS");
+
+          // to clear search input history
+          setSearchTerm("");
+
+          // for open and close draggable and for the button save and update
+          // setShowSearchHeader(!showSearchHeader);
+          setIsSaved(true);
+        });
     }
-  });
+  }, [originatorDraftNum, formData]);
 
   useEffect(() => {
     if (jsonDraftNum) {
@@ -3271,7 +3371,7 @@ const SalesOrderOriginator: React.FC<Props> = ({
                 Document Status
               </label>
               <div>
-                <input type="text" readOnly />
+                <input value={formData.DocStat} type="text" readOnly />
               </div>
             </div>
 

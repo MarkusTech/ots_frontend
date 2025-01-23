@@ -334,6 +334,7 @@ export default function Home({
                 alt="Logo Image"
                 width={500}
                 height={500}
+                priority
               />
             </div>
             {/* If credentials are correct and the user is Admin */}
