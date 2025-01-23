@@ -1703,8 +1703,7 @@ const SalesOrderOriginator: React.FC<Props> = ({
           setDraftNumber(responseHeaderData.DraftNum);
           setSelectedSalesCrew(responseHeaderData.SalesCrew);
           setRemarksField(responseHeaderData.Remarks);
-          // DocStat
-
+          setDocNumber(responseHeaderData.DocNum);
           // Payment Method
           setIsPaymentCash(responseHeaderData.Cash);
           setIsPaymentCreditCard(responseHeaderData.CreditCard);
