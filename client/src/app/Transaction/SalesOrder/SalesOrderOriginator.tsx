@@ -1656,6 +1656,7 @@ const SalesOrderOriginator: React.FC<Props> = ({
   // ---------------------------------------- Details API ------------------------------------------
   const [jsonDraftNum, setJsonDraftNum] = useState("");
   const [originatorDraftNum, setOriginatorDraftNum] = useState("");
+  const [isEffectRan, setIsEffectRan] = useState(false);
 
   // task
   useEffect(() => {
@@ -1665,7 +1666,7 @@ const SalesOrderOriginator: React.FC<Props> = ({
   }, [DraftNumber_props]);
 
   useEffect(() => {
-    if (originatorDraftNum) {
+    if (originatorDraftNum && !isEffectRan) {
       axios
         .get(`${backendAPI}/api/v1/get-draft/${originatorDraftNum}`)
         .then((response) => {
@@ -1695,12 +1696,12 @@ const SalesOrderOriginator: React.FC<Props> = ({
           setCustomerPrint(responseHeaderData.CustomerName);
           setIsCommited(true);
           setJsonDraftNum(originatorDraftNum);
-          setWalkingCustomer(responseHeaderData.WalkInName); // walkin customer
-          setCustomerReference(responseHeaderData.Reference); // Customer Reference
-          setScOrPwdField(responseHeaderData.SCPWDIdNo); // SC/PWD ID
-          setDraftNumber(responseHeaderData.DraftNum); // Draft Number
-          setSelectedSalesCrew(responseHeaderData.SalesCrew); // Sales Crew
-          setRemarksField(responseHeaderData.Remarks); // Remarks
+          setWalkingCustomer(responseHeaderData.WalkInName);
+          setCustomerReference(responseHeaderData.Reference);
+          setScOrPwdField(responseHeaderData.SCPWDIdNo);
+          setDraftNumber(responseHeaderData.DraftNum);
+          setSelectedSalesCrew(responseHeaderData.SalesCrew);
+          setRemarksField(responseHeaderData.Remarks);
           // DocStat
 
           // Payment Method
@@ -1735,7 +1736,6 @@ const SalesOrderOriginator: React.FC<Props> = ({
           } else if (responseHeaderData.DebitCard == Yes) {
             setIsCheckedDebit(true);
             setModeOfPaymentPrint("DebitCard");
-            // draftData;
           } else if (responseHeaderData.ODC == Yes) {
             setIsCheckedDatedCheck(true);
             setModeOfPaymentPrint("ODC");
@@ -1761,13 +1761,13 @@ const SalesOrderOriginator: React.FC<Props> = ({
 
           // to clear search input history
           setSearchTerm("");
-
-          // for open and close draggable and for the button save and update
-          // setShowSearchHeader(!showSearchHeader);
           setIsSaved(true);
+
+          // Set the flag to true to prevent the effect from running again
+          setIsEffectRan(true);
         });
     }
-  }, [originatorDraftNum, formData]);
+  }, [originatorDraftNum, formData, isEffectRan]);
 
   useEffect(() => {
     if (jsonDraftNum) {
