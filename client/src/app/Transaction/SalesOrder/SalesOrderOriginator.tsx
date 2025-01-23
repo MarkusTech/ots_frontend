@@ -1696,6 +1696,7 @@ const SalesOrderOriginator: React.FC<Props> = ({
           setCustomerPrint(responseHeaderData.CustomerName);
           setIsCommited(true);
           setJsonDraftNum(originatorDraftNum);
+          setTableData((prevData) => prevData.slice(1)); // to remove the first element in details table
           setWalkingCustomer(responseHeaderData.WalkInName);
           setCustomerReference(responseHeaderData.Reference);
           setScOrPwdField(responseHeaderData.SCPWDIdNo);
