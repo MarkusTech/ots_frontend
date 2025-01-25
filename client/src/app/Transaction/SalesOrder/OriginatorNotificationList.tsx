@@ -43,6 +43,7 @@ const OriginatorNotificationList: React.FC<Props> = ({
   const [status, setStatus] = useState<string>("");
   const [showSalesOrderFromDraftNum, setShowSalesOrderFromDraftNum] =
     useState<boolean>(false);
+  const [headerStatus, setHeaderStatus] = useState<string>("");
 
   const userData_props = userData;
   const userBranchID_props = userBranchID;
@@ -192,6 +193,7 @@ const OriginatorNotificationList: React.FC<Props> = ({
                                     notification.DraftNum.toString()
                                   );
                                   setShowSalesOrderFromDraftNum(true);
+                                  setHeaderStatus(notification.Status);
                                 }}
                               >
                                 View
@@ -272,14 +274,14 @@ const OriginatorNotificationList: React.FC<Props> = ({
                 borderBottom: "solid 2px #F0AB00",
               }}
             >
-              <div className="">Sales Order Header</div>
+              <div className="">Sales Order ({headerStatus})</div>
               <div className="text-right">
-                {/* <span
+                <span
                   className="text-md text-red-600 cursor-pointer"
-                  onClick={() => toggleWindow("salesorder")}
+                  onClick={() => setShowSalesOrderFromDraftNum(false)}
                 >
                   ❌
-                </span> */}
+                </span>
               </div>
             </div>
             <div className="content">
