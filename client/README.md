@@ -39,3 +39,7 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 
 - backendAPI => http://localhost:5000
   http://172.16.10.217:3002/so-header/ => ${backendAPI}/api/v1/get-draft
+
+# Node version
+
+v18.18.0
