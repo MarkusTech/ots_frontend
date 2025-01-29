@@ -43,3 +43,6 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 # Node version
 
 v18.18.0
+
+nvm use 18.18.0
+nvm list
