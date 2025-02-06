@@ -5,9 +5,9 @@ dotenv.config();
 
 const config = {
   database: process.env.MSSQL_DATABASE,
-  server: process.env.MSSQL_SERVER,
+  // server: process.env.MSSQL_SERVER,
   user: process.env.MSSQL_USERNAME,
-  // password: process.env.MSSQL_PASSWORD,
+  password: process.env.MSSQL_PASSWORD,
   options: {
     encrypt: false, // Set to false to match the default behavior in VB.NET
     trustServerCertificate: true, // Ensure this is true if self-signed certificates are used
