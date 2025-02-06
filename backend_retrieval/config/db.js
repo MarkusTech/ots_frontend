@@ -18,7 +18,9 @@ sql
   .connect(config)
   .then((pool) => {
     if (pool.connected) {
-      console.log("Main Server Database Connected".bgGreen);
+      console.log(
+        `Main Server Database Connected on ${process.env.MSSQL_SERVER}`.bgGreen
+      );
     }
     return pool;
   })
