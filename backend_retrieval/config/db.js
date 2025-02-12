@@ -5,7 +5,7 @@ dotenv.config();
 
 const config = {
   database: process.env.MSSQL_DATABASE,
-  server: process.env.MSSQLL_SERVER,
+  server: process.env.MSSQL_SERVER,
   user: process.env.MSSQL_USERNAME,
   password: process.env.MSSQL_PASSWORD,
   options: {
