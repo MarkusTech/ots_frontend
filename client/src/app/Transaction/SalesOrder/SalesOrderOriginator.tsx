@@ -4296,9 +4296,9 @@ const SalesOrderOriginator: React.FC<Props> = ({
                     className="p-2 border rounded w-full"
                     placeholder="Enter your remarks here"
                     rows={4}
-                    style={{ minHeight: "80px" }} // Adjust the height as needed
-                    value={approvalSummaryRemarks} // Bind the textarea value to the state
-                    onChange={(e) => setApprovalSummaryRemarks(e.target.value)} // Update the state on change
+                    style={{ minHeight: "80px" }}
+                    value={approvalSummaryRemarks}
+                    onChange={(e) => setApprovalSummaryRemarks(e.target.value)}
                   />
                 </div>
                 <div className="mt-4 flex justify-center">
