@@ -4801,8 +4801,6 @@ const SalesOrderOriginator: React.FC<Props> = ({
                 </Draggable>
               )}
             </div>
-
-            {/* End of Search Button */}
           </div>
         </div>
         <div className="p-2 flex justify-end"></div>
